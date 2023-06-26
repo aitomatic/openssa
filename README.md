@@ -1,3 +1,7 @@
+> Note: we are in the process of refactoring the code base for open sourcing.
+> You will see lots of updates over the next few days, including an SSM playground sandbox.
+> Be sure to WATCH this repo for these updates.
+
 ## OpenSSM – “Small Specialist Models” for Industrial AI
 
 OpenSSM (pronounced `open-sesame`) is an open-source framework for Small Specialist Models (SSMs), which are key to enhancing
