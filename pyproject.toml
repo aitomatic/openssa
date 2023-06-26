@@ -1,0 +1,102 @@
+[project]
+
+
+# GENERAL INFO
+# ============
+
+name = 'openssm'
+
+description = 'Small Specialist Models (SSMs) for AI systems'
+
+keywords = [
+  'Artificial Intelligence',
+  'A.I.',
+  'AI',
+
+  'specialist',
+  'model',
+]
+
+readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
+
+classifiers = [
+]
+
+
+# AUTHOR(S)/MAINTAINER(S) & LICENSE
+# =================================
+
+authors = [
+  {name = 'Aitomatic, Inc.', email = 'engineering@aitomatic.com'},
+]
+maintainers = [
+  {name = 'Aitomatic, Inc.', email = 'engineering@aitomatic.com'},
+]
+
+license = {file = 'LICENSE.md'}
+
+
+# PYTHON VERSION REQUIREMENT
+# ==========================
+
+requires-python = '>= 3.11'
+
+
+# DYNAMIC METADATA
+# ================
+
+dynamic = [
+  'version',
+  'dependencies',
+  'optional-dependencies',
+]
+
+
+# URLs
+# ====
+
+[project.urls]
+Homepage = 'https://github.com/aitomatic/ssm'
+Repository = 'https://github.com/aitomatic/ssm'
+GitHub = 'https://github.com/aitomatic/ssm'
+Documentation = 'https://aitomatic.github.io/ssm'
+
+
+# SETUPTOOLS-SPECIFIC CONFIG
+# ==========================
+# setuptools.pypa.io/en/latest/userguide/pyproject_config.html#setuptools-specific-configuration
+
+[tool.setuptools]
+
+zip-safe = true
+
+
+[tool.setuptools.packages.find]
+where = ['src']
+include = ['*']
+exclude = []
+namespaces = true
+
+
+[tool.setuptools.dynamic]
+
+version = {file = 'VERSION'}
+
+dependencies = {file = 'requirements.txt'}
+
+
+[tool.setuptools.dynamic.optional-dependencies]
+
+dev = {file = 'metadata/requirements/dev.txt'}
+
+
+# BUILD SYSTEM
+# (SetUpTools)
+# ============
+
+[build-system]
+requires = [
+  'SetUpTools >= 68.0.0',
+  'Wheel >= 0.40.0',
+]
+build-backend = 'setuptools.build_meta'

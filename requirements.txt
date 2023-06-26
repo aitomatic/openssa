@@ -1,0 +1,6 @@
+# LlamaIndex & related
+llama-index >= 0.6.33
+llama-hub >= 0.0.4
+
+# misc / other
+pypdf >= 3.11.0

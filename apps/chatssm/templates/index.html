@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css', v='0.2') }}">
+    <title>OpenSSM</title>
+</head>
+<body>
+    <header>
+        <h1>OpenSSM Sandbox</h1>
+        <label for="ssm-selection">Choose an SSM backend:</label>
+        <select id="ssm-selection">
+            <!-- SSM selection -->
+            <option value="ssm1">SSM 1</option>
+            <option value="ssm2">SSM 2</option>
+            <option value="ssm3">SSM 3</option>
+        </select>
+    </header>
+    <main>
+        <div class="pane" id="chatpane">
+            <!-- Chat window -->
+            <div id="chatbox" placeholder="Chat conversation..." disabled></div>
+	    <textarea id="inputbox" rows="3" placeholder="Type your message..." what_onkeydown="if (event.keyCode == 13) { appendMessage(event); }"></textarea>
+	    <div id="loading" class="d-none">
+		<div class="spinner-border text-primary" role="status">
+		    <span class="sr-only">Loading...</span>
+		</div>
+	    </div>
+        </div>
+        <div class="pane">
+            <!-- Live activity -->
+            <textarea id="statusbox" placeholder="Status Info" style="height:100%;" disabled></textarea>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js', v='0.1') }}"></script>
+    <script src="{{ url_for('static', filename='js/chat.js', v='0.3') }}"></script>
+</body>
+</html>

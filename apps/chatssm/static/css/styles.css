@@ -1,0 +1,133 @@
+body {
+    background: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background: #2980b9;
+    color: #ffffff;
+    width: 100%;
+    border-bottom: 1px solid #2980b9;
+}
+
+header label, header select {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.pane {
+    flex: 1;
+    background: #ecf0f1;
+    color: #2c3e50;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    height: 60vh;
+}
+
+#chatbox, #statusbox {
+    height: 80%;
+    width: 100%;
+    resize: none;
+    background: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #bdc3c7;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;  /* Will cause a scrollbar to appear when necessary */
+}
+
+#inputbox {
+    width: 100%;
+    height: 20%;
+    background: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #bdc3c7;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 10px;
+}
+
+#inputbox::placeholder {
+    color: #bdc3c7;
+}
+
+select {
+    background: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #bdc3c7;
+    padding: 5px;
+}
+#inputbox {
+    width: 100%;
+    background: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #bdc3c7;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 10px;
+    resize: vertical; /* Allow the user to resize the textarea vertically */
+    overflow: auto; /* Add scroll bars if the content overflows the textarea */
+}
+#loading {
+    position: absolute;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.spinner {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#chatpane {
+    position: relative;
+}
+
+.SYSTEM {
+    font-style: italic;
+}
+
+.USER {
+    font-weight: bold;
+}
+
+.SSM {
+}
