@@ -93,12 +93,16 @@ The above diagram illustrates the high-level architecture of an SSM, which compr
 SSMs communicate in both unstructured (natural language) and structured APIs, catering to a variety of real-world industrial
 systems.
 
-
-
 ![SSM Composability](./diagrams/ssm-composability.png)
 <br>**Figure – Easily combine domain knowledge with SSMs**
 
 The composable nature of SSMs allows for easy combination of domain-knowledge sources from multiple models.
+
+## Near-Term Roadmap
+* Play with SSMs in a hosted SSM sandbox
+* Create SSMs in your own development environment, and integrate SSMs into your own AI apps
+* Capture domain knowledge in various forms into your SSMs
+* Apply SSMs in collaborative problem-solving AI systems
 
 
 ## Getting Started
