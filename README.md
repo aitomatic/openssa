@@ -26,13 +26,15 @@ industrial problems.
 
 The trend towards specialization in AI models is a clear trajectory seen by many in the field.
 
-> Specialization is crucial for quality ...not general purpose Al models – Eric Schmidt
+> Specialization is crucial for quality .. not general purpose Al models – Eric Schmidt, Schmidt Foundation
 
-> ... small models ... for a specific task that are good –  Matei Zaharia
+> .. small models .. for a specific task that are good –  Matei Zaharia, Databricks
 
-> ... small agents working together ... specific and best in their tasks – Harrison Chase
+> .. small agents working together .. specific and best in their tasks – Harrison Chase, Langchain
 
-> ... small but highly capable expert models – Andrei Karpathy
+> .. small but highly capable expert models – Andrej Karpathy, OpenAI
+
+> .. small models are .. a massive paradigm shift .. about deploying AI models at scale – Rob Toews, Radical Ventures
 
 As predicted by Eric Schmidt and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.”
 SSMs are the central part in the architecture of these systems.
