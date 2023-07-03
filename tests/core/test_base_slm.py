@@ -1,10 +1,6 @@
-from ..config import Config
 from unittest.mock import Mock
-from core.slm.base_slm import BaseSLM
-from core.adapter.base_adapter import BaseAdapter
-
-
-config = Config()
+from openssm.core.slm.base_slm import BaseSLM
+from openssm.core.adapter.base_adapter import BaseAdapter
 
 
 class MockAdapter(BaseAdapter):

@@ -1,5 +1,6 @@
-import abc
-import sqlite3
+import os
+
 
 class Config:
-    SLM_CONVERSATION_DB = SQLiteConversationDB('conversations.db')
+    # get OPENAI_API_KEY from environment variable
+    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')

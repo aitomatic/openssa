@@ -1,9 +1,5 @@
-from ..config import Config
 from unittest.mock import Mock
-from core.backend.base_backend import BaseBackend
-
-
-config = Config()
+from openssm.core.backend.base_backend import BaseBackend
 
 
 def test_process():

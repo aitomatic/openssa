@@ -1,18 +1,19 @@
 from .base_ssm import BaseSSM
-from core.slm.gpt3_slm import GPT3SLM
-from core.adapter.llama_index_adapter import LlamaIndexAdapter
+from core.slm.gpt3_slm import GPT3ChatCompletionSLM
 from core.backend.abstract_backend import AbstractBackend
+
 
 class GPT3LlamaIndexSSM(BaseSSM):
     def __init__(self, backends: list[AbstractBackend]):
-        slm = GPT3SLM()
-        #adapter = LlamaIndexAdapter()
-        adapter = None # FIXME
-        backends = None # FIXME
+        slm = GPT3ChatCompletionSLM()
+        # adapter = LlamaIndexAdapter()
+        adapter = None  # FIXME
+        backends = None  # FIXME
         super().__init__(slm, adapter, backends)
 
     def process(self, conversation_id: str, user_input: str):
-        # The SLM parses the user input and translates it into one or more calls to the Adapter
+        # The SLM parses the user input and translates it
+        # into one or more calls to the Adapter
         adapter_calls = self.slm.process(user_input)
         
         responses = []
@@ -20,12 +21,14 @@ class GPT3LlamaIndexSSM(BaseSSM):
             method = call['method']
             params = call['params']
 
-            # The Adapter executes the method and interacts with the appropriate Backend(s)
+            # The Adapter executes the method and
+            # interacts with the appropriate Backend(s)
             if hasattr(self.adapter, method):
                 result = getattr(self.adapter, method)(*params)
                 responses.append(result)
 
-        # The SLM then translates the Adapter responses back into natural language
+        # The SLM then translates the Adapter responses
+        # back into natural language
         output = self.slm.generate_output(responses)
         return output
 

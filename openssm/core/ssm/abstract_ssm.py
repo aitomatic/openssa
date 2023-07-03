@@ -26,7 +26,9 @@ class AbstractSSM(ABC):
         pass
 
     @abstractmethod
-    def discuss(self, conversation_id: str, user_input: str):
+    def discuss(self,
+                conversation_id: str,
+                user_input: list[dict]) -> list[dict]:
         """Processes a natural language conversation input."""
         pass
 

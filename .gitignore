@@ -120,7 +120,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env (we do want this, to add the library path during development)
 .venv
 env/
 venv/
@@ -163,3 +163,4 @@ cython_debug/
 .*.dtmp
 
 .vscode/
+poetry.lock

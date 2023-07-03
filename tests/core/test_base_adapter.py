@@ -1,10 +1,6 @@
-from ..config import Config
 from unittest.mock import Mock
-from core.adapter.base_adapter import BaseAdapter
-from core.backend.base_backend import BaseBackend
-
-
-config = Config()
+from openssm.core.adapter.base_adapter import BaseAdapter
+from openssm.core.backend.base_backend import BaseBackend
 
 
 class MockBackend(BaseBackend):

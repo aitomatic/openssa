@@ -1,14 +1,19 @@
 [tool.poetry]
 name = "openssm"
 version = "0.1.0"
-description = ""
-authors = ["ctn <ctn@aitomatic.com>"]
+description = "OpenSSM – 'Small Specialist Models' for Industrial AI"
+authors = ["Aitomatic Engineering <engineering@aitomatic.com>"]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.8"
-
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">=3.8.1,<4.0"
+# LlamaIndex & related
+llama-index = ">=0.6.33"
+llama-hub = ">=0.0.4"
+# misc / other
+pypdf = ">=3.11.0"
+pytest = ">=7.0.0"

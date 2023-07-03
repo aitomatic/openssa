@@ -12,7 +12,9 @@ class BaseSLM(AbstractSLM):
     def set_adapter(self, adapter: AbstractAdapter):
         self.adapter = adapter
 
-    def discuss(self, conversation_id: str, user_input: str):
+    def discuss(self,
+    conversation_id: str,
+                user_input: list[dict]) -> list[dict]:
         pass
 
     def reset_memory(self):

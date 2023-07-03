@@ -20,8 +20,13 @@ class AbstractSLM(ABC):
         pass
 
     @abstractmethod
-    def discuss(self, conversation_id: str, user_input: str):
-        """Processes a natural language conversation input."""
+    def discuss(self,
+                conversation_id: str,
+                user_input: list[dict]) -> list[dict]:
+        """
+        Processes a natural language conversation input
+        and returns a list of replies
+        """
         pass
 
     @abstractmethod

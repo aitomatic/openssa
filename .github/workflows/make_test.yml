@@ -1,0 +1,30 @@
+name: Run Make Test on Push
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11  # replace with your desired Python version
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Install Dependencies
+        run: |
+          poetry install
+
+      - name: Run Make Test
+        run: make test

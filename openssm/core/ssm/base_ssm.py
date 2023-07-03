@@ -19,15 +19,20 @@ class BaseSSM(AbstractSSM):
         return self.slm
 
     def get_adapter(self) -> AbstractAdapter:
-        return None if self.get_slm() is None else self.get_slm().get_adapter()
+        if self.get_slm() is None:
+            return None
+        else:
+            return self.get_slm().get_adapter()
 
     def get_backends(self) -> list[AbstractBackend]:
         if self.get_adapter() is None:
             return None
         else:
-            self.get_adapter().get_backends()
+            return self.get_adapter().get_backends()
 
-    def discuss(self, conversation_id: str, user_input: str):
+    def discuss(self,
+                conversation_id: str,
+                user_input: list[dict]) -> list[dict]:
         return self.get_slm().discuss(conversation_id, user_input)
 
     def api_call(self, function_name, *args, **kwargs):
