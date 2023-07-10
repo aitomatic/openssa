@@ -8,7 +8,7 @@ import json
 import ast
 
 from requests import request
-# from torch import float32
+from torch import float32
 from transformers import AutoTokenizer, pipeline, AutoModelForCausalLM
 
 from .base_slm import BaseSLM
@@ -32,7 +32,7 @@ class HuggingFaceBaseSLM(BaseSLM):
         if model_name is None:
             raise ValueError("model_name must be specified")
 
-        self.local_mode = True if model_url is None else False
+        self.local_mode = model_url is None
 
         if self.local_mode:
             # Load the model and tokenizer from the local cache
@@ -127,7 +127,7 @@ class Falcon7bSLM(HuggingFaceBaseSLM):
         model_server_token = model_server_token or Config.FALCON7B_SERVER_TOKEN
 
         super().__init__(model_name=model_name,
-                         model_url=model_url, 
+                         model_url=model_url,
                          model_server_token=model_server_token,
                          adapter=adapter)
 

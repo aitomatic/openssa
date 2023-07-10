@@ -1,5 +1,5 @@
-import pytest
 from unittest.mock import patch, MagicMock
+import pytest
 from openssm.core.slm.openai_slm import GPT3ChatCompletionSLM
 
 

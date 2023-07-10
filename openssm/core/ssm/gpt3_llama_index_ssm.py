@@ -1,6 +1,6 @@
 from .base_ssm import BaseSSM
-from openssm.core.slm.gpt3_slm import GPT3ChatCompletionSLM
-from openssm.core.backend.abstract_backend import AbstractBackend
+from ..slm.gpt3_slm import GPT3ChatCompletionSLM
+from ..backend.abstract_backend import AbstractBackend
 
 
 class GPT3LlamaIndexSSM(BaseSSM):
@@ -15,7 +15,7 @@ class GPT3LlamaIndexSSM(BaseSSM):
         # The SLM parses the user input and translates it
         # into one or more calls to the Adapter
         adapter_calls = self.slm.process(user_input)
-        
+
         responses = []
         for call in adapter_calls:
             method = call['method']

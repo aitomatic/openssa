@@ -1,8 +1,8 @@
+import ast
+import openai
 from ...config import Config
 from .base_slm import BaseSLM
 from ..adapter.abstract_adapter import AbstractAdapter
-import openai
-import ast
 
 
 class GPT3BaseSLM(BaseSLM):

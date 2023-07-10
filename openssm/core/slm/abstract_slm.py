@@ -12,12 +12,10 @@ class AbstractSLM(ABC):
     @abstractmethod
     def get_adapter(self) -> AbstractAdapter:
         """Returns our adapter"""
-        pass
 
     @abstractmethod
     def set_adapter(self, adapter: AbstractAdapter):
         """Sets our adapter"""
-        pass
 
     @abstractmethod
     def discuss(self,
@@ -27,9 +25,7 @@ class AbstractSLM(ABC):
         Processes a natural language conversation input
         and returns a list of replies
         """
-        pass
 
     @abstractmethod
     def reset_memory(self):
         """Resets our conversation memory"""
-        pass

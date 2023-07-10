@@ -1,9 +1,7 @@
 import os
-
-from openssm.abstract.ssm import SSM, FactSet, InferRuleSet
-
 from dotenv import load_dotenv
 from langchain.llms.openai import OpenAIChat
+from openssm.abstract.ssm import SSM, FactSet, InferRuleSet
 
 
 load_dotenv()

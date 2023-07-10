@@ -1,5 +1,5 @@
-import pytest
 from unittest.mock import MagicMock
+import pytest
 from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.ssm.base_ssm import BaseSSM
 from openssm.core.adapter.base_adapter import BaseAdapter
@@ -17,6 +17,9 @@ class MockSLM(BaseSLM):
 
 class MockAdapter(BaseAdapter):
     def api_call(self, function_name, *args, **kwargs):
+        assert function_name is not None
+        assert args is not None
+        assert kwargs is not None
         return "Mock api_call response"
 
     def list_facts(self):
@@ -29,20 +32,26 @@ class MockAdapter(BaseAdapter):
         return ["Heuristic 1", "Heuristic 2"]
 
     def select_facts(self, criteria):
+        assert criteria is not None
         return ["Fact 1"]
 
     def select_inferencers(self, criteria):
+        assert criteria is not None
         return ["Inferencer 1"]
 
     def select_heuristics(self, criteria):
+        assert criteria is not None
         return ["Heuristic 1"]
 
     def infer(self, criteria):
+        assert criteria is not None
         return ["Inference Result"]
 
 
 class MockBackend(BaseBackend):
-    def process(self, input):
+    def dbprocess(self, conversation_id, user_input):
+        assert conversation_id is not None
+        assert user_input is not None
         return "Mock process response"
 
 

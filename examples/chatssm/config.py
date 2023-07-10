@@ -1,5 +1,5 @@
-from openssm.config import Config
 import os
+from openssm.config import Config
 
 
 Config.DEBUG = True

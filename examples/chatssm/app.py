@@ -5,7 +5,8 @@ from routes import routes
 
 app = Flask(__name__)
 app.register_blueprint(routes)
-app.config["SECRET_KEY"] = Config.FLASK_SECRET_KEY
+if hasattr(Config, 'FLASK_SECRET_KEY'):
+    app.config["SECRET_KEY"] = Config.FLASK_SECRET_KEY
 
 # For "python app.py"
 if __name__ == '__main__':

@@ -77,7 +77,7 @@ class BaseSSM(AbstractSSM):
         return self.get_adapter().infer(criteria)
 
     def solve_problem(self, problem_description: list[str]) -> list[str]:
-        return super().solve_problem(problem_description)
+        pass
 
     def add_backend(self, backend: AbstractBackend):
         return self.get_adapter().add_backend(backend)

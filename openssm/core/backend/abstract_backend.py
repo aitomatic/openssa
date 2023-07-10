@@ -3,9 +3,6 @@ from ..inferencer.abstract_inferencer import AbstractInferencer
 
 
 class AbstractBackend(ABC):
-    def __init__(self):
-        pass
-
     @abstractmethod
     def process(self, conversation_id: str, user_input: str):
         pass
@@ -54,3 +51,4 @@ class AbstractBackend(ABC):
     @abstractmethod
     def select_heuristics(self, criteria):
         pass
+

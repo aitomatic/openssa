@@ -43,7 +43,7 @@ pypi-publish: build
 	poetry publish
 
 pypi-auth:
-	echo poetry config pypi-token.pypi $(PYPI_TOKEN)
+	poetry config pypi-token.pypi $(PYPI_TOKEN)
 
 poetry-install:
 	poetry lock
@@ -57,6 +57,13 @@ requirements.txt: pyproject.toml
 
 clean:
 	rm -fr poetry.lock dist/ requirements.txt
+
+LINT_DIRS = openssm tests examples
+lint:
+	@for dir in $(LINT_DIRS) ; do \
+		echo ... Running pylint on $$dir; \
+		npx pylint $$dir ; \
+	done
 
 oss-publish:
 	@echo temporary target

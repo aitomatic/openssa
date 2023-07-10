@@ -17,7 +17,6 @@ class BaseBackend(AbstractBackend):
         It gets all its facts, inferencers, and heuristics
         through the add_* methods.
         """
-        pass
 
     def add_fact(self, fact: str):
         self.facts.add(fact)
