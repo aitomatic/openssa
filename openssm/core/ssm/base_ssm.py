@@ -1,7 +1,10 @@
 from .abstract_ssm import AbstractSSM
-from core.slm.abstract_slm import AbstractSLM
-from core.adapter.abstract_adapter import AbstractAdapter
-from core.backend.abstract_backend import AbstractBackend
+from ..slm.abstract_slm import AbstractSLM
+from ..adapter.abstract_adapter import AbstractAdapter
+from ..backend.abstract_backend import AbstractBackend
+from ..slm.base_slm import BaseSLM
+from ..adapter.base_adapter import BaseAdapter
+from ..backend.base_backend import BaseBackend
 
 
 class BaseSSM(AbstractSSM):
@@ -9,26 +12,36 @@ class BaseSSM(AbstractSSM):
                  slm: AbstractSLM = None,
                  adapter: AbstractAdapter = None,
                  backends: list[AbstractBackend] = None):
-        self.slm = slm
-        if (slm is not None):
-            slm.set_adapter(adapter)
-        if (adapter is not None):
-            adapter.set_backends(backends)
+        self.slm = slm or BaseSLM()
+        self.slm.set_adapter(adapter or BaseAdapter())
+        self.get_adapter().set_backends(backends or [BaseBackend()])
 
     def get_slm(self) -> AbstractSLM:
+        """
+        Return the previous assigned SLM,
+        or a default SLM if none was assigned.
+        """
+        if self.slm is None:
+            self.slm = BaseSLM()
         return self.slm
 
     def get_adapter(self) -> AbstractAdapter:
-        if self.get_slm() is None:
-            return None
-        else:
-            return self.get_slm().get_adapter()
+        """
+        Return the previous assigned Adapter,
+        or a default Adapter if none was assigned.
+        """
+        if self.get_slm().get_adapter() is None:
+            self.get_slm().set_adapter(BaseAdapter())
+        return self.get_slm().get_adapter()
 
     def get_backends(self) -> list[AbstractBackend]:
-        if self.get_adapter() is None:
-            return None
-        else:
-            return self.get_adapter().get_backends()
+        """
+        Return the previous assigned backends,
+        or a default backend if none was assigned.
+        """
+        if self.get_adapter().get_backends() is None:
+            self.get_adapter().set_backends([BaseBackend()])
+        return self.get_adapter().get_backends()
 
     def discuss(self,
                 conversation_id: str,
@@ -67,4 +80,4 @@ class BaseSSM(AbstractSSM):
         return super().solve_problem(problem_description)
 
     def add_backend(self, backend: AbstractBackend):
-        return super().add_backend(backend)
+        return self.get_adapter().add_backend(backend)

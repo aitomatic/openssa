@@ -7,6 +7,7 @@ ROOT_DIR=$(PROJECT_DIR)
 LIB_DIR=$(PROJECT_DIR)/openssm
 TESTS_DIR=$(PROJECT_DIR)/tests
 EXAMPLES_DIR=$(PROJECT_DIR)/examples
+DIST_DIR=$(PROJECT_DIR)/dist
 
 export PYTHONPATH=$(ROOT_DIR):$(LIB_DIR)
 
@@ -20,12 +21,25 @@ test-console:
 	PYTHONPATH=$(PYTHONPATH):$(TESTS_DIR) \
 	    poetry run pytest --capture=no
 
-build:
+build: poetry-install
 	poetry build
+	poetry run pip install xformers==0.0.20
+
+rebuild: clean build
+
+install: local-install
+
+local-install: build
+	pip install $(DIST_DIR)/*.whl
+
+local-uninstall:
+	pip uninstall -y $(DIST_DIR)/*.whl
+
+publish: pypi-publish
 
 all: clean poetry-install requirements.txt build
 
-pypi-publish:
+pypi-publish: build
 	poetry publish
 
 pypi-auth:
@@ -43,3 +57,8 @@ requirements.txt: pyproject.toml
 
 clean:
 	rm -fr poetry.lock dist/ requirements.txt
+
+oss-publish:
+	@echo temporary target
+	# rsync -av --delete --dry-run ../ssm/ ../openssm/
+	rsync -av --exclude .git --delete ../ssm/ ../openssm/

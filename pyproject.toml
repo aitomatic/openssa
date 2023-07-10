@@ -1,19 +1,25 @@
 [tool.poetry]
-name = "openssm"
-version = "0.1.0"
-description = "OpenSSM – 'Small Specialist Models' for Industrial AI"
 authors = ["Aitomatic Engineering <engineering@aitomatic.com>"]
+description = "OpenSSM – 'Small Specialist Models' for Industrial AI"
+name = "openssm"
 readme = "README.md"
+version = "0.1.1"
 
 [build-system]
-requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
 
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.0"
 # LlamaIndex & related
-llama-index = ">=0.6.33"
 llama-hub = ">=0.0.4"
+llama-index = ">=0.6.33"
 # misc / other
+accelerate = "^0.20.3"
+einops = "^0.6.1"
 pypdf = ">=3.11.0"
 pytest = ">=7.0.0"
+transformers = "^4.30.2"
+#torch = "^2.0.1"
+torch = ">=1.13.1"
+#xformers = ">=0.0.16"	# don’t include this. It fails on GitHub actions. Support in Makefile.

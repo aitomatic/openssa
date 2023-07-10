@@ -11,9 +11,14 @@
 - `openssm`: Root package for OpenSSM.
   - `openssm.core`: Core functionalities of the SSMs.
     - `openssm.core.ssm`: Small Specialist Model (SSM) functionality.
+      - `openssm.core.ssm.openai_ssm`: OpenAI API SSM implementations.
+      - `openssm.core.ssm.huggingface_ssm`: HuggingFace API SSM implementations.
     - `openssm.core.slm`: Component: Small Language Model (SLM) functionality.
+      - `openssm.core.ssm.openai_slm`: OpenAI API SLM implementations.
+      - `openssm.core.ssm.huggingface_slm`: HuggingFace API SLM implementations.
     - `openssm.core.adapter`: Component: Interface between the SLM and the domain-knowledge backends.
     - `openssm.core.backend`: Component: Interfaces to a variety of domain-knowledge backends.
+    - `openssm.core.inferencer`: Component: Inference wrapper for models behind SSM backends.
   - `openssm.capture`: Tools and APIs for capturing and encoding domain knowledge into various backends.
   - `openssm.composer`: Tools for composing multiple SSMs together.
   - `openssm.industrial`: Industrial-AI specific tools and APIs (trust, reliability, safety, etc.)

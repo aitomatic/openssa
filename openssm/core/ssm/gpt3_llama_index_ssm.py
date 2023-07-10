@@ -1,6 +1,6 @@
 from .base_ssm import BaseSSM
-from core.slm.gpt3_slm import GPT3ChatCompletionSLM
-from core.backend.abstract_backend import AbstractBackend
+from openssm.core.slm.gpt3_slm import GPT3ChatCompletionSLM
+from openssm.core.backend.abstract_backend import AbstractBackend
 
 
 class GPT3LlamaIndexSSM(BaseSSM):

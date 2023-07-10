@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch, MagicMock
-from openssm.core.slm.gpt3_slm import GPT3ChatCompletionSLM
+from openssm.core.slm.openai_slm import GPT3ChatCompletionSLM
 
 
 @pytest.fixture(autouse=True)
@@ -15,7 +15,7 @@ def setup_class():
 
 
 @patch('openai.ChatCompletion.create')
-@patch('config.Config', new=MagicMock(OPENAI_API_KEY='test_key'))
+@patch('openssm.config.Config', new=MagicMock(OPENAI_API_KEY='test_key'))
 def test_gpt3_chat_completion_discuss(mock_func):
     slm = GPT3ChatCompletionSLM()
     replies = slm.discuss(pytest.conversation_id, pytest.user_input)

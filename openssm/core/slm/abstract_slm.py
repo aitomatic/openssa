@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from core.adapter.abstract_adapter import AbstractAdapter
+from ..adapter.abstract_adapter import AbstractAdapter
 
 
 class AbstractSLM(ABC):

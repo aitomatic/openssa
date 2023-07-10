@@ -1,7 +1,7 @@
-name: Run Make Test on Push
+name: Run Make Test on pull_request
 
 on:
-  push:
+  pull_request:
     branches:
       - "*"
 
@@ -19,12 +19,15 @@ jobs:
           python-version: 3.11  # replace with your desired Python version
 
       - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Add Poetry to PATH
+        run: echo $HOME/.local/bin >> $GITHUB_PATH
 
       - name: Install Dependencies
         run: |
           poetry install
+          poetry run pip install xformers==0.0.20
 
       - name: Run Make Test
         run: make test

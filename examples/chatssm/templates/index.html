@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css', v='0.2') }}">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url_for('static', filename='images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url_for('static', filename='images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/favicon/site.webmanifest') }}">
     <title>OpenSSM</title>
 </head>
+
 <body>
     <header>
         <h1>OpenSSM Sandbox</h1>
@@ -14,6 +23,8 @@
         <select id="models" name="models">
             <option value="gpt3_completion" selected>GPT-3.5 Completion</option>
             <option value="gpt3_chat_completion">GPT-3.5 Chat Completion</option>
+            <option value="falcon7b">Falcon 7B</option>
+            <option value="falcon7b_local">Falcon 7B Local (Comming soon)</option>
         </select>
     </header>
     <main>
@@ -22,7 +33,8 @@
             <!-- Chat window -->
             <div class="box" id="chatbox" placeholder="Chat conversation...">Chat conversation...</div>
             <!-- User input box -->
-            <textarea class="box" id="inputbox" rows="3" placeholder="Type your message..." what_onkeydown="if (event.keyCode == 13) { appendMessage(event); }"></textarea>
+            <textarea class="box" id="inputbox" rows="3" placeholder="Type your message..."
+                what_onkeydown="if (event.keyCode == 13) { appendMessage(event); }"></textarea>
             <div id="loading" class="d-none">
                 <div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>
             </div>
@@ -38,4 +50,5 @@
     <script src="{{ url_for('static', filename='js/main.js', v='0.1') }}"></script>
     <script src="{{ url_for('static', filename='js/discuss.js', v='0.3') }}"></script>
 </body>
+
 </html>

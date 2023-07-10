@@ -164,3 +164,8 @@ cython_debug/
 
 .vscode/
 poetry.lock
+.gcloudignore
+
+node_modules
+package.json
+package-lock.json

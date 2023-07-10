@@ -1,3 +1,3 @@
-from openssm.core.config import Config
+from openssm.config import Config
 
 Config.DEBUG = True

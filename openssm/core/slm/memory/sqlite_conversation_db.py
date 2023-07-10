@@ -1,7 +1,7 @@
 import abc
 import sqlite3
-import ...config
 import conversation_db
+
 
 class SQLiteConversationDB(ConversationDB):
     def __init__(self, db_name):

@@ -91,7 +91,7 @@ SSMs communicate in both unstructured (natural language) and structured APIs, ca
 
 The composable nature of SSMs allows for easy combination of domain-knowledge sources from multiple models.
 
-## Getting Started
+## Getting Started as a User
 
 See some example user programs in the [examples](./examples) directory. For example, to run the `chatssm` example, do:
 
@@ -101,7 +101,21 @@ See some example user programs in the [examples](./examples) directory. For exam
 % make
 ```
 
-then open your browser to `http://localhost:8080` and chat with the SSM.
+### Common `make` targets for OpenSSM developers
+
+```bash
+% make clean
+% make build
+% make rebuild
+% make test
+
+% make poetry-init
+% make poetry-install
+% make install      # local installation of openssm
+
+% make pypi-auth    # only for maintainers
+% make publish      # only for maintainers
+```
 
 You can begin contributing to the OpenSSM project or use our pre-trained SSMs for your industrial projects. See our [Getting
 Started Guide](link-to-guide) for more information.
