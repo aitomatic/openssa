@@ -1,5 +1,5 @@
-from .abstract_backend import AbstractBackend
-from ..inferencer.abstract_inferencer import AbstractInferencer
+from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
+from openssm.core.backend.abstract_backend import AbstractBackend
 
 
 class BaseBackend(AbstractBackend):
@@ -40,16 +40,19 @@ class BaseBackend(AbstractBackend):
         """
         The base backend simply returns all facts.
         """
+        assert criteria is not None
         return self.list_facts()
 
     def select_inferencers(self, criteria):
         """
         The base backend simply returns all inferencers.
         """
+        assert criteria is not None
         return self.list_inferencers()
 
     def select_heuristics(self, criteria):
         """
         The base backend simply returns all heuristics.
         """
+        assert criteria is not None
         return self.list_heuristics()

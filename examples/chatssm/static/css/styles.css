@@ -54,7 +54,7 @@ main {
     background: #ecf0f1;
     color: #2c3e50;
     border-radius: 10px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 10%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 10%);
     height: 60vh;
 }
 

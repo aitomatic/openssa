@@ -1,4 +1,4 @@
-function appendMessage(event) {
+function appendMessage(event) { // eslint-disable-line no-unused-vars
     // Prevent the default form submission that occurs when enter is pressed
     event.preventDefault();
     

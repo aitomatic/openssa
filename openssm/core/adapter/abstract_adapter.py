@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..backend.abstract_backend import AbstractBackend
+from openssm.core.backend.abstract_backend import AbstractBackend
 
 
 class AbstractAdapter(ABC):

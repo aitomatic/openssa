@@ -1,5 +1,5 @@
-from .abstract_adapter import AbstractAdapter
-from ..backend.abstract_backend import AbstractBackend
+from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.core.backend.abstract_backend import AbstractBackend
 
 
 class BaseAdapter(AbstractAdapter):
@@ -12,11 +12,15 @@ class BaseAdapter(AbstractAdapter):
         return self.backends
 
     def add_backend(self, backend: AbstractBackend):
-        """"""
+        """
+        Add a backend to the list of backends.
+        """
         self.backends.append(backend)
 
     def set_backends(self, backends: list):
-        """"""
+        """
+        Set the list of backends.
+        """
         self.backends = backends
 
     def enumerate_backends(self, lambda_function):

@@ -1,5 +1,5 @@
-from .abstract_slm import AbstractSLM
-from ..adapter.abstract_adapter import AbstractAdapter
+from openssm.core.slm.abstract_slm import AbstractSLM
+from openssm.core.adapter.abstract_adapter import AbstractAdapter
 
 
 class BaseSLM(AbstractSLM):
@@ -36,6 +36,14 @@ class BaseSLM(AbstractSLM):
 
         # Return the model's replies
         return replies
+
+    def call_lm_api(self, conversation: list[dict]) -> list[dict]:
+        """
+        Send conversation to the language model’s API
+        and return the replies. Should be overridden by subclasses.
+        """
+        assert conversation is not None
+        return [{"assistant": "Hello, how can I help you?"}]
 
     def reset_memory(self):
         self.conversations = {}

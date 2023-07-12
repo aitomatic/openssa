@@ -57,7 +57,7 @@ class TestFalcon7bSLM(unittest.TestCase):
         # Asserting super's __init__ has been called with expected arguments
         mock_super_init.assert_called_once_with(model_name="tiiuae/falcon-7b",
                                                 model_url=None,
-                                                model_server_token=None,
+                                                model_server_token="value is not set",
                                                 adapter=None)
 
 

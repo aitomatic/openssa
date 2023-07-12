@@ -6,14 +6,14 @@ or they may be served locally.
 """
 import json
 import ast
+import torch
 
 from requests import request
-from torch import float32
 from transformers import AutoTokenizer, pipeline, AutoModelForCausalLM
 
-from .base_slm import BaseSLM
-from ..adapter.abstract_adapter import AbstractAdapter
-from ...config import Config
+from openssm.core.slm.base_slm import BaseSLM
+from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.config import Config
 
 
 class HuggingFaceBaseSLM(BaseSLM):
@@ -47,7 +47,7 @@ class HuggingFaceBaseSLM(BaseSLM):
                 "text-generation",
                 model=model,
                 tokenizer=self.tokenizer,
-                torch_dtype=float32,
+                torch_dtype=torch.float32,
                 trust_remote_code=True,
                 device_map="auto"
             )
@@ -94,7 +94,8 @@ class HuggingFaceBaseSLM(BaseSLM):
             response = request(method="POST",
                                url=self.model_url,
                                headers=headers,
-                               data=data)
+                               data=data,
+                               timeout=10)
             if response.status_code == 200:
                 result = ast.literal_eval(response.text.strip())
             else:
