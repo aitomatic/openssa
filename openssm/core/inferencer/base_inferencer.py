@@ -1,4 +1,4 @@
-from .abstract_inferencer import AbstractInferencer
+from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 
 
 class BaseInferencer(AbstractInferencer):

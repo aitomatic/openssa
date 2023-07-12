@@ -1,10 +1,10 @@
-from .abstract_ssm import AbstractSSM
-from ..slm.abstract_slm import AbstractSLM
-from ..adapter.abstract_adapter import AbstractAdapter
-from ..backend.abstract_backend import AbstractBackend
-from ..slm.base_slm import BaseSLM
-from ..adapter.base_adapter import BaseAdapter
-from ..backend.base_backend import BaseBackend
+from openssm.core.ssm.abstract_ssm import AbstractSSM
+from openssm.core.slm.abstract_slm import AbstractSLM
+from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.core.backend.abstract_backend import AbstractBackend
+from openssm.core.slm.base_slm import BaseSLM
+from openssm.core.adapter.base_adapter import BaseAdapter
+from openssm.core.backend.base_backend import BaseBackend
 
 
 class BaseSSM(AbstractSSM):
@@ -73,8 +73,8 @@ class BaseSSM(AbstractSSM):
     def select_heuristics(self, criteria: dict) -> list[str]:
         return self.get_adapter().select_heuristics(criteria)
 
-    def infer(self, criteria: dict) -> list[str]:
-        return self.get_adapter().infer(criteria)
+    def infer(self, input_facts: dict) -> list[str]:
+        return self.get_adapter().infer(input_facts)
 
     def solve_problem(self, problem_description: list[str]) -> list[str]:
         pass

@@ -1,8 +1,8 @@
-from ..adapter.abstract_adapter import AbstractAdapter
-from ..backend.abstract_backend import AbstractBackend
-from ..slm.huggingface_slm import Falcon7bSLM
-from ..slm.huggingface_slm import Falcon7bSLMLocal
-from .base_ssm import BaseSSM
+from openssm.core.ssm.base_ssm import BaseSSM
+from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.core.backend.abstract_backend import AbstractBackend
+from openssm.core.slm.huggingface_slm import Falcon7bSLM
+from openssm.core.slm.huggingface_slm import Falcon7bSLMLocal
 
 
 class Falcon7bSSM(BaseSSM):

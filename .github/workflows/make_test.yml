@@ -28,6 +28,7 @@ jobs:
         run: |
           poetry install
           poetry run pip install xformers==0.0.20
+          make jest-setup
 
       - name: Run Make Test
         run: make test

@@ -29,10 +29,11 @@ document.getElementById("inputbox").addEventListener("keypress", function (e) {
 
       const TIMEOUT = 10000; // Timeout after 10 seconds
       const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), TIMEOUT);
+      // const id = setTimeout(() => controller.abort(), TIMEOUT);
+      setTimeout(() => controller.abort(), TIMEOUT);
 
       // Get model name from the dropdown
-      selected_model = document.getElementById("models").value;
+      let selected_model = document.getElementById("models").value;
 
       // Send the conversation to the backend
       fetch("/discuss", {
@@ -65,7 +66,7 @@ document.getElementById("inputbox").addEventListener("keypress", function (e) {
       .catch(error => {
           if (error.name === "AbortError") {
               // Timeout occurred
-              var errMsg = "<span style="color:red;">Sorry, I'm taking too long to respond. Please try again.</span>";
+              var errMsg = `<span style="color:red;">Sorry, I'm taking too long to respond. Please try again.</span>`;
               conversation.push({ "role": "system", "content": errMsg });
               updateChatbox([errMsg]);
           }

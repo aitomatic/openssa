@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from ..slm.abstract_slm import AbstractSLM
-from ..adapter.abstract_adapter import AbstractAdapter
-from ..backend.abstract_backend import AbstractBackend
+from openssm.core.slm.abstract_slm import AbstractSLM
+from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.core.backend.abstract_backend import AbstractBackend
 
 
 class AbstractSSM(ABC):

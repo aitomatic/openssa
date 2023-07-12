@@ -1,2 +1,0 @@
-web: gunicorn apps.chatssm.app:app
-

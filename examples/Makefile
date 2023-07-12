@@ -18,10 +18,10 @@ endif
 
 test:
 	@echo ... This will run "npx jest" Javascript testing on all subdirs.
-	@echo ... Make sure you have set up Jest testing with "make setup-jest"
+	@echo ... Make sure you have set up Jest testing with "make dev-setup"
 	npx jest
 
-setup-jest:
+dev-setup:
 	@echo ... Setting up JS testing environment
 	@echo ""
 	npm install --save-dev fetch-mock
@@ -32,6 +32,9 @@ setup-jest:
 	npm install --save-dev jest-environment-jsdom
 
 
+#
+# GCloud stuff
+#
 ifeq ($(ARCH),arm64)
 install-gcloud-cli: do-install-gcloud-cli
 else
