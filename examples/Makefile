@@ -53,6 +53,6 @@ do-install-gcloud-cli:
 	mkdir -p $(TMP_DIR) ;\
 	cd $(TMP_DIR) && rm -f $(GCLOUD_CLI_FILE) && wget $$GCLOUD_CLI_URL && tar xvf $(GCLOUD_CLI_FILE) ;\
 	cd $(GCLOUD_DOWNLOAD_DIR) && ./install.sh ;\
-	cd $(TMP_DIR) && rm -f $(GCLOUD_CLI_FILE) && rm -f $(GCLOUD_DOWNLOAD_DIR)
+	cd $(TMP_DIR) && rm -fr $(GCLOUD_CLI_FILE) && rm -fr $(GCLOUD_DOWNLOAD_DIR)
 	@echo ""
 	@echo ... Now run gcloud init

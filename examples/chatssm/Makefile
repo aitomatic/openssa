@@ -43,7 +43,7 @@ all: clean requirements.txt build
 
 requirements.txt: pyproject.toml
 	@echo $(ANSI_GREEN)... Making requirements.txt from pyproject.toml $(ANSI_NORMAL)
-	poetry export --with dev --format requirements.txt --output requirements.txt
+	poetry export --dev --format requirements.txt --output requirements.txt
 
 test:
 	npx jest
@@ -53,8 +53,13 @@ clean:
 	rm -fr poetry.lock requirements.txt
 
 
+#
 # GCloud project support 
+#
 GCLOUD_PROJECT_ID := openssm-examples-chatssm-$(shell whoami)
+
+install-gcloud-cli:
+	@cd .. && make $@
 
 gcloud-create:
 	@echo $(ANSI_GREEN)... Creating GCloud project $(GCLOUD_PROJECT_ID) $(ANSI_NORMAL)
@@ -80,8 +85,12 @@ gcloud-deploy: gcloud-create gcloud-enable-cloudbuild requirements.txt openai-re
 	@echo $(ANSI_GREEN)... Restoring the safe and secure app.yaml $(ANSI_NORMAL)
 	mv app.yaml.orig app.yaml
 
+gcloud-log:
+	CLOUDSDK_CORE_PROJECT=$(GCLOUD_PROJECT_ID) gcloud app logs tail -s default
 
+#
 # Check for the presence of OPENAI_API_KEY
+#
 openai-check:
 	@if [ -z "$${OPENAI_API_KEY}" ]; then \
 	    echo "Warning: OPENAI_API_KEY is not set."; \
@@ -93,7 +102,9 @@ openai-require:
 	    exit 1; \
 	fi
 
+#
 # Copy favicons from openssm
+#
 favicons:
 	@echo $(ANSI_GREEN)... Copying OpenSSM favicons to this project $(ANSI_NORMAL)
 	mkdir -p $(PROJECT_DIR)/static/images/favicon/

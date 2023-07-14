@@ -3,11 +3,8 @@ from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 
 
 class AbstractBackend(ABC):
-    def __init__(self):
-        pass
-
     @abstractmethod
-    def process(self, conversation_id: str, user_input: str):
+    def query(self, conversation_id: str, user_input: str) -> list({}):
         pass
 
     @abstractmethod

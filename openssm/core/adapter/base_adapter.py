@@ -5,8 +5,18 @@ from openssm.core.backend.abstract_backend import AbstractBackend
 class BaseAdapter(AbstractAdapter):
     """Base adapter class for SSMs."""
 
-    def __init__(self, backends: list = None):
+    def __init__(self, backends: list[AbstractBackend] = None):
         self.backends = backends or []
+
+    def query(self, conversation_id: str, user_input: str) -> list({}):
+        """
+        Queries the backends for a response to the user's input.
+        :param user_query: The user's input.
+        :return: The backend's response.
+        """
+        responses = [r for backend in self.backends
+                     for r in backend.query(conversation_id, user_input)]
+        return responses
 
     def get_backends(self) -> list[AbstractBackend]:
         return self.backends

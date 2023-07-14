@@ -22,16 +22,31 @@ class AbstractAdapter(ABC):
         """Sets our backends"""
 
     @abstractmethod
-    def list_facts(self):
+    def list_facts(self) -> list[str]:
         """Lists all known facts."""
+        facts = set()
+        for backend in self.get_backends():
+            if backend is AbstractBackend:
+                facts.add(backend.list_facts())
+        return facts
 
     @abstractmethod
     def list_inferencers(self):
         """Lists all known inferencers."""
+        inferencers = set()
+        for backend in self.get_backends():
+            if backend is AbstractBackend:
+                inferencers.add(backend.list_inferencers())
+        return inferencers
 
     @abstractmethod
     def list_heuristics(self):
         """Lists all known heuristics."""
+        heuristics = set()
+        for backend in self.get_backends():
+            if backend is AbstractBackend:
+                heuristics.add(backend.list_inferencers())
+        return heuristics
 
     @abstractmethod
     def select_facts(self, criteria):
