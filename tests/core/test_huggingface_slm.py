@@ -17,10 +17,11 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
         mock_pipeline.return_value = Mock()
 
         # Initializing the instance of HuggingFaceBaseSLM
-        instance = HuggingFaceBaseSLM(model_name='test')
+        instance = HuggingFaceBaseSLM(model_name='test', model_url='LOCAL')
 
         # Asserting if local_mode is True when the model_url is not provided
-        self.assertEqual(instance.local_mode, True)
+        # pylint: disable=protected-access
+        self.assertEqual(instance._local_mode, True)
 
     # Test for HuggingFaceBaseSLM in remote mode, where it calls a remote API
     @patch('openssm.core.slm.huggingface_slm.request')
@@ -37,7 +38,8 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
                                       model_server_token='test-token')
 
         # Asserting if local_mode is False when the model_url is provided
-        self.assertEqual(instance.local_mode, False)
+        # pylint: disable=protected-access
+        self.assertEqual(instance._local_mode, False)
 
         # Simulating a call to the remote API and asserting the response
         result = instance.call_lm_api([{"role": "user", "content": "hello"}])
@@ -55,10 +57,11 @@ class TestFalcon7bSLM(unittest.TestCase):
         assert instance is not None
 
         # Asserting super's __init__ has been called with expected arguments
-        mock_super_init.assert_called_once_with(model_name="tiiuae/falcon-7b",
-                                                model_url=None,
-                                                model_server_token="value is not set",
-                                                adapter=None)
+        mock_super_init.assert_called_once_with(
+            model_name="tiiuae/falcon-7b",
+            model_url="NONE",
+            model_server_token="value is not set",
+            adapter=None)
 
 
 class TestFalcon7bSLMLocal(unittest.TestCase):
@@ -71,7 +74,8 @@ class TestFalcon7bSLMLocal(unittest.TestCase):
         assert instance is not None
 
         # Asserting if super's __init__ has been called with expected arguments
-        mock_super_init.assert_called_once_with(model_name="tiiuae/falcon-7b",
-                                                model_url=None,
-                                                model_server_token=None,
-                                                adapter=None)
+        mock_super_init.assert_called_once_with(
+            model_name="tiiuae/falcon-7b",
+            model_url="LOCAL",
+            model_server_token="value is not set",
+            adapter=None)

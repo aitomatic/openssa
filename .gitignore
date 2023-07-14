@@ -169,3 +169,5 @@ poetry.lock
 node_modules
 # package.json
 package-lock.json
+
+.DS_Store
