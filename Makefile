@@ -71,7 +71,9 @@ lint-py:
 	done
 
 lint-js:
+	@-[ -e site/ ] && mv site/ /tmp/site/  # don’t lint the site/ directory
 	cd $(TESTS_DIR) && npx eslint ..
+	@-[ -e /tmp/site/ ] && mv -f /tmp/site/ site/  # put site/ back where it belongs
 
 pre-commit: lint test
 
@@ -83,7 +85,7 @@ rebuild: clean build
 
 install: local-install
 
-dev-setup: poetry-install poetry-init poetry-setup pytest-setup pylint-setup jest-setup eslint-setup
+dev-setup: poetry-install poetry-init poetry-setup pytest-setup pylint-setup jest-setup eslint-setup bumpversion-setup
 
 local-install: build
 	pip install $(DIST_DIR)/*.whl
@@ -186,3 +188,21 @@ docs-build:
 
 docs-deploy: docs-build
 	@cd docs && make deploy
+
+#
+# For version management
+#
+bumpversion-setup:
+	pip install --upgrade bump2version
+
+bumpversion-patch:
+	bump2version --allow-dirty patch
+	cd docs && make build
+
+bumpversion-minor:
+	bump2version --allow-dirty minor
+	cd docs && make build
+
+bumpversion-major:
+	bump2version --allow-dirty major
+	cd docs && make build

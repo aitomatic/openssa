@@ -3,7 +3,7 @@ authors = ["Aitomatic Engineering <engineering@aitomatic.com>"]
 description = "OpenSSM – 'Small Specialist Models' for Industrial AI"
 name = "openssm"
 readme = "README.md"
-version = "0.1.3"
+version = "0.1.5"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
