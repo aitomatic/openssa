@@ -16,20 +16,23 @@ else
 endif
 
 
-test:
-	@echo ... This will run "npx jest" Javascript testing on all subdirs.
-	@echo ... Make sure you have set up Jest testing with "make dev-setup"
-	npx jest
+none:
+	@echo ... This Makefile has only utility targets
 
-dev-setup:
-	@echo ... Setting up JS testing environment
-	@echo ""
-	npm install --save-dev fetch-mock
-	npm install --save-dev jest
-	npm install --save-dev jest-fetch-mock
-	npm install --save-dev jsdom @testing-library/jest-dom
-	npm install --save-dev @testing-library/dom
-	npm install --save-dev jest-environment-jsdom
+#test:
+#	@echo ... This will run "npx jest" Javascript testing on all subdirs.
+#	@echo ... Make sure you have set up Jest testing with "make dev-setup"
+#	npx jest
+#
+#dev-setup:
+#	@echo ... Setting up JS testing environment
+#	@echo ""
+#	npm install --save-dev fetch-mock
+#	npm install --save-dev jest
+#	npm install --save-dev jest-fetch-mock
+#	npm install --save-dev jsdom @testing-library/jest-dom
+#	npm install --save-dev @testing-library/dom
+#	npm install --save-dev jest-environment-jsdom
 
 
 #

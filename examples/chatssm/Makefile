@@ -30,7 +30,7 @@ run-prod: poetry.lock openai-require
 	@echo $(ANSI_GREEN)... Running app in PROD mode. Point your browser to http://localhost:$(PORT)/ $(ANSI_NORMAL)
 	gunicorn -b 0.0.0.0:8080 chatssm.app:app
 
-build: poetry.lock openai-check favicons
+build: poetry.lock requirements.txt openai-check favicons
 
 rebuild: clean build
 
@@ -50,7 +50,7 @@ test:
 
 clean:
 	@echo $(ANSI_GREEN)... Cleaning things out $(ANSI_NORMAL)
-	rm -fr poetry.lock requirements.txt
+	rm -fr poetry.lock requirements.txt dist/
 
 
 #
@@ -76,14 +76,19 @@ gcloud-enable-cloudbuild:
 gcloud-deploy: gcloud-create gcloud-enable-cloudbuild requirements.txt openai-require favicons
 	@echo $(ANSI_GREEN)... Deploying GCloud project $(GCLOUD_PROJECT_ID) $(ANSI_NORMAL)
 	@echo $(ANSI_GREEN)... Replacing _PATTERN_OPENAI_API_KEY_ with the value from the env variable $(ANSI_NORMAL)
-	mv app.yaml app.yaml.orig
+	@if grep _PATTERN_OPENAI_API_KEY app.yaml ; then \
+		mv app.yaml app.yaml.orig ;\
+	fi
 	@sed -e s/_PATTERN_OPENAI_API_KEY_/$(OPENAI_API_KEY)/g app.yaml.orig > app.yaml
 
 	@echo $(ANSI_GREEN)... Now deploying... $(ANSI_NORMAL)
-	@gcloud app deploy --project=$(GCLOUD_PROJECT_ID)
+	@yes | gcloud app deploy --project=$(GCLOUD_PROJECT_ID)
 
 	@echo $(ANSI_GREEN)... Restoring the safe and secure app.yaml $(ANSI_NORMAL)
 	mv app.yaml.orig app.yaml
+
+gcloud-submit: gcloud-create gcloud-enable-cloudbuild requirements.txt openai-require favicons
+	gcloud builds submit --config cloudbuild.yaml .
 
 gcloud-log:
 	CLOUDSDK_CORE_PROJECT=$(GCLOUD_PROJECT_ID) gcloud app logs tail -s default

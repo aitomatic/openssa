@@ -8,8 +8,9 @@ class BaseBackend(AbstractBackend):
         self.inferencers = set()
         self.heuristics = set()
 
+    # pylint: disable=unused-argument
     def query(self, conversation_id: str, user_input: str) -> list({}):
-        pass
+        return []
 
     def load_all(self):
         """
