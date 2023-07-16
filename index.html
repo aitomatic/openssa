@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="None">
+    
+    
+    <link rel="shortcut icon" href="./img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>OpenSSM Documentation</title>
+    <link href="./css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="./css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="./css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/highlight.css">
+    <link href="assets/_mkdocstrings.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/bootstrap-3.3.7.min.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    
+      <script src="./js/elasticlunr.min.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '.';
+      var is_top_frame = (window === window.parent);
+        
+        var pageToc = [
+          {title: "OpenSSM \u2013 \u201cSmall Specialist Models\u201d for Industrial AI", url: "#_top", children: [
+              {title: "Why SSM?", url: "#why-ssm" },
+              {title: "What OpenSSM Offers", url: "#what-openssm-offers" },
+              {title: "Target Audience", url: "#target-audience" },
+              {title: "SSM Architecture", url: "#ssm-architecture" },
+              {title: "Getting Started", url: "#getting-started" },
+              {title: "Roadmap", url: "#roadmap" },
+              {title: "Community", url: "#community" },
+              {title: "Contribute", url: "#contribute" },
+              {title: "License", url: "#license" },
+          ]},
+        ];
+
+    </script>
+    <script src="./js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+<nav class="navbar wm-page-top-frame">
+  <div class="container-fluid wm-top-container">
+    
+    <div class="wm-top-tool pull-right wm-vcenter">
+      <form class="dropdown wm-vcentered" id="wm-search-form" action="./search.html">
+        
+        <button id="wm-search-show" class="btn btn-sm btn-default" type="submit"
+          ><i class="fa fa-search" aria-hidden="true"></i></button>
+
+        <div class="input-group input-group-sm wm-top-search">
+          <input type="text" name="q" class="form-control" id="mkdocs-search-query" placeholder="Search" autocomplete="off">
+          <span class="input-group-btn" role="search">
+            
+            <button class="btn btn-default dropdown-toggle collapse" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+            <ul id="mkdocs-search-results" class="dropdown-menu dropdown-menu-right"></ul>
+            <button id="wm-search-go" class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+
+    
+    <div class="wm-top-tool wm-vcenter pull-right wm-small-left">
+      <button id="wm-toc-button" type="button" class="btn btn-sm btn-default wm-vcentered"><i class="fa fa-th-list" aria-hidden="true"></i></button>
+    </div>
+
+    
+    
+    <div class="wm-top-tool pull-right wm-vcenter">
+      <div class="btn-group wm-vcentered" role="group" aria-label="back">
+        <button id="hist-back" type="button" class="btn btn-sm btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        <button id="hist-fwd" type="button" class="btn btn-sm btn-default"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    
+
+    
+    <a href="" class="wm-top-brand wm-top-link wm-vcenter">
+      
+      <div class="wm-top-title">
+        OpenSSM Documentation<br>
+        
+          <span class="wm-top-version">v0.1.3</span>
+        
+      </div>
+    </a>
+  </div>
+</nav>
+
+  <div id="main-content" class="wm-page-top-frame">
+    
+<nav class="wm-toc-pane">
+  
+  <ul class="wm-toctree">
+        <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">Home</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="docs.shared/GETTING_STARTED/" class="wm-article-link wm-toc-text">Getting Started</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Developer Guide</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="DESIGN_PRINCIPLES/" class="wm-article-link wm-toc-text">Design Principles</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/MAKEFILE/" class="wm-article-link wm-toc-text">Using Makefile</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Community</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/community/CONTRIBUTING/" class="wm-article-link wm-toc-text">Contributing</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="PROJECT_PHILOSOPHY/" class="wm-article-link wm-toc-text">Project Philosophy</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/community/CODE_OF_CONDUCT/" class="wm-article-link wm-toc-text">Code of Conduct</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Support</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="support/" class="wm-article-link wm-toc-text">Support</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="support/FAQ/" class="wm-article-link wm-toc-text">FAQ</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="support/troubleshooting_guides/" class="wm-article-link wm-toc-text">Troubleshoot</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">See Also</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/diagrams/" class="wm-article-link wm-toc-text">Diagrams</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/LICENSE/" class="wm-article-link wm-toc-text">License</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">API Reference</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">openssm</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="openssm/config/" class="wm-article-link wm-toc-text">config</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="openssm/capture/EMPTY/" class="wm-article-link wm-toc-text">capture</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">core</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">ssm</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/base_ssm/" class="wm-article-link wm-toc-text">base_ssm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/huggingface_ssm/" class="wm-article-link wm-toc-text">huggingface_ssm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/abstract_ssm/" class="wm-article-link wm-toc-text">abstract_ssm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/gpt3_llama_index_ssm/" class="wm-article-link wm-toc-text">gpt3_llama_index_ssm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/openai_ssm/" class="wm-article-link wm-toc-text">openai_ssm</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">slm</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/slm/openai_slm/" class="wm-article-link wm-toc-text">openai_slm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/slm/abstract_slm/" class="wm-article-link wm-toc-text">abstract_slm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/slm/base_slm/" class="wm-article-link wm-toc-text">base_slm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/slm/huggingface_slm/" class="wm-article-link wm-toc-text">huggingface_slm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 wm-toc-opener"><span class="wm-toc-text">memory</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev6 "><a href="openssm/core/slm/memory/conversation_db/" class="wm-article-link wm-toc-text">conversation_db</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev6 "><a href="openssm/core/slm/memory/sqlite_conversation_db/" class="wm-article-link wm-toc-text">sqlite_conversation_db</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">backend</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/backend/abstract_backend/" class="wm-article-link wm-toc-text">abstract_backend</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/backend/base_backend/" class="wm-article-link wm-toc-text">base_backend</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/backend/text_backend/" class="wm-article-link wm-toc-text">text_backend</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">adapter</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/adapter/llama_index_adapter/" class="wm-article-link wm-toc-text">llama_index_adapter</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/adapter/abstract_adapter/" class="wm-article-link wm-toc-text">abstract_adapter</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/adapter/base_adapter/" class="wm-article-link wm-toc-text">base_adapter</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">inferencer</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/inferencer/base_inferencer/" class="wm-article-link wm-toc-text">base_inferencer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/inferencer/abstract_inferencer/" class="wm-article-link wm-toc-text">abstract_inferencer</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">integration</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/integration/llamaindex/EMPTY/" class="wm-article-link wm-toc-text">llamaindex</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/integration/testing_tools/EMPTY/" class="wm-article-link wm-toc-text">testing_tools</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="openssm/composer/EMPTY/" class="wm-article-link wm-toc-text">composer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">contrib</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">ssms</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/contrib/ssms/mri_operator_ssm/EMPTY/" class="wm-article-link wm-toc-text">mri_operator_ssm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/contrib/ssms/industrial_boilers_ssm/EMPTY/" class="wm-article-link wm-toc-text">industrial_boilers_ssm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/contrib/ssms/semiconductor_ssm/EMPTY/" class="wm-article-link wm-toc-text">semiconductor_ssm</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/contrib/ssms/japan_fish_kcp_ssm/EMPTY/" class="wm-article-link wm-toc-text">japan_fish_kcp_ssm</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/contrib/apps/EMPTY/" class="wm-article-link wm-toc-text">apps</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">industrial</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">security</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/industrial/security/audit/EMPTY/" class="wm-article-link wm-toc-text">audit</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/industrial/security/best_practices/EMPTY/" class="wm-article-link wm-toc-text">best_practices</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/industrial/monitoring/EMPTY/" class="wm-article-link wm-toc-text">monitoring</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/industrial/interpretability/EMPTY/" class="wm-article-link wm-toc-text">interpretability</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 wm-toc-opener"><span class="wm-toc-text">chatssm-vinh</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev5 wm-toc-opener"><span class="wm-toc-text">ssms</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev6 "><a href="openssm/deprecated/chatssm-vinh/ssms/semiconductor_ssm/EMPTY/" class="wm-article-link wm-toc-text">semiconductor_ssm</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev5 wm-toc-opener"><span class="wm-toc-text">static</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev6 "><a href="openssm/deprecated/chatssm-vinh/static/images/EMPTY/" class="wm-article-link wm-toc-text">images</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</nav>
+
+    <div class="wm-content-pane">
+      <iframe class="wm-article" name="article"></iframe>
+    </div>
+  </div>
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-link">
+        Getting Started
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="openssm-small-specialist-models-for-industrial-ai">OpenSSM – “Small Specialist Models” for Industrial AI</h1>
+<p>OpenSSM (pronounced <code>open-ess-ess-em</code>) is an open-source framework for Small Specialist Models (SSMs), which are key to enhancing trust, reliability, and safety in Industrial-AI applications.  Harnessing the power of domain expertise, SSMs operate either alone or in "teams". They collaborate with other SSMs, planners, and sensors/actuators to deliver real-world problem-solving capabilities.</p>
+<p>Unlike Large Language Models (LLMs), which are computationally intensive and generalized, SSMs are lean, efficient, and designed specifically for individual domains. This focus makes them an optimal choice for businesses, SMEs, researchers, and developers seeking specialized and robust AI solutions for industrial applications.</p>
+<p><img alt="SSM in Industrial AI" src="../docs.shared/diagrams/ssm-industrial-use-case.drawio.png" /></p>
+<p>A prime deployment scenario for SSMs is within the aiCALM (Collaborative Augmented Large Models) architecture. aiCALM represents a cohesive assembly of AI components tailored for sophisticated problem-solving capabilities. Within this framework, SSMs work with General Management Models (GMMs) and other components to solve complex, domain-specific, and industrial problems.</p>
+<h2 id="why-ssm">Why SSM?</h2>
+<p>The trend towards specialization in AI models is a clear trajectory seen by many in the field.</p>
+<blockquote>
+<p><em>Specialization is crucial for quality .. not general purpose Al models</em> – Eric Schmidt, Schmidt Foundation</p>
+<p><em>.. small models .. for a specific task that are good</em> –  Matei Zaharia, Databricks</p>
+<p><em>.. small agents working together .. specific and best in their tasks</em> – Harrison Chase, Langchain</p>
+<p><em>.. small but highly capable expert models</em> – Andrej Karpathy, OpenAI</p>
+<p><em>.. small models are .. a massive paradigm shift .. about deploying AI models at scale</em> – Rob Toews, Radical Ventures</p>
+</blockquote>
+<p>As predicted by Eric Schmidt and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.” SSMs are the central part in the architecture of these systems.</p>
+<h2 id="what-openssm-offers">What OpenSSM Offers</h2>
+<p>OpenSSM fills this gap directly, with the following benefits to the community, developers, and businesses:</p>
+<ul>
+<li>
+<p><strong>Industrial Focus:</strong> SSMs are developed with a specific emphasis on industrial applications, addressing the unique requirements of trustworthiness, safety, reliability, and scalability inherent to this sector.</p>
+</li>
+<li>
+<p><strong>Fast, Cost-Effective &amp; Easy to Use:</strong> SSMs are 100-1000x faster and more efficient than LLMs, making them accessible and cost-effective particularly for industrial usage where time and resources are critical factors.</p>
+</li>
+<li>
+<p><strong>Easy Knowledge Capture:</strong> OpenSSM has easy-to-use tools for capturing domain knowledge in diverse forms: books, operaring manuals, databases, knowledge graphs, text files, and code.</p>
+</li>
+<li>
+<p><strong>Powerful Operations on Captured Knowledge:</strong> OpenSSM enables both knowledge query and inferencing/predictive capabilities based on the domain-specific knowledge.</p>
+</li>
+<li>
+<p><strong>Collaborative Problem-Solving</strong>: SSMs are designed to work in problem-solving "teams". Multi-SSM collaboration is a first-class design feature, not an afterthought.</p>
+</li>
+<li>
+<p><strong>Reliable Domain Expertise:</strong> Each SSM has expertise in a particular field or equipment, offering precise and specialized knowledge, thereby enhancing trustworthiness, reliability, and safety for Industrial-AI applications. With self-reasoning, causal reasoning, and retrieval-based knowledge, SSMs provide a trustable source of domain expertise.</p>
+</li>
+<li>
+<p><strong>Vendor Independence:</strong> OpenSSM allows everyone to build, train, and deploy their own domain-expert AI models, offering freedom from vendor lock-in and security concerns.</p>
+</li>
+<li>
+<p><strong>Composable Expertise</strong>: SSMs are fully composable, making it easy to combine domain expertise.</p>
+</li>
+</ul>
+<h2 id="target-audience">Target Audience</h2>
+<p>Our primary audience includes:</p>
+<ul>
+<li>
+<p><strong>Businesses and SMEs</strong> wishing to leverage AI in their specific industrial context without relying on extensive computational resources or large vendor solutions.</p>
+</li>
+<li>
+<p><strong>AI researchers and developers</strong> keen on creating more efficient, robust, and domain-specific AI models for industrial applications.</p>
+</li>
+<li>
+<p><strong>Open-source contributors</strong> believing in democratizing industrial AI and eager to contribute to a community-driven project focused on building and sharing specialized AI models.</p>
+</li>
+<li>
+<p><strong>Industries</strong> with specific domain problems that can be tackled more effectively by a specialist AI model, enhancing the reliability and trustworthiness of AI solutions in an industrial setting.</p>
+</li>
+</ul>
+<h2 id="ssm-architecture">SSM Architecture</h2>
+<p>At a high level, SSMs comprise a front-end Small Language Model (SLM), an adapter layer in the middle, and a wide range of back-end domain-knowledge sources. The SLM itself is a small, efficient, language model, which may be domain-specific or not, and may have been distilled from a larger model. Thus, domain knowledge may come from either, or both, the SLM and the backends.</p>
+<p><img alt="High-Level SSM Architecture" src="../docs.shared/diagrams/ssm-key-components.drawio.png" /></p>
+<p>The above diagram illustrates the high-level architecture of an SSM, which comprises three main components:</p>
+<ol>
+<li>
+<p>Small Language Model (SLM): This forms the communication frontend of an SSM.</p>
+</li>
+<li>
+<p>Adapters (e.g., LlamaIndex): These provide the interface between the SLM and the domain-knowledge backends.</p>
+</li>
+<li>
+<p>Domain-Knowledge Backends: These include text files, documents, PDFs, databases, code, knowledge graphs, models, other SSMs, etc.</p>
+</li>
+</ol>
+<p>SSMs communicate in both unstructured (natural language) and structured APIs, catering to a variety of real-world industrial systems.</p>
+<p><img alt="SSM Composability" src="../docs.shared/diagrams/ssm-composability.drawio.png" /></p>
+<p>The composable nature of SSMs allows for easy combination of domain-knowledge sources from multiple models.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>See our <a href="../docs.shared/GETTING_STARTED.md">Getting Started Guide</a> for more information.</p>
+<h2 id="roadmap">Roadmap</h2>
+<ul>
+<li>
+<p>Play with SSMs in a hosted SSM sandbox, uploading your own domain knowledge</p>
+</li>
+<li>
+<p>Create SSMs in your own development environment, and integrate SSMs into your own AI apps</p>
+</li>
+<li>
+<p>Capture domain knowledge in various forms into your SSMs</p>
+</li>
+<li>
+<p>Train SLMs via distillation of LLMs, teacher/student approaches, etc.</p>
+</li>
+<li>
+<p>Apply SSMs in collaborative problem-solving AI systems</p>
+</li>
+</ul>
+<h2 id="community">Community</h2>
+<p>Join our vibrant community of AI enthusiasts, researchers, developers, and businesses who are democratizing industrial AI through SSMs.  Participate in the discussions, share your ideas, or ask for help on our <a href="https://github.com/aitomatic/openssm/discussions">Community Discussions</a>.</p>
+<h2 id="contribute">Contribute</h2>
+<p>OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our <a href="../docs.shared/community/CONTRIBUTING.md">Contribution Guide</a> for more details.</p>
+<h2 id="license">License</h2>
+<p>OpenSSM is released under the <a href="../docs.shared/LICENSE.md">Apache 2.0 License</a>.</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-link">
+        Getting Started
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
+<!--
+MkDocs version : 1.4.3
+Build Date UTC : 2023-07-16 06:34:48.789950+00:00
+-->

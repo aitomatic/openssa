@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Using Makefile - OpenSSM Documentation</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <link href="../../assets/_mkdocstrings.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Makefile guide", url: "#_top", children: [
+              {title: "Links", url: "#links" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../community/CONTRIBUTING/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../community/CONTRIBUTING/" class="btn btn-xs btn-link">
+        Contributing
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../DESIGN_PRINCIPLES/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../DESIGN_PRINCIPLES/" class="btn btn-xs btn-link">
+        Design Principles
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="makefile-guide">Makefile guide</h1>
+<p>We use Makefiles extensively to help make the developer’s life simpler and more efficient.
+Here are the key targets for the top-level <code>Makefile</code>.</p>
+<ul>
+<li>
+<p><code>dev-setup</code>: run this first to set up your dev environment.</p>
+</li>
+<li>
+<p><code>test</code>: perform testing on both Python and JS code found.</p>
+</li>
+<li>
+<p><code>test-console</code>: same as <code>test</code>, but also show all output on the console.</p>
+</li>
+<li>
+<p><code>lint</code>: run <code>pylint</code> and <code>eslint</code> on the code base.</p>
+</li>
+<li>
+<p><code>pre-commit</code>: perform both linting and testing prior to commits, or at least pull requests.</p>
+</li>
+<li>
+<p><code>build</code>: build the library (using poetry).</p>
+</li>
+<li>
+<p><code>install</code>: build and perform a <code>pip install</code> from the local <code>.whl</code> outputs.</p>
+</li>
+<li>
+<p><code>clean</code>: remove all the start from a clean slate.</p>
+</li>
+<li>
+<p><code>publish</code>: publish the <code>.whl</code> to Pypi (for <code>pip install</code> support).</p>
+</li>
+<li>
+<p><code>pypi-auth</code>: convenient target to set up your Pypi auth token prior to publishing</p>
+</li>
+<li>
+<p><code>docs-build</code>:  build web-based documentation</p>
+</li>
+<li>
+<p><code>docs-deploy</code>: deploy web-based documentation to GitHub, e.g., <a href="https://aitomatic.github.io/openssm">aitomatic.github.io/openssm</a></p>
+</li>
+<li>
+<p>Miscellaneous: internal use or sub-targets</p>
+</li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="../GETTING_STARTED/">GETTING STARTED</a></li>
+</ul>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../community/CONTRIBUTING/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../community/CONTRIBUTING/" class="btn btn-xs btn-link">
+        Contributing
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../DESIGN_PRINCIPLES/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../DESIGN_PRINCIPLES/" class="btn btn-xs btn-link">
+        Design Principles
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
