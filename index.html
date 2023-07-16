@@ -99,7 +99,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
       <div class="wm-top-title">
         OpenSSM Documentation<br>
         
-          <span class="wm-top-version">v0.1.3</span>
+          <span class="wm-top-version">v0.1.5</span>
         
       </div>
     </a>
@@ -113,7 +113,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <ul class="wm-toctree">
         <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">Home</a>
 </li>
-        <li class="wm-toc-li wm-toc-lev1 "><a href="docs.shared/GETTING_STARTED/" class="wm-article-link wm-toc-text">Getting Started</a>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="GETTING_STARTED/" class="wm-article-link wm-toc-text">Getting Started</a>
 </li>
         <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Developer Guide</span>
 </li>
@@ -121,7 +121,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <ul class="wm-toctree">
       <li class="wm-toc-li wm-toc-lev2 "><a href="DESIGN_PRINCIPLES/" class="wm-article-link wm-toc-text">Design Principles</a>
 </li>
-      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/MAKEFILE/" class="wm-article-link wm-toc-text">Using Makefile</a>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="MAKEFILE_INFO/" class="wm-article-link wm-toc-text">Using Makefile</a>
 </li>
   </ul>
 </li>
@@ -130,11 +130,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li class="wm-toc-li-nested collapse">
   <ul class="wm-toctree">
-      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/community/CONTRIBUTING/" class="wm-article-link wm-toc-text">Contributing</a>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="community/CONTRIBUTING/" class="wm-article-link wm-toc-text">Contributing</a>
 </li>
       <li class="wm-toc-li wm-toc-lev2 "><a href="PROJECT_PHILOSOPHY/" class="wm-article-link wm-toc-text">Project Philosophy</a>
 </li>
-      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/community/CODE_OF_CONDUCT/" class="wm-article-link wm-toc-text">Code of Conduct</a>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="community/CODE_OF_CONDUCT/" class="wm-article-link wm-toc-text">Code of Conduct</a>
 </li>
       <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Support</span>
 </li>
@@ -156,9 +156,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li class="wm-toc-li-nested collapse">
   <ul class="wm-toctree">
-      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/diagrams/" class="wm-article-link wm-toc-text">Diagrams</a>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="diagrams/" class="wm-article-link wm-toc-text">Diagrams</a>
 </li>
-      <li class="wm-toc-li wm-toc-lev2 "><a href="docs.shared/LICENSE/" class="wm-article-link wm-toc-text">License</a>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="LICENSE/" class="wm-article-link wm-toc-text">License</a>
 </li>
   </ul>
 </li>
@@ -372,11 +372,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-default pull-right">
+      <a href="GETTING_STARTED/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-link">
+      <a href="GETTING_STARTED/" class="btn btn-xs btn-link">
         Getting Started
       </a>
     </div>
@@ -388,7 +388,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <h1 id="openssm-small-specialist-models-for-industrial-ai">OpenSSM – “Small Specialist Models” for Industrial AI</h1>
 <p>OpenSSM (pronounced <code>open-ess-ess-em</code>) is an open-source framework for Small Specialist Models (SSMs), which are key to enhancing trust, reliability, and safety in Industrial-AI applications.  Harnessing the power of domain expertise, SSMs operate either alone or in "teams". They collaborate with other SSMs, planners, and sensors/actuators to deliver real-world problem-solving capabilities.</p>
 <p>Unlike Large Language Models (LLMs), which are computationally intensive and generalized, SSMs are lean, efficient, and designed specifically for individual domains. This focus makes them an optimal choice for businesses, SMEs, researchers, and developers seeking specialized and robust AI solutions for industrial applications.</p>
-<p><img alt="SSM in Industrial AI" src="../docs.shared/diagrams/ssm-industrial-use-case.drawio.png" /></p>
+<p><img alt="SSM in Industrial AI" src="diagrams/ssm-industrial-use-case.drawio.png" /></p>
 <p>A prime deployment scenario for SSMs is within the aiCALM (Collaborative Augmented Large Models) architecture. aiCALM represents a cohesive assembly of AI components tailored for sophisticated problem-solving capabilities. Within this framework, SSMs work with General Management Models (GMMs) and other components to solve complex, domain-specific, and industrial problems.</p>
 <h2 id="why-ssm">Why SSM?</h2>
 <p>The trend towards specialization in AI models is a clear trajectory seen by many in the field.</p>
@@ -446,7 +446,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <h2 id="ssm-architecture">SSM Architecture</h2>
 <p>At a high level, SSMs comprise a front-end Small Language Model (SLM), an adapter layer in the middle, and a wide range of back-end domain-knowledge sources. The SLM itself is a small, efficient, language model, which may be domain-specific or not, and may have been distilled from a larger model. Thus, domain knowledge may come from either, or both, the SLM and the backends.</p>
-<p><img alt="High-Level SSM Architecture" src="../docs.shared/diagrams/ssm-key-components.drawio.png" /></p>
+<p><img alt="High-Level SSM Architecture" src="diagrams/ssm-key-components.drawio.png" /></p>
 <p>The above diagram illustrates the high-level architecture of an SSM, which comprises three main components:</p>
 <ol>
 <li>
@@ -460,10 +460,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 </ol>
 <p>SSMs communicate in both unstructured (natural language) and structured APIs, catering to a variety of real-world industrial systems.</p>
-<p><img alt="SSM Composability" src="../docs.shared/diagrams/ssm-composability.drawio.png" /></p>
+<p><img alt="SSM Composability" src="diagrams/ssm-composability.drawio.png" /></p>
 <p>The composable nature of SSMs allows for easy combination of domain-knowledge sources from multiple models.</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>See our <a href="../docs.shared/GETTING_STARTED.md">Getting Started Guide</a> for more information.</p>
+<p>See our <a href="GETTING_STARTED/">Getting Started Guide</a> for more information.</p>
 <h2 id="roadmap">Roadmap</h2>
 <ul>
 <li>
@@ -485,9 +485,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="community">Community</h2>
 <p>Join our vibrant community of AI enthusiasts, researchers, developers, and businesses who are democratizing industrial AI through SSMs.  Participate in the discussions, share your ideas, or ask for help on our <a href="https://github.com/aitomatic/openssm/discussions">Community Discussions</a>.</p>
 <h2 id="contribute">Contribute</h2>
-<p>OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our <a href="../docs.shared/community/CONTRIBUTING.md">Contribution Guide</a> for more details.</p>
+<p>OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our <a href="community/CONTRIBUTING/">Contribution Guide</a> for more details.</p>
 <h2 id="license">License</h2>
-<p>OpenSSM is released under the <a href="../docs.shared/LICENSE.md">Apache 2.0 License</a>.</p>
+<p>OpenSSM is released under the <a href="LICENSE/">Apache 2.0 License</a>.</p>
 
   <br>
     
@@ -500,11 +500,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-default pull-right">
+      <a href="GETTING_STARTED/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="docs.shared/GETTING_STARTED/" class="btn btn-xs btn-link">
+      <a href="GETTING_STARTED/" class="btn btn-xs btn-link">
         Getting Started
       </a>
     </div>
@@ -522,5 +522,5 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </html>
 <!--
 MkDocs version : 1.4.3
-Build Date UTC : 2023-07-16 06:34:48.789950+00:00
+Build Date UTC : 2023-07-16 06:44:34.607026+00:00
 -->
