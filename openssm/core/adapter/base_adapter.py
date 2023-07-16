@@ -1,5 +1,7 @@
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.core.backend.abstract_backend import AbstractBackend
+from openssm.core.backend.text_backend import TextBackend
+from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 
 
 class BaseAdapter(AbstractAdapter):
@@ -14,11 +16,18 @@ class BaseAdapter(AbstractAdapter):
         :param user_query: The user's input.
         :return: The backend's response.
         """
-        responses = [r for backend in self.backends
-                     for r in backend.query(conversation_id, user_input)]
+        responses = [
+            r for b in self.backends for r in b.query(
+                conversation_id, user_input
+            )]
         return responses
 
     def get_backends(self) -> list[AbstractBackend]:
+        """
+        Side effect: if no backends are set, a default TextBackend is created.
+        """
+        if self.backends is None or len(self.backends) == 0:
+            self.backends = [TextBackend()]
         return self.backends
 
     def add_backend(self, backend: AbstractBackend):
@@ -69,3 +78,20 @@ class BaseAdapter(AbstractAdapter):
         """Select heuristics from all backends."""
         return self.enumerate_backends(
             lambda backend: backend.select_heuristics(criteria))
+
+    def _get_first_backend(self):
+        """
+        Get the first backend we have. If we currently have
+        none, go ahead and add a default TextBackend.
+        """
+        return self.get_backends()[0]
+
+    def add_fact(self, fact: str):
+        """Idiom: add a fact to the first backend we have."""
+        self._get_first_backend().add_fact(fact)
+
+    def add_inferencer(self, inferencer: AbstractInferencer):
+        self._get_first_backend().add_inferencer(inferencer)
+
+    def add_heuristic(self, heuristic: str):
+        self._get_first_backend().add_heuristic(heuristic)

@@ -24,7 +24,7 @@ See some example user programs in the [examples](./examples) directory. For exam
 
 ### Common `make` targets for OpenSSM developers
 
-You use our pre-trained SSMs for your industrial projects.
+See [MAKEFILE.md](MAKEFILE.md) for more details.
 
 ```bash
 % make clean
@@ -40,11 +40,11 @@ You use our pre-trained SSMs for your industrial projects.
 % make publish      # only for maintainers
 ```
 
-You can begin contributing to the OpenSSM project in the `contrib/` directory.
-
 ## Getting Started as an Aspiring Contributor
 
-OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](docs/CONTRIBUTING.md) for more details.
+OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](community/CONTRIBUTING.md) for more details.
+
+You can begin contributing to the OpenSSM project in the `contrib/` directory.
 
 ## Getting Started as a Committer
 
@@ -57,3 +57,8 @@ Join our vibrant community of AI enthusiasts, researchers, developers, and busin
 ## License
 
 OpenSSM is released under the [Apache 2.0 License](./LICENSE.md).
+
+## Links
+
+- [README](../README.md)
+- [MAKEFILE](MAKEFILE.md)

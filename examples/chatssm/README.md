@@ -18,7 +18,7 @@ or
 % make run-prod # run the example using the gunicorn WSGI server
 ```
 
-The point your browser to http://localhost:8080/.
+The point your browser to [http://localhost:8080/](http://localhost:8080/)
 
 ### Common `make` targets for developers
 
@@ -30,3 +30,5 @@ The point your browser to http://localhost:8080/.
 
 % make run
 ```
+
+See [MAKEFILE](MAKEFILE)for more details.

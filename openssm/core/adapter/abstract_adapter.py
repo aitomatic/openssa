@@ -10,6 +10,14 @@ class AbstractAdapter(ABC):
     """
 
     @abstractmethod
+    def query(self, conversation_id: str, user_input: str) -> list({}):
+        """
+        Queries the backends for a response to the user's input.
+        :param user_query: The user's input.
+        :return: The backend's response.
+        """
+
+    @abstractmethod
     def get_backends(self) -> list[AbstractBackend]:
         """Returns our backends"""
 

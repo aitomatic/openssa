@@ -9,6 +9,17 @@ TESTS_DIR=$(PROJECT_DIR)/tests
 EXAMPLES_DIR=$(PROJECT_DIR)/examples
 DIST_DIR=$(PROJECT_DIR)/dist
 
+# Colorized output
+ANSI_NORMAL="\033[0m"
+ANSI_RED="\033[0;31m"
+ANSI_GREEN="\033[0;32m"
+ANSI_YELLOW="\033[0;33m"
+ANSI_BLUE="\033[0;34m"
+ANSI_MAGENTA="\033[0;35m"
+ANSI_CYAN="\033[0;36m"
+ANSI_WHITE="\033[0;37m"
+
+
 export PYTHONPATH=$(ROOT_DIR):$(LIB_DIR)
 export PYTHONPATH=$(LIB_DIR)
 export PYTHONPATH=
@@ -20,27 +31,33 @@ test: test-py test-js
 test-console: test-py-console test-js
 
 test-py:
+	@echo $(ANSI_GREEN)
 	@echo "--------------------------------"
 	@echo "|                              |"
 	@echo "|        Python Testing        |"
 	@echo "|                              |"
 	@echo "--------------------------------"
+	@echo $(ANSI_NORMAL)
 	PYTHONPATH=$(PYTHONPATH):$(TESTS_DIR) poetry run pytest $(OPTIONS)
 
 test-py-console:
+	@echo $(ANSI_GREEN)
 	@echo "--------------------------------"
 	@echo "|                              |"
 	@echo "|        Python Testing        |"
 	@echo "|                              |"
 	@echo "--------------------------------"
+	@echo $(ANSI_NORMAL)
 	PYTHONPATH=$(PYTHONPATH):$(TESTS_DIR) poetry run pytest $(OPTIONS) --capture=no
 
 test-js:
+	@echo $(ANSI_GREEN)
 	@echo "--------------------------------"
 	@echo "|                              |"
 	@echo "|      Javascript Testing      |"
 	@echo "|                              |"
 	@echo "--------------------------------"
+	@echo $(ANSI_NORMAL)
 	cd $(TESTS_DIR) && npx jest
 
 
@@ -49,7 +66,7 @@ lint: lint-py lint-js
 
 lint-py:
 	@for dir in $(LINT_DIRS) ; do \
-		echo ... Running pylint on $$dir; \
+		echo $(ANSI_GREEN) ... Running pylint on $$dir $(ANSI_NORMAL); \
 		pylint $$dir ; \
 	done
 
@@ -60,7 +77,7 @@ pre-commit: lint test
 
 build: poetry-setup
 	poetry build
-	poetry run pip install xformers==0.0.20
+	# poetry run pip install xformers==0.0.20
 
 rebuild: clean build
 
@@ -90,7 +107,7 @@ pypi-publish: build
 
 pypi-auth:
 	@if [ "$(PYPI_TOKEN)" = "" ] ; then \
-		echo Environment var PYPI_TOKEN must be set for pypi publishing ;\
+		echo $(ANSI_RED) Environment var PYPI_TOKEN must be set for pypi publishing $(ANSI_NORMAL) ;\
 	else \
 		poetry config pypi-token.pypi $(PYPI_TOKEN) ;\
 	fi
@@ -107,7 +124,7 @@ poetry-install:
 poetry-setup:
 	poetry lock
 	poetry install
-	poetry run pip install xformers==0.0.20
+	# poetry run pip install xformers==0.0.20
 
 poetry-init:
 	-poetry init
@@ -116,12 +133,12 @@ poetry-init:
 # For Python testing & liniting support
 #
 pytest-setup:
-	@echo ... Setting up PYTEST testing environment
+	@echo $(ANSI_GREEN) ... Setting up PYTEST testing environment $(ANSI_NORMAL)
 	@echo ""
 	pip install pytest
 
 pylint-setup:
-	@echo ... Setting up PYLINT linting environment
+	@echo $(ANSI_GREEN) ... Setting up PYLINT linting environment $(ANSI_NORMAL)
 	@echo ""
 	pip install pylint
 
@@ -129,7 +146,7 @@ pylint-setup:
 # For JS testing & liniting support
 #
 jest-setup:
-	@echo ... Setting up JEST testing environment
+	@echo $(ANSI_GREEN) ... Setting up JEST testing environment $(ANSI_NORMAL)
 	@echo ""
 	cd $(TESTS_DIR) ;\
 	npm install --omit=optional --save-dev fetch-mock ;\
@@ -141,7 +158,7 @@ jest-setup:
 	npm install --omit=optional --save-dev jest-environment-jsdom
 
 eslint-setup:
-	@echo ... Setting up ESLINT linting environment
+	@echo $(ANSI_GREEN) ... Setting up ESLINT linting environment $(ANSI_NORMAL)
 	@echo ""
 	ln -s testsnode_modules
 	cd $(TESTS_DIR) ;\
@@ -158,3 +175,14 @@ oss-publish:
 	# rsync -av --delete --dry-run ../ssm/ ../openssm/
 	rsync -av --exclude .git --delete ../ssm/ ../openssm/
 
+#
+# For web-based documentation
+#
+
+docs: docs-build
+
+docs-build:
+	@cd docs && make build
+
+docs-deploy: docs-build
+	@cd docs && make deploy
