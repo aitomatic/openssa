@@ -1,0 +1,100 @@
+site_name: OpenSSM Documentation
+
+theme: windmill
+#theme: material
+#theme:
+#  name: readthedocs
+#  navigation_depth: 5
+#  collapse_navigation: True
+#  sticky_navigation: True
+
+extra:
+#  logo: path
+  version: v0.1.3
+  article_nav_top: true
+  article_nav_bottom: true
+  history_buttons: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import os
+            - import sys
+            - sys.path.append('openssm')
+            - sys.path.insert(0, os.path.abspath('.'))
+            - print(sys.path)
+          options:
+            show_source: False
+nav:
+  - Home: README.md
+  - Getting Started: docs.shared/GETTING_STARTED.md
+  - Developer Guide:
+    - Design Principles: DESIGN_PRINCIPLES.md
+    - Using Makefile: docs.shared/MAKEFILE.md
+  - Community:
+    - Contributing: docs.shared/community/CONTRIBUTING.md
+    - Project Philosophy: PROJECT_PHILOSOPHY.md
+    - Code of Conduct: docs.shared/community/CODE_OF_CONDUCT.md
+    - Support:
+      - Support: support/README.md 
+      - FAQ: support/FAQ/README.md
+      - Troubleshoot: support/troubleshooting_guides/README.md
+  - See Also:
+    - Diagrams: docs.shared/diagrams/README.md
+    - License: docs.shared/LICENSE.md
+  - API Reference:
+
+    - openssm:
+      - config: openssm/config.md
+      - capture: openssm/capture/EMPTY.md
+      - core:
+        - ssm:
+          - base_ssm: openssm/core/ssm/base_ssm.md
+          - huggingface_ssm: openssm/core/ssm/huggingface_ssm.md
+          - abstract_ssm: openssm/core/ssm/abstract_ssm.md
+          - gpt3_llama_index_ssm: openssm/core/ssm/gpt3_llama_index_ssm.md
+          - openai_ssm: openssm/core/ssm/openai_ssm.md
+        - slm:
+          - openai_slm: openssm/core/slm/openai_slm.md
+          - abstract_slm: openssm/core/slm/abstract_slm.md
+          - base_slm: openssm/core/slm/base_slm.md
+          - huggingface_slm: openssm/core/slm/huggingface_slm.md
+          - memory:
+            - conversation_db: openssm/core/slm/memory/conversation_db.md
+            - sqlite_conversation_db: openssm/core/slm/memory/sqlite_conversation_db.md
+        - backend:
+          - abstract_backend: openssm/core/backend/abstract_backend.md
+          - base_backend: openssm/core/backend/base_backend.md
+          - text_backend: openssm/core/backend/text_backend.md
+        - adapter:
+          - llama_index_adapter: openssm/core/adapter/llama_index_adapter.md
+          - abstract_adapter: openssm/core/adapter/abstract_adapter.md
+          - base_adapter: openssm/core/adapter/base_adapter.md
+        - inferencer:
+          - base_inferencer: openssm/core/inferencer/base_inferencer.md
+          - abstract_inferencer: openssm/core/inferencer/abstract_inferencer.md
+      - integration:
+        - llamaindex: openssm/integration/llamaindex/EMPTY.md
+        - testing_tools: openssm/integration/testing_tools/EMPTY.md
+      - composer: openssm/composer/EMPTY.md
+      - contrib:
+        - ssms:
+          - mri_operator_ssm: openssm/contrib/ssms/mri_operator_ssm/EMPTY.md
+          - industrial_boilers_ssm: openssm/contrib/ssms/industrial_boilers_ssm/EMPTY.md
+          - semiconductor_ssm: openssm/contrib/ssms/semiconductor_ssm/EMPTY.md
+          - japan_fish_kcp_ssm: openssm/contrib/ssms/japan_fish_kcp_ssm/EMPTY.md
+        - apps: openssm/contrib/apps/EMPTY.md
+      - industrial:
+        - security:
+          - audit: openssm/industrial/security/audit/EMPTY.md
+          - best_practices: openssm/industrial/security/best_practices/EMPTY.md
+        - monitoring: openssm/industrial/monitoring/EMPTY.md
+        - interpretability: openssm/industrial/interpretability/EMPTY.md
+        - chatssm-vinh:
+          - ssms:
+            - semiconductor_ssm: openssm/deprecated/chatssm-vinh/ssms/semiconductor_ssm/EMPTY.md
+          - static:
+            - images: openssm/deprecated/chatssm-vinh/static/images/EMPTY.md
