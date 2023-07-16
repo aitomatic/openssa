@@ -1,0 +1,111 @@
+html {
+    font-size: 1em;
+}
+
+body {
+    font-family: 'Open Sans' !important;
+    font-size: 1rem !important;
+    color: #333333;
+    line-height: 1.6rem;
+}
+
+blockquote {
+    font-size: 1rem;
+}
+
+.wm-page-content {
+    max-width: 50rem;
+}
+
+.doc-heading {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+.doc-contents {
+    margin-left: 1rem;
+}
+
+.btn-xs {
+    font-size: 1rem !important;
+}
+
+.wm-top-title {
+    font-size: 1.5rem !important;
+}
+
+.wm-toc-tree {
+    line-height: 1rem;
+}
+
+.wm-toc-li {
+    font-size: 1rem !important;
+    padding-bottom: 0.5rem;
+}
+
+code {
+    font-size: 1rem !important;
+    background-color: #eee;
+}
+
+code.highlight {
+    color: red;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333333;
+    font-family: 'Open Sans' !important;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.wm-nav__link {
+    color: #0066cc;
+}
+
+.wm-nav__title, .wm-toc-text {
+    color: #333333;
+    font-weight: bold;
+    font-size: 1rem !important;
+}
+
+.highlight .k {
+    color: #008000;
+}
+
+.wm-typeset code {
+    color: #cc0000;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
