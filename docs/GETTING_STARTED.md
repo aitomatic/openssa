@@ -24,7 +24,7 @@ See some example user programs in the [examples](./examples) directory. For exam
 
 ### Common `make` targets for OpenSSM developers
 
-See [MAKEFILE.md](MAKEFILE.md) for more details.
+See [MAKEFILE](MAKEFILE_INFO.md) for more details.
 
 ```bash
 % make clean
@@ -60,5 +60,4 @@ OpenSSM is released under the [Apache 2.0 License](./LICENSE.md).
 
 ## Links
 
-- [README](../README.md)
-- [MAKEFILE](MAKEFILE.md)
+- [MAKEFILE](MAKEFILE_INFO.md)
