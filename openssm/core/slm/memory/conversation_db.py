@@ -1,22 +1,24 @@
-import abc
+from abc import ABC, abstractmethod
 
-class ConversationDB(abc.ABC):
-    @abc.abstractmethod
+
+# pylint disable=wduplicate-code
+class ConversationDB(ABC):
+    @abstractmethod
     def connect(self):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def create_table(self):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def append_conversation(self, conversation_id, user_input):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def get_conversation(self, conversation_id):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def close(self):
         pass

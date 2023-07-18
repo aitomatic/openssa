@@ -633,6 +633,7 @@ disable=raw-checker-failed,
 	import-error,
 	unrecognized-option,
 	unnecessary-pass,
+	line-too-long,
 	unspecified-encoding
 
 # Enable the message, report, category or checker with the given id(s). You can
@@ -640,3 +641,7 @@ disable=raw-checker-failed,
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once). See also the "--disable" option for examples.
 enable=c-extension-no-member
+
+[flake8]
+max-line-length=120
+ignore=E501

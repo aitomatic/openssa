@@ -1,4 +1,3 @@
-import ast
 import openai
 from openssm.core.slm.base_slm import BaseSLM
 from openssm.config import Config
@@ -31,28 +30,22 @@ class GPT3CompletionSLM(GPT3BaseSLM):
     def __init__(self, adapter: AbstractAdapter = None):
         super().__init__(adapter)
 
-    def convert_conversation_to_string(self, conversation: list[dict]) -> str:
-        list_conversation = []
-        for item in conversation:
-            role = item["role"].replace('"', '\\"')
-            content = item["content"].replace('"', '\\"')
-            list_conversation.append(
-                f'{{"role": "{role}", "content": "{content}"}}'
-            )
-        return ", ".join(list_conversation)
-
     def call_lm_api(self, conversation: list[dict]) -> list[dict]:
-        prompt = self.convert_conversation_to_string(conversation)
-        prompt = (f"Complete this conversation with the assistant’s response, "
-                  f"up to 500 words, in JSON, with quotes escaped with \\:\n"
-                  f"{prompt}")
-
+        prompt = self._make_completion_prompt(conversation)
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=prompt,
             temperature=0.7,
             max_tokens=500
         )
-        reply = response.choices[0].text.strip()
-        reply_dict = ast.literal_eval(reply)
-        return [reply_dict]
+        # print(f"prompt: {prompt}")
+        # print(f"response: {response}")
+        response = response.choices[0].text.strip()
+        replies = self._parse_llm_response(response)
+
+        if len(replies) == 0 or len(replies[0]) == 0:
+            replies = [{'role': 'assistant', 'content': 'I got nothing.'}]
+
+        # print(f"replies: {replies}")
+
+        return replies

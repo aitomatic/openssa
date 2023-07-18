@@ -29,7 +29,7 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
         # Mocking a successful response from the remote API
         response_mock = Mock()
         response_mock.status_code = 200
-        response_mock.text = "{'generated_text': 'Test response'}"
+        response_mock.text = '{"role": "assistant", "content": "Test response"}'
         mock_request.return_value = response_mock
 
         # Initializing the instance of HuggingFaceBaseSLM

@@ -18,7 +18,7 @@ function updateChatbox(sysmsgs) {
   syslog.scrollTop = chatbox.scrollHeight;
 }
 
-document.getElementById("inputbox").addEventListener("keypress", function (e) {
+document.getElementById("inputbox").addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
 
       // Show the spinner

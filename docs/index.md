@@ -1,5 +1,9 @@
 # OpenSSM – “Small Specialist Models” for Industrial AI
 
+> &nbsp;
+> See full documentation at [aitomatic.github.io/openssm/](https://aitomatic.github.io/openssm/).
+> &nbsp;
+
 OpenSSM (pronounced `open-ess-ess-em`) is an open-source framework for Small Specialist Models (SSMs), which are key to enhancing trust, reliability, and safety in Industrial-AI applications.  Harnessing the power of domain expertise, SSMs operate either alone or in "teams". They collaborate with other SSMs, planners, and sensors/actuators to deliver real-world problem-solving capabilities.
 
 Unlike Large Language Models (LLMs), which are computationally intensive and generalized, SSMs are lean, efficient, and designed specifically for individual domains. This focus makes them an optimal choice for businesses, SMEs, researchers, and developers seeking specialized and robust AI solutions for industrial applications.
@@ -12,15 +16,27 @@ A prime deployment scenario for SSMs is within the aiCALM (Collaborative Augment
 
 The trend towards specialization in AI models is a clear trajectory seen by many in the field.
 
+<!-- markdownlint-disable MD028 -->
+> &nbsp;
 > _Specialization is crucial for quality .. not general purpose Al models_ – Eric Schmidt, Schmidt Foundation
+> &nbsp;
 
+> &nbsp;
 > _.. small models .. for a specific task that are good_ –  Matei Zaharia, Databricks
+> &nbsp;
 
+> &nbsp;
 > _.. small agents working together .. specific and best in their tasks_ – Harrison Chase, Langchain
+> &nbsp;
 
+> &nbsp;
 > _.. small but highly capable expert models_ – Andrej Karpathy, OpenAI
+> &nbsp;
 
+> &nbsp;
 > _.. small models are .. a massive paradigm shift .. about deploying AI models at scale_ – Rob Toews, Radical Ventures
+> &nbsp;
+<!-- markdownlint-enable MD028 -->
 
 As predicted by Eric Schmidt and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.” SSMs are the central part in the architecture of these systems.
 

@@ -15,6 +15,12 @@ extra:
   article_nav_bottom: true
   history_buttons: true
 
+extra_css:
+    - mkdocs.css
+    - https://fonts.googleapis.com/css?family=Sofia
+    - https://fonts.googleapis.com/css?family=Oswald
+    - https://fonts.googleapis.com/css?family=Open+Sans
+
 plugins:
   - search
   - mkdocstrings:

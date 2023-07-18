@@ -1,8 +1,11 @@
 # pylint: disable=duplicate-code
 # routes.py
+import os
 import uuid
+from werkzeug.utils import secure_filename
 
 from flask import render_template, request, Blueprint, session
+from flask import Flask, redirect, url_for
 
 from openssm.core.ssm.abstract_ssm import AbstractSSM
 
@@ -11,8 +14,15 @@ from openssm.core.ssm.openai_ssm import GPT3ChatCompletionSSM
 from openssm.core.ssm.huggingface_ssm import Falcon7bSSM
 # from openssm.core.ssm.huggingface_ssm import Falcon7bSSMLocal
 
+
 # Create a new blueprint
 routes = Blueprint('routes', __name__)
+
+app = Flask(__name__)
+
+UPLOAD_FOLDER = '/path/to/the/uploads'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @routes.route('/')
@@ -59,3 +69,31 @@ def discuss():
             },
         ],
     }, 200
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return redirect(url_for('uploaded_file',
+                                filename=filename))
+    return redirect(url_for('index'))
+
+
+@app.route('/knowledge', methods=['POST'])
+def receive_knowledge():
+    # knowledge_text = request.form['knowledge']
+    # Store the knowledge_text into your knowledge base here
+    return redirect(url_for('index'))
+
