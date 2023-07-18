@@ -82,21 +82,6 @@ def allowed_file(filename):
 
 
 @app.route('/upload', methods=['POST'])
-def old_upload_file():
-    if 'file' not in request.files:
-        return redirect(request.url)
-    file = request.files['file']
-    if file.filename == '':
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect(url_for('uploaded_file',
-                                filename=filename))
-    return redirect(url_for('index'))
-
-
-@app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}), 400
@@ -108,13 +93,6 @@ def upload_file():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return jsonify({'filename': filename}), 200
     return jsonify({'error': 'Unexpected error occurred'}), 500
-
-
-@app.route('/knowledge', methods=['POST'])
-def old_receive_knowledge():
-    # knowledge_text = request.form['knowledge']
-    # Store the knowledge_text into your knowledge base here
-    return redirect(url_for('index'))
 
 
 @app.route('/knowledge', methods=['POST'])
