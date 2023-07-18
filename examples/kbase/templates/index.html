@@ -47,7 +47,7 @@
 
 	    <!-- File upload form -->
 	    <form class="box" id="file-upload-form" action="/upload" method="post" enctype="multipart/form-data">
-		<input type="file" id="file" name="file">
+		<input title="file" type="file" id="file" name="file">
 		<input type="submit" value="Upload Knowledge File">
 	    </form>
 
@@ -58,9 +58,10 @@
 	    </form>
         </div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/discuss.js', v='0.3') }}"></script>
+    <script src="{{ url_for('static', filename='js/knowledge.js', v='0.3') }}"></script>
 </body>
 
 </html>

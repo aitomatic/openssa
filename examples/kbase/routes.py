@@ -2,10 +2,11 @@
 # routes.py
 import os
 import uuid
+import html
 from werkzeug.utils import secure_filename
 
 from flask import render_template, request, Blueprint, session
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, jsonify
 
 from openssm.core.ssm.abstract_ssm import AbstractSSM
 
@@ -60,6 +61,10 @@ def discuss():
     response = ssm.discuss(session['conversation_id'], user_input)[0]
     sysmsgs.append(f'RESPONSE: {response}')
 
+    response = ssm.discuss(session['conversation_id'], user_input)[0]
+    response = html.escape(response)  # Sanitize the response
+    sysmsgs.append(f'RESPONSE: {response}')
+
     return {
         'choices': [
             {
@@ -77,7 +82,7 @@ def allowed_file(filename):
 
 
 @app.route('/upload', methods=['POST'])
-def upload_file():
+def old_upload_file():
     if 'file' not in request.files:
         return redirect(request.url)
     file = request.files['file']
@@ -91,9 +96,35 @@ def upload_file():
     return redirect(url_for('index'))
 
 
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part in the request'}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return jsonify({'filename': filename}), 200
+    return jsonify({'error': 'Unexpected error occurred'}), 500
+
+
 @app.route('/knowledge', methods=['POST'])
-def receive_knowledge():
+def old_receive_knowledge():
     # knowledge_text = request.form['knowledge']
     # Store the knowledge_text into your knowledge base here
     return redirect(url_for('index'))
 
+
+@app.route('/knowledge', methods=['POST'])
+def receive_knowledge():
+    knowledge_text = request.form.get('knowledge')
+
+    if not knowledge_text:
+        return jsonify({'error': 'No knowledge received'}), 400
+
+    # Store the knowledge_text into your knowledge base here
+
+    # Upon successful storage
+    return jsonify({'message': 'Knowledge received successfully'}), 200

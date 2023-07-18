@@ -1,4 +1,4 @@
-class EventHandlers {
+class DiscussEventHandlers {
     conversation = [
         // { "role": "system", "content": "You are a domain expert in semiconductor." }
     ];
@@ -96,6 +96,6 @@ class EventHandlers {
     }
 }
 
-const eh = new EventHandlers();
+const eh = new DiscussEventHandlers();
 document.getElementById("inputbox").addEventListener("keydown", eh.appendMessage);
 document.getElementById("inputbox").addEventListener("keydown", eh.sendChat);
