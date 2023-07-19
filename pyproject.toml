@@ -24,3 +24,9 @@ torch = ">=1.13.1"
 #torch = ">=1.13.1"
 #xformers = ">=0.0.16"	# don’t include this. It fails on GitHub actions. Support in Makefile.
 #xformers = ">=0.0.20"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:pkg_resources is deprecated as an API:DeprecationWarning"
+]
+

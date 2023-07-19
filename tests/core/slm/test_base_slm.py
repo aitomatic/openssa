@@ -40,3 +40,46 @@ def test_reset_memory():
     slm.reset_memory = Mock()
     slm.reset_memory()
     slm.reset_memory.assert_called()  # Check that reset_memory was called
+
+
+def test_llm_valid_response():
+    adapter = MockAdapter()
+    slm = BaseSLM(adapter)
+    response = ', {"role": "assistant", "content": "Message 1"}, invalid_response, {"role": "user", "content": "Message 2"}'
+
+    expected_result = [
+        {'role': 'assistant', 'content': 'Message 1'},
+        {'role': 'user', 'content': 'Message 2'}
+    ]
+
+    # pylint: disable=protected-access
+    parsed_data = slm._parse_llm_response(response)
+    assert parsed_data == expected_result
+
+
+def _string_response(response):
+    return [{'assistant': response}]
+
+
+def test_llm_no_valid_json():
+    adapter = MockAdapter()
+    slm = BaseSLM(adapter)
+    response = ', invalid_response, random_string'
+
+    expected_result = _string_response(response)
+
+    # pylint: disable=protected-access
+    parsed_data = slm._parse_llm_response(response)
+    assert parsed_data == expected_result
+
+
+def test_llm_empty_response():
+    adapter = MockAdapter()
+    slm = BaseSLM(adapter)
+    response = ''
+
+    expected_result = _string_response(response)
+
+    # pylint: disable=protected-access
+    parsed_data = slm._parse_llm_response(response)
+    assert parsed_data == expected_result

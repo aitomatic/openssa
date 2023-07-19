@@ -2,7 +2,7 @@ import os
 from openssm.config import Config
 
 
-Config.DEBUG = True
+Config.DEBUG = False
 
 # Flask config variables
 Config.FLASK_SECRET_KEY = os.environ.get(

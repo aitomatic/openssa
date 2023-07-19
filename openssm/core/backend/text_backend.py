@@ -27,32 +27,3 @@ class TextBackend(BaseBackend):
         super().add_heuristic(heuristic)
         self.texts.add(f"heuristic: {heuristic}")
 
-    def list_facts(self):
-        return self.facts
-
-    def list_inferencers(self):
-        return self.inferencers
-
-    def list_heuristics(self):
-        return self.heuristics
-
-    def select_facts(self, criteria):
-        """
-        The base backend simply returns all facts.
-        """
-        assert criteria is not None
-        return self.list_facts()
-
-    def select_inferencers(self, criteria):
-        """
-        The base backend simply returns all inferencers.
-        """
-        assert criteria is not None
-        return self.list_inferencers()
-
-    def select_heuristics(self, criteria):
-        """
-        The base backend simply returns all heuristics.
-        """
-        assert criteria is not None
-        return self.list_heuristics()

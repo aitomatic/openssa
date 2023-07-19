@@ -41,4 +41,3 @@ Your grievance will be handled in accordance with our existing governing policie
 ## Scope
 
 We expect all community participants (contributors, paid or otherwise; sponsors; and other guests) to abide by this Code of Conduct in all community venues–online and in-person–as well as in all one-on-one communications pertaining to community business.
-

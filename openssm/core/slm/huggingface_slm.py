@@ -5,7 +5,6 @@ served from HuggingFace's model hub, or a private internal server,
 or they may be served locally.
 """
 import json
-import ast
 import torch
 
 from requests import request
@@ -91,54 +90,45 @@ class HuggingFaceBaseSLM(BaseSLM):
             }
             return [reply_dict]
 
-        # Convert conversation to string
-        list_conversation = []
-        for item in conversation:
-            role = item["role"]
-            content = item["content"]
-            list_conversation.append(f'{role}: {content}')
-
-        prompt = "\n".join(list_conversation)
-        # Need to update the prompt
-        prompt = (f"Complete this conversation with the assistant’s response, "
-                  f"up to 500 words, in JSON, with quotes escaped with \\:\n"
-                  f"{prompt}")
+        prompt = self._make_completion_prompt(conversation)
+        # print(f"prompt: {prompt}")
 
         if self._local_mode:
             result = self.local_model(prompt,
-                                      max_length=200,
+                                      max_length=2000,
                                       do_sample=True,
                                       top_k=5,
                                       num_return_sequences=1,
                                       eos_token_id=self.tokenizer.eos_token_id)
         else:
             data = json.dumps({"inputs": prompt})
-            headers = {
-                'Content-Type': 'application/json'
-            }
+            headers = {'Content-Type': 'application/json'}
+
             if 'amazonaws' in self.model_url or 'aitomatic' in self.model_url:
                 headers['x-api-key'] = self.model_server_token
             else:
                 headers['Authorization'] = f'Bearer {self.model_server_token}'
+
             response = request(method="POST",
                                url=self.model_url,
                                headers=headers,
                                data=data,
                                timeout=10)
+
             if response.status_code == 200:
-                result = ast.literal_eval(response.text.strip())
+                # pylint: disable=invalid-name
+                responseText = response.text.strip()
+                responseDict = json.loads(responseText)
+                if isinstance(responseDict, list):
+                    responseDict = responseDict[0]
+
+                result = self._parse_llm_response(responseText)
             else:
                 message = 'Model unavailable, try again'
-                result = [{'generated_text': message}]
+                result = [{'system': message}]
 
-        if not isinstance(result, list):
-            result = [result]
-
-        reply = result[0]['generated_text']
-
-        # Return the reply in the same format as the input
-        reply_dict = {"role": "assistant", "content": reply}
-        return [reply_dict]
+        # print(f"result: {result}")
+        return result
 
 
 class Falcon7bSLM(HuggingFaceBaseSLM):
