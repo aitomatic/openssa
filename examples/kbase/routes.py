@@ -6,7 +6,7 @@ import html
 from werkzeug.utils import secure_filename
 
 from flask import render_template, request, Blueprint, session
-from flask import Flask, url_for, jsonify
+from flask import Flask, jsonify
 
 from openssm.core.ssm.abstract_ssm import AbstractSSM
 
