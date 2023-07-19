@@ -32,6 +32,7 @@ class GPT3CompletionSLM(GPT3BaseSLM):
 
     def call_lm_api(self, conversation: list[dict]) -> list[dict]:
         prompt = self._make_completion_prompt(conversation)
+
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=prompt,
@@ -41,6 +42,7 @@ class GPT3CompletionSLM(GPT3BaseSLM):
         # print(f"prompt: {prompt}")
         # print(f"response: {response}")
         response = response.choices[0].text.strip()
+
         replies = self._parse_llm_response(response)
 
         if len(replies) == 0 or len(replies[0]) == 0:
