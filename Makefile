@@ -162,7 +162,7 @@ jest-setup:
 eslint-setup:
 	@echo $(ANSI_GREEN) ... Setting up ESLINT linting environment $(ANSI_NORMAL)
 	@echo ""
-	ln -s testsnode_modules
+	ln -s tests/node_modules .
 	cd $(TESTS_DIR) ;\
 	npm init @eslint/config -- --config semistandard 
 

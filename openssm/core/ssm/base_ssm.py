@@ -81,3 +81,7 @@ class BaseSSM(AbstractSSM):
 
     def add_backend(self, backend: AbstractBackend):
         return self.get_adapter().add_backend(backend)
+
+    def add_knowledge(self, knowledge_source, knowledge_type=None):
+        """Uploads a knowledge source (documents, text, files, etc.)"""
+        pass
