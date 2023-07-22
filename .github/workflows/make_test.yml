@@ -1,4 +1,4 @@
-name: Run Make Test on pull_request
+name: Run Make Test on Pushes & PRs
 
 on:
   pull_request:
@@ -9,14 +9,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version:
+          - '3.10'
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Set Up Python
+      - name: Set Up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11  # replace with your desired Python version
+          python-version: ${{ matrix.python-version }}
 
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -

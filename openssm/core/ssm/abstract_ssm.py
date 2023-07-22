@@ -23,12 +23,6 @@ class AbstractSSM(ABC):
         """Returns our backends"""
 
     @abstractmethod
-    def discuss(self,
-                conversation_id: str,
-                user_input: list[dict]) -> list[dict]:
-        """Processes a natural language conversation input."""
-
-    @abstractmethod
     def api_call(self, function_name, *args, **kwargs):
         """Processes a structured API call."""
 
@@ -71,3 +65,13 @@ class AbstractSSM(ABC):
     @abstractmethod
     def add_backend(self, backend: AbstractBackend):
         """Adds a backend to the SSM."""
+
+    @abstractmethod
+    def add_knowledge(self, knowledge_source, knowledge_type=None):
+        """Uploads a knowledge source (documents, text, files, etc.)"""
+
+    @abstractmethod
+    def discuss(self,
+                conversation_id: str,
+                user_input: list[dict]) -> list[dict]:
+        """Processes a natural language conversation input."""

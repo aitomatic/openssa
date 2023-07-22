@@ -1,8 +1,11 @@
+font-family: 'DM Mono', monospace;
+font-family: 'DM Sans', sans-serif;
+
 body {
     background: #fff;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    color: #2c3e50;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    color: #0A0B0D;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,45 +19,44 @@ body {
 header {
     text-align: center;
     padding: 20px;
-    background: #2980b9;
-    color: #fff;
+    background: #fff;
+    color: #0A0B0D;
     width: 100%;
-    border-bottom: 1px solid #2980b9;
+    border-bottom: 1px solid #5B616E;
 }
 
 header label, header select {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 12px;
     color: #fff;
 }
 
 header select {
-    color: #333;
+    color: #0A0B0D;
 }
 
 main {
     display: flex;
     justify-content: space-between;
-    width: 90%;
-    margin-top: 20px;
+    width: 80%;
+    margin-top: 24px;
 }
 
 .column {
     flex: 1;
-    padding: 10px;
-    border: 1px solid black;
+    padding: 16px;
+    border: 1px solid #5B616E;
     border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
+    padding: 24px;
+    margin: 16px;
     height: 60vh;
 }
 
 .pane {
     flex: 1;
-    background: #ecf0f1;
-    color: #2c3e50;
+    background: #fafafa;
+    color: #5B616E;
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 10%);
     height: 60vh;
 }
 
@@ -62,8 +64,8 @@ main {
     height: 100%;
     width: 100%;
     background: #fff;
-    color: #2c3e50;
-    border: 1px solid #bdc3c7;
+    color: #0A0B0D;
+    border: 1px solid #5B616E;
     padding: 10px;
     overflow: auto;  /* Will cause a scrollbar to appear when necessary */
     box-sizing: border-box;
@@ -76,22 +78,22 @@ main {
 
 #inputbox {
     height: 20%;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 #syslog {
-    font-family: 'Courier New', Courier, monospace
+    font-family: 'DM Mono', monospace;
 }
 
 #inputbox::placeholder {
-    color: #bdc3c7;
+    color: #fafafa;
 }
 
 select {
     background: #fff;
-    color: #2c3e50;
-    border: 1px solid #bdc3c7;
-    padding: 5px;
+    color: #0A0B0D;
+    border: 1px solid #5B616E;
+    padding: 8px;
 
 }
 
@@ -109,7 +111,7 @@ select {
 }
 
 .SYSTEM {
-    font-style: italic;
+    font-style: normal;
 }
 
 .USER {
@@ -117,4 +119,5 @@ select {
 }
 
 .SSM {
+    font-style: normal;
 }

@@ -1,6 +1,5 @@
-from ast import List
+from dataclasses import dataclass
 from typing import Any
-# import llama_index
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
 from openssm.core.adapter.base_adapter import BaseAdapter
@@ -13,29 +12,30 @@ class LlamaIndexAdapter(BaseAdapter):
     that uses LlamaIndex.
     """
 
-    def __init__(self, backends: list[AbstractBackend] = None):
-        """Initializes the LlamaIndexAdapter with a specific LlamaIndex."""
-        super().__init__(backends)
-        self.llama_tuples = []
-
-    class _LlamaTuple:
+    @dataclass
+    class _LlamaIndex:
         index: BaseIndex = None
         query_engine: BaseQueryEngine = None
 
-    def _get_llama_tuples(self) -> List[_LlamaTuple]:
-        if self.llama_tuples is None:
-            self.llama_tuples = []
-        return self.llama_tuples
+    def __init__(self, backends: list[AbstractBackend] = None):
+        """Initializes the LlamaIndexAdapter with a specific LlamaIndex."""
+        super().__init__(backends)
+        self._llama_indexes = [LlamaIndexAdapter._LlamaIndex]
 
-    def _get_indexes(self) -> List[BaseIndex]:
-        indexes = [lt.index for lt in self._get_llama_tuples()]
+    def _get_llama_indexes(self) -> list[_LlamaIndex]:
+        if self._llama_indexes is None:
+            self._llama_indexes = [LlamaIndexAdapter._LlamaIndex]
+        return self._llama_indexes
+
+    def _get_indexes(self) -> list[BaseIndex]:
+        indexes = [lt.index for lt in self._get_llama_indexes()]
         return indexes
 
-    def _get_query_engines(self) -> List[BaseQueryEngine]:
-        query_engines = [lt.query_engine for lt in self._get_llama_tuples()]
+    def _get_query_engines(self) -> list[BaseQueryEngine]:
+        query_engines = [lt.query_engine for lt in self._get_llama_indexes()]
         return query_engines
 
-    def _query_llama(self, query: str) -> List[Any]:
+    def _query_llama(self, query: str) -> list[Any]:
         responses = []
         # pylint: disable=invalid-name
         for qe in self._get_query_engines():
@@ -89,7 +89,7 @@ class LlamaIndexAdapter(BaseAdapter):
         # Query the index and retrieve relevant inferencers
         results = self._query_llama((
             f"infer an appropriate conclusion"
-            f"from the following inputs:{input_facts}"))
+            f" from the following inputs:{input_facts}"))
         # This is a simple example and may need to be enhanced
         # based on how the inference process should work
         return results
