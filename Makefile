@@ -24,4 +24,4 @@ install-mkdocs:
 
 index:
 	@echo ... Generating our index.md from ../README.md
-	sed -e 's/(docs\//(/g' ../README.md > index.md
+	sed -e 's/docs\///g' ../README.md > index.md
