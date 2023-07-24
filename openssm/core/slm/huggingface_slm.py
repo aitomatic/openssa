@@ -77,7 +77,7 @@ class HuggingFaceBaseSLM(BaseSLM):
             self.model_url = model_url
             self.model_server_token = model_server_token
 
-    def call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
         """
         This method calls the API of the underlying language model,
         and returns the response as a list of dicts.
@@ -91,7 +91,6 @@ class HuggingFaceBaseSLM(BaseSLM):
             return [reply_dict]
 
         prompt = self._make_completion_prompt(conversation)
-        # print(f"prompt: {prompt}")
 
         if self._local_mode:
             result = self.local_model(prompt,
@@ -127,7 +126,6 @@ class HuggingFaceBaseSLM(BaseSLM):
                 message = 'Model unavailable, try again'
                 result = [{'system': message}]
 
-        # print(f"result: {result}")
         return result
 
 

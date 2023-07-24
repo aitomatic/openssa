@@ -22,14 +22,14 @@ class BaseSLM(AbstractSLM):
                 conversation_id: str,
                 user_input: list[dict]) -> list[dict]:
         """
-        Send user input to OpenAI's API and return the replies
+        Send user input to our language model and return the replies
         """
 
         # If conversation is new, start a new one, else continue from previous
         conversation = self.conversations.get(conversation_id, [])
         conversation.extend(user_input)
 
-        replies = self.call_lm_api(conversation)
+        replies = self._call_lm_api(conversation)
 
         # Save response to the conversation
         conversation.extend(replies)
@@ -38,23 +38,21 @@ class BaseSLM(AbstractSLM):
         # Return the model's replies
         return replies
 
+    def reset_memory(self):
+        self.conversations = {}
+
     # pylint: disable=unused-argument
-    def call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
         """
         Send conversation to the language model’s API
         and return the replies. Should be overridden by subclasses.
         """
-        response = '{"assistant": "Hello, how can I help you?"}'
-        return self._parse_llm_response(response)
-
-    def reset_memory(self):
-        self.conversations = {}
+        return [{"role": "assistant", "content": "Hello, how can I help you?"}]
 
     #
     # Helper functions for GPT-like completion models
     #
     def _make_completion_prompt(self, conversation: list[dict]) -> str:
-        # print(f"conversation: {conversation}")
         prompt = self._convert_conversation_to_string(conversation)
         prompt = ("Complete this conversation with the response, " +
                   "up to 2000 words (plus this prompt): " +
@@ -70,7 +68,6 @@ class BaseSLM(AbstractSLM):
     def _convert_conversation_to_string(self, conversation: list[dict]) -> str:
         list_conversation = []
         for item in conversation:
-            # print(f"item: {item}")
             role = item["role"].replace('"', '\\"')
             content = item["content"].replace('"', '\\"')
             list_conversation.append(
@@ -103,7 +100,6 @@ class BaseSLM(AbstractSLM):
                 else:
                     parsed_data.append(item)
             except (ValueError, json.JSONDecodeError):
-                print(f"Invalid JSON string: {json_string}")
                 pass
 
         if isinstance(parsed_data, list):
@@ -121,7 +117,7 @@ class BaseSLM(AbstractSLM):
             response += '{'
 
         if '{' not in response:
-            response = json.dumps({"assistant": response})
+            response = json.dumps({"role": "assistant", "content": response})
 
         parsed_data = []
         start_indices = [i for i, c in enumerate(response) if c == '{']
@@ -138,3 +134,29 @@ class BaseSLM(AbstractSLM):
                     continue
 
         return parsed_data
+
+
+class PassthroughSLM(BaseSLM):
+    """
+    The PassthroughSLM is a barebones SLM that simply passes
+    all queries to the adapter.
+    """
+    def discuss(self,
+                conversation_id: str,
+                user_input: list[dict]) -> list[dict]:
+        """
+        Pass through user input to the adapter and return the replies
+        """
+
+        response = self.get_adapter().query(conversation_id, user_input)
+
+        if isinstance(response, str):
+            return [{"role": "assistant", "content": response}]
+
+        if isinstance(response, dict):
+            return [response]
+
+        if isinstance(response, list):
+            return response
+
+        return [{"role": "assistant", "content": str(response)}]

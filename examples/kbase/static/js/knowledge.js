@@ -1,4 +1,10 @@
+/* global updateSyslog */ // for ESLint
+// import { updateSyslog } from './discuss.js';
+
+// const { update } = require("lodash");
+
 class KnowledgeEventHandlers {
+
     // Common function to make POST requests
     _postData(url = '', data = {}) {
         return fetch(url, {
@@ -12,7 +18,7 @@ class KnowledgeEventHandlers {
     }
 
     // Define the event handler function for 'knowledge'
-    handleKnowledgeSubmit = (event) => {
+    handleKnowledgeInput = (event) => {
         // Prevent the form from being submitted in the traditional way
         event.preventDefault();
 
@@ -21,19 +27,19 @@ class KnowledgeEventHandlers {
         self._postData('/knowledge', { knowledge: knowledgeText })
         .then(data => {
             // Handle the response here
-            console.log(data);
-            if (data.message) {
-                alert(data.message);
-            }
+            updateSyslog(data);
+            // console.log(data);
+            // if (data.message) { alert(data.message); }
         })
         .catch(error => {
             // Handle any errors here
-            console.error('Error:', error);
+            updateSyslog(`Error: ${JSON.stringify(error)}`);
+            // console.error('Error:', error);
         });
     }
 
     // Define the event handler function for 'upload'
-    handleUploadSubmit = (event) => {
+    handleKnowledgeUpload = (event) => {
         // Prevent the form from being submitted in the traditional way
         event.preventDefault();
 
@@ -49,19 +55,19 @@ class KnowledgeEventHandlers {
         .then(response => response.json())
         .then(data => {
             // Handle the response here
+            updateSyslog(data);
             console.log(data);
-            if (data.filename) {
-                alert(`File uploaded successfully: ${data.filename}`);
-            }
+            // if (data.filename) { alert(`File uploaded successfully: ${data.filename}`); }
         })
         .catch(error => {
             // Handle any errors here
-            console.error('Error:', error);
+            updateSyslog(`Error: ${JSON.stringify(error)}`);
+            // console.error('Error:', error);
         });
     }
 }
 
 // Register the events
-const eh = new KnowledgeEventHandlers();
-document.getElementById("knowledge-input-form").addEventListener('submit', eh.handleKnowledgeSubmit);
-document.getElementById("file-upload-form").addEventListener('submit', eh.handleUploadSubmit);
+const keh = new KnowledgeEventHandlers();
+document.getElementById("upload-file-button").addEventListener('click', keh.handleKnowledgeUpload);
+document.getElementById("send-text-button").addEventListener('click', keh.handleKnowledgeInput);

@@ -8,7 +8,7 @@ class TextBackend(BaseBackend):
         self.texts = set()
 
     # pylint: disable=unused-argument
-    def query(self, conversation_id: str, user_input: str) -> list({}):
+    def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
         responses = [{"item": text} for text in self.texts]
         return responses
 
@@ -26,4 +26,3 @@ class TextBackend(BaseBackend):
     def add_heuristic(self, heuristic: str):
         super().add_heuristic(heuristic)
         self.texts.add(f"heuristic: {heuristic}")
-

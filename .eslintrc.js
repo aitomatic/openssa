@@ -3,7 +3,8 @@ module.exports = {
         "browser": true,
         "es2021": true,
         "jest": true,
-	"node": true
+	"node": true,
+	"es6": true
     },
     "extends": [
         "eslint:recommended",
@@ -23,18 +24,17 @@ module.exports = {
         }
     ],
     "parserOptions": {
-        "ecmaVersion": "latest",
+        "ecmaVersion": "2018",
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+	"react"
     ],
     "rules": {
     },
     "settings": {
-	"react": {
-            "version": "17.0.1"
-	}
-    }
+	"react": { "version": "17.0.1" }
+    },
+    "parser": "babel-eslint"
 };
 

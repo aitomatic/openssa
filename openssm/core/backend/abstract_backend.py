@@ -5,7 +5,7 @@ from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 # pylint: disable=duplicate-code
 class AbstractBackend(ABC):
     @abstractmethod
-    def query(self, conversation_id: str, user_input: str) -> list({}):
+    def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
         pass
 
     @abstractmethod

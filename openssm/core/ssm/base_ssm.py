@@ -79,9 +79,6 @@ class BaseSSM(AbstractSSM):
     def solve_problem(self, problem_description: list[str]) -> list[str]:
         pass
 
-    def add_backend(self, backend: AbstractBackend):
-        return self.get_adapter().add_backend(backend)
-
-    def add_knowledge(self, knowledge_source, knowledge_type=None):
+    def add_knowledge(self, knowledge_source_uri: str, knowledge_type=None):
         """Uploads a knowledge source (documents, text, files, etc.)"""
-        pass
+        # self.get_adapter().add_knowledge(knowledge_source_uri, knowledge_type)

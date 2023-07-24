@@ -2,7 +2,7 @@
 # routes.py
 import os
 import uuid
-import html
+import tempfile
 from werkzeug.utils import secure_filename
 
 from flask import render_template, request, Blueprint, session
@@ -14,6 +14,8 @@ from openssm.core.ssm.openai_ssm import GPT3CompletionSSM
 from openssm.core.ssm.openai_ssm import GPT3ChatCompletionSSM
 from openssm.core.ssm.huggingface_ssm import Falcon7bSSM
 # from openssm.core.ssm.huggingface_ssm import Falcon7bSSMLocal
+# pylint: disable=no-name-in-module
+from openssm.core.ssm.llama_index_ssm import LlamaIndexSSM
 
 
 # Create a new blueprint
@@ -32,6 +34,7 @@ def home():
 
 
 ssms = {
+    'llama_index': LlamaIndexSSM(),
     'gpt3_completion': GPT3CompletionSSM(),
     'gpt3_chat_completion': GPT3ChatCompletionSSM(),
     'falcon7b': Falcon7bSSM(),
@@ -58,11 +61,9 @@ def discuss():
 
     user_input = [{'role': 'user', 'content': message}]
 
-    response = ssm.discuss(session['conversation_id'], user_input)[0]
-    sysmsgs.append(f'RESPONSE: {response}')
-
-    response = ssm.discuss(session['conversation_id'], user_input)[0]
-    response = html.escape(response)  # Sanitize the response
+    response = ssm.discuss(session['conversation_id'], user_input)
+    response = response[0]
+    # response = html.escape(response)  # Sanitize the response
     sysmsgs.append(f'RESPONSE: {response}')
 
     return {
@@ -81,21 +82,35 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/upload', methods=['POST'])
+@routes.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}), 400
+
     file = request.files['file']
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
+
     if file and allowed_file(file.filename):
+        # Create a temporary directory using tempfile.mkdtemp()
+        upload_folder = tempfile.mkdtemp()
+        print(f'upload_folder: {upload_folder}')
+
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.save(os.path.join(upload_folder, filename))
+
+        llama_index_ssm = ssms['llama_index']
+        if llama_index_ssm is None:
+            return jsonify({'error': 'llama_index SSM unavailable'}), 500
+
+        llama_index_ssm.read_directory(upload_folder)
+
         return jsonify({'filename': filename}), 200
+
     return jsonify({'error': 'Unexpected error occurred'}), 500
 
 
-@app.route('/knowledge', methods=['POST'])
+@routes.route('/knowledge', methods=['POST'])
 def receive_knowledge():
     knowledge_text = request.form.get('knowledge')
 

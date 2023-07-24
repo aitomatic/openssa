@@ -40,6 +40,8 @@ nav:
   - Developer Guide:
     - Design Principles: DESIGN_PRINCIPLES.md
     - Using Makefile: MAKEFILE_INFO.md
+  - Integrations:
+    - LlamaIndex: integrations/llama_index.md
   - Community:
     - Contributing: community/CONTRIBUTING.md
     - Project Philosophy: PROJECT_PHILOSOPHY.md

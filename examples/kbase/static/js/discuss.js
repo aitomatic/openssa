@@ -1,9 +1,19 @@
+function updateSyslog(sysmsgs) {
+    var syslog = document.getElementById("syslog");
+    if (Array.isArray(sysmsgs)) {
+        syslog.innerHTML += sysmsgs.map(msg => `<div>${msg}</div>`).join("");
+    } else {
+        syslog.innerHTML += `<div>${JSON.stringify(sysmsgs)}</div>`;
+    }
+    syslog.scrollTop = syslog.scrollHeight;
+}
+
 class DiscussEventHandlers {
     conversation = [
         // { "role": "system", "content": "You are a domain expert in semiconductor." }
     ];
 
-    _updateChatbox(sysmsgs) {
+    _updateChatbox() {
         let roleLabels = {
             "system": "SYSTEM",
             "user":	"USER",
@@ -13,14 +23,11 @@ class DiscussEventHandlers {
         var chatbox = document.getElementById("chatbox");
         chatbox.innerHTML = this.conversation.map(msg => `<div class="${roleLabels[msg.role]}">${roleLabels[msg.role]}: ${msg.content}</div>`).join("");
         chatbox.scrollTop = chatbox.scrollHeight;
-
-        var syslog = document.getElementById("syslog");
-        syslog.innerHTML += sysmsgs.map(msg => `<div>${msg}</div>`).join("");
-        syslog.scrollTop = chatbox.scrollHeight;
     }
 
     sendChat = (e) => {
         if (e.key === "Enter") {
+            e.preventDefault();
 
             // Show the spinner
             document.getElementById("loading").classList.remove("d-none");
@@ -52,14 +59,16 @@ class DiscussEventHandlers {
                 if (!response.ok) {
                     var errMsg = `<span style="color:red;">HTTP error status: ${response.status}</span>`; 
                     this.conversation.push({ "role": "system", "content": errMsg });
-                    this._updateChatbox([errMsg]);
+                    updateSyslog([errMsg]);
+                    this._updateChatbox();
                 }
                 return response.json();
             })
             .then(data => {
                 // Append the assistant's response to the conversation
                 this.conversation.push({ "role": "assistant", "content": data.choices[0].message.content });
-                this._updateChatbox(data.choices[0].syslog);
+                updateSyslog(data.choices[0].syslog);
+                this._updateChatbox();
 
                 // Hide the spinner
                 document.getElementById("loading").classList.add("d-none");
@@ -69,7 +78,8 @@ class DiscussEventHandlers {
                     // Timeout occurred
                     var errMsg = `<span style="color:red;">Sorry, I'm taking too long to respond. Please try again.</span>`;
                     this.conversation.push({ "role": "system", "content": errMsg });
-                    this._updateChatbox([errMsg]);
+                    updateSyslog([errMsg]);
+                    this._updateChatbox();
                 }
 
                 // Hide the spinner
@@ -78,7 +88,7 @@ class DiscussEventHandlers {
 
             // Clear the input box for the next message
             e.target.value = "";
-            e.preventDefault();
+            // e.preventDefault();
         }
     }
 
@@ -96,6 +106,6 @@ class DiscussEventHandlers {
     }
 }
 
-const eh = new DiscussEventHandlers();
-document.getElementById("inputbox").addEventListener("keydown", eh.appendMessage);
-document.getElementById("inputbox").addEventListener("keydown", eh.sendChat);
+const deh = new DiscussEventHandlers();
+document.getElementById("inputbox").addEventListener("keydown", deh.appendMessage);
+document.getElementById("inputbox").addEventListener("keydown", deh.sendChat);

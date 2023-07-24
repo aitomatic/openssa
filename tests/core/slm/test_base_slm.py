@@ -1,6 +1,8 @@
+import unittest
 from unittest.mock import Mock
 from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.adapter.base_adapter import BaseAdapter
+from openssm.core.slm.base_slm import PassthroughSLM
 
 
 class MockAdapter(BaseAdapter):
@@ -58,13 +60,13 @@ def test_llm_valid_response():
 
 
 def _string_response(response):
-    return [{'assistant': response}]
+    return [{'role': 'assistant', 'content': response}]
 
 
 def test_llm_no_valid_json():
     adapter = MockAdapter()
     slm = BaseSLM(adapter)
-    response = ', invalid_response, random_string'
+    response = ', invalid_response, random_string2'
 
     expected_result = _string_response(response)
 
@@ -83,3 +85,30 @@ def test_llm_empty_response():
     # pylint: disable=protected-access
     parsed_data = slm._parse_llm_response(response)
     assert parsed_data == expected_result
+
+
+class TestPassthroughSLM(unittest.TestCase):
+    def setUp(self):
+        self.slm = PassthroughSLM()
+        self.mock_adapter = Mock()
+        self.slm.get_adapter = Mock(return_value=self.mock_adapter)
+
+    def test_discuss_with_string_response(self):
+        self.mock_adapter.query = Mock(return_value="test string")
+        response = self.slm.discuss("conversation_id", [])
+        self.assertEqual(response, [{"role": "assistant", "content": "test string"}])
+
+    def test_discuss_with_dict_response(self):
+        self.mock_adapter.query = Mock(return_value={"role": "assistant", "content": "test string"})
+        response = self.slm.discuss("conversation_id", [])
+        self.assertEqual(response, [{"role": "assistant", "content": "test string"}])
+
+    def test_discuss_with_list_response(self):
+        self.mock_adapter.query = Mock(return_value=[{"role": "assistant", "content": "test string"}])
+        response = self.slm.discuss("conversation_id", [])
+        self.assertEqual(response, [{"role": "assistant", "content": "test string"}])
+
+    def test_discuss_with_other_response(self):
+        self.mock_adapter.query = Mock(return_value=12345)  # some unexpected type
+        response = self.slm.discuss("conversation_id", [])
+        self.assertEqual(response, [{"role": "assistant", "content": "12345"}])  # expect the response to be converted to a string

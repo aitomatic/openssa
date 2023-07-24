@@ -63,11 +63,7 @@ class AbstractSSM(ABC):
         """Solves a problem based on the provided description."""
 
     @abstractmethod
-    def add_backend(self, backend: AbstractBackend):
-        """Adds a backend to the SSM."""
-
-    @abstractmethod
-    def add_knowledge(self, knowledge_source, knowledge_type=None):
+    def add_knowledge(self, knowledge_source_uri: str, knowledge_type=None):
         """Uploads a knowledge source (documents, text, files, etc.)"""
 
     @abstractmethod
