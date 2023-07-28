@@ -18,8 +18,14 @@ class Logging:
         # create formatter and add it to the handlers
         # formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         # formatter = logging.Formatter('%(asctime)s [%(levelname)s]: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        # formatter = logging.Formatter('%(asctime)s [%(levelname)s]: %(module)s.%(funcName)s (in %(filename)s line %(lineno)d) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        formatter = logging.Formatter('%(asctime)s [%(levelname)s]: %(name)s.%(module)s.%(funcName)s (in %(filename)s line %(lineno)d) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+        # formatter = logging.Formatter(
+        #    '%(asctime)s [%(levelname)s]: %(module)s.%(funcName)s (in %(filename)s line %(lineno)d) %(message)s',
+        #    datefmt='%m/%d/%Y %I:%M:%S %p'
+        # )
+        formatter = logging.Formatter(
+            '%(asctime)s [%(levelname)s]: %(name)s.%(module)s.%(funcName)s (in %(filename)s line %(lineno)d) %(message)s',
+            datefmt='%m/%d/%Y %I:%M:%S %p'
+        )
         handler.setFormatter(formatter)
 
         # add the handlers to logger
