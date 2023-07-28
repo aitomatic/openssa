@@ -1,8 +1,8 @@
 import os
-from openssm.config import Config
+from openssm import Config
 
 
-Config.DEBUG = True
+# Logging.set_log_level(logging.INFO)
 
 # Flask config variables
 Config.FLASK_SECRET_KEY = os.environ.get(

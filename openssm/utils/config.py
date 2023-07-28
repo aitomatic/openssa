@@ -1,5 +1,9 @@
 import os
+import logging
+from openssm.utils.logging import Logging
 
+
+logger = Logging.get_package_logger(logging.WARN)
 
 class Config:
     """
@@ -26,3 +30,13 @@ class Config:
 
     # Falcon7b server URL (HuggingFace’s, or our own server)
     FALCON7B_MODEL_URL = os.environ.get('FALCON7B_MODEL_URL')
+
+    @staticmethod
+    def setenv(var_name):
+        """
+        Copy the value of a config variable to an environment variable.
+        If the variable is not set, nothing is changed.
+        """
+        value = getattr(Config, var_name, None)
+        if value is not None:
+            os.environ[var_name] = value

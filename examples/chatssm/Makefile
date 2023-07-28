@@ -77,7 +77,7 @@ clear-config-secrets:
 
 config-secrets: clear-config-secrets
 	@echo $(ANSI_GREEN)... Creating $(CONFIG_SECRETS) file $(ANSI_NORMAL)
-	echo "from openssm.config import Config" >> $(CONFIG_SECRETS)
+	echo "from openssm import Config" >> $(CONFIG_SECRETS)
 	echo "" >> $(CONFIG_SECRETS)
 	echo "" >> $(CONFIG_SECRETS)
 	echo "Config.OPENAI_API_KEY='$(OPENAI_API_KEY)'" >> $(CONFIG_SECRETS)

@@ -6,6 +6,9 @@ from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 class AbstractBackend(ABC):
     @abstractmethod
     def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
+        """
+        Queries the backend with the user input.
+        """
         pass
 
     @abstractmethod

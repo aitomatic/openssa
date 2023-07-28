@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch, Mock
 from openssm.core.slm.huggingface_slm import HuggingFaceBaseSLM
 from openssm.core.slm.huggingface_slm import Falcon7bSLM, Falcon7bSLMLocal
-from openssm.config import Config
+from openssm import Config
 
 
 class TestHuggingFaceBaseSLM(unittest.TestCase):

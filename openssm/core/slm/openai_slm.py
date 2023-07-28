@@ -1,7 +1,7 @@
 import openai
-from openssm.core.slm.base_slm import BaseSLM
-from openssm.config import Config
+from openssm.utils.config import Config
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.core.slm.base_slm import BaseSLM
 
 
 class GPT3BaseSLM(BaseSLM):

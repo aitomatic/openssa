@@ -1,3 +1,4 @@
+from typing import Tuple
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
 from llama_index import VectorStoreIndex, SimpleDirectoryReader, Response
@@ -12,16 +13,32 @@ class LlamaIndexBackend(BaseBackend):
         super().__init__()
 
     # pylint: disable=unused-argument
-    def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
+    def query2(self, conversation_id: str, user_input: list[dict]) -> Tuple[list[dict], Response]:
+        """
+        Query the index with the user input.
+
+        Returns a tuple comprising (a) the response dicts and (b) the response object, if any.
+        """
+        response = None
         if self.query_engine is None:
-            response = "I'm sorry, I don't have an index to query. Please load something first."
+            result = {"response": "I'm sorry, I don't have an index to query. Please load something first."}
         else:
             query = next((i['content'] for i in user_input if i['role'] == 'user'), None)
             response: Response = self.query_engine.query(query)
-            response = response.response
+            result = {"response": response.response}
 
-        result = {"role": "assistant", "content": response}
-        return [result]
+        return ([result], response)
+
+    # pylint: disable=unused-argument
+    def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
+        """
+        Query the index with the user input.
+
+        Returns the response dicts.
+        """
+        # pylint: disable=unused-variable
+        result, response = self.query2(conversation_id, user_input)
+        return result
 
     def read_directory(self, directory_path: str):
         documents = SimpleDirectoryReader(directory_path).load_data()

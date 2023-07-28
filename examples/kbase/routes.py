@@ -2,20 +2,20 @@
 # routes.py
 import os
 import uuid
+import logging
 import tempfile
 from werkzeug.utils import secure_filename
-
 from flask import render_template, request, Blueprint, session
 from flask import Flask, jsonify
-
-from openssm.core.ssm.abstract_ssm import AbstractSSM
-
-from openssm.core.ssm.openai_ssm import GPT3CompletionSSM
-from openssm.core.ssm.openai_ssm import GPT3ChatCompletionSSM
-from openssm.core.ssm.huggingface_ssm import Falcon7bSSM
-# from openssm.core.ssm.huggingface_ssm import Falcon7bSSMLocal
-# pylint: disable=no-name-in-module
-from openssm.core.ssm.llama_index_ssm import LlamaIndexSSM
+from config import logger
+from openssm import (
+    Logging,
+    BaseSSM,
+    GPT3CompletionSSM, GPT3ChatCompletionSSM,
+    Falcon7bSSM,
+    # Falcon7bSSMLocal,
+    LlamaIndexSSM
+)
 
 
 # Create a new blueprint
@@ -43,6 +43,7 @@ ssms = {
 
 
 @routes.route('/discuss', methods=['POST'])
+@Logging.do_log_entry_and_exit({'request': request}, logger=logger)
 def discuss():
     if 'conversation_id' not in session:
         session['conversation_id'] = str(uuid.uuid4())
@@ -54,7 +55,7 @@ def discuss():
     model = data['model']
     sysmsgs.append(f'MODEL: {model}')
 
-    ssm: AbstractSSM = ssms[model] or ssms['gpt3_chat_completion']
+    ssm: BaseSSM = ssms[model] or ssms['gpt3_chat_completion']
 
     message = data['message']
     sysmsgs.append(f'MESSAGE: {message}')
@@ -83,6 +84,7 @@ def allowed_file(filename):
 
 
 @routes.route('/upload', methods=['POST'])
+@Logging.do_log_entry_and_exit({'request': request}, logger=logger, log_level=logging.INFO)
 def upload_file():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}), 400
@@ -91,10 +93,13 @@ def upload_file():
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
 
-    if file and allowed_file(file.filename):
+    if file:
+        if not allowed_file(file.filename):
+            return jsonify({'error': 'File type not allowed'}), 400
+
         # Create a temporary directory using tempfile.mkdtemp()
         upload_folder = tempfile.mkdtemp()
-        print(f'upload_folder: {upload_folder}')
+        logger.debug("upload_folder: %s", upload_folder)
 
         filename = secure_filename(file.filename)
         file.save(os.path.join(upload_folder, filename))
@@ -111,6 +116,7 @@ def upload_file():
 
 
 @routes.route('/knowledge', methods=['POST'])
+@Logging.do_log_entry_and_exit({'request': request}, logger=logger)
 def receive_knowledge():
     knowledge_text = request.form.get('knowledge')
 

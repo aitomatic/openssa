@@ -5,15 +5,18 @@
 With OpenSSM, you can simply use `LlamaIndexSSM` with just a few lines of code.
 
 ```python
-from openssm.core.ssm.llama_index_ssm import LlamaIndexSSM
-
+from openssm import LlamaIndexSSM
 ssm = LlamaIndexSSM()
 ssm.read_directory("path/to/directory")
-response = ssm.query("query string")
+response = ssm.discuss(conversation_id, "what is xyz?")
 ```
 
 ## Integration Architecture
 
-In the OpenSSM context, LlamaIndex is treated as a backend, as shown below..
+In the OpenSSM context, LlamaIndex is treated as a backend, as shown below.
 
 ![LlamaIndex Integration](../diagrams/ssm-llama-index-integration.drawio.png)
+
+`LlamaIndexSSM` is simply an SSM with a passthrough (dummy) SLM that sends user queries directory to the LlamaIndex backend.
+
+## Roadmap

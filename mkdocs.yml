@@ -38,10 +38,13 @@ nav:
   - Home: index.md
   - Getting Started: GETTING_STARTED.md
   - Developer Guide:
-    - Design Principles: DESIGN_PRINCIPLES.md
-    - Using Makefile: MAKEFILE_INFO.md
+    - Design Principles: dev/design_principles.md
+    - Using Makefile: dev/makefile_info.md
+    - Other HowTos: dev/howtos.md
   - Integrations:
     - LlamaIndex: integrations/llama_index.md
+    - Vectara: integrations/vectara.md
+    - Lepton.AI: integrations/lepton_ai.md
   - Community:
     - Contributing: community/CONTRIBUTING.md
     - Project Philosophy: PROJECT_PHILOSOPHY.md
@@ -56,7 +59,6 @@ nav:
   - API Reference:
 
     - openssm:
-      - config: openssm/config.md
       - capture: openssm/capture/EMPTY.md
       - core:
         - ssm:
@@ -90,6 +92,10 @@ nav:
         - llamaindex: openssm/integration/llamaindex/EMPTY.md
         - testing_tools: openssm/integration/testing_tools/EMPTY.md
       - composer: openssm/composer/EMPTY.md
+      - utils:
+        - logging: openssm/utils/logging.md
+        - config: openssm/utils/config.md
+        - utils: openssm/utils/utils.md
       - contrib:
         - ssms:
           - mri_operator_ssm: openssm/contrib/ssms/mri_operator_ssm/EMPTY.md

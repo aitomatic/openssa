@@ -1,6 +1,7 @@
 import json
 from openssm.core.slm.abstract_slm import AbstractSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.utils.utils import Utils
 
 
 class BaseSLM(AbstractSLM):
@@ -18,18 +19,19 @@ class BaseSLM(AbstractSLM):
     def set_adapter(self, adapter: AbstractAdapter):
         self.adapter = adapter
 
+    @Utils.do_canonicalize_user_input('user_input')
     def discuss(self,
                 conversation_id: str,
                 user_input: list[dict]) -> list[dict]:
         """
         Send user input to our language model and return the replies
         """
-
         # If conversation is new, start a new one, else continue from previous
         conversation = self.conversations.get(conversation_id, [])
         conversation.extend(user_input)
 
         replies = self._call_lm_api(conversation)
+        replies = Utils.canonicalize_query_response(replies)
 
         # Save response to the conversation
         conversation.extend(replies)
@@ -147,16 +149,6 @@ class PassthroughSLM(BaseSLM):
         """
         Pass through user input to the adapter and return the replies
         """
-
+        user_input = Utils.canonicalize_user_input(user_input)
         response = self.get_adapter().query(conversation_id, user_input)
-
-        if isinstance(response, str):
-            return [{"role": "assistant", "content": response}]
-
-        if isinstance(response, dict):
-            return [response]
-
-        if isinstance(response, list):
-            return response
-
-        return [{"role": "assistant", "content": str(response)}]
+        return Utils.canonicalize_query_response(response)

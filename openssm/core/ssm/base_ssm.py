@@ -5,6 +5,7 @@ from openssm.core.backend.abstract_backend import AbstractBackend
 from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.adapter.base_adapter import BaseAdapter
 from openssm.core.backend.base_backend import BaseBackend
+from openssm.utils.utils import Utils
 
 
 class BaseSSM(AbstractSSM):
@@ -43,6 +44,8 @@ class BaseSSM(AbstractSSM):
             self.get_adapter().set_backends([BaseBackend()])
         return self.get_adapter().get_backends()
 
+    @Utils.do_canonicalize_user_input('user_input')
+    @Utils.do_canonicalize_query_response
     def discuss(self,
                 conversation_id: str,
                 user_input: list[dict]) -> list[dict]:

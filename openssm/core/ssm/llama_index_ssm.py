@@ -1,10 +1,10 @@
-from openssm.core.ssm.base_ssm import BaseSSM
-from openssm.core.slm.openai_slm import GPT3ChatCompletionSLM
 from openssm.core.backend.abstract_backend import AbstractBackend
-from openssm.core.slm.base_slm import PassthroughSLM
-from openssm.core.adapter.base_adapter import BaseAdapter
 from openssm.core.backend.llama_index_backend import LlamaIndexBackend
+from openssm.core.adapter.base_adapter import BaseAdapter
 from openssm.core.slm.abstract_slm import AbstractSLM
+from openssm.core.slm.base_slm import PassthroughSLM
+from openssm.core.slm.openai_slm import GPT3ChatCompletionSLM
+from openssm.core.ssm.base_ssm import BaseSSM
 
 
 class BaseLlamaIndexSSM(BaseSSM):

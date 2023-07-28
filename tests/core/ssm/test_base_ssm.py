@@ -81,7 +81,7 @@ def test_get_backends():
 
 def test_discuss():
     ssm = BaseSSM(pytest.slm)
-    assert ssm.discuss("conversation_1", "Hello") == "Mock discuss response"
+    assert ssm.discuss("conversation_1", "Hello") == [{"role": "assistant", "content": "Mock discuss response"}]
 
 
 def test_reset_memory():

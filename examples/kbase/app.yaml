@@ -1,6 +1,10 @@
+#
+# This is used if we are using 'gcloud app deploy', i.e., App Engine
+#
 runtime: python310  # or your current Python version
 
-entrypoint: gunicorn -b :$PORT app:app 
+#entrypoint: gunicorn -b :$PORT app:app 
+entrypoint: python3 app.py
 
 automatic_scaling:
  target_cpu_utilization: 0.6

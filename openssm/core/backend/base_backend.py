@@ -10,7 +10,13 @@ class BaseBackend(AbstractBackend):
 
     # pylint: disable=unused-argument
     def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
-        return []
+        """
+        The base backend does not query anything.
+        Subclasses should query the backend with the user input,
+        and return a tuple of (a) the response string, and
+        (b) the more informative response object, if any.
+        """
+        return None
 
     def load_all(self):
         """

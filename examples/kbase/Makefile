@@ -4,6 +4,7 @@ APPNAME=$(notdir $(CURDIR))
 
 # Make sure we include the library directory
 PROJECT_DIR=.
+PACKAGE_DIR=..
 ROOT_DIR=$(PROJECT_DIR)/../..
 OPENSSM_DIR=$(ROOT_DIR)/openssm
 TESTS_DIR=$(ROOT_DIR)/tests
@@ -25,7 +26,8 @@ ANSI_CYAN="\033[0;36m"
 ANSI_WHITE="\033[0;37m"
 
 
-export PYTHONPATH=$(ROOT_DIR):$(OPENSSM_DIR):$(EXAMPLES_DIR)
+#export PYTHONPATH=$(ROOT_DIR):$(OPENSSM_DIR):$(EXAMPLES_DIR)
+#export PYTHONPATH=$(PACKAGE_DIR)
 
 echo:
 	@echo $(ANSI_GREEN)
@@ -49,7 +51,7 @@ run-prod: poetry.lock openai-require config-secrets
 	@echo $(ANSI_GREEN)... Running app in PROD mode. Point your browser to http://localhost:$(PORT)/ $(ANSI_NORMAL)
 	gunicorn -b 0.0.0.0:8080 $(APPNAME).app:app
 
-build: poetry.lock requirements.txt openai-check favicons config-secrets
+build: copy-dist poetry.lock requirements.txt openai-check favicons config-secrets
 
 rebuild: clean build
 
@@ -77,12 +79,14 @@ clear-config-secrets:
 
 config-secrets: clear-config-secrets
 	@echo $(ANSI_GREEN)... Creating $(CONFIG_SECRETS) file $(ANSI_NORMAL)
-	echo "from openssm.config import Config" >> $(CONFIG_SECRETS)
+	@echo $(ANSI_GREEN)... The file $(CONFIG_SECRETS) should always be .gitignore’d $(ANSI_NORMAL)
+	echo "from openssm import Config" >> $(CONFIG_SECRETS)
 	echo "" >> $(CONFIG_SECRETS)
 	echo "" >> $(CONFIG_SECRETS)
 	echo "Config.OPENAI_API_KEY='$(OPENAI_API_KEY)'" >> $(CONFIG_SECRETS)
 	echo "Config.FALCON7B_MODEL_URL='$(FALCON7B_MODEL_URL)'" >> $(CONFIG_SECRETS)
 	echo "Config.FALCON7B_SERVER_TOKEN='$(FALCON7B_SERVER_TOKEN)'" >> $(CONFIG_SECRETS)
+	echo "Config.setenv('OPENAI_API_KEY')" >> $(CONFIG_SECRETS)
 
 #
 # GCloud project support 
@@ -108,7 +112,11 @@ gcloud-enable-cloudbuild:
 	@echo $(ANSI_GREEN)... Enabling Cloud-Build for project $(GCLOUD_PROJECT_ID) $(ANSI_NORMAL)
 	@gcloud services enable cloudbuild.googleapis.com --project=$(GCLOUD_PROJECT_ID)
 
-gcloud-deploy: gcloud-create gcloud-enable-cloudbuild requirements.txt openai-require favicons
+copy-dist:
+	rm -fr dist/
+	cp -pr ../../dist/ dist/
+
+gcloud-deploy: gcloud-create gcloud-enable-cloudbuild requirements.txt openai-require favicons fix-requirements-txt
 	@echo $(ANSI_GREEN)... Deploying GCloud project $(GCLOUD_PROJECT_ID) $(ANSI_NORMAL)
 	@echo $(ANSI_GREEN)... Replacing _PATTERN_OPENAI_API_KEY_ with the value from the env variable $(ANSI_NORMAL)
 	@if grep _PATTERN_OPENAI_API_KEY app.yaml ; then \
@@ -118,6 +126,7 @@ gcloud-deploy: gcloud-create gcloud-enable-cloudbuild requirements.txt openai-re
 
 	@echo $(ANSI_GREEN)... Now deploying... $(ANSI_NORMAL)
 	@yes | gcloud app deploy --project=$(GCLOUD_PROJECT_ID)
+	# @yes | gcloud builds submit --config cloudbuild.yaml .  --project=$(GCLOUD_PROJECT_ID)
 
 	@echo $(ANSI_GREEN)... Restoring the safe and secure app.yaml $(ANSI_NORMAL)
 	mv app.yaml.orig app.yaml
@@ -167,3 +176,12 @@ bumpversion-minor:
 bumpversion-major:
 	bump2version --allow-dirty major
 	cd docs && make build
+
+fix-requirements-txt: copy-dist
+	@echo $(ANSI_YELLOW) ... Making requirements.txt use local dist/openssm.whl for cloud dev $(ANSI_NORMAL)
+	grep -v openssm requirements.txt > /tmp/requirements.txt
+	latest=$$(ls -r dist/openssm*.whl | head -n 1) ;\
+	hash=$$(shasum -a 256 $$latest | cut -d ' ' -f 1) ;\
+	echo $$latest --hash=sha256:$$hash > requirements.txt
+	cat /tmp/requirements.txt >> requirements.txt
+

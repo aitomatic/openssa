@@ -28,9 +28,9 @@ class TestTextBackend(unittest.TestCase):
         self.backend.add_inferencer(inferencer)
 
         expected_responses = [
-            {'item': 'fact: fact1'},
-            {'item': 'heuristic: heuristic1'},
-            {'item': f'inferencer: {inferencer}'},
+            {'response': 'fact: fact1'},
+            {'response': 'heuristic: heuristic1'},
+            {'response': f'inferencer: {inferencer}'},
         ]
 
         responses = self.backend.query('123', 'test')

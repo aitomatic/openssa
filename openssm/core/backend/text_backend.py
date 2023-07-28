@@ -5,11 +5,11 @@ from openssm.core.backend.base_backend import BaseBackend
 class TextBackend(BaseBackend):
     def __init__(self):
         super().__init__()
-        self.texts = set()
+        self.texts = []
 
     # pylint: disable=unused-argument
     def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
-        responses = [{"item": text} for text in self.texts]
+        responses = [{"response": text} for text in self.texts]
         return responses
 
     def all_texts(self):
@@ -17,12 +17,12 @@ class TextBackend(BaseBackend):
 
     def add_fact(self, fact: str):
         super().add_fact(fact)
-        self.texts.add(f"fact: {fact}")
+        self.texts.append(f"fact: {fact}")
 
     def add_inferencer(self, inferencer: AbstractInferencer):
         super().add_inferencer(inferencer)
-        self.texts.add(f"inferencer: {inferencer}")
+        self.texts.append(f"inferencer: {inferencer}")
 
     def add_heuristic(self, heuristic: str):
         super().add_heuristic(heuristic)
-        self.texts.add(f"heuristic: {heuristic}")
+        self.texts.append(f"heuristic: {heuristic}")
