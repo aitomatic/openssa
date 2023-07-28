@@ -1,5 +1,5 @@
 [flake8]
-ignore = E226,E302,E41,F401,E402,E501
+ignore = E226,E302,E41,F401,E402,E501,E504
 max-line-length = 132
 exclude = migrations/*,venv/*,docs/*,build/*
 max-complexity = 10

@@ -157,12 +157,15 @@ jest-setup:
 	npm install --omit=optional --save-dev jsdom @testing-library/jest-dom ;\
 	npm install --omit=optional --save-dev @testing-library/dom ;\
 	npm install --omit=optional --save-dev jsdom ;\
-	npm install --omit=optional --save-dev jest-environment-jsdom
+	npm install --omit=optional --save-dev jest-environment-jsdom ;\
+	npm install --omit=optional --save-dev babel-eslint ;\
+	npm install eslint-plugin-react@latest --save-dev
+	-ln -s tests/node_modules .
 
 eslint-setup:
 	@echo $(ANSI_GREEN) ... Setting up ESLINT linting environment $(ANSI_NORMAL)
 	@echo ""
-	ln -s tests/node_modules .
+	-ln -s tests/node_modules .
 	cd $(TESTS_DIR) ;\
 	npm init @eslint/config -- --config semistandard 
 

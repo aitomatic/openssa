@@ -16,7 +16,7 @@ class GPT3ChatCompletionSLM(GPT3BaseSLM):
     def __init__(self, adapter: AbstractAdapter = None):
         super().__init__(adapter)
 
-    def call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=conversation,
@@ -30,7 +30,7 @@ class GPT3CompletionSLM(GPT3BaseSLM):
     def __init__(self, adapter: AbstractAdapter = None):
         super().__init__(adapter)
 
-    def call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
         prompt = self._make_completion_prompt(conversation)
 
         response = openai.Completion.create(
@@ -39,15 +39,11 @@ class GPT3CompletionSLM(GPT3BaseSLM):
             temperature=0.7,
             max_tokens=500
         )
-        # print(f"prompt: {prompt}")
-        # print(f"response: {response}")
         response = response.choices[0].text.strip()
 
         replies = self._parse_llm_response(response)
 
         if len(replies) == 0 or len(replies[0]) == 0:
             replies = [{'role': 'assistant', 'content': 'I got nothing.'}]
-
-        # print(f"replies: {replies}")
 
         return replies

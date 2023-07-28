@@ -21,7 +21,8 @@
         <h1>OpenSSM Knowledge-Base Sandbox v0.0.3</h1>
         <label for="models">Choose a model:</label>
         <select id="models" name="models">
-            <option value="gpt3_completion" selected>GPT-3.5 Completion</option>
+            <option value="llama_index" selected>Passthrough LlamaIndex</option>
+            <option value="gpt3_completion">GPT-3.5 Completion</option>
             <option value="gpt3_chat_completion">GPT-3.5 Chat Completion</option>
             <option value="falcon7b">Falcon 7B</option>
             <!--option value="falcon7b_local">Falcon 7B Local (Coming soon)</option-->
@@ -47,21 +48,21 @@
 
 	    <!-- File upload form -->
 	    <form class="box" id="file-upload-form" action="/upload" method="post" enctype="multipart/form-data">
-		<input title="file" type="file" id="file" name="file">
-		<input type="submit" value="Upload Knowledge File">
+            <input type="button" id="upload-file-button" value="Upload Knowledge File">
+            <input title="file" type="file" id="file" style="width:50%;" name="file">
 	    </form>
 
 	    <!-- Knowledge input form -->
 	    <form class="box" id="knowledge-input-form" action="/knowledge" method="post">
-		<textarea id="knowledge" name="knowledge" placeholder="Paste your knowledge here..."></textarea>
-		<input type="submit" value="Send to Knowledge Base">
+            <textarea id="knowledge" name="knowledge" placeholder="Paste your knowledge here..."></textarea>
+            <input type="button" id="send-text-button" value="Send to Knowledge Base">
 	    </form>
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='js/discuss.js', v='0.3') }}"></script>
-    <script src="{{ url_for('static', filename='js/knowledge.js', v='0.3') }}"></script>
+    <script src="{{ url_for('static', filename='js/discuss.js', v='0.4') }}"></script>
+    <script src="{{ url_for('static', filename='js/knowledge.js', v='0.4') }}"></script>
 </body>
 
 </html>

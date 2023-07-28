@@ -15,7 +15,7 @@ function updateChatbox(sysmsgs) {
 
   var syslog = document.getElementById("syslog");
   syslog.innerHTML += sysmsgs.map(msg => `<div>${msg}</div>`).join("");
-  syslog.scrollTop = chatbox.scrollHeight;
+  syslog.scrollTop = syslog.scrollHeight;
 }
 
 document.getElementById("inputbox").addEventListener("keydown", function (e) {

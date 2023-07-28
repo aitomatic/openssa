@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch, Mock
 from openssm.core.slm.huggingface_slm import HuggingFaceBaseSLM
 from openssm.core.slm.huggingface_slm import Falcon7bSLM, Falcon7bSLMLocal
+from openssm.config import Config
 
 
 class TestHuggingFaceBaseSLM(unittest.TestCase):
@@ -42,7 +43,7 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
         self.assertEqual(instance._local_mode, False)
 
         # Simulating a call to the remote API and asserting the response
-        result = instance.call_lm_api([{"role": "user", "content": "hello"}])
+        result = instance._call_lm_api([{"role": "user", "content": "hello"}])
         self.assertEqual(result,
                          [{"role": "assistant", "content": "Test response"}])
 
@@ -59,8 +60,8 @@ class TestFalcon7bSLM(unittest.TestCase):
         # Asserting super's __init__ has been called with expected arguments
         mock_super_init.assert_called_once_with(
             model_name="tiiuae/falcon-7b",
-            model_url="NONE",
-            model_server_token="value is not set",
+            model_url=Config.FALCON7B_MODEL_URL or "NONE",
+            model_server_token=Config.FALCON7B_SERVER_TOKEN or "value is not set",
             adapter=None)
 
 
@@ -77,5 +78,5 @@ class TestFalcon7bSLMLocal(unittest.TestCase):
         mock_super_init.assert_called_once_with(
             model_name="tiiuae/falcon-7b",
             model_url="LOCAL",
-            model_server_token="value is not set",
+            model_server_token=Config.FALCON7B_SERVER_TOKEN or "value is not set",
             adapter=None)

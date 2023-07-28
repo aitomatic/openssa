@@ -167,7 +167,7 @@ poetry.lock
 .gcloudignore
 
 node_modules
-# package.json
+package.json
 package-lock.json
 
 .DS_Store

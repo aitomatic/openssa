@@ -11,9 +11,9 @@ EXAMPLES_DIR=$(ROOT_DIR)/examples
 PORT=8080
 
 CONFIG_SECRETS=$(PROJECT_DIR)/config_secrets.py
-export OPENAI_API_KEY?=$(OPENAI_API_KEY)
-export FALCON7B_MODEL_URL?=$(FALCON7B_MODEL_URL)
-export FALCON7B_SERVER_TOKEN?=$(FALCON7B_SERVER_TOKEN)
+export OPENAI_API_KEY
+export FALCON7B_MODEL_URL
+export FALCON7B_SERVER_TOKEN
 
 ANSI_NORMAL="\033[0m"
 ANSI_RED="\033[0;31m"
@@ -77,12 +77,12 @@ clear-config-secrets:
 
 config-secrets: clear-config-secrets
 	@echo $(ANSI_GREEN)... Creating $(CONFIG_SECRETS) file $(ANSI_NORMAL)
-	@echo "from openssm.config import Config" >> $(CONFIG_SECRETS)
+	echo "from openssm.config import Config" >> $(CONFIG_SECRETS)
 	echo "" >> $(CONFIG_SECRETS)
 	echo "" >> $(CONFIG_SECRETS)
-	@echo "Config.OPENAI_API_KEY='$(OPENAI_API_KEY)'" >> $(CONFIG_SECRETS)
-	@echo "Config.FALCON7B_MODEL_URL='$(FALCON7B_MODEL_URL)'" >> $(CONFIG_SECRETS)
-	@echo "Config.FALCON7B_SERVER_TOKEN='$(FALCON7B_SERVER_TOKEN)'" >> $(CONFIG_SECRETS)
+	echo "Config.OPENAI_API_KEY='$(OPENAI_API_KEY)'" >> $(CONFIG_SECRETS)
+	echo "Config.FALCON7B_MODEL_URL='$(FALCON7B_MODEL_URL)'" >> $(CONFIG_SECRETS)
+	echo "Config.FALCON7B_SERVER_TOKEN='$(FALCON7B_SERVER_TOKEN)'" >> $(CONFIG_SECRETS)
 
 #
 # GCloud project support 

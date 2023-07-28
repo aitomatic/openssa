@@ -9,7 +9,7 @@ class BaseBackend(AbstractBackend):
         self.heuristics = set()
 
     # pylint: disable=unused-argument
-    def query(self, conversation_id: str, user_input: str) -> list({}):
+    def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
         return []
 
     def load_all(self):

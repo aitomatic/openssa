@@ -40,6 +40,8 @@ nav:
   - Developer Guide:
     - Design Principles: DESIGN_PRINCIPLES.md
     - Using Makefile: MAKEFILE_INFO.md
+  - Integrations:
+    - LlamaIndex: integrations/llama_index.md
   - Community:
     - Contributing: community/CONTRIBUTING.md
     - Project Philosophy: PROJECT_PHILOSOPHY.md
@@ -58,10 +60,12 @@ nav:
       - capture: openssm/capture/EMPTY.md
       - core:
         - ssm:
+          - base_ssm_builder: openssm/core/ssm/base_ssm_builder.md
           - base_ssm: openssm/core/ssm/base_ssm.md
           - huggingface_ssm: openssm/core/ssm/huggingface_ssm.md
           - abstract_ssm: openssm/core/ssm/abstract_ssm.md
-          - gpt3_llama_index_ssm: openssm/core/ssm/gpt3_llama_index_ssm.md
+          - abstract_ssm_builder: openssm/core/ssm/abstract_ssm_builder.md
+          - llama_index_ssm: openssm/core/ssm/llama_index_ssm.md
           - openai_ssm: openssm/core/ssm/openai_ssm.md
         - slm:
           - openai_slm: openssm/core/slm/openai_slm.md
@@ -73,10 +77,10 @@ nav:
             - sqlite_conversation_db: openssm/core/slm/memory/sqlite_conversation_db.md
         - backend:
           - abstract_backend: openssm/core/backend/abstract_backend.md
+          - llama_index_backend: openssm/core/backend/llama_index_backend.md
           - base_backend: openssm/core/backend/base_backend.md
           - text_backend: openssm/core/backend/text_backend.md
         - adapter:
-          - llama_index_adapter: openssm/core/adapter/llama_index_adapter.md
           - abstract_adapter: openssm/core/adapter/abstract_adapter.md
           - base_adapter: openssm/core/adapter/base_adapter.md
         - inferencer:
