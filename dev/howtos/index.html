@@ -11,7 +11,7 @@
     
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Contributing - OpenSSM Documentation</title>
+    <title>Other HowTos - OpenSSM Documentation</title>
     <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
     <link href="../../css/base.css" rel="stylesheet">
@@ -37,9 +37,9 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "Contributing to OpenSSM", url: "#_top", children: [
-              {title: "Code of Conduct", url: "#code-of-conduct" },
-              {title: "How to Contribute", url: "#how-to-contribute" },
+          {title: "Helpful How-Tos", url: "#_top", children: [
+              {title: "Observability", url: "#observability" },
+              {title: "Logging", url: "#logging" },
           ]},
         ];
 
@@ -66,20 +66,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../PROJECT_PHILOSOPHY/" class="btn btn-xs btn-default pull-right">
+      <a href="../../integrations/llama_index/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../PROJECT_PHILOSOPHY/" class="btn btn-xs btn-link">
-        Project Philosophy
+      <a href="../../integrations/llama_index/" class="btn btn-xs btn-link">
+        LlamaIndex
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../../integrations/lepton_ai/" class="btn btn-xs btn-default pull-left">
+      <a href="../makefile_info/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../integrations/lepton_ai/" class="btn btn-xs btn-link">
-        Lepton.AI
+        Previous</a><a href="../makefile_info/" class="btn btn-xs btn-link">
+        Using Makefile
       </a>
     </div>
     
@@ -87,31 +87,42 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     
 
-    <h1 id="contributing-to-openssm">Contributing to OpenSSM</h1>
-<p>Thanks for your interest in contributing to OpenSSM! This document provides guidelines for contributing to the project. Please read these guidelines before submitting a contribution.</p>
-<h2 id="code-of-conduct">Code of Conduct</h2>
-<p>All contributors must abide by the <a href="../CODE_OF_CONDUCT/">Code of Conduct</a>. Please read it before contributing.</p>
-<h2 id="how-to-contribute">How to Contribute</h2>
-<ol>
-<li>
-<p><strong>Find an issue to work on:</strong> Look at the list of open issues in the OpenSSM repository. Pick one that interests you and that no one else is working on.</p>
-</li>
-<li>
-<p><strong>Fork the repository and create a branch:</strong> If you're not a project maintainer, you'll need to create a fork of the repository and create a branch on your fork where you can make your changes.</p>
-</li>
-<li>
-<p><strong>Submit a pull request:</strong> After you've made your changes, submit a pull request to merge your branch into the main OpenSSM repository. Be sure to link the issue you're addressing in your pull request.</p>
-</li>
-</ol>
-<p>Please ensure your contribution meets the following guidelines:</p>
-<ul>
-<li>Code contributions must be compatible with the project's license.</li>
-<li>We follow PEP8 for Python style guidelines.</li>
-<li>Include tests when adding new features. Contributions will not be accepted without them.</li>
-<li>Document new code based on the documentation style guide.</li>
-<li>Make sure all tests pass on your machine before you submit a pull request.</li>
-</ul>
-<p>Thank you for your contributions!</p>
+    <h1 id="helpful-how-tos">Helpful How-Tos</h1>
+<h2 id="observability">Observability</h2>
+<p><code>OpenSSM</code> has built-in observability and tracing.</p>
+<h2 id="logging">Logging</h2>
+<p>Users of <code>OpenSSM</code> should create their own loggers:</p>
+<pre><code class="language-python">import logging
+from OpenSSM import Logging
+logger = Logging.get_logger(app_name, logging.INFO)
+logger.warn(&quot;xyz = %s&quot;, xyz)
+</code></pre>
+<p>If you are an <code>OpenSSM</code> contributor, you may use the default logger:</p>
+<pre><code class="language-python">from openssm import logger
+logger.warn(&quot;xyz = %s&quot;, xyz)
+</code></pre>
+<h3 id="automatic-function-logging">Automatic function logging</h3>
+<p>There are some useful decorators for automatically logging function entry and exit.</p>
+<pre><code class="language-python">from openssm import Logging
+
+@Logging.do_log_entry_and_exit  # upon both entry and exit
+def func(param1, param2):
+
+@Logging.do_log_entry  # only upon entry
+
+@Logging.do_log_exit   # only upon exit
+</code></pre>
+<p>The above will automatically log function entry with its parameters, and function exit with its return value.</p>
+<p>If you want to use your own logger with its own name, use</p>
+<pre><code class="language-python">from openssm import Logging, logger
+logger = Logging.get_logger(app_name, logging.INFO)
+
+@Logging.do_log_entry_and_exit(logger=logger)
+def func(param1, param2):
+</code></pre>
+<p>Sometimes it is useful to be able to specify additional parameters to be logged:</p>
+<pre><code class="language-python">@Logging.do_log_entry_and_exit({'request': request})
+</code></pre>
 
   <br>
     
@@ -124,20 +135,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../PROJECT_PHILOSOPHY/" class="btn btn-xs btn-default pull-right">
+      <a href="../../integrations/llama_index/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../PROJECT_PHILOSOPHY/" class="btn btn-xs btn-link">
-        Project Philosophy
+      <a href="../../integrations/llama_index/" class="btn btn-xs btn-link">
+        LlamaIndex
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../../integrations/lepton_ai/" class="btn btn-xs btn-default pull-left">
+      <a href="../makefile_info/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../integrations/lepton_ai/" class="btn btn-xs btn-link">
-        Lepton.AI
+        Previous</a><a href="../makefile_info/" class="btn btn-xs btn-link">
+        Using Makefile
       </a>
     </div>
     

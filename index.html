@@ -123,9 +123,24 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li class="wm-toc-li-nested collapse">
   <ul class="wm-toctree">
-      <li class="wm-toc-li wm-toc-lev2 "><a href="DESIGN_PRINCIPLES/" class="wm-article-link wm-toc-text">Design Principles</a>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="dev/design_principles/" class="wm-article-link wm-toc-text">Design Principles</a>
 </li>
-      <li class="wm-toc-li wm-toc-lev2 "><a href="MAKEFILE_INFO/" class="wm-article-link wm-toc-text">Using Makefile</a>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="dev/makefile_info/" class="wm-article-link wm-toc-text">Using Makefile</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="dev/howtos/" class="wm-article-link wm-toc-text">Other HowTos</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Integrations</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="integrations/llama_index/" class="wm-article-link wm-toc-text">LlamaIndex</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="integrations/vectara/" class="wm-article-link wm-toc-text">Vectara</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="integrations/lepton_ai/" class="wm-article-link wm-toc-text">Lepton.AI</a>
 </li>
   </ul>
 </li>
@@ -175,8 +190,6 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li class="wm-toc-li-nested collapse">
   <ul class="wm-toctree">
-      <li class="wm-toc-li wm-toc-lev3 "><a href="openssm/config/" class="wm-article-link wm-toc-text">config</a>
-</li>
       <li class="wm-toc-li wm-toc-lev3 "><a href="openssm/capture/EMPTY/" class="wm-article-link wm-toc-text">capture</a>
 </li>
       <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">core</span>
@@ -197,7 +210,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
       <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/abstract_ssm_builder/" class="wm-article-link wm-toc-text">abstract_ssm_builder</a>
 </li>
-      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/gpt3_llama_index_ssm/" class="wm-article-link wm-toc-text">gpt3_llama_index_ssm</a>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/llama_index_ssm/" class="wm-article-link wm-toc-text">llama_index_ssm</a>
 </li>
       <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/ssm/openai_ssm/" class="wm-article-link wm-toc-text">openai_ssm</a>
 </li>
@@ -236,6 +249,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <ul class="wm-toctree">
       <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/backend/abstract_backend/" class="wm-article-link wm-toc-text">abstract_backend</a>
 </li>
+      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/backend/llama_index_backend/" class="wm-article-link wm-toc-text">llama_index_backend</a>
+</li>
       <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/backend/base_backend/" class="wm-article-link wm-toc-text">base_backend</a>
 </li>
       <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/backend/text_backend/" class="wm-article-link wm-toc-text">text_backend</a>
@@ -247,8 +262,6 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li class="wm-toc-li-nested collapse">
   <ul class="wm-toctree">
-      <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/adapter/llama_index_adapter/" class="wm-article-link wm-toc-text">llama_index_adapter</a>
-</li>
       <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/adapter/abstract_adapter/" class="wm-article-link wm-toc-text">abstract_adapter</a>
 </li>
       <li class="wm-toc-li wm-toc-lev5 "><a href="openssm/core/adapter/base_adapter/" class="wm-article-link wm-toc-text">base_adapter</a>
@@ -283,6 +296,19 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
       <li class="wm-toc-li wm-toc-lev3 "><a href="openssm/composer/EMPTY/" class="wm-article-link wm-toc-text">composer</a>
 </li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">utils</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/utils/logging/" class="wm-article-link wm-toc-text">logging</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/utils/config/" class="wm-article-link wm-toc-text">config</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="openssm/utils/utils/" class="wm-article-link wm-toc-text">utils</a>
+</li>
+  </ul>
+</li>
+
       <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">contrib</span>
 </li>
 <li class="wm-toc-li-nested collapse">
@@ -548,5 +574,5 @@ See full documentation at <a href="https://aitomatic.github.io/openssm/">aitomat
 </html>
 <!--
 MkDocs version : 1.4.3
-Build Date UTC : 2023-07-22 01:31:53.637489+00:00
+Build Date UTC : 2023-07-28 10:49:12.163202+00:00
 -->
