@@ -636,6 +636,7 @@ disable=raw-checker-failed,
         line-too-long,
         unspecified-encoding,
         no-member,
+        no-name-in-module,
         import-self,
 
 # Enable the message, report, category or checker with the given id(s). You can
