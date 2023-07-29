@@ -20,9 +20,7 @@ class BaseSLM(AbstractSLM):
         self.adapter = adapter
 
     @Utils.do_canonicalize_user_input('user_input')
-    def discuss(self,
-                conversation_id: str,
-                user_input: list[dict]) -> list[dict]:
+    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         """
         Send user input to our language model and return the replies
         """
@@ -56,14 +54,14 @@ class BaseSLM(AbstractSLM):
     #
     def _make_completion_prompt(self, conversation: list[dict]) -> str:
         prompt = self._convert_conversation_to_string(conversation)
-        prompt = ("Complete this conversation with the response, " +
-                  "up to 2000 words (plus this prompt): " +
-                  "{'role': 'assistant', 'content': 'xxx'} format. " +
-                  "where 'xxx' is the response. " +
-                  "Make sure the entire response is valid JSON, xxx is " +
-                  "only a string, and no code of any kind, even if the " +
-                  "prompt has code. " +
-                  "Escape quotes with \\:\n" +
+        prompt = ("Complete this conversation with the response, "
+                  "up to 2000 words (plus this prompt): "
+                  "{'role': 'assistant', 'content': 'xxx'} format. "
+                  "where 'xxx' is the response. "
+                  "Make sure the entire response is valid JSON, xxx is "
+                  "only a string, and no code of any kind, even if the "
+                  "prompt has code. "
+                  "Escape quotes with \\:\n"
                   f"{prompt}")
         return prompt
 
@@ -76,38 +74,6 @@ class BaseSLM(AbstractSLM):
                 f'{{"role": "{role}", "content": "{content}"}}'
             )
         return ", ".join(list_conversation)
-
-    def _old_parse_llm_response(self, response) -> list[dict]:
-        response = response.strip()
-        valid_json_strings = []
-        start_index = 0
-        end_index = len(response)
-
-        while start_index < end_index:
-            try:
-                json_string = response[start_index:end_index]
-                json.loads(json_string)  # Verify the JSON validity
-                valid_json_strings.append(json_string)
-                start_index += len(json_string)
-                end_index = len(response)
-            except (ValueError, json.JSONDecodeError):
-                end_index -= 1
-
-        parsed_data = []
-        for json_string in valid_json_strings:
-            try:
-                item = json.loads(json_string)
-                if isinstance(item, list):
-                    parsed_data.extend(item)
-                else:
-                    parsed_data.append(item)
-            except (ValueError, json.JSONDecodeError):
-                pass
-
-        if isinstance(parsed_data, list):
-            return parsed_data
-
-        return [parsed_data]
 
     def _parse_llm_response(self, response) -> list[dict]:
         response = response.strip()
@@ -143,12 +109,9 @@ class PassthroughSLM(BaseSLM):
     The PassthroughSLM is a barebones SLM that simply passes
     all queries to the adapter.
     """
-    def discuss(self,
-                conversation_id: str,
-                user_input: list[dict]) -> list[dict]:
+    @Utils.do_canonicalize_user_input_and_query_response('user_input')
+    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         """
         Pass through user input to the adapter and return the replies
         """
-        user_input = Utils.canonicalize_user_input(user_input)
-        response = self.get_adapter().query(conversation_id, user_input)
-        return Utils.canonicalize_query_response(response)
+        return self.get_adapter().query(user_input, conversation_id)

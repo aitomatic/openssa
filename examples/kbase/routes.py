@@ -43,7 +43,7 @@ ssms = {
 
 
 @routes.route('/discuss', methods=['POST'])
-@Logging.do_log_entry_and_exit({'request': request}, logger=logger)
+@Logging.do_log_entry_and_exit({'request': request}, the_logger=logger)
 def discuss():
     if 'conversation_id' not in session:
         session['conversation_id'] = str(uuid.uuid4())
@@ -84,7 +84,7 @@ def allowed_file(filename):
 
 
 @routes.route('/upload', methods=['POST'])
-@Logging.do_log_entry_and_exit({'request': request}, logger=logger, log_level=logging.INFO)
+@Logging.do_log_entry_and_exit({'request': request}, the_logger=logger, log_level=logging.INFO)
 def upload_file():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}), 400
@@ -116,7 +116,7 @@ def upload_file():
 
 
 @routes.route('/knowledge', methods=['POST'])
-@Logging.do_log_entry_and_exit({'request': request}, logger=logger)
+@Logging.do_log_entry_and_exit({'request': request}, the_logger=logger)
 def receive_knowledge():
     knowledge_text = request.form.get('knowledge')
 

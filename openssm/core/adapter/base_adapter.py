@@ -10,7 +10,7 @@ class BaseAdapter(AbstractAdapter):
     def __init__(self, backends: list[AbstractBackend] = None):
         self.backends = backends or []
 
-    def query(self, conversation_id: str, user_input: str) -> list({}):
+    def query(self, user_input: str, conversation_id: str = None) -> list[dict]:
         """
         Queries the backends for a response to the user's input.
         :param user_query: The user's input.
@@ -18,7 +18,7 @@ class BaseAdapter(AbstractAdapter):
         """
         responses = [
             r for b in self.backends for r in b.query(
-                conversation_id, user_input
+                user_input, conversation_id
             )]
         return responses
 

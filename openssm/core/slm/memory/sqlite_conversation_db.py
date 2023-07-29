@@ -1,5 +1,5 @@
 import sqlite3
-from conversation_db import ConversationDB
+from openssm.core.slm.memory.conversation_db import ConversationDB
 
 
 class SQLiteConversationDB(ConversationDB):

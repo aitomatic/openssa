@@ -8,7 +8,7 @@ class TextBackend(BaseBackend):
         self.texts = []
 
     # pylint: disable=unused-argument
-    def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
+    def query(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         responses = [{"response": text} for text in self.texts]
         return responses
 

@@ -9,7 +9,7 @@ class BaseBackend(AbstractBackend):
         self.heuristics = set()
 
     # pylint: disable=unused-argument
-    def query(self, conversation_id: str, user_input: list[dict]) -> list[dict]:
+    def query(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         """
         The base backend does not query anything.
         Subclasses should query the backend with the user input,

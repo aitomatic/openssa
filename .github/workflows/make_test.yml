@@ -1,4 +1,4 @@
-name: Run Make Test on Pushes & PRs
+name: Run Make Test on PRs
 
 on:
   pull_request:

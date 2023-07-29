@@ -18,9 +18,7 @@ class AbstractSLM(ABC):
         """Sets our adapter"""
 
     @abstractmethod
-    def discuss(self,
-                conversation_id: str,
-                user_input: list[dict]) -> list[dict]:
+    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         """
         Processes a natural language conversation input
         and returns a list of replies

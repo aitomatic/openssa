@@ -1,9 +1,5 @@
 import os
-import logging
-from openssm.utils.logging import Logging
 
-
-logger = Logging.get_package_logger(logging.WARN)
 
 class Config:
     """

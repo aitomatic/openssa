@@ -2,6 +2,9 @@ import logging
 import functools
 
 
+logger: logging.Logger = None
+
+
 class Logging:
     _logger = None
 
@@ -11,7 +14,7 @@ class Logging:
         return getattr(logging, level_str, logging.WARNING)
 
     @staticmethod
-    def _add_handler_to(logger: logging.Logger):
+    def _add_handler_to(a_logger: logging.Logger):
         handler = logging.StreamHandler()
         handler.setLevel(logging.DEBUG)
 
@@ -30,15 +33,15 @@ class Logging:
 
         # add the handlers to logger
         # pylint: disable=protected-access
-        logger.addHandler(handler)
-        logger.propagate = False
+        a_logger.addHandler(handler)
+        a_logger.propagate = False
 
     @staticmethod
     def get_logger(name=None, log_level=logging.DEBUG) -> logging.Logger:
-        logger = logging.getLogger(name)
-        logger.setLevel(log_level)
-        Logging._add_handler_to(logger)
-        return logger
+        a_logger = logging.getLogger(name)
+        a_logger.setLevel(log_level)
+        Logging._add_handler_to(a_logger)
+        return a_logger
 
     @staticmethod
     def _get_top_package_name():
@@ -47,17 +50,17 @@ class Logging:
 
     @staticmethod
     def get_package_logger(log_level=logging.WARNING):
-        logger = Logging.get_logger(name=Logging._get_top_package_name(), log_level=log_level)
-        Logging._logger = logger
-        return logger
+        a_logger = Logging.get_logger(name=Logging._get_top_package_name(), log_level=log_level)
+        Logging._logger = a_logger
+        return a_logger
 
     @staticmethod
-    def do_log_entry_and_exit(*extra_args, logger=None, log_level=logging.DEBUG, log_entry=True, log_exit=True):
+    def do_log_entry_and_exit(*extra_args, the_logger=None, log_level=logging.DEBUG, log_entry=True, log_exit=True):
         """
         Decorator to log function entry and exit.
         """
-        if logger is None:
-            logger = Logging._logger
+        if the_logger is None:
+            the_logger = Logging._logger
 
         def decorator(func):
             @functools.wraps(func)
@@ -74,12 +77,12 @@ class Logging:
                         else:
                             args_list += (f"extra_arg={extra_arg}",)
 
-                    logger.log(log_level, "Calling %s with args: %s", func.__name__, args_list)
+                    the_logger.log(log_level, "Calling %s with args: %s", func.__name__, args_list)
 
                 result = func(*args, **kwargs)
 
                 if log_exit:
-                    logger.log(log_level, "Function %s returned: %s", func.__name__, result)
+                    the_logger.log(log_level, "Function %s returned: %s", func.__name__, result)
 
                 return result
             return wrapper
@@ -98,3 +101,7 @@ class Logging:
         Decorator to log function exit.
         """
         return Logging.do_log_entry_and_exit(extra_args, log_level=log_level, log_entry=False, log_exit=True)
+
+
+logger = Logging.get_package_logger(logging.WARN)
+"""A global logger for the package"""

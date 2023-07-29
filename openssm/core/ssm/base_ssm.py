@@ -44,12 +44,9 @@ class BaseSSM(AbstractSSM):
             self.get_adapter().set_backends([BaseBackend()])
         return self.get_adapter().get_backends()
 
-    @Utils.do_canonicalize_user_input('user_input')
-    @Utils.do_canonicalize_query_response
-    def discuss(self,
-                conversation_id: str,
-                user_input: list[dict]) -> list[dict]:
-        return self.get_slm().discuss(conversation_id, user_input)
+    @Utils.do_canonicalize_user_input_and_query_response('user_input')
+    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
+        return self.get_slm().discuss(user_input, conversation_id)
 
     def api_call(self, function_name, *args, **kwargs):
         return self.get_adapter().api_call(function_name, *args, **kwargs)

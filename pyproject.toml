@@ -28,6 +28,9 @@ torch = ">=1.13.1"
 #xformers = ">=0.0.20"
 
 [tool.pytest.ini_options]
+addopts = [
+  "--import-mode=importlib",
+]
 filterwarnings = [
   "ignore:pkg_resources is deprecated as an API:DeprecationWarning",
 ]
