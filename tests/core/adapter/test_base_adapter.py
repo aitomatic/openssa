@@ -95,10 +95,10 @@ def test_query_text_backend():
     # Check that the responses from the TextBackend instances
     # were combined correctly
     expected_responses = [
-        {'item': 'fact: fact1'},
-        {'item': 'heuristic: heuristic1'},
-        {'item': 'fact: fact2'},
-        {'item': 'heuristic: heuristic2'},
+        {'response': 'fact: fact1'},
+        {'response': 'heuristic: heuristic1'},
+        {'response': 'fact: fact2'},
+        {'response': 'heuristic: heuristic2'},
     ]
 
     for response in responses:
@@ -120,10 +120,10 @@ def test_query_base_adapter():
     # Check that the responses from the TextBackend instances
     # were combined correctly
     expected_responses = [
-        {'item': 'fact: fact1'},
-        {'item': 'heuristic: heuristic1'},
-        {'item': 'fact: fact2'},
-        {'item': 'heuristic: heuristic2'},
+        {'response': 'fact: fact1'},
+        {'response': 'heuristic: heuristic1'},
+        {'response': 'fact: fact2'},
+        {'response': 'heuristic: heuristic2'},
     ]
 
     assert len(responses) == len(expected_responses)
@@ -147,10 +147,10 @@ def test_query_base_adapter_with_text_backend():
     # Check that the responses from the TextBackend instances
     # were combined correctly
     expected_responses = [
-        {'item': 'fact: fact1'},
-        {'item': 'heuristic: heuristic1'},
-        {'item': 'fact: fact2'},
-        {'item': 'heuristic: heuristic2'},
+        {'response': 'fact: fact1'},
+        {'response': 'heuristic: heuristic1'},
+        {'response': 'fact: fact2'},
+        {'response': 'heuristic: heuristic2'},
     ]
 
     assert len(responses) == len(expected_responses)

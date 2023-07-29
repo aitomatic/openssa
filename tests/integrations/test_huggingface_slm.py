@@ -1,16 +1,15 @@
 import unittest
 from unittest.mock import patch, Mock
-from openssm.core.slm.huggingface_slm import HuggingFaceBaseSLM
-from openssm.core.slm.huggingface_slm import Falcon7bSLM, Falcon7bSLMLocal
-from openssm.config import Config
+from openssm.integrations.huggingface.slm import HuggingFaceBaseSLM, Falcon7bSLM, Falcon7bSLMLocal
+from openssm import Config
 
 
 class TestHuggingFaceBaseSLM(unittest.TestCase):
 
     # Test for HuggingFaceBaseSLM in local mode—the model is loaded locally
-    @patch('openssm.core.slm.huggingface_slm.AutoTokenizer')
-    @patch('openssm.core.slm.huggingface_slm.AutoModelForCausalLM')
-    @patch('openssm.core.slm.huggingface_slm.pipeline')
+    @patch('openssm.integrations.huggingface.slm.AutoTokenizer')
+    @patch('openssm.integrations.huggingface.slm.AutoModelForCausalLM')
+    @patch('openssm.integrations.huggingface.slm.pipeline')
     def test_init_local_mode(self, mock_pipeline, mock_model, mock_tokenizer):
         # Mocking the return values of the external dependencies
         mock_tokenizer.from_pretrained.return_value = Mock()
@@ -25,7 +24,7 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
         self.assertEqual(instance._local_mode, True)
 
     # Test for HuggingFaceBaseSLM in remote mode, where it calls a remote API
-    @patch('openssm.core.slm.huggingface_slm.request')
+    @patch('openssm.integrations.huggingface.slm.request')
     def test_call_lm_api_remote_mode(self, mock_request):
         # Mocking a successful response from the remote API
         response_mock = Mock()
@@ -51,7 +50,7 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
 class TestFalcon7bSLM(unittest.TestCase):
 
     # Test for initializing Falcon7bSLM
-    @patch('openssm.core.slm.huggingface_slm.HuggingFaceBaseSLM.__init__')
+    @patch('openssm.integrations.huggingface.slm.HuggingFaceBaseSLM.__init__')
     def test_init(self, mock_super_init):
         # Initializing the instance of Falcon7bSLM
         instance = Falcon7bSLM()
@@ -68,7 +67,7 @@ class TestFalcon7bSLM(unittest.TestCase):
 class TestFalcon7bSLMLocal(unittest.TestCase):
 
     # Test for initializing Falcon7bSLMLocal
-    @patch('openssm.core.slm.huggingface_slm.HuggingFaceBaseSLM.__init__')
+    @patch('openssm.integrations.huggingface.slm.HuggingFaceBaseSLM.__init__')
     def test_init(self, mock_super_init):
         # Initializing the instance of Falcon7bSLMLocal
         instance = Falcon7bSLMLocal()

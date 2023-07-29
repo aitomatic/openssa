@@ -1,8 +1,10 @@
 import os
-from openssm.config import Config
+import logging
+from openssm import Config, Logging
 
 
-Config.DEBUG = False
+Config.APP_NAME = os.path.basename(os.path.dirname(__file__))
+logger = Logging.get_logger(Config.APP_NAME, logging.INFO)
 
 # Flask config variables
 Config.FLASK_SECRET_KEY = os.environ.get(
@@ -18,6 +20,12 @@ Config.FLASK_SECRET_KEY = os.environ.get(
 # Config.FALCON7B_SERVER_TOKEN = os.getenv("FALCON7B_SERVER_TOKEN") or
 # Config.HUGGING_FACE_HUB_TOKEN
 
+#
+# config_secrets.py is auto-created by Makefile for the purpose of execution
+# and deploying to secure hosting servers. It must be .gitignore’d so as to avoid
+# leaking secrets to GitHub. Makefile reads environment variables and hardcodes these
+# values into config_secrets.py just prior to deployment.
+#
 # pylint: disable=wrong-import-order
 # pylint: disable=wrong-import-position
 # pylint: disable=unused-import

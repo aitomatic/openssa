@@ -1,3 +1,5 @@
-from openssm.config import Config
+# import logging
+# from openssm import Logging
 
-Config.DEBUG = True
+
+# Logging.set_log_level(logging.INFO)

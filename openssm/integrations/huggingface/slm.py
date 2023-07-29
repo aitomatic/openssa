@@ -12,7 +12,7 @@ from transformers import AutoTokenizer, pipeline, AutoModelForCausalLM
 
 from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
-from openssm.config import Config
+from openssm.utils.config import Config
 
 
 class HuggingFaceBaseSLM(BaseSLM):
@@ -116,12 +116,12 @@ class HuggingFaceBaseSLM(BaseSLM):
 
             if response.status_code == 200:
                 # pylint: disable=invalid-name
-                responseText = response.text.strip()
-                responseDict = json.loads(responseText)
-                if isinstance(responseDict, list):
-                    responseDict = responseDict[0]
+                response_text = response.text.strip()
+                response_dict = json.loads(response_text)
+                if isinstance(response_dict, list):
+                    response_dict = response_dict[0]
 
-                result = self._parse_llm_response(responseText)
+                result = self._parse_llm_response(response_text)
             else:
                 message = 'Model unavailable, try again'
                 result = [{'system': message}]

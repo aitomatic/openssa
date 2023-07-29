@@ -31,4 +31,4 @@ Here are the key targets for the top-level `Makefile`.
 
 ## Links
 
-- [GETTING STARTED](GETTING_STARTED.md)
+- [GETTING STARTED](../GETTING_STARTED.md)

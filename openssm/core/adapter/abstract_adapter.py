@@ -10,7 +10,7 @@ class AbstractAdapter(ABC):
     """
 
     @abstractmethod
-    def query(self, conversation_id: str, user_input: str) -> list({}):
+    def query(self, user_input: str, conversation_id: str = None) -> list[dict]:
         """
         Queries the backends for a response to the user's input.
         :param user_query: The user's input.
@@ -35,7 +35,7 @@ class AbstractAdapter(ABC):
         facts = set()
         for backend in self.get_backends():
             if backend is AbstractBackend:
-                facts.add(backend.list_facts())
+                facts |= backend.list_facts()
         return facts
 
     @abstractmethod
@@ -44,7 +44,7 @@ class AbstractAdapter(ABC):
         inferencers = set()
         for backend in self.get_backends():
             if backend is AbstractBackend:
-                inferencers.add(backend.list_inferencers())
+                inferencers |= backend.list_inferencers()
         return inferencers
 
     @abstractmethod
@@ -53,7 +53,7 @@ class AbstractAdapter(ABC):
         heuristics = set()
         for backend in self.get_backends():
             if backend is AbstractBackend:
-                heuristics.add(backend.list_inferencers())
+                heuristics |= backend.list_heuristics()
         return heuristics
 
     @abstractmethod

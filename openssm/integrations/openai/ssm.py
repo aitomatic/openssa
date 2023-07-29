@@ -1,8 +1,7 @@
 from openssm.core.ssm.base_ssm import BaseSSM
-from openssm.core.slm.openai_slm import GPT3CompletionSLM
-from openssm.core.slm.openai_slm import GPT3ChatCompletionSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.core.backend.abstract_backend import AbstractBackend
+from openssm.integrations.openai.slm import GPT3CompletionSLM, GPT3ChatCompletionSLM
 
 
 class GPT3CompletionSSM(BaseSSM):

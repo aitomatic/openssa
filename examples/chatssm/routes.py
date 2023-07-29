@@ -4,12 +4,11 @@ import uuid
 
 from flask import render_template, request, Blueprint, session
 
-from openssm.core.ssm.abstract_ssm import AbstractSSM
-
-from openssm.core.ssm.openai_ssm import GPT3CompletionSSM
-from openssm.core.ssm.openai_ssm import GPT3ChatCompletionSSM
-from openssm.core.ssm.huggingface_ssm import Falcon7bSSM
-# from openssm.core.ssm.huggingface_ssm import Falcon7bSSMLocal
+from openssm import (
+    BaseSSM,
+    GPT3CompletionSSM, GPT3ChatCompletionSSM,
+    Falcon7bSSM
+)
 
 # Create a new blueprint
 routes = Blueprint('routes', __name__)
@@ -40,7 +39,7 @@ def discuss():
     model = data['model']
     sysmsgs.append(f'MODEL: {model}')
 
-    ssm: AbstractSSM = ssms[model] or ssms['gpt3_chat_completion']
+    ssm: BaseSSM = ssms[model] or ssms['gpt3_chat_completion']
 
     message = data['message']
     sysmsgs.append(f'MESSAGE: {message}')

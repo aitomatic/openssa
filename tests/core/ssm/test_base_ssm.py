@@ -8,7 +8,8 @@ from openssm.core.backend.base_backend import BaseBackend
 
 # Mocking the dependencies
 class MockSLM(BaseSLM):
-    def discuss(self, conversation_id, user_input):
+    # pylint: disable=unused-argument
+    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         return "Mock discuss response"
 
     def reset_memory(self):
@@ -81,7 +82,7 @@ def test_get_backends():
 
 def test_discuss():
     ssm = BaseSSM(pytest.slm)
-    assert ssm.discuss("conversation_1", "Hello") == "Mock discuss response"
+    assert ssm.discuss("conversation_1", "Hello") == [{"role": "assistant", "content": "Mock discuss response"}]
 
 
 def test_reset_memory():

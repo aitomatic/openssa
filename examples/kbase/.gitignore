@@ -1,2 +1,3 @@
 requirements.txt
 config_secrets.py
+dist/

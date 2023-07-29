@@ -38,10 +38,13 @@ nav:
   - Home: index.md
   - Getting Started: GETTING_STARTED.md
   - Developer Guide:
-    - Design Principles: DESIGN_PRINCIPLES.md
-    - Using Makefile: MAKEFILE_INFO.md
+    - Design Principles: dev/design_principles.md
+    - Using Makefile: dev/makefile_info.md
+    - Other HowTos: dev/howtos.md
   - Integrations:
     - LlamaIndex: integrations/llama_index.md
+    - Vectara: integrations/vectara.md
+    - Lepton.AI: integrations/lepton_ai.md
   - Community:
     - Contributing: community/CONTRIBUTING.md
     - Project Philosophy: PROJECT_PHILOSOPHY.md

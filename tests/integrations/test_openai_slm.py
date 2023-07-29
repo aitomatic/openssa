@@ -1,6 +1,6 @@
 from unittest.mock import patch, MagicMock
 import pytest
-from openssm.core.slm.openai_slm import GPT3ChatCompletionSLM
+from openssm.integrations.openai.slm import GPT3ChatCompletionSLM
 
 
 @pytest.fixture(autouse=True)
@@ -15,10 +15,10 @@ def setup_class():
 
 
 @patch('openai.ChatCompletion.create')
-@patch('openssm.config.Config', new=MagicMock(OPENAI_API_KEY='test_key'))
+@patch('openssm.Config', new=MagicMock(OPENAI_API_KEY='test_key'))
 def test_gpt3_chat_completion_discuss(mock_func):
     slm = GPT3ChatCompletionSLM()
-    replies = slm.discuss(pytest.conversation_id, pytest.user_input)
+    replies = slm.discuss(pytest.user_input, pytest.conversation_id)
 
     mock_func.return_value = pytest.mock_response
 
@@ -42,10 +42,7 @@ def do_not_test_discuss(mock_create):
 
     conversation = [{'role': 'user', 'content': 'Test input'}]
 
-    response = pytest.gpt3slm.discuss(
-        'test_conversation_id',
-        conversation
-    )
+    response = pytest.gpt3slm.discuss(conversation, 'test_conversation_id')
 
     # Assert that the method was called with correct arguments
     mock_create.assert_called_with(
