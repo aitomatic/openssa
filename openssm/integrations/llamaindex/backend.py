@@ -1,12 +1,28 @@
+from dataclasses import dataclass
+from llama_index import (
+    load_index_from_storage,
+    SimpleDirectoryReader,
+    VectorStoreIndex,
+    Response
+)
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
-from llama_index import VectorStoreIndex, SimpleDirectoryReader, Response
+from llama_index.storage import StorageContext
 from openssm.core.backend.base_backend import BaseBackend
 
 
+@dataclass
 class Backend(BaseBackend):
     index: BaseIndex = None
-    query_engine: BaseQueryEngine = None
+    _query_engine: BaseQueryEngine = None
+
+    @property
+    def query_engine(self) -> BaseQueryEngine:
+        if self._query_engine is None:
+            if self.index is None:
+                return None
+            self._query_engine = self.index.as_query_engine()
+        return self._query_engine
 
     def __init__(self):
         super().__init__()
@@ -42,4 +58,21 @@ class Backend(BaseBackend):
     def read_directory(self, directory_path: str):
         documents = SimpleDirectoryReader(directory_path).load_data()
         self.index = VectorStoreIndex(documents)
-        self.query_engine = self.index.as_query_engine()
+
+    # def _get_storage_context(self, persist_dir: str):
+    #     storage_context = StorageContext.from_defaults(
+    #         docstore=SimpleDocumentStore.from_persist_dir(persist_dir=persist_dir),
+    #         vector_store=SimpleVectorStore.from_persist_dir(persist_dir=persist_dir),
+    #         index_store=SimpleIndexStore.from_persist_dir(persist_dir=persist_dir)
+    #     )
+    #     return storage_context
+
+    def persist(self, persist_dir: str):
+        if self.index is not None:
+            self.index.storage_context.persist(persist_dir=persist_dir)
+        return super().persist(persist_dir)
+
+    def load(self, persist_dir: str):
+        storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
+        self.index = load_index_from_storage(storage_context)
+        return super().load(persist_dir)

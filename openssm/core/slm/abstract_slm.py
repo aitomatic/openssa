@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 
 
+@dataclass
 class AbstractSLM(ABC):
     """
     The AbstractSLM serves as the base for all concrete Small Language Models
@@ -27,3 +29,11 @@ class AbstractSLM(ABC):
     @abstractmethod
     def reset_memory(self):
         """Resets our conversation memory"""
+
+    @abstractmethod
+    def persist(self, persist_dir: str):
+        """Persists to the specified directory."""
+
+    @abstractmethod
+    def load(self, persist_dir: str):
+        """Loads from the specified directory."""
