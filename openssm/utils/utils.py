@@ -1,7 +1,7 @@
 from typing import Any
 import functools
 import inspect
-from openssm.utils.logging import logger
+from openssm.utils.logs import logger
 
 
 class Utils:

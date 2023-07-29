@@ -1,10 +1,10 @@
 import os
 import logging
-from openssm import Config, Logging
+from openssm import Config, Logs
 
 
 Config.APP_NAME = os.path.basename(os.path.dirname(__file__))
-logger = Logging.get_logger(Config.APP_NAME, logging.INFO)
+logger = Logs.get_logger(Config.APP_NAME, logging.INFO)
 
 # Flask config variables
 Config.FLASK_SECRET_KEY = os.environ.get(

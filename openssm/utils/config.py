@@ -1,4 +1,6 @@
 import os
+import dotenv
+from openssm.utils.logs import logger
 
 
 class Config:
@@ -9,6 +11,8 @@ class Config:
     But the user can override them by setting them directly
     in the Config object.
     """
+    dotenv.load_dotenv()
+    logger.debug("Loading environment variables from .env file")
 
     _dummy = "value is not set"
 

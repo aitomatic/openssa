@@ -5,7 +5,7 @@ import functools
 logger: logging.Logger = None
 
 
-class Logging:
+class Logs:
     _logger = None
 
     @staticmethod
@@ -40,7 +40,7 @@ class Logging:
     def get_logger(name=None, log_level=logging.DEBUG) -> logging.Logger:
         a_logger = logging.getLogger(name)
         a_logger.setLevel(log_level)
-        Logging._add_handler_to(a_logger)
+        Logs._add_handler_to(a_logger)
         return a_logger
 
     @staticmethod
@@ -50,8 +50,8 @@ class Logging:
 
     @staticmethod
     def get_package_logger(log_level=logging.WARNING):
-        a_logger = Logging.get_logger(name=Logging._get_top_package_name(), log_level=log_level)
-        Logging._logger = a_logger
+        a_logger = Logs.get_logger(name=Logs._get_top_package_name(), log_level=log_level)
+        Logs._logger = a_logger
         return a_logger
 
     @staticmethod
@@ -60,7 +60,7 @@ class Logging:
         Decorator to log function entry and exit.
         """
         if the_logger is None:
-            the_logger = Logging._logger
+            the_logger = Logs._logger
 
         def decorator(func):
             @functools.wraps(func)
@@ -93,15 +93,15 @@ class Logging:
         """
         Decorator to log function entry.
         """
-        return Logging.do_log_entry_and_exit(extra_args, log_level=log_level, log_entry=True, log_exit=False)
+        return Logs.do_log_entry_and_exit(extra_args, log_level=log_level, log_entry=True, log_exit=False)
 
     @staticmethod
     def do_log_exit(*extra_args, log_level=logging.DEBUG):
         """
         Decorator to log function exit.
         """
-        return Logging.do_log_entry_and_exit(extra_args, log_level=log_level, log_entry=False, log_exit=True)
+        return Logs.do_log_entry_and_exit(extra_args, log_level=log_level, log_entry=False, log_exit=True)
 
 
-logger = Logging.get_package_logger(logging.WARN)
+logger = Logs.get_package_logger(logging.WARN)
 """A global logger for the package"""
