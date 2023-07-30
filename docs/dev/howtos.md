@@ -7,10 +7,10 @@
 ## Logging
 
 Users of `OpenSSM` should create their own loggers:
-
 ```python
+import logging
 from OpenSSM import Logging
-logger = Logging.get_logger(app_name, Logs.INFO)
+logger = Logging.get_logger(app_name, logging.INFO)
 logger.warn("xyz = %s", xyz)
 ```
 
@@ -39,7 +39,6 @@ def func(param1, param2):
 The above will automatically log function entry with its parameters, and function exit with its return value.
 
 If you want to use your own logger with its own name, use
-
 ```python
 from openssm import Logging, logger
 logger = Logging.get_logger(app_name, logging.INFO)

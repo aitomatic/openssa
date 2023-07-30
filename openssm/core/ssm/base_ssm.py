@@ -82,15 +82,3 @@ class BaseSSM(AbstractSSM):
     def add_knowledge(self, knowledge_source_uri: str, knowledge_type=None):
         """Uploads a knowledge source (documents, text, files, etc.)"""
         # self.get_adapter().add_knowledge(knowledge_source_uri, knowledge_type)
-
-    def persist(self, persist_dir: str):
-        """Persists the SSM to the specified directory."""
-        self.get_slm().persist(persist_dir)
-        self.get_adapter().persist(persist_dir)
-        self.get_adapter().enumerate_backends(lambda backend: backend.persist(persist_dir))
-
-    def load(self, persist_dir: str):
-        """Loads the SSM from the specified directory."""
-        self.get_slm().load(persist_dir)
-        self.get_adapter().load(persist_dir)
-        self.get_adapter().enumerate_backends(lambda backend: backend.load(persist_dir))

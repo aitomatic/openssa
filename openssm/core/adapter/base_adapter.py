@@ -1,4 +1,3 @@
-from typing import Callable
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.core.backend.abstract_backend import AbstractBackend
 from openssm.core.backend.text_backend import TextBackend
@@ -43,11 +42,12 @@ class BaseAdapter(AbstractAdapter):
         """
         self.backends = backends
 
-    def enumerate_backends(self, lambda_function: Callable):
+    def enumerate_backends(self, lambda_function):
         """Enumerate backends and apply lambda function to each backend."""
         results = []
         for backend in self.backends:
-            results.append(lambda_function(backend))
+            results.extend(lambda_function(backend))
+        return results
 
     def list_facts(self):
         """List facts from all backends."""
@@ -95,11 +95,3 @@ class BaseAdapter(AbstractAdapter):
 
     def add_heuristic(self, heuristic: str):
         self._get_first_backend().add_heuristic(heuristic)
-
-    def persist(self, persist_dir: str):
-        """Persists to the specified directory."""
-        pass
-
-    def load(self, persist_dir: str):
-        """Loads from the specified directory."""
-        pass

@@ -1,10 +1,7 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import Callable
 from openssm.core.backend.abstract_backend import AbstractBackend
 
 
-@dataclass
 class AbstractAdapter(ABC):
     """
     The AbstractAdapter serves as the base for all concrete Adapter classes.
@@ -19,9 +16,6 @@ class AbstractAdapter(ABC):
         :param user_query: The user's input.
         :return: The backend's response.
         """
-
-    def enumerate_backends(self, lambda_function: Callable):
-        """Enumerate backends and apply lambda function to each backend."""
 
     @abstractmethod
     def get_backends(self) -> list[AbstractBackend]:
@@ -73,11 +67,3 @@ class AbstractAdapter(ABC):
     @abstractmethod
     def select_heuristics(self, criteria):
         """Selects or searches for heuristics based on provided criteria."""
-
-    @abstractmethod
-    def persist(self, persist_dir: str):
-        """Persists to the specified directory."""
-
-    @abstractmethod
-    def load(self, persist_dir: str):
-        """Loads from the specified directory."""

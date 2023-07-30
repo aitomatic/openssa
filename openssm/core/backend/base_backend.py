@@ -63,11 +63,3 @@ class BaseBackend(AbstractBackend):
         """
         assert criteria is not None
         return self.list_heuristics()
-
-    def persist(self, persist_dir: str):
-        """Persists to the specified directory."""
-        pass
-
-    def load(self, persist_dir: str):
-        """Loads from the specified directory."""
-        pass

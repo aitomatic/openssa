@@ -1,10 +1,8 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 
 
 # pylint: disable=duplicate-code
-@dataclass
 class AbstractBackend(ABC):
     @abstractmethod
     def query(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
@@ -57,11 +55,3 @@ class AbstractBackend(ABC):
     @abstractmethod
     def select_heuristics(self, criteria):
         pass
-
-    @abstractmethod
-    def persist(self, persist_dir: str):
-        """Persists to the specified directory."""
-
-    @abstractmethod
-    def load(self, persist_dir: str):
-        """Loads from the specified directory."""

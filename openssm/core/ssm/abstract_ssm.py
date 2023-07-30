@@ -1,11 +1,9 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 from openssm.core.slm.abstract_slm import AbstractSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.core.backend.abstract_backend import AbstractBackend
 
 
-@dataclass
 class AbstractSSM(ABC):
     """
     The AbstractSSM serves as the base for all concrete Small Specialist
@@ -71,11 +69,3 @@ class AbstractSSM(ABC):
     @abstractmethod
     def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         """Processes a natural language conversation input."""
-
-    @abstractmethod
-    def persist(self, persist_dir: str):
-        """Persists the SSM to the specified directory."""
-
-    @abstractmethod
-    def load(self, persist_dir: str):
-        """Loads the SSM from the specified directory."""

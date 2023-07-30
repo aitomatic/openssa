@@ -7,8 +7,8 @@ import tempfile
 from werkzeug.utils import secure_filename
 from flask import render_template, request, Blueprint, session
 from flask import Flask, jsonify
+from config import logger
 from openssm import (
-    logger,
     Logs,
     BaseSSM,
     GPT3CompletionSSM, GPT3ChatCompletionSSM,
