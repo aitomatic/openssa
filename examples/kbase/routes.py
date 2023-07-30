@@ -7,9 +7,9 @@ import tempfile
 from werkzeug.utils import secure_filename
 from flask import render_template, request, Blueprint, session
 from flask import Flask, jsonify
-from config import logger
 from openssm import (
-    Logging,
+    logger,
+    Logs,
     BaseSSM,
     GPT3CompletionSSM, GPT3ChatCompletionSSM,
     Falcon7bSSM,
@@ -43,7 +43,7 @@ ssms = {
 
 
 @routes.route('/discuss', methods=['POST'])
-@Logging.do_log_entry_and_exit({'request': request}, the_logger=logger)
+@Logs.do_log_entry_and_exit({'request': request}, the_logger=logger)
 def discuss():
     if 'conversation_id' not in session:
         session['conversation_id'] = str(uuid.uuid4())
@@ -84,7 +84,7 @@ def allowed_file(filename):
 
 
 @routes.route('/upload', methods=['POST'])
-@Logging.do_log_entry_and_exit({'request': request}, the_logger=logger, log_level=logging.INFO)
+@Logs.do_log_entry_and_exit({'request': request}, the_logger=logger, log_level=logging.INFO)
 def upload_file():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}), 400
@@ -116,7 +116,7 @@ def upload_file():
 
 
 @routes.route('/knowledge', methods=['POST'])
-@Logging.do_log_entry_and_exit({'request': request}, the_logger=logger)
+@Logs.do_log_entry_and_exit({'request': request}, the_logger=logger)
 def receive_knowledge():
     knowledge_text = request.form.get('knowledge')
 

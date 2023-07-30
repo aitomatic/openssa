@@ -174,3 +174,4 @@ package-lock.json
 .*.swp
 .*.swap
 **/favicon/test
+.env

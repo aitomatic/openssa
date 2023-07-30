@@ -1,4 +1,10 @@
 import os
+import dotenv
+from openssm.utils.logs import mlogger
+
+
+dotenv.load_dotenv(override=True)
+mlogger.debug("Loaded environment variables from .env file")
 
 
 class Config:
@@ -9,7 +15,6 @@ class Config:
     But the user can override them by setting them directly
     in the Config object.
     """
-
     _dummy = "value is not set"
 
     DEBUG = False

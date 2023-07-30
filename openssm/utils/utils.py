@@ -1,7 +1,7 @@
 from typing import Any
 import functools
 import inspect
-from openssm.utils.logging import logger
+from openssm.utils.logs import mlogger
 
 
 class Utils:
@@ -11,7 +11,7 @@ class Utils:
         Make sure user_input is in the form of a list of dicts,
         e.g., [{"role": "user", "content": "hello"}].
         """
-        logger.debug("start: user_input: %s", user_input)
+        mlogger.debug("start: user_input: %s", user_input)
 
         if isinstance(user_input, list):
             # [{"role": "user", "content": "xxx"}, ...]
@@ -37,7 +37,7 @@ class Utils:
         else:
             user_input = [{"role": "user", "content": str(user_input)}]
 
-        logger.debug("end: user_input: %s", user_input)
+        mlogger.debug("end: user_input: %s", user_input)
 
         return user_input
 
