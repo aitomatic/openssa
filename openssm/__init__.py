@@ -8,7 +8,7 @@ from openssm.integrations.huggingface.ssm import Falcon7bSSM
 from openssm.integrations.llamaindex.ssm import LlamaIndexSSM
 
 from openssm.utils.config import Config
-from openssm.utils.logs import Logs, logger
+from openssm.utils.logs import Logs, logger, mlogger
 from openssm.utils.utils import Utils
 
 

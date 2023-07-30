@@ -2,8 +2,10 @@
 AbstractInferencer is the base class for all inferencers.
 """
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
 
 
+@dataclass(frozen=True)  # needed to be added to a set
 class AbstractInferencer(ABC):
     """
     The AbstractInferencer serves as the base for all concrete Inferencer

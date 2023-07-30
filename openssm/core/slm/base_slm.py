@@ -103,6 +103,14 @@ class BaseSLM(AbstractSLM):
 
         return parsed_data
 
+    def persist(self, persist_dir: str):
+        """Persists to the specified directory."""
+        pass
+
+    def load(self, persist_dir: str):
+        """Loads from the specified directory."""
+        pass
+
 
 class PassthroughSLM(BaseSLM):
     """

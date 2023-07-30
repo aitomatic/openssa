@@ -1,7 +1,7 @@
 from typing import Any
 import functools
 import inspect
-from openssm.utils.logs import logger
+from openssm.utils.logs import mlogger
 
 
 class Utils:
@@ -11,7 +11,7 @@ class Utils:
         Make sure user_input is in the form of a list of dicts,
         e.g., [{"role": "user", "content": "hello"}].
         """
-        logger.debug("start: user_input: %s", user_input)
+        mlogger.debug("start: user_input: %s", user_input)
 
         if isinstance(user_input, list):
             # [{"role": "user", "content": "xxx"}, ...]
@@ -37,7 +37,7 @@ class Utils:
         else:
             user_input = [{"role": "user", "content": str(user_input)}]
 
-        logger.debug("end: user_input: %s", user_input)
+        mlogger.debug("end: user_input: %s", user_input)
 
         return user_input
 
@@ -47,6 +47,8 @@ class Utils:
         Make sure response is in the form of a list of dicts,
         e.g., [{"role": "assistant", "content": "hello"}].
         """
+        mlogger.debug("start: response: %s", response)
+
         if not isinstance(response, list):
             response = [response]
 
@@ -54,7 +56,7 @@ class Utils:
         for item in response:
             if isinstance(item, str):
                 # "xxx"
-                result_item = {"role": "assistant", "content": item}
+                result_item = {"role": "assistant", "content": item.strip()}
 
             elif isinstance(item, dict):
                 if "role" in item and "content" in item:
@@ -63,18 +65,24 @@ class Utils:
 
                 elif "response" in item:
                     # {"response": "xxx"}
-                    result_item = {"role": "assistant", "content": item["response"]}
+                    item = item["response"]
+                    if isinstance(item, str):
+                        item = item.strip()
+                    result_item = {"role": "assistant", "content": item}
 
                 else:
                     # {"xxx": "yyy"}
-                    result_item = {"role": "assistant", "content": str(item)}
+                    result_item = {"role": "assistant", "content": str(item).strip()}
 
             else:
                 # Any xxx
-                result_item = {"role": "assistant", "content": str(item)}
+                result_item = {"role": "assistant", "content": str(item).strip()}
 
             results.append(result_item)
-            return results
+
+        mlogger.debug("start: response: %s", results)
+
+        return results
 
     @staticmethod
     def _old_do_canonicalize_user_input(param_name):
