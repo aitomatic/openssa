@@ -2,6 +2,7 @@ import json
 from openssm.core.slm.abstract_slm import AbstractSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.utils.utils import Utils
+from openssm.utils.logs import Logs
 
 
 class BaseSLM(AbstractSLM):
@@ -52,8 +53,22 @@ class BaseSLM(AbstractSLM):
     #
     # Helper functions for GPT-like completion models
     #
+    @Logs.do_log_entry_and_exit()
     def _make_completion_prompt(self, conversation: list[dict]) -> str:
-        prompt = self._convert_conversation_to_string(conversation)
+        system = (
+            "Complete this conversation with the assistant’s response, up to 2000 words."
+            " Use this format: {\"role\": \"assistant\", \"content\": \"xxx\"},"
+            " where 'xxx' is the response."
+            " Make sure the entire response is valid JSON, xxx is only a string,"
+            " and no code of any kind, even if the prompt has code."
+            " Escape quotes with \\:\n"
+        )
+        system = {"role": "system", "content": system}
+        conversation = [system] + conversation
+        prompt = str(conversation)
+        # prompt = self._convert_conversation_to_string(conversation)
+        # pylint: disable=pointless-string-statement
+        """
         prompt = ("Complete this conversation with the response, "
                   "up to 2000 words (plus this prompt): "
                   "{'role': 'assistant', 'content': 'xxx'} format. "
@@ -63,6 +78,7 @@ class BaseSLM(AbstractSLM):
                   "prompt has code. "
                   "Escape quotes with \\:\n"
                   f"{prompt}")
+        """
         return prompt
 
     def _convert_conversation_to_string(self, conversation: list[dict]) -> str:

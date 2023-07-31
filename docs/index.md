@@ -8,7 +8,7 @@ OpenSSM (pronounced `open-ess-ess-em`) is an open-source framework for Small Spe
 
 Unlike Large Language Models (LLMs), which are computationally intensive and generalized, SSMs are lean, efficient, and designed specifically for individual domains. This focus makes them an optimal choice for businesses, SMEs, researchers, and developers seeking specialized and robust AI solutions for industrial applications.
 
-![SSM in Industrial AI](diagrams/ssm-industrial-use-case.drawio.png)
+![SSM in Industrial AI](/diagrams/ssm-industrial-use-case.drawio.png)
 
 A prime deployment scenario for SSMs is within the aiCALM (Collaborative Augmented Large Models) architecture. aiCALM represents a cohesive assembly of AI components tailored for sophisticated problem-solving capabilities. Within this framework, SSMs work with General Management Models (GMMs) and other components to solve complex, domain-specific, and industrial problems.
 
@@ -76,7 +76,7 @@ Our primary audience includes:
 
 At a high level, SSMs comprise a front-end Small Language Model (SLM), an adapter layer in the middle, and a wide range of back-end domain-knowledge sources. The SLM itself is a small, efficient, language model, which may be domain-specific or not, and may have been distilled from a larger model. Thus, domain knowledge may come from either, or both, the SLM and the backends.
 
-![High-Level SSM Architecture](diagrams/ssm-key-components.drawio.png)
+![High-Level SSM Architecture](/diagrams/ssm-key-components.drawio.png)
 
 The above diagram illustrates the high-level architecture of an SSM, which comprises three main components:
 
@@ -88,13 +88,13 @@ The above diagram illustrates the high-level architecture of an SSM, which compr
 
 SSMs communicate in both unstructured (natural language) and structured APIs, catering to a variety of real-world industrial systems.
 
-![SSM Composability](diagrams/ssm-composability.drawio.png)
+![SSM Composability](/diagrams/ssm-composability.drawio.png)
 
 The composable nature of SSMs allows for easy combination of domain-knowledge sources from multiple models.
 
 ## Getting Started
 
-See our [Getting Started Guide](GETTING_STARTED.md) for more information.
+See our [Getting Started Guide](/GETTING_STARTED.md) for more information.
 
 ## Roadmap
 
@@ -114,8 +114,8 @@ Join our vibrant community of AI enthusiasts, researchers, developers, and busin
 
 ## Contribute
 
-OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](community/CONTRIBUTING.md) for more details.
+OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](/community/CONTRIBUTING.md) for more details.
 
 ## License
 
-OpenSSM is released under the [Apache 2.0 License](LICENSE.md).
+OpenSSM is released under the [Apache 2.0 License](/LICENSE.md).

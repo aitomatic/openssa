@@ -42,7 +42,7 @@ nav:
     - Using Makefile: dev/makefile_info.md
     - Other HowTos: dev/howtos.md
   - Integrations:
-    - LlamaIndex: integrations/llama_index.md
+    - LlamaIndex: openssm/integrations/llamaindex/README.md
     - Vectara: integrations/vectara.md
     - Lepton.AI: integrations/lepton_ai.md
   - Community:

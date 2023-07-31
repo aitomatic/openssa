@@ -6,19 +6,18 @@
 
 ## Logging
 
-Users of `OpenSSM` should create their own loggers:
+Users of `OpenSSM` can use the `logger` object provided by the `OpenSSM` package:
 
 ```python
-from OpenSSM import Logging
-logger = Logging.get_logger(app_name, Logs.INFO)
-logger.warn("xyz = %s", xyz)
+from OpenSSM import logger
+logger.warning("xyz = %s", xyz)
 ```
 
-If you are an `OpenSSM` contributor, you may use the default logger:
+If you are an `OpenSSM` contributor, you may use the `openssm` logger:
 
 ```python
-from openssm import logger
-logger.warn("xyz = %s", xyz)
+from openssm import mlogger
+mlogger.warning("xyz = %s", xyz)
 ```
 
 ### Automatic function logging
@@ -26,14 +25,14 @@ logger.warn("xyz = %s", xyz)
 There are some useful decorators for automatically logging function entry and exit.
 
 ```python
-from openssm import Logging
+from openssm import Logs
 
-@Logging.do_log_entry_and_exit  # upon both entry and exit
+@Logs.do_log_entry_and_exit()  # upon both entry and exit
 def func(param1, param2):
 
-@Logging.do_log_entry  # only upon entry
+@Logs.do_log_entry  # only upon entry
 
-@Logging.do_log_exit   # only upon exit
+@Logs.do_log_exit   # only upon exit
 ```
 
 The above will automatically log function entry with its parameters, and function exit with its return value.
@@ -41,15 +40,15 @@ The above will automatically log function entry with its parameters, and functio
 If you want to use your own logger with its own name, use
 
 ```python
-from openssm import Logging, logger
-logger = Logging.get_logger(app_name, logging.INFO)
+from openssm import Logs
+my_logger = Logs.get_logger(app_name, logger.INFO)
 
-@Logging.do_log_entry_and_exit(logger=logger)
+@Logs.do_log_entry_and_exit(logger=my_logger)
 def func(param1, param2):
 ```
 
 Sometimes it is useful to be able to specify additional parameters to be logged:
 
 ```python
-@Logging.do_log_entry_and_exit({'request': request})
+@Logs.do_log_entry_and_exit({'request': request})
 ```
