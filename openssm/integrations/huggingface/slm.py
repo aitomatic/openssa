@@ -13,6 +13,7 @@ from transformers import AutoTokenizer, pipeline, AutoModelForCausalLM
 from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.utils.config import Config
+from openssm.utils.logs import Logs
 
 
 class HuggingFaceBaseSLM(BaseSLM):
@@ -77,6 +78,7 @@ class HuggingFaceBaseSLM(BaseSLM):
             self.model_url = model_url
             self.model_server_token = model_server_token
 
+    @Logs.do_log_entry_and_exit()
     def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
         """
         This method calls the API of the underlying language model,

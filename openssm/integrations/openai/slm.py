@@ -2,6 +2,7 @@ import openai
 from openssm.utils.config import Config
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.core.slm.base_slm import BaseSLM
+from openssm.utils.logs import Logs
 
 
 class GPT3BaseSLM(BaseSLM):
@@ -16,6 +17,7 @@ class GPT3ChatCompletionSLM(GPT3BaseSLM):
     def __init__(self, adapter: AbstractAdapter = None):
         super().__init__(adapter)
 
+    @Logs.do_log_entry_and_exit()
     def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -30,6 +32,7 @@ class GPT3CompletionSLM(GPT3BaseSLM):
     def __init__(self, adapter: AbstractAdapter = None):
         super().__init__(adapter)
 
+    @Logs.do_log_entry_and_exit()
     def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
         prompt = self._make_completion_prompt(conversation)
 

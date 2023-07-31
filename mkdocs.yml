@@ -42,7 +42,7 @@ nav:
     - Using Makefile: dev/makefile_info.md
     - Other HowTos: dev/howtos.md
   - Integrations:
-    - LlamaIndex: integrations/llama_index.md
+    - LlamaIndex: openssm/integrations/llamaindex/README.md
     - Vectara: integrations/vectara.md
     - Lepton.AI: integrations/lepton_ai.md
   - Community:
@@ -64,22 +64,16 @@ nav:
         - ssm:
           - base_ssm_builder: openssm/core/ssm/base_ssm_builder.md
           - base_ssm: openssm/core/ssm/base_ssm.md
-          - huggingface_ssm: openssm/core/ssm/huggingface_ssm.md
           - abstract_ssm: openssm/core/ssm/abstract_ssm.md
           - abstract_ssm_builder: openssm/core/ssm/abstract_ssm_builder.md
-          - llama_index_ssm: openssm/core/ssm/llama_index_ssm.md
-          - openai_ssm: openssm/core/ssm/openai_ssm.md
         - slm:
-          - openai_slm: openssm/core/slm/openai_slm.md
           - abstract_slm: openssm/core/slm/abstract_slm.md
           - base_slm: openssm/core/slm/base_slm.md
-          - huggingface_slm: openssm/core/slm/huggingface_slm.md
           - memory:
             - conversation_db: openssm/core/slm/memory/conversation_db.md
             - sqlite_conversation_db: openssm/core/slm/memory/sqlite_conversation_db.md
         - backend:
           - abstract_backend: openssm/core/backend/abstract_backend.md
-          - llama_index_backend: openssm/core/backend/llama_index_backend.md
           - base_backend: openssm/core/backend/base_backend.md
           - text_backend: openssm/core/backend/text_backend.md
         - adapter:
@@ -88,14 +82,11 @@ nav:
         - inferencer:
           - base_inferencer: openssm/core/inferencer/base_inferencer.md
           - abstract_inferencer: openssm/core/inferencer/abstract_inferencer.md
-      - integration:
-        - llamaindex: openssm/integration/llamaindex/EMPTY.md
-        - testing_tools: openssm/integration/testing_tools/EMPTY.md
       - composer: openssm/composer/EMPTY.md
       - utils:
-        - logging: openssm/utils/logging.md
         - config: openssm/utils/config.md
         - utils: openssm/utils/utils.md
+        - logs: openssm/utils/logs.md
       - contrib:
         - ssms:
           - mri_operator_ssm: openssm/contrib/ssms/mri_operator_ssm/EMPTY.md
@@ -103,6 +94,18 @@ nav:
           - semiconductor_ssm: openssm/contrib/ssms/semiconductor_ssm/EMPTY.md
           - japan_fish_kcp_ssm: openssm/contrib/ssms/japan_fish_kcp_ssm/EMPTY.md
         - apps: openssm/contrib/apps/EMPTY.md
+      - integrations:
+        - llamaindex:
+          - backend: openssm/integrations/llamaindex/backend.md
+          - ssm: openssm/integrations/llamaindex/ssm.md
+        - vectara: openssm/integrations/vectara/EMPTY.md
+        - testing_tools: openssm/integrations/testing_tools/EMPTY.md
+        - huggingface:
+          - slm: openssm/integrations/huggingface/slm.md
+          - ssm: openssm/integrations/huggingface/ssm.md
+        - openai:
+          - slm: openssm/integrations/openai/slm.md
+          - ssm: openssm/integrations/openai/ssm.md
       - industrial:
         - security:
           - audit: openssm/industrial/security/audit/EMPTY.md

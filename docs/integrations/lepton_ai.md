@@ -14,6 +14,8 @@ response = ssm.discuss(conversation_id, "what is abc?")
 
 In the OpenSSM context, Lepton helps finetune and distill the SLM (small language model) that front-ends an SSM.
 
+```python
 ![Lepton Integration](../diagrams/ssm-lepton-integration.drawio.png)
+```
 
 ## Roadmap
