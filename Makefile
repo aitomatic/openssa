@@ -1,5 +1,6 @@
 # Set these values appropriately, or make sure they are set & exported from the environment
 export OPENAI_API_KEY?=DUMMY_OPENAI_API_KEY
+export OPENAI_API_URL?=DUMMY_OPENAI_API_URL
 
 # Make sure we include the library directory
 PROJECT_DIR=$(PWD)

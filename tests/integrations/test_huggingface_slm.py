@@ -60,7 +60,7 @@ class TestFalcon7bSLM(unittest.TestCase):
         mock_super_init.assert_called_once_with(
             model_name="tiiuae/falcon-7b",
             model_url=Config.FALCON7B_MODEL_URL or "NONE",
-            model_server_token=Config.FALCON7B_SERVER_TOKEN or "value is not set",
+            model_server_token=Config.FALCON7B_API_KEY or "value is not set",
             adapter=None)
 
 
@@ -77,5 +77,5 @@ class TestFalcon7bSLMLocal(unittest.TestCase):
         mock_super_init.assert_called_once_with(
             model_name="tiiuae/falcon-7b",
             model_url="LOCAL",
-            model_server_token=Config.FALCON7B_SERVER_TOKEN or "value is not set",
+            model_server_token=Config.FALCON7B_API_KEY or "value is not set",
             adapter=None)

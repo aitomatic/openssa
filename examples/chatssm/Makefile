@@ -12,8 +12,9 @@ PORT=8080
 
 CONFIG_SECRETS=$(PROJECT_DIR)/config_secrets.py
 export OPENAI_API_KEY
-export FALCON7B_MODEL_URL
-export FALCON7B_SERVER_TOKEN
+export OPENAI_API_URL
+export FALCON7B_API_URL
+export FALCON7B_API_KEY
 
 ANSI_NORMAL="\033[0m"
 ANSI_RED="\033[0;31m"
@@ -81,8 +82,9 @@ config-secrets: clear-config-secrets
 	echo "" >> $(CONFIG_SECRETS)
 	echo "" >> $(CONFIG_SECRETS)
 	echo "Config.OPENAI_API_KEY='$(OPENAI_API_KEY)'" >> $(CONFIG_SECRETS)
-	echo "Config.FALCON7B_MODEL_URL='$(FALCON7B_MODEL_URL)'" >> $(CONFIG_SECRETS)
-	echo "Config.FALCON7B_SERVER_TOKEN='$(FALCON7B_SERVER_TOKEN)'" >> $(CONFIG_SECRETS)
+	echo "Config.OPENAI_API_URL='$(OPENAI_API_URL)'" >> $(CONFIG_SECRETS)
+	echo "Config.FALCON7B_API_URL='$(FALCON7B_API_URL)'" >> $(CONFIG_SECRETS)
+	echo "Config.FALCON7B_API_KEY='$(FALCON7B_API_KEY)'" >> $(CONFIG_SECRETS)
 
 #
 # GCloud project support 
@@ -114,7 +116,12 @@ gcloud-deploy: gcloud-create gcloud-enable-cloudbuild requirements.txt openai-re
 	@if grep _PATTERN_OPENAI_API_KEY app.yaml ; then \
 		mv app.yaml app.yaml.orig ;\
 	fi
-	@sed -e s/_PATTERN_OPENAI_API_KEY_/$(OPENAI_API_KEY)/g app.yaml.orig > app.yaml
+	@sed -e s/_PATTERN_OPENAI_API_URL_/$(OPENAI_API_URL)/g app.yaml.orig > app.yaml
+	@echo $(ANSI_GREEN)... Replacing _PATTERN_OPENAI_API_URL_ with the value from the env variable $(ANSI_NORMAL)
+	@if grep _PATTERN_OPENAI_API_URL app.yaml ; then \
+		mv app.yaml app.yaml.orig ;\
+	fi
+	@sed -e s/_PATTERN_OPENAI_API_URL_/$(OPENAI_API_URL)/g app.yaml.orig > app.yaml
 
 	@echo $(ANSI_GREEN)... Now deploying... $(ANSI_NORMAL)
 	@yes | gcloud app deploy --project=$(GCLOUD_PROJECT_ID)

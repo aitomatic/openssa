@@ -96,10 +96,10 @@ class BaseAdapter(AbstractAdapter):
     def add_heuristic(self, heuristic: str):
         self._get_first_backend().add_heuristic(heuristic)
 
-    def persist(self, persist_dir: str):
-        """Persists to the specified directory."""
+    def save(self, storage_dir: str):
+        """Saves to the specified directory."""
         pass
 
-    def load(self, persist_dir: str):
+    def load(self, storage_dir: str):
         """Loads from the specified directory."""
         pass

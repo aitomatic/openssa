@@ -9,6 +9,7 @@ automatic_scaling:
 
 env_variables:
  OPENAI_API_KEY: _PATTERN_OPENAI_API_KEY_
+ OPENAI_API_URL: _PATTERN_OPENAI_API_URL_
 
 handlers:
 - url: /static/css

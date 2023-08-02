@@ -1,6 +1,7 @@
 from unittest.mock import patch, MagicMock
 import pytest
 from openssm.integrations.openai.slm import GPT3ChatCompletionSLM
+from openssm import Config
 
 
 @pytest.fixture(autouse=True)
@@ -15,7 +16,7 @@ def setup_class():
 
 
 @patch('openai.ChatCompletion.create')
-@patch('openssm.Config', new=MagicMock(OPENAI_API_KEY='test_key'))
+@patch('openssm.Config', new=MagicMock(OPENAI_API_KEY='test_key', OPENAI_API_URL='test_url'))
 def test_gpt3_chat_completion_discuss(mock_func):
     slm = GPT3ChatCompletionSLM()
     replies = slm.discuss(pytest.user_input, pytest.conversation_id)
@@ -25,6 +26,8 @@ def test_gpt3_chat_completion_discuss(mock_func):
     # Assert that the create method was called with the expected arguments
     expected_messages = slm.conversations.get(pytest.conversation_id, [])
     mock_func.assert_called_once_with(
+        api_key=Config.OPENAI_API_KEY,
+        api_base=Config.OPENAI_API_URL,
         model='gpt-3.5-turbo',
         messages=expected_messages,
         temperature=0.7

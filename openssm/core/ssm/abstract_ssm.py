@@ -73,9 +73,9 @@ class AbstractSSM(ABC):
         """Processes a natural language conversation input."""
 
     @abstractmethod
-    def persist(self, persist_dir: str):
-        """Persists the SSM to the specified directory."""
+    def save(self, storage_dir: str):
+        """Saves the SSM to the specified directory."""
 
     @abstractmethod
-    def load(self, persist_dir: str):
+    def load(self, storage_dir: str):
         """Loads the SSM from the specified directory."""

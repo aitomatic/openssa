@@ -31,9 +31,9 @@ class AbstractSLM(ABC):
         """Resets our conversation memory"""
 
     @abstractmethod
-    def persist(self, persist_dir: str):
-        """Persists to the specified directory."""
+    def save(self, storage_dir: str):
+        """Saves to the specified directory."""
 
     @abstractmethod
-    def load(self, persist_dir: str):
+    def load(self, storage_dir: str):
         """Loads from the specified directory."""

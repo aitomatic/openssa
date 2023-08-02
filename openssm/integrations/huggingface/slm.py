@@ -151,7 +151,7 @@ class Falcon7bSLM(HuggingFaceBaseSLM):
 
         model_name = "tiiuae/falcon-7b"
         model_url = model_url or Config.FALCON7B_MODEL_URL or "NONE"
-        model_server_token = model_server_token or Config.FALCON7B_SERVER_TOKEN
+        model_server_token = model_server_token or Config.FALCON7B_API_KEY
 
         super().__init__(model_name=model_name,
                          model_url=model_url,
