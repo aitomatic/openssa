@@ -19,14 +19,8 @@ python-dotenv = ">=0.19.0"
 llama-hub = ">=0.0.4"
 llama-index = ">=0.6.33"
 # misc / other
-accelerate = ">=0.20.3"
-einops = ">=0.6.1"
 pypdf = ">=3.11.0"
 pytest = ">=7.0.0"
-transformers = ">=4.30.2"
-torch = ">=1.13.1"
-#xformers = ">=0.0.16"	# don’t include this. It fails on GitHub actions. Support in Makefile.
-#xformers = ">=0.0.20"
 
 [tool.pytest.ini_options]
 addopts = [
