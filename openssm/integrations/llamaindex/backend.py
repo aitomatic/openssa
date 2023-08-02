@@ -59,20 +59,12 @@ class Backend(BaseBackend):
         documents = SimpleDirectoryReader(directory_path).load_data()
         self.index = VectorStoreIndex(documents)
 
-    # def _get_storage_context(self, persist_dir: str):
-    #     storage_context = StorageContext.from_defaults(
-    #         docstore=SimpleDocumentStore.from_persist_dir(persist_dir=persist_dir),
-    #         vector_store=SimpleVectorStore.from_persist_dir(persist_dir=persist_dir),
-    #         index_store=SimpleIndexStore.from_persist_dir(persist_dir=persist_dir)
-    #     )
-    #     return storage_context
-
-    def persist(self, persist_dir: str):
+    def save(self, storage_dir: str):
         if self.index is not None:
-            self.index.storage_context.persist(persist_dir=persist_dir)
-        return super().persist(persist_dir)
+            self.index.storage_context.persist(persist_dir=storage_dir)
+        return super().save(storage_dir)
 
-    def load(self, persist_dir: str):
-        storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
+    def load(self, storage_dir: str):
+        storage_context = StorageContext.from_defaults(persist_dir=storage_dir)
         self.index = load_index_from_storage(storage_context)
-        return super().load(persist_dir)
+        return super().load(storage_dir)

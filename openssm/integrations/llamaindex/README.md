@@ -38,7 +38,7 @@ ssm.discuss("What is the main point made by Yann LeCun?")  # Interact with the S
 Persistence is just as straightforward:
 
 ```python
-ssm.persist('storage/ylecun')  # Persist the index
+ssm.save('storage/ylecun')  # Save the index to storage
 
 ssm.load('storage/ylecun')  # Load the index from storage
 ```
