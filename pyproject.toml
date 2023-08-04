@@ -21,6 +21,8 @@ llama-index = ">=0.6.33"
 # misc / other
 pypdf = ">=3.11.0"
 pytest = ">=7.0.0"
+google-api-python-client = ">=2.0"
+
 
 [tool.pytest.ini_options]
 addopts = [
@@ -28,4 +30,5 @@ addopts = [
 ]
 filterwarnings = [
   "ignore:pkg_resources is deprecated as an API:DeprecationWarning",
+  "ignore:Deprecated call to `pkg_resources.declare_namespace.*google.*:DeprecationWarning",
 ]

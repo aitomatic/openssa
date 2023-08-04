@@ -1,6 +1,14 @@
+import os
+import io
+import shutil
+import json
 from typing import Any
 import functools
 import inspect
+import googleapiclient.errors
+from google.oauth2.service_account import Credentials
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseDownload
 from openssm.utils.logs import mlogger
 
 
@@ -85,19 +93,6 @@ class Utils:
         return results
 
     @staticmethod
-    def _old_do_canonicalize_user_input(param_name):
-        """
-        Decorator to canonicalize SSM user input.
-        """
-        def outer_decorator(func):
-            def wrapper(*args, **kwargs):
-                if param_name in kwargs:
-                    kwargs[param_name] = Utils.canonicalize_user_input(kwargs[param_name])
-                return func(*args, **kwargs)
-            return wrapper
-        return outer_decorator
-
-    @staticmethod
     def do_canonicalize_user_input(param_name):
         """
         Decorator to canonicalize SSM user input.
@@ -147,3 +142,36 @@ class Utils:
                 return final_func(*args, **kwargs)
             return wrapper
         return outer_decorator
+
+    @staticmethod
+    def download_gdrive(folder_id: str, local_dir: str = './tmp/.docs'):
+        try:
+            creds_data = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
+            creds = Credentials.from_service_account_info(creds_data)
+            service = build('drive', 'v3', credentials=creds)
+            # pylint: disable=no-member
+            results = service.files().list(q=f"'{folder_id}' in parents", pageSize=1000).execute()
+            items = results.get('files', [])
+
+            if not items:
+                mlogger.info("No files found under Google Drive folder %s", folder_id)
+                return
+
+            mlogger.debug("Found %d files under Google Drive folder %s", len(items), folder_id)
+
+            # Create local directory if it does not exist and clear it if it does
+            if os.path.exists(local_dir):
+                shutil.rmtree(local_dir)
+            os.makedirs(local_dir)
+
+            for item in items:
+                request = service.files().get_media(fileId=item['id'])
+                file_handle = io.FileIO(local_dir + '/' + item['name'], 'wb')
+                downloader = MediaIoBaseDownload(file_handle, request)
+                done = False
+                while done is False:
+                    status, done = downloader.next_chunk()
+                    mlogger.debug("Downloading %s. Progress: %d%%.", item['name'], int(status.progress() * 100))
+
+        except googleapiclient.errors.HttpError as error:
+            mlogger.error("An error occurred: %s", error)
