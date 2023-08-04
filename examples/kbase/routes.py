@@ -13,7 +13,6 @@ from openssm import (
     BaseSSM,
     GPT3CompletionSSM, GPT3ChatCompletionSSM,
     Falcon7bSSM,
-    # Falcon7bSSMLocal,
     LlamaIndexSSM
 )
 
@@ -38,7 +37,6 @@ ssms = {
     'gpt3_completion': GPT3CompletionSSM(),
     'gpt3_chat_completion': GPT3ChatCompletionSSM(),
     'falcon7b': Falcon7bSSM(),
-    # 'falcon7b_local': Falcon7bSSMLocal(),
 }
 
 

@@ -80,7 +80,6 @@ pre-commit: lint test
 
 build: poetry-setup
 	poetry build
-	# poetry run pip install xformers==0.0.20
 
 rebuild: clean build
 
@@ -127,7 +126,6 @@ poetry-install:
 poetry-setup:
 	poetry lock
 	poetry install
-	# poetry run pip install xformers==0.0.20
 
 poetry-init:
 	-poetry init
