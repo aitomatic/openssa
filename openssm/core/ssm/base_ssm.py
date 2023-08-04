@@ -1,3 +1,5 @@
+import os
+import uuid
 from openssm.core.ssm.abstract_ssm import AbstractSSM
 from openssm.core.slm.abstract_slm import AbstractSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
@@ -12,10 +14,12 @@ class BaseSSM(AbstractSSM):
     def __init__(self,
                  slm: AbstractSLM = None,
                  adapter: AbstractAdapter = None,
-                 backends: list[AbstractBackend] = None):
+                 backends: list[AbstractBackend] = None,
+                 name: str = None):
         self.slm = slm or BaseSLM()
         self.slm.set_adapter(adapter or BaseAdapter())
         self.get_adapter().set_backends(backends or [BaseBackend()])
+        self.name = name or f"ssm-{uuid.uuid4().hex[:8]}"
 
     def get_slm(self) -> AbstractSLM:
         """
@@ -83,14 +87,20 @@ class BaseSSM(AbstractSSM):
         """Uploads a knowledge source (documents, text, files, etc.)"""
         # self.get_adapter().add_knowledge(knowledge_source_uri, knowledge_type)
 
-    def save(self, storage_dir: str):
+    def _get_default_storage_dir(self) -> str:
+        base_dir = os.environ.get("OPENSSM_STORAGE_DIR", ".openssm")
+        return os.path.join(base_dir, self.name)
+
+    def save(self, storage_dir: str = None):
         """Saves the SSM to the specified directory."""
+        storage_dir = storage_dir or self._get_default_storage_dir()
         self.get_slm().save(storage_dir)
         self.get_adapter().save(storage_dir)
         self.get_adapter().enumerate_backends(lambda backend: backend.save(storage_dir))
 
-    def load(self, storage_dir: str):
+    def load(self, storage_dir: str = None):
         """Loads the SSM from the specified directory."""
+        storage_dir = storage_dir or self._get_default_storage_dir()
         self.get_slm().load(storage_dir)
         self.get_adapter().load(storage_dir)
         self.get_adapter().enumerate_backends(lambda backend: backend.load(storage_dir))

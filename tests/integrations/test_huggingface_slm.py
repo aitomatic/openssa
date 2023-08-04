@@ -21,6 +21,7 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
                                       model_server_token='test-token')
 
         # Simulating a call to the remote API and asserting the response
+        # pylint: disable=protected-access
         result = instance._call_lm_api([{"role": "user", "content": "hello"}])
         self.assertEqual(result,
                          [{"role": "assistant", "content": "Test response"}])

@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from llama_index import (
     load_index_from_storage,
     SimpleDirectoryReader,
@@ -8,11 +7,10 @@ from llama_index import (
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
 from llama_index.storage import StorageContext
-from openssm.core.backend.base_backend import BaseBackend
+from openssm.core.backend.rag_backend import AbstractRAGBackend
 
 
-@dataclass
-class Backend(BaseBackend):
+class Backend(AbstractRAGBackend):
     index: BaseIndex = None
     _query_engine: BaseQueryEngine = None
 
@@ -55,16 +53,13 @@ class Backend(BaseBackend):
         result, response = self.query2(user_input, conversation_id)
         return result
 
-    def read_directory(self, directory_path: str):
-        documents = SimpleDirectoryReader(directory_path).load_data()
+    def _do_read_directory(self, storage_dir: str):
+        documents = SimpleDirectoryReader(self._get_source_dir(storage_dir)).load_data()
         self.index = VectorStoreIndex(documents)
 
-    def save(self, storage_dir: str):
-        if self.index is not None:
-            self.index.storage_context.persist(persist_dir=storage_dir)
-        return super().save(storage_dir)
+    def _do_save(self, storage_dir: str):
+        self.index.storage_context.persist(persist_dir=self._get_index_dir(storage_dir))
 
-    def load(self, storage_dir: str):
-        storage_context = StorageContext.from_defaults(persist_dir=storage_dir)
+    def _do_load(self, storage_dir: str):
+        storage_context = StorageContext.from_defaults(persist_dir=self._get_index_dir(storage_dir))
         self.index = load_index_from_storage(storage_context)
-        return super().load(storage_dir)

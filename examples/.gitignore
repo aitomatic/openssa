@@ -1,1 +1,3 @@
-tmp/*
+**/tmp
+.openssm
+token.json

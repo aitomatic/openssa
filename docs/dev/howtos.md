@@ -30,9 +30,9 @@ from openssm import Logs
 @Logs.do_log_entry_and_exit()  # upon both entry and exit
 def func(param1, param2):
 
-@Logs.do_log_entry  # only upon entry
+@Logs.do_log_entry()  # only upon entry
 
-@Logs.do_log_exit   # only upon exit
+@Logs.do_log_exit()   # only upon exit
 ```
 
 The above will automatically log function entry with its parameters, and function exit with its return value.

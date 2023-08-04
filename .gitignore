@@ -175,3 +175,5 @@ package-lock.json
 .*.swap
 **/favicon/test
 .env
+.openssm
+__pycache__
