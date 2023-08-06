@@ -23,44 +23,34 @@ class AbstractAdapter(ABC):
     def enumerate_backends(self, lambda_function: Callable):
         """Enumerate backends and apply lambda function to each backend."""
 
+    @property
     @abstractmethod
-    def get_backends(self) -> list[AbstractBackend]:
+    def backends(self) -> list[AbstractBackend]:
         """Returns our backends"""
+
+    @backends.setter
+    @abstractmethod
+    def backends(self, backends: list):
+        """Sets our backends"""
 
     @abstractmethod
     def add_backend(self, backend: AbstractBackend):
         """Adds a backend to our adapter"""
 
+    @property
     @abstractmethod
-    def set_backends(self, backends: list):
-        """Sets our backends"""
-
-    @abstractmethod
-    def list_facts(self) -> list[str]:
+    def facts(self) -> list[str]:
         """Lists all known facts."""
-        facts = set()
-        for backend in self.get_backends():
-            if backend is AbstractBackend:
-                facts |= backend.list_facts()
-        return facts
 
+    @property
     @abstractmethod
-    def list_inferencers(self):
+    def inferencers(self):
         """Lists all known inferencers."""
-        inferencers = set()
-        for backend in self.get_backends():
-            if backend is AbstractBackend:
-                inferencers |= backend.list_inferencers()
-        return inferencers
 
+    @property
     @abstractmethod
-    def list_heuristics(self):
+    def heuristics(self):
         """Lists all known heuristics."""
-        heuristics = set()
-        for backend in self.get_backends():
-            if backend is AbstractBackend:
-                heuristics |= backend.list_heuristics()
-        return heuristics
 
     @abstractmethod
     def select_facts(self, criteria):

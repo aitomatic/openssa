@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any
 from dataclasses import dataclass
 from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 
@@ -11,7 +12,14 @@ class AbstractBackend(ABC):
         """
         Queries the backend with the user input.
         """
-        pass
+
+    @abstractmethod
+    def query2(self, user_input: list[dict], conversation_id: str = None) -> tuple[list[dict], Any]:
+        """
+        Query the index with the user input.
+
+        Returns a tuple comprising (a) the response dicts and (b) the response object, if any.
+        """
 
     @abstractmethod
     def load_all(self):
@@ -20,43 +28,45 @@ class AbstractBackend(ABC):
         if appropriate. Some backends may not need to,
         and only load on demand (e.g., a database backend).
         """
-        pass
 
     @abstractmethod
     def add_fact(self, fact: str):
-        pass
+        """Adds a fact to the backend."""
 
     @abstractmethod
     def add_inferencer(self, inferencer: AbstractInferencer):
-        pass
+        """Adds an inferencer to the backend."""
 
     @abstractmethod
     def add_heuristic(self, heuristic: str):
-        pass
+        """Adds a heuristic to the backend."""
 
+    @property
     @abstractmethod
-    def list_facts(self):
-        pass
+    def facts(self):
+        """Returns a set of facts."""
 
+    @property
     @abstractmethod
-    def list_inferencers(self):
-        pass
+    def inferencers(self):
+        """Returns a set of inferencers."""
 
+    @property
     @abstractmethod
-    def list_heuristics(self):
-        pass
+    def heuristics(self):
+        """Returns a set of heuristics."""
 
     @abstractmethod
     def select_facts(self, criteria):
-        pass
+        """Returns a set of facts that match the criteria."""
 
     @abstractmethod
     def select_inferencers(self, criteria):
-        pass
+        """Returns a set of inferencers that match the criteria."""
 
     @abstractmethod
     def select_heuristics(self, criteria):
-        pass
+        """Returns a set of heuristics that match the criteria."""
 
     @abstractmethod
     def save(self, storage_dir: str):

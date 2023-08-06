@@ -9,7 +9,7 @@ class BaseAdapter(AbstractAdapter):
     """Base adapter class for SSMs."""
 
     def __init__(self, backends: list[AbstractBackend] = None):
-        self.backends = backends or []
+        self._backends = backends
 
     def query(self, user_input: str, conversation_id: str = None) -> list[dict]:
         """
@@ -18,18 +18,19 @@ class BaseAdapter(AbstractAdapter):
         :return: The backend's response.
         """
         responses = [
-            r for b in self.backends for r in b.query(
-                user_input, conversation_id
-            )]
+            r for b in self.backends if b is not None
+            for r in (b.query(user_input, conversation_id) or [])
+        ]
         return responses
 
-    def get_backends(self) -> list[AbstractBackend]:
+    @property
+    def backends(self) -> list[AbstractBackend]:
         """
         Side effect: if no backends are set, a default TextBackend is created.
         """
-        if self.backends is None or len(self.backends) == 0:
-            self.backends = [TextBackend()]
-        return self.backends
+        if self._backends is None or len(self._backends) == 0:
+            self._backends = [TextBackend()]
+        return self._backends
 
     def add_backend(self, backend: AbstractBackend):
         """
@@ -37,11 +38,12 @@ class BaseAdapter(AbstractAdapter):
         """
         self.backends.append(backend)
 
-    def set_backends(self, backends: list):
+    @backends.setter
+    def backends(self, backends: list):
         """
         Set the list of backends.
         """
-        self.backends = backends
+        self._backends = backends
 
     def enumerate_backends(self, lambda_function: Callable):
         """Enumerate backends and apply lambda function to each backend."""
@@ -49,17 +51,20 @@ class BaseAdapter(AbstractAdapter):
         for backend in self.backends:
             results.append(lambda_function(backend))
 
-    def list_facts(self):
+    @property
+    def facts(self):
         """List facts from all backends."""
         return self.enumerate_backends(
             lambda backend: backend.list_facts())
 
-    def list_inferencers(self):
+    @property
+    def inferencers(self):
         """List inferencers from all backends."""
         return self.enumerate_backends(
             lambda backend: backend.list_inferencers())
 
-    def list_heuristics(self):
+    @property
+    def heuristics(self):
         """List heuristics from all backends."""
         return self.enumerate_backends(
             lambda backend: backend.list_heuristics())
@@ -84,7 +89,7 @@ class BaseAdapter(AbstractAdapter):
         Get the first backend we have. If we currently have
         none, go ahead and add a default TextBackend.
         """
-        return self.get_backends()[0]
+        return self.backends[0]
 
     def add_fact(self, fact: str):
         """Idiom: add a fact to the first backend we have."""

@@ -1,23 +1,20 @@
 import os
 from abc import abstractmethod, ABC
 from openssm.core.backend.base_backend import BaseBackend
-from openssm.utils.utils import Utils
 from openssm.utils.logs import Logs
+from openssm.utils.utils import Utils
 
 
 class AbstractRAGBackend(BaseBackend, ABC):
     def __init__(self):
         super().__init__()
 
-    @Logs.do_log_entry_and_exit()
     def _get_source_dir(self, storage_dir: str):
         return os.path.join(storage_dir, ".sources")
 
-    @Logs.do_log_entry_and_exit()
     def _get_index_dir(self, storage_dir: str):
         return os.path.join(storage_dir, ".indexes")
 
-    @Logs.do_log_entry_and_exit()
     def _load_index_if_exists(self, storage_dir: str) -> bool:
         """
         Attempt to load an existing index from the storage directory.

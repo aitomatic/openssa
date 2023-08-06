@@ -23,13 +23,16 @@ class MockAdapter(BaseAdapter):
         assert kwargs is not None
         return "Mock api_call response"
 
-    def list_facts(self):
+    @property
+    def facts(self):
         return ["Fact 1", "Fact 2"]
 
-    def list_inferencers(self):
+    @property
+    def inferencers(self):
         return ["Inferencer 1", "Inferencer 2"]
 
-    def list_heuristics(self):
+    @property
+    def heuristics(self):
         return ["Heuristic 1", "Heuristic 2"]
 
     def select_facts(self, criteria):
@@ -65,19 +68,19 @@ def setup_function():
 
 
 # Test cases
-def test_get_slm():
+def test_slm():
     ssm = BaseSSM(pytest.slm)
-    assert ssm.get_slm() == pytest.slm
+    assert ssm.slm == pytest.slm
 
 
-def test_get_adapter():
+def test_adapter():
     ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.get_adapter() == pytest.adapter
+    assert ssm.adapter == pytest.adapter
 
 
-def test_get_backends():
+def test_backends():
     ssm = BaseSSM(pytest.slm, pytest.adapter, pytest.backends)
-    assert ssm.get_backends() == pytest.backends
+    assert ssm.backends == pytest.backends
 
 
 def test_discuss():
@@ -96,17 +99,17 @@ def test_reset_memory():
 
 def test_list_facts():
     ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.list_facts() == ["Fact 1", "Fact 2"]
+    assert ssm.facts == ["Fact 1", "Fact 2"]
 
 
 def test_list_inferencers():
     ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.list_inferencers() == ["Inferencer 1", "Inferencer 2"]
+    assert ssm.inferencers == ["Inferencer 1", "Inferencer 2"]
 
 
 def test_list_heuristics():
     ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.list_heuristics() == ["Heuristic 1", "Heuristic 2"]
+    assert ssm.heuristics == ["Heuristic 1", "Heuristic 2"]
 
 
 def test_select_facts():

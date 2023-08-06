@@ -13,7 +13,7 @@ from openssm.utils.config import Config
 from openssm.utils.logs import Logs
 
 
-class HuggingFaceBaseSLM(BaseSLM):
+class SLM(BaseSLM):
     """
     This class is the base class for all SLMs based on models from
     HuggingFace. The models may be served from HuggingFace's model hub,
@@ -95,7 +95,7 @@ class HuggingFaceBaseSLM(BaseSLM):
         return result
 
 
-class Falcon7bSLM(HuggingFaceBaseSLM):
+class Falcon7bSLM(SLM):
     """
     Falcon7bSLM is a wrapper for the Falcon7b model, which may be hosted
     remotely. If hosted remotely, the model_url and

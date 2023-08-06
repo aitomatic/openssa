@@ -3,38 +3,36 @@ from unittest.mock import MagicMock, patch
 from llama_index import Response
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
-from openssm.core.backend.abstract_backend import AbstractBackend
 from openssm.core.slm.abstract_slm import AbstractSLM
 from openssm.core.slm.base_slm import PassthroughSLM
 from openssm.integrations.llama_index.backend import Backend as LlamaIndexBackend
 from openssm.integrations.openai.slm import GPT3ChatCompletionSLM
-from openssm.integrations.llama_index.ssm import BaseLlamaIndexSSM, LlamaIndexSSM, GPT3LlamaIndexSSM
+from openssm.integrations.llama_index.ssm import (
+    SSM as LlamaIndexSSM,
+    GPT3SSM
+)
 
 
 class TestSSMClasses(unittest.TestCase):
-    def test_base_llama_index_ssm(self):
+    def test_llama_index_ssm(self):
         slm = MagicMock(spec=AbstractSLM)
-        backend = MagicMock(spec=AbstractBackend)
-        ssm = BaseLlamaIndexSSM(slm, [backend])
+        ssm = LlamaIndexSSM(slm)
 
-        self.assertIsInstance(ssm.llama_backend, LlamaIndexBackend)
-        self.assertEqual(ssm.get_llama_backend(), ssm.llama_backend)
+        self.assertIsInstance(ssm.rag_backend, LlamaIndexBackend)
+        self.assertEqual(ssm.get_rag_backend(), ssm.rag_backend)
 
-        with patch.object(ssm.llama_backend, 'read_directory') as mock_read_dir:
+        with patch.object(ssm.rag_backend, 'read_directory') as mock_read_dir:
             ssm.read_directory("test_directory")
             mock_read_dir.assert_called_once_with("test_directory", False)
 
-    def test_llama_index_ssm(self):
-        backend = MagicMock(spec=AbstractBackend)
-        ssm = LlamaIndexSSM([backend])
+    def test_llama_index_ssm2(self):
+        ssm = LlamaIndexSSM(PassthroughSLM())
 
-        self.assertIsInstance(ssm.llama_backend, LlamaIndexBackend)
+        self.assertIsInstance(ssm.rag_backend, LlamaIndexBackend)
         self.assertIsInstance(ssm.slm, PassthroughSLM)
 
     def test_gpt3_llama_index_ssm(self):
-        backend = MagicMock(spec=AbstractBackend)
-        ssm = GPT3LlamaIndexSSM(backends=[backend])
-
+        ssm = GPT3SSM()
         self.assertIsInstance(ssm.slm, GPT3ChatCompletionSLM)
 
 class TestBackend(unittest.TestCase):

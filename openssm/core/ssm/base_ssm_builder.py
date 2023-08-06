@@ -9,10 +9,15 @@ class BaseSSMBuilder(AbstractSSMBuilder):
     def __init__(self, initial_ssm: AbstractSSM = None):
         self._ssm = initial_ssm
 
-    def _get_ssm(self) -> AbstractSSM:
+    @property
+    def ssm(self) -> AbstractSSM:
         if self._ssm is None:
             self._ssm = BaseSSM()
         return self._ssm
+
+    @ssm.setter
+    def ssm(self, ssm: AbstractSSM):
+        self._ssm = ssm
 
     def add_knowledge(self, knowledge_source_uri: str, source_type=None):
         """Uploads a knowledge source (documents, text, files, etc.)"""
@@ -35,8 +40,8 @@ class BaseSSMBuilder(AbstractSSMBuilder):
         Fine-tunes a model based on the provided training data and fine-tuning parameters.
         Distills a large model into a smaller model based on the provided distillation parameters.
         """
-        return self._get_ssm().get_slm()
+        return self.ssm.slm
 
     def create_ssm(self, knowledge_ids, model_parameters=None) -> AbstractSSM:
         """Creates an SSM based on the provided knowledge sources and model parameters"""
-        return self._get_ssm()
+        return self.ssm

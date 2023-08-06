@@ -12,17 +12,35 @@ class AbstractSSM(ABC):
     Models (SSMs).
     """
 
+    @property
     @abstractmethod
-    def get_slm(self) -> AbstractSLM:
+    def slm(self) -> AbstractSLM:
         """Returns our small language model (SLM)"""
 
+    @slm.setter
     @abstractmethod
-    def get_adapter(self) -> AbstractAdapter:
+    def slm(self, slm: AbstractSLM):
+        """Sets our small language model (SLM)"""
+
+    @property
+    @abstractmethod
+    def adapter(self) -> AbstractAdapter:
         """Returns our adapter"""
 
+    @adapter.setter
     @abstractmethod
-    def get_backends(self) -> list[AbstractBackend]:
+    def adapter(self, adapter: AbstractAdapter):
+        """Sets our adapter"""
+
+    @property
+    @abstractmethod
+    def backends(self) -> list[AbstractBackend]:
         """Returns our backends"""
+
+    @backends.setter
+    @abstractmethod
+    def backends(self, backends: list[AbstractBackend]):
+        """Sets our backends"""
 
     @abstractmethod
     def api_call(self, function_name, *args, **kwargs):
@@ -32,16 +50,19 @@ class AbstractSSM(ABC):
     def reset_memory(self):
         """Resets the conversation memory of the SSM."""
 
+    @property
     @abstractmethod
-    def list_facts(self) -> list[str]:
+    def facts(self) -> list[str]:
         """Lists all known facts."""
 
+    @property
     @abstractmethod
-    def list_inferencers(self) -> list[str]:
+    def inferencers(self) -> list[str]:
         """Lists all known inferencers."""
 
+    @property
     @abstractmethod
-    def list_heuristics(self) -> list[str]:
+    def heuristics(self) -> list[str]:
         """Lists all known heuristics."""
 
     @abstractmethod
