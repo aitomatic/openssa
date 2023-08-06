@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, Mock
-from openssm.integrations.huggingface.slm import HuggingFaceBaseSLM, Falcon7bSLM
+from openssm.integrations.huggingface.slm import Falcon7bSLM, SLM as HuggingFaceBaseSLM
 from openssm import Config
 
 
@@ -30,7 +30,7 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
 class TestFalcon7bSLM(unittest.TestCase):
 
     # Test for initializing Falcon7bSLM
-    @patch('openssm.integrations.huggingface.slm.HuggingFaceBaseSLM.__init__')
+    @patch('openssm.integrations.huggingface.slm.SLM.__init__')
     def test_init(self, mock_super_init):
         # Initializing the instance of Falcon7bSLM
         instance = Falcon7bSLM()

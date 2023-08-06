@@ -22,8 +22,9 @@ ANSI_WHITE="\033[0;37m"
 
 
 export PYTHONPATH=$(ROOT_DIR):$(LIB_DIR)
-export PYTHONPATH=$(LIB_DIR)
-export PYTHONPATH=
+#export PYTHONPATH=$(ROOT_DIR)
+#export PYTHONPATH=$(LIB_DIR)
+#export PYTHONPATH=
 
 ########
 

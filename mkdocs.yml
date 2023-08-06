@@ -42,7 +42,7 @@ nav:
     - Using Makefile: dev/makefile_info.md
     - Other HowTos: dev/howtos.md
   - Integrations:
-    - LlamaIndex: openssm/integrations/llamaindex/README.md
+    - LlamaIndex: openssm/integrations/llama_index/README.md
     - Vectara: integrations/vectara.md
     - Lepton.AI: integrations/lepton_ai.md
   - Community:
@@ -65,6 +65,7 @@ nav:
           - base_ssm_builder: openssm/core/ssm/base_ssm_builder.md
           - base_ssm: openssm/core/ssm/base_ssm.md
           - abstract_ssm: openssm/core/ssm/abstract_ssm.md
+          - rag_ssm: openssm/core/ssm/rag_ssm.md
           - abstract_ssm_builder: openssm/core/ssm/abstract_ssm_builder.md
         - slm:
           - abstract_slm: openssm/core/slm/abstract_slm.md
@@ -74,6 +75,7 @@ nav:
             - sqlite_conversation_db: openssm/core/slm/memory/sqlite_conversation_db.md
         - backend:
           - abstract_backend: openssm/core/backend/abstract_backend.md
+          - rag_backend: openssm/core/backend/rag_backend.md
           - base_backend: openssm/core/backend/base_backend.md
           - text_backend: openssm/core/backend/text_backend.md
         - adapter:
@@ -85,6 +87,7 @@ nav:
       - composer: openssm/composer/EMPTY.md
       - utils:
         - config: openssm/utils/config.md
+        - prompts: openssm/utils/prompts.md
         - utils: openssm/utils/utils.md
         - logs: openssm/utils/logs.md
       - contrib:
@@ -95,9 +98,12 @@ nav:
           - japan_fish_kcp_ssm: openssm/contrib/ssms/japan_fish_kcp_ssm/EMPTY.md
         - apps: openssm/contrib/apps/EMPTY.md
       - integrations:
-        - llamaindex:
-          - backend: openssm/integrations/llamaindex/backend.md
-          - ssm: openssm/integrations/llamaindex/ssm.md
+        - lepton_ai:
+          - slm: openssm/integrations/lepton_ai/slm.md
+          - ssm: openssm/integrations/lepton_ai/ssm.md
+        - llama_index:
+          - backend: openssm/integrations/llama_index/backend.md
+          - ssm: openssm/integrations/llama_index/ssm.md
         - vectara: openssm/integrations/vectara/EMPTY.md
         - testing_tools: openssm/integrations/testing_tools/EMPTY.md
         - huggingface:

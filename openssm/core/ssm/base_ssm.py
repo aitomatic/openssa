@@ -16,91 +16,133 @@ class BaseSSM(AbstractSSM):
                  adapter: AbstractAdapter = None,
                  backends: list[AbstractBackend] = None,
                  name: str = None):
-        self.slm = slm or BaseSLM()
-        self.slm.set_adapter(adapter or BaseAdapter())
-        self.get_adapter().set_backends(backends or [BaseBackend()])
-        self.name = name or f"ssm-{uuid.uuid4().hex[:8]}"
+        self._slm = slm
+        self.slm.adapter = adapter
+        self.adapter.backends = backends
+        self._name = name
 
-    def get_slm(self) -> AbstractSLM:
+    @property
+    def slm(self) -> AbstractSLM:
         """
         Return the previous assigned SLM,
         or a default SLM if none was assigned.
         """
-        if self.slm is None:
-            self.slm = BaseSLM()
-        return self.slm
+        if self._slm is None:
+            self._slm = BaseSLM()
+        return self._slm
 
-    def get_adapter(self) -> AbstractAdapter:
+    @slm.setter
+    def slm(self, slm: AbstractSLM):
+        self._slm = slm
+
+    @property
+    def adapter(self) -> AbstractAdapter:
         """
         Return the previous assigned Adapter,
         or a default Adapter if none was assigned.
         """
-        if self.get_slm().get_adapter() is None:
-            self.get_slm().set_adapter(BaseAdapter())
-        return self.get_slm().get_adapter()
+        if self.slm.adapter is None:
+            self.slm.adapter = BaseAdapter()
+        return self.slm.adapter
 
-    def get_backends(self) -> list[AbstractBackend]:
+    @adapter.setter
+    def adapter(self, adapter: AbstractAdapter):
+        self.slm.adapter = adapter
+
+    @property
+    def backends(self) -> list[AbstractBackend]:
         """
         Return the previous assigned backends,
         or a default backend if none was assigned.
         """
-        if self.get_adapter().get_backends() is None:
-            self.get_adapter().set_backends([BaseBackend()])
-        return self.get_adapter().get_backends()
+        if self.adapter.backends is None:
+            self.adapter.backends = [BaseBackend()]
+        return self.adapter.backends
+
+    @backends.setter
+    def backends(self, backends: list[AbstractBackend]):
+        self.adapter.backends = backends
+
+    @property
+    def name(self) -> str:
+        """
+        Return the previous assigned name,
+        or a default name if none was assigned.
+        """
+        if self._name is None:
+            self._name = f"ssm-{uuid.uuid4().hex[:8]}"
+        return self._name
+
+    @name.setter
+    def name(self, name: str):
+        self._name = name
 
     @Utils.do_canonicalize_user_input_and_query_response('user_input')
     def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
-        return self.get_slm().discuss(user_input, conversation_id)
+        return self.slm.discuss(user_input, conversation_id)
 
     def api_call(self, function_name, *args, **kwargs):
-        return self.get_adapter().api_call(function_name, *args, **kwargs)
+        return self.adapter.api_call(function_name, *args, **kwargs)
 
     def reset_memory(self):
-        if self.get_slm() is not None:
-            self.get_slm().reset_memory()
+        if self.slm is not None:
+            self.slm.reset_memory()
 
-    def list_facts(self) -> list[str]:
-        return self.get_adapter().list_facts()
+    @property
+    def facts(self) -> list[str]:
+        """
+        Return the facts from the adapter.
+        """
+        return self.adapter.facts
 
-    def list_inferencers(self) -> list[str]:
-        return self.get_adapter().list_inferencers()
+    @property
+    def inferencers(self) -> list[str]:
+        """
+        Return the inferencers from the adapter.
+        """
+        return self.adapter.inferencers
 
-    def list_heuristics(self) -> list[str]:
-        return self.get_adapter().list_heuristics()
+    @property
+    def heuristics(self) -> list[str]:
+        """
+        Return the heuristics from the adapter.
+        """
+        return self.adapter.heuristics
 
     def select_facts(self, criteria: dict) -> list[str]:
-        return self.get_adapter().select_facts(criteria)
+        return self.adapter.select_facts(criteria)
 
     def select_inferencers(self, criteria: dict) -> list[str]:
-        return self.get_adapter().select_inferencers(criteria)
+        return self.adapter.select_inferencers(criteria)
 
     def select_heuristics(self, criteria: dict) -> list[str]:
-        return self.get_adapter().select_heuristics(criteria)
+        return self.adapter.select_heuristics(criteria)
 
     def infer(self, input_facts: dict) -> list[str]:
-        return self.get_adapter().infer(input_facts)
+        return self.adapter.infer(input_facts)
 
     def solve_problem(self, problem_description: list[str]) -> list[str]:
         pass
 
     def add_knowledge(self, knowledge_source_uri: str, knowledge_type=None):
         """Uploads a knowledge source (documents, text, files, etc.)"""
-        # self.get_adapter().add_knowledge(knowledge_source_uri, knowledge_type)
+        # self.adapter.add_knowledge(knowledge_source_uri, knowledge_type)
 
-    def _get_default_storage_dir(self) -> str:
+    @property
+    def _default_storage_dir(self) -> str:
         base_dir = os.environ.get("OPENSSM_STORAGE_DIR", ".openssm")
         return os.path.join(base_dir, self.name)
 
     def save(self, storage_dir: str = None):
         """Saves the SSM to the specified directory."""
-        storage_dir = storage_dir or self._get_default_storage_dir()
-        self.get_slm().save(storage_dir)
-        self.get_adapter().save(storage_dir)
-        self.get_adapter().enumerate_backends(lambda backend: backend.save(storage_dir))
+        storage_dir = storage_dir or self._default_storage_dir
+        self.slm.save(storage_dir)
+        self.adapter.save(storage_dir)
+        self.adapter.enumerate_backends(lambda backend: backend.save(storage_dir))
 
     def load(self, storage_dir: str = None):
         """Loads the SSM from the specified directory."""
-        storage_dir = storage_dir or self._get_default_storage_dir()
-        self.get_slm().load(storage_dir)
-        self.get_adapter().load(storage_dir)
-        self.get_adapter().enumerate_backends(lambda backend: backend.load(storage_dir))
+        storage_dir = storage_dir or self._default_storage_dir
+        self.slm.load(storage_dir)
+        self.adapter.load(storage_dir)
+        self.adapter.enumerate_backends(lambda backend: backend.load(storage_dir))

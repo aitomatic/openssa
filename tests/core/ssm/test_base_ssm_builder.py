@@ -17,8 +17,7 @@ class TestBaseSSMBuilder(unittest.TestCase):
         self.assertIsInstance(self.builder, BaseSSMBuilder)
 
     def test_get_ssm(self):
-        # pylint: disable=protected-access
-        self.assertIsInstance(self.builder._get_ssm(), BaseSSM)
+        self.assertIsInstance(self.builder.ssm, BaseSSM)
 
     def test_add_knowledge(self):
         self.builder.add_knowledge('knowledge', 'type')

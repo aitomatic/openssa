@@ -57,6 +57,9 @@ class Utils:
         """
         mlogger.debug("start: response: %s", response)
 
+        if response is None:
+            response = ""
+
         if not isinstance(response, list):
             response = [response]
 

@@ -30,7 +30,8 @@ serve:
 	cd $(SITE_DIR) && python3 -m http.server 8000
 
 deploy: build
-	cd .. && mkdocs gh-deploy
+	#cd .. && mkdocs gh-deploy
+	cd .. && ghp-import -p site/
 
 install-mkdocs:
 	pip install mkdocs
@@ -53,7 +54,7 @@ copy-files:
 	@echo $(ANSI_GREEN) ... Generating our index.md from ../README.md $(ANSI_NORMAL)
 	sed -e 's#\(\.\./\)*docs/#/#g' ../README.md > index.md
 	@echo $(ANSI_GREEN) ... Working on other files $(ANSI_NORMAL)
-	FILE=openssm/integrations/llamaindex/README.md ;\
+	FILE=openssm/integrations/llama_index/README.md ;\
 	sed -e 's#\.\./\(\.\./\)*docs/#/#g' $(PROJECT_DIR)/$$FILE > $(DOCS_DIR)/$$FILE
 
 move-files:

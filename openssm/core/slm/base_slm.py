@@ -1,8 +1,10 @@
 import json
+from openssm.core.adapter.base_adapter import BaseAdapter
 from openssm.core.slm.abstract_slm import AbstractSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.utils.utils import Utils
 from openssm.utils.logs import Logs
+from openssm.utils.prompts import Prompts
 
 
 class BaseSLM(AbstractSLM):
@@ -11,14 +13,36 @@ class BaseSLM(AbstractSLM):
         self.conversations is initialized as a dictionary of conversations,
         where each conversation is a list of user inputs and model replies.
         """
-        self.adapter = adapter
-        self.conversations = {}
+        self._adapter = adapter
+        self._conversations = {}
 
-    def get_adapter(self) -> AbstractAdapter:
-        return self.adapter
+    @property
+    def adapter(self) -> AbstractAdapter:
+        """
+        Return the previous assigned Adapter,
+        or a default Adapter if none was assigned.
+        """
+        if self._adapter is None:
+            self._adapter = BaseAdapter()
+        return self._adapter
 
-    def set_adapter(self, adapter: AbstractAdapter):
-        self.adapter = adapter
+    @adapter.setter
+    def adapter(self, adapter: AbstractAdapter):
+        self._adapter = adapter
+
+    @property
+    def conversations(self) -> dict:
+        """
+        Return the previous assigned conversations,
+        or an empty dictionary if none was assigned.
+        """
+        if self._conversations is None:
+            self._conversations = {}
+        return self._conversations
+
+    @conversations.setter
+    def conversations(self, conversations: dict):
+        self._conversations = conversations
 
     @Utils.do_canonicalize_user_input('user_input')
     def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
@@ -55,14 +79,8 @@ class BaseSLM(AbstractSLM):
     #
     @Logs.do_log_entry_and_exit()
     def _make_completion_prompt(self, conversation: list[dict]) -> str:
-        system = (
-            "Complete this conversation with the assistant’s response, up to 2000 words."
-            " Use this format: {\"role\": \"assistant\", \"content\": \"xxx\"},"
-            " where 'xxx' is the response."
-            " Make sure the entire response is valid JSON, xxx is only a string,"
-            " and no code of any kind, even if the prompt has code."
-            " Escape quotes with \\:\n"
-        )
+        # system = Prompts.get_module_prompt("openssm.core.slm.base_slm", "completion")
+        system = Prompts.get_module_prompt(__name__, "completion")
         system = {"role": "system", "content": system}
         conversation = [system] + conversation
         prompt = str(conversation)
@@ -138,4 +156,4 @@ class PassthroughSLM(BaseSLM):
         """
         Pass through user input to the adapter and return the replies
         """
-        return self.get_adapter().query(user_input, conversation_id)
+        return self.adapter.query(user_input, conversation_id)

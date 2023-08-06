@@ -11,12 +11,14 @@ class AbstractSLM(ABC):
     structured API interactions.
     """
 
+    @property
     @abstractmethod
-    def get_adapter(self) -> AbstractAdapter:
+    def adapter(self) -> AbstractAdapter:
         """Returns our adapter"""
 
+    @adapter.setter
     @abstractmethod
-    def set_adapter(self, adapter: AbstractAdapter):
+    def adapter(self, adapter: AbstractAdapter):
         """Sets our adapter"""
 
     @abstractmethod

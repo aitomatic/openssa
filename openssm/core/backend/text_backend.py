@@ -1,5 +1,6 @@
 from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 from openssm.core.backend.base_backend import BaseBackend
+from openssm.utils.logs import Logs
 
 
 class TextBackend(BaseBackend):
@@ -8,6 +9,7 @@ class TextBackend(BaseBackend):
         self.texts = []
 
     # pylint: disable=unused-argument
+    @Logs.do_log_entry_and_exit()
     def query(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
         responses = [{"response": text} for text in self.texts]
         return responses
