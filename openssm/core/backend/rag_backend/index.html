@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>rag_backend - OpenSSM Documentation</title>
+    <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet">
+    <link href="../../../../mkdocs.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "openssm.core.backend.rag_backend", url: "#_top", children: [
+          ]},
+          {title: "AbstractRAGBackend", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend", children: [
+              {title: "load()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.load" },
+              {title: "read_directory()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.read_directory" },
+              {title: "read_gdrive()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.read_gdrive" },
+              {title: "save()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.save" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../base_backend/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../base_backend/" class="btn btn-xs btn-link">
+        base_backend
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../abstract_backend/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../abstract_backend/" class="btn btn-xs btn-link">
+        abstract_backend
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <div class="doc doc-object doc-module">
+
+
+<a id="openssm.core.backend.rag_backend"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="openssm.core.backend.rag_backend.AbstractRAGBackend" class="doc doc-heading">
+          <code>AbstractRAGBackend</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="openssm.core.backend.base_backend.BaseBackend" href="../base_backend/#openssm.core.backend.base_backend.BaseBackend">BaseBackend</a></code>, <code><span title="abc.ABC">ABC</span></code></p>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.backend.rag_backend.AbstractRAGBackend.load" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Load the index from the storage directory.</p>
+<p>@param storage_dir: The path to the base storage directory.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.backend.rag_backend.AbstractRAGBackend.read_directory" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">read_directory</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">,</span> <span class="n">use_existing_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Read a directory of documents and create an index.</p>
+<p>@param storage_dir: The path to the base storage directory.
+@param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.</p>
+<p>Side effects:
+- If use_existing_index is True, the index will be automatically saved (for future use)</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.backend.rag_backend.AbstractRAGBackend.read_gdrive" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">read_gdrive</span><span class="p">(</span><span class="n">folder_id</span><span class="p">,</span> <span class="n">storage_dir</span><span class="p">,</span> <span class="n">use_existing_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Read a directory of documents from a Google Drive folder and create an index.
+Internally, the documents will first be downloaded to a local directory.</p>
+<p>@param folder_id: The ID of the Google Drive folder.
+@param storage_dir: The path to the base storage directory.
+@param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.</p>
+<p>Side effects:
+- If use_existing_index is True, the index will be automatically saved (for future use)</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.backend.rag_backend.AbstractRAGBackend.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Save the index to the storage directory.</p>
+<p>@param storage_dir: The path to the base storage directory.</p>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../base_backend/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../base_backend/" class="btn btn-xs btn-link">
+        base_backend
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../abstract_backend/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../abstract_backend/" class="btn btn-xs btn-link">
+        abstract_backend
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -40,17 +40,19 @@
           {title: "openssm.core.ssm.abstract_ssm", url: "#_top", children: [
           ]},
           {title: "AbstractSSM", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM", children: [
+              {title: "adapter", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.adapter" },
+              {title: "backends", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.backends" },
+              {title: "facts", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.facts" },
+              {title: "heuristics", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.heuristics" },
+              {title: "inferencers", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.inferencers" },
+              {title: "slm", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.slm" },
               {title: "add_knowledge()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.add_knowledge" },
               {title: "api_call()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.api_call" },
               {title: "discuss()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.discuss" },
-              {title: "get_adapter()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.get_adapter" },
-              {title: "get_backends()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.get_backends" },
-              {title: "get_slm()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.get_slm" },
               {title: "infer()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.infer" },
-              {title: "list_facts()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.list_facts" },
-              {title: "list_heuristics()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.list_heuristics" },
-              {title: "list_inferencers()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.list_inferencers" },
+              {title: "load()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.load" },
               {title: "reset_memory()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.reset_memory" },
+              {title: "save()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.save" },
               {title: "select_facts()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.select_facts" },
               {title: "select_heuristics()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.select_heuristics" },
               {title: "select_inferencers()", url: "#openssm.core.ssm.abstract_ssm.AbstractSSM.select_inferencers" },
@@ -81,20 +83,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-default pull-right">
+      <a href="../rag_ssm/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-link">
-        abstract_ssm_builder
+      <a href="../rag_ssm/" class="btn btn-xs btn-link">
+        rag_ssm
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../huggingface_ssm/" class="btn btn-xs btn-default pull-left">
+      <a href="../base_ssm/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../huggingface_ssm/" class="btn btn-xs btn-link">
-        huggingface_ssm
+        Previous</a><a href="../base_ssm/" class="btn btn-xs btn-link">
+        base_ssm
       </a>
     </div>
     
@@ -126,6 +128,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="openssm.core.ssm.abstract_ssm.AbstractSSM" class="doc doc-heading">
           <code>AbstractSSM</code>
 
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
 
 </h2>
 
@@ -148,6 +154,141 @@ Models (SSMs).</p>
 
 
 
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.adapter" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">adapter</span><span class="p">:</span> <span class="n">AbstractAdapter</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns our adapter</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.backends" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">backends</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">AbstractBackend</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns our backends</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.facts" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">facts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lists all known facts.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.heuristics" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">heuristics</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lists all known heuristics.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.inferencers" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">inferencers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lists all known inferencers.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.slm" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">slm</span><span class="p">:</span> <span class="n">AbstractSLM</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns our small language model (SLM)</p>
+  </div>
+
+</div>
 
 
 
@@ -203,7 +344,7 @@ Models (SSMs).</p>
 
 
 <h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.discuss" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">conversation_id</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -215,75 +356,6 @@ Models (SSMs).</p>
   <div class="doc doc-contents ">
   
       <p>Processes a natural language conversation input.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.get_adapter" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_adapter</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Returns our adapter</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.get_backends" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_backends</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Returns our backends</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.get_slm" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_slm</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Returns our small language model (SLM)</p>
 
   </div>
 
@@ -317,8 +389,8 @@ Models (SSMs).</p>
 
 
 
-<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.list_facts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_facts</span><span class="p">()</span></code>
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.load" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -329,53 +401,7 @@ Models (SSMs).</p>
 
   <div class="doc doc-contents ">
   
-      <p>Lists all known facts.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.list_heuristics" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_heuristics</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Lists all known heuristics.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.list_inferencers" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_inferencers</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Lists all known inferencers.</p>
+      <p>Loads the SSM from the specified directory.</p>
 
   </div>
 
@@ -399,6 +425,29 @@ Models (SSMs).</p>
   <div class="doc doc-contents ">
   
       <p>Resets the conversation memory of the SSM.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.ssm.abstract_ssm.AbstractSSM.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Saves the SSM to the specified directory.</p>
 
   </div>
 
@@ -524,20 +573,20 @@ Models (SSMs).</p>
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-default pull-right">
+      <a href="../rag_ssm/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-link">
-        abstract_ssm_builder
+      <a href="../rag_ssm/" class="btn btn-xs btn-link">
+        rag_ssm
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../huggingface_ssm/" class="btn btn-xs btn-default pull-left">
+      <a href="../base_ssm/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../huggingface_ssm/" class="btn btn-xs btn-link">
-        huggingface_ssm
+        Previous</a><a href="../base_ssm/" class="btn btn-xs btn-link">
+        base_ssm
       </a>
     </div>
     

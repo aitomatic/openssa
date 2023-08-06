@@ -11,7 +11,7 @@
     
     <link rel="shortcut icon" href="../../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>llama_index_ssm - OpenSSM Documentation</title>
+    <title>slm - OpenSSM Documentation</title>
     <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
     <link href="../../../../css/base.css" rel="stylesheet">
@@ -37,7 +37,11 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "openssm.core.ssm.llama_index_ssm", url: "#_top", children: [
+          {title: "openssm.integrations.huggingface.slm", url: "#_top", children: [
+          ]},
+          {title: "Falcon7bSLM", url: "#openssm.integrations.huggingface.slm.Falcon7bSLM", children: [
+          ]},
+          {title: "SLM", url: "#openssm.integrations.huggingface.slm.SLM", children: [
           ]},
         ];
 
@@ -64,20 +68,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../openai_ssm/" class="btn btn-xs btn-default pull-right">
+      <a href="../ssm/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../openai_ssm/" class="btn btn-xs btn-link">
-        openai_ssm
+      <a href="../ssm/" class="btn btn-xs btn-link">
+        ssm
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-default pull-left">
+      <a href="../../testing_tools/EMPTY/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../abstract_ssm_builder/" class="btn btn-xs btn-link">
-        abstract_ssm_builder
+        Previous</a><a href="../../testing_tools/EMPTY/" class="btn btn-xs btn-link">
+        testing_tools
       </a>
     </div>
     
@@ -88,8 +92,48 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <div class="doc doc-object doc-module">
 
 
-<a id="openssm.core.ssm.llama_index_ssm"></a>
+<a id="openssm.integrations.huggingface.slm"></a>
   <div class="doc doc-contents first">
+  
+      <p>This module contains the HuggingFaceBaseSLM class, and its subclasses,
+which are SLMs based on models from HugoingFace. The models may be
+served from HuggingFace's model hub, or a private internal server.</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="openssm.integrations.huggingface.slm.Falcon7bSLM" class="doc doc-heading">
+          <code>Falcon7bSLM</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="openssm.integrations.huggingface.slm.SLM" href="#openssm.integrations.huggingface.slm.SLM">SLM</a></code></p>
+
+  
+      <p>Falcon7bSLM is a wrapper for the Falcon7b model, which may be hosted
+remotely. If hosted remotely, the model_url and
+model_server_token must be provided through the Config class.</p>
+<p>FALCON7B_MODEL_URL should be set appropriately:
+- If hosted on HuggingFace, set to the model's URL on HuggingFace.
+- If hosted on AWS/GCP, set to the model's URL on there
+- If not supported, set to "NONE" (or not set at all)</p>
+
 
   
 
@@ -111,6 +155,60 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 </div>
 
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="openssm.integrations.huggingface.slm.SLM" class="doc doc-heading">
+          <code>SLM</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="openssm.core.slm.base_slm.BaseSLM" href="../../../core/slm/base_slm/#openssm.core.slm.base_slm.BaseSLM">BaseSLM</a></code></p>
+
+  
+      <p>This class is the base class for all SLMs based on models from
+HuggingFace. The models may be served from HuggingFace's model hub,
+or a private internal server.</p>
+<p>model_url should be set appropriately:
+- If hosted on HuggingFace, set to the model's URL on HuggingFace.
+- If hosted on AWS/GCP, set to the model's URL on there
+- If not supported, set to "NONE" (or not set at all)</p>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
   <br>
     
 
@@ -122,20 +220,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../openai_ssm/" class="btn btn-xs btn-default pull-right">
+      <a href="../ssm/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../openai_ssm/" class="btn btn-xs btn-link">
-        openai_ssm
+      <a href="../ssm/" class="btn btn-xs btn-link">
+        ssm
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-default pull-left">
+      <a href="../../testing_tools/EMPTY/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../abstract_ssm_builder/" class="btn btn-xs btn-link">
-        abstract_ssm_builder
+        Previous</a><a href="../../testing_tools/EMPTY/" class="btn btn-xs btn-link">
+        testing_tools
       </a>
     </div>
     

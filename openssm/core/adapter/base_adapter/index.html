@@ -40,18 +40,19 @@
           {title: "openssm.core.adapter.base_adapter", url: "#_top", children: [
           ]},
           {title: "BaseAdapter", url: "#openssm.core.adapter.base_adapter.BaseAdapter", children: [
+              {title: "backends", url: "#openssm.core.adapter.base_adapter.BaseAdapter.backends" },
+              {title: "facts", url: "#openssm.core.adapter.base_adapter.BaseAdapter.facts" },
+              {title: "heuristics", url: "#openssm.core.adapter.base_adapter.BaseAdapter.heuristics" },
+              {title: "inferencers", url: "#openssm.core.adapter.base_adapter.BaseAdapter.inferencers" },
               {title: "add_backend()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.add_backend" },
               {title: "add_fact()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.add_fact" },
               {title: "enumerate_backends()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.enumerate_backends" },
-              {title: "get_backends()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.get_backends" },
-              {title: "list_facts()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.list_facts" },
-              {title: "list_heuristics()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.list_heuristics" },
-              {title: "list_inferencers()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.list_inferencers" },
+              {title: "load()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.load" },
               {title: "query()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.query" },
+              {title: "save()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.save" },
               {title: "select_facts()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.select_facts" },
               {title: "select_heuristics()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.select_heuristics" },
               {title: "select_inferencers()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.select_inferencers" },
-              {title: "set_backends()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.set_backends" },
           ]},
         ];
 
@@ -145,6 +146,91 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.backends" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">backends</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">AbstractBackend</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Side effect: if no backends are set, a default TextBackend is created.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.facts" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">facts</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>List facts from all backends.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.heuristics" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">heuristics</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>List heuristics from all backends.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.inferencers" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">inferencers</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>List inferencers from all backends.</p>
+  </div>
+
+</div>
+
 
 
 
@@ -209,72 +295,15 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.get_backends" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_backends</span><span class="p">()</span></code>
+<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.load" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Side effect: if no backends are set, a default TextBackend is created.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.list_facts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_facts</span><span class="p">()</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>List facts from all backends.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.list_heuristics" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_heuristics</span><span class="p">()</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>List heuristics from all backends.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.list_inferencers" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_inferencers</span><span class="p">()</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>List inferencers from all backends.</p>
+      <p>Loads from the specified directory.</p>
 
   </div>
 
@@ -286,7 +315,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 <h3 id="openssm.core.adapter.base_adapter.BaseAdapter.query" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">conversation_id</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -296,6 +325,25 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
       <p>Queries the backends for a response to the user's input.
 :param user_query: The user's input.
 :return: The backend's response.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Saves to the specified directory.</p>
 
   </div>
 
@@ -353,25 +401,6 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="doc doc-contents ">
   
       <p>Select inferencers from all backends.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.set_backends" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_backends</span><span class="p">(</span><span class="n">backends</span><span class="p">)</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Set the list of backends.</p>
 
   </div>
 

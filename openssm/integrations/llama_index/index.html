@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>LlamaIndex - OpenSSM Documentation</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../assets/_mkdocstrings.css" rel="stylesheet">
+    <link href="../../../mkdocs.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "OpenSSM and LlamaIndex Integration", url: "#_top", children: [
+              {title: "Overview", url: "#overview" },
+              {title: "Integration Examples", url: "#integration-examples" },
+              {title: "Summary", url: "#summary" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../../integrations/vectara/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../../integrations/vectara/" class="btn btn-xs btn-link">
+        Vectara
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../../dev/howtos/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../../dev/howtos/" class="btn btn-xs btn-link">
+        Other HowTos
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="openssm-and-llamaindex-integration">OpenSSM and LlamaIndex Integration</h1>
+<p>This guide provides an overview and examples of how Small Specialist Models (SSMs, from the <a href="https://github.com/aitomatic/openssm">OpenSSM</a> project) integrate with LlamaIndex.</p>
+<h2 id="overview">Overview</h2>
+<p>SSMs are designed to be private, secure, domain-specific models (or AI agents) for industrial applications. LlamaIndex is a simple, flexible data framework for connecting custom data sources to LLMs.</p>
+<p>As such, there are two major integration patterns:</p>
+<ol>
+<li>
+<p>SSMs comprising LlamaIndex in its backend, for data access, e.g., via retrieval-augmented generation.</p>
+</li>
+<li>
+<p>SSMs serving as data sources or data agents for LlamaIndex, e.g., for multi-agent sourcing and planning.</p>
+</li>
+</ol>
+<p><img alt="Integration Patterns" src="/diagrams/ssm-llama-index-integration-patterns.drawio.png" /></p>
+<p>When integrated, both bring unique benefits that greatly enhance their collective capabilities. SSMs can leverage LlamaIndex to access specific, contextually relevant data, enhancing their specialist capabilities. Conversely, SSMs, as data sources for LlamaIndex, contribute their nuanced domain knowledge to a broader data ecosystem.</p>
+<p>Additionally, this integration promotes efficiency and customization, thanks to LlamaIndex’s flexibility in handling different data formats and SSMs’ computational advantages (e.g., from domain-specific, fine-tuned, distilled language models). The relationship between SSMs and LlamaIndex enriches the the LlamaIndex ecosystem and while helping to improve the robustness and reliability of SSMs.</p>
+<h2 id="integration-examples">Integration Examples</h2>
+<p>Here are some examples to get you started.</p>
+<h3 id="basic-integration">Basic Integration</h3>
+<p>OpenSSM makes using LlamaIndex as simple as 3 lines of code:</p>
+<pre><code class="language-python">from openssm import LlamaIndexSSM  # Instantiate a LlamaIndexSSM
+
+ssm = LlamaIndexSSM()
+ssm.read_directory('docs/ylecun')  # Read the docs for the first time
+
+ssm.discuss(&quot;What is the main point made by Yann LeCun?&quot;)  # Interact with the SSM
+</code></pre>
+<p>Persistence is just as straightforward:</p>
+<pre><code class="language-python">ssm.save('storage/ylecun')  # Save the index to storage
+
+ssm.load('storage/ylecun')  # Load the index from storage
+</code></pre>
+<h3 id="domain-specific-ssm">Domain-specific SSM</h3>
+<p>In the example below, we put a domain-specific SSM (an SLM or small language model trained on data related to Yann LeCun’s work) in front of LlamaIndex.</p>
+<pre><code class="language-python">from openssm import LlamaIndexSSM, FineTunedSLM
+
+slm = FineTunedSLM(...)  # Instantiate a domain-specific SLM
+ssm = LlamaIndexSSM(slm=slm) # Instantiate a LlamaIndexSSM with the SLM
+ssm.read_directory('docs/ylecun') # Read the docs
+
+response = ssm.discuss(&quot;What is the main point made by Yann LeCun?&quot;)
+</code></pre>
+<p>The response from this ssm would be much richer and more informed about Yann LeCun’s work than a generic SSM performing the same task.</p>
+<p>In all of the above examples, the SSM is using LlamaIndex as a <a href="/openssm/core/backend/abstract_backend"><code>Backend</code></a>, as shown below.</p>
+<p><img alt="Integration Architecture" src="/diagrams/ssm-llama-index-integration.drawio.png" /></p>
+<h3 id="advanced-use-cases-with-llamaindexs-data-agents">Advanced Use Cases with LlamaIndex’s Data Agents</h3>
+<p>LlamaIndex’s Data Agents, with their ability to dynamically read, write, search, and modify data across diverse sources, are a game changer for complex and automated tasks. Here, we cover three primary use cases:</p>
+<p>Here, we cover three primary use cases:</p>
+<h4 id="context-retrieval">Context Retrieval</h4>
+<p>An agent can retrieve context-specific data to inform responses. For example, in a financial setting:</p>
+<pre><code class="language-python">from openssm import LlamaIndexSSM, ContextRetrievalAgent
+
+context = &quot;&quot;&quot;
+XYZ company reported Q2 revenues of $4.5 billion, up 18% YoY. The rise is primarily due to a 32% growth in their cloud division.
+&quot;&quot;&quot;
+
+agent = ContextRetrievalAgent(context)
+ssm = LlamaIndexSSM(agents=[context_agent])
+ssm.read_directory('docs/financial_reports')
+
+response = ssm.discuss(&quot;What is the current financial performance of XYZ company?&quot;)
+</code></pre>
+<p>This agent can retrieve and analyze data from relevant financial reports, taking into account the context of recently reported Q2 revenues of $4.5 billion, to provide an informed response.</p>
+<h4 id="function-retrieval">Function Retrieval</h4>
+<p>In cases where the set of tools is extensive, the agent can retrieve the most relevant ones dynamically during query time. For example, in a data analysis setting:</p>
+<pre><code class="language-python">from openssm import LlamaIndexSSM, FunctionRetrievalAgent
+
+agent = FunctionRetrievalAgent('tools/data_tools')
+ssm = LlamaIndexSSM(agents=[tool_agent])
+ssm.read_directory('docs/financial_reports')
+
+response = ssm.discuss(&quot;Perform a correlation analysis on the financial reports&quot;)
+</code></pre>
+<p>This allows the SSM to retrieve and apply the most suitable data analysis tool based on the request.</p>
+<h4 id="query-planning">Query Planning</h4>
+<p>For more complex tasks, OpenSSM can be made capable of advanced query planning thanks to LlamaIndex. It could, for instance, plan and execute a series of queries to answer a question about a company’s revenue growth over specific months.</p>
+<pre><code class="language-python">from openssm import LlamaIndexSSM, QueryPlanningAgent
+
+query_plan_tool = QueryPlanTool.from_defaults(
+    query_engine_tools=[query_tool_sept, query_tool_june, query_tool_march]
+)
+
+agent = QueryPlanningAgent(tools=[query_tool_sept, query_tool_june, query_tool_march])
+ssm = LlamaIndexSSM(agents=[agent])
+ssm.read_directory('../tmp/docs/financial_reports')
+
+response = ssm.discuss(&quot;What was the revenue growth of XYZ company from March through September?&quot;)
+</code></pre>
+<p>This illustrates how an SSM with a Query Planning Agent can plan and execute a series of queries to answer a complex question accurately.</p>
+<h3 id="future-enhancements">Future Enhancements</h3>
+<p>As we continue to enhance the integration between OpenSSM and LlamaIndex, here are a few promising directions:</p>
+<ul>
+<li>
+<p><strong>SSMs as agents for LlamaIndex</strong>: We are exploring ways to make SSMs available as agents for LlamaIndex, allowing for more complex interactions between SSMs and LlamaIndex.</p>
+</li>
+<li>
+<p><strong>Expansion to More Domain Areas</strong>: We are planning to develop SSMs for more specific domains, such as healthcare, law, and finance, and integrate these with LlamaIndex.</p>
+</li>
+<li>
+<p><strong>Advanced Data Agents</strong>: The development and inclusion of more advanced and specialized data agents is a key part of our roadmap.</p>
+</li>
+<li>
+<p><strong>Inter-Agent Communication</strong>: We plan to introduce advanced inter-agent communication protocols, allowing for more complex interactions between SSMs.</p>
+</li>
+<li>
+<p><strong>Agent Collaboration on Complex Tasks</strong>: Building on the inter-agent communication, we are also exploring ways for multiple SSMs to collaborate on more complex tasks.</p>
+</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>This guide provides an introduction to integrating Small Specialist Models (SSMs) with LlamaIndex. The relationship between the two enhance the performance of individual SSMs, and significantly elevates the utility of the broader AI ecosystem. This is particularly needed for industrial companies, where the ability to leverage domain-specific knowledge is critical for success.</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../../../integrations/vectara/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../../../integrations/vectara/" class="btn btn-xs btn-link">
+        Vectara
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../../../dev/howtos/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../../../dev/howtos/" class="btn btn-xs btn-link">
+        Other HowTos
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

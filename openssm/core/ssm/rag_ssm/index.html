@@ -11,7 +11,7 @@
     
     <link rel="shortcut icon" href="../../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>abstract_inferencer - OpenSSM Documentation</title>
+    <title>rag_ssm - OpenSSM Documentation</title>
     <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
     <link href="../../../../css/base.css" rel="stylesheet">
@@ -37,11 +37,10 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "openssm.core.inferencer.abstract_inferencer", url: "#_top", children: [
+          {title: "openssm.core.ssm.rag_ssm", url: "#_top", children: [
           ]},
-          {title: "AbstractInferencer", url: "#openssm.core.inferencer.abstract_inferencer.AbstractInferencer", children: [
-              {title: "load()", url: "#openssm.core.inferencer.abstract_inferencer.AbstractInferencer.load" },
-              {title: "predict()", url: "#openssm.core.inferencer.abstract_inferencer.AbstractInferencer.predict" },
+          {title: "RAGSSM", url: "#openssm.core.ssm.rag_ssm.RAGSSM", children: [
+              {title: "discuss()", url: "#openssm.core.ssm.rag_ssm.RAGSSM.discuss" },
           ]},
         ];
 
@@ -68,20 +67,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../../composer/EMPTY/" class="btn btn-xs btn-default pull-right">
+      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../../composer/EMPTY/" class="btn btn-xs btn-link">
-        composer
+      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-link">
+        abstract_ssm_builder
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../base_inferencer/" class="btn btn-xs btn-default pull-left">
+      <a href="../abstract_ssm/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../base_inferencer/" class="btn btn-xs btn-link">
-        base_inferencer
+        Previous</a><a href="../abstract_ssm/" class="btn btn-xs btn-link">
+        abstract_ssm
       </a>
     </div>
     
@@ -92,10 +91,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <div class="doc doc-object doc-module">
 
 
-<a id="openssm.core.inferencer.abstract_inferencer"></a>
+<a id="openssm.core.ssm.rag_ssm"></a>
   <div class="doc doc-contents first">
-  
-      <p>AbstractInferencer is the base class for all inferencers.</p>
 
   
 
@@ -112,26 +109,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h2 id="openssm.core.inferencer.abstract_inferencer.AbstractInferencer" class="doc doc-heading">
-          <code>AbstractInferencer</code>
+<h2 id="openssm.core.ssm.rag_ssm.RAGSSM" class="doc doc-heading">
+          <code>RAGSSM</code>
 
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
-  </span>
 
 </h2>
 
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
-            Bases: <code><span title="abc.ABC">ABC</span></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="openssm.core.ssm.base_ssm.BaseSSM" href="../base_ssm/#openssm.core.ssm.base_ssm.BaseSSM">BaseSSM</a></code></p>
 
-  
-      <p>The AbstractInferencer serves as the base for all concrete Inferencer
-classes.  The most common inferencer is simply an ML model, but it
-could also be a rule-based system, a fuzzy logic system, or any other
-system that can infer a response from a given input.</p>
 
 
   
@@ -151,42 +139,23 @@ system that can infer a response from a given input.</p>
 
 
 
-<h3 id="openssm.core.inferencer.abstract_inferencer.AbstractInferencer.load" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
+<h3 id="openssm.core.ssm.rag_ssm.RAGSSM.discuss" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Loads the inferencer or its parameters from the given path.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.inferencer.abstract_inferencer.AbstractInferencer.predict" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Returns a prediction based on the given input.</p>
+      <p>An SSM with a RAG backend will reason between its own SLM’s knowledge
+and the knowledge of the RAG backend, before return the response.
+The process proceeds as follows:</p>
+<ol>
+<li>It first queries the RAG backend for a response.</li>
+<li>It then queries the SLM, providing the initial query, as well as the
+response from the RAG backend as additional context.</li>
+<li>The SLM’s response is then returned.</li>
+</ol>
 
   </div>
 
@@ -220,20 +189,20 @@ system that can infer a response from a given input.</p>
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../../composer/EMPTY/" class="btn btn-xs btn-default pull-right">
+      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../../composer/EMPTY/" class="btn btn-xs btn-link">
-        composer
+      <a href="../abstract_ssm_builder/" class="btn btn-xs btn-link">
+        abstract_ssm_builder
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../base_inferencer/" class="btn btn-xs btn-default pull-left">
+      <a href="../abstract_ssm/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../base_inferencer/" class="btn btn-xs btn-link">
-        base_inferencer
+        Previous</a><a href="../abstract_ssm/" class="btn btn-xs btn-link">
+        abstract_ssm
       </a>
     </div>
     

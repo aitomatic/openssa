@@ -40,16 +40,18 @@
           {title: "openssm.core.adapter.abstract_adapter", url: "#_top", children: [
           ]},
           {title: "AbstractAdapter", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter", children: [
+              {title: "backends", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.backends" },
+              {title: "facts", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.facts" },
+              {title: "heuristics", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.heuristics" },
+              {title: "inferencers", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.inferencers" },
               {title: "add_backend()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.add_backend" },
-              {title: "get_backends()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.get_backends" },
-              {title: "list_facts()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.list_facts" },
-              {title: "list_heuristics()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.list_heuristics" },
-              {title: "list_inferencers()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.list_inferencers" },
+              {title: "enumerate_backends()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.enumerate_backends" },
+              {title: "load()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.load" },
               {title: "query()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.query" },
+              {title: "save()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.save" },
               {title: "select_facts()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.select_facts" },
               {title: "select_heuristics()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.select_heuristics" },
               {title: "select_inferencers()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.select_inferencers" },
-              {title: "set_backends()", url: "#openssm.core.adapter.abstract_adapter.AbstractAdapter.set_backends" },
           ]},
         ];
 
@@ -121,6 +123,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="openssm.core.adapter.abstract_adapter.AbstractAdapter" class="doc doc-heading">
           <code>AbstractAdapter</code>
 
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
 
 </h2>
 
@@ -144,6 +150,95 @@ It provides an interface for interaction between the Small Language Model
 
 
 
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.backends" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">backends</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">AbstractBackend</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns our backends</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.facts" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">facts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lists all known facts.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.heuristics" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">heuristics</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lists all known heuristics.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.inferencers" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">inferencers</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lists all known inferencers.</p>
+  </div>
+
+</div>
 
 
 
@@ -175,19 +270,15 @@ It provides an interface for interaction between the Small Language Model
 
 
 
-<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.get_backends" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_backends</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
+<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.enumerate_backends" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">enumerate_backends</span><span class="p">(</span><span class="n">lambda_function</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Returns our backends</p>
+      <p>Enumerate backends and apply lambda function to each backend.</p>
 
   </div>
 
@@ -198,8 +289,8 @@ It provides an interface for interaction between the Small Language Model
 
 
 
-<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.list_facts" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_facts</span><span class="p">()</span></code>
+<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.load" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -210,53 +301,7 @@ It provides an interface for interaction between the Small Language Model
 
   <div class="doc doc-contents ">
   
-      <p>Lists all known facts.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.list_heuristics" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_heuristics</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Lists all known heuristics.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.list_inferencers" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">list_inferencers</span><span class="p">()</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Lists all known inferencers.</p>
+      <p>Loads from the specified directory.</p>
 
   </div>
 
@@ -268,7 +313,7 @@ It provides an interface for interaction between the Small Language Model
 
 
 <h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.query" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">conversation_id</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -282,6 +327,29 @@ It provides an interface for interaction between the Small Language Model
       <p>Queries the backends for a response to the user's input.
 :param user_query: The user's input.
 :return: The backend's response.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Saves to the specified directory.</p>
 
   </div>
 
@@ -351,29 +419,6 @@ It provides an interface for interaction between the Small Language Model
   <div class="doc doc-contents ">
   
       <p>Selects or searches for inferencers based on provided criteria.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.adapter.abstract_adapter.AbstractAdapter.set_backends" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">set_backends</span><span class="p">(</span><span class="n">backends</span><span class="p">)</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
-  </span>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Sets our backends</p>
 
   </div>
 

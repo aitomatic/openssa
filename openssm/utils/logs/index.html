@@ -11,7 +11,7 @@
     
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>logging - OpenSSM Documentation</title>
+    <title>logs - OpenSSM Documentation</title>
     <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
     <link href="../../../css/base.css" rel="stylesheet">
@@ -37,12 +37,13 @@
       var is_top_frame = false;
         
         var pageToc = [
-          {title: "openssm.utils.logging", url: "#_top", children: [
+          {title: "openssm.utils.logs", url: "#_top", children: [
           ]},
-          {title: "Logging", url: "#openssm.utils.logging.Logging", children: [
-              {title: "do_log_entry()", url: "#openssm.utils.logging.Logging.do_log_entry" },
-              {title: "do_log_entry_and_exit()", url: "#openssm.utils.logging.Logging.do_log_entry_and_exit" },
-              {title: "do_log_exit()", url: "#openssm.utils.logging.Logging.do_log_exit" },
+          {title: "Logs", url: "#openssm.utils.logs.Logs", children: [
+              {title: "do_log_entry()", url: "#openssm.utils.logs.Logs.do_log_entry" },
+              {title: "do_log_entry_and_exit()", url: "#openssm.utils.logs.Logs.do_log_entry_and_exit" },
+              {title: "do_log_exit()", url: "#openssm.utils.logs.Logs.do_log_exit" },
+              {title: "get_logger()", url: "#openssm.utils.logs.Logs.get_logger" },
           ]},
         ];
 
@@ -69,20 +70,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../config/" class="btn btn-xs btn-default pull-right">
+      <a href="../../contrib/ssms/mri_operator_ssm/EMPTY/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../config/" class="btn btn-xs btn-link">
-        config
+      <a href="../../contrib/ssms/mri_operator_ssm/EMPTY/" class="btn btn-xs btn-link">
+        mri_operator_ssm
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../../composer/EMPTY/" class="btn btn-xs btn-default pull-left">
+      <a href="../utils/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../composer/EMPTY/" class="btn btn-xs btn-link">
-        composer
+        Previous</a><a href="../utils/" class="btn btn-xs btn-link">
+        utils
       </a>
     </div>
     
@@ -93,7 +94,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <div class="doc doc-object doc-module">
 
 
-<a id="openssm.utils.logging"></a>
+<a id="openssm.utils.logs"></a>
   <div class="doc doc-contents first">
 
   
@@ -111,8 +112,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h2 id="openssm.utils.logging.Logging" class="doc doc-heading">
-          <code>Logging</code>
+<h2 id="openssm.utils.logs.Logs" class="doc doc-heading">
+          <code>Logs</code>
 
 
 </h2>
@@ -139,7 +140,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h3 id="openssm.utils.logging.Logging.do_log_entry" class="doc doc-heading">
+<h3 id="openssm.utils.logs.Logs.do_log_entry" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">do_log_entry</span><span class="p">(</span><span class="o">*</span><span class="n">extra_args</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
@@ -162,8 +163,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h3 id="openssm.utils.logging.Logging.do_log_entry_and_exit" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">do_log_entry_and_exit</span><span class="p">(</span><span class="o">*</span><span class="n">extra_args</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">log_entry</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_exit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+<h3 id="openssm.utils.logs.Logs.do_log_entry_and_exit" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">do_log_entry_and_exit</span><span class="p">(</span><span class="o">*</span><span class="n">extra_args</span><span class="p">,</span> <span class="n">the_logger</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">log_entry</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_exit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
@@ -185,7 +186,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h3 id="openssm.utils.logging.Logging.do_log_exit" class="doc doc-heading">
+<h3 id="openssm.utils.logs.Logs.do_log_exit" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">do_log_exit</span><span class="p">(</span><span class="o">*</span><span class="n">extra_args</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
@@ -198,6 +199,29 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="doc doc-contents ">
   
       <p>Decorator to log function exit.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.utils.logs.Logs.get_logger" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_logger</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Gets a new/existing logger with the given name and log level</p>
 
   </div>
 
@@ -231,20 +255,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../config/" class="btn btn-xs btn-default pull-right">
+      <a href="../../contrib/ssms/mri_operator_ssm/EMPTY/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../config/" class="btn btn-xs btn-link">
-        config
+      <a href="../../contrib/ssms/mri_operator_ssm/EMPTY/" class="btn btn-xs btn-link">
+        mri_operator_ssm
       </a>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../../composer/EMPTY/" class="btn btn-xs btn-default pull-left">
+      <a href="../utils/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../../composer/EMPTY/" class="btn btn-xs btn-link">
-        composer
+        Previous</a><a href="../utils/" class="btn btn-xs btn-link">
+        utils
       </a>
     </div>
     

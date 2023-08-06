@@ -40,8 +40,12 @@
           {title: "openssm.core.slm.base_slm", url: "#_top", children: [
           ]},
           {title: "BaseSLM", url: "#openssm.core.slm.base_slm.BaseSLM", children: [
+              {title: "adapter", url: "#openssm.core.slm.base_slm.BaseSLM.adapter" },
+              {title: "conversations", url: "#openssm.core.slm.base_slm.BaseSLM.conversations" },
               {title: "__init__()", url: "#openssm.core.slm.base_slm.BaseSLM.__init__" },
               {title: "discuss()", url: "#openssm.core.slm.base_slm.BaseSLM.discuss" },
+              {title: "load()", url: "#openssm.core.slm.base_slm.BaseSLM.load" },
+              {title: "save()", url: "#openssm.core.slm.base_slm.BaseSLM.save" },
           ]},
           {title: "PassthroughSLM", url: "#openssm.core.slm.base_slm.PassthroughSLM", children: [
               {title: "discuss()", url: "#openssm.core.slm.base_slm.PassthroughSLM.discuss" },
@@ -71,12 +75,12 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../huggingface_slm/" class="btn btn-xs btn-default pull-right">
+      <a href="../memory/conversation_db/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../huggingface_slm/" class="btn btn-xs btn-link">
-        huggingface_slm
+      <a href="../memory/conversation_db/" class="btn btn-xs btn-link">
+        conversation_db
       </a>
     </div>
     
@@ -136,6 +140,52 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.slm.base_slm.BaseSLM.adapter" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">adapter</span><span class="p">:</span> <span class="n">AbstractAdapter</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned Adapter,
+or a default Adapter if none was assigned.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.slm.base_slm.BaseSLM.conversations" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">conversations</span><span class="p">:</span> <span class="nb">dict</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned conversations,
+or an empty dictionary if none was assigned.</p>
+  </div>
+
+</div>
+
 
 
 
@@ -164,7 +214,7 @@ where each conversation is a list of user inputs and model replies.</p>
 
 
 <h3 id="openssm.core.slm.base_slm.BaseSLM.discuss" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">conversation_id</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -172,6 +222,44 @@ where each conversation is a list of user inputs and model replies.</p>
   <div class="doc doc-contents ">
   
       <p>Send user input to our language model and return the replies</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.slm.base_slm.BaseSLM.load" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Loads from the specified directory.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.slm.base_slm.BaseSLM.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Saves to the specified directory.</p>
 
   </div>
 
@@ -223,7 +311,7 @@ all queries to the adapter.</p>
 
 
 <h3 id="openssm.core.slm.base_slm.PassthroughSLM.discuss" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">conversation_id</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -264,12 +352,12 @@ all queries to the adapter.</p>
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../huggingface_slm/" class="btn btn-xs btn-default pull-right">
+      <a href="../memory/conversation_db/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../huggingface_slm/" class="btn btn-xs btn-link">
-        huggingface_slm
+      <a href="../memory/conversation_db/" class="btn btn-xs btn-link">
+        conversation_db
       </a>
     </div>
     

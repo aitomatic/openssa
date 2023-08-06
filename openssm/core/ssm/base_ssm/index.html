@@ -40,10 +40,16 @@
           {title: "openssm.core.ssm.base_ssm", url: "#_top", children: [
           ]},
           {title: "BaseSSM", url: "#openssm.core.ssm.base_ssm.BaseSSM", children: [
+              {title: "adapter", url: "#openssm.core.ssm.base_ssm.BaseSSM.adapter" },
+              {title: "backends", url: "#openssm.core.ssm.base_ssm.BaseSSM.backends" },
+              {title: "facts", url: "#openssm.core.ssm.base_ssm.BaseSSM.facts" },
+              {title: "heuristics", url: "#openssm.core.ssm.base_ssm.BaseSSM.heuristics" },
+              {title: "inferencers", url: "#openssm.core.ssm.base_ssm.BaseSSM.inferencers" },
+              {title: "name", url: "#openssm.core.ssm.base_ssm.BaseSSM.name" },
+              {title: "slm", url: "#openssm.core.ssm.base_ssm.BaseSSM.slm" },
               {title: "add_knowledge()", url: "#openssm.core.ssm.base_ssm.BaseSSM.add_knowledge" },
-              {title: "get_adapter()", url: "#openssm.core.ssm.base_ssm.BaseSSM.get_adapter" },
-              {title: "get_backends()", url: "#openssm.core.ssm.base_ssm.BaseSSM.get_backends" },
-              {title: "get_slm()", url: "#openssm.core.ssm.base_ssm.BaseSSM.get_slm" },
+              {title: "load()", url: "#openssm.core.ssm.base_ssm.BaseSSM.load" },
+              {title: "save()", url: "#openssm.core.ssm.base_ssm.BaseSSM.save" },
           ]},
         ];
 
@@ -70,12 +76,12 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../huggingface_ssm/" class="btn btn-xs btn-default pull-right">
+      <a href="../abstract_ssm/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../huggingface_ssm/" class="btn btn-xs btn-link">
-        huggingface_ssm
+      <a href="../abstract_ssm/" class="btn btn-xs btn-link">
+        abstract_ssm
       </a>
     </div>
     
@@ -135,6 +141,161 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.adapter" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">adapter</span><span class="p">:</span> <span class="n">AbstractAdapter</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned Adapter,
+or a default Adapter if none was assigned.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.backends" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">backends</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">AbstractBackend</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned backends,
+or a default backend if none was assigned.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.facts" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">facts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the facts from the adapter.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.heuristics" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">heuristics</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the heuristics from the adapter.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.inferencers" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">inferencers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the inferencers from the adapter.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.name" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned name,
+or a default name if none was assigned.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.slm" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">slm</span><span class="p">:</span> <span class="n">AbstractSLM</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned SLM,
+or a default SLM if none was assigned.</p>
+  </div>
+
+</div>
+
 
 
 
@@ -161,16 +322,15 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h3 id="openssm.core.ssm.base_ssm.BaseSSM.get_adapter" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_adapter</span><span class="p">()</span></code>
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.load" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">storage_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Return the previous assigned Adapter,
-or a default Adapter if none was assigned.</p>
+      <p>Loads the SSM from the specified directory.</p>
 
   </div>
 
@@ -181,36 +341,15 @@ or a default Adapter if none was assigned.</p>
 
 
 
-<h3 id="openssm.core.ssm.base_ssm.BaseSSM.get_backends" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_backends</span><span class="p">()</span></code>
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="n">storage_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Return the previous assigned backends,
-or a default backend if none was assigned.</p>
-
-  </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="openssm.core.ssm.base_ssm.BaseSSM.get_slm" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_slm</span><span class="p">()</span></code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Return the previous assigned SLM,
-or a default SLM if none was assigned.</p>
+      <p>Saves the SSM to the specified directory.</p>
 
   </div>
 
@@ -244,12 +383,12 @@ or a default SLM if none was assigned.</p>
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../huggingface_ssm/" class="btn btn-xs btn-default pull-right">
+      <a href="../abstract_ssm/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../huggingface_ssm/" class="btn btn-xs btn-link">
-        huggingface_ssm
+      <a href="../abstract_ssm/" class="btn btn-xs btn-link">
+        abstract_ssm
       </a>
     </div>
     

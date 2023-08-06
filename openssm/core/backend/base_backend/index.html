@@ -40,8 +40,11 @@
           {title: "openssm.core.backend.base_backend", url: "#_top", children: [
           ]},
           {title: "BaseBackend", url: "#openssm.core.backend.base_backend.BaseBackend", children: [
+              {title: "load()", url: "#openssm.core.backend.base_backend.BaseBackend.load" },
               {title: "load_all()", url: "#openssm.core.backend.base_backend.BaseBackend.load_all" },
               {title: "query()", url: "#openssm.core.backend.base_backend.BaseBackend.query" },
+              {title: "query2()", url: "#openssm.core.backend.base_backend.BaseBackend.query2" },
+              {title: "save()", url: "#openssm.core.backend.base_backend.BaseBackend.save" },
               {title: "select_facts()", url: "#openssm.core.backend.base_backend.BaseBackend.select_facts" },
               {title: "select_heuristics()", url: "#openssm.core.backend.base_backend.BaseBackend.select_heuristics" },
               {title: "select_inferencers()", url: "#openssm.core.backend.base_backend.BaseBackend.select_inferencers" },
@@ -81,10 +84,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     </div>
     
     <div class="wm-article-nav">
-      <a href="../llama_index_backend/" class="btn btn-xs btn-default pull-left">
+      <a href="../rag_backend/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../llama_index_backend/" class="btn btn-xs btn-link">
-        llama_index_backend
+        Previous</a><a href="../rag_backend/" class="btn btn-xs btn-link">
+        rag_backend
       </a>
     </div>
     
@@ -143,6 +146,25 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
+<h3 id="openssm.core.backend.base_backend.BaseBackend.load" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">load</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Loads from the specified directory.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
 <h3 id="openssm.core.backend.base_backend.BaseBackend.load_all" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">load_all</span><span class="p">()</span></code>
 
@@ -165,17 +187,53 @@ through the add_* methods.</p>
 
 
 <h3 id="openssm.core.backend.base_backend.BaseBackend.query" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">conversation_id</span><span class="p">,</span> <span class="n">user_input</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>The base backend does not query anything.
-Subclasses should query the backend with the user input,
-and return a tuple of (a) the response string, and
-(b) the more informative response object, if any.</p>
+      <p>The base backend merely calls query2 and returns the first element of the tuple.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.backend.base_backend.BaseBackend.query2" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">query2</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Query the index with the user input.</p>
+<p>Returns a tuple comprising (a) the response dicts and (b) the response object, if any.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.backend.base_backend.BaseBackend.save" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">save</span><span class="p">(</span><span class="n">storage_dir</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Saves to the specified directory.</p>
 
   </div>
 
@@ -276,10 +334,10 @@ and return a tuple of (a) the response string, and
     </div>
     
     <div class="wm-article-nav">
-      <a href="../llama_index_backend/" class="btn btn-xs btn-default pull-left">
+      <a href="../rag_backend/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../llama_index_backend/" class="btn btn-xs btn-link">
-        llama_index_backend
+        Previous</a><a href="../rag_backend/" class="btn btn-xs btn-link">
+        rag_backend
       </a>
     </div>
     

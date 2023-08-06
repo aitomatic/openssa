@@ -66,11 +66,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../integrations/llama_index/" class="btn btn-xs btn-default pull-right">
+      <a href="../../openssm/integrations/llama_index/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../integrations/llama_index/" class="btn btn-xs btn-link">
+      <a href="../../openssm/integrations/llama_index/" class="btn btn-xs btn-link">
         LlamaIndex
       </a>
     </div>
@@ -91,37 +91,35 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <h2 id="observability">Observability</h2>
 <p><code>OpenSSM</code> has built-in observability and tracing.</p>
 <h2 id="logging">Logging</h2>
-<p>Users of <code>OpenSSM</code> should create their own loggers:</p>
-<pre><code class="language-python">import logging
-from OpenSSM import Logging
-logger = Logging.get_logger(app_name, logging.INFO)
-logger.warn(&quot;xyz = %s&quot;, xyz)
+<p>Users of <code>OpenSSM</code> can use the <code>logger</code> object provided by the <code>OpenSSM</code> package:</p>
+<pre><code class="language-python">from OpenSSM import logger
+logger.warning(&quot;xyz = %s&quot;, xyz)
 </code></pre>
-<p>If you are an <code>OpenSSM</code> contributor, you may use the default logger:</p>
-<pre><code class="language-python">from openssm import logger
-logger.warn(&quot;xyz = %s&quot;, xyz)
+<p>If you are an <code>OpenSSM</code> contributor, you may use the <code>openssm</code> logger:</p>
+<pre><code class="language-python">from openssm import mlogger
+mlogger.warning(&quot;xyz = %s&quot;, xyz)
 </code></pre>
 <h3 id="automatic-function-logging">Automatic function logging</h3>
 <p>There are some useful decorators for automatically logging function entry and exit.</p>
-<pre><code class="language-python">from openssm import Logging
+<pre><code class="language-python">from openssm import Logs
 
-@Logging.do_log_entry_and_exit  # upon both entry and exit
+@Logs.do_log_entry_and_exit()  # upon both entry and exit
 def func(param1, param2):
 
-@Logging.do_log_entry  # only upon entry
+@Logs.do_log_entry()  # only upon entry
 
-@Logging.do_log_exit   # only upon exit
+@Logs.do_log_exit()   # only upon exit
 </code></pre>
 <p>The above will automatically log function entry with its parameters, and function exit with its return value.</p>
 <p>If you want to use your own logger with its own name, use</p>
-<pre><code class="language-python">from openssm import Logging, logger
-logger = Logging.get_logger(app_name, logging.INFO)
+<pre><code class="language-python">from openssm import Logs
+my_logger = Logs.get_logger(app_name, logger.INFO)
 
-@Logging.do_log_entry_and_exit(logger=logger)
+@Logs.do_log_entry_and_exit(logger=my_logger)
 def func(param1, param2):
 </code></pre>
 <p>Sometimes it is useful to be able to specify additional parameters to be logged:</p>
-<pre><code class="language-python">@Logging.do_log_entry_and_exit({'request': request})
+<pre><code class="language-python">@Logs.do_log_entry_and_exit({'request': request})
 </code></pre>
 
   <br>
@@ -135,11 +133,11 @@ def func(param1, param2):
   <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
     <div class="wm-article-nav pull-right">
-      <a href="../../integrations/llama_index/" class="btn btn-xs btn-default pull-right">
+      <a href="../../openssm/integrations/llama_index/" class="btn btn-xs btn-default pull-right">
         Next
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <a href="../../integrations/llama_index/" class="btn btn-xs btn-link">
+      <a href="../../openssm/integrations/llama_index/" class="btn btn-xs btn-link">
         LlamaIndex
       </a>
     </div>
