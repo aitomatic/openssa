@@ -1,141 +1,125 @@
+import unittest
 from unittest.mock import MagicMock
-import pytest
-from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.ssm.base_ssm import BaseSSM
-from openssm.core.adapter.base_adapter import BaseAdapter
-from openssm.core.backend.base_backend import BaseBackend
+from openssm.core.slm.abstract_slm import AbstractSLM
+from openssm.core.adapter.abstract_adapter import AbstractAdapter
+from openssm.core.backend.abstract_backend import AbstractBackend
 
+class TestBaseSSM(unittest.TestCase):
 
-# Mocking the dependencies
-class MockSLM(BaseSLM):
-    # pylint: disable=unused-argument
-    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
-        return "Mock discuss response"
+    def setUp(self):
+        self.base_ssm = BaseSSM()
 
-    def reset_memory(self):
-        pass
+    def test_conversations(self):
+        self.assertEqual(self.base_ssm.conversations, {})
+        conversation_id = "conv_id_1"
+        conversation_data = [{'role': 'user', 'content': 'message1'}, {'role': 'assistant', 'content': 'message2'}]
+        # pylint: disable=unsupported-assignment-operation
+        self.base_ssm.conversations[conversation_id] = conversation_data
+        # pylint: disable=unsubscriptable-object
+        self.assertEqual(self.base_ssm.conversations[conversation_id], conversation_data)
+        self.assertIsInstance(self.base_ssm.conversations, dict)
+        for conversation in self.base_ssm.conversations.values():
+            self.assertIsInstance(conversation, list)
+            for item in conversation:
+                self.assertIn('role', item)
+                self.assertIn('content', item)
+                self.assertIn(item['role'], ['system', 'user', 'assistant'])
 
+    def test_slm(self):
+        self.assertIsInstance(self.base_ssm.slm, AbstractSLM)
 
-class MockAdapter(BaseAdapter):
-    def api_call(self, function_name, *args, **kwargs):
-        assert function_name is not None
-        assert args is not None
-        assert kwargs is not None
-        return "Mock api_call response"
+    def test_adapter(self):
+        self.assertIsInstance(self.base_ssm.adapter, AbstractAdapter)
 
-    @property
-    def facts(self):
-        return ["Fact 1", "Fact 2"]
+    def test_backends(self):
+        self.assertIsInstance(self.base_ssm.backends, list)
+        for backend in self.base_ssm.backends:
+            self.assertIsInstance(backend, AbstractBackend)
 
-    @property
-    def inferencers(self):
-        return ["Inferencer 1", "Inferencer 2"]
+    def test_name(self):
+        self.assertIsInstance(self.base_ssm.name, str)
 
-    @property
-    def heuristics(self):
-        return ["Heuristic 1", "Heuristic 2"]
+    def test_discuss(self):
+        user_input = [{'role': 'user', 'content': 'message1'}]
+        conversation_id = "conv_id_1"
+        self.base_ssm.custom_discuss = MagicMock(return_value=(None, user_input))
+        self.base_ssm.update_conversation = MagicMock()
+        # pylint: disable=unused-variable
+        # flake8: noqa
+        result = self.base_ssm.discuss(user_input, conversation_id)
+        self.base_ssm.custom_discuss.assert_called_with(user_input, self.base_ssm.get_conversation(conversation_id))
+        self.base_ssm.update_conversation.assert_called_with(user_input, None, conversation_id)
 
-    def select_facts(self, criteria):
-        assert criteria is not None
-        return ["Fact 1"]
+    def test_get_conversation(self):
+        conversation_id = "conv_id_1"
+        self.assertEqual(self.base_ssm.get_conversation(conversation_id), [])
+        # pylint: disable=unsupported-assignment-operation
+        self.base_ssm.conversations[conversation_id] = [{'role': 'user', 'content': 'message'}]
+        self.assertEqual(self.base_ssm.get_conversation(conversation_id), [{'role': 'user', 'content': 'message'}])
 
-    def select_inferencers(self, criteria):
-        assert criteria is not None
-        return ["Inferencer 1"]
+    def test_api_call(self):
+        self.base_ssm.adapter.api_call = MagicMock(return_value='result')
+        self.assertEqual(self.base_ssm.api_call('function_name', 'arg1'), 'result')
 
-    def select_heuristics(self, criteria):
-        assert criteria is not None
-        return ["Heuristic 1"]
+    def test_facts(self):
+        with self.assertRaises(AttributeError):
+            self.base_ssm.adapter.facts = ['fact1']
 
-    def infer(self, criteria):
-        assert criteria is not None
-        return ["Inference Result"]
+    def test_inferencers(self):
+        with self.assertRaises(AttributeError):
+            self.base_ssm.adapter.inferencers = ['inferencer1']
 
+    def test_heuristics(self):
+        with self.assertRaises(AttributeError):
+            self.base_ssm.adapter.heuristics = ['heuristic1']
 
-class MockBackend(BaseBackend):
-    def dbprocess(self, conversation_id, user_input):
-        assert conversation_id is not None
-        assert user_input is not None
-        return "Mock process response"
+    def test_select_methods(self):
+        self.base_ssm.adapter.select_facts = MagicMock(return_value=['fact1'])
+        self.base_ssm.adapter.select_inferencers = MagicMock(return_value=['inferencer1'])
+        self.base_ssm.adapter.select_heuristics = MagicMock(return_value=['heuristic1'])
+        self.assertEqual(self.base_ssm.select_facts({}), ['fact1'])
+        self.assertEqual(self.base_ssm.select_inferencers({}), ['inferencer1'])
+        self.assertEqual(self.base_ssm.select_heuristics({}), ['heuristic1'])
 
+    def test_infer(self):
+        self.base_ssm.adapter.infer = MagicMock(return_value=['result'])
+        self.assertEqual(self.base_ssm.infer({}), ['result'])
 
-# Test setup
-@pytest.fixture(autouse=True)
-def setup_function():
-    pytest.slm = MockSLM()
-    pytest.adapter = MockAdapter()
-    pytest.backends = [MockBackend(), MockBackend()]
+    def test_storage_dir(self):
+        # pylint: disable=protected-access
+        self.base_ssm._storage_dir = "storage_dir"
+        self.assertEqual(self.base_ssm.storage_dir, "storage_dir")
 
+    def test_save(self):
+        self.base_ssm.slm.save = MagicMock()
+        self.base_ssm.adapter.save = MagicMock()
+        self.base_ssm.adapter.enumerate_backends = MagicMock()
+        self.base_ssm.save()
+        self.base_ssm.slm.save.assert_called()
+        self.base_ssm.adapter.save.assert_called()
+        self.base_ssm.adapter.enumerate_backends.assert_called()
 
-# Test cases
-def test_slm():
-    ssm = BaseSSM(pytest.slm)
-    assert ssm.slm == pytest.slm
+    def test_load(self):
+        self.base_ssm.slm.load = MagicMock()
+        self.base_ssm.adapter.load = MagicMock()
+        self.base_ssm.adapter.enumerate_backends = MagicMock()
+        self.base_ssm.load()
+        self.base_ssm.slm.load.assert_called()
+        self.base_ssm.adapter.load.assert_called()
+        self.base_ssm.adapter.enumerate_backends.assert_called()
 
+    def test_custom_discuss(self):
+        user_input = [{'role': 'user', 'content': 'message'}]
+        reply = {'role': 'assistant', 'content': 'reply'}
+        self.base_ssm.slm.do_discuss = MagicMock(return_value=reply)
+        response, actual_input = self.base_ssm.custom_discuss(user_input, [])
+        self.assertEqual(response, reply)
+        self.assertEqual(actual_input, user_input)
 
-def test_adapter():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.adapter == pytest.adapter
-
-
-def test_backends():
-    ssm = BaseSSM(pytest.slm, pytest.adapter, pytest.backends)
-    assert ssm.backends == pytest.backends
-
-
-def test_discuss():
-    ssm = BaseSSM(pytest.slm)
-    assert ssm.discuss("conversation_1", "Hello") == [{"role": "assistant", "content": "Mock discuss response"}]
-
-
-def test_reset_memory():
-    # We're using MagicMock here to be able to use .assert_called()
-    pytest.slm.reset_memory = MagicMock()
-    ssm = BaseSSM(pytest.slm)
-    ssm.reset_memory()
-    # Check that reset_memory was called on the slm
-    pytest.slm.reset_memory.assert_called()
-
-
-def test_list_facts():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.facts == ["Fact 1", "Fact 2"]
-
-
-def test_list_inferencers():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.inferencers == ["Inferencer 1", "Inferencer 2"]
-
-
-def test_list_heuristics():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.heuristics == ["Heuristic 1", "Heuristic 2"]
-
-
-def test_select_facts():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.select_facts({"mock_criteria": "mock_value"}) == ["Fact 1"]
-
-
-def test_select_inferencers():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.select_inferencers(
-        {"mock_criteria": "mock_value"}) == ["Inferencer 1"]
-
-
-def test_select_heuristics():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.select_heuristics(
-        {"mock_criteria": "mock_value"}) == ["Heuristic 1"]
-
-
-def test_infer():
-    ssm = BaseSSM(pytest.slm, pytest.adapter)
-    assert ssm.infer({"mock_criteria": "mock_value"}) == ["Inference Result"]
-
-
-def test_solve_problem():
-    ssm = BaseSSM()
-    problem_description = ["Problem 1"]
-    ssm.solve_problem = MagicMock(return_value=["Solution to Problem 1"])
-    assert ssm.solve_problem(problem_description) == ["Solution to Problem 1"]
+    def test_reset_memory(self):
+        self.base_ssm.slm.reset_memory = MagicMock()
+        self.base_ssm.reset_memory()
+        # pylint: disable=protected-access
+        self.assertIsNone(self.base_ssm._conversations)
+        self.base_ssm.slm.reset_memory.assert_called()

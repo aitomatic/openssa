@@ -10,7 +10,7 @@ theme: windmill
 
 extra:
 #  logo: path
-  version: v0.1.5
+  version: v0.1.6
   article_nav_top: true
   article_nav_bottom: true
   history_buttons: true
@@ -61,6 +61,7 @@ nav:
     - openssm:
       - capture: openssm/capture/EMPTY.md
       - core:
+        - prompts: openssm/core/prompts.md
         - ssm:
           - base_ssm_builder: openssm/core/ssm/base_ssm_builder.md
           - base_ssm: openssm/core/ssm/base_ssm.md
@@ -87,7 +88,6 @@ nav:
       - composer: openssm/composer/EMPTY.md
       - utils:
         - config: openssm/utils/config.md
-        - prompts: openssm/utils/prompts.md
         - utils: openssm/utils/utils.md
         - logs: openssm/utils/logs.md
       - contrib:

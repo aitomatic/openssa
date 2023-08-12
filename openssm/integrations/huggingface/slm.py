@@ -51,7 +51,7 @@ class SLM(BaseSLM):
         self.model_server_token = model_server_token
 
     @Logs.do_log_entry_and_exit()
-    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> dict:
         """
         This method calls the API of the underlying language model,
         and returns the response as a list of dicts.
@@ -62,7 +62,7 @@ class SLM(BaseSLM):
                 "content":
                 f"Sorry, {self.__class__.__name__} model is unsupported."
             }
-            return [reply_dict]
+            return reply_dict
 
         prompt = self._make_completion_prompt(conversation)
 
@@ -90,7 +90,7 @@ class SLM(BaseSLM):
             result = self._parse_llm_response(response_text)
         else:
             message = 'Model unavailable, try again'
-            result = [{'system': message}]
+            result = {'system': message}
 
         return result
 

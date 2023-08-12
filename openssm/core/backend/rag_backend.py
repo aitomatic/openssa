@@ -1,4 +1,5 @@
 import os
+from typing import Callable
 from abc import abstractmethod, ABC
 from openssm.core.backend.base_backend import BaseBackend
 from openssm.utils.logs import Logs
@@ -6,9 +7,6 @@ from openssm.utils.utils import Utils
 
 
 class AbstractRAGBackend(BaseBackend, ABC):
-    def __init__(self):
-        super().__init__()
-
     def _get_source_dir(self, storage_dir: str):
         return os.path.join(storage_dir, ".sources")
 
@@ -38,8 +36,36 @@ class AbstractRAGBackend(BaseBackend, ABC):
         """
         pass
 
+    @abstractmethod
+    def _do_read_website(self, urls: list[str], storage_dir: str):
+        """
+        Must be implemented by subclasses.
+
+        @param url: The URL of the website to read.
+        @param storage_dir: The path to the base storage directory.
+        """
+        pass
+
     @Logs.do_log_entry_and_exit()
-    def read_directory(self, storage_dir: str, use_existing_index: bool = True):
+    def _do_read_with_lambda(self,
+                             reading_lambda: Callable,
+                             storage_dir: str,
+                             use_existing_index: bool = True) -> bool:
+        success = False
+
+        if use_existing_index:
+            success = self._load_index_if_exists(storage_dir)
+
+        if not success or not use_existing_index:
+            reading_lambda()
+            if use_existing_index:
+                # Side effect: save the index to the storage directory
+                self.save(storage_dir)
+                success = True
+
+        return success
+
+    def read_directory(self, storage_dir: str, use_existing_index: bool = True) -> bool:
         """
         Read a directory of documents and create an index.
 
@@ -49,16 +75,13 @@ class AbstractRAGBackend(BaseBackend, ABC):
         Side effects:
         - If use_existing_index is True, the index will be automatically saved (for future use)
         """
-        success = False
+        self._do_read_with_lambda(lambda: self._do_read_directory(storage_dir),
+                                  storage_dir,
+                                  use_existing_index)
 
-        if use_existing_index:
-            success = self._load_index_if_exists(storage_dir)
-
-        if not success or not use_existing_index:
-            self._do_read_directory(storage_dir)
-            if use_existing_index:
-                # Side effect: save the index to the storage directory
-                self.save(storage_dir)
+    def _do_read_gdrive(self, folder_id: str, storage_dir: str) -> bool:
+        Utils.download_gdrive(folder_id, self._get_source_dir(storage_dir))
+        self._do_read_directory(storage_dir)
 
     def read_gdrive(self, folder_id: str, storage_dir: str, use_existing_index: bool = True):
         """
@@ -72,14 +95,25 @@ class AbstractRAGBackend(BaseBackend, ABC):
         Side effects:
         - If use_existing_index is True, the index will be automatically saved (for future use)
         """
-        success = False
+        self._do_read_with_lambda(lambda: self._do_read_gdrive(folder_id, storage_dir),
+                                  storage_dir,
+                                  use_existing_index)
 
-        if use_existing_index:
-            success = self._load_index_if_exists(storage_dir)
+    def read_website(self, urls: list[str], storage_dir: str, use_existing_index: bool = True):
+        """
+        Read a directory of documents from a website and create an index.
+        Internally, no documents are downloaded to a local directory.
 
-        if not success or not use_existing_index:
-            Utils.download_gdrive(folder_id, self._get_source_dir(storage_dir))
-            self.read_directory(storage_dir, use_existing_index)
+        @param url: The URL of the website.
+        @param storage_dir: The path to the base storage directory.
+        @param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.
+
+        Side effects:
+        - If use_existing_index is True, the index will be automatically saved (for future use)
+        """
+        self._do_read_with_lambda(lambda: self._do_read_website(urls, storage_dir),
+                                  storage_dir,
+                                  use_existing_index)
 
     @abstractmethod
     def _do_save(self, storage_dir: str):

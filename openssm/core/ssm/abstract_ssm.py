@@ -90,7 +90,7 @@ class AbstractSSM(ABC):
         """Uploads a knowledge source (documents, text, files, etc.)"""
 
     @abstractmethod
-    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
+    def discuss(self, user_input: list[dict], conversation_id: str = None) -> dict:
         """Processes a natural language conversation input."""
 
     @abstractmethod

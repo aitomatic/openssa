@@ -49,51 +49,98 @@ class Utils:
 
         return user_input
 
+    # pylint: disable=too-many-branches
     @staticmethod
-    def canonicalize_query_response(response: Any) -> list[dict]:
+    def canonicalize_discuss_result(result: Any) -> dict:
         """
-        Make sure response is in the form of a list of dicts,
-        e.g., [{"role": "assistant", "content": "hello"}].
+        Make sure response is in the form of a dict,
+        e.g., {"role": "assistant", "content": "hello"}.
         """
-        mlogger.debug("start: response: %s", response)
+        if isinstance(result, dict):
+            return Utils._handle_dict_output(result, "content", "response")
+
+        if isinstance(result, list):
+            return Utils._handle_list_output(result, "content", "response")
+
+        if result is None:
+            # No response
+            return {"role": "assistant", "content": ""}
+
+        if isinstance(result, str):
+            return Utils._handle_str_output(result, True)
+
+        # Any xxx
+        return {"role": "assistant", "content": str(result).strip()}
+
+    # pylint: disable=too-many-branches
+    @staticmethod
+    def canonicalize_query_response(response: Any) -> dict:
+        """
+        Make sure response is in the form of a dict
+        e.g., {"response": "hello", "response_object": <obj>}
+        """
+        if isinstance(response, dict):
+            return Utils._handle_dict_output(response, "response", "content")
+
+        if isinstance(response, list):
+            return Utils._handle_list_output(response, "response", "content")
 
         if response is None:
-            response = ""
+            return {"response": None, "response_object": None}
 
-        if not isinstance(response, list):
-            response = [response]
+        if isinstance(response, str):
+            return Utils._handle_str_output(response, False)
 
-        results = []
-        for item in response:
-            if isinstance(item, str):
-                # "xxx"
-                result_item = {"role": "assistant", "content": item.strip()}
+        # Any xxx
+        return {"response": str(response).strip()}
 
-            elif isinstance(item, dict):
-                if "role" in item and "content" in item:
-                    # {"role": "assistant", "content": "xxx"}
-                    result_item = item
+    @staticmethod
+    def _handle_str_output(result, is_discuss: bool) -> dict:
+        result = result.strip()
+        if (result.startswith("{") and result.endswith("}")) or (result.startswith("[") and result.endswith("]")):
+            # {"role": "assistant", "content": "xxx"}
+            # [{"role": "assistant", "content": "xxx"}, ...]
+            try:
+                return json.loads(result)
+            except json.decoder.JSONDecodeError:
+                pass
 
-                elif "response" in item:
-                    # {"response": "xxx"}
-                    item = item["response"]
-                    if isinstance(item, str):
-                        item = item.strip()
-                    result_item = {"role": "assistant", "content": item}
+        if is_discuss:
+            return {'role': 'assistant', 'content': result}
+        return {'response': result}
 
-                else:
-                    # {"xxx": "yyy"}
-                    result_item = {"role": "assistant", "content": str(item).strip()}
+    @staticmethod
+    def _handle_dict_output(item: dict, required_key: str, alternate_key: str) -> dict:
+        result = {}
 
-            else:
-                # Any xxx
-                result_item = {"role": "assistant", "content": str(item).strip()}
+        if required_key == "content":
+            result["role"] = item["role"] if "role" in item else "assistant"
 
-            results.append(result_item)
+        if required_key in item:
+            result[required_key] = item[required_key]
+            return result
 
-        mlogger.debug("start: response: %s", results)
+        if alternate_key in item:
+            result[required_key] = item[alternate_key]
+            return result
 
-        return results
+        result[required_key] = item
+        return result
+
+    @staticmethod
+    def _handle_list_output(item: list, required_key: str, alternate_key: str) -> dict:
+        if len(item) == 0:
+            return {required_key: None}
+
+        if len(item) == 1:
+            item = item[0]
+            if isinstance(item, dict):
+                return Utils._handle_dict_output(item, required_key, alternate_key)
+            if required_key == "content":
+                return {"role": "assistant", "content": str(item).strip()}
+            return {required_key: str(item).strip()}
+
+        return {required_key: item}
 
     @staticmethod
     def do_canonicalize_user_input(param_name):
@@ -124,15 +171,27 @@ class Utils:
         return outer_decorator
 
     @staticmethod
-    def do_canonicalize_query_response(func):
+    def do_canonicalize_discuss_result(func):
         """
-        Decorator to canonicalize SSM query response.
+        Decorator to canonicalize SSM discuss result.
         """
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)  # Execute the function first
-            result = Utils.canonicalize_query_response(result)  # Modify the result
+            result = Utils.canonicalize_discuss_result(result)  # Modify the result
             return result
+        return wrapper
+
+    @staticmethod
+    def do_canonicalize_query_response(func):
+        """
+        Decorator to canonicalize Backend query response.
+        """
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            response = func(*args, **kwargs)  # Execute the function first
+            response = Utils.canonicalize_query_response(response)  # Modify the response
+            return response
         return wrapper
 
     @staticmethod
@@ -142,6 +201,17 @@ class Utils:
             def wrapper(*args, **kwargs):
                 decorated_func = Utils.do_canonicalize_user_input(param_name)(func)
                 final_func = Utils.do_canonicalize_query_response(decorated_func)
+                return final_func(*args, **kwargs)
+            return wrapper
+        return outer_decorator
+
+    @staticmethod
+    def do_canonicalize_user_input_and_discuss_result(param_name):
+        def outer_decorator(func):
+            @functools.wraps(func)
+            def wrapper(*args, **kwargs):
+                decorated_func = Utils.do_canonicalize_user_input(param_name)(func)
+                final_func = Utils.do_canonicalize_discuss_result(decorated_func)
                 return final_func(*args, **kwargs)
             return wrapper
         return outer_decorator

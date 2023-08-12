@@ -4,7 +4,7 @@ from openssm.core.slm.abstract_slm import AbstractSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.utils.utils import Utils
 from openssm.utils.logs import Logs
-from openssm.utils.prompts import Prompts
+from openssm.core.prompts import Prompts
 
 
 class BaseSLM(AbstractSLM):
@@ -44,72 +44,38 @@ class BaseSLM(AbstractSLM):
     def conversations(self, conversations: dict):
         self._conversations = conversations
 
-    @Utils.do_canonicalize_user_input('user_input')
-    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
+    # pylint: disable=unused-argument
+    @Utils.do_canonicalize_user_input_and_discuss_result('user_input')
+    def do_discuss(self, user_input: list[dict], conversation: list[dict]) -> dict:
         """
-        Send user input to our language model and return the replies
+        Add the user_input to the conversation, sends the whole conversation
+        to the language model, and returns the reply.
         """
-        # If conversation is new, start a new one, else continue from previous
-        conversation = self.conversations.get(conversation_id, [])
         conversation.extend(user_input)
-
-        replies = self._call_lm_api(conversation)
-        replies = Utils.canonicalize_query_response(replies)
-
-        # Save response to the conversation
-        conversation.extend(replies)
-        self.conversations[conversation_id] = conversation
-
-        # Return the model's replies
-        return replies
+        result = self._call_lm_api(conversation)
+        conversation.pop()
+        return result
 
     def reset_memory(self):
         self.conversations = {}
 
     # pylint: disable=unused-argument
-    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> dict:
         """
         Send conversation to the language model’s API
-        and return the replies. Should be overridden by subclasses.
+        and return the reply. Should be overridden by subclasses.
         """
-        return [{"role": "assistant", "content": "Hello, how can I help you?"}]
+        return {"role": "assistant", "content": "Hello, as the base implementation of SLM, this is all I can say."}
 
     #
     # Helper functions for GPT-like completion models
     #
     @Logs.do_log_entry_and_exit()
     def _make_completion_prompt(self, conversation: list[dict]) -> str:
-        # system = Prompts.get_module_prompt("openssm.core.slm.base_slm", "completion")
-        system = Prompts.get_module_prompt(__name__, "completion")
-        system = {"role": "system", "content": system}
-        conversation = [system] + conversation
-        prompt = str(conversation)
-        # prompt = self._convert_conversation_to_string(conversation)
-        # pylint: disable=pointless-string-statement
-        """
-        prompt = ("Complete this conversation with the response, "
-                  "up to 2000 words (plus this prompt): "
-                  "{'role': 'assistant', 'content': 'xxx'} format. "
-                  "where 'xxx' is the response. "
-                  "Make sure the entire response is valid JSON, xxx is "
-                  "only a string, and no code of any kind, even if the "
-                  "prompt has code. "
-                  "Escape quotes with \\:\n"
-                  f"{prompt}")
-        """
-        return prompt
+        system = {'role': 'system', 'content': Prompts.get_prompt(__name__, "completion")}
+        return str([system] + conversation)
 
-    def _convert_conversation_to_string(self, conversation: list[dict]) -> str:
-        list_conversation = []
-        for item in conversation:
-            role = item["role"].replace('"', '\\"')
-            content = item["content"].replace('"', '\\"')
-            list_conversation.append(
-                f'{{"role": "{role}", "content": "{content}"}}'
-            )
-        return ", ".join(list_conversation)
-
-    def _parse_llm_response(self, response) -> list[dict]:
+    def _parse_llm_response(self, response) -> dict:
         response = response.strip()
 
         if response.startswith('{') and not response.endswith('}'):
@@ -135,7 +101,7 @@ class BaseSLM(AbstractSLM):
                 except json.JSONDecodeError:
                     continue
 
-        return parsed_data
+        return parsed_data[0]
 
     def save(self, storage_dir: str):
         """Saves to the specified directory."""
@@ -151,9 +117,11 @@ class PassthroughSLM(BaseSLM):
     The PassthroughSLM is a barebones SLM that simply passes
     all queries to the adapter.
     """
-    @Utils.do_canonicalize_user_input_and_query_response('user_input')
-    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
+    @Utils.do_canonicalize_user_input_and_discuss_result('user_input')
+    def do_discuss(self, user_input: list[dict], conversation: list[dict]) -> dict:
         """
         Pass through user input to the adapter and return the replies
         """
-        return self.adapter.query(user_input, conversation_id)
+        responses = self.adapter.query_all(user_input, conversation)
+        # conversation.extend(user_input)
+        return responses

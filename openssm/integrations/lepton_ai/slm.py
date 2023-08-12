@@ -9,10 +9,12 @@ Config.LEPTONAI_API_KEY: Optional[str] = os.environ.get('LEPTONAI_API_KEY') or N
 Config.LEPTONAI_API_URL: Optional[str] = os.environ.get('LEPTONAI_API_URL') or None
 
 
-class ChatCompletionSLM(OpenAIChatCompletionSLM):
+class SLM(OpenAIChatCompletionSLM):
     def __init__(self,
-                 api_key: str = Config.LEPTONAI_API_KEY,
-                 api_base: str = Config.LEPTONAI_API_URL,
+                 api_key: str = None,
+                 api_base: str = None,
                  model: str = "gpt-3.5-turbo",
                  adapter: AbstractAdapter = None):
+        api_key = api_key or Config.LEPTONAI_API_KEY
+        api_base = api_base or Config.LEPTONAI_API_URL
         super().__init__(api_key, api_base, model, adapter)

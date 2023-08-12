@@ -185,7 +185,7 @@ function-naming-style=snake_case
 #function-rgx=
 
 # Good variable names which should always be accepted, separated by a comma.
-good-names=i,
+good-names=a,b,c,x,y,z,i,
            j,
            k,
            ex,
@@ -626,7 +626,7 @@ disable=raw-checker-failed,
 	  missing-class-docstring,
 	  missing-function-docstring,
 	  missing-module-docstring,
-#	  too-few-public-methods,
+	  too-few-public-methods,
 #	  trailing-newlines,
 #	  relative-beyond-top-level,
 #	  useless-parent-delegation,

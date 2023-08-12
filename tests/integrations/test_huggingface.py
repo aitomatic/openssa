@@ -24,7 +24,7 @@ class TestHuggingFaceBaseSLM(unittest.TestCase):
         # pylint: disable=protected-access
         result = instance._call_lm_api([{"role": "user", "content": "hello"}])
         self.assertEqual(result,
-                         [{"role": "assistant", "content": "Test response"}])
+                         {"role": "assistant", "content": "Test response"})
 
 
 class TestFalcon7bSLM(unittest.TestCase):

@@ -17,17 +17,17 @@ class TestUtils:
         assert Utils.canonicalize_user_input(1) == [{'role': 'user', 'content': '1'}]
 
     def test_canonicalize_query_response_str(self):
-        assert Utils.canonicalize_query_response('hello') == [{'role': 'assistant', 'content': 'hello'}]
+        assert Utils.canonicalize_query_response('hello') == {'response': 'hello'}
 
-    def test_canonicalize_query_response_list(self):
-        assert Utils.canonicalize_query_response([{'role': 'assistant', 'content': 'hello'}]) == [{'role': 'assistant', 'content': 'hello'}]
-        assert Utils.canonicalize_query_response(['hello']) == [{'role': 'assistant', 'content': 'hello'}]
-        assert Utils.canonicalize_query_response([{'message': 'hello'}]) == [{'role': 'assistant', 'content': "{'message': 'hello'}"}]
+    def test_canonicalize_discuss_result_list(self):
+        assert Utils.canonicalize_discuss_result([{'role': 'assistant', 'content': 'hello'}]) == {'role': 'assistant', 'content': 'hello'}
+        assert Utils.canonicalize_discuss_result(['hello']) == {'role': 'assistant', 'content': 'hello'}
+        assert Utils.canonicalize_discuss_result([{'message': 'hello'}]) == {'role': 'assistant', 'content': {'message': 'hello'}}
 
     def test_canonicalize_query_response_dict(self):
-        assert Utils.canonicalize_query_response({'role': 'assistant', 'content': 'hello'}) == [{'role': 'assistant', 'content': 'hello'}]
-        assert Utils.canonicalize_query_response({'response': 'hello'}) == [{'role': 'assistant', 'content': 'hello'}]
-        assert Utils.canonicalize_query_response({'message': 'hello'}) == [{'role': 'assistant', 'content': "{'message': 'hello'}"}]
+        assert Utils.canonicalize_discuss_result({'role': 'assistant', 'content': 'hello'}) == {'role': 'assistant', 'content': 'hello'}
+        assert Utils.canonicalize_discuss_result({'response': 'hello'}) == {'role': 'assistant', 'content': 'hello'}
+        assert Utils.canonicalize_discuss_result({'message': 'hello'}) == {'role': 'assistant', 'content': {'message': 'hello'}}
 
     def test_canonicalize_query_response_other(self):
-        assert Utils.canonicalize_query_response(1) == [{'role': 'assistant', 'content': '1'}]
+        assert Utils.canonicalize_query_response(1) == {'response': '1'}

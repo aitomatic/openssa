@@ -69,19 +69,19 @@ def test_query_text_backend():
     adapter = BaseAdapter([backend1, backend2])
 
     # Call the query method
-    responses = adapter.query("123", "test")
+    response = adapter.query_all("test")
 
     # Check that the responses from the TextBackend instances
     # were combined correctly
-    expected_responses = [
-        {'response': 'fact: fact1'},
-        {'response': 'heuristic: heuristic1'},
-        {'response': 'fact: fact2'},
-        {'response': 'heuristic: heuristic2'},
-    ]
+    expected_responses = {'response': [
+        'fact: fact1',
+        'heuristic: heuristic1',
+        'fact: fact2',
+        'heuristic: heuristic2'
+    ]}
 
-    for response in responses:
-        assert response in expected_responses
+    for item in response['response']:
+        assert item in expected_responses['response']
 
 
 def test_query_base_adapter():
@@ -94,21 +94,21 @@ def test_query_base_adapter():
     adapter.add_heuristic('heuristic2')
 
     # Call the query method
-    responses = adapter.query("123", "test")
+    response = adapter.query_all("test")
 
     # Check that the responses from the TextBackend instances
     # were combined correctly
-    expected_responses = [
-        {'response': 'fact: fact1'},
-        {'response': 'heuristic: heuristic1'},
-        {'response': 'fact: fact2'},
-        {'response': 'heuristic: heuristic2'},
-    ]
+    expected_responses = {'response': [
+        'fact: fact1',
+        'heuristic: heuristic1',
+        'fact: fact2',
+        'heuristic: heuristic2'
+    ]}
 
-    assert len(responses) == len(expected_responses)
+    assert len(response['response']) == len(expected_responses['response'])
 
-    for response in responses:
-        assert response in expected_responses
+    for item in response['response']:
+        assert item in expected_responses['response']
 
 
 def test_query_base_adapter_with_text_backend():
@@ -121,18 +121,18 @@ def test_query_base_adapter_with_text_backend():
     adapter.add_heuristic('heuristic2')
 
     # Call the query method
-    responses = adapter.query("123", "test")
+    response = adapter.query_all("123", "test")
 
     # Check that the responses from the TextBackend instances
     # were combined correctly
-    expected_responses = [
-        {'response': 'fact: fact1'},
-        {'response': 'heuristic: heuristic1'},
-        {'response': 'fact: fact2'},
-        {'response': 'heuristic: heuristic2'},
-    ]
+    expected_response = {'response': [
+        'fact: fact1',
+        'heuristic: heuristic1',
+        'fact: fact2',
+        'heuristic: heuristic2'
+    ]}
 
-    assert len(responses) == len(expected_responses)
+    assert len(response['response']) == len(expected_response['response'])
 
-    for response in responses:
-        assert response in expected_responses
+    for item in response['response']:
+        assert item in expected_response['response']
