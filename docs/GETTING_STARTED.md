@@ -42,7 +42,7 @@ See [MAKEFILE](dev/makefile_info.md) for more details.
 
 ## Getting Started as an Aspiring Contributor
 
-OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
+OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](community/CONTRIBUTING.md) for more details.
 
 You can begin contributing to the OpenSSM project in the `contrib/` directory.
 

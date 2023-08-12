@@ -1,8 +1,12 @@
+import os
 import unittest
 from unittest.mock import patch, Mock
 from openssm.integrations.huggingface.slm import Falcon7bSLM, SLM as HuggingFaceBaseSLM
 from openssm import Config
 
+
+Config.FALCON7B_API_URL = os.environ["FALCON7B_API_URL"] = "test_url"
+Config.FALCON7B_API_KEY = os.environ["FALCON7B_API_KEY"] = "test_key"
 
 class TestHuggingFaceBaseSLM(unittest.TestCase):
 
@@ -39,6 +43,6 @@ class TestFalcon7bSLM(unittest.TestCase):
         # Asserting super's __init__ has been called with expected arguments
         mock_super_init.assert_called_once_with(
             model_name="tiiuae/falcon-7b",
-            model_url=Config.FALCON7B_MODEL_URL or "NONE",
+            model_url=Config.FALCON7B_API_URL or "NONE",
             model_server_token=Config.FALCON7B_API_KEY or "value is not set",
             adapter=None)

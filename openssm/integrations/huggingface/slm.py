@@ -3,14 +3,18 @@ This module contains the HuggingFaceBaseSLM class, and its subclasses,
 which are SLMs based on models from HugoingFace. The models may be
 served from HuggingFace's model hub, or a private internal server.
 """
+import os
 import json
-
+from typing import Optional
 from requests import request
-
 from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.adapter.abstract_adapter import AbstractAdapter
 from openssm.utils.config import Config
 from openssm.utils.logs import Logs
+
+
+Config.FALCON7B_API_KEY: Optional[str] = os.environ.get('FALCON7B_API_KEY')
+Config.FALCON7B_API_URL: Optional[str] = os.environ.get('FALCON7B_API_URL')
 
 
 class SLM(BaseSLM):
@@ -101,7 +105,7 @@ class Falcon7bSLM(SLM):
     remotely. If hosted remotely, the model_url and
     model_server_token must be provided through the Config class.
 
-    FALCON7B_MODEL_URL should be set appropriately:
+    FALCON7B_API_URL should be set appropriately:
     - If hosted on HuggingFace, set to the model's URL on HuggingFace.
     - If hosted on AWS/GCP, set to the model's URL on there
     - If not supported, set to "NONE" (or not set at all)
@@ -113,7 +117,7 @@ class Falcon7bSLM(SLM):
                  adapter: AbstractAdapter = None):
 
         model_name = "tiiuae/falcon-7b"
-        model_url = model_url or Config.FALCON7B_MODEL_URL or "NONE"
+        model_url = model_url or Config.FALCON7B_API_URL or "NONE"
         model_server_token = model_server_token or Config.FALCON7B_API_KEY
 
         super().__init__(model_name=model_name,
