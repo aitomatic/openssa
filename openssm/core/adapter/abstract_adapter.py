@@ -13,7 +13,7 @@ class AbstractAdapter(ABC):
     """
 
     @abstractmethod
-    def query(self, user_input: str, conversation_id: str = None) -> list[dict]:
+    def query_all(self, user_input: str, conversation: list[dict] = None) -> list[dict]:
         """
         Queries the backends for a response to the user's input.
         :param user_query: The user's input.

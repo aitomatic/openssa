@@ -22,10 +22,10 @@ class AbstractSLM(ABC):
         """Sets our adapter"""
 
     @abstractmethod
-    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
+    def do_discuss(self, user_input: list[dict], conversation: list[dict]) -> dict:
         """
         Processes a natural language conversation input
-        and returns a list of replies
+        and returns a dict of the reply. Not intended for direct use.
         """
 
     @abstractmethod

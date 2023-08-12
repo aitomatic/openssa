@@ -29,10 +29,10 @@ def test_discuss():
     adapter = MockAdapter()
     slm = BaseSLM(adapter)
     # Replace discuss with a Mock object to track if it gets called
-    slm.discuss = Mock()
-    slm.discuss("conversation_1", "Hello")
+    slm.do_discuss = Mock()
+    slm.do_discuss("conversation_1", "Hello")
     # Check that discuss was called with the correct parameters
-    slm.discuss.assert_called_with("conversation_1", "Hello")
+    slm.do_discuss.assert_called_with("conversation_1", "Hello")
 
 
 def test_reset_memory():
@@ -56,11 +56,11 @@ def test_llm_valid_response():
 
     # pylint: disable=protected-access
     parsed_data = slm._parse_llm_response(response)
-    assert parsed_data == expected_result
+    assert parsed_data == expected_result[0]
 
 
 def _string_response(response):
-    return [{'role': 'assistant', 'content': response}]
+    return {'role': 'assistant', 'content': response}
 
 
 def test_llm_no_valid_json():
@@ -92,7 +92,7 @@ class TestPassthroughSLM(unittest.TestCase):
     def setUp(self):
         # Mocking the adapter's query method
         self.mocked_adapter = Mock()
-        self.mocked_adapter.query.return_value = [{"response": "mock_response"}]
+        self.mocked_adapter.query_all.return_value = {"response": "mock_response"}
 
         # Creating an instance of PassthroughSLM with the mocked adapter
         self.slm = PassthroughSLM()
@@ -101,7 +101,7 @@ class TestPassthroughSLM(unittest.TestCase):
     def test_discuss(self):
         user_input = [{"query": "test_query"}]
         conversation_id = "12345"
-        response = self.slm.discuss(user_input, conversation_id)
+        response = self.slm.do_discuss(user_input, conversation_id)
 
         # Check if the response is correct
-        self.assertEqual(response, [{'role': 'assistant', 'content': 'mock_response'}])
+        self.assertEqual(response, {'role': 'assistant', 'content': 'mock_response'})

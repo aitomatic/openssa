@@ -27,14 +27,14 @@ class TestTextBackend(unittest.TestCase):
         inferencer = BaseInferencer()
         self.backend.add_inferencer(inferencer)
 
-        expected_responses = [
-            {'response': 'fact: fact1'},
-            {'response': 'heuristic: heuristic1'},
-            {'response': f'inferencer: {inferencer}'},
-        ]
+        expected_response = {'response': [
+            'fact: fact1',
+            'heuristic: heuristic1',
+            f'inferencer: {inferencer}',
+        ]}
 
         responses = self.backend.query('123', 'test')
 
         # Verify each response is in the expected responses
-        for response in responses:
-            self.assertIn(response, expected_responses)
+        for item in responses['response']:
+            self.assertIn(item, expected_response['response'])

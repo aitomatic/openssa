@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Any
 from dataclasses import dataclass
 from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 
@@ -8,17 +7,10 @@ from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 @dataclass
 class AbstractBackend(ABC):
     @abstractmethod
-    def query(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
+    def query(self, user_input: list[dict], conversation: list[dict] = None) -> dict:
         """
         Queries the backend with the user input.
-        """
-
-    @abstractmethod
-    def query2(self, user_input: list[dict], conversation_id: str = None) -> tuple[list[dict], Any]:
-        """
-        Query the index with the user input.
-
-        Returns a tuple comprising (a) the response dicts and (b) the response object, if any.
+        Response may be in the form {"response": "some response", "response_object": some_object}
         """
 
     @abstractmethod

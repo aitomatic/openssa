@@ -8,6 +8,7 @@ from openssm.core.slm.base_slm import BaseSLM
 from openssm.core.adapter.base_adapter import BaseAdapter
 from openssm.core.backend.base_backend import BaseBackend
 from openssm.utils.utils import Utils
+from openssm.utils.logs import Logs
 
 
 class BaseSSM(AbstractSSM):
@@ -15,11 +16,43 @@ class BaseSSM(AbstractSSM):
                  slm: AbstractSLM = None,
                  adapter: AbstractAdapter = None,
                  backends: list[AbstractBackend] = None,
-                 name: str = None):
+                 name: str = None,
+                 storage_dir: str = None):
         self._slm = slm
         self.slm.adapter = adapter
         self.adapter.backends = backends
         self._name = name
+        self._storage_dir = storage_dir
+        self._conversations = None
+        self._track_conversations = True
+
+    @property
+    def track_conversations(self) -> bool:
+        """
+        Return the previous assigned track_conversations,
+        or a default value if none was assigned.
+        """
+        if self._track_conversations is None:
+            self._track_conversations = True
+        return self._track_conversations
+
+    @track_conversations.setter
+    def track_conversations(self, track_conversations: bool):
+        self._track_conversations = track_conversations
+
+    @property
+    def conversations(self) -> dict:
+        """
+        Return the previous assigned conversations,
+        or an empty dictionary if none was assigned.
+        """
+        if self._conversations is None:
+            self._conversations = {}
+        return self._conversations
+
+    @conversations.setter
+    def conversations(self, conversations: dict):
+        self._conversations = conversations
 
     @property
     def slm(self) -> AbstractSLM:
@@ -77,16 +110,19 @@ class BaseSSM(AbstractSSM):
     def name(self, name: str):
         self._name = name
 
-    @Utils.do_canonicalize_user_input_and_query_response('user_input')
-    def discuss(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
-        return self.slm.discuss(user_input, conversation_id)
+    def get_conversation(self, conversation_id: str = None) -> list[dict]:
+        """
+        Return the conversation with the given id.
+        Instantiate a new conversation if none was found, and an id was given.
+        """
+        if conversation_id is None:
+            return []
+
+        self.conversations[conversation_id] = self.conversations.get(conversation_id, [])
+        return self.conversations[conversation_id]
 
     def api_call(self, function_name, *args, **kwargs):
         return self.adapter.api_call(function_name, *args, **kwargs)
-
-    def reset_memory(self):
-        if self.slm is not None:
-            self.slm.reset_memory()
 
     @property
     def facts(self) -> list[str]:
@@ -129,20 +165,74 @@ class BaseSSM(AbstractSSM):
         # self.adapter.add_knowledge(knowledge_source_uri, knowledge_type)
 
     @property
+    def storage_dir(self) -> str:
+        if self._storage_dir is None:
+            self._storage_dir = self._default_storage_dir
+        return self._storage_dir
+
+    @storage_dir.setter
+    def storage_dir(self, storage_dir: str):
+        self._storage_dir = storage_dir
+
+    @property
     def _default_storage_dir(self) -> str:
         base_dir = os.environ.get("OPENSSM_STORAGE_DIR", ".openssm")
         return os.path.join(base_dir, self.name)
 
     def save(self, storage_dir: str = None):
         """Saves the SSM to the specified directory."""
-        storage_dir = storage_dir or self._default_storage_dir
-        self.slm.save(storage_dir)
-        self.adapter.save(storage_dir)
-        self.adapter.enumerate_backends(lambda backend: backend.save(storage_dir))
+        self.storage_dir = storage_dir or self.storage_dir
+        self.slm.save(self.storage_dir)
+        self.adapter.save(self.storage_dir)
+        self.adapter.enumerate_backends(lambda backend: backend.save(self.storage_dir))
 
     def load(self, storage_dir: str = None):
         """Loads the SSM from the specified directory."""
-        storage_dir = storage_dir or self._default_storage_dir
-        self.slm.load(storage_dir)
-        self.adapter.load(storage_dir)
-        self.adapter.enumerate_backends(lambda backend: backend.load(storage_dir))
+        self.storage_dir = storage_dir or self.storage_dir
+        self.slm.load(self.storage_dir)
+        self.adapter.load(self.storage_dir)
+        self.adapter.enumerate_backends(lambda backend: backend.load(self.storage_dir))
+
+    def update_conversation(self, user_input: list[dict], reply: dict, conversation_id: str = None) -> list[dict]:
+        """
+        Update the conversation with the user_input and reply.
+        """
+        conversation = self.get_conversation(conversation_id)
+
+        if user_input is not None:
+            conversation.extend(user_input)
+
+        if reply is not None:
+            conversation.append(reply)
+
+    def custom_discuss(self, user_input: list[dict], conversation: list[dict]) -> tuple[dict, list[dict]]:
+        """
+        Send user input to our SLM and return the reply, AND the actual user input.
+        In the base implementation, the user_input is unchanged from what we are given.
+        But derived classes can override this method to do things like:
+
+        - Add other context info to the user_input
+        - Query other models first and combine their replies to form a single user_input
+        - etc.
+        """
+        reply = self.slm.do_discuss(user_input, conversation)
+        return reply, user_input
+
+    @Utils.do_canonicalize_user_input_and_discuss_result('user_input')
+    @Logs.do_log_entry_and_exit()
+    def discuss(self, user_input: list[dict], conversation_id: str = None) -> dict:
+        # Always retrieve the conversation first
+        conversation = self.get_conversation(conversation_id)
+
+        response, actual_input = self.custom_discuss(user_input, conversation)
+
+        # Update the conversation
+        if self.track_conversations:
+            self.update_conversation(actual_input, response, conversation_id)
+
+        return response
+
+    def reset_memory(self):
+        self.conversations = None
+        self.slm.reset_memory()
+        # adapters and backends are stateless so no need to reset them

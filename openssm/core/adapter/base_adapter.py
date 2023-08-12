@@ -11,17 +11,40 @@ class BaseAdapter(AbstractAdapter):
     def __init__(self, backends: list[AbstractBackend] = None):
         self._backends = backends
 
-    def query(self, user_input: str, conversation_id: str = None) -> list[dict]:
+    # pylint: disable=too-many-branches
+    # flake8: noqa: C901
+    def query_all(self, user_input: str, conversation: list[dict] = None) -> list[dict]:
         """
         Queries the backends for a response to the user's input.
         :param user_query: The user's input.
-        :return: The backend's response.
+        :return: The backend's responses
         """
-        responses = [
-            r for b in self.backends if b is not None
-            for r in (b.query(user_input, conversation_id) or [])
-        ]
-        return responses
+        responses = []
+        response_objects = []
+        for b in self.backends:
+            if b is not None:
+                response = b.query(user_input, conversation)
+                if isinstance(response, str):
+                    responses.extend(response)
+
+                elif isinstance(response, dict):
+                    if "response" in response:
+                        responses.extend(response["response"])
+                    if "response_object" in response:
+                        response_objects.extend(response["response_object"])
+
+        if len(responses) == 0:
+            return {"response": None, "response_object": None}
+
+        if len(responses) == 1:
+            if isinstance(response[0], str):
+                if len(response_objects) == 0:
+                    return {"response": responses[0]}
+                if len(response_objects) == 1:
+                    return {"response": responses[0], "response_object": response_objects[0]}
+                return {"response": responses[0], "response_object": response_objects}
+
+        return {"response": responses, "response_object": response_objects}
 
     @property
     def backends(self) -> list[AbstractBackend]:

@@ -19,7 +19,6 @@ class TestSSMClasses(unittest.TestCase):
         ssm = LlamaIndexSSM(slm)
 
         self.assertIsInstance(ssm.rag_backend, LlamaIndexBackend)
-        self.assertEqual(ssm.get_rag_backend(), ssm.rag_backend)
 
         with patch.object(ssm.rag_backend, 'read_directory') as mock_read_dir:
             ssm.read_directory("test_directory")
@@ -45,24 +44,14 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(backend.query_engine, backend._query_engine)
         backend.index.as_query_engine.assert_called_once()
 
-    def test_query2_no_index(self):
-        backend = LlamaIndexBackend()
-        backend.index = None
-        user_input = [{"role": "user", "content": "test"}]
-
-        result, response = backend.query2(user_input)
-
-        self.assertEqual(result[0]['response'], "I'm sorry, I don't have an index to query. Please load something first.")
-        self.assertEqual(response, None)
-
     def test_query(self):
         backend = LlamaIndexBackend()
-        backend.query2 = MagicMock(return_value=(["response text"], Response('response text')))
+        backend.query = MagicMock(return_value=({'response': 'response text', 'response_object': Response('response text')}))
         user_input = [{"role": "user", "content": "test"}]
 
         result = backend.query(user_input)
 
-        self.assertEqual(result, ["response text"])
+        self.assertEqual(result['response'], "response text")
 
     def test_save(self):
         backend = LlamaIndexBackend()

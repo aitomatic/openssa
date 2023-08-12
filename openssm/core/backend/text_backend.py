@@ -10,9 +10,9 @@ class TextBackend(BaseBackend):
 
     # pylint: disable=unused-argument
     @Logs.do_log_entry_and_exit()
-    def query(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
-        responses = [{"response": text} for text in self.texts]
-        return responses
+    def query(self, user_input: list[dict], conversation: list[dict] = None) -> dict:
+        response = {"response": self.texts}
+        return response
 
     def all_texts(self):
         return self.texts

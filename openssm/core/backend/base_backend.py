@@ -1,4 +1,3 @@
-from typing import Any
 from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
 from openssm.core.backend.abstract_backend import AbstractBackend
 from openssm.utils.logs import Logs
@@ -12,22 +11,13 @@ class BaseBackend(AbstractBackend):
 
     # pylint: disable=unused-argument
     @Logs.do_log_entry_and_exit()
-    def query(self, user_input: list[dict], conversation_id: str = None) -> list[dict]:
+    def query(self, user_input: list[dict], conversation: list[dict] = None) -> dict:
         """
-        The base backend merely calls query2 and returns the first element of the tuple.
+        Backends are expected to return a dict with the following keys:
+        - response: a string
+        - response_object: an object that has a lot more information about the response
         """
-        # pylint: disable=unused-variable
-        response_dicts, response_object = self.query2(user_input, conversation_id)
-        return response_dicts
-
-    @Logs.do_log_entry_and_exit()
-    def query2(self, user_input: list[dict], conversation_id: str = None) -> tuple[list[dict], Any]:
-        """
-        Query the index with the user input.
-
-        Returns a tuple comprising (a) the response dicts and (b) the response object, if any.
-        """
-        return None, None
+        return {"response": None, "response_object": None}
 
     def load_all(self):
         """

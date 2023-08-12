@@ -177,4 +177,5 @@ package-lock.json
 .env
 .openssm
 __pycache__
+/debug.py
 /mkdocs.yml

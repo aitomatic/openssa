@@ -14,16 +14,20 @@ Config.OPENAI_API_URL: Optional[str] = os.environ.get('OPENAI_API_URL') or "http
 
 class _AbstractSLM(BaseSLM, ABC):
     def __init__(self,
-                 api_key: str = Config.OPENAI_API_KEY,
-                 api_base: str = Config.OPENAI_API_URL,
+                 api_key: str = None,
+                 api_base: str = None,
                  model: str = None,
                  adapter: AbstractAdapter = None):
-        super().__init__(adapter)
+        api_key = api_key or Config.OPENAI_API_KEY
+        api_base = api_base or Config.OPENAI_API_URL
+
         if api_key is None:
             raise ValueError("api_key must be provided, e.g., via Config.OPENAI_API_KEY or 'sk-xxxxx'")
 
         if model is None:
             raise ValueError("model must be provided (e.g., 'gpt-3.5-turbo'))")
+
+        super().__init__(adapter)
 
         self.api_key = api_key
         self.api_base = api_base
@@ -39,16 +43,18 @@ class ChatCompletionSLM(_AbstractSLM):
         super().__init__(api_key, api_base, model, adapter)
 
     @Logs.do_log_entry_and_exit()
-    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> dict:
         response = openai.ChatCompletion.create(
             api_key=self.api_key,
             api_base=self.api_base,
             model=self.model,
             messages=conversation,
-            # max_tokens=150,
+            max_tokens=2000,
             temperature=0.7
         )
-        return [response.choices[0].message]
+        response = response.choices[0].message
+
+        return response
 
 class GPT3ChatCompletionSLM(ChatCompletionSLM):
     def __init__(self,
@@ -67,7 +73,7 @@ class CompletionSLM(_AbstractSLM):
         super().__init__(api_key, api_base, model, adapter)
 
     @Logs.do_log_entry_and_exit()
-    def _call_lm_api(self, conversation: list[dict]) -> list[dict]:
+    def _call_lm_api(self, conversation: list[dict]) -> dict:
         prompt = self._make_completion_prompt(conversation)
 
         openai.api_key = self.api_key
@@ -83,12 +89,12 @@ class CompletionSLM(_AbstractSLM):
         )
         response = response.choices[0].text.strip()
 
-        replies = self._parse_llm_response(response)
+        reply = self._parse_llm_response(response)
+        if isinstance(reply, list):
+            if len(reply) == 0 or len(reply[0]) == 0:
+                reply = {'role': 'assistant', 'content': 'I got nothing.'}
 
-        if len(replies) == 0 or len(replies[0]) == 0:
-            replies = [{'role': 'assistant', 'content': 'I got nothing.'}]
-
-        return replies
+        return reply
 
 class GPT3CompletionSLM(CompletionSLM):
     def __init__(self,
