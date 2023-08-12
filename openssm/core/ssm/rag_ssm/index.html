@@ -40,7 +40,7 @@
           {title: "openssm.core.ssm.rag_ssm", url: "#_top", children: [
           ]},
           {title: "RAGSSM", url: "#openssm.core.ssm.rag_ssm.RAGSSM", children: [
-              {title: "discuss()", url: "#openssm.core.ssm.rag_ssm.RAGSSM.discuss" },
+              {title: "custom_discuss()", url: "#openssm.core.ssm.rag_ssm.RAGSSM.custom_discuss" },
           ]},
         ];
 
@@ -139,8 +139,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h3 id="openssm.core.ssm.rag_ssm.RAGSSM.discuss" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<h3 id="openssm.core.ssm.rag_ssm.RAGSSM.custom_discuss" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">custom_discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation</span><span class="p">)</span></code>
 
 </h3>
 
@@ -151,9 +151,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 and the knowledge of the RAG backend, before return the response.
 The process proceeds as follows:</p>
 <ol>
-<li>It first queries the RAG backend for a response.</li>
-<li>It then queries the SLM, providing the initial query, as well as the
-response from the RAG backend as additional context.</li>
+<li>We first queries the RAG backend for a response.</li>
+<li>We then query the SLM for its response</li>
+<li>We combine the two responses into a single query to the SLM</li>
 <li>The SLM’s response is then returned.</li>
 </ol>
 

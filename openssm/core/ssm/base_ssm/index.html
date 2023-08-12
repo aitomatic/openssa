@@ -42,14 +42,19 @@
           {title: "BaseSSM", url: "#openssm.core.ssm.base_ssm.BaseSSM", children: [
               {title: "adapter", url: "#openssm.core.ssm.base_ssm.BaseSSM.adapter" },
               {title: "backends", url: "#openssm.core.ssm.base_ssm.BaseSSM.backends" },
+              {title: "conversations", url: "#openssm.core.ssm.base_ssm.BaseSSM.conversations" },
               {title: "facts", url: "#openssm.core.ssm.base_ssm.BaseSSM.facts" },
               {title: "heuristics", url: "#openssm.core.ssm.base_ssm.BaseSSM.heuristics" },
               {title: "inferencers", url: "#openssm.core.ssm.base_ssm.BaseSSM.inferencers" },
               {title: "name", url: "#openssm.core.ssm.base_ssm.BaseSSM.name" },
               {title: "slm", url: "#openssm.core.ssm.base_ssm.BaseSSM.slm" },
+              {title: "track_conversations", url: "#openssm.core.ssm.base_ssm.BaseSSM.track_conversations" },
               {title: "add_knowledge()", url: "#openssm.core.ssm.base_ssm.BaseSSM.add_knowledge" },
+              {title: "custom_discuss()", url: "#openssm.core.ssm.base_ssm.BaseSSM.custom_discuss" },
+              {title: "get_conversation()", url: "#openssm.core.ssm.base_ssm.BaseSSM.get_conversation" },
               {title: "load()", url: "#openssm.core.ssm.base_ssm.BaseSSM.load" },
               {title: "save()", url: "#openssm.core.ssm.base_ssm.BaseSSM.save" },
+              {title: "update_conversation()", url: "#openssm.core.ssm.base_ssm.BaseSSM.update_conversation" },
           ]},
         ];
 
@@ -191,6 +196,29 @@ or a default backend if none was assigned.</p>
 
 
 
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.conversations" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">conversations</span><span class="p">:</span> <span class="nb">dict</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned conversations,
+or an empty dictionary if none was assigned.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
 <h3 id="openssm.core.ssm.base_ssm.BaseSSM.facts" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">facts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
   
@@ -296,6 +324,29 @@ or a default SLM if none was assigned.</p>
 
 </div>
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.track_conversations" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">track_conversations</span><span class="p">:</span> <span class="nb">bool</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the previous assigned track_conversations,
+or a default value if none was assigned.</p>
+  </div>
+
+</div>
+
 
 
 
@@ -312,6 +363,52 @@ or a default SLM if none was assigned.</p>
   <div class="doc doc-contents ">
   
       <p>Uploads a knowledge source (documents, text, files, etc.)</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.custom_discuss" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">custom_discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Send user input to our SLM and return the reply, AND the actual user input.
+In the base implementation, the user_input is unchanged from what we are given.
+But derived classes can override this method to do things like:</p>
+<ul>
+<li>Add other context info to the user_input</li>
+<li>Query other models first and combine their replies to form a single user_input</li>
+<li>etc.</li>
+</ul>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.get_conversation" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_conversation</span><span class="p">(</span><span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the conversation with the given id.
+Instantiate a new conversation if none was found, and an id was given.</p>
 
   </div>
 
@@ -350,6 +447,25 @@ or a default SLM if none was assigned.</p>
   <div class="doc doc-contents ">
   
       <p>Saves the SSM to the specified directory.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.ssm.base_ssm.BaseSSM.update_conversation" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">update_conversation</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">reply</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Update the conversation with the user_input and reply.</p>
 
   </div>
 

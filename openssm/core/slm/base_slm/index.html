@@ -43,12 +43,12 @@
               {title: "adapter", url: "#openssm.core.slm.base_slm.BaseSLM.adapter" },
               {title: "conversations", url: "#openssm.core.slm.base_slm.BaseSLM.conversations" },
               {title: "__init__()", url: "#openssm.core.slm.base_slm.BaseSLM.__init__" },
-              {title: "discuss()", url: "#openssm.core.slm.base_slm.BaseSLM.discuss" },
+              {title: "do_discuss()", url: "#openssm.core.slm.base_slm.BaseSLM.do_discuss" },
               {title: "load()", url: "#openssm.core.slm.base_slm.BaseSLM.load" },
               {title: "save()", url: "#openssm.core.slm.base_slm.BaseSLM.save" },
           ]},
           {title: "PassthroughSLM", url: "#openssm.core.slm.base_slm.PassthroughSLM", children: [
-              {title: "discuss()", url: "#openssm.core.slm.base_slm.PassthroughSLM.discuss" },
+              {title: "do_discuss()", url: "#openssm.core.slm.base_slm.PassthroughSLM.do_discuss" },
           ]},
         ];
 
@@ -213,15 +213,16 @@ where each conversation is a list of user inputs and model replies.</p>
 
 
 
-<h3 id="openssm.core.slm.base_slm.BaseSLM.discuss" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<h3 id="openssm.core.slm.base_slm.BaseSLM.do_discuss" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">do_discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Send user input to our language model and return the replies</p>
+      <p>Add the user_input to the conversation, sends the whole conversation
+to the language model, and returns the reply.</p>
 
   </div>
 
@@ -310,8 +311,8 @@ all queries to the adapter.</p>
 
 
 
-<h3 id="openssm.core.slm.base_slm.PassthroughSLM.discuss" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<h3 id="openssm.core.slm.base_slm.PassthroughSLM.do_discuss" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">do_discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation</span><span class="p">)</span></code>
 
 </h3>
 

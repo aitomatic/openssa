@@ -48,7 +48,7 @@
               {title: "add_fact()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.add_fact" },
               {title: "enumerate_backends()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.enumerate_backends" },
               {title: "load()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.load" },
-              {title: "query()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.query" },
+              {title: "query_all()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.query_all" },
               {title: "save()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.save" },
               {title: "select_facts()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.select_facts" },
               {title: "select_heuristics()", url: "#openssm.core.adapter.base_adapter.BaseAdapter.select_heuristics" },
@@ -314,8 +314,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
-<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.query" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<h3 id="openssm.core.adapter.base_adapter.BaseAdapter.query_all" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">query_all</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
@@ -324,7 +324,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
   
       <p>Queries the backends for a response to the user's input.
 :param user_query: The user's input.
-:return: The backend's response.</p>
+:return: The backend's responses</p>
 
   </div>
 

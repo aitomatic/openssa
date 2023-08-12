@@ -10,7 +10,7 @@ theme: windmill
 
 extra:
 #  logo: path
-  version: v0.1.5
+  version: v0.1.6
   article_nav_top: true
   article_nav_bottom: true
   history_buttons: true

@@ -40,8 +40,10 @@
           {title: "openssm.utils.utils", url: "#_top", children: [
           ]},
           {title: "Utils", url: "#openssm.utils.utils.Utils", children: [
+              {title: "canonicalize_discuss_result()", url: "#openssm.utils.utils.Utils.canonicalize_discuss_result" },
               {title: "canonicalize_query_response()", url: "#openssm.utils.utils.Utils.canonicalize_query_response" },
               {title: "canonicalize_user_input()", url: "#openssm.utils.utils.Utils.canonicalize_user_input" },
+              {title: "do_canonicalize_discuss_result()", url: "#openssm.utils.utils.Utils.do_canonicalize_discuss_result" },
               {title: "do_canonicalize_query_response()", url: "#openssm.utils.utils.Utils.do_canonicalize_query_response" },
               {title: "do_canonicalize_user_input()", url: "#openssm.utils.utils.Utils.do_canonicalize_user_input" },
           ]},
@@ -80,10 +82,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     </div>
     
     <div class="wm-article-nav">
-      <a href="../prompts/" class="btn btn-xs btn-default pull-left">
+      <a href="../config/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../prompts/" class="btn btn-xs btn-link">
-        prompts
+        Previous</a><a href="../config/" class="btn btn-xs btn-link">
+        config
       </a>
     </div>
     
@@ -140,6 +142,30 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
 
 
+<h3 id="openssm.utils.utils.Utils.canonicalize_discuss_result" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">canonicalize_discuss_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Make sure response is in the form of a dict,
+e.g., {"role": "assistant", "content": "hello"}.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
 <h3 id="openssm.utils.utils.Utils.canonicalize_query_response" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">canonicalize_query_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></code>
   
@@ -152,8 +178,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
   <div class="doc doc-contents ">
   
-      <p>Make sure response is in the form of a list of dicts,
-e.g., [{"role": "assistant", "content": "hello"}].</p>
+      <p>Make sure response is in the form of a dict
+e.g., {"response": "hello", "response_object": <obj>}</p>
 
   </div>
 
@@ -188,6 +214,29 @@ e.g., [{"role": "user", "content": "hello"}].</p>
 
 
 
+<h3 id="openssm.utils.utils.Utils.do_canonicalize_discuss_result" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">do_canonicalize_discuss_result</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Decorator to canonicalize SSM discuss result.</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
 <h3 id="openssm.utils.utils.Utils.do_canonicalize_query_response" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">do_canonicalize_query_response</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
   
@@ -200,7 +249,7 @@ e.g., [{"role": "user", "content": "hello"}].</p>
 
   <div class="doc doc-contents ">
   
-      <p>Decorator to canonicalize SSM query response.</p>
+      <p>Decorator to canonicalize Backend query response.</p>
 
   </div>
 
@@ -267,10 +316,10 @@ e.g., [{"role": "user", "content": "hello"}].</p>
     </div>
     
     <div class="wm-article-nav">
-      <a href="../prompts/" class="btn btn-xs btn-default pull-left">
+      <a href="../config/" class="btn btn-xs btn-default pull-left">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../prompts/" class="btn btn-xs btn-link">
-        prompts
+        Previous</a><a href="../config/" class="btn btn-xs btn-link">
+        config
       </a>
     </div>
     

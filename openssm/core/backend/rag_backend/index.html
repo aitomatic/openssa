@@ -43,6 +43,7 @@
               {title: "load()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.load" },
               {title: "read_directory()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.read_directory" },
               {title: "read_gdrive()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.read_gdrive" },
+              {title: "read_website()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.read_website" },
               {title: "save()", url: "#openssm.core.backend.rag_backend.AbstractRAGBackend.save" },
           ]},
         ];
@@ -196,6 +197,31 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
       <p>Read a directory of documents from a Google Drive folder and create an index.
 Internally, the documents will first be downloaded to a local directory.</p>
 <p>@param folder_id: The ID of the Google Drive folder.
+@param storage_dir: The path to the base storage directory.
+@param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.</p>
+<p>Side effects:
+- If use_existing_index is True, the index will be automatically saved (for future use)</p>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="openssm.core.backend.rag_backend.AbstractRAGBackend.read_website" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">read_website</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="n">storage_dir</span><span class="p">,</span> <span class="n">use_existing_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Read a directory of documents from a website and create an index.
+Internally, no documents are downloaded to a local directory.</p>
+<p>@param url: The URL of the website.
 @param storage_dir: The path to the base storage directory.
 @param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.</p>
 <p>Side effects:

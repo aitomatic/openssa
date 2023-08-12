@@ -41,7 +41,7 @@
           ]},
           {title: "AbstractSLM", url: "#openssm.core.slm.abstract_slm.AbstractSLM", children: [
               {title: "adapter", url: "#openssm.core.slm.abstract_slm.AbstractSLM.adapter" },
-              {title: "discuss()", url: "#openssm.core.slm.abstract_slm.AbstractSLM.discuss" },
+              {title: "do_discuss()", url: "#openssm.core.slm.abstract_slm.AbstractSLM.do_discuss" },
               {title: "load()", url: "#openssm.core.slm.abstract_slm.AbstractSLM.load" },
               {title: "reset_memory()", url: "#openssm.core.slm.abstract_slm.AbstractSLM.reset_memory" },
               {title: "save()", url: "#openssm.core.slm.abstract_slm.AbstractSLM.save" },
@@ -174,8 +174,8 @@ structured API interactions.</p>
 
 
 
-<h3 id="openssm.core.slm.abstract_slm.AbstractSLM.discuss" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<h3 id="openssm.core.slm.abstract_slm.AbstractSLM.do_discuss" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">do_discuss</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">conversation</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
@@ -187,7 +187,7 @@ structured API interactions.</p>
   <div class="doc doc-contents ">
   
       <p>Processes a natural language conversation input
-and returns a list of replies</p>
+and returns a dict of the reply. Not intended for direct use.</p>
 
   </div>
 
