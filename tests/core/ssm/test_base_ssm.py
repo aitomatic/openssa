@@ -123,3 +123,16 @@ class TestBaseSSM(unittest.TestCase):
         # pylint: disable=protected-access
         self.assertIsNone(self.base_ssm._conversations)
         self.base_ssm.slm.reset_memory.assert_called()
+
+    def test_conversation_history(self):
+        self.base_ssm.reset_memory()
+        self.base_ssm.conversation_tracking = True
+        user_input1 = {'role': 'user', 'content': 'message1'}
+        user_input2 = {'role': 'user', 'content': 'message2'}
+        expected_reply = {'role': 'assistant', 'content': 'Hello, as the base implementation of SLM, this is all I can say.'}
+
+        self.base_ssm.discuss([user_input1])
+        self.base_ssm.discuss([user_input2])
+
+        expected_conversation = [user_input1, expected_reply, user_input2, expected_reply]
+        self.assertEqual(self.base_ssm.get_conversation(self.base_ssm.DEFAULT_CONVERSATION_ID), expected_conversation)

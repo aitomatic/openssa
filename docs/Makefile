@@ -31,7 +31,7 @@ serve:
 
 deploy: build
 	#cd .. && mkdocs gh-deploy
-	cd .. && ghp-import -p site/
+	cd .. && ghp-import -p $(SITE_DIR)
 
 install-mkdocs:
 	pip install mkdocs

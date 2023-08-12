@@ -12,6 +12,8 @@ from openssm.utils.logs import Logs
 
 
 class BaseSSM(AbstractSSM):
+    DEFAULT_CONVERSATION_ID = str(uuid.uuid4())[:4]
+
     def __init__(self,
                  slm: AbstractSLM = None,
                  adapter: AbstractAdapter = None,
@@ -23,22 +25,25 @@ class BaseSSM(AbstractSSM):
         self.adapter.backends = backends
         self._name = name
         self._storage_dir = storage_dir
-        self._conversations = None
-        self._track_conversations = True
+        self._conversation_tracking = True
+        self._conversations = {}
 
     @property
-    def track_conversations(self) -> bool:
+    def conversation_tracking(self) -> bool:
         """
         Return the previous assigned track_conversations,
-        or a default value if none was assigned.
+        or True if none was assigned.
         """
-        if self._track_conversations is None:
-            self._track_conversations = True
-        return self._track_conversations
+        if self._conversation_tracking is None:
+            self._conversation_tracking = True
+        return self._conversation_tracking
 
-    @track_conversations.setter
-    def track_conversations(self, track_conversations: bool):
-        self._track_conversations = track_conversations
+    @conversation_tracking.setter
+    def conversation_tracking(self, track_conversations: bool):
+        """
+        Set the track_conversations flag.
+        """
+        self._conversation_tracking = track_conversations
 
     @property
     def conversations(self) -> dict:
@@ -221,13 +226,16 @@ class BaseSSM(AbstractSSM):
     @Utils.do_canonicalize_user_input_and_discuss_result('user_input')
     @Logs.do_log_entry_and_exit()
     def discuss(self, user_input: list[dict], conversation_id: str = None) -> dict:
+        if self.conversation_tracking and conversation_id is None:
+            conversation_id = self.DEFAULT_CONVERSATION_ID
+
         # Always retrieve the conversation first
         conversation = self.get_conversation(conversation_id)
 
         response, actual_input = self.custom_discuss(user_input, conversation)
 
         # Update the conversation
-        if self.track_conversations:
+        if self.conversation_tracking:
             self.update_conversation(actual_input, response, conversation_id)
 
         return response
