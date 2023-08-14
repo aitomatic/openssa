@@ -173,7 +173,11 @@ eslint-setup:
 # Misc
 #
 requirements.txt: pyproject.toml
-	poetry export --with dev --format requirements.txt --output requirements.txt
+	# poetry export --with dev --format requirements.txt --output requirements.txt
+	 poetry export --format requirements.txt --output requirements.txt
+
+pip-install: requirements.txt
+	pip install -r requirements.txt
 
 oss-publish:
 	@echo temporary target

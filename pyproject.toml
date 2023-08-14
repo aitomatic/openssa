@@ -21,7 +21,6 @@ openai = ">=0.27"
 llama-hub = ">=0.0.4"
 llama-index = ">=0.6.33"
 # misc / other
-pypdf = ">=3.11.0"
 pytest = ">=7.0.0"
 google-api-python-client = ">=2.0"
 

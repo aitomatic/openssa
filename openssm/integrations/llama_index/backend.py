@@ -72,25 +72,35 @@ class Backend(AbstractRAGBackend):
             else:
                 result = {"response": "I'm sorry, I don't have an answer for that."}
 
-        return {"response": result, "response_object": response}
+        if result is dict:
+            result["response_object"] = response
 
-    def _create_index(self, documents):
+        return result
+
+    def _create_index(self, documents, storage_dir: str):
         service_context = ServiceContext.from_defaults(chunk_size_limit=3000)
         self.index = VectorStoreIndex.from_documents(documents, service_context=service_context)
+        self._do_save(storage_dir)
 
     def _do_read_directory(self, storage_dir: str):
         documents = SimpleDirectoryReader(self._get_source_dir(storage_dir)).load_data()
-        self._create_index(documents)
+        self._create_index(documents, storage_dir)
 
     def _do_read_website(self, urls: list[str], storage_dir: str):
         the_class = download_loader("SimpleWebPageReader")
         loader = the_class()
         documents = loader.load_data(urls=urls)
-        self._create_index(documents)
+        self._create_index(documents, storage_dir)
 
     def _do_save(self, storage_dir: str):
+        if storage_dir is None:
+            raise ValueError("No storage directory specified.")
+
         self.index.storage_context.persist(persist_dir=self._get_index_dir(storage_dir))
 
     def _do_load(self, storage_dir: str):
+        if storage_dir is None:
+            raise ValueError("No storage directory specified.")
+
         storage_context = StorageContext.from_defaults(persist_dir=self._get_index_dir(storage_dir))
         self.index = load_index_from_storage(storage_context)
