@@ -7,7 +7,6 @@ from openssm.core.backend.rag_backend import AbstractRAGBackend
 from openssm.core.slm.base_slm import PassthroughSLM
 from openssm.core.prompts import Prompts
 from openssm.utils.logs import Logs
-from openssm.utils.utils import Utils
 
 
 class RAGSSM(BaseSSM):
@@ -16,10 +15,20 @@ class RAGSSM(BaseSSM):
                  rag_backend: AbstractRAGBackend = None,
                  name: str = None,
                  storage_dir: str = None):
+        """
+        @param slm: The SLM to use.
+        @param rag_backend: The RAG backend to use.
+        @param name: The name of the SSM.
+        @param storage_dir: The storage directory to use.
+        """
         slm = slm or PassthroughSLM()
         self._rag_backend = rag_backend
         backends = [self.rag_backend] if self.rag_backend else None
         adapter = BaseAdapter(backends=backends)
+
+        if self._rag_backend is not None and storage_dir is not None:
+            self._rag_backend.load_index_if_exists(storage_dir)
+
         super().__init__(slm=slm, adapter=adapter, backends=backends, name=name, storage_dir=storage_dir)
 
     def is_passthrough(self) -> bool:
@@ -29,17 +38,17 @@ class RAGSSM(BaseSSM):
     def rag_backend(self) -> AbstractRAGBackend:
         return self._rag_backend
 
-    def read_directory(self, storage_dir: str = None, use_existing_index: bool = False):
+    def read_directory(self, storage_dir: str = None, re_index: bool = False):
         self.storage_dir = storage_dir or self.storage_dir
-        self.rag_backend.read_directory(self.storage_dir, use_existing_index)
+        self.rag_backend.read_directory(self.storage_dir, re_index)
 
-    def read_gdrive(self, folder_id: str, storage_dir: str = None, use_existing_index: bool = False):
+    def read_gdrive(self, folder_id: str, storage_dir: str = None, re_index: bool = False):
         self.storage_dir = storage_dir or self.storage_dir
-        self.rag_backend.read_gdrive(folder_id, self.storage_dir, use_existing_index)
+        self.rag_backend.read_gdrive(folder_id, self.storage_dir, re_index)
 
-    def read_website(self, urls: list[str], storage_dir: str = None, use_existing_index: bool = False):
+    def read_website(self, urls: list[str], storage_dir: str = None, re_index: bool = False):
         self.storage_dir = storage_dir or self.storage_dir
-        self.rag_backend.read_website(urls, self.storage_dir, use_existing_index)
+        self.rag_backend.read_website(urls, self.storage_dir, re_index)
 
     @Logs.do_log_entry_and_exit()
     def _make_conversation(self, user_input: list[dict], rag_response: list[dict]) -> list[dict]:
@@ -85,7 +94,6 @@ class RAGSSM(BaseSSM):
             {"role": "user", "content": combined_user_input},
         ]
 
-    @Utils.do_canonicalize_user_input_and_discuss_result('user_input')
     @Logs.do_log_entry_and_exit()
     def custom_discuss(self, user_input: list[dict], conversation: list[dict]) -> tuple[dict, list[dict]]:
         """
@@ -108,19 +116,19 @@ class RAGSSM(BaseSSM):
         if isinstance(self.slm, PassthroughSLM):
             # We’re done if the SLM is a passthrough.
             if rag_response is None:
-                return {"role": "assistant", "content": "No response."}
+                return {"role": "assistant", "content": "No response."}, user_input
 
             if "response" not in rag_response:
-                return {"role": "assistant", "content": rag_response}
+                return {"role": "assistant", "content": rag_response}, user_input
 
-            return {"role": "assistant", "content": rag_response["response"]}
+            return {"role": "assistant", "content": rag_response["response"]}, user_input
 
         # Get the initial SLM response.
         slm_response = self.slm.do_discuss(user_input, conversation)
 
         if rag_response is None:
             # If there is no RAG response, then we’re done.
-            return slm_response
+            return slm_response, user_input
 
         # Combine the user_input, rag_response, and slm_response into a single input,
         # and ask the SLM again with that combined input.

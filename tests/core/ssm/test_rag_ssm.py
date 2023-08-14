@@ -111,13 +111,13 @@ class TestRAGSSM(unittest.TestCase):
 
         # Test with a passthrough SLM
         rag_ssm.slm = PassthroughSLM()
-        result = rag_ssm.custom_discuss(user_input, conversation)
+        result, user_input = rag_ssm.custom_discuss(user_input, conversation)
         self.assertEqual(result, {"role": "assistant", "content": rag_response["response"]})
 
         # Test without RAG response
         rag_ssm.slm = slm_mock
         rag_backend_mock.query.return_value = None
-        result = rag_ssm.custom_discuss(user_input, conversation)
+        result, user_input = rag_ssm.custom_discuss(user_input, conversation)
         self.assertEqual(result, slm_response)
 
         # Test with both RAG response and SLM response

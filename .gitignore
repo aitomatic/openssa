@@ -179,3 +179,4 @@ package-lock.json
 __pycache__
 /debug.py
 /mkdocs.yml
+/requirements.txt

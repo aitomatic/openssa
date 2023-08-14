@@ -56,6 +56,10 @@ class Utils:
         Make sure response is in the form of a dict,
         e.g., {"role": "assistant", "content": "hello"}.
         """
+        if isinstance(result, tuple):
+            # Take the first dict
+            result = next((i for i in result if isinstance(i, dict)), None)
+
         if isinstance(result, dict):
             return Utils._handle_dict_output(result, "content", "response")
 

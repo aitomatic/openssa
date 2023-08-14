@@ -8,12 +8,17 @@ from openssm.utils.utils import Utils
 
 class AbstractRAGBackend(BaseBackend, ABC):
     def _get_source_dir(self, storage_dir: str):
-        return os.path.join(storage_dir, ".sources")
+        # return os.path.join(storage_dir, ".sources")
+        if storage_dir is None:
+            storage_dir = './'
+        return os.path.abspath(storage_dir)
 
     def _get_index_dir(self, storage_dir: str):
-        return os.path.join(storage_dir, ".indexes")
+        if storage_dir is None:
+            storage_dir = './'
+        return os.path.abspath(os.path.join(storage_dir, ".indexes"))
 
-    def _load_index_if_exists(self, storage_dir: str) -> bool:
+    def load_index_if_exists(self, storage_dir: str) -> bool:
         """
         Attempt to load an existing index from the storage directory.
         Returns True if an index was loaded, False otherwise.
@@ -50,70 +55,60 @@ class AbstractRAGBackend(BaseBackend, ABC):
     def _do_read_with_lambda(self,
                              reading_lambda: Callable,
                              storage_dir: str,
-                             use_existing_index: bool = True) -> bool:
+                             re_index: bool = False) -> bool:
         success = False
 
-        if use_existing_index:
-            success = self._load_index_if_exists(storage_dir)
+        if not re_index:
+            success = self.load_index_if_exists(storage_dir)
 
-        if not success or not use_existing_index:
+        if not success or re_index:
             reading_lambda()
-            if use_existing_index:
-                # Side effect: save the index to the storage directory
-                self.save(storage_dir)
-                success = True
+            # Side effect: save the index to the storage directory
+            self.save(storage_dir)
+            success = True
 
         return success
 
-    def read_directory(self, storage_dir: str, use_existing_index: bool = True) -> bool:
+    def read_directory(self, storage_dir: str, re_index: bool = False) -> bool:
         """
         Read a directory of documents and create an index.
 
         @param storage_dir: The path to the base storage directory.
-        @param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.
-
-        Side effects:
-        - If use_existing_index is True, the index will be automatically saved (for future use)
+        @param re_index: [optional] If True, re-index the directory even if an index already exists.
         """
         self._do_read_with_lambda(lambda: self._do_read_directory(storage_dir),
                                   storage_dir,
-                                  use_existing_index)
+                                  re_index)
 
     def _do_read_gdrive(self, folder_id: str, storage_dir: str) -> bool:
         Utils.download_gdrive(folder_id, self._get_source_dir(storage_dir))
         self._do_read_directory(storage_dir)
 
-    def read_gdrive(self, folder_id: str, storage_dir: str, use_existing_index: bool = True):
+    def read_gdrive(self, folder_id: str, storage_dir: str, re_index: bool = False):
         """
         Read a directory of documents from a Google Drive folder and create an index.
         Internally, the documents will first be downloaded to a local directory.
 
         @param folder_id: The ID of the Google Drive folder.
         @param storage_dir: The path to the base storage directory.
-        @param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.
-
-        Side effects:
-        - If use_existing_index is True, the index will be automatically saved (for future use)
+        @param re_index: [optional] If True, re-index the directory even if an index already exists.
         """
         self._do_read_with_lambda(lambda: self._do_read_gdrive(folder_id, storage_dir),
                                   storage_dir,
-                                  use_existing_index)
+                                  re_index)
 
-    def read_website(self, urls: list[str], storage_dir: str, use_existing_index: bool = True):
+    def read_website(self, urls: list[str], storage_dir: str, re_index: bool = False):
         """
         Read a directory of documents from a website and create an index.
         Internally, no documents are downloaded to a local directory.
 
         @param url: The URL of the website.
         @param storage_dir: The path to the base storage directory.
-        @param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.
-
-        Side effects:
-        - If use_existing_index is True, the index will be automatically saved (for future use)
+        @param re_index: [optional] If True, re-index the directory even if an index already exists.
         """
         self._do_read_with_lambda(lambda: self._do_read_website(urls, storage_dir),
                                   storage_dir,
-                                  use_existing_index)
+                                  re_index)
 
     @abstractmethod
     def _do_save(self, storage_dir: str):
