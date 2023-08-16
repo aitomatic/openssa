@@ -15,7 +15,8 @@ from openssm.core.backend.rag_backend import AbstractRAGBackend
 
 @dataclass
 class Backend(AbstractRAGBackend):
-    def __init__(self, relevance_threshold: float = 0.5):
+    def __init__(self, relevance_threshold: float = 0.5,
+                 query_engine_kwargs: dict = None):
         """
         Initialize the backend.
 
@@ -26,8 +27,35 @@ class Backend(AbstractRAGBackend):
         """
         self._index = None
         self._query_engine = None
+        self._query_engine_kwargs = None
         self._relevance_threshold = relevance_threshold
         super().__init__()
+        if query_engine_kwargs is not None:
+            self.query_engine_kwargs = query_engine_kwargs
+
+    @property
+    def query_engine_kwargs(self) -> dict:
+        if self._query_engine_kwargs is None:
+            self._query_engine_kwargs = {
+                'vector_store_query_mode': 'mmr',
+                'vector_store_kwargs': {
+                    'mmr_threshold': self._relevance_threshold
+                }
+            }
+
+        return self._query_engine_kwargs
+
+    @query_engine_kwargs.setter
+    def query_engine_kwargs(self, query_engine_kwargs: dict):
+        if 'vector_store_query_mode' not in query_engine_kwargs:
+            query_engine_kwargs['vector_store_query_mode'] = 'mmr'
+
+        if 'vector_store_kwargs' not in query_engine_kwargs:
+            query_engine_kwargs['vector_store_kwargs'] = {
+                'mmr_threshold': self._relevance_threshold
+            }
+
+        self._query_engine_kwargs = query_engine_kwargs
 
     @property
     def index(self) -> BaseIndex:
@@ -42,10 +70,9 @@ class Backend(AbstractRAGBackend):
         if self._query_engine is None:
             if self.index is None:
                 return None
-            self._query_engine = self.index.as_query_engine(
-                vector_store_query_mode="mmr",
-                vector_store_kwargs={"mmr_threshold": self._relevance_threshold}
-            )
+
+            self._query_engine = self.index.as_query_engine(**self.query_engine_kwargs)
+
         return self._query_engine
 
     @query_engine.setter

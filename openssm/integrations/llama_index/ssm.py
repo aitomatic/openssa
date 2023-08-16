@@ -9,8 +9,12 @@ class SSM(RAGSSM):
                  slm: AbstractSLM = None,
                  name: str = None,
                  storage_dir: str = None,
-                 relevance_threshold: float = 0.5):
+                 relevance_threshold: float = 0.5,
+                 qa_template: str = None):
         rag_backend = LlamaIndexBackend(relevance_threshold=relevance_threshold)
+        if qa_template is not None:
+            rag_backend.query_engine_kwargs = {'text_qa_template': qa_template}
+
         super().__init__(slm=slm, rag_backend=rag_backend, name=name, storage_dir=storage_dir)
 
 
