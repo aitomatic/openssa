@@ -234,6 +234,11 @@ class BaseSSM(AbstractSSM):
 
         response, actual_input = self.custom_discuss(user_input, conversation)
 
+        # TODO: Question why the secondary input to SLM should be stored and
+        # not the initial, isn't the whole point that what happends int he SLM
+        # stays in the SLM?
+        actual_input = Utils.canonicalize_user_input(actual_input)
+
         # Update the conversation
         if self.conversation_tracking:
             self.update_conversation(actual_input, response, conversation_id)
