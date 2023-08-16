@@ -100,18 +100,24 @@ class SLM(_AbstractSLM):
 
     @Logs.do_log_entry_and_exit()
     def _call_chat_completion_api(self, conversation: list[dict]) -> dict:
-        response = openai.ChatCompletion.create(
+        args = dict(
             messages=conversation,
             api_type=self.api_context.type,
             api_key=self.api_context.key,
             api_base=self.api_context.base,
             api_version=self.api_context.version,
-            # model=self.api_context.model,
-            engine=self.api_context.engine,
             max_tokens=self.api_context.max_tokens,
             temperature=self.api_context.temperature
         )
+        if self.api_context.engine is None and self.api_context.model is not None:
+            # Calls to OpenAI use "model" parameter and etiher omit version or
+            # use version 2020-10-01, 202-11-07
+            args['model'] = self.api_context.model
+        elif self.api_context.engine is not None:
+            # Call to Azure OpenAI use "engine" parameter and version v1 is ok
+            args['engine'] = self.api_context.engine
 
+        response = openai.ChatCompletion.create(**args)
         response = response.choices[0].message
 
         return response
