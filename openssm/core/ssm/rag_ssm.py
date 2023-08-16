@@ -106,6 +106,14 @@ class RAGSSM(BaseSSM):
         3. We combine the two responses into a single query to the SLM
         3. The SLM’s response is then returned.
         """
+        # TODO: Consider alternate RAG SSM Flow: Query -> Transformed by SLM to
+        # good query format -> RAG Query -> RAG backend -> RAG Response ->
+        # Transformed by SLM to good conversational response to user
+
+        # TODO: Make feature request to allow SSM users to modify SSM function
+        # and output style by addition of {'role': 'system', 'content': xxx}
+        # messages to give personality and style to responses. i.e. enhance UX
+
         # First get the RAG response.
         rag_response = None
         if self.rag_backend is not None:
@@ -130,13 +138,18 @@ class RAGSSM(BaseSSM):
             # If there is no RAG response, then we’re done.
             return slm_response, user_input
 
+        if isinstance(rag_response, dict) and 'response' in rag_response:
+            rag_response = rag_response['response']
+
         # Combine the user_input, rag_response, and slm_response into a single input,
         # and ask the SLM again with that combined input.
         combined_input = Prompts.make_prompt(
             __name__, "discuss", "combined_input",
             user_input=user_input[0]["content"],
             rag_response=rag_response,
-            slm_response=slm_response)
+            slm_response=slm_response['content'])
+
+        combined_input = Utils.canonicalize_user_input(combined_input)
 
         slm_response = self.slm.do_discuss(combined_input, conversation) # user_input is already in the conversation
 
