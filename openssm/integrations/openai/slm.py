@@ -35,6 +35,14 @@ class APIContext(BaseModel):
         api_context.base = Config.OPENAI_API_URL
         return api_context
 
+    @classmethod
+    def from_openai_defaults(cls):
+        api_context = APIContext()
+        api_context.key = Config.OPENAI_API_KEY
+        api_context.base = Config.OPENAI_API_URL
+        api_context.version = None
+        return api_context
+
 
 class _AbstractSLM(BaseSLM, ABC):
 
