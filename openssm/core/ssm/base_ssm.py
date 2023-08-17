@@ -11,9 +11,11 @@ from openssm.utils.utils import Utils
 from openssm.utils.logs import Logs
 
 
+# pylint: disable=too-many-public-methods
 class BaseSSM(AbstractSSM):
     DEFAULT_CONVERSATION_ID = str(uuid.uuid4())[:4]
 
+    # pylint: disable=too-many-arguments
     def __init__(self,
                  slm: AbstractSLM = None,
                  adapter: AbstractAdapter = None,

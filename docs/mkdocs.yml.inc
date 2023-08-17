@@ -23,17 +23,27 @@ extra_css:
 
 plugins:
   - search
+  - mike:
+      # These fields are all optional; the defaults are as below...
+      alias_type: symlink
+      redirect_template: null
+      deploy_prefix: ''
+      canonical_version: null
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
   - mkdocstrings:
       handlers:
         python:
+          paths: [/Users/ctn/src/aitomatic/ssm]
           setup_commands:
             - import os
             - import sys
             - sys.path.append('openssm')
             - sys.path.insert(0, os.path.abspath('.'))
-            - print(sys.path)
+            - print(f"sys.path is {sys.pat}")
           options:
-            show_source: False
+            show_source: True
 nav:
   - Home: index.md
   - Getting Started: GETTING_STARTED.md

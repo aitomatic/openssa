@@ -191,10 +191,10 @@ oss-publish:
 docs: docs-build
 
 docs-build:
-	@cd docs && make build
+	@PYTHONPATH=$(PYTHONPATH) cd docs && make build
 
 docs-deploy: docs-build
-	@cd docs && make deploy
+	@PYTHONPATH=$(PYTHONPATH) cd docs && make deploy
 
 #
 # For version management

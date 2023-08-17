@@ -7,15 +7,17 @@ from llama_index import (
     Response,
     ServiceContext
 )
+from llama_index.llms import OpenAI
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
+from llama_index.llms.base import LLM as RAGLLM
 from llama_index.storage import StorageContext
 from openssm.core.backend.rag_backend import AbstractRAGBackend
 
 
 @dataclass
 class Backend(AbstractRAGBackend):
-    def __init__(self, relevance_threshold: float = 0.5):
+    def __init__(self, relevance_threshold: float = 0.5, rag_llm: RAGLLM = None):
         """
         Initialize the backend.
 
@@ -27,7 +29,19 @@ class Backend(AbstractRAGBackend):
         self._index = None
         self._query_engine = None
         self._relevance_threshold = relevance_threshold
+        self._rag_llm = rag_llm
         super().__init__()
+
+    @property
+    def llm(self) -> RAGLLM:
+        if self._rag_llm is None:
+            self._rag_llm = OpenAI(model="text-davinci-002")
+            # self._llm = OpenAI(model="gpt-3.5-turbo")
+        return self._rag_llm
+
+    @llm.setter
+    def llm(self, llm: RAGLLM):
+        self._rag_llm = llm
 
     @property
     def index(self) -> BaseIndex:
@@ -78,9 +92,8 @@ class Backend(AbstractRAGBackend):
         return result
 
     def _create_index(self, documents, storage_dir: str):
-        service_context = ServiceContext.from_defaults(chunk_size_limit=3000)
+        service_context = ServiceContext.from_defaults(llm=self.llm, chunk_size_limit=3000)
         self.index = VectorStoreIndex.from_documents(documents, service_context=service_context)
-        self._do_save(storage_dir)
 
     def _do_read_directory(self, storage_dir: str):
         documents = SimpleDirectoryReader(self._get_source_dir(storage_dir)).load_data()
