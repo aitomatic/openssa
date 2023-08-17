@@ -7,6 +7,7 @@ from openssm.core.backend.rag_backend import AbstractRAGBackend
 from openssm.core.slm.base_slm import PassthroughSLM
 from openssm.core.prompts import Prompts
 from openssm.utils.logs import Logs
+from openssm.utils.utils import Utils
 
 
 class RAGSSM(BaseSSM):
