@@ -1,4 +1,5 @@
 # Import OpenSSM package "live" from the source code
+import os 
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path('../../').resolve()))
@@ -7,6 +8,11 @@ import textwrap
 wrapper = textwrap.TextWrapper(width=70)
 
 from openssm import LlamaIndexSSM
+
+# Remove the index if it exists to avoid conflicting and unupdated indexes
+if os.path.exists(".openssm\mydocs\.indexes"):
+    os.system("rmdir /s /q .openssm\mydocs\.indexes")
+    
 ssm = LlamaIndexSSM(name="mydocs")
 ssm.read_directory()
 
