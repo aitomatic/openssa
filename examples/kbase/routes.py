@@ -7,7 +7,7 @@ import tempfile
 from werkzeug.utils import secure_filename
 from flask import render_template, request, Blueprint, session
 from flask import Flask, jsonify
-from openssm import (
+from openssa import (
     logger,
     Logs,
     BaseSSM,

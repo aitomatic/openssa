@@ -4,7 +4,7 @@ import uuid
 
 from flask import render_template, request, Blueprint, session
 
-from openssm import (
+from openssa import (
     BaseSSM,
     OpenAIGPT3CompletionSSM, OpenAIGPT3ChatCompletionSSM,
     Falcon7bSSM

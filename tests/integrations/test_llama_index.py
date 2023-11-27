@@ -3,10 +3,10 @@ from unittest.mock import MagicMock, patch
 from llama_index import Response
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
-from openssm.core.slm.abstract_slm import AbstractSLM
-from openssm.core.slm.base_slm import PassthroughSLM
-from openssm.integrations.llama_index.backend import Backend as LlamaIndexBackend
-from openssm.integrations.llama_index.ssm import SSM as LlamaIndexSSM  # , GPT3SSM
+from openssa.core.slm.abstract_slm import AbstractSLM
+from openssa.core.slm.base_slm import PassthroughSLM
+from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
+from openssa.integrations.llama_index.ssm import SSM as LlamaIndexSSM  # , GPT3SSM
 
 
 class TestSSMClasses(unittest.TestCase):

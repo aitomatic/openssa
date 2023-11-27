@@ -176,7 +176,13 @@ package-lock.json
 **/favicon/test
 .env
 .openssm
+.openssa
 __pycache__
 /debug.py
 /mkdocs.yml
 /requirements.txt
+
+tmp
+
+# Streamlit secrets
+secrets.toml

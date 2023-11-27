@@ -1,5 +1,5 @@
 import os
-from openssm import Config
+from openssa import Config
 
 
 Config.FLASK_SECRET_KEY = os.environ.get(
@@ -7,7 +7,7 @@ Config.FLASK_SECRET_KEY = os.environ.get(
 
 # other config variables...
 
-# These are already automatically done in the openssm/core/config.py file
+# These are already automatically done in the openssa/core/config.py file
 # Override them here if you want to use different values
 # Config.OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Config.OPENAI_API_URL = os.getenv("OPENAI_API_URL")

@@ -1,6 +1,10 @@
-name: Run Make Test on PRs
+name: Run Make Test
 
 on:
+  push:
+    branches:
+      - "*"
+
   pull_request:
     branches:
       - "*"
@@ -13,6 +17,7 @@ jobs:
       matrix:
         python-version:
           - '3.10'
+          - 3.11
 
     steps:
       - name: Checkout Repo

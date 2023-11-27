@@ -1,1 +1,1 @@
-# OpenSSM/examples/chatssm/__init__.py
+# OpenSSA/examples/chatssm/__init__.py

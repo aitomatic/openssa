@@ -1,10 +1,10 @@
 import unittest
 from unittest.mock import MagicMock
-from openssm.core.inferencer.abstract_inferencer import AbstractInferencer
-from openssm.core.slm.abstract_slm import AbstractSLM
-from openssm.core.ssm.abstract_ssm import AbstractSSM
-from openssm.core.ssm.base_ssm import BaseSSM
-from openssm.core.ssm.base_ssm_builder import BaseSSMBuilder
+from openssa.core.inferencer.abstract_inferencer import AbstractInferencer
+from openssa.core.slm.abstract_slm import AbstractSLM
+from openssa.core.ssm.abstract_ssm import AbstractSSM
+from openssa.core.ssm.base_ssm import BaseSSM
+from openssa.core.ssm.base_ssm_builder import BaseSSMBuilder
 
 
 class TestBaseSSMBuilder(unittest.TestCase):

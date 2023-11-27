@@ -1,14 +1,14 @@
 PROJECT_DIR := $(shell cd .. && pwd)
-OPENSSM_DIR=$(PROJECT_DIR)/openssm
-INIT_PY=$(OPENSSM_DIR)/__init__.py
-TMP_INIT_PY=$(OPENSSM_DIR)/__tmp__init__.py
+OPENSSA_DIR=$(PROJECT_DIR)/openssa
+INIT_PY=$(OPENSSA_DIR)/__init__.py
+TMP_INIT_PY=$(OPENSSA_DIR)/__tmp__init__.py
 DOCS_DIR=$(PROJECT_DIR)/docs
 SITE_DIR=$(PROJECT_DIR)/site
-VERSION := $(shell cd $(OPENSSM_DIR) && cat VERSION)
+VERSION := $(shell cd $(OPENSSA_DIR) && cat VERSION)
 
 #MKDOCS=mkdocs -v
 MKDOCS=mkdocs
-PYTHONPATH=$(PROJECT_DIR):$(OPENSSM_DIR)
+PYTHONPATH=$(PROJECT_DIR):$(OPENSSA_DIR)
 
 # Colorized output
 ANSI_NORMAL="\033[0m"
@@ -21,7 +21,7 @@ ANSI_CYAN="\033[0;36m"
 ANSI_WHITE="\033[0;37m"
 
 
-PYTHONPATH=$(PROJECT_DIR):$(OPENSSM_DIR)
+PYTHONPATH=$(PROJECT_DIR):$(OPENSSA_DIR)
 
 
 build:
@@ -65,7 +65,7 @@ copy-files:
 	@echo $(ANSI_GREEN) ... Generating our index.md from ../README.md $(ANSI_NORMAL)
 	sed -e 's#\(\.\./\)*docs/#/#g' ../README.md > index.md
 	@echo $(ANSI_GREEN) ... Working on other files $(ANSI_NORMAL)
-	FILE=openssm/integrations/llama_index/README.md ;\
+	FILE=openssa/integrations/llama_index/README.md ;\
 	sed -e 's#\.\./\(\.\./\)*docs/#/#g' $(PROJECT_DIR)/$$FILE > $(DOCS_DIR)/$$FILE
 
 move-files:

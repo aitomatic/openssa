@@ -2,14 +2,14 @@ import os
 
 
 DOCS_DIR = '.'
-SRC_DIR = '../openssm'
-API_DIR = './openssm'
+SRC_DIR = '../openssa'
+API_DIR = './openssa'
 NAV_PATH = '/tmp/api_nav.yml'
 MKDOCS_INC_PATH = DOCS_DIR + '/mkdocs.yml.inc'
 MKDOCS_PATH = DOCS_DIR + '/../mkdocs.yml'
 
 INDENT_SPACES = 2
-MODULE_PATH_PREFIX = 'openssm/'
+MODULE_PATH_PREFIX = 'openssa/'
 EXCLUDES = ('deprecated', '__pycache__', '__init__.py')
 EMPTY_MD = 'empty.md'
 
@@ -77,7 +77,7 @@ def generate_mkdocs_config(nav_path, src_dir, api_dir, indent_spaces):
                 empty_md_path = os.path.join(empty_md_dir, 'EMPTY.md')
                 with open(empty_md_path, 'w') as empty_md_file:
                     empty_md_file.write("This directory is (still) empty.\n")
-                nav_file.write(f'{indent}- {module_name}: openssm/{empty_md_path.replace(api_dir+"/", "")}\n')
+                nav_file.write(f'{indent}- {module_name}: openssa/{empty_md_path.replace(api_dir+"/", "")}\n')
 
 
             else:
@@ -90,7 +90,7 @@ def generate_mkdocs_config(nav_path, src_dir, api_dir, indent_spaces):
                         module_path = os.path.join(root.replace(src_dir, '').lstrip('/'), file.replace('.py', ''))
                         nav_file.write(
                                 f'{indent + " " * indent_spaces}- {file.replace(".py", "")}: '
-                                f'openssm/{module_path.replace(".py", ".md")}.md\n')
+                                f'openssa/{module_path.replace(".py", ".md")}.md\n')
 
 
 def generate_api_reference(root, file, api_dir):

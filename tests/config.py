@@ -1,5 +1,5 @@
 # import logging
-# from openssm import Logging
+# from openssa import Logging
 
 
 # Logging.set_log_level(logging.INFO)

@@ -1,4 +1,4 @@
-site_name: OpenSSM Documentation
+site_name: OpenSSA Documentation
 
 theme: windmill
 #theme: material
@@ -39,7 +39,7 @@ plugins:
           setup_commands:
             - import os
             - import sys
-            - sys.path.append('openssm')
+            - sys.path.append('openssa')
             - sys.path.insert(0, os.path.abspath('.'))
             - print(f"sys.path is {sys.pat}")
           options:
@@ -52,7 +52,7 @@ nav:
     - Using Makefile: dev/makefile_info.md
     - Other HowTos: dev/howtos.md
   - Integrations:
-    - LlamaIndex: openssm/integrations/llama_index/README.md
+    - LlamaIndex: openssa/integrations/llama_index/README.md
     - Vectara: integrations/vectara.md
     - Lepton.AI: integrations/lepton_ai.md
   - Community:
