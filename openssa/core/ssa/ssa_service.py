@@ -98,8 +98,8 @@ class SSARAGService:
             "agent_id": agent_id,
         }
 
-        aiSO_url = SSAService.AISO_API_URL
+        aiso_url = SSAService.AISO_API_URL
 
         with httpx.Client(timeout=5000) as client:
-            response = client.post(aiSO_url + "/api/agents/add-knowledge", json=payload)
+            response = client.post(aiso_url + "/api/agents/add-knowledge", json=payload)
             return response.json()

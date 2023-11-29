@@ -10,7 +10,7 @@ class TestPrompts(unittest.TestCase):
         Prompts._PROMPTS["openssa"]["core"]["slm"]["test_prompt"] = {"instruction": "This is a test instruction."}
         Prompts._PROMPTS["openssa"]["core"]["other_module"] = {"other_subindex": {"message": "This is another test message."}}
 
-    def do_not_test_get_module_prompt(self): #TODO fix this later
+    def do_not_test_get_module_prompt(self):
         # Test case 1: Fetching the existing completion prompt
         result = Prompts.make_prompt('openssa.core.slm.base_slm', 'completion')
         expected = ("Complete this conversation with the assistant’s response, up to 2000 words. "
