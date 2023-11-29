@@ -7,11 +7,11 @@ import tempfile
 from werkzeug.utils import secure_filename
 from flask import render_template, request, Blueprint, session
 from flask import Flask, jsonify
-from openssm import (
+from openssa import (
     logger,
     Logs,
     BaseSSM,
-    GPT3CompletionSSM, GPT3ChatCompletionSSM,
+    OpenAIGPT3CompletionSSM, OpenAIGPT3ChatCompletionSSM,
     Falcon7bSSM,
     LlamaIndexSSM
 )
@@ -34,8 +34,8 @@ def home():
 
 ssms = {
     'llama_index': LlamaIndexSSM(),
-    'gpt3_completion': GPT3CompletionSSM(),
-    'gpt3_chat_completion': GPT3ChatCompletionSSM(),
+    'gpt3_completion': OpenAIGPT3CompletionSSM(),
+    'gpt3_chat_completion': OpenAIGPT3ChatCompletionSSM(),
     'falcon7b': Falcon7bSSM(),
 }
 

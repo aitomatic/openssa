@@ -1,4 +1,4 @@
-from openssm.utils.utils import Utils
+from openssa.utils.utils import Utils
 
 class TestUtils:
     def test_canonicalize_user_input_str(self):

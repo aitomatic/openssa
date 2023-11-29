@@ -2,7 +2,7 @@
 
 This code of conduct outlines our expectations for all those who participate in our community, as well as the consequences for unacceptable behavior.
 
-We invite all those who participate in OpenSSM to help us create safe and positive experiences for everyone.
+We invite all those who participate in OpenSSA to help us create safe and positive experiences for everyone.
 
 ## Expected Behavior
 

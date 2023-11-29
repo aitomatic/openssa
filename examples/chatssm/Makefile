@@ -5,7 +5,7 @@ APPNAME=$(notdir $(CURDIR))
 # Make sure we include the library directory
 PROJECT_DIR=.
 ROOT_DIR=$(PROJECT_DIR)/../..
-OPENSSM_DIR=$(ROOT_DIR)/openssm
+OPENSSM_DIR=$(ROOT_DIR)/openssa
 TESTS_DIR=$(ROOT_DIR)/tests
 EXAMPLES_DIR=$(ROOT_DIR)/examples
 PORT=8080

@@ -1,7 +1,7 @@
 from unittest.mock import Mock
-from openssm.core.adapter.base_adapter import BaseAdapter
-from openssm.core.backend.base_backend import BaseBackend
-from openssm.core.backend.text_backend import TextBackend
+from openssa.core.adapter.base_adapter import BaseAdapter
+from openssa.core.backend.base_backend import BaseBackend
+from openssa.core.backend.text_backend import TextBackend
 
 
 class MockBackend(BaseBackend):

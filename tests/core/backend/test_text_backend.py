@@ -1,6 +1,6 @@
 import unittest
-from openssm.core.backend.text_backend import TextBackend
-from openssm.core.inferencer.base_inferencer import BaseInferencer
+from openssa.core.backend.text_backend import TextBackend
+from openssa.core.inferencer.base_inferencer import BaseInferencer
 
 
 class TestTextBackend(unittest.TestCase):

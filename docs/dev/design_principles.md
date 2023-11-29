@@ -1,4 +1,4 @@
-# OpenSSM Design Principles
+# A Design Principles
 
 1. **Specialization Over Generalization:** Our models are designed to be domain-specific to provide precise solutions to specific problems, rather than providing generalized solutions.
 

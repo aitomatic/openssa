@@ -1,9 +1,14 @@
 PROJECT_DIR := $(shell cd .. && pwd)
-OPENSSM_DIR=$(PROJECT_DIR)/openssm
-INIT_PY=$(OPENSSM_DIR)/__init__.py
-TMP_INIT_PY=$(OPENSSM_DIR)/__tmp__init__.py
+OPENSSA_DIR=$(PROJECT_DIR)/openssa
+INIT_PY=$(OPENSSA_DIR)/__init__.py
+TMP_INIT_PY=$(OPENSSA_DIR)/__tmp__init__.py
 DOCS_DIR=$(PROJECT_DIR)/docs
 SITE_DIR=$(PROJECT_DIR)/site
+VERSION := $(shell cd $(OPENSSA_DIR) && cat VERSION)
+
+#MKDOCS=mkdocs -v
+MKDOCS=mkdocs
+PYTHONPATH=$(PROJECT_DIR):$(OPENSSA_DIR)
 
 # Colorized output
 ANSI_NORMAL="\033[0m"
@@ -16,22 +21,28 @@ ANSI_CYAN="\033[0;36m"
 ANSI_WHITE="\033[0;37m"
 
 
+PYTHONPATH=$(PROJECT_DIR):$(OPENSSA_DIR)
+
+
 build:
+	@echo $(ANSI_YELLOW) $(PYTHONPATH)
 	@echo $(ANSI_GREEN) ... Generating API navigation $(ANSI_NORMAL)
 	python api_nav.py
 	@echo $(ANSI_GREEN) ... Building docs $(ANSI_NORMAL)
-	@make move-files
+	# @make move-files
 	@make copy-files
-	cd .. && mkdocs build
-	@make unmove-files
+	cd .. && $(MKDOCS) build
+	# @make unmove-files
 
 serve:
-	@# cd .. && mkdocs serve
-	cd $(SITE_DIR) && python3 -m http.server 8000
+	@# cd .. && $(MKDOCS) serve
+	# cd $(SITE_DIR) && python3 -m http.server 8000
+	cd $(SITE_DIR) && mike serve
 
 deploy: build
-	#cd .. && mkdocs gh-deploy
-	cd .. && ghp-import -p $(SITE_DIR)
+	#cd .. && $(MKDOCS) gh-deploy
+	# cd .. && ghp-import -p $(SITE_DIR)
+	cd .. && mike deploy $(VERSION) latest --deploy-prefix $(VERSION)
 
 install-mkdocs:
 	pip install mkdocs
@@ -54,7 +65,7 @@ copy-files:
 	@echo $(ANSI_GREEN) ... Generating our index.md from ../README.md $(ANSI_NORMAL)
 	sed -e 's#\(\.\./\)*docs/#/#g' ../README.md > index.md
 	@echo $(ANSI_GREEN) ... Working on other files $(ANSI_NORMAL)
-	FILE=openssm/integrations/llama_index/README.md ;\
+	FILE=openssa/integrations/llama_index/README.md ;\
 	sed -e 's#\.\./\(\.\./\)*docs/#/#g' $(PROJECT_DIR)/$$FILE > $(DOCS_DIR)/$$FILE
 
 move-files:

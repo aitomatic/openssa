@@ -5,7 +5,7 @@ export OPENAI_API_URL?=DUMMY_OPENAI_API_URL
 # Make sure we include the library directory
 PROJECT_DIR=$(PWD)
 ROOT_DIR=$(PROJECT_DIR)
-LIB_DIR=$(PROJECT_DIR)/openssm
+LIB_DIR=$(PROJECT_DIR)/openssa
 TESTS_DIR=$(PROJECT_DIR)/tests
 EXAMPLES_DIR=$(PROJECT_DIR)/examples
 DIST_DIR=$(PROJECT_DIR)/dist
@@ -63,7 +63,7 @@ test-js:
 	cd $(TESTS_DIR) && npx jest
 
 
-LINT_DIRS = openssm tests examples
+LINT_DIRS = openssa tests examples
 lint: lint-py lint-js
 
 lint-py:
@@ -181,8 +181,8 @@ pip-install: requirements.txt
 
 oss-publish:
 	@echo temporary target
-	# rsync -av --delete --dry-run ../ssm/ ../openssm/
-	rsync -av --exclude .git --delete ../ssm/ ../openssm/
+	# rsync -av --delete --dry-run ../ssa/ ../openssa/
+	rsync -av --exclude .git --delete ../ssa/ ../openssa/
 
 #
 # For web-based documentation
@@ -191,10 +191,10 @@ oss-publish:
 docs: docs-build
 
 docs-build:
-	@cd docs && make build
+	@PYTHONPATH=$(PYTHONPATH) cd docs && make build
 
 docs-deploy: docs-build
-	@cd docs && make deploy
+	@PYTHONPATH=$(PYTHONPATH) cd docs && make deploy
 
 #
 # For version management

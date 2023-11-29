@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import Mock
-from openssm.core.slm.base_slm import BaseSLM
-from openssm.core.adapter.base_adapter import BaseAdapter
-from openssm.core.slm.base_slm import PassthroughSLM
+from openssa.core.slm.base_slm import BaseSLM
+from openssa.core.adapter.base_adapter import BaseAdapter
+from openssa.core.slm.base_slm import PassthroughSLM
 
 
 class MockAdapter(BaseAdapter):

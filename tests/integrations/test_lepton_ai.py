@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import MagicMock
-from openssm.core.backend.rag_backend import AbstractRAGBackend
-from openssm.core.adapter.abstract_adapter import AbstractAdapter
-from openssm.integrations.lepton_ai.ssm import SSM as LeptonAISSM, RAGSSM as LeptonAIRAGSSM
-from openssm.utils.config import Config
+from openssa.core.backend.rag_backend import AbstractRAGBackend
+from openssa.core.adapter.abstract_adapter import AbstractAdapter
+from openssa.integrations.lepton_ai.ssm import SSM as LeptonAISSM, RAGSSM as LeptonAIRAGSSM
+from openssa.utils.config import Config
 
 Config.LEPTONAI_API_URL = "test_url"
 Config.LEPTONAI_API_KEY = "test_key"

@@ -1,5 +1,5 @@
 from unittest.mock import Mock
-from openssm.core.backend.base_backend import BaseBackend
+from openssa.core.backend.base_backend import BaseBackend
 
 
 def test_process():

@@ -1,6 +1,6 @@
 ---
 name: Pull request
-about: Contribute to the OpenSSM project
+about: Contribute to the SSA project
 
 ---
 
