@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .ssa_service import SSAService, SSASRAGService
+from .ssa_service import SSAService, SSARAGService
 
 
 class AbstractSSA(ABC):
@@ -51,23 +51,24 @@ class BaseSSA(AbstractSSA):
         # waiting on Chanh's endpoint to get objects and build agent here
         pass
 
-    def chat(self, message: str, config: dict = {}) -> str:
+    def chat(self, message: str, config: dict = None) -> str:
         """Chat with a Small Specialist Agent."""
+        config = config or {}
         return SSAService.chat(message, config)
 
 
-class RagSSA(BaseSSA):
+class RagSSA():
     def __init__(self):
         pass
 
     @classmethod
     def train(cls, agent_id: str, s3_source_path: str, **kwargs) -> str:
-        return SSASRAGService.create_rag_agent(agent_id, s3_source_path, **kwargs)
+        return SSARAGService.create_rag_agent(agent_id, s3_source_path, **kwargs)
 
     def chat(self, agent_id: str, message: str) -> str:
         """Chat with a Small Specialist Agent."""
-        return SSASRAGService.chat(agent_id, message)
+        return SSARAGService.chat(agent_id, message)
 
     def add_knowledge(self, agent_id: str, message: str) -> str:
         """Add knowledge to a Small Specialist Agent."""
-        return SSASRAGService.add_knowledge(agent_id, message)
+        return SSARAGService.add_knowledge(agent_id, message)

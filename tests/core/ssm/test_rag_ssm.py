@@ -55,8 +55,8 @@ class TestRAGSSM(unittest.TestCase):
         rag_ssm.read_website(urls, storage_dir)
         rag_backend.read_website.assert_called_with(urls, storage_dir, False)
 
-    # Test for _make_conversation
-    def do_not_test_make_conversation(self): #TODO this is broken test
+    # Test for _make_conversation, this is broken test
+    def do_not_test_make_conversation(self):
         rag_ssm = RAGSSM()
         user_input = [{'role': 'user', 'content': 'What is the capital of Spain?'}]
         rag_response = {'response': 'Madrid is the capital of Spain.'}

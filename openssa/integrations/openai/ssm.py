@@ -3,7 +3,6 @@ from abc import ABC
 from typing import Optional
 from openai import OpenAI
 
-client = OpenAI()
 from openssa.utils.config import Config
 from openssa.core.ssm.base_ssm import BaseSSM
 from openssa.core.adapter.abstract_adapter import AbstractAdapter
@@ -17,6 +16,8 @@ Config.OPENAI_API_KEY: Optional[str] = os.environ.get("OPENAI_API_KEY")
 Config.OPENAI_API_URL: Optional[str] = (
     os.environ.get("OPENAI_API_URL") or "https://api.openai.com/v1"
 )
+
+client = OpenAI()
 
 
 # pylint: disable=too-many-instance-attributes

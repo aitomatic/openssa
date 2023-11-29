@@ -41,10 +41,11 @@ class SSAService(AbstractSSAService):
         return response.json()
 
     @classmethod
-    def chat(cls, message, config: dict = {}) -> str:
+    def chat(cls, message, config=None) -> str:
         """Chat with a Small Specialist Agent."""
         # NOTE: before using chat, the model must be deploy after train
 
+        config = config or {}
         payload = {
             "user_input": message,
             "endpoint_name": config.get("endpoint_name"),
@@ -58,7 +59,7 @@ class SSAService(AbstractSSAService):
         return response.json()
 
 
-class SSASRAGService(SSAService):
+class SSARAGService:
     @classmethod
     def create_rag_agent(cls, agent_id: str, s3_source_path: str, **kwargs):
         """Call the SSA training service endpoint"""
@@ -81,10 +82,10 @@ class SSASRAGService(SSAService):
             "agent_id": agent_id,
         }
 
-        aiSO_url = SSAService.AISO_API_URL
+        aiso_url = SSAService.AISO_API_URL
 
         with httpx.Client(timeout=5000) as client:
-            response = client.post(aiSO_url + "/api/agents/chat", json=payload)
+            response = client.post(aiso_url + "/api/agents/chat", json=payload)
             return response.json()
 
     @classmethod

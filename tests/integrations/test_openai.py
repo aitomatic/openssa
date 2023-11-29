@@ -20,7 +20,7 @@ class TestGPT3CompletionSLM(unittest.TestCase):
         self.assertEqual(slm.api_context.model, "text-davinci-002")
 
     @patch('openai.resources.Completions.create')
-    def do_not_test_call_lm_api(self, mock_create): #TODO fix this later
+    def do_not_test_call_lm_api_fix_later(self, mock_create):
         fake_response = MagicMock()
         fake_response.choices[0].text = "Test Response"
         mock_create.return_value = fake_response
