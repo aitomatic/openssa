@@ -46,6 +46,10 @@ class RAGSSM(BaseSSM):
         self.storage_dir = storage_dir or self.storage_dir
         self.rag_backend.read_gdrive(folder_id, self.storage_dir, re_index)
 
+    def read_s3(self, s3_paths: str | set[str], storage_dir: str = None, use_existing_index: bool = False):
+        self.storage_dir = storage_dir or self.storage_dir
+        self.rag_backend.read_s3(s3_paths, self.storage_dir, use_existing_index)
+
     def read_website(self, urls: list[str], storage_dir: str = None, re_index: bool = False):
         self.storage_dir = storage_dir or self.storage_dir
         self.rag_backend.read_website(urls, self.storage_dir, re_index)

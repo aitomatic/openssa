@@ -1,18 +1,28 @@
-import os
-import io
-import shutil
-import json
-from typing import Any
+"""Utilities."""
+
+
 import functools
 import inspect
+import io
+from itertools import chain
+import json
+import os
+from pathlib import Path
+import shutil
+from typing import Any
+from uuid import uuid4
 import googleapiclient.errors
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
+from s3fs import S3FileSystem
+from openssa.utils.fs import FileSource
 from openssa.utils.logs import mlogger
 
 
 class Utils:
+    """Class containing various utility methods."""
+
     @staticmethod
     def canonicalize_user_input(user_input: Any) -> list[dict]:
         """
@@ -252,3 +262,28 @@ class Utils:
 
         except googleapiclient.errors.HttpError as error:
             mlogger.error("An error occurred: %s", error)
+
+    _S3FS: S3FileSystem = None
+
+    @staticmethod
+    def download_s3(s3_paths: str | set[str], local_dir: str = './tmp/.docs'):
+        if not Utils._S3FS:
+            Utils._S3FS = S3FileSystem(key=os.environ.get('AWS_ACCESS_KEY_ID'),
+                                       secret=os.environ.get('AWS_SECRET_ACCESS_KEY'))
+
+        # Create local directory if it does not exist and clear it if it does
+        if os.path.exists(local_dir):
+            shutil.rmtree(local_dir)
+        os.makedirs(local_dir)
+
+        if isinstance(s3_paths, str):
+            s3_paths: set[str] = {s3_paths}
+
+        for s3_file_path in set(chain.from_iterable(FileSource(path=s3_path).file_paths(relative=False)
+                                                    for s3_path in s3_paths)):
+            # temp file path each document is copied to must retain same extension/suffix
+            local_file_path: str = os.path.join(local_dir, f'{uuid4()}-{Path(s3_file_path).name}')
+
+            Utils._S3FS.download(rpath=s3_file_path,
+                                 lpath=local_file_path,
+                                 recursive=False)

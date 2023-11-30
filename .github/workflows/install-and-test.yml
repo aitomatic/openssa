@@ -1,4 +1,4 @@
-name: Run Make Test
+name: Install Package & Run Tests
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          poetry install
+          poetry install --extras=test
           make jest-setup
 
       - name: Run Make Test
