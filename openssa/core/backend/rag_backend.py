@@ -84,6 +84,10 @@ class AbstractRAGBackend(BaseBackend, ABC):
         Utils.download_gdrive(folder_id, self._get_source_dir(storage_dir))
         self._do_read_directory(storage_dir)
 
+    def _do_read_s3(self, s3_paths: str | set[str], storage_dir: str) -> bool:
+        Utils.download_s3(s3_paths, self._get_source_dir(storage_dir))
+        self._do_read_directory(storage_dir)
+
     def read_gdrive(self, folder_id: str, storage_dir: str, re_index: bool = False):
         """
         Read a directory of documents from a Google Drive folder and create an index.
@@ -96,6 +100,20 @@ class AbstractRAGBackend(BaseBackend, ABC):
         self._do_read_with_lambda(lambda: self._do_read_gdrive(folder_id, storage_dir),
                                   storage_dir,
                                   re_index)
+
+    def read_s3(self, s3_paths: str | set[str], storage_dir: str, use_existing_index: bool = True):
+        """
+        Read a directory of documents from an S3 folder and create an index.
+        Internally, the documents will first be downloaded to a local directory.
+        @param s3_dir: The path of the S3 folder.
+        @param storage_dir: The path to the base storage directory.
+        @param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.
+        Side effects:
+        - If use_existing_index is True, the index will be automatically saved (for future use)
+        """
+        self._do_read_with_lambda(lambda: self._do_read_s3(s3_paths, storage_dir),
+                                  storage_dir,
+                                  use_existing_index)
 
     def read_website(self, urls: list[str], storage_dir: str, re_index: bool = False):
         """

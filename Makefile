@@ -126,7 +126,7 @@ poetry-install:
 
 poetry-setup:
 	poetry lock
-	poetry install
+	poetry install --extras=test
 
 poetry-init:
 	-poetry init
@@ -167,7 +167,7 @@ eslint-setup:
 	@echo ""
 	-ln -s tests/node_modules .
 	cd $(TESTS_DIR) ;\
-	npm init @eslint/config -- --config semistandard 
+	npm init @eslint/config -- --config semistandard
 
 #
 # Misc

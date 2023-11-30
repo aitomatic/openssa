@@ -115,7 +115,21 @@ class Backend(AbstractRAGBackend):
         )
 
     def _do_read_directory(self, storage_dir: str):
-        documents = SimpleDirectoryReader(self._get_source_dir(storage_dir)).load_data()
+        documents = SimpleDirectoryReader(
+            input_dir=self._get_source_dir(storage_dir),
+            input_files=None,
+            exclude=None,
+            exclude_hidden=False,  # non-default
+            errors='strict',  # non-default
+            recursive=True,  # non-default
+            encoding='utf-8',
+            filename_as_id=False,
+            required_exts=None,
+            file_extractor=None,
+            num_files_limit=None,
+            file_metadata=None,
+        ).load_data()
+
         self._create_index(documents, storage_dir)
 
     def _do_read_website(self, urls: list[str], storage_dir: str):
