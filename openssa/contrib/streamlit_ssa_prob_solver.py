@@ -215,16 +215,16 @@ class SSAProbSolver:
         with doc_knowledge:
             st.write('__DOCUMENTARY KNOWLEDGE__')
 
-            if doc_src_path := st.text_area(label='Directory/File Path (Local or S3)',
-                                            value=self.doc_src_path,
-                                            height=1,
-                                            max_chars=None,
-                                            key=None,
-                                            help='Directory/File Path (Local or S3)',
-                                            on_change=None, args=None, kwargs=None,
-                                            placeholder='Directory/File Path (Local or S3)',
-                                            disabled=False,
-                                            label_visibility='visible'):
+            if doc_src_path := st.text_input(label='Directory/File Path (Local or S3)',
+                                             value=self.doc_src_path,
+                                             max_chars=None,
+                                             type='default',
+                                             help='Directory/File Path (Local or S3)',
+                                             autocomplete=None,
+                                             on_change=None, args=None, kwargs=None,
+                                             placeholder='Directory/File Path (Local or S3)',
+                                             disabled=False,
+                                             label_visibility='visible'):
                 self.doc_src_path: DirOrFilePath = doc_src_path
 
                 if self._doc_file_src.is_dir:
@@ -264,7 +264,7 @@ class SSAProbSolver:
                              label_visibility='collapsed')
 
         if doc_src_path and self.ssa:
-            st.write(f"__SSA's SPECIALIZED EXPERTISE__: _{self.ssa_intro}_")
+            st.write(f"__SSA's SPECIALIZED EXPERTISE__: {self.ssa_intro}")
 
             if st.button(label='Reset Problem-Solving Session',
                          key=None,
