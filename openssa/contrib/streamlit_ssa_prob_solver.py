@@ -208,55 +208,60 @@ class SSAProbSolver:
 
     def run(self):
         """Run SSA Problem-Solver Streamlit Component on Streamlit app page."""
-        st.subheader(self.unique_name)
+        st.subheader(body=self.unique_name, divider=True)
 
-        st.write('__DOCUMENTARY KNOWLEDGE__:')
+        doc_knowledge, exp_knowledge = st.columns(spec=2, gap='small')
 
-        if doc_src_path := st.text_input(label='Source File or Directory Path (Local or S3)',
-                                         value=self.doc_src_path,
-                                         max_chars=None,
-                                         key=None,
-                                         type='default',
-                                         help='Source File or Directory Path (Local or S3)',
-                                         autocomplete=None,
-                                         on_change=None, args=None, kwargs=None,
-                                         placeholder=None,
-                                         disabled=False,
-                                         label_visibility='visible'):
-            self.doc_src_path: DirOrFilePath = doc_src_path
+        with doc_knowledge:
+            st.write('__DOCUMENTARY KNOWLEDGE__')
 
-            if self._doc_file_src.is_dir:
-                self.doc_src_file_relpaths: FilePathSet = frozenset(st.multiselect(
-                    label='(if cherry-picking) Specific Source File Relative Paths',
-                    options=self._doc_file_src.file_paths(relative=True),
-                    default=sorted(self.doc_src_file_relpaths),
-                    # format_func=None,
-                    key=None,
-                    help='(if cherry-picking) Specific Source File Relative Paths',
-                    on_change=None, args=None, kwargs=None,
-                    disabled=False,
-                    label_visibility='visible',
-                    max_selections=None))
+            if doc_src_path := st.text_area(label='Directory/File Path (Local or S3)',
+                                            value=self.doc_src_path,
+                                            height=1,
+                                            max_chars=None,
+                                            key=None,
+                                            help='Directory/File Path (Local or S3)',
+                                            on_change=None, args=None, kwargs=None,
+                                            placeholder='Directory/File Path (Local or S3)',
+                                            disabled=False,
+                                            label_visibility='visible'):
+                self.doc_src_path: DirOrFilePath = doc_src_path
 
-        st.write('__EXPERIENTIAL KNOWLEDGE__:')
-        recorded_expert_heuristics = \
-            speech_to_text(start_prompt='Record your Expert Problem-Solving Heuristics here or type below',
-                           stop_prompt='Stop Recording',
-                           just_once=False,
-                           use_container_width=False,
-                           language='en',
-                           callback=None, args=(), kwargs={},
-                           key=None)
-        self.expert_heuristics: str = st.text_area(label='Expert Problem-Solving Heuristics',
-                                                   value=(recorded_expert_heuristics or self.expert_heuristics),
-                                                   height=10,
-                                                   max_chars=None,
-                                                   key=None,
-                                                   help='Expert Problem-Solving Heuristics (recorded or typed)',
-                                                   on_change=None, args=None, kwargs=None,
-                                                   placeholder='Expert Problem-Solving Heuristics (recorded or typed)',
-                                                   disabled=False,
-                                                   label_visibility='collapsed')
+                if self._doc_file_src.is_dir:
+                    self.doc_src_file_relpaths: FilePathSet = frozenset(st.multiselect(
+                        label='Specific File Relpaths (if cherry-picking)',
+                        options=self._doc_file_src.file_paths(relative=True),
+                        default=sorted(self.doc_src_file_relpaths),
+                        # format_func=None,
+                        key=None,
+                        help='Specific File Relpaths (if cherry-picking)',
+                        on_change=None, args=None, kwargs=None,
+                        disabled=False,
+                        label_visibility='visible',
+                        max_selections=None))
+
+        with exp_knowledge:
+            st.write('__EXPERIENTIAL KNOWLEDGE__')
+
+            recorded_expert_heuristics = \
+                speech_to_text(start_prompt='Expert Problem-Solving Heuristics: record here or type below',
+                               stop_prompt='Stop Recording',
+                               just_once=False,
+                               use_container_width=False,
+                               language='en',
+                               callback=None, args=(), kwargs={},
+                               key=None)
+            self.expert_heuristics: str = \
+                st.text_area(label='Expert Problem-Solving Heuristics',
+                             value=(recorded_expert_heuristics or self.expert_heuristics),
+                             height=10,
+                             max_chars=None,
+                             key=None,
+                             help='Expert Problem-Solving Heuristics (recorded or typed)',
+                             on_change=None, args=None, kwargs=None,
+                             placeholder='Expert Problem-Solving Heuristics (recorded or typed)',
+                             disabled=False,
+                             label_visibility='collapsed')
 
         if doc_src_path and self.ssa:
             st.write(f"__SSA's SPECIALIZED EXPERTISE__: _{self.ssa_intro}_")
