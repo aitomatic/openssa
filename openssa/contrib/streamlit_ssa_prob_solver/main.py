@@ -3,7 +3,7 @@
 
 from pathlib import Path
 import sys
-sys.path.append(str(Path(__file__).parent.parent.parent.parent))
+sys.path.insert(str(Path(__file__).parent.parent.parent.parent))
 
 # pylint: disable=wrong-import-position
 import streamlit as st
