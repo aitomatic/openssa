@@ -210,40 +210,44 @@ class SSAProbSolver:
         """Run SSA Problem-Solver Streamlit Component on Streamlit app page."""
         st.subheader(body=self.unique_name, divider=True)
 
-        st.write('__PROBLEM STATEMENT__')
+        problem_statement_section, expert_heuristics_section = st.columns(spec=2, gap='small')
 
-        st.text_area(label='Problem Statement',
-                     value=None,
-                     height=3,
-                     max_chars=None,
-                     key=None,
-                     help='State the Problem to Solve',
-                     on_change=None, args=None, kwargs=None,
-                     placeholder='What problem would you like to solve?',
-                     disabled=False,
-                     label_visibility='collapsed')
+        with problem_statement_section:
+            st.write('__PROBLEM STATEMENT__')
 
-        st.write('__EXPERT HEURISTICS__')
-
-        recorded_expert_heuristics = \
-            speech_to_text(start_prompt='Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below',
-                           stop_prompt='Stop Recording',
-                           just_once=False,
-                           use_container_width=False,
-                           language='en',
-                           callback=None, args=(), kwargs={},
-                           key=None)
-        self.expert_heuristics: str = \
-            st.text_area(label='Expert Problem-Solving Heuristics',
-                         value=(recorded_expert_heuristics or self.expert_heuristics),
-                         height=10,
+            st.text_area(label='Problem Statement',
+                         value=None,
+                         height=3,
                          max_chars=None,
                          key=None,
-                         help='Expert Problem-Solving Heuristics (recorded or typed)',
+                         help='State the Problem to Solve',
                          on_change=None, args=None, kwargs=None,
-                         placeholder='Expert Problem-Solving Heuristics (recorded or typed)',
+                         placeholder='What problem would you like to solve?',
                          disabled=False,
                          label_visibility='collapsed')
+
+        with expert_heuristics_section:
+            st.write('__EXPERT HEURISTICS__')
+
+            recorded_expert_heuristics = \
+                speech_to_text(start_prompt='Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below',
+                               stop_prompt='Stop Recording',
+                               just_once=False,
+                               use_container_width=False,
+                               language='en',
+                               callback=None, args=(), kwargs={},
+                               key=None)
+            self.expert_heuristics: str = \
+                st.text_area(label='Expert Problem-Solving Heuristics',
+                             value=(recorded_expert_heuristics or self.expert_heuristics),
+                             height=10,
+                             max_chars=None,
+                             key=None,
+                             help='Expert Problem-Solving Heuristics (recorded or typed)',
+                             on_change=None, args=None, kwargs=None,
+                             placeholder='Expert Problem-Solving Heuristics (recorded or typed)',
+                             disabled=False,
+                             label_visibility='collapsed')
 
         st.write('__REFERENCES__')
 
