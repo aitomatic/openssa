@@ -7,4 +7,4 @@
 from openssa.contrib import SSAProbSolver
 
 
-SSAProbSolver(unique_name='#1')
+SSAProbSolver(unique_name='SSA #1')

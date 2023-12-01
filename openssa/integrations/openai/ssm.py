@@ -17,7 +17,6 @@ Config.OPENAI_API_URL: Optional[str] = (
     os.environ.get("OPENAI_API_URL") or "https://api.openai.com/v1"
 )
 
-client = OpenAI()
 
 
 # pylint: disable=too-many-instance-attributes
@@ -66,6 +65,8 @@ class _AbstractSLM(BaseSLM, ABC):
 
         self._api_context = api_context
 
+        self.client = OpenAI()
+
     @property
     def api_context(self) -> APIContext:
         if self._api_context is None:
@@ -85,14 +86,14 @@ class SLM(_AbstractSLM):
     def _call_completion_api(self, conversation: list[dict]) -> dict:
         prompt = self._make_completion_prompt(conversation)
 
-        response = client.completions.create(
+        response = self.client.completions.create(
             prompt=prompt,
-            api_type=self.api_context.type,
-            api_key=self.api_context.key,
-            api_base=self.api_context.base,
-            api_version=self.api_context.version,
+            # api_type=self.api_context.type,
+            # api_key=self.api_context.key,
+            # api_base=self.api_context.base,
+            # api_version=self.api_context.version,
+            # engine=self.api_context.engine,
             model=self.api_context.model,
-            engine=self.api_context.engine,
             max_tokens=self.api_context.max_tokens,
             temperature=self.api_context.temperature,
         )
@@ -107,14 +108,14 @@ class SLM(_AbstractSLM):
 
     @Logs.do_log_entry_and_exit()
     def _call_chat_completion_api(self, conversation: list[dict]) -> dict:
-        response = client.chat.completions.create(
+        response = self.client.chat.completions.create(
             messages=conversation,
-            api_type=self.api_context.type,
-            api_key=self.api_context.key,
-            api_base=self.api_context.base,
-            api_version=self.api_context.version,
+            # api_type=self.api_context.type,
+            # api_key=self.api_context.key,
+            # api_base=self.api_context.base,
+            # api_version=self.api_context.version,
             # model=self.api_context.model,
-            engine=self.api_context.engine,
+            # engine=self.api_context.engine,
             max_tokens=self.api_context.max_tokens,
             temperature=self.api_context.temperature,
         )
