@@ -1,14 +1,8 @@
 # OpenSSA
-OpenSSA[cv] @ https://GitHub.com/Aitomatic/OpenSSA/archive/experimental.zip
+OpenSSA @ https://GitHub.com/Aitomatic/OpenSSA/archive/experimental.zip
 
 # Streamlit
-Streamlit >= 1.28.2
+Streamlit >= 1.29.0
 
 # Streamlit Audio Recorder
-Audio-Recorder-Streamlit >= 0.0.8
-Streamlit-AudioRec >= 0.1.3
-Streamlit-AudioRecorder >= 0.0.4
 Streamlit-Mic-Recorder >= 0.0.4
-
-# Speech Recognition
-SpeechRecognition >= 3.10.0
