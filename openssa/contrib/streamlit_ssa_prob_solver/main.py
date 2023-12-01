@@ -1,7 +1,13 @@
 """SSAProbSolver instance."""
 
 
+# pylint: disable=wrong-import-order,wrong-import-position
+
+
 import streamlit as st
+
+import sys
+sys.path.append('../../..')
 
 from openssa.contrib import StreamlitSSAProbSolver
 
