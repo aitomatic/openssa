@@ -33,7 +33,7 @@ class SSAProbSolver:
     DOC_SRC_PATHS_SSS_KEY: str = '_doc_src_paths'
     DOC_SRC_FILE_RELPATH_SETS_SSS_KEY: str = '_doc_src_file_relpath_sets'
 
-    EXPERT_INSTRUCTIONS_SSS_KEY: str = '_expert_instructions'
+    EXPERT_HEURISTICS_SSS_KEY: str = '_expert_heuristics'
 
     SSAS_SSS_KEY: str = '_ssas'
     SSA_CONVO_IDS_SSS_KEY: str = '_ssa_convo_ids'
@@ -72,8 +72,8 @@ class SSAProbSolver:
             sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[cls.Uid, defaultdict[DirOrFilePath, FilePathSet]] = \
                 defaultdict(lambda: defaultdict(frozenset))
 
-        if cls.EXPERT_INSTRUCTIONS_SSS_KEY not in sss:
-            sss[cls.EXPERT_INSTRUCTIONS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
+        if cls.EXPERT_HEURISTICS_SSS_KEY not in sss:
+            sss[cls.EXPERT_HEURISTICS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
 
         if cls.SSAS_SSS_KEY not in sss:
             sss[cls.SSAS_SSS_KEY]: defaultdict[cls.DocSrcHash, RagSSA | None] = defaultdict(lambda: None)
@@ -124,13 +124,13 @@ class SSAProbSolver:
         return self.doc_src_path
 
     @property
-    def expert_instructions(self) -> str:
-        return sss[self.EXPERT_INSTRUCTIONS_SSS_KEY][self.unique_name]
+    def expert_heuristics(self) -> str:
+        return sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]
 
-    @expert_instructions.setter
-    def expert_instructions(self, expert_instructions: str, /):
-        if expert_instructions != sss[self.EXPERT_INSTRUCTIONS_SSS_KEY][self.unique_name]:
-            sss[self.EXPERT_INSTRUCTIONS_SSS_KEY][self.unique_name]: str = expert_instructions
+    @expert_heuristics.setter
+    def expert_heuristics(self, expert_heuristics: str, /):
+        if expert_heuristics != sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]:
+            sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]: str = expert_heuristics
 
     @property
     def ssa(self) -> RagSSA | None:
@@ -193,7 +193,7 @@ class SSAProbSolver:
 
                 # ***************************************************************************** #
                 # TODO: replace the below ssa.discuss(...) with problem-solving ssa.solve(...), #
-                # which should use the provided Expert Instructions in the problem-solving loop #
+                # which should use the provided Expert Heuristics in the problem-solving loop   #
                 self.ssa.discuss(user_input=next_problem, conversation_id=self.ssa_convo_id)
                 # ***************************************************************************** #
 
@@ -239,23 +239,24 @@ class SSAProbSolver:
                     max_selections=None))
 
         st.write('__EXPERIENTIAL KNOWLEDGE__:')
-        recorded_expert_instructions = speech_to_text(start_prompt='Record Your Expert Instructions here or type below',
-                                                      stop_prompt='Stop Recording',
-                                                      just_once=False,
-                                                      use_container_width=False,
-                                                      language='en',
-                                                      callback=None, args=(), kwargs={},
-                                                      key=None)
-        self.expert_instructions: str = st.text_area(label='Experiential Knowledge',
-                                                     value=(recorded_expert_instructions or self.expert_instructions),
-                                                     height=10,
-                                                     max_chars=None,
-                                                     key=None,
-                                                     help='Experiential Knowledge (recorded or typed)',
-                                                     on_change=None, args=None, kwargs=None,
-                                                     placeholder=None,
-                                                     disabled=False,
-                                                     label_visibility='collapsed')
+        recorded_expert_heuristics = \
+            speech_to_text(start_prompt='Record your Expert Problem-Solving Heuristics here or type below',
+                           stop_prompt='Stop Recording',
+                           just_once=False,
+                           use_container_width=False,
+                           language='en',
+                           callback=None, args=(), kwargs={},
+                           key=None)
+        self.expert_heuristics: str = st.text_area(label='Expert Problem-Solving Heuristics',
+                                                   value=(recorded_expert_heuristics or self.expert_heuristics),
+                                                   height=10,
+                                                   max_chars=None,
+                                                   key=None,
+                                                   help='Expert Problem-Solving Heuristics (recorded or typed)',
+                                                   on_change=None, args=None, kwargs=None,
+                                                   placeholder='Expert Problem-Solving Heuristics (recorded or typed)',
+                                                   disabled=False,
+                                                   label_visibility='collapsed')
 
         if doc_src_path and self.ssa:
             st.write(f"__SSA's SPECIALIZED EXPERTISE__: _{self.ssa_intro}_")
