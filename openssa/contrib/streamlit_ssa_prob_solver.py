@@ -140,7 +140,7 @@ class SSAProbSolver:
         if st.button(label='Build SSA',
                      key=None,
                      on_click=None, args=None, kwargs=None,
-                     type='secondary',
+                     type='primary',
                      disabled=False,
                      use_container_width=False):
 
@@ -215,14 +215,14 @@ class SSAProbSolver:
         with doc_knowledge:
             st.write('__DOCUMENTARY KNOWLEDGE__')
 
-            if doc_src_path := st.text_input(label='Directory/File Path (Local or S3)',
+            if doc_src_path := st.text_input(label='Directory/File Path (Local|S3)',
                                              value=self.doc_src_path,
                                              max_chars=None,
                                              type='default',
-                                             help='Directory/File Path (Local or S3)',
+                                             help='Directory/File Path (Local|S3)',
                                              autocomplete=None,
                                              on_change=None, args=None, kwargs=None,
-                                             placeholder='Directory/File Path (Local or S3)',
+                                             placeholder='Directory/File Path (Local|S3)',
                                              disabled=False,
                                              label_visibility='visible'):
                 self.doc_src_path: DirOrFilePath = doc_src_path
@@ -244,7 +244,7 @@ class SSAProbSolver:
             st.write('__EXPERIENTIAL KNOWLEDGE__')
 
             recorded_expert_heuristics = \
-                speech_to_text(start_prompt='Expert Problem-Solving Heuristics: record here or type below',
+                speech_to_text(start_prompt='Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below',
                                stop_prompt='Stop Recording',
                                just_once=False,
                                use_container_width=False,
