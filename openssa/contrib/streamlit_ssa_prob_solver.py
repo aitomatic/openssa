@@ -210,68 +210,75 @@ class SSAProbSolver:
         """Run SSA Problem-Solver Streamlit Component on Streamlit app page."""
         st.subheader(body=self.unique_name, divider=True)
 
-        doc_knowledge, exp_knowledge = st.columns(spec=2, gap='small')
+        st.write('__PROBLEM STATEMENT__')
 
-        with doc_knowledge:
-            st.write('__DOCUMENTARY KNOWLEDGE__')
+        st.text_area(label='Problem Statement',
+                     value=None,
+                     height=3,
+                     max_chars=None,
+                     key=None,
+                     help='State the Problem to Solve',
+                     on_change=None, args=None, kwargs=None,
+                     placeholder='What problem would you like to solve?',
+                     disabled=False,
+                     label_visibility='collapsed')
 
-            if doc_src_path := st.text_input(label='Directory/File Path (Local|S3)',
-                                             value=self.doc_src_path,
-                                             max_chars=None,
-                                             type='default',
-                                             help='Directory/File Path (Local|S3)',
-                                             autocomplete=None,
-                                             on_change=None, args=None, kwargs=None,
-                                             placeholder='Directory/File Path (Local|S3)',
-                                             disabled=False,
-                                             label_visibility='visible'):
-                self.doc_src_path: DirOrFilePath = doc_src_path
+        st.write('__EXPERT HEURISTICS__')
 
-                if self._doc_file_src.is_dir:
-                    self.doc_src_file_relpaths: FilePathSet = frozenset(st.multiselect(
-                        label='Specific File Relpaths (if cherry-picking)',
-                        options=self._doc_file_src.file_paths(relative=True),
-                        default=sorted(self.doc_src_file_relpaths),
-                        # format_func=None,
-                        key=None,
-                        help='Specific File Relpaths (if cherry-picking)',
-                        on_change=None, args=None, kwargs=None,
-                        disabled=False,
-                        label_visibility='visible',
-                        max_selections=None))
-
-        with exp_knowledge:
-            st.write('__EXPERIENTIAL KNOWLEDGE__')
-
-            recorded_expert_heuristics = \
-                speech_to_text(start_prompt='Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below',
-                               stop_prompt='Stop Recording',
-                               just_once=False,
-                               use_container_width=False,
-                               language='en',
-                               callback=None, args=(), kwargs={},
-                               key=None)
-            self.expert_heuristics: str = \
-                st.text_area(label='Expert Problem-Solving Heuristics',
-                             value=(recorded_expert_heuristics or self.expert_heuristics),
-                             height=10,
-                             max_chars=None,
-                             key=None,
-                             help='Expert Problem-Solving Heuristics (recorded or typed)',
-                             on_change=None, args=None, kwargs=None,
-                             placeholder='Expert Problem-Solving Heuristics (recorded or typed)',
-                             disabled=False,
-                             label_visibility='collapsed')
-
-        if doc_src_path and self.ssa:
-            st.write(f"__SSA's SPECIALIZED EXPERTISE__: {self.ssa_intro}")
-
-            if st.button(label='Reset Problem-Solving Session',
+        recorded_expert_heuristics = \
+            speech_to_text(start_prompt='Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below',
+                           stop_prompt='Stop Recording',
+                           just_once=False,
+                           use_container_width=False,
+                           language='en',
+                           callback=None, args=(), kwargs={},
+                           key=None)
+        self.expert_heuristics: str = \
+            st.text_area(label='Expert Problem-Solving Heuristics',
+                         value=(recorded_expert_heuristics or self.expert_heuristics),
+                         height=10,
+                         max_chars=None,
                          key=None,
-                         on_click=None, args=None, kwargs=None,
-                         type='secondary',
+                         help='Expert Problem-Solving Heuristics (recorded or typed)',
+                         on_change=None, args=None, kwargs=None,
+                         placeholder='Expert Problem-Solving Heuristics (recorded or typed)',
                          disabled=False,
-                         use_container_width=False):
-                self.reset_ssa_convo_id()
+                         label_visibility='collapsed')
 
-            self.ssa_solve()
+        st.write('__REFERENCES__')
+
+        if doc_src_path := st.text_input(label='Directory/File Path (Local|S3)',
+                                         value=self.doc_src_path,
+                                         max_chars=None,
+                                         type='default',
+                                         help='Directory/File Path (Local|S3)',
+                                         autocomplete=None,
+                                         on_change=None, args=None, kwargs=None,
+                                         placeholder='Directory/File Path (Local|S3)',
+                                         disabled=False,
+                                         label_visibility='visible'):
+            self.doc_src_path: DirOrFilePath = doc_src_path
+
+            if self._doc_file_src.is_dir:
+                self.doc_src_file_relpaths: FilePathSet = frozenset(
+                    st.multiselect(label='Specific File Relpaths (if cherry-picking)',
+                                   options=self._doc_file_src.file_paths(relative=True),
+                                   default=sorted(self.doc_src_file_relpaths),
+                                   # format_func=None,
+                                   key=None,
+                                   help='Specific File Relpaths (if cherry-picking)',
+                                   on_change=None, args=None, kwargs=None,
+                                   disabled=False,
+                                   label_visibility='visible',
+                                   max_selections=None))
+
+            if self.ssa:
+                st.write(f"__SSA's SPECIALIZED EXPERTISE__: {self.ssa_intro}")
+
+                if st.button(label='SOLVE',
+                             key=None,
+                             on_click=None, args=None, kwargs=None,
+                             type='primary',
+                             disabled=False,
+                             use_container_width=False):
+                    self.ssa_solve()
