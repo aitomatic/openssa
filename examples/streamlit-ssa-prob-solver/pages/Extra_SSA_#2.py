@@ -4,7 +4,7 @@
 """SSAProbSolver instance #2."""
 
 
-from openssa.contrib import SSAProbSolver
+from openssa.contrib import StreamlitSSAProbSolver
 
 
-SSAProbSolver(unique_name='SSA #2')
+StreamlitSSAProbSolver(unique_name='SSA #2')

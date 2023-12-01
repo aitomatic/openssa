@@ -143,7 +143,11 @@ class SSAProbSolver:
                      type='secondary',
                      disabled=False,
                      use_container_width=False):
+
+            # ******************************************************************************************* #
+            # TODO: initialize real problem-solving SSA wrapping underlying SSM with problem-solving loop #
             ssa: RagSSA = LlamaIndexSSM()
+            # ******************************************************************************************* #
 
             st.write('_Building SSA, please wait..._')
 
@@ -183,16 +187,21 @@ class SSAProbSolver:
         return sss[self.SSA_INTROS_SSS_KEY][self._hashable_doc_src_repr]
 
     def ssa_solve(self):
-        def submit_question():
-            # discuss if question box is not empty
-            if (next_question := sss[self.SSA_CONVO_QBOX_SSS_KEY].strip()):
-                self.ssa.discuss(user_input=next_question, conversation_id=self.ssa_convo_id)
+        def submit_problem():
+            # discuss if problem box is not empty
+            if (next_problem := sss[self.SSA_CONVO_QBOX_SSS_KEY].strip()):
 
-            # empty question box
+                # ***************************************************************************** #
+                # TODO: replace the below ssa.discuss(...) with problem-solving ssa.solve(...), #
+                # which should use the provided Expert Instructions in the problem-solving loop #
+                self.ssa.discuss(user_input=next_problem, conversation_id=self.ssa_convo_id)
+                # ***************************************************************************** #
+
+            # empty problem box
             sss[self.SSA_CONVO_QBOX_SSS_KEY]: str = ''
 
         st.text_area(label='Next Problem', height=3,
-                     key=self.SSA_CONVO_QBOX_SSS_KEY, on_change=submit_question)
+                     key=self.SSA_CONVO_QBOX_SSS_KEY, on_change=submit_problem)
 
         for msg in self.ssa.conversations.get(self.ssa_convo_id, []):
             st.write(f"{'__YOU__' if (msg['role'] == 'user') else '__SSA__'}: {msg['content']}")
@@ -201,7 +210,7 @@ class SSAProbSolver:
         """Run SSA Problem-Solver Streamlit Component on Streamlit app page."""
         st.subheader(self.unique_name)
 
-        st.write('__DOCUMENTARY KNOWLEDGE SOURCE__:')
+        st.write('__DOCUMENTARY KNOWLEDGE__:')
 
         if doc_src_path := st.text_input(label='Source File or Directory Path (Local or S3)',
                                          value=self.doc_src_path,
@@ -249,7 +258,7 @@ class SSAProbSolver:
                                                      label_visibility='collapsed')
 
         if doc_src_path and self.ssa:
-            st.write(f"__SSA's SPECIALIZED EXPERTISE__: {self.ssa_intro}")
+            st.write(f"__SSA's SPECIALIZED EXPERTISE__: _{self.ssa_intro}_")
 
             if st.button(label='Reset Problem-Solving Session',
                          key=None,

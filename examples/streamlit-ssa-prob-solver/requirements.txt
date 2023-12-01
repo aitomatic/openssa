@@ -1,8 +1,6 @@
 # OpenSSA
 OpenSSA @ https://GitHub.com/Aitomatic/OpenSSA/archive/experimental.zip
 
-# Streamlit
+# Streamlit & related
 Streamlit >= 1.29.0
-
-# Streamlit Audio Recorder
 Streamlit-Mic-Recorder >= 0.0.4
