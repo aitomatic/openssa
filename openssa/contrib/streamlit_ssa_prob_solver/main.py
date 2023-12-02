@@ -18,5 +18,6 @@ st.set_page_config(page_title='Problem-Solving SSA',
 
 StreamlitSSAProbSolver(unique_name='PROBLEM-SOLVING SSA',
                        domain='Atomic Layer Deposition (ALD) for Semiconductor',
-                       prob='I want to estimate the ALD process time for: ...',
+                       prob=('I want to estimate the ALD process time for 10 cycles, '
+                             'each with Deposition Time = 15 secs, Purge Time = 10 secs and negligible Inert'),
                        doc_src_path='s3://aitomatic-public/KnowledgeBase/Semiconductor')
