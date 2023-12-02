@@ -206,24 +206,14 @@ class SSAProbSolver:
         return sss[self.SSA_INTROS_SSS_KEY][self._hashable_doc_src_repr]
 
     def ssa_solve(self):
-        def submit_problem():
-            # discuss if problem box is not empty
-            if (next_problem := sss[self.SSA_CONVO_QBOX_SSS_KEY].strip()):
 
-                # ***************************************************************************** #
-                # TODO: replace the below ssa.discuss(...) with problem-solving ssa.solve(...), #
-                # which should use the provided Expert Heuristics in the problem-solving loop   #
-                self.ssa.discuss(user_input=next_problem, conversation_id=self.ssa_convo_id)
-                # ***************************************************************************** #
+        # ***************************************************************************** #
+        # TODO: replace the below ssa.discuss(...) with problem-solving ssa.solve(...), #
+        # which should use the provided Expert Heuristics in the problem-solving loop   #
+        solution: str = self.ssa.discuss(user_input=self.prob)['content']
+        # ***************************************************************************** #
 
-            # empty problem box
-            sss[self.SSA_CONVO_QBOX_SSS_KEY]: str = ''
-
-        st.text_area(label='Next Problem', height=3,
-                     key=self.SSA_CONVO_QBOX_SSS_KEY, on_change=submit_problem)
-
-        for msg in self.ssa.conversations.get(self.ssa_convo_id, []):
-            st.write(f"{'__YOU__' if (msg['role'] == 'user') else '__SSA__'}: {msg['content']}")
+        st.write(solution)
 
     def run(self):
         """Run SSA Problem-Solver Streamlit Component on Streamlit app page."""
@@ -312,10 +302,9 @@ class SSAProbSolver:
             if self.ssa:
                 st.write(f"__SSA's SPECIALIZED EXPERTISE__: {self.ssa_intro}")
 
-                if st.button(label=f'SOLVE: _{self.prob}_',
-                             key=None,
-                             on_click=None, args=None, kwargs=None,
-                             type='primary',
-                             disabled=False,
-                             use_container_width=False):
-                    self.ssa_solve()
+                st.button(label=f'__SOLVE__: _{self.prob}_',
+                          key=None,
+                          on_click=self.ssa_solve, args=None, kwargs=None,
+                          type='primary',
+                          disabled=False,
+                          use_container_width=False)
