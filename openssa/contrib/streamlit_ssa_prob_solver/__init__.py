@@ -33,6 +33,7 @@ class SSAProbSolver:
     DOC_SRC_PATHS_SSS_KEY: str = '_doc_src_paths'
     DOC_SRC_FILE_RELPATH_SETS_SSS_KEY: str = '_doc_src_file_relpath_sets'
 
+    PROBS_SSS_KEY: str = '_probs'
     EXPERT_HEURISTICS_SSS_KEY: str = '_expert_heuristics'
 
     SSAS_SSS_KEY: str = '_ssas'
@@ -42,7 +43,7 @@ class SSAProbSolver:
     SSA_CONVO_NEXTQ_SSS_KEY: str = '_ssa_nextq'
     SSA_CONVO_QBOX_SSS_KEY: str = '_ssa_qbox'
 
-    def __init__(self, unique_name: Uid,
+    def __init__(self, unique_name: Uid, prob: str = '',
                  doc_src_path: DirOrFilePath = '', doc_src_file_relpaths: FilePathSet = frozenset()):
         """Initialize and start running SSAProbSolver instance."""
         # initialize Streamlit Session State (SSS) elements if necessary
@@ -53,6 +54,9 @@ class SSAProbSolver:
         # set Unique Name
         assert unique_name, ValueError('SSAProbSolver instance requires explicit Unique Name')
         self.unique_name: self.Uid = unique_name
+
+        # set Problem
+        self.prob: str = prob
 
         # set Documentary Knowledge Source Path & any specific File Relative Paths if given
         if doc_src_path:
@@ -72,6 +76,9 @@ class SSAProbSolver:
             sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[cls.Uid, defaultdict[DirOrFilePath, FilePathSet]] = \
                 defaultdict(lambda: defaultdict(frozenset))
 
+        if cls.PROBS_SSS_KEY not in sss:
+            sss[cls.PROBS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
+
         if cls.EXPERT_HEURISTICS_SSS_KEY not in sss:
             sss[cls.EXPERT_HEURISTICS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
 
@@ -83,6 +90,15 @@ class SSAProbSolver:
 
         if cls.SSA_INTROS_SSS_KEY not in sss:
             sss[cls.SSA_INTROS_SSS_KEY]: defaultdict[cls.DocSrcHash, str] = defaultdict(str)
+
+    @property
+    def prob(self) -> str:
+        return sss[self.PROBS_SSS_KEY][self.unique_name]
+
+    @prob.setter
+    def prob(self, prob: str, /):
+        if prob != sss[self.PROBS_SSS_KEY][self.unique_name]:
+            sss[self.PROBS_SSS_KEY][self.unique_name]: str = prob
 
     @property
     def doc_src_path(self) -> DirOrFilePath:
@@ -215,31 +231,43 @@ class SSAProbSolver:
         with problem_statement_section:
             st.write('__PROBLEM STATEMENT__')
 
-            st.text_area(label='Problem Statement',
-                         value=None,
-                         height=3,
-                         max_chars=None,
-                         key=None,
-                         help='State the Problem to Solve',
-                         on_change=None, args=None, kwargs=None,
-                         placeholder='What problem would you like to solve?',
-                         disabled=False,
-                         label_visibility='collapsed')
+            self.prob: str = st.text_area(label='Problem Statement',
+                                          value=self.prob,
+                                          height=3,
+                                          max_chars=None,
+                                          key=None,
+                                          help='State the Problem to Solve',
+                                          on_change=None, args=None, kwargs=None,
+                                          placeholder='What problem would you like to solve?',
+                                          disabled=False,
+                                          label_visibility='collapsed')
 
         with expert_heuristics_section:
             st.write('__EXPERT HEURISTICS__')
 
-            recorded_expert_heuristics = \
-                speech_to_text(start_prompt='Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below',
-                               stop_prompt='Stop Recording',
-                               just_once=False,
-                               use_container_width=False,
-                               language='en',
-                               callback=None, args=(), kwargs={},
-                               key=None)
+            if recorded_expert_heuristics := speech_to_text(
+                    start_prompt='Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below',
+                    stop_prompt='Stop Recording',
+                    just_once=True,
+                    use_container_width=False,
+                    language='en',
+                    callback=None, args=(), kwargs={},
+                    key=None):
+                st.write(f'_"{recorded_expert_heuristics}"_')
+
+                def append_expert_heuristics(addl_expert_heuristics: str, /):
+                    self.expert_heuristics += f'\n{addl_expert_heuristics}'
+
+                st.button(label='append to saved heuristics below?',
+                          key=None,
+                          on_click=append_expert_heuristics, args=(recorded_expert_heuristics,), kwargs=None,
+                          type='secondary',
+                          disabled=False,
+                          use_container_width=False)
+
             self.expert_heuristics: str = \
                 st.text_area(label='Expert Problem-Solving Heuristics',
-                             value=(recorded_expert_heuristics or self.expert_heuristics),
+                             value=self.expert_heuristics,
                              height=10,
                              max_chars=None,
                              key=None,
