@@ -43,7 +43,7 @@ class SSAProbSolver:
     SSA_CONVO_NEXTQ_SSS_KEY: str = '_ssa_nextq'
     SSA_CONVO_QBOX_SSS_KEY: str = '_ssa_qbox'
 
-    def __init__(self, unique_name: Uid, prob: str = '',
+    def __init__(self, unique_name: Uid, domain: str = '', prob: str = '',
                  doc_src_path: DirOrFilePath = '', doc_src_file_relpaths: FilePathSet = frozenset()):
         """Initialize and start running SSAProbSolver instance."""
         # initialize Streamlit Session State (SSS) elements if necessary
@@ -54,6 +54,9 @@ class SSAProbSolver:
         # set Unique Name
         assert unique_name, ValueError('SSAProbSolver instance requires explicit Unique Name')
         self.unique_name: self.Uid = unique_name
+
+        # set Domain
+        self.domain: str = domain.strip()
 
         # set Problem
         self.prob: str = prob
@@ -224,7 +227,9 @@ class SSAProbSolver:
 
     def run(self):
         """Run SSA Problem-Solver Streamlit Component on Streamlit app page."""
-        st.subheader(body=self.unique_name, divider=True)
+        st.header(body=self.unique_name, divider=not self.domain)
+        if self.domain:
+            st.subheader(body=f'domain: _{self.domain}_', divider=True)
 
         problem_statement_section, expert_heuristics_section = st.columns(spec=2, gap='small')
 

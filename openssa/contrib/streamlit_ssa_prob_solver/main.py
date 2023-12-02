@@ -16,6 +16,7 @@ st.set_page_config(page_title='Problem-Solving SSA',
                    initial_sidebar_state='auto',
                    menu_items=None)
 
-StreamlitSSAProbSolver(unique_name='Problem-Solving SSA re: Semiconductor ALD',
+StreamlitSSAProbSolver(unique_name='PROBLEM-SOLVING SSA',
+                       domain='Atomic Layer Deposition (ALD) for Semiconductor',
                        prob='I want to estimate the ALD process time for: ...',
                        doc_src_path='s3://aitomatic-public/KnowledgeBase/Semiconductor')
