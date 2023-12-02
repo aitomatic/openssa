@@ -312,7 +312,7 @@ class SSAProbSolver:
             if self.ssa:
                 st.write(f"__SSA's SPECIALIZED EXPERTISE__: {self.ssa_intro}")
 
-                if st.button(label='SOLVE',
+                if st.button(label=f'SOLVE: _{self.prob}_',
                              key=None,
                              on_click=None, args=None, kwargs=None,
                              type='primary',
