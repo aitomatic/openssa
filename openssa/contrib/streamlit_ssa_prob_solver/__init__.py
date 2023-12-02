@@ -284,11 +284,11 @@ class SSAProbSolver:
 
         st.write('__REFERENCES__')
 
-        if doc_src_path := st.text_input(label='Directory/File Path (Local|S3)',
+        if doc_src_path := st.text_input(label='Directory/File Path _(Local/S3)_',
                                          value=self.doc_src_path,
                                          max_chars=None,
                                          type='default',
-                                         help='Directory/File Path (Local|S3)',
+                                         help='Directory/File Path _(Local/S3)_',
                                          autocomplete=None,
                                          on_change=None, args=None, kwargs=None,
                                          placeholder='Directory/File Path (Local|S3)',
@@ -298,12 +298,12 @@ class SSAProbSolver:
 
             if self._doc_file_src.is_dir:
                 self.doc_src_file_relpaths: FilePathSet = frozenset(
-                    st.multiselect(label='Specific File Relpaths (if cherry-picking)',
+                    st.multiselect(label='Specific File Relpaths _(if cherry-picking)_',
                                    options=self._doc_file_src.file_paths(relative=True),
                                    default=sorted(self.doc_src_file_relpaths),
                                    # format_func=None,
                                    key=None,
-                                   help='Specific File Relpaths (if cherry-picking)',
+                                   help='Specific File Relpaths _(if cherry-picking)_',
                                    on_change=None, args=None, kwargs=None,
                                    disabled=False,
                                    label_visibility='visible',
