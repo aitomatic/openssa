@@ -270,14 +270,12 @@ class SSAProbSolver:
             sss[self.SSA_INTROS_SSS_KEY][
                 self._hashable_doc_src_repr
             ]: str = self.ssa.discuss(
-                user_input=(
-                    (
-                        "In 100 words, summarize your expertise "
-                        "after you have read the following documents: "
-                        "(do NOT restate these sources in your answer)\n"
-                    )
-                    + "\n".join([self.doc_src_path])  # noqa: W504
-                ),
+                (
+                    "In 100 words, summarize your expertise "
+                    "after you have read the following documents: "
+                    "(do NOT restate these sources in your answer)\n"
+                )
+                + "\n".join([self.doc_src_path]),
                 conversation_id=self.ssa_convo_id,
             )[
                 "content"
@@ -291,7 +289,7 @@ class SSAProbSolver:
         # ***************************************************************************** #
         # TODO: replace the below ssa.discuss(...) with problem-solving ssa.solve(...), #
         # which should use the provided Expert Heuristics in the problem-solving loop   #
-        solution: str = self.ssa.discuss(user_input=self.prob)["content"]
+        solution: str = self.ssa.discuss(self.prob)["content"]
         # ***************************************************************************** #
 
         st.write(solution)
