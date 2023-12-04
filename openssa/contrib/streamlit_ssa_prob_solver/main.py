@@ -20,4 +20,7 @@ StreamlitSSAProbSolver(unique_name='PROBLEM-SOLVING SSA',
                        domain='Atomic Layer Deposition (ALD) for Semiconductor',
                        prob=('I want to estimate the ALD process time for 10 cycles, '
                              'each with Deposition Time = 15 secs, Purge Time = 10 secs and negligible Inert'),
+                       expert_heuristics=('Purge Time must be longer than the precursor Pulse Time '
+                                          'to ensure that all excess precursor and reaction byproducts are removed '
+                                          'from the chamber before the next cycle begins.'),
                        doc_src_path='s3://aitomatic-public/KnowledgeBase/Semiconductor')

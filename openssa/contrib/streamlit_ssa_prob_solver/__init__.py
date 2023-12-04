@@ -67,6 +67,7 @@ class SSAProbSolver:
         unique_name: Uid,
         domain: str = "",
         prob: str = "",
+        expert_heuristics: str = "",
         doc_src_path: DirOrFilePath = "",
         doc_src_file_relpaths: FilePathSet = frozenset(),
     ):
@@ -87,6 +88,9 @@ class SSAProbSolver:
 
         # set Problem
         self.prob: str = prob
+
+        # set Expert Heuristics
+        self.expert_heuristics: str = expert_heuristics
 
         # set Documentary Knowledge Source Path & any specific File Relative Paths if given
         if doc_src_path:
