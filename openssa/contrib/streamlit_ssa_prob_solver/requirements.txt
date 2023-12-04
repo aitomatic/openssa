@@ -1,5 +1,5 @@
 # OpenSSA
-OpenSSA @ https://GitHub.com/Aitomatic/OpenSSA/archive/main.zip
+OpenSSA @ https://GitHub.com/Aitomatic/OpenSSA/archive/experimental.zip
 
 # Streamlit & related
 Streamlit >= 1.29.0
