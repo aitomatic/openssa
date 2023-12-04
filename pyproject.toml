@@ -52,10 +52,10 @@ docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=3.17"  # for reading .pdf files
 pycryptodome = ">=3.19"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = ">=2023.10,<2013.12"  # base/local file system
-# adlfs = ">=2023.10,<2013.12"  # Azure Data Lake
-# gcsfs = ">=2023.10,<2013.12"  # Google Cloud Storage
-s3fs = ">=2023.10,<2013.12"  # S3
+fsspec = ">=2023.10,<2023.12"  # base/local file system
+adlfs = ">=2023.10,<2023.12"  # Azure Data Lake
+gcsfs = ">=2023.10,<2023.12"  # Google Cloud Storage
+s3fs = ">=2023.10,<2023.12"  # S3
 # misc / other
 pydantic = ">=2.5"
 python-dotenv = ">=1.0"
