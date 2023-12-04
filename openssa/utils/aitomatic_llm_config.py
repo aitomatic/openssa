@@ -1,0 +1,26 @@
+import os
+from openai import OpenAI
+
+class AitomaticLLMConfig:
+    @classmethod
+    def get_llama2_70b(cls):
+        return OpenAI(
+            api_key=os.environ.get("LEPTONAI_API_KEY"),
+            base_url="https://llama2-70b.lepton.run/api/v1",
+        )
+
+    @classmethod
+    def get_intel_neural_chat_7b(cls):
+        url_base = os.environ.get("AITOMATIC_INTEL_NEURAL_CHAT_7B_URL_BASE")
+        llm = OpenAI(
+            base_url=url_base,
+        )
+        return llm
+
+    @classmethod
+    def get_aimo_llm(cls):
+        url_base = os.environ.get("AIMO_STANDARD_URL_BASE")
+        llm = OpenAI(
+            base_url=url_base,
+        )
+        return llm
