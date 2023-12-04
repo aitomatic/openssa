@@ -22,8 +22,17 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
             return {FILE_NAME: filename}
 
         documents = SimpleDirectoryReader(
-            self._get_source_dir(storage_dir),
+            input_dir=self._get_source_dir(storage_dir),
+            input_files=None,
+            exclude=None,
+            exclude_hidden=False,  # non-default
+            errors='strict',  # non-default
+            recursive=True,  # non-default
+            encoding='utf-8',
             filename_as_id=True,
+            required_exts=None,
+            file_extractor=None,
+            num_files_limit=None,
             file_metadata=filename_fn,
         ).load_data()
         self.documents = documents
