@@ -326,7 +326,7 @@ class SSAProbSolver:
             st.write("__EXPERT HEURISTICS__")
 
             if recorded_expert_heuristics := speech_to_text(
-                start_prompt="Expert Problem-Solving Heuristics: 🎤 here or ⌨️ below",
+                start_prompt="Expert Heuristics: 🎤 here or ⌨️ below",
                 stop_prompt="Stop Recording",
                 just_once=True,
                 use_container_width=False,
@@ -350,16 +350,16 @@ class SSAProbSolver:
                 )
 
             self.expert_heuristics: str = st.text_area(
-                label="Expert Problem-Solving Heuristics",
+                label="Expert Heuristics",
                 value=self.expert_heuristics,
                 height=10,
                 max_chars=None,
                 key=None,
-                help="Expert Problem-Solving Heuristics (recorded or typed)",
+                help="Expert Heuristics (recorded or typed)",
                 on_change=None,
                 args=None,
                 kwargs=None,
-                placeholder="Expert Problem-Solving Heuristics (recorded or typed)",
+                placeholder="Expert Heuristics (recorded or typed)",
                 disabled=False,
                 label_visibility="collapsed",
             )
