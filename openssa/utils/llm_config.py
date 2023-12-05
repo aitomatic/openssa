@@ -293,3 +293,11 @@ class LLMConfig:
             api_base=url_base,
         )
         return llm
+
+    @classmethod
+    def get_aito_embeddings(cls) -> OpenAIEmbedding:  # running
+        url_base = "https://aimo-api-mvp.platform.aitomatic.com/api/v1"
+        embed_model = OpenAIEmbedding(
+            api_base=url_base
+        )
+        return embed_model

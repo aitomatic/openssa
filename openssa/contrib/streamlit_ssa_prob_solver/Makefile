@@ -1,7 +1,7 @@
 install:
 	python3 -m pip install pip --upgrade
-	python3 -m pip install -r requirements.txt --upgrade --user
+	python3 -m pip install -r requirements.txt
 
 run:
-	python3 -m streamlit run main.py \
+	OPENAI_API_KEY='AITOMATIC' python3 -m streamlit run main.py \
 		--server.allowRunOnSave=true --server.runOnSave=true
