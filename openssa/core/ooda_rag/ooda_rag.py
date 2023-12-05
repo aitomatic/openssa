@@ -1,6 +1,5 @@
 import json
 import uuid
-from openai import OpenAI
 from openssa.core.ooda_rag.prompts import OODAPrompts
 from openssa.core.ooda_rag.notifier import Notifier, SimpleNotifier, EventTypes
 from openssa.core.ooda_rag.heuristic import (
@@ -9,6 +8,7 @@ from openssa.core.ooda_rag.heuristic import (
     DefaultOODAHeuristic,
 )
 from openssa.core.ooda_rag.tools import Tool
+from openssa.utils.aitomatic_llm_config import AitomaticLLMConfig
 
 
 class History:
@@ -24,11 +24,14 @@ class History:
 
 
 class Model:
+    def __init__(self, llm, model) -> None:
+        self.llm = llm
+        self.model = model
+
     def get_response(self, message: str, history: History) -> str:
         history.add_message(message, "system")
-        openai_client = OpenAI()
-        completions = openai_client.chat.completions.create(
-            model="gpt-4", messages=history.get_history()
+        completions = self.llm.chat.completions.create(
+            model=self.model, messages=history.get_history()
         )
         response = completions.choices[0].message.content
         history.add_message(response, "assistant")
@@ -134,16 +137,18 @@ class Solver:
         ooda_heuristics: Heuristic = DefaultOODAHeuristic(),
         notifier: Notifier = SimpleNotifier(),
         prompts: OODAPrompts = OODAPrompts(),
+        llm=None,
+        model: str = "llama2",
     ) -> None:
         self.task_heuristics = task_heuristics
         self.ooda_heuristics = ooda_heuristics
         self.notifier = notifier
         self.history = History()
         self.planner = Planner(task_heuristics, prompts)
-        self.model = Model()
+        self.model = Model(llm=llm, model=model)
         self.prompts = prompts
 
-    def run(self, input_message: str, tools: dict) -> None:
+    def run(self, input_message: str, tools: dict) -> str:
         """
         Run the solver on input_message
 
@@ -173,8 +178,9 @@ class Solver:
         )
         self.notifier.notify(EventTypes.NOTIFICATION, {"message": "starting main-task"})
         executor.execute_task(self.history)
-        self.synthesize_result()
+        return self.synthesize_result()
 
-    def synthesize_result(self) -> None:
+    def synthesize_result(self) -> str:
         response = self.model.get_response(self.prompts.SYNTHESIZE_RESULT, self.history)
         self.notifier.notify(EventTypes.TASK_RESULT, {"response": response})
+        return response

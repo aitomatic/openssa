@@ -43,7 +43,7 @@ class Backend(AbstractRAGBackend):
     @property
     def llm(self) -> RAGLLM:
         if self._rag_llm is None:
-            self._rag_llm = OpenAI(model="text-davinci-002")
+            self._rag_llm = OpenAI(model="gpt-3.5-turbo")
             # self._llm = OpenAI(model="gpt-3.5-turbo")
         return self._rag_llm
 

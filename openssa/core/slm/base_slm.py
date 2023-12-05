@@ -52,7 +52,10 @@ class BaseSLM(AbstractSLM):
     #
     @Logs.do_log_entry_and_exit()
     def _make_completion_prompt(self, conversation: list[dict]) -> str:
-        system = {'role': 'system', 'content': Prompts.make_prompt(__name__, "completion")}
+        prompt = Prompts()
+        content = prompt.make_prompt(__name__, "completion")
+        print(f"Content .... {content}")
+        system = {'role': 'system', 'content': content}
         return str([system] + conversation)
 
     def _parse_llm_response(self, response) -> dict:
