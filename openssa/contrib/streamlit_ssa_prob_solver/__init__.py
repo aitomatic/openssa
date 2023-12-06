@@ -57,6 +57,7 @@ class SSAProbSolver:
 
     PROBS_SSS_KEY: str = "_probs"
     EXPERT_HEURISTICS_SSS_KEY: str = "_expert_heuristics"
+    FINE_TUNED_MODELS_SSS_KEY: str = "_fine_tuned_models"
 
     SSAS_SSS_KEY: str = "_ssas"
     SSA_CONVO_IDS_SSS_KEY: str = "_ssa_convo_ids"
@@ -67,6 +68,7 @@ class SSAProbSolver:
         domain: str = "",
         prob: str = "",
         expert_heuristics: str = "",
+        fine_tuned_model_url: str = "",
         doc_src_path: DirOrFilePath = "",
         doc_src_file_relpaths: FilePathSet = frozenset(),
     ):
@@ -94,6 +96,10 @@ class SSAProbSolver:
         if not self.expert_heuristics:
             self.expert_heuristics: str = expert_heuristics
 
+        # set Fine-Tuned Model URL
+        if not self.fine_tuned_model_url:
+            self.fine_tuned_model_url: str = fine_tuned_model_url
+
         # set Documentary Knowledge Source Path & any specific File Relative Paths if given
         if doc_src_path:
             self.doc_src_path: DirOrFilePath = doc_src_path
@@ -106,32 +112,26 @@ class SSAProbSolver:
     @classmethod
     def _init_sss(cls):
         if cls.DOC_SRC_PATHS_SSS_KEY not in sss:
-            sss[cls.DOC_SRC_PATHS_SSS_KEY]: defaultdict[
-                cls.Uid, DirOrFilePath
-            ] = defaultdict(str)
+            sss[cls.DOC_SRC_PATHS_SSS_KEY]: defaultdict[cls.Uid, DirOrFilePath] = defaultdict(str)
 
         if cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY not in sss:
-            sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[
-                cls.Uid, defaultdict[DirOrFilePath, FilePathSet]
-            ] = defaultdict(lambda: defaultdict(frozenset))
+            sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[cls.Uid, defaultdict[DirOrFilePath, FilePathSet]] = \
+                defaultdict(lambda: defaultdict(frozenset))
 
         if cls.PROBS_SSS_KEY not in sss:
             sss[cls.PROBS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
 
         if cls.EXPERT_HEURISTICS_SSS_KEY not in sss:
-            sss[cls.EXPERT_HEURISTICS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(
-                str
-            )
+            sss[cls.EXPERT_HEURISTICS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
+
+        if cls.FINE_TUNED_MODELS_SSS_KEY not in sss:
+            sss[cls.FINE_TUNED_MODELS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
 
         if cls.SSAS_SSS_KEY not in sss:
-            sss[cls.SSAS_SSS_KEY]: defaultdict[
-                cls.DocSrcHash, RagSSA | None
-            ] = defaultdict(lambda: None)
+            sss[cls.SSAS_SSS_KEY]: defaultdict[cls.DocSrcHash, RagSSA | None] = defaultdict(lambda: None)
 
         if cls.SSA_CONVO_IDS_SSS_KEY not in sss:
-            sss[cls.SSA_CONVO_IDS_SSS_KEY]: defaultdict[
-                cls.DocSrcHash, cls.Uid
-            ] = defaultdict(uuid4)
+            sss[cls.SSA_CONVO_IDS_SSS_KEY]: defaultdict[cls.DocSrcHash, cls.Uid] = defaultdict(uuid4)
 
     @property
     def prob(self) -> str:
@@ -141,6 +141,27 @@ class SSAProbSolver:
     def prob(self, prob: str, /):
         if prob != sss[self.PROBS_SSS_KEY][self.unique_name]:
             sss[self.PROBS_SSS_KEY][self.unique_name]: str = prob
+
+    @property
+    def expert_heuristics(self) -> str:
+        return sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]
+
+    @expert_heuristics.setter
+    def expert_heuristics(self, expert_heuristics: str, /):
+        if expert_heuristics != sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]:
+            sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]: str = expert_heuristics
+
+    def append_expert_heuristics(self, addl_expert_heuristics: str, /):
+        self.expert_heuristics += f"\n{addl_expert_heuristics}"
+
+    @property
+    def fine_tuned_model_url(self) -> str:
+        return sss[self.FINE_TUNED_MODELS_SSS_KEY][self.unique_name]
+
+    @fine_tuned_model_url.setter
+    def fine_tuned_model_url(self, fine_tuned_model_url: str, /):
+        if fine_tuned_model_url != sss[self.FINE_TUNED_MODELS_SSS_KEY][self.unique_name]:
+            sss[self.FINE_TUNED_MODELS_SSS_KEY][self.unique_name]: str = fine_tuned_model_url
 
     @property
     def doc_src_path(self) -> DirOrFilePath:
@@ -196,20 +217,6 @@ class SSAProbSolver:
             return frozenset(f"{self.doc_src_path}/{_}" for _ in doc_src_file_relpaths)
 
         return self.doc_src_path
-
-    @property
-    def expert_heuristics(self) -> str:
-        return sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]
-
-    @expert_heuristics.setter
-    def expert_heuristics(self, expert_heuristics: str, /):
-        if expert_heuristics != sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]:
-            sss[self.EXPERT_HEURISTICS_SSS_KEY][
-                self.unique_name
-            ]: str = expert_heuristics
-
-    def append_expert_heuristics(self, addl_expert_heuristics: str, /):
-        self.expert_heuristics += f"\n{addl_expert_heuristics}"
 
     @property
     def ssa(self) -> RagSSA | None:
@@ -270,69 +277,72 @@ class SSAProbSolver:
         if self.domain:
             st.subheader(body=f"domain: _{self.domain}_", divider=True)
 
-        problem_statement_section, expert_heuristics_section = st.columns(
-            spec=2, gap="small"
-        )
+        problem_statement_section, expert_heuristics_section = st.columns(spec=2, gap="small")
 
         with problem_statement_section:
             st.write("__PROBLEM STATEMENT__")
 
-            self.prob: str = st.text_area(
-                label="Problem Statement",
-                value=self.prob,
-                height=3,
-                max_chars=None,
-                key=None,
-                help="State the Problem to Solve",
-                on_change=None,
-                args=None,
-                kwargs=None,
-                placeholder="What problem would you like to solve?",
-                disabled=False,
-                label_visibility="collapsed",
-            )
+            self.prob: str = st.text_area(label="Problem Statement",
+                                          value=self.prob,
+                                          height=3,
+                                          max_chars=None,
+                                          key=None,
+                                          help="State the Problem to Solve",
+                                          on_change=None,
+                                          args=None,
+                                          kwargs=None,
+                                          placeholder="What problem would you like to solve?",
+                                          disabled=False,
+                                          label_visibility="collapsed")
 
         with expert_heuristics_section:
             st.write("__EXPERT HEURISTICS__")
 
-            if recorded_expert_heuristics := speech_to_text(
-                start_prompt="Expert Heuristics: 🎤 here or ⌨️ below",
-                stop_prompt="Stop Recording",
-                just_once=True,
-                use_container_width=False,
-                language="en",
-                callback=None,
-                args=(),
-                kwargs={},
-                key=None,
-            ):
+            if recorded_expert_heuristics := speech_to_text(start_prompt="Expert Heuristics: 🎤 here or ⌨️ below",
+                                                            stop_prompt="Stop Recording",
+                                                            just_once=True,
+                                                            use_container_width=False,
+                                                            language="en",
+                                                            callback=None,
+                                                            args=(),
+                                                            kwargs={},
+                                                            key=None):
                 st.write(f'_"{recorded_expert_heuristics}"_')
 
-                st.button(
-                    label="append to saved heuristics below?",
-                    key=None,
-                    on_click=self.append_expert_heuristics,
-                    args=(recorded_expert_heuristics,),
-                    kwargs=None,
-                    type="secondary",
-                    disabled=False,
-                    use_container_width=False,
-                )
+                st.button(label="append to saved heuristics below?",
+                          key=None,
+                          on_click=self.append_expert_heuristics,
+                          args=(recorded_expert_heuristics,),
+                          kwargs=None,
+                          type="secondary",
+                          disabled=False,
+                          use_container_width=False)
 
-            self.expert_heuristics: str = st.text_area(
-                label="Expert Heuristics",
-                value=self.expert_heuristics,
-                height=10,
-                max_chars=None,
-                key=None,
-                help="Expert Heuristics (recorded or typed)",
-                on_change=None,
-                args=None,
-                kwargs=None,
-                placeholder="Expert Heuristics (recorded or typed)",
-                disabled=False,
-                label_visibility="collapsed",
-            )
+            self.expert_heuristics: str = st.text_area(label="Expert Heuristics",
+                                                       value=self.expert_heuristics,
+                                                       height=10,
+                                                       max_chars=None,
+                                                       key=None,
+                                                       help="Expert Heuristics (recorded or typed)",
+                                                       on_change=None,
+                                                       args=None,
+                                                       kwargs=None,
+                                                       placeholder="Expert Heuristics (recorded or typed)",
+                                                       disabled=False,
+                                                       label_visibility="collapsed")
+
+        st.write("_(optional)_ __FINE_TUNED_MODEL__")
+
+        self.fine_tuned_model_url: str = st.text_input(label='_(optional)_ Fine-Tuned Model URL',
+                                                       value=self.fine_tuned_model_url,
+                                                       max_chars=None,
+                                                       type='default',
+                                                       help='_(optional)_ Fine-Tuned Model URL',
+                                                       autocomplete=None,
+                                                       on_change=None, args=None, kwargs=None,
+                                                       placeholder='(optional) Fine-Tuned Model URL',
+                                                       disabled=False,
+                                                       label_visibility='collapsed')
 
         st.write("__REFERENCES__")
 
