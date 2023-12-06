@@ -28,6 +28,7 @@ packages = [
 include = [
 ]
 exclude = [
+  "**/.openssa/"
 ]
 
 
