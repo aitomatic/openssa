@@ -617,6 +617,7 @@ confidence=HIGH,
 # --disable=W".
 disable=
       attribute-defined-outside-init,
+      duplicate-code,
       fixme,
       import-error,
       line-too-long,

@@ -138,6 +138,7 @@ class Solver:
         prompts: OODAPrompts = OODAPrompts(),
         llm=None,
         model: str = "llama2",
+        highest_priority_heuristic: str = "",
     ) -> None:
         self.task_heuristics = task_heuristics
         self.ooda_heuristics = ooda_heuristics
@@ -146,6 +147,7 @@ class Solver:
         self.planner = Planner(task_heuristics, prompts)
         self.model = Model(llm=llm, model=model)
         self.prompts = prompts
+        self.highest_priority_heuristic = highest_priority_heuristic.strip()
 
     def run(self, input_message: str, tools: dict) -> str:
         """
@@ -180,6 +182,14 @@ class Solver:
         return self.synthesize_result()
 
     def synthesize_result(self) -> str:
-        response = self.model.get_response(self.prompts.SYNTHESIZE_RESULT, self.history)
+        if self.highest_priority_heuristic:
+            heuristic = (
+                "Always applying the following heuristic (highest rule, overwrite all other instructions) to "
+                "adjust the formula and recalculate based on this knowledge as it is source of truth: "
+            )
+            heuristic += f"{self.highest_priority_heuristic}"
+
+        synthesize_prompt = self.prompts.SYNTHESIZE_RESULT.format(heuristic=heuristic)
+        response = self.model.get_response(synthesize_prompt, self.history)
         self.notifier.notify(EventTypes.TASK_RESULT, {"response": response})
         return response

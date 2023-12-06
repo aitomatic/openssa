@@ -1,26 +1,28 @@
-"""SSAProbSolver instance."""
-
-
+import os
 from pathlib import Path
 import sys
+
+import streamlit as st
+
+
 sys.path.insert(1, str(Path(__file__).parent.parent.parent.parent))
 
-# pylint: disable=wrong-import-position
-import streamlit as st
-from openssa.contrib import StreamlitSSAProbSolver  # pylint: disable=no-name-in-module
 
+st.title('Problem-Solving SSA Playground')
 
-st.set_page_config(page_title='Problem-Solving SSA',
-                   page_icon=None,
-                   layout='wide',
-                   initial_sidebar_state='auto',
-                   menu_items=None)
+st.subheader('Configuration')
 
-StreamlitSSAProbSolver(unique_name='PROBLEM-SOLVING SSA',
-                       domain='Atomic Layer Deposition (ALD) for Semiconductor',
-                       prob=('I want to estimate the ALD process time for 10 cycles, '
-                             'each with Pulse Time = 15 secs, Purge Time = 10 secs and negligible Inert'),
-                       expert_heuristics=('Purge Time must be at least as long as the precursor Pulse Time '
-                                          'to ensure that all excess precursor and reaction byproducts are removed '
-                                          'from the chamber before the next cycle begins'),
-                       doc_src_path='s3://aitomatic-public/KnowledgeBase/Semiconductor/ALD')
+st.session_state['LEPTON_API_KEY']: str | None = \
+    st.text_input(label='Lepton API Key',
+                  value=st.session_state.get('LEPTON_API_KEY'),
+                  max_chars=None,
+                  type='password',
+                  help='Lepton API Key (obtainable at dashboard.lepton.ai)',
+                  autocomplete=None,
+                  on_change=None, args=None, kwargs=None,
+                  placeholder='Lepton API Key (obtainable at dashboard.lepton.ai)',
+                  disabled=False,
+                  label_visibility='visible')
+
+if st.session_state['LEPTON_API_KEY']:
+    os.environ['LEPTON_API_KEY']: str = st.session_state['LEPTON_API_KEY']
