@@ -137,7 +137,7 @@ class Solver:
         ooda_heuristics: Heuristic = DefaultOODAHeuristic(),
         notifier: Notifier = SimpleNotifier(),
         prompts: OODAPrompts = OODAPrompts(),
-        llm=None,
+        llm=AitomaticLLMConfig.get_llama2_70b(),
         model: str = "llama2",
     ) -> None:
         self.task_heuristics = task_heuristics

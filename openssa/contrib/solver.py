@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+
+load_dotenv()  # it must be called before importing the project modules
 from openssa.core.ooda_rag.ooda_rag import Solver
 from openssa.core.ooda_rag.heuristic import (
     DefaultOODAHeuristic,
@@ -5,7 +8,6 @@ from openssa.core.ooda_rag.heuristic import (
 )
 from openssa.core.ooda_rag.tools import ReasearchAgentTool
 from openssa.utils.aitomatic_llm_config import AitomaticLLMConfig
-from openssa.utils.llm_config import LLMConfig
 from openssa.contrib.custom import CustomSSM
 
 
@@ -13,16 +15,10 @@ class OodaSSA:
     def __init__(
         self,
         task_heuristics,
-        # llm=AitomaticLLMConfig.get_openai(),
-        # model: str = "gpt-3.5-turbo",
-        # llm=AitomaticLLMConfig.get_intel_neural_chat_7b(),
-        # model="Intel/neural-chat-7b-v3-1",
         llm=AitomaticLLMConfig.get_llama2_70b(),
         model: str = "llama2",
-        agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
     ):
         self.llm = llm
-        self.agent_service_context = agent_service_context
         self.solver = Solver(
             task_heuristics=task_heuristics,
             ooda_heuristics=DefaultOODAHeuristic(),
@@ -31,9 +27,13 @@ class OodaSSA:
         )
 
     def load(self, folder_path: str) -> None:
-        agent = CustomSSM(service_context=self.agent_service_context)
+        # agent = CustomSSM(llm=self.llm) # TODO fix this to run
+        agent = CustomSSM()
         agent.read_directory(folder_path)
+        response = agent.discuss("what is mri hahaha")
+        print('debug: ', response)
         self.research_documents_tool = ReasearchAgentTool(agent=agent)
+
 
     def solve(self, message: str) -> str:
         return self.solver.run(
@@ -43,6 +43,12 @@ class OodaSSA:
 
 if __name__ == "__main__":
     heuristic_rules_example = {
+        "uncrated picc": [
+            "find out the weight of the uncrated PICC",
+        ],
+        "crated picc": [
+            "find out the weight of the crated PICC",
+        ],
         "picc": [
             "find out the weight of PICC",
         ],
@@ -52,10 +58,6 @@ if __name__ == "__main__":
     print("start reading doc")
     ooda_ssa.load("tests/doc")
     print("finish reading doc")
-    print(
-        ooda_ssa.solve(
-            "if a person can carry 40 kg, how many people needed to carry uncrated PICC"
-        )
-    )
-    # print(ooda_ssa.solve("find out the weight of the crated PICC"))
-    # print(ooda_ssa.solve("find out the weight of PICC"))
+    print(ooda_ssa.solve("find out the weight of the uncrated PICC"))
+    print(ooda_ssa.solve("find out the weight of the crated PICC"))
+    print(ooda_ssa.solve("find out the weight of PICC"))

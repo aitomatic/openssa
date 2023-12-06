@@ -1,4 +1,4 @@
-from llama_index import Document, Response, SimpleDirectoryReader, ServiceContext
+from llama_index import Document, Response, SimpleDirectoryReader, ServiceContext, OpenAIEmbedding
 from llama_index.evaluation import DatasetGenerator
 from llama_index.llms.base import LLM as RAGLLM
 from llama_index.node_parser import SimpleNodeParser
@@ -13,8 +13,8 @@ FILE_NAME = "file_name"
 
 
 class CustomBackend(LlamaIndexBackend):  # type: ignore
-    def __init__(self, rag_llm: RAGLLM = None, context: ServiceContext = None) -> None:  # type: ignore
-        super().__init__(rag_llm=rag_llm, service_context=context)
+    def __init__(self, rag_llm: RAGLLM = None, service_context=None) -> None:  # type: ignore
+        super().__init__(rag_llm=rag_llm, service_context=service_context)
 
     def _do_read_directory(self, storage_dir: str) -> None:
         def filename_fn(filename: str) -> dict:
@@ -105,13 +105,12 @@ class CustomSSM(RAGSSM):  # type: ignore
         self,
         custom_rag_backend: AbstractBackend = None,
         s3_source_path: str = "",
-        llm: RAGLLM = LLMConfig.get_llm_openai_35_turbo(),  # type: ignore
-        service_context: ServiceContext = None,
+        llm: RAGLLM = LLMConfig.get_aitomatic_yi_34b(),  # type: ignore
+        embed_model: OpenAIEmbedding = LLMConfig.get_aito_embeddings()
     ) -> None:
         if custom_rag_backend is None:
-            custom_rag_backend = CustomBackend(
-                rag_llm=llm, context=service_context
-            )
+            service_context = ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
+            custom_rag_backend = CustomBackend(rag_llm=llm, service_context=service_context)
 
         slm = PassthroughSLM()
         self._rag_backend = custom_rag_backend
@@ -128,3 +127,16 @@ class CustomSSM(RAGSSM):  # type: ignore
 
     async def get_evaluation_data(self) -> dict:
         return await self._rag_backend.get_evaluation_data()
+
+
+if __name__ == "__main__":
+    import time
+
+    t1 = time.time()
+    ssm = CustomSSM()
+    ssm.read_directory("tests/doc", re_index=False)
+    t2 = time.time()
+    print("time to load", time.time() - t1)
+    res = ssm.discuss("what is MRI?")
+    print(res)
+    print("time to query", time.time() - t2)

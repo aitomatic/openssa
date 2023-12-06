@@ -60,7 +60,6 @@ class SSAProbSolver:
 
     SSAS_SSS_KEY: str = "_ssas"
     SSA_CONVO_IDS_SSS_KEY: str = "_ssa_convo_ids"
-    SSA_INTROS_SSS_KEY: str = "_ssa_intros"
 
     def __init__(
         self,
@@ -130,11 +129,6 @@ class SSAProbSolver:
             sss[cls.SSA_CONVO_IDS_SSS_KEY]: defaultdict[
                 cls.DocSrcHash, cls.Uid
             ] = defaultdict(uuid4)
-
-        if cls.SSA_INTROS_SSS_KEY not in sss:
-            sss[cls.SSA_INTROS_SSS_KEY]: defaultdict[cls.DocSrcHash, str] = defaultdict(
-                str
-            )
 
     @property
     def prob(self) -> str:
@@ -234,8 +228,9 @@ class SSAProbSolver:
             # llm = LLMConfig.get_aitomatic_yi_34b()
             # llm = LLMConfig.get_llm_llama_2_70b()
             # llm = LLMConfig.get_intel_neural_chat_7b()
-            llm = LLMConfig.get_llm_openai_35_turbo()
-            ssa: RagSSA = CustomSSM(llm=llm)
+            llm = LLMConfig.get_aitomatic_yi_34b()
+            embed_model = LLMConfig.get_aito_embeddings()
+            ssa: RagSSA = CustomSSM(llm=llm, embed_model=embed_model)
             # ******************************************************************************************* #
 
             # ******************************************************************************************* #
@@ -261,29 +256,6 @@ class SSAProbSolver:
 
     def reset_ssa_convo_id(self):
         sss[self.SSA_CONVO_IDS_SSS_KEY][self._hashable_doc_src_repr]: self.Uid = uuid4()
-
-    @property
-    def ssa_intro(self) -> str:
-        if not sss[self.SSA_INTROS_SSS_KEY][self._hashable_doc_src_repr]:
-            self.reset_ssa_convo_id()
-
-            sss[self.SSA_INTROS_SSS_KEY][
-                self._hashable_doc_src_repr
-            ]: str = self.ssa.discuss(
-                (
-                    "In 100 words, summarize your expertise "
-                    "after you have read the following documents: "
-                    "(do NOT restate these sources in your answer)\n"
-                )
-                + "\n".join([self.doc_src_path]),
-                conversation_id=self.ssa_convo_id,
-            )[
-                "content"
-            ]
-
-            self.reset_ssa_convo_id()
-
-        return sss[self.SSA_INTROS_SSS_KEY][self._hashable_doc_src_repr]
 
     def ssa_solve(self):
         # ***************************************************************************** #
@@ -402,17 +374,12 @@ class SSAProbSolver:
                     )
                 )
 
-            if self.ssa:
-                st.write(f"__SSA's SPECIALIZED EXPERTISE__: {self.ssa_intro}")
-
-                if st.button(
-                    label=f"__SOLVE__: _{self.prob}_",
-                    key=None,
-                    on_click=None,
-                    args=None,
-                    kwargs=None,
-                    type="primary",
-                    disabled=False,
-                    use_container_width=False,
-                ):
-                    self.ssa_solve()
+            if self.ssa and st.button(label=f"__SOLVE__: _{self.prob}_",
+                                      key=None,
+                                      on_click=None,
+                                      args=None,
+                                      kwargs=None,
+                                      type="primary",
+                                      disabled=False,
+                                      use_container_width=False):
+                self.ssa_solve()
