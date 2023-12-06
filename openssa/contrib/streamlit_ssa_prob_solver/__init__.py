@@ -227,15 +227,10 @@ class SSAProbSolver:
             # ******************************************************************************************* #
             # TODO: initialize real problem-solving SSA wrapping underlying SSM with problem-solving loop #
             # llm = LLMConfig.get_aitomatic_yi_34b()
-            # llm = LLMConfig.get_llm_llama_2_70b()
-            # llm = LLMConfig.get_intel_neural_chat_7b()
-            llm = LLMConfig.get_aitomatic_yi_34b()
+            llm = LLMConfig.get_llm_llama_2_70b()
             embed_model = LLMConfig.get_aito_embeddings()
             ssa: RagSSA = CustomSSM(llm=llm, embed_model=embed_model)
             # ******************************************************************************************* #
-
-            # ******************************************************************************************* #
-            # TODO: Init ooda rag with problem-solving loop #
 
             st.write("_Building SSA, please wait..._")
 
