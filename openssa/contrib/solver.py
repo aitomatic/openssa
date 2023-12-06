@@ -34,7 +34,12 @@ class OodaSSA:
 
     def load(self, folder_path: str) -> None:
         agent = CustomSSM(llm=self.rag_llm, embed_model=self.embed_model)
-        agent.read_directory(folder_path)
+
+        if folder_path.startswith('s3://'):
+            agent.read_s3(folder_path)
+        else:
+            agent.read_directory(folder_path)
+
         self.research_documents_tool = ReasearchAgentTool(agent=agent)
 
     def solve(self, message: str) -> str:
