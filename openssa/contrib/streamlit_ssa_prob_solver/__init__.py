@@ -243,10 +243,10 @@ class SSAProbSolver:
         ooda_ssa = OodaSSA(task_heuristics=task_heuristics,
                            highest_priority_heuristic=highest_priority_heuristic,
                            agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
-                           llm=AitomaticLLMConfig.get_openai(),
+                           llm=LLMConfig.get_llm_llama_2_70b(),
                            rag_llm=LLMConfig.get_llm_llama_2_70b(),
                            embed_model=LLMConfig.get_aito_embeddings(),
-                           model='gpt-4-1106-preview')
+                           model='llama2-70b')
         ooda_ssa.load(self.doc_src_path)
 
         solution: str = ooda_ssa.solve(self.problem)
