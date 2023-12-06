@@ -1,4 +1,4 @@
-name: Install Package & Run Tests
+name: Install Package, Lint Code & Run Tests
 
 on:
   push:
@@ -39,5 +39,8 @@ jobs:
           poetry install --extras=test
           make jest-setup
 
-      - name: Run Make Test
+      - name: Lint Code
+        run: make lint
+
+      - name: Run Tests
         run: make test
