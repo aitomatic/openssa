@@ -1,21 +1,7 @@
 # pylint: disable=too-few-public-methods
-class Prompts:
-    """
-    The `Prompts` class provides a way to retrieve and format prompts in the OpenSSM project. The prompts are stored in a nested dictionary `self.
 
-    Usage Guide:
-
-
-    """
-
-    def __init__(self):
-        self._prompts = {
-            'key1': {'key1.1': 'value1.1'},
-            'key2': {'key2.1': 'value2.1'}
-        }
-
-    _PROMPTS = {"openssa": {"core": {
-        "slm": {
+_PROMPTS = {"openssa": {"core": {
+    "slm": {
             "base_slm": {
                 "completion":
                     "Complete this conversation with the assistant’s response, up to 2000 words. "
@@ -25,20 +11,20 @@ class Prompts:
                     "and no code of any kind, even if the prompt has code. "
                     "Escape quotes with \\:\n"
             }
-        },
-        "ssm": {
-            "rag_ssm": {
-                "discuss": {
-                    "rag_query":
-                        "{user_input}\nAre you sure about the answer?",
+            },
+    "ssm": {
+        "rag_ssm": {
+            "discuss": {
+                "rag_query":
+                "{user_input}\nAre you sure about the answer?",
                     "combined_input":
                         "{user_input}\n"
                         "One assistant has replied as follows: {rag_response}\n"
                         "Another assistant has replied as follows: {slm_response}\n"
                         "Consider both responses and provide your own response."
-                },
-                "_make_conversation": {
-                    "system":
+            },
+            "_make_conversation": {
+                "system":
                         "You're a sophisticated software development AI expert system, capable"
                         " of assistance with the development of other advanced AI systems, of both"
                         " Symbolic & Neural Network based designs, as well as hybrid Neurosymbolic"
@@ -69,10 +55,21 @@ class Prompts:
                         " the project. And finally, you must include the \"Reply:\"",
                     "user":
                         "{user_input}\nOne assistant has replied to me as follows: {rag_response}"
-                }
             }
         }
-    }}}
+    }
+}}}
+class Prompts:
+    """
+    The `Prompts` class provides a way to retrieve and format prompts in the OpenSSM project. The prompts are stored in a nested dictionary `self.
+
+    Usage Guide:
+
+
+    """
+
+    def __init__(self):
+        self._prompts = _PROMPTS
 
     def make_prompt(self, *keys, **named_format_args):
         """
@@ -83,7 +80,12 @@ class Prompts:
         subindices = named_format_args.get('subindices', "")
         value = self._prompts
         for key in keys:
-            value = value.get(key, {})
+            if '.' in key:
+                for k in key.split("."):
+                    value = value.get(k, {})
+
+            else:
+                value = value.get(key, {})
 
         if isinstance(value, dict):
             raise ValueError(f"Could not find string prompt for module_name={module_name}, subindices={subindices}.\nGot {value} instead.")
