@@ -8,10 +8,15 @@ from uuid import UUID, uuid4
 import streamlit as st
 from streamlit_mic_recorder import speech_to_text
 
-from openssa import LlamaIndexSSM
+from openssa.contrib.custom import CustomSSM
 from openssa.core.ssa.ssa import RagSSA
 from openssa.utils.llm_config import LLMConfig
 from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
+from openssa.core.ooda_rag.heuristic import (
+    TaskDecompositionHeuristic,
+)
+from openssa.contrib.solver import OodaSSA
+from openssa.utils.aitomatic_llm_config import AitomaticLLMConfig
 
 
 __all__: Sequence[str] = ("SSAProbSolver",)
@@ -112,26 +117,37 @@ class SSAProbSolver:
     @classmethod
     def _init_sss(cls):
         if cls.DOC_SRC_PATHS_SSS_KEY not in sss:
-            sss[cls.DOC_SRC_PATHS_SSS_KEY]: defaultdict[cls.Uid, DirOrFilePath] = defaultdict(str)
+            sss[cls.DOC_SRC_PATHS_SSS_KEY]: defaultdict[
+                cls.Uid, DirOrFilePath
+            ] = defaultdict(str)
 
         if cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY not in sss:
-            sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[cls.Uid, defaultdict[DirOrFilePath, FilePathSet]] = \
-                defaultdict(lambda: defaultdict(frozenset))
+            sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[
+                cls.Uid, defaultdict[DirOrFilePath, FilePathSet]
+            ] = defaultdict(lambda: defaultdict(frozenset))
 
         if cls.PROBS_SSS_KEY not in sss:
             sss[cls.PROBS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
 
         if cls.EXPERT_HEURISTICS_SSS_KEY not in sss:
-            sss[cls.EXPERT_HEURISTICS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
+            sss[cls.EXPERT_HEURISTICS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(
+                str
+            )
 
         if cls.FINE_TUNED_MODELS_SSS_KEY not in sss:
-            sss[cls.FINE_TUNED_MODELS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
+            sss[cls.FINE_TUNED_MODELS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(
+                str
+            )
 
         if cls.SSAS_SSS_KEY not in sss:
-            sss[cls.SSAS_SSS_KEY]: defaultdict[cls.DocSrcHash, RagSSA | None] = defaultdict(lambda: None)
+            sss[cls.SSAS_SSS_KEY]: defaultdict[
+                cls.DocSrcHash, RagSSA | None
+            ] = defaultdict(lambda: None)
 
         if cls.SSA_CONVO_IDS_SSS_KEY not in sss:
-            sss[cls.SSA_CONVO_IDS_SSS_KEY]: defaultdict[cls.DocSrcHash, cls.Uid] = defaultdict(uuid4)
+            sss[cls.SSA_CONVO_IDS_SSS_KEY]: defaultdict[
+                cls.DocSrcHash, cls.Uid
+            ] = defaultdict(uuid4)
 
     @property
     def prob(self) -> str:
@@ -149,7 +165,9 @@ class SSAProbSolver:
     @expert_heuristics.setter
     def expert_heuristics(self, expert_heuristics: str, /):
         if expert_heuristics != sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]:
-            sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]: str = expert_heuristics
+            sss[self.EXPERT_HEURISTICS_SSS_KEY][
+                self.unique_name
+            ]: str = expert_heuristics
 
     def append_expert_heuristics(self, addl_expert_heuristics: str, /):
         self.expert_heuristics += f"\n{addl_expert_heuristics}"
@@ -160,8 +178,13 @@ class SSAProbSolver:
 
     @fine_tuned_model_url.setter
     def fine_tuned_model_url(self, fine_tuned_model_url: str, /):
-        if fine_tuned_model_url != sss[self.FINE_TUNED_MODELS_SSS_KEY][self.unique_name]:
-            sss[self.FINE_TUNED_MODELS_SSS_KEY][self.unique_name]: str = fine_tuned_model_url
+        if (
+            fine_tuned_model_url
+            != sss[self.FINE_TUNED_MODELS_SSS_KEY][self.unique_name]
+        ):
+            sss[self.FINE_TUNED_MODELS_SSS_KEY][
+                self.unique_name
+            ]: str = fine_tuned_model_url
 
     @property
     def doc_src_path(self) -> DirOrFilePath:
@@ -235,7 +258,10 @@ class SSAProbSolver:
         ):
             # ******************************************************************************************* #
             # TODO: initialize real problem-solving SSA wrapping underlying SSM with problem-solving loop #
-            ssa: RagSSA = LlamaIndexSSM()
+            # llm = LLMConfig.get_aitomatic_yi_34b()
+            llm = LLMConfig.get_llm_llama_2_70b()
+            embed_model = LLMConfig.get_aito_embeddings()
+            ssa: RagSSA = CustomSSM(llm=llm, embed_model=embed_model)
             # ******************************************************************************************* #
 
             st.write("_Building SSA, please wait..._")
@@ -263,8 +289,28 @@ class SSAProbSolver:
         # ***************************************************************************** #
         # TODO: replace the below ssa.discuss(...) with problem-solving ssa.solve(...), #
         # which should use the provided Expert Heuristics in the problem-solving loop   #
-        solution: str = self.ssa.discuss(self.prob)["content"]
+        # solution: str = self.ssa.discuss(self.prob)["content"]
         # ***************************************************************************** #
+
+        heuristic_rules_example = {
+            "ald": [
+                "get detail of heuristics for ALD (this knowledge is under #USE_THIS_TO_REASON section and used to apply for solving the problem)"
+            ],
+        }
+        task_heuristics = TaskDecompositionHeuristic(heuristic_rules_example)
+        highest_priority_heuristic = "The Purge Time must be at least as long as the Precursor Pulse Time to ensure that all excess precursor and reaction byproducts are removed from the chamber before the next cycle begins."
+        ooda_ssa = OodaSSA(
+            task_heuristics=task_heuristics,
+            highest_priority_heuristic=highest_priority_heuristic,
+            agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
+            llm=AitomaticLLMConfig.get_openai(),
+            rag_llm=LLMConfig.get_llm_llama_2_70b(),
+            embed_model=LLMConfig.get_aito_embeddings(),
+            model="gpt-4-1106-preview",
+        )
+        ooda_ssa.load(self.doc_src_path)
+        print("finish reading doc")
+        solution = ooda_ssa.solve(self.prob)
 
         st.write(solution)
 
@@ -274,72 +320,86 @@ class SSAProbSolver:
         if self.domain:
             st.subheader(body=f"domain: _{self.domain}_", divider=True)
 
-        problem_statement_section, expert_heuristics_section = st.columns(spec=2, gap="small")
+        problem_statement_section, expert_heuristics_section = st.columns(
+            spec=2, gap="small"
+        )
 
         with problem_statement_section:
             st.write("__PROBLEM STATEMENT__")
 
-            self.prob: str = st.text_area(label="Problem Statement",
-                                          value=self.prob,
-                                          height=3,
-                                          max_chars=None,
-                                          key=None,
-                                          help="State the Problem to Solve",
-                                          on_change=None,
-                                          args=None,
-                                          kwargs=None,
-                                          placeholder="What problem would you like to solve?",
-                                          disabled=False,
-                                          label_visibility="collapsed")
+            self.prob: str = st.text_area(
+                label="Problem Statement",
+                value=self.prob,
+                height=3,
+                max_chars=None,
+                key=None,
+                help="State the Problem to Solve",
+                on_change=None,
+                args=None,
+                kwargs=None,
+                placeholder="What problem would you like to solve?",
+                disabled=False,
+                label_visibility="collapsed",
+            )
 
         with expert_heuristics_section:
             st.write("__EXPERT HEURISTICS__")
 
-            if recorded_expert_heuristics := speech_to_text(start_prompt="Expert Heuristics: 🎤 here or ⌨️ below",
-                                                            stop_prompt="Stop Recording",
-                                                            just_once=True,
-                                                            use_container_width=False,
-                                                            language="en",
-                                                            callback=None,
-                                                            args=(),
-                                                            kwargs={},
-                                                            key=None):
+            if recorded_expert_heuristics := speech_to_text(
+                start_prompt="Expert Heuristics: 🎤 here or ⌨️ below",
+                stop_prompt="Stop Recording",
+                just_once=True,
+                use_container_width=False,
+                language="en",
+                callback=None,
+                args=(),
+                kwargs={},
+                key=None,
+            ):
                 st.write(f'_"{recorded_expert_heuristics}"_')
 
-                st.button(label="append to saved heuristics below?",
-                          key=None,
-                          on_click=self.append_expert_heuristics,
-                          args=(recorded_expert_heuristics,),
-                          kwargs=None,
-                          type="secondary",
-                          disabled=False,
-                          use_container_width=False)
+                st.button(
+                    label="append to saved heuristics below?",
+                    key=None,
+                    on_click=self.append_expert_heuristics,
+                    args=(recorded_expert_heuristics,),
+                    kwargs=None,
+                    type="secondary",
+                    disabled=False,
+                    use_container_width=False,
+                )
 
-            self.expert_heuristics: str = st.text_area(label="Expert Heuristics",
-                                                       value=self.expert_heuristics,
-                                                       height=10,
-                                                       max_chars=None,
-                                                       key=None,
-                                                       help="Expert Heuristics (recorded or typed)",
-                                                       on_change=None,
-                                                       args=None,
-                                                       kwargs=None,
-                                                       placeholder="Expert Heuristics (recorded or typed)",
-                                                       disabled=False,
-                                                       label_visibility="collapsed")
+            self.expert_heuristics: str = st.text_area(
+                label="Expert Heuristics",
+                value=self.expert_heuristics,
+                height=10,
+                max_chars=None,
+                key=None,
+                help="Expert Heuristics (recorded or typed)",
+                on_change=None,
+                args=None,
+                kwargs=None,
+                placeholder="Expert Heuristics (recorded or typed)",
+                disabled=False,
+                label_visibility="collapsed",
+            )
 
         st.write("_(optional)_ __FINE TUNED MODEL__")
 
-        self.fine_tuned_model_url: str = st.text_input(label='_(optional)_ Fine-Tuned Model URL',
-                                                       value=self.fine_tuned_model_url,
-                                                       max_chars=None,
-                                                       type='default',
-                                                       help='_(optional)_ Fine-Tuned Model URL',
-                                                       autocomplete=None,
-                                                       on_change=None, args=None, kwargs=None,
-                                                       placeholder='(optional) Fine-Tuned Model URL',
-                                                       disabled=False,
-                                                       label_visibility='collapsed')
+        self.fine_tuned_model_url: str = st.text_input(
+            label="_(optional)_ Fine-Tuned Model URL",
+            value=self.fine_tuned_model_url,
+            max_chars=None,
+            type="default",
+            help="_(optional)_ Fine-Tuned Model URL",
+            autocomplete=None,
+            on_change=None,
+            args=None,
+            kwargs=None,
+            placeholder="(optional) Fine-Tuned Model URL",
+            disabled=False,
+            label_visibility="collapsed",
+        )
 
         st.write("__REFERENCES__")
 
@@ -379,12 +439,14 @@ class SSAProbSolver:
                     )
                 )
 
-            if self.ssa and st.button(label=f"__SOLVE__: _{self.prob}_",
-                                      key=None,
-                                      on_click=None,
-                                      args=None,
-                                      kwargs=None,
-                                      type="primary",
-                                      disabled=False,
-                                      use_container_width=False):
+            if self.ssa and st.button(
+                label=f"__SOLVE__: _{self.prob}_",
+                key=None,
+                on_click=None,
+                args=None,
+                kwargs=None,
+                type="primary",
+                disabled=False,
+                use_container_width=False,
+            ):
                 self.ssa_solve()
