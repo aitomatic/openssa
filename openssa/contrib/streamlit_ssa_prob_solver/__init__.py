@@ -249,7 +249,7 @@ class SSAProbSolver:
                            model='gpt-4-1106-preview')
         ooda_ssa.load(self.doc_src_path)
 
-        solution: str = ooda_ssa.solve(self.prob)
+        solution: str = ooda_ssa.solve(self.problem)
         st.write(solution)
 
     def run(self):
@@ -348,7 +348,7 @@ class SSAProbSolver:
                                    label_visibility='visible',
                                    max_selections=None))
 
-            if self.ssa and st.button(label=f'__SOLVE__: _{self.prob}_',
+            if self.ssa and st.button(label=f'__SOLVE__: _{self.problem}_',
                                       key=None,
                                       on_click=None, args=None, kwargs=None,
                                       type='primary',
