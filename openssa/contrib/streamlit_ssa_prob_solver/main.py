@@ -7,7 +7,7 @@ sys.path.insert(1, str(Path(__file__).parent.parent.parent.parent))
 
 # pylint: disable=wrong-import-position
 import streamlit as st
-from openssa.contrib import StreamlitSSAProbSolver
+from openssa.contrib import StreamlitSSAProbSolver  # pylint: disable=no-name-in-module
 
 
 st.set_page_config(page_title='Problem-Solving SSA',

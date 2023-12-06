@@ -8,7 +8,6 @@ from openssa.core.ooda_rag.heuristic import (
     DefaultOODAHeuristic,
 )
 from openssa.core.ooda_rag.tools import Tool
-from openssa.utils.aitomatic_llm_config import AitomaticLLMConfig
 
 
 class History:

@@ -72,7 +72,7 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
         print("persist_path", persist_path)
         self._index.storage_context.persist(persist_path)
 
-    def query(self, query: str, source_path: str = "") -> dict:
+    def query(self, query: str, source_path: str = "") -> dict:  # pylint: disable=arguments-renamed
         """Returns a response dict with keys role, content, and citations."""
         if self.query_engine is None:
             return {"content": "No index to query. Please load something first."}
@@ -117,7 +117,7 @@ class CustomSSM(RAGSSM):  # type: ignore
         self.s3_source_path = s3_source_path
         super().__init__(slm=slm, rag_backend=self._rag_backend)
 
-    def discuss(self, query: str, conversation_id: str = "") -> dict:
+    def discuss(self, query: str, conversation_id: str = "") -> dict:  # pylint: disable=arguments-renamed
         """Return response with keys role, content, and citations."""
         return self._rag_backend.query(query, source_path=self.s3_source_path)
 
