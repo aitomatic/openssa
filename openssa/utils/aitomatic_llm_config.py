@@ -1,19 +1,23 @@
 import os
 from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
+
 
 class AitomaticLLMConfig:
     @classmethod
     def get_llama2_70b(cls):
         return OpenAI(
-            api_key=os.environ.get("LEPTONAI_API_KEY"),
+            api_key=os.environ.get("LEPTON_API_KEY"),
             base_url="https://llama2-70b.lepton.run/api/v1",
         )
 
     @classmethod
     def get_intel_neural_chat_7b(cls):
-        url_base = os.environ.get("AITOMATIC_INTEL_NEURAL_CHAT_7B_URL_BASE")
+        url_base = os.environ.get("AITOMATIC_INTEL_NEURAL_CHAT_7B_URL_BASE", "http://34.145.174.152:8000/v1")
         llm = OpenAI(
-            base_url=url_base,
+            base_url=url_base
         )
         return llm
 
@@ -24,3 +28,10 @@ class AitomaticLLMConfig:
             base_url=url_base,
         )
         return llm
+
+    @classmethod
+    def get_openai(cls):
+        return OpenAI(
+            api_key=os.environ.get("OPENAI_API_KEY"),
+            base_url="https://api.openai.com/v1",
+        )

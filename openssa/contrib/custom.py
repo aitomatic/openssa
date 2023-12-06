@@ -127,16 +127,3 @@ class CustomSSM(RAGSSM):  # type: ignore
 
     async def get_evaluation_data(self) -> dict:
         return await self._rag_backend.get_evaluation_data()
-
-
-if __name__ == "__main__":
-    import time
-
-    t1 = time.time()
-    ssm = CustomSSM()
-    ssm.read_directory("tests/doc", re_index=False)
-    t2 = time.time()
-    print("time to load", time.time() - t1)
-    res = ssm.discuss("what is MRI?")
-    print(res)
-    print("time to query", time.time() - t2)
