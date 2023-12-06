@@ -234,9 +234,8 @@ class SSAProbSolver:
             # llm = LLMConfig.get_aitomatic_yi_34b()
             # llm = LLMConfig.get_llm_llama_2_70b()
             # llm = LLMConfig.get_intel_neural_chat_7b()
-            llm = LLMConfig.get_aitomatic_yi_34b()
-            embed_model = LLMConfig.get_aito_embeddings()
-            ssa: RagSSA = CustomSSM(llm=llm, embed_model=embed_model)
+            llm = LLMConfig.get_llm_openai_35_turbo()
+            ssa: RagSSA = CustomSSM(llm=llm)
             # ******************************************************************************************* #
 
             # ******************************************************************************************* #

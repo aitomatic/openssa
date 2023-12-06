@@ -151,4 +151,4 @@ class Backend(AbstractRAGBackend):
         storage_context = StorageContext.from_defaults(
             persist_dir=self._get_index_dir(storage_dir)
         )
-        self.index = load_index_from_storage(storage_context, service_context=self._service_context)
+        self.index = load_index_from_storage(storage_context)
