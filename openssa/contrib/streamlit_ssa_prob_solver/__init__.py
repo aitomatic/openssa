@@ -258,23 +258,21 @@ class SSAProbSolver:
         if self.domain:
             st.subheader(body=f'domain: _{self.domain}_', divider=True)
 
-        problem_statement_section, expert_heuristics_section = st.columns(spec=2, gap='small')
+        problem_to_solve_section, expert_heuristics_section = st.columns(spec=2, gap='small')
 
-        with problem_statement_section:
-            st.write('__PROBLEM STATEMENT__')
+        with problem_to_solve_section:
+            st.write('__PROBLEM TO SOLVE__')
 
-            self.prob: str = st.text_area(label='Problem Statement',
-                                          value=self.prob,
-                                          height=3,
-                                          max_chars=None,
-                                          key=None,
-                                          help='State the Problem to Solve',
-                                          on_change=None,
-                                          args=None,
-                                          kwargs=None,
-                                          placeholder='What problem would you like to solve?',
-                                          disabled=False,
-                                          label_visibility='collapsed')
+            self.problem: str = st.text_area(label='Problem to Solve',
+                                             value=self.problem,
+                                             height=3,
+                                             max_chars=None,
+                                             key=None,
+                                             help='State the Problem to Solve',
+                                             on_change=None, args=None, kwargs=None,
+                                             placeholder='What problem would you like to solve?',
+                                             disabled=False,
+                                             label_visibility='collapsed')
 
         with expert_heuristics_section:
             st.write('__EXPERT HEURISTICS__')
