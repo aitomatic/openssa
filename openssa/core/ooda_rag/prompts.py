@@ -72,5 +72,6 @@ class OODAPrompts:
         "This is the concluding instruction and must be followed with precision. "
         "You will derive the final response by critically analyzing all the messages in the conversation and performing any necessary calculations. "
         "Be aware that some contributions from the assistant may not be relevant or could be misleading due to being based on incomplete information. "
+        "{heuristic} "
         "Exercise discernment in selecting the appropriate messages to construct a logical and step-by-step reasoning process."
     )

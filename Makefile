@@ -69,7 +69,7 @@ lint: lint-py lint-js
 lint-py:
 	@for dir in $(LINT_DIRS) ; do \
 		echo $(ANSI_GREEN) ... Running pylint on $$dir $(ANSI_NORMAL); \
-		pylint $$dir ; \
+		poetry run pylint $$dir ; \
 	done
 
 lint-js:
