@@ -310,7 +310,7 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_aito_embeddings(cls) -> OpenAIEmbedding:  # running
-        url_base = "http://34.83.146.77:8083/api/v1"
+        url_base = "https://aimo-api-mvp.platform.aitomatic.com/api/v1"
         embed_model = OpenAIEmbedding(
             api_base=url_base
         )
