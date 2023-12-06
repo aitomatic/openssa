@@ -8,7 +8,8 @@ from uuid import UUID, uuid4
 import streamlit as st
 from streamlit_mic_recorder import speech_to_text
 
-from openssa.contrib.custom import CustomSSM
+# from openssa.contrib.custom import CustomSSM
+from openssa import LlamaIndexSSM
 from openssa.core.ssa.ssa import RagSSA
 from openssa.utils.llm_config import LLMConfig
 from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
@@ -70,6 +71,7 @@ class SSAProbSolver:
         doc_src_path: DirOrFilePath = "",
         doc_src_file_relpaths: FilePathSet = frozenset(),
     ):
+        # pylint: disable=too-many-arguments
         """Initialize and start running SSAProbSolver instance."""
         # initialize Streamlit Session State (SSS) elements if necessary
         # (this has to be done upon each instantiation
@@ -225,15 +227,8 @@ class SSAProbSolver:
         ):
             # ******************************************************************************************* #
             # TODO: initialize real problem-solving SSA wrapping underlying SSM with problem-solving loop #
-            # llm = LLMConfig.get_aitomatic_yi_34b()
-            # llm = LLMConfig.get_llm_llama_2_70b()
-            # llm = LLMConfig.get_intel_neural_chat_7b()
-            llm = LLMConfig.get_llm_openai_35_turbo()
-            ssa: RagSSA = CustomSSM(llm=llm)
+            ssa: RagSSA = LlamaIndexSSM()
             # ******************************************************************************************* #
-
-            # ******************************************************************************************* #
-            # TODO: Init ooda rag with problem-solving loop #
 
             st.write("_Building SSA, please wait..._")
 

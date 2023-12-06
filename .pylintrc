@@ -616,6 +616,7 @@ confidence=HIGH,
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
 disable=
+      attribute-defined-outside-init,
       fixme,
       import-error,
       line-too-long,
@@ -623,6 +624,7 @@ disable=
       missing-function-docstring,
       missing-module-docstring,
       raw-checker-failed,
+      redefined-outer-name,
       too-few-public-methods,
       unnecessary-pass,
 

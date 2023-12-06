@@ -1,1 +1,1 @@
-OpenSSA @ https://GitHub.com/Aitomatic/OpenSSA/archive/experimental.zip
+OpenSSA

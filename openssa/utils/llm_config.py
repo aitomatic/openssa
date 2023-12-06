@@ -29,7 +29,6 @@ CHAT_MODELS.update(
 )
 
 # import logging, sys
-
 # logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
@@ -55,29 +54,58 @@ class LlmModelSize:
     gpt35 = "GPT-3.5"
 
 
-class LLMConfig:
+class AitomaticBaseURL:
+    llama2_70b = "https://llama2-70b.lepton.run/api/v1"
+    llama2_7b = "https://llama2-7b.lepton.run/api/v1"
+    intel_neural_chat_7b = "http://34.145.174.152:8000/v1"
+    yi_34b = "http://35.230.174.89:8000/v1"
+
+
+class LLMConfig:  # pylint: disable=too-many-public-methods
     @classmethod
-    def get_llm(cls, base_model: str, model_size: str = "") -> LLM:  # noqa
-        if base_model == LlmBaseModel.llama2 and model_size == LlmModelSize.llama2_70b:
+    def get_service_context_llama_2_7b(cls) -> ServiceContext:
+        llm = cls.get_llm_llama_2_7b()
+
+        embed_model = OpenAIEmbedding(
+            api_key=cls.get_llama_2_api_key(),
+            api_base=AitomaticBaseURL.llama2_7b,
+        )
+
+        return ServiceContext.from_defaults(
+            llm=llm,
+            embed_model=embed_model,
+        )
+
+    @classmethod
+    def get_service_context_llama_2_70b(cls) -> ServiceContext:
+        llm = cls.get_llm_llama_2_70b()
+        return ServiceContext.from_defaults(llm=llm)
+
+    @classmethod
+    def get_llm(cls, base_model: str, model_size: str = "") -> LLM:
+        # pylint: disable=too-many-return-statements
+        if (base_model == LlmBaseModel.llama2) and (model_size == LlmModelSize.llama2_70b):
             return cls.get_llm_llama_2_70b()
-        elif base_model == LlmBaseModel.llama2 and model_size == LlmModelSize.llama2_7b:
+
+        if (base_model == LlmBaseModel.llama2) and (model_size == LlmModelSize.llama2_7b):
             return cls.get_llm_llama_2_7b()
-        elif (
-            base_model == LlmBaseModel.azure_openai and model_size == LlmModelSize.gpt35
-        ):
+
+        if (base_model == LlmBaseModel.azure_openai) and (model_size == LlmModelSize.gpt35):
             return cls.get_llm_azure_jp_35_16k()
-        elif (
-            base_model == LlmBaseModel.azure_openai and model_size == LlmModelSize.gpt4
-        ):
+
+        if (base_model == LlmBaseModel.azure_openai) and (model_size == LlmModelSize.gpt4):
             return cls.get_llm_azure_jp_4_32k()
-        elif base_model == LlmBaseModel.openai and model_size == LlmModelSize.gpt4:
+
+        if base_model == LlmBaseModel.openai and model_size == LlmModelSize.gpt4:
             return cls.get_llm_openai_4()
-        elif base_model == LlmBaseModel.yi:
+
+        if base_model == LlmBaseModel.yi:
             return cls.get_aitomatic_yi_34b()
-        elif base_model == LlmBaseModel.neural_chat:
+
+        if base_model == LlmBaseModel.neural_chat:
             return cls.get_intel_neural_chat_7b()
-        else:
-            return cls.get_llm_openai_35_turbo()
+
+        return cls.get_llm_openai_35_turbo()
 
     @classmethod
     def get_service_context_openai_35_turbo_1106(cls) -> ServiceContext:
@@ -195,7 +223,7 @@ class LLMConfig:
         return api_key
 
     @classmethod
-    def get_lepton_api_key(cls) -> str:
+    def get_llama_2_api_key(cls) -> str:
         api_key = os.getenv("LEPTON_API_KEY", "")
         if not api_key:
             raise Exception("LEPTON_API_KEY is not set")
@@ -219,7 +247,7 @@ class LLMConfig:
 
     @classmethod
     def get_llm_azure_jp_35_16k(cls) -> LLM:
-        llm = AzureOpenAI(
+        return AzureOpenAI(
             engine="gpt-35-turbo-16k",
             model="gpt-35-turbo-16k",
             temperature=0.0,
@@ -227,11 +255,10 @@ class LLMConfig:
             api_key=cls.get_azure_jp_api_key(),
             azure_endpoint="https://aiva-japan.openai.azure.com",
         )
-        return llm
 
     @classmethod
     def get_llm_azure_jp_4_32k(cls) -> LLM:
-        llm = AzureOpenAI(
+        return AzureOpenAI(
             engine="gpt-4-32k",
             model="gpt-4-32k",
             temperature=0.0,
@@ -239,31 +266,22 @@ class LLMConfig:
             api_key=cls.get_azure_jp_api_key(),
             azure_endpoint="https://aiva-japan.openai.azure.com",
         )
-        return llm
 
     @classmethod
     def get_llm_llama_2_70b(cls) -> LLM:
-        url_base = os.environ.get(
-            "LEPTON_70B_URL_BASE", "https://llama2-70b.lepton.run/api/v1"
-        )
-        llm = OpenAI(
+        return OpenAI(
             model="llama2-70b",
-            api_base=url_base,
-            api_key=cls.get_lepton_api_key(),
+            api_base=AitomaticBaseURL.llama2_70b,
+            api_key=cls.get_llama_2_api_key(),
         )
-        return llm
 
     @classmethod
     def get_llm_llama_2_7b(cls) -> LLM:
-        url_base = os.environ.get(
-            "LEPTON_7B_URL_BASE", "https://llama2-7b.lepton.run/api/v1"
-        )
-        llm = OpenAI(
+        return OpenAI(
             model="llama2-7b",
-            api_base=url_base,
-            api_key=cls.get_lepton_api_key(),
+            api_base=AitomaticBaseURL.llama2_7b,
+            api_key=cls.get_llama_2_api_key(),
         )
-        return llm
 
     @classmethod
     def get_aitomatic_13b(cls) -> LLM:
@@ -277,19 +295,23 @@ class LLMConfig:
 
     @classmethod
     def get_aitomatic_yi_34b(cls) -> LLM:  # running
-        url_base = "http://35.230.174.89:8000/v1"
-        llm = OpenAI(
+        return OpenAI(
             model="01-ai/Yi-34B-Chat",
-            api_base=url_base,
+            api_base=AitomaticBaseURL.yi_34b,
             additional_kwargs={"stop": "\n###"},
         )
-        return llm
 
     @classmethod
     def get_intel_neural_chat_7b(cls) -> LLM:  # running
-        url_base = "http://34.145.174.152:8000/v1"
-        llm = OpenAI(
+        return OpenAI(
             model="Intel/neural-chat-7b-v3-1",
-            api_base=url_base,
+            api_base=AitomaticBaseURL.intel_neural_chat_7b,
         )
-        return llm
+
+    @classmethod
+    def get_aito_embeddings(cls) -> OpenAIEmbedding:  # running
+        url_base = "https://aimo-api-mvp.platform.aitomatic.com/api/v1"
+        embed_model = OpenAIEmbedding(
+            api_base=url_base
+        )
+        return embed_model

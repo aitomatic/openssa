@@ -1,4 +1,4 @@
-from llama_index import Document, Response, SimpleDirectoryReader
+from llama_index import Document, Response, SimpleDirectoryReader, ServiceContext, OpenAIEmbedding
 from llama_index.evaluation import DatasetGenerator
 from llama_index.llms.base import LLM as RAGLLM
 from llama_index.node_parser import SimpleNodeParser
@@ -13,9 +13,8 @@ FILE_NAME = "file_name"
 
 
 class CustomBackend(LlamaIndexBackend):  # type: ignore
-    def __init__(self, rag_llm: RAGLLM = None) -> None:  # type: ignore
-        super().__init__(rag_llm=rag_llm)
-        self.llm = rag_llm
+    def __init__(self, rag_llm: RAGLLM = None, service_context=None) -> None:  # type: ignore
+        super().__init__(rag_llm=rag_llm, service_context=service_context)
 
     def _do_read_directory(self, storage_dir: str) -> None:
         def filename_fn(filename: str) -> dict:
@@ -73,7 +72,7 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
         print("persist_path", persist_path)
         self._index.storage_context.persist(persist_path)
 
-    def query(self, query: str, source_path: str = "") -> dict:
+    def query(self, query: str, source_path: str = "") -> dict:  # pylint: disable=arguments-renamed
         """Returns a response dict with keys role, content, and citations."""
         if self.query_engine is None:
             return {"content": "No index to query. Please load something first."}
@@ -106,17 +105,19 @@ class CustomSSM(RAGSSM):  # type: ignore
         self,
         custom_rag_backend: AbstractBackend = None,
         s3_source_path: str = "",
-        llm: RAGLLM = LLMConfig.get_llm_openai_35_turbo(),  # type: ignore
+        llm: RAGLLM = LLMConfig.get_aitomatic_yi_34b(),  # type: ignore
+        embed_model: OpenAIEmbedding = LLMConfig.get_aito_embeddings()
     ) -> None:
         if custom_rag_backend is None:
-            custom_rag_backend = CustomBackend(rag_llm=llm)
+            service_context = ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
+            custom_rag_backend = CustomBackend(rag_llm=llm, service_context=service_context)
 
         slm = PassthroughSLM()
         self._rag_backend = custom_rag_backend
         self.s3_source_path = s3_source_path
         super().__init__(slm=slm, rag_backend=self._rag_backend)
 
-    def discuss(self, query: str, conversation_id: str = "") -> dict:
+    def discuss(self, query: str, conversation_id: str = "") -> dict:  # pylint: disable=arguments-renamed
         """Return response with keys role, content, and citations."""
         return self._rag_backend.query(query, source_path=self.s3_source_path)
 
@@ -126,16 +127,3 @@ class CustomSSM(RAGSSM):  # type: ignore
 
     async def get_evaluation_data(self) -> dict:
         return await self._rag_backend.get_evaluation_data()
-
-
-if __name__ == "__main__":
-    import time
-
-    t1 = time.time()
-    ssm = CustomSSM()
-    ssm.read_directory("tests/doc", re_index=False)
-    t2 = time.time()
-    print("time to load", time.time() - t1)
-    res = ssm.discuss("what is MRI?")
-    print(res)
-    print("time to query", time.time() - t2)
