@@ -87,10 +87,12 @@ class SSAProbSolver:
         self.domain: str = domain.strip()
 
         # set Problem
-        self.prob: str = prob
+        if not self.prob:
+            self.prob: str = prob
 
         # set Expert Heuristics
-        self.expert_heuristics: str = expert_heuristics
+        if not self.expert_heuristics:
+            self.expert_heuristics: str = expert_heuristics
 
         # set Documentary Knowledge Source Path & any specific File Relative Paths if given
         if doc_src_path:
