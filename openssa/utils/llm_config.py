@@ -61,7 +61,7 @@ class AitomaticBaseURL:
     yi_34b = "http://35.230.174.89:8000/v1"
 
 
-class LLMConfig:
+class LLMConfig:  # pylint: disable=too-many-public-methods
     @classmethod
     def get_service_context_llama_2_7b(cls) -> ServiceContext:
         llm = cls.get_llm_llama_2_7b()
@@ -82,27 +82,30 @@ class LLMConfig:
         return ServiceContext.from_defaults(llm=llm)
 
     @classmethod
-    def get_llm(cls, base_model: str, model_size: str = "") -> LLM:  # noqa
-        if base_model == LlmBaseModel.llama2 and model_size == LlmModelSize.llama2_70b:
+    def get_llm(cls, base_model: str, model_size: str = "") -> LLM:
+        # pylint: disable=too-many-return-statements
+        if (base_model == LlmBaseModel.llama2) and (model_size == LlmModelSize.llama2_70b):
             return cls.get_llm_llama_2_70b()
-        elif base_model == LlmBaseModel.llama2 and model_size == LlmModelSize.llama2_7b:
+
+        if (base_model == LlmBaseModel.llama2) and (model_size == LlmModelSize.llama2_7b):
             return cls.get_llm_llama_2_7b()
-        elif (
-            base_model == LlmBaseModel.azure_openai and model_size == LlmModelSize.gpt35
-        ):
+
+        if (base_model == LlmBaseModel.azure_openai) and (model_size == LlmModelSize.gpt35):
             return cls.get_llm_azure_jp_35_16k()
-        elif (
-            base_model == LlmBaseModel.azure_openai and model_size == LlmModelSize.gpt4
-        ):
+
+        if (base_model == LlmBaseModel.azure_openai) and (model_size == LlmModelSize.gpt4):
             return cls.get_llm_azure_jp_4_32k()
-        elif base_model == LlmBaseModel.openai and model_size == LlmModelSize.gpt4:
+
+        if base_model == LlmBaseModel.openai and model_size == LlmModelSize.gpt4:
             return cls.get_llm_openai_4()
-        elif base_model == LlmBaseModel.yi:
+
+        if base_model == LlmBaseModel.yi:
             return cls.get_aitomatic_yi_34b()
-        elif base_model == LlmBaseModel.neural_chat:
+
+        if base_model == LlmBaseModel.neural_chat:
             return cls.get_intel_neural_chat_7b()
-        else:
-            return cls.get_llm_openai_35_turbo()
+
+        return cls.get_llm_openai_35_turbo()
 
     @classmethod
     def get_service_context_openai_35_turbo_1106(cls) -> ServiceContext:
