@@ -39,8 +39,8 @@ jobs:
           poetry install --extras=lint --extras=test
           make jest-setup
 
-      - name: Lint Code
-        run: make lint
+      - name: Lint Python Code
+        run: make lint-py
 
       - name: Run Tests
         run: make test
