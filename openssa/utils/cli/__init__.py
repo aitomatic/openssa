@@ -1,12 +1,19 @@
 """OpenSSA CLI."""
 
 
+from collections.abc import Sequence
+
 import click
+
+from .contrib import openssa_contrib_cli
+
+
+__all__: Sequence[str] = ('openssa_cli',)
 
 
 @click.group(name='openssa',
              cls=click.Group,
-             commands={},
+             commands={'contrib': openssa_contrib_cli},
              invoke_without_command=False,
              no_args_is_help=True,
              subcommand_metavar='OPENSSA_SUB_COMMAND',

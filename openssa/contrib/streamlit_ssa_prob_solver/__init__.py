@@ -70,6 +70,7 @@ class SSAProbSolver:
         doc_src_path: DirOrFilePath = "",
         doc_src_file_relpaths: FilePathSet = frozenset(),
     ):
+        # pylint: disable=too-many-arguments
         """Initialize and start running SSAProbSolver instance."""
         # initialize Streamlit Session State (SSS) elements if necessary
         # (this has to be done upon each instantiation
