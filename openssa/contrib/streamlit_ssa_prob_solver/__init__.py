@@ -331,7 +331,7 @@ class SSAProbSolver:
                                                        disabled=False,
                                                        label_visibility="collapsed")
 
-        st.write("_(optional)_ __FINE_TUNED_MODEL__")
+        st.write("_(optional)_ __FINE TUNED MODEL__")
 
         self.fine_tuned_model_url: str = st.text_input(label='_(optional)_ Fine-Tuned Model URL',
                                                        value=self.fine_tuned_model_url,
