@@ -8,7 +8,7 @@ from uuid import UUID, uuid4
 import streamlit as st
 from streamlit_mic_recorder import speech_to_text
 
-from openssa.contrib.custom import CustomSSM
+from openssa import LlamaIndexSSM
 from openssa.core.ssa.ssa import RagSSA
 from openssa.utils.llm_config import LLMConfig
 from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
@@ -226,9 +226,7 @@ class SSAProbSolver:
         ):
             # ******************************************************************************************* #
             # TODO: initialize real problem-solving SSA wrapping underlying SSM with problem-solving loop #
-            llm = LLMConfig.get_llm('')
-            embed_model = LLMConfig.get_aito_embeddings()
-            ssa: RagSSA = CustomSSM(llm=llm, embed_model=embed_model)
+            ssa: RagSSA = LlamaIndexSSM()
             # ******************************************************************************************* #
 
             st.write("_Building SSA, please wait..._")
