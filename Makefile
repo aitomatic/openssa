@@ -64,18 +64,13 @@ test-js:
 
 
 LINT_DIRS = openssa tests examples
-lint: lint-py lint-js
+lint: lint-py
 
 lint-py:
 	@for dir in $(LINT_DIRS) ; do \
 		echo $(ANSI_GREEN) ... Running pylint on $$dir $(ANSI_NORMAL); \
 		poetry run pylint $$dir ; \
 	done
-
-lint-js:
-	@-[ -e site/ ] && mv site/ /tmp/site/  # don’t lint the site/ directory
-	cd $(TESTS_DIR) && npx eslint ..
-	@-[ -e /tmp/site/ ] && mv -f /tmp/site/ site/  # put site/ back where it belongs
 
 pre-commit: lint test
 
