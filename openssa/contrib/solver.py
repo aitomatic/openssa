@@ -15,6 +15,7 @@ class OodaSSA:
                  rag_llm=LLMConfig.get_llm_llama_2_70b(),
                  embed_model=LLMConfig.get_aito_embeddings(),
                  model='gpt-4-1106-preview'):
+        # pylint: disable=too-many-arguments
         self.llm = llm
         self.rag_llm = rag_llm
         self.embed_model = embed_model
