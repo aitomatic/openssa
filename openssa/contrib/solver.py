@@ -1,11 +1,6 @@
 from openssa.core.ooda_rag.ooda_rag import Solver
-from openssa.core.ooda_rag.heuristic import (
-    DefaultOODAHeuristic,
-    TaskDecompositionHeuristic,
-)
+from openssa.core.ooda_rag.heuristic import DefaultOODAHeuristic
 from openssa.core.ooda_rag.tools import ReasearchAgentTool
-from openssa.utils.aitomatic_llm_config import AitomaticLLMConfig
-from openssa.utils.llm_config import LLMConfig
 from openssa.contrib.custom import CustomSSM
 
 

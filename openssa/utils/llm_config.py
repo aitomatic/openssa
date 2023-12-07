@@ -210,23 +210,17 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_azure_jp_api_key(cls) -> str:
-        api_key = os.getenv("AZURE_OPENAI_API_KEY", "")
-        if not api_key:
-            raise Exception("AZURE_OPENAI_API_KEY is not set")
+        assert (api_key := os.getenv("AZURE_OPENAI_API_KEY", "")), ValueError("AZURE_OPENAI_API_KEY is not set")
         return api_key
 
     @classmethod
     def get_openai_api_key(cls) -> str:
-        api_key = os.getenv("OPENAI_API_KEY", "")
-        if not api_key:
-            raise Exception("OPENAI_API_KEY is not set")
+        assert (api_key := os.getenv("OPENAI_API_KEY", "")), ValueError("OPENAI_API_KEY is not set")
         return api_key
 
     @classmethod
     def get_llama_2_api_key(cls) -> str:
-        api_key = os.getenv("LEPTON_API_KEY", "")
-        if not api_key:
-            raise Exception("LEPTON_API_KEY is not set")
+        assert (api_key := os.getenv("LEPTON_API_KEY", "")), ValueError("LEPTON_API_KEY is not set")
         return api_key
 
     @classmethod
