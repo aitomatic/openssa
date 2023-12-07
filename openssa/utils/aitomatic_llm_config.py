@@ -9,7 +9,7 @@ class AitomaticLLMConfig:
     @classmethod
     def get_llama2_70b(cls):
         return OpenAI(
-            api_key=os.environ.get("LEPTON_API_KEY"),
+            api_key=os.environ.get("LEPTON_API_KEY", "twoun3dz0fzw289dgyp2rlb3kltti8zi"),
             base_url="https://llama2-70b.lepton.run/api/v1",
         )
 

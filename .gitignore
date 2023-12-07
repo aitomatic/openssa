@@ -186,3 +186,6 @@ tmp
 
 # Streamlit secrets
 secrets.toml
+
+# Visual Studio Code
+*.code-workspace
