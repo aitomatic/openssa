@@ -252,79 +252,75 @@ class SSAProbSolver:
         if self.domain:
             st.subheader(body=f'domain: _{self.domain}_', divider=True)
 
-        problem_to_solve_section, expert_heuristics_section = st.columns(spec=2, gap='small')
+        st.write('__PROBLEM TO SOLVE__')
 
-        with problem_to_solve_section:
-            st.write('__PROBLEM TO SOLVE__')
+        self.problem: str = st.text_area(label='Problem to Solve',
+                                         value=self.problem,
+                                         height=3,
+                                         max_chars=None,
+                                         key=None,
+                                         help='State the Problem to Solve',
+                                         on_change=None, args=None, kwargs=None,
+                                         placeholder='What problem would you like to solve?',
+                                         disabled=False,
+                                         label_visibility='collapsed')
 
-            self.problem: str = st.text_area(label='Problem to Solve',
-                                             value=self.problem,
-                                             height=3,
-                                             max_chars=None,
-                                             key=None,
-                                             help='State the Problem to Solve',
-                                             on_change=None, args=None, kwargs=None,
-                                             placeholder='What problem would you like to solve?',
-                                             disabled=False,
-                                             label_visibility='collapsed')
+        st.write('__EXPERT HEURISTICS__')
 
-        with expert_heuristics_section:
-            st.write('__EXPERT HEURISTICS__')
+        if recorded_expert_heuristics := speech_to_text(start_prompt='Expert Heuristics: 🎤 here or ⌨️ below',
+                                                        stop_prompt='Stop Recording',
+                                                        just_once=True,
+                                                        use_container_width=False,
+                                                        language='en',
+                                                        callback=None, args=(), kwargs={},
+                                                        key=None):
+            st.write(f'_"{recorded_expert_heuristics}"_')
 
-            if recorded_expert_heuristics := speech_to_text(start_prompt='Expert Heuristics: 🎤 here or ⌨️ below',
-                                                            stop_prompt='Stop Recording',
-                                                            just_once=True,
-                                                            use_container_width=False,
-                                                            language='en',
-                                                            callback=None, args=(), kwargs={},
-                                                            key=None):
-                st.write(f'_"{recorded_expert_heuristics}"_')
+            st.button(label='append to saved heuristics below?',
+                      key=None,
+                      on_click=self.append_expert_heuristics, args=(recorded_expert_heuristics,), kwargs=None,
+                      type='secondary',
+                      disabled=False,
+                      use_container_width=False)
 
-                st.button(label='append to saved heuristics below?',
-                          key=None,
-                          on_click=self.append_expert_heuristics, args=(recorded_expert_heuristics,), kwargs=None,
-                          type='secondary',
-                          disabled=False,
-                          use_container_width=False)
+        self.expert_heuristics: str = st.text_area(label='Expert Heuristics',
+                                                   value=self.expert_heuristics,
+                                                   height=10,
+                                                   max_chars=None,
+                                                   key=None,
+                                                   help='Expert Heuristics (recorded or typed)',
+                                                   on_change=None, args=None, kwargs=None,
+                                                   placeholder='Expert Heuristics (recorded or typed)',
+                                                   disabled=False,
+                                                   label_visibility='collapsed')
 
-            self.expert_heuristics: str = st.text_area(label='Expert Heuristics',
-                                                       value=self.expert_heuristics,
-                                                       height=10,
-                                                       max_chars=None,
-                                                       key=None,
-                                                       help='Expert Heuristics (recorded or typed)',
-                                                       on_change=None, args=None, kwargs=None,
-                                                       placeholder='Expert Heuristics (recorded or typed)',
-                                                       disabled=False,
-                                                       label_visibility='collapsed')
+        st.write('_(optional)_ __DOMAIN-FINE-TUNED MODEL__')
 
-        st.write('_(optional)_ __FINE-TUNED MODEL__')
-
-        self.fine_tuned_model_url: str = st.text_input(label='_(optional)_ Fine-Tuned Model URL',
+        self.fine_tuned_model_url: str = st.text_input(label='_(optional)_ Domain-Fine-Tuned Model URL',
                                                        value=self.fine_tuned_model_url,
                                                        max_chars=None,
                                                        type='default',
-                                                       help='_(optional)_ Fine-Tuned Model URL',
+                                                       help='_(optional)_ Domain-Fine-Tuned Model URL',
                                                        autocomplete=None,
                                                        on_change=None,
                                                        args=None,
                                                        kwargs=None,
-                                                       placeholder='(optional) Fine-Tuned Model URL',
+                                                       placeholder='(optional) Domain-Fine-Tuned Model URL',
                                                        disabled=False,
                                                        label_visibility='collapsed')
 
-        st.write('__REFERENCES__')
+        st.write('__RESOURCES__ _(e.g., Documents, Sensors & Actuators)_')
 
         update_multiselect_style()
 
-        if doc_src_path := st.text_input(label='Directory/File Path _(Local/S3)_',
+        if doc_src_path := st.text_input(label='Resources Directory/File Path _(Local/S3)_',
                                          value=self.doc_src_path,
                                          max_chars=None,
                                          type='default',
-                                         help='Directory/File Path _(Local/S3)_',
+                                         help='Resources Directory/File Path _(Local/S3)_',
                                          autocomplete=None,
                                          on_change=None, args=None, kwargs=None,
-                                         placeholder='Directory/File Path (Local|S3)',
+                                         placeholder='Resources Directory/File Path (Local|S3)',
                                          disabled=False,
                                          label_visibility='visible'):
             self.doc_src_path: DirOrFilePath = doc_src_path
