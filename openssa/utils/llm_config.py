@@ -79,7 +79,8 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
     @classmethod
     def get_service_context_llama_2_70b(cls) -> ServiceContext:
         llm = cls.get_llm_llama_2_70b()
-        return ServiceContext.from_defaults(llm=llm)
+        embed_model = cls.get_aito_embeddings()
+        return ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
 
     @classmethod
     def get_llm(cls, base_model: str, model_size: str = "") -> LLM:
