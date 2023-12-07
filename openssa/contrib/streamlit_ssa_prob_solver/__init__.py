@@ -229,21 +229,13 @@ class SSAProbSolver:
         sss[self.SSA_CONVO_IDS_SSS_KEY][self._hashable_doc_src_repr]: self.Uid = uuid4()
 
     def ssa_solve(self):
-        # TODO can we just replace the value of highest_priority_heuristic with self.expert_heuristics
-        highest_priority_heuristic = ('The Purge Time must be at least as long as the Precursor Pulse Time '
-                                      'to ensure that all excess precursor and reaction byproducts are removed '
-                                      'from the chamber before the next cycle begins.')
-
         ooda_ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
-                           highest_priority_heuristic=highest_priority_heuristic,
-                           agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
-                           llm=AitomaticLLMConfig.get_aitomatic_llm(),
-                           rag_llm=LLMConfig.get_llm_llama_2_70b(),
-                           embed_model=LLMConfig.get_aito_embeddings(),
-                           model='gpt-4-1106-preview')
-        ooda_ssa.load(self.doc_src_path)
+                           highest_priority_heuristic=self.expert_heuristics)
+
+        ooda_ssa.activate_resources(self.doc_src_path)
 
         solution: str = ooda_ssa.solve(self.problem)
+
         st.write(solution)
 
     def run(self):
