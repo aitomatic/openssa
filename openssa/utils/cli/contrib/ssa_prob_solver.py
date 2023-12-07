@@ -24,5 +24,4 @@ __all__: Sequence[str] = ('openssa_contrib_ssa_prob_solver_cli',)
                deprecated=False)
 def openssa_contrib_ssa_prob_solver_cli():
     """Launch StreamlitSSAProbSolver."""
-    os.system(f"OPENAI_API_KEY='n/a' streamlit run {__path__[0]}/main.py"
-              ' --server.allowRunOnSave=true --server.runOnSave=true')
+    os.system(f'streamlit run {__path__[0]}/main.py --server.allowRunOnSave=true --server.runOnSave=true')

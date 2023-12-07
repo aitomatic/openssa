@@ -106,11 +106,16 @@ class Planner:
     """The Planner class is responsible for decomposing the task into subtasks."""
 
     def __init__(
-        self, heuristics: Heuristic, prompts: OODAPrompts, max_subtasks: int = 3
+        self,
+        heuristics: Heuristic,
+        prompts: OODAPrompts,
+        max_subtasks: int = 3,
+        enable_generative: bool = False,
     ) -> None:
         self.heuristics = heuristics
         self.max_subtasks = max_subtasks
         self.prompts = prompts
+        self.enable_generative = enable_generative
 
     def formulate_task(self, model: Model, history: History) -> str:
         response = model.get_response(self.prompts.FORMULATE_TASK, history)
@@ -119,8 +124,11 @@ class Planner:
 
     def decompose_task(self, model: Model, task: str, history: History) -> list[str]:
         subtasks = self.heuristics.apply_heuristic(task)
-        if not subtasks:
-            subtasks = self.generative_decompose_task(model, history)
+        if len(subtasks) > self.max_subtasks:
+            return subtasks[: self.max_subtasks]
+        if self.enable_generative:
+            generative_subtasks = self.generative_decompose_task(model, history)
+            subtasks.extend(generative_subtasks)
         return subtasks[: self.max_subtasks]
 
     def generative_decompose_task(self, model: Model, history: History) -> list[str]:
