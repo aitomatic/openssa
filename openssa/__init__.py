@@ -6,6 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), "VERSION"), "r", encoding="utf
 
 from importlib.metadata import version
 
+from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.prompts import Prompts
 from openssa.core.slm.base_slm import BaseSLM
 from openssa.core.ssa.ssa import BaseSSA
@@ -21,6 +22,7 @@ from openssa.integrations.llama_index.ssm import SSM as LlamaIndexSSM
 from openssa.integrations.llama_index.ssm import LeptonLlamaIndexSSM
 from openssa.integrations.openai.ssm import GPT3ChatCompletionSSM as OpenAIGPT3ChatCompletionSSM
 from openssa.integrations.openai.ssm import GPT3CompletionSSM as OpenAIGPT3CompletionSSM
+from openssa.contrib.solver import OodaSSA
 from openssa.utils.config import Config
 from openssa.utils.logs import Logs, logger, mlogger
 from openssa.utils.utils import Utils

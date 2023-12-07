@@ -12,7 +12,7 @@ from openssa.contrib.streamlit_ssa_prob_solver import __path__
 __all__: Sequence[str] = ('openssa_contrib_ssa_prob_solver_cli',)
 
 
-@click.command(name='ssa-prob-solver',
+@click.command(name='solver',
                cls=click.Command,
                context_settings=None,
                help=('OpenSSA Contrib SSA Problem Solver CLI >>>'),
