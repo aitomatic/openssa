@@ -28,9 +28,9 @@ export PYTHONPATH=$(ROOT_DIR):$(LIB_DIR)
 
 ########
 
-test: test-py test-js
+test: test-py
 
-test-console: test-py-console test-js
+test-console: test-py-console
 
 test-py:
 	@echo $(ANSI_GREEN)
@@ -51,17 +51,6 @@ test-py-console:
 	@echo "--------------------------------"
 	@echo $(ANSI_NORMAL)
 	PYTHONPATH=$(PYTHONPATH):$(TESTS_DIR) poetry run pytest $(OPTIONS) --capture=no
-
-test-js:
-	@echo $(ANSI_GREEN)
-	@echo "--------------------------------"
-	@echo "|                              |"
-	@echo "|      Javascript Testing      |"
-	@echo "|                              |"
-	@echo "--------------------------------"
-	@echo $(ANSI_NORMAL)
-	cd $(TESTS_DIR) && npx jest
-
 
 LINT_DIRS = openssa tests examples
 lint: lint-py
@@ -139,30 +128,6 @@ pylint-setup:
 	@echo ""
 	pip install pylint
 
-#
-# For JS testing & liniting support
-#
-jest-setup:
-	@echo $(ANSI_GREEN) ... Setting up JEST testing environment $(ANSI_NORMAL)
-	@echo ""
-	cd $(TESTS_DIR) ;\
-	npm install --omit=optional --save-dev fetch-mock ;\
-	npm install --omit=optional --save-dev jest ;\
-	npm install --omit=optional --save-dev jest-fetch-mock ;\
-	npm install --omit=optional --save-dev jsdom @testing-library/jest-dom ;\
-	npm install --omit=optional --save-dev @testing-library/dom ;\
-	npm install --omit=optional --save-dev jsdom ;\
-	npm install --omit=optional --save-dev jest-environment-jsdom ;\
-	npm install --omit=optional --save-dev babel-eslint ;\
-	npm install eslint-plugin-react@latest --save-dev
-	-ln -s tests/node_modules .
-
-eslint-setup:
-	@echo $(ANSI_GREEN) ... Setting up ESLINT linting environment $(ANSI_NORMAL)
-	@echo ""
-	-ln -s tests/node_modules .
-	cd $(TESTS_DIR) ;\
-	npm init @eslint/config -- --config semistandard
 
 #
 # Misc
