@@ -267,19 +267,20 @@ class SSAProbSolver:
                                                         callback=None, args=(), kwargs={},
                                                         key=None):
             if self.ssa:
-                recorded_expert_heuristics = self.ssa.discuss(
-                    f"""
+                recorded_expert_heuristics: str = self.ssa.discuss(f"""
                     Given your understanding of the domain "{self.domain}",
                     please rectify and/or restructure the following recorded info
                     to make it clear and understandable to both humans and other processing engines:
 
                     {recorded_expert_heuristics}
 
-                    Please return the rectified/restructured info in the form of 1-2 paragraphs.
-                    """
-                )['content']
+                    Please return the rectified/restructured info in the form of at most 3 paragraphs.
+                """)['content']
 
-            st.write(f'_"{recorded_expert_heuristics}"_')
+                st.write(f'"{recorded_expert_heuristics}"')
+
+            else:
+                st.write(f'_"{recorded_expert_heuristics}"_')
 
             st.button(label='append to saved heuristics below?',
                       key=None,
