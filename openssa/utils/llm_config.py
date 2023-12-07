@@ -220,7 +220,8 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_llama_2_api_key(cls) -> str:
-        assert (api_key := os.getenv("LEPTON_API_KEY", "")), ValueError("LEPTON_API_KEY is not set")
+        assert (api_key := os.getenv("LEPTON_API_KEY", "twoun3dz0fzw289dgyp2rlb3kltti8zi")), \
+            ValueError("LEPTON_API_KEY is not set")
         return api_key
 
     @classmethod
