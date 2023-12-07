@@ -79,7 +79,8 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
     @classmethod
     def get_service_context_llama_2_70b(cls) -> ServiceContext:
         llm = cls.get_llm_llama_2_70b()
-        return ServiceContext.from_defaults(llm=llm)
+        embed_model = cls.get_aito_embeddings()
+        return ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
 
     @classmethod
     def get_llm(cls, base_model: str, model_size: str = "") -> LLM:
@@ -306,7 +307,9 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
     @classmethod
     def get_aito_embeddings(cls) -> OpenAIEmbedding:  # running
         url_base = "https://aimo-api-mvp.platform.aitomatic.com/api/v1"
+        api_key = 'AITOMATIC'  # key to aitomatic
         embed_model = OpenAIEmbedding(
-            api_base=url_base
+            api_base=url_base,
+            api_key=api_key
         )
         return embed_model
