@@ -13,7 +13,7 @@ __all__: Sequence[str] = ('openssa_cli',)
 
 @click.group(name='launch',
              cls=click.Group,
-             commands={'ssa-prob-solver': openssa_contrib_ssa_prob_solver_cli},
+             commands={'solver': openssa_contrib_ssa_prob_solver_cli},
              invoke_without_command=False,
              no_args_is_help=True,
              subcommand_metavar='OPENSSA_SUB_COMMAND',
