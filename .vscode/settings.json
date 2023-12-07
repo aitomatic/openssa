@@ -1,0 +1,15 @@
+{
+  "editor.rulers": [120],
+
+  "files.exclude": {
+    "**/*.egg-info": true,
+    "**/.git": true,
+    "**/.mypy_cache": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.ropeproject": true,
+  },
+
+  "python.analysis.diagnosticSeverityOverrides": {
+  },
+}
