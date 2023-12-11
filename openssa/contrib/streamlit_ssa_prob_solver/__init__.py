@@ -10,8 +10,8 @@ from streamlit_mic_recorder import speech_to_text
 
 from openssa.core.ssa.ssa import RagSSA
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
-from openssa.contrib.custom import CustomSSM
-from openssa.contrib.solver import OodaSSA
+from openssa.core.ooda_rag.custom import CustomSSM
+from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
 from openssa.utils.llm_config import LLMConfig
 
@@ -223,6 +223,7 @@ class SSAProbSolver:
         ooda_ssa.activate_resources(self.doc_src_path)
 
         solution: str = ooda_ssa.solve(self.problem)
+
         st.write(solution)
 
     def run(self):
