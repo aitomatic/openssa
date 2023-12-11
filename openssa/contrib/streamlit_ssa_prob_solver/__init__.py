@@ -245,9 +245,9 @@ class SSAProbSolver:
                                          disabled=False,
                                          label_visibility='collapsed')
 
-        st.write('__EXPERT HEURISTICS__')
+        st.write('__EXPERT INSTRUCTIONS/KNOWLEDGE__')
 
-        if recorded_expert_heuristics := speech_to_text(start_prompt='Expert Heuristics: 🎤 here or ⌨️ below',
+        if recorded_expert_heuristics := speech_to_text(start_prompt='Expert Instructions/Knowledge: 🎤 here or ⌨️ below',
                                                         stop_prompt='Stop Recording',
                                                         just_once=True,
                                                         use_container_width=False,
