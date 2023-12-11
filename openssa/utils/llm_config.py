@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from llama_index import ServiceContext
 from llama_index.embeddings import AzureOpenAIEmbedding, OpenAIEmbedding
 from llama_index.llms import AzureOpenAI, OpenAI
-from llama_index.llms.base import LLM
+from llama_index.llms.llm import LLM
 from llama_index.llms.openai_utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
 
 # exetend ALL_AVAILABLE_MODELS to include the models we want to use

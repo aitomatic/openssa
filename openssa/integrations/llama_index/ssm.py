@@ -1,4 +1,4 @@
-from llama_index.llms.base import LLM as RAGLLM
+from llama_index.llms.llm import LLM as RAGLLM
 from llama_index.llms import OpenAI, AzureOpenAI
 from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
 from openssa.integrations.openai.ssm import GPT3ChatCompletionSLM
