@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.23.12.11"
+version = "0.23.12.11.1"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -17,7 +17,7 @@ maintainers = [
 
 license = "Apache-2.0"
 
-description = "OpenSSA - Small Specialist Agents for Industrial AI"
+description = "OpenSSA: Small Specialist Agents for Industrial AI"
 readme = "README.md"
 
 homepage = "https://openssa.org"
