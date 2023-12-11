@@ -1,8 +1,8 @@
 from openssa.core.ooda_rag.heuristic import (
     TaskDecompositionHeuristic,
 )
-from openssa.contrib.custom import CustomSSM
-from openssa.contrib.solver import OodaSSA
+from openssa.core.ooda_rag.custom import CustomSSM
+from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.utils.llm_config import LLMConfig
 from openssa.utils.aitomatic_llm_config import AitomaticLLMConfig
 

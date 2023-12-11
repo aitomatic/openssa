@@ -1,1 +1,1 @@
-OpenSSA
+OpenSSA[contrib]
