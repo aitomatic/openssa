@@ -17,7 +17,7 @@ maintainers = [
 
 license = "Apache-2.0"
 
-description = "OpenSSA - Small Specialist Agents for Industrial AI"
+description = "OpenSSA: Small Specialist Agents for Industrial AI"
 readme = "README.md"
 
 homepage = "https://openssa.org"
