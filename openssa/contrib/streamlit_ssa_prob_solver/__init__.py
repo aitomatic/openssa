@@ -3,7 +3,7 @@
 
 from collections.abc import Iterable, MutableMapping, Sequence
 from collections import defaultdict
-from uuid import UUID, uuid4
+from uuid import UUID
 
 import streamlit as st
 from streamlit_mic_recorder import speech_to_text
@@ -57,7 +57,6 @@ class SSAProbSolver:
     FINE_TUNED_MODELS_SSS_KEY: str = '_fine_tuned_models'
 
     SSAS_SSS_KEY: str = '_ssas'
-    SSA_CONVO_IDS_SSS_KEY: str = '_ssa_convo_ids'
 
     def __init__(self, unique_name: Uid, domain: str = '',
                  problem: str = '', expert_heuristics: str = '',
@@ -117,9 +116,6 @@ class SSAProbSolver:
 
         if cls.SSAS_SSS_KEY not in sss:
             sss[cls.SSAS_SSS_KEY]: defaultdict[cls.DocSrcHash, RagSSA | None] = defaultdict(lambda: None)
-
-        if cls.SSA_CONVO_IDS_SSS_KEY not in sss:
-            sss[cls.SSA_CONVO_IDS_SSS_KEY]: defaultdict[cls.DocSrcHash, cls.Uid] = defaultdict(uuid4)
 
     @property
     def problem(self) -> str:
@@ -219,13 +215,6 @@ class SSAProbSolver:
             return ssa
 
         return None
-
-    @property
-    def ssa_convo_id(self) -> Uid:
-        return sss[self.SSA_CONVO_IDS_SSS_KEY][self._hashable_doc_src_repr]
-
-    def reset_ssa_convo_id(self):
-        sss[self.SSA_CONVO_IDS_SSS_KEY][self._hashable_doc_src_repr]: self.Uid = uuid4()
 
     def ssa_solve(self):
         ooda_ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
