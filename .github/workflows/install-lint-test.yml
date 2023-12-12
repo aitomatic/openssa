@@ -39,3 +39,5 @@ jobs:
 
       - name: Run Tests
         run: make test
+        env:
+          LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}
