@@ -10,8 +10,8 @@ from streamlit_mic_recorder import speech_to_text
 
 from openssa.core.ssa.ssa import RagSSA
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
-from openssa.contrib.custom import CustomSSM
-from openssa.contrib.solver import OodaSSA
+from openssa.core.ooda_rag.custom import CustomSSM
+from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
 from openssa.utils.llm_config import LLMConfig
 
@@ -245,9 +245,9 @@ class SSAProbSolver:
                                          disabled=False,
                                          label_visibility='collapsed')
 
-        st.write('__EXPERT HEURISTICS__')
+        st.write('__EXPERT INSTRUCTIONS/KNOWLEDGE__')
 
-        if recorded_expert_heuristics := speech_to_text(start_prompt='Expert Heuristics: 🎤 here or ⌨️ below',
+        if recorded_expert_heuristics := speech_to_text(start_prompt='Expert Instructions/Knowledge: 🎤 here or ⌨️ below',
                                                         stop_prompt='Stop Recording',
                                                         just_once=True,
                                                         use_container_width=False,

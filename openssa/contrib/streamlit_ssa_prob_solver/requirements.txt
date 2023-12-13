@@ -1,1 +1,1 @@
-OpenSSA
+OpenSSA[contrib] @ https://GitHub.com/Aitomatic/OpenSSA/archive/main.zip

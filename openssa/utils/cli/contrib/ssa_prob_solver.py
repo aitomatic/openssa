@@ -6,8 +6,6 @@ import os
 
 import click
 
-from openssa.contrib.streamlit_ssa_prob_solver import __path__
-
 
 __all__: Sequence[str] = ('openssa_contrib_ssa_prob_solver_cli',)
 
@@ -24,4 +22,5 @@ __all__: Sequence[str] = ('openssa_contrib_ssa_prob_solver_cli',)
                deprecated=False)
 def openssa_contrib_ssa_prob_solver_cli():
     """Launch StreamlitSSAProbSolver."""
+    from openssa.contrib.streamlit_ssa_prob_solver import __path__  # pylint: disable=import-outside-toplevel
     os.system(f'streamlit run {__path__[0]}/main.py --server.allowRunOnSave=true --server.runOnSave=true')

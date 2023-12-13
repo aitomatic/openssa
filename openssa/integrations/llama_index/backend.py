@@ -10,7 +10,7 @@ from llama_index import (
 from llama_index.llms import OpenAI
 from llama_index.indices.base import BaseIndex
 from llama_index.indices.query.base import BaseQueryEngine
-from llama_index.llms.base import LLM as RAGLLM
+from llama_index.llms.llm import LLM as RAGLLM
 from llama_index.storage import StorageContext
 from openssa.core.backend.rag_backend import AbstractRAGBackend
 

@@ -1,6 +1,6 @@
 from llama_index import Document, Response, SimpleDirectoryReader, ServiceContext, OpenAIEmbedding
 from llama_index.evaluation import DatasetGenerator
-from llama_index.llms.base import LLM as RAGLLM
+from llama_index.llms.llm import LLM as RAGLLM
 from llama_index.node_parser import SimpleNodeParser
 
 from openssa.core.backend.abstract_backend import AbstractBackend

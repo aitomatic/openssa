@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from llama_index import ServiceContext
 from llama_index.embeddings import AzureOpenAIEmbedding, OpenAIEmbedding
 from llama_index.llms import AzureOpenAI, OpenAI
-from llama_index.llms.base import LLM
+from llama_index.llms.llm import LLM
 from llama_index.llms.openai_utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
 
 # exetend ALL_AVAILABLE_MODELS to include the models we want to use
@@ -221,8 +221,7 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
 
     @classmethod
     def get_llama_2_api_key(cls) -> str:
-        assert (api_key := os.getenv("LEPTON_API_KEY", "twoun3dz0fzw289dgyp2rlb3kltti8zi")), \
-            ValueError("LEPTON_API_KEY is not set")
+        assert (api_key := os.getenv("LEPTON_API_KEY", "")), ValueError("LEPTON_API_KEY is not set")
         return api_key
 
     @classmethod
