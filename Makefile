@@ -1,16 +1,17 @@
-# Set these values appropriately, or make sure they are set & exported from the environment
-export OPENAI_API_KEY?=DUMMY_OPENAI_API_KEY
-export OPENAI_API_URL?=DUMMY_OPENAI_API_URL
-
-# Make sure we include the library directory
+# DIRECTORY PATHS
+# ===============
 PROJECT_DIR=$(PWD)
 ROOT_DIR=$(PROJECT_DIR)
 LIB_DIR=$(PROJECT_DIR)/openssa
-TESTS_DIR=$(PROJECT_DIR)/tests
-EXAMPLES_DIR=$(PROJECT_DIR)/examples
 DIST_DIR=$(PROJECT_DIR)/dist
+EXAMPLES_DIR=$(PROJECT_DIR)/examples
+TESTS_DIR=$(PROJECT_DIR)/tests
 
-# Colorized output
+export PYTHONPATH=$(ROOT_DIR)
+
+
+# COLORIZED OUTPUT
+# ================
 ANSI_NORMAL="\033[0m"
 ANSI_RED="\033[0;31m"
 ANSI_GREEN="\033[0;32m"
@@ -21,76 +22,45 @@ ANSI_CYAN="\033[0;36m"
 ANSI_WHITE="\033[0;37m"
 
 
-export PYTHONPATH=$(ROOT_DIR):$(LIB_DIR)
-#export PYTHONPATH=$(ROOT_DIR)
-#export PYTHONPATH=$(LIB_DIR)
-#export PYTHONPATH=
+# POETRY
+# ======
+get-poetry:
+	python3 -m pip install Poetry --upgrade
 
-########
 
-test: test-py
+# INSTALLATION
+# ============
+install:
+	poetry lock
+	poetry install --with=lint --with=test
 
-test-console: test-py-console
 
-test-py:
+# LINTING
+# =======
+lint:
+	poetry run pylint openssa tests examples
+
+
+# TESTING
+# =======
+test:
 	@echo $(ANSI_GREEN)
 	@echo "--------------------------------"
-	@echo "|                              |"
 	@echo "|        Python Testing        |"
-	@echo "|                              |"
 	@echo "--------------------------------"
 	@echo $(ANSI_NORMAL)
 	PYTHONPATH=$(PYTHONPATH):$(TESTS_DIR) poetry run pytest $(OPTIONS)
 
-test-py-console:
-	@echo $(ANSI_GREEN)
-	@echo "--------------------------------"
-	@echo "|                              |"
-	@echo "|        Python Testing        |"
-	@echo "|                              |"
-	@echo "--------------------------------"
-	@echo $(ANSI_NORMAL)
-	PYTHONPATH=$(PYTHONPATH):$(TESTS_DIR) poetry run pytest $(OPTIONS) --capture=no
 
-LINT_DIRS = openssa tests examples
-lint: lint-py
-
-lint-py:
-	@for dir in $(LINT_DIRS) ; do \
-		echo $(ANSI_GREEN) ... Running pylint on $$dir $(ANSI_NORMAL); \
-		poetry run pylint $$dir ; \
-	done
-
+# PRE-COMMIT LINTING & TESTING
+# ============================
 pre-commit: lint test
 
-build: poetry-setup
+
+# DISTRIBUTION BUILDING & PYPI RELEASE
+# ====================================
+build:
 	poetry build
-
-rebuild: clean build
-
-install: local-install
-
-dev-setup: poetry-install poetry-init poetry-setup pytest-setup pylint-setup jest-setup eslint-setup bumpversion-setup
-
-local-install: build
-	pip install $(DIST_DIR)/*.whl
-
-local-uninstall:
-	pip uninstall -y $(DIST_DIR)/*.whl
-
-publish: pypi-publish
-
-all: clean poetry-install requirements.txt build
-
-clean:
-	rm -fr poetry.lock dist/ requirements.txt
-
-#
-# Pypi PIP-related
-#
-#
-pypi-publish: build
-	poetry publish
 
 pypi-auth:
 	@if [ "$(PYPI_TOKEN)" = "" ] ; then \
@@ -99,55 +69,12 @@ pypi-auth:
 		poetry config pypi-token.pypi $(PYPI_TOKEN) ;\
 	fi
 
-#
-# Poetry-related
-#
-poetry-install:
-	curl -sSL https://install.python-poetry.org | python3 -
-	if [ "$(GITHUB_PATH)" -ne "" ] ; then \
-		echo $(HOME)/.local/bin >> $(GITHUB_PATH) ;\
-	fi
-
-poetry-setup:
-	poetry lock
-	poetry install --extras=test
-
-poetry-init:
-	-poetry init
-
-#
-# For Python testing & liniting support
-#
-pytest-setup:
-	@echo $(ANSI_GREEN) ... Setting up PYTEST testing environment $(ANSI_NORMAL)
-	@echo ""
-	pip install pytest
-
-pylint-setup:
-	@echo $(ANSI_GREEN) ... Setting up PYLINT linting environment $(ANSI_NORMAL)
-	@echo ""
-	pip install pylint
+release: build
+	poetry publish
 
 
-#
-# Misc
-#
-requirements.txt: pyproject.toml
-	# poetry export --with dev --format requirements.txt --output requirements.txt
-	 poetry export --format requirements.txt --output requirements.txt
-
-pip-install: requirements.txt
-	pip install -r requirements.txt
-
-oss-publish:
-	@echo temporary target
-	# rsync -av --delete --dry-run ../ssa/ ../openssa/
-	rsync -av --exclude .git --delete ../ssa/ ../openssa/
-
-#
-# For web-based documentation
-#
-
+# DOCUMENTATION
+# =============
 docs: docs-build
 
 docs-build:
@@ -156,9 +83,9 @@ docs-build:
 docs-deploy: docs-build
 	@PYTHONPATH=$(PYTHONPATH) cd docs && make deploy
 
-#
-# For version management
-#
+
+# VERSION MANAGEMENT
+# ==================
 bumpversion-setup:
 	pip install --upgrade bump2version
 
@@ -173,3 +100,9 @@ bumpversion-minor:
 bumpversion-major:
 	bump2version --allow-dirty major
 	cd docs && make build
+
+
+# MISC / OTHER
+# ============
+openssa-public:
+	rsync -av --exclude .git --delete . ../openssa/

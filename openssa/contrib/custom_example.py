@@ -11,10 +11,7 @@ PROBLEM = """I want to estimate the ALD process time for 10 cycles, each with Pu
 
 
 def use_custom_ssm():
-    service_context = LLMConfig.get_service_context_llama_2_70b()
-    agent = CustomSSM(
-        service_context=service_context,
-    )
+    agent = CustomSSM()
     agent.read_directory(FOLDER)
     print("finish reading doc")
     res = agent.discuss(PROBLEM)
@@ -31,11 +28,11 @@ def use_ooda():
         highest_priority_heuristic=highest_priority_heuristic,
         agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
         llm=AitomaticLLMConfig.get_aitomatic_llm(),
-        rag_llm = LLMConfig.get_llm_llama_2_70b(),
+        rag_llm=LLMConfig.get_llm_llama_2_70b(),
         embed_model=LLMConfig.get_aito_embeddings(),
         model="gpt-4-1106-preview",
     )
-    ooda_ssa.load(FOLDER)
+    ooda_ssa.activate_resources(FOLDER)
     print("finish reading doc")
     res = ooda_ssa.solve(PROBLEM)
     print(res)
