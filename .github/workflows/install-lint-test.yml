@@ -29,10 +29,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install Poetry
-        run: python3 -m pip install Poetry --upgrade
+        run: make get-poetry
 
       - name: Install Package & Dependencies
-        run: poetry install --with=lint --with=test
+        run: make install
 
       - name: Lint Code
         run: make lint
