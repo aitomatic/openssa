@@ -14,7 +14,7 @@ st.subheader('Configuration')
 
 st.session_state['LEPTON_API_KEY']: str | None = \
     st.text_input(label='Lepton API Key',
-                  value=st.session_state.get('LEPTON_API_KEY'),
+                  value=st.session_state.get('LEPTON_API_KEY', os.environ.get('LEPTON_API_KEY')),
                   max_chars=None,
                   type='password',
                   help='Lepton API Key (obtainable at dashboard.lepton.ai)',

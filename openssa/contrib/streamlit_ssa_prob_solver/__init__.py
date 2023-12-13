@@ -53,13 +53,13 @@ class SSAProbSolver:
     DOC_SRC_FILE_RELPATH_SETS_SSS_KEY: str = '_doc_src_file_relpath_sets'
 
     PROBLEMS_SSS_KEY: str = '_problems'
-    EXPERT_HEURISTICS_SSS_KEY: str = '_expert_heuristics'
+    EXPERT_INSTRUCTIONS_SSS_KEY: str = '_expert_instructions'
     FINE_TUNED_MODELS_SSS_KEY: str = '_fine_tuned_models'
 
     SSAS_SSS_KEY: str = '_ssas'
 
     def __init__(self, unique_name: Uid, domain: str = '',
-                 problem: str = '', expert_heuristics: str = '',
+                 problem: str = '', expert_instructions: str = '',
                  fine_tuned_model_url: str = '',
                  doc_src_path: DirOrFilePath = '', doc_src_file_relpaths: FilePathSet = frozenset()):
         # pylint: disable=too-many-arguments
@@ -79,9 +79,9 @@ class SSAProbSolver:
         if not self.problem:
             self.problem: str = problem
 
-        # set Expert Heuristics
-        if not self.expert_heuristics:
-            self.expert_heuristics: str = expert_heuristics
+        # set Expert Instructions/Knowledge
+        if not self.expert_instructions:
+            self.expert_instructions: str = expert_instructions
 
         # set Fine-Tuned Model URL
         if not self.fine_tuned_model_url:
@@ -108,8 +108,8 @@ class SSAProbSolver:
         if cls.PROBLEMS_SSS_KEY not in sss:
             sss[cls.PROBLEMS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
 
-        if cls.EXPERT_HEURISTICS_SSS_KEY not in sss:
-            sss[cls.EXPERT_HEURISTICS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
+        if cls.EXPERT_INSTRUCTIONS_SSS_KEY not in sss:
+            sss[cls.EXPERT_INSTRUCTIONS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
 
         if cls.FINE_TUNED_MODELS_SSS_KEY not in sss:
             sss[cls.FINE_TUNED_MODELS_SSS_KEY]: defaultdict[cls.Uid, str] = defaultdict(str)
@@ -127,16 +127,16 @@ class SSAProbSolver:
             sss[self.PROBLEMS_SSS_KEY][self.unique_name]: str = problem
 
     @property
-    def expert_heuristics(self) -> str:
-        return sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]
+    def expert_instructions(self) -> str:
+        return sss[self.EXPERT_INSTRUCTIONS_SSS_KEY][self.unique_name]
 
-    @expert_heuristics.setter
-    def expert_heuristics(self, expert_heuristics: str, /):
-        if expert_heuristics != sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]:
-            sss[self.EXPERT_HEURISTICS_SSS_KEY][self.unique_name]: str = expert_heuristics
+    @expert_instructions.setter
+    def expert_instructions(self, expert_instructions: str, /):
+        if expert_instructions != sss[self.EXPERT_INSTRUCTIONS_SSS_KEY][self.unique_name]:
+            sss[self.EXPERT_INSTRUCTIONS_SSS_KEY][self.unique_name]: str = expert_instructions
 
-    def append_expert_heuristics(self, addl_expert_heuristics: str, /):
-        self.expert_heuristics += f'\n{addl_expert_heuristics}'
+    def append_expert_instructions(self, addl_expert_instructions: str, /):
+        self.expert_instructions += f'\n{addl_expert_instructions}'
 
     @property
     def fine_tuned_model_url(self) -> str:
@@ -218,7 +218,7 @@ class SSAProbSolver:
 
     def ssa_solve(self):
         ooda_ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
-                           highest_priority_heuristic=self.expert_heuristics)
+                           highest_priority_heuristic=self.expert_instructions)
 
         ooda_ssa.activate_resources(self.doc_src_path)
 
@@ -247,46 +247,46 @@ class SSAProbSolver:
 
         st.write('__EXPERT INSTRUCTIONS/KNOWLEDGE__')
 
-        if recorded_expert_heuristics := speech_to_text(start_prompt='Expert Instructions/Knowledge: 🎤 here or ⌨️ below',
-                                                        stop_prompt='Stop Recording',
-                                                        just_once=True,
-                                                        use_container_width=False,
-                                                        language='en',
-                                                        callback=None, args=(), kwargs={},
-                                                        key=None):
+        if recorded_expert_instructions := speech_to_text(start_prompt='Expert Instructions/Knowledge: 🎤 here or ⌨️ below',
+                                                          stop_prompt='Stop Recording',
+                                                          just_once=True,
+                                                          use_container_width=False,
+                                                          language='en',
+                                                          callback=None, args=(), kwargs={},
+                                                          key=None):
             if self.ssa:
-                recorded_expert_heuristics: str = self.ssa.discuss(f"""
+                recorded_expert_instructions: str = self.ssa.discuss(f"""
                     Given your understanding of the domain "{self.domain}",
-                    please rectify and/or restructure the following recorded info
+                    please rectify and/or restructure the following recorded instructions/knowledge
                     to make it clear and understandable to both humans and other processing engines:
 
-                    {recorded_expert_heuristics}
+                    "{recorded_expert_instructions}"
 
-                    Please return the rectified/restructured info in the form of at most 3 paragraphs.
+                    Please return the rectified/restructured instructions/knowledge in the form of at most 3 paragraphs.
                 """)['content']
 
-                st.write(f'"{recorded_expert_heuristics}"')
+                st.write(f'"{recorded_expert_instructions}"')
 
             else:
-                st.write(f'_"{recorded_expert_heuristics}"_')
+                st.write(f'_"{recorded_expert_instructions}"_')
 
-            st.button(label='append to saved heuristics below?',
+            st.button(label='append to saved instructions/knowledge below?',
                       key=None,
-                      on_click=self.append_expert_heuristics, args=(recorded_expert_heuristics,), kwargs=None,
+                      on_click=self.append_expert_instructions, args=(recorded_expert_instructions,), kwargs=None,
                       type='secondary',
                       disabled=False,
                       use_container_width=False)
 
-        self.expert_heuristics: str = st.text_area(label='Expert Heuristics',
-                                                   value=self.expert_heuristics,
-                                                   height=10,
-                                                   max_chars=None,
-                                                   key=None,
-                                                   help='Expert Heuristics (recorded or typed)',
-                                                   on_change=None, args=None, kwargs=None,
-                                                   placeholder='Expert Heuristics (recorded or typed)',
-                                                   disabled=False,
-                                                   label_visibility='collapsed')
+        self.expert_instructions: str = st.text_area(label='Expert Instructions/Knowledge',
+                                                     value=self.expert_instructions,
+                                                     height=10,
+                                                     max_chars=None,
+                                                     key=None,
+                                                     help='Expert Instructions/Knowledge (recorded or typed)',
+                                                     on_change=None, args=None, kwargs=None,
+                                                     placeholder='Expert Instructions/Knowledge (recorded or typed)',
+                                                     disabled=False,
+                                                     label_visibility='collapsed')
 
         st.write('_(optional)_ __DOMAIN-FINE-TUNED MODEL__')
 
