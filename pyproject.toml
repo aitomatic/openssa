@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.23.12.11.1"
+version = "0.23.12.12"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -54,13 +54,19 @@ mkdocs-material = ">=9.5"
 mkdocs-windmill = ">=1.0"
 mkdocstrings = {version = ">=0.24", extras=["crystal", "python"]}
 
+[tool.poetry.group.lint.dependencies]
+pylint = ">=3.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.4"
+
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 # OpenAI & related
 openai = ">=1.3"
 # LlamaIndex & related
 llama-index = ">=0.9.14"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
-llama-hub = ">=0.0.56"
+llama-hub = ">=0.0.57"
 docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=3.17"  # for reading .pdf files
 pycryptodome = ">=3.19"  # for reading .pdf files: PyCryptodome is required for AES algorithm
@@ -78,8 +84,6 @@ httpx = ">=0.25"
 google-api-python-client = ">=2.111"
 
 # optional dependencies required by extras
-pylint = {version = ">=3.0", optional = true}
-pytest = {version = ">=7.4", optional = true}
 pillow = {version = ">=9.5", optional = true}
 python-pptx = {version = ">=0.6", optional = true}
 streamlit = {version = ">=1.29", optional = true}
@@ -88,12 +92,6 @@ torch = {version = ">=2.0", optional = true}
 transformers = {version = ">=4.36", optional = true}
 
 [tool.poetry.extras]
-lint = [
-  "pylint",
-]
-test = [
-  "pytest",
-]
 contrib = [
   "streamlit",
   "streamlit-mic-recorder",
