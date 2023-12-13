@@ -20,9 +20,11 @@ def use_custom_ssm():
 
 def use_ooda():
     task_heuristics = TaskDecompositionHeuristic({})
-    highest_priority_heuristic = ('The Purge Time must be at least as long as the Precursor Pulse Time '
-                                  'to ensure that all excess precursor and reaction byproducts are removed '
-                                  'from the chamber before the next cycle begins.')
+    highest_priority_heuristic = (
+        "The Purge Time must be at least as long as the Precursor Pulse Time "
+        "to ensure that all excess precursor and reaction byproducts are removed "
+        "from the chamber before the next cycle begins."
+    )
     ooda_ssa = OodaSSA(
         task_heuristics=task_heuristics,
         highest_priority_heuristic=highest_priority_heuristic,

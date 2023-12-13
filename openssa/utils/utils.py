@@ -1,6 +1,6 @@
 """Utilities."""
 
-
+import time
 import functools
 import inspect
 import io
@@ -11,6 +11,7 @@ from pathlib import Path
 import shutil
 from typing import Any
 from uuid import uuid4
+from loguru import logger
 import googleapiclient.errors
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
@@ -111,7 +112,9 @@ class Utils:
     @staticmethod
     def _handle_str_output(result, is_discuss: bool) -> dict:
         result = result.strip()
-        if (result.startswith("{") and result.endswith("}")) or (result.startswith("[") and result.endswith("]")):
+        if (result.startswith("{") and result.endswith("}")) or (
+            result.startswith("[") and result.endswith("]")
+        ):
             # {"role": "assistant", "content": "xxx"}
             # [{"role": "assistant", "content": "xxx"}, ...]
             try:
@@ -120,8 +123,8 @@ class Utils:
                 pass
 
         if is_discuss:
-            return {'role': 'assistant', 'content': result}
-        return {'response': result}
+            return {"role": "assistant", "content": result}
+        return {"response": result}
 
     @staticmethod
     def _handle_dict_output(item: dict, required_key: str, alternate_key: str) -> dict:
@@ -161,6 +164,7 @@ class Utils:
         """
         Decorator to canonicalize SSM user input.
         """
+
         def outer_decorator(func):
             @functools.wraps(func)
             def wrapper(*args, **kwargs):
@@ -168,20 +172,28 @@ class Utils:
                 sig = inspect.signature(func)
                 param_names = list(sig.parameters.keys())
                 if param_name not in param_names:
-                    raise ValueError(f"Function does not have parameter named {param_name}")
+                    raise ValueError(
+                        f"Function does not have parameter named {param_name}"
+                    )
 
                 if param_name in kwargs:
                     # param_name is called as a keyword argument
-                    kwargs[param_name] = Utils.canonicalize_user_input(kwargs[param_name])
+                    kwargs[param_name] = Utils.canonicalize_user_input(
+                        kwargs[param_name]
+                    )
                 else:
                     # param_name is called as a positional argument
                     param_index = param_names.index(param_name)
                     args_list = list(args)
-                    args_list[param_index] = Utils.canonicalize_user_input(args_list[param_index])
+                    args_list[param_index] = Utils.canonicalize_user_input(
+                        args_list[param_index]
+                    )
                     args = tuple(args_list)
 
                 return func(*args, **kwargs)
+
             return wrapper
+
         return outer_decorator
 
     @staticmethod
@@ -189,11 +201,13 @@ class Utils:
         """
         Decorator to canonicalize SSM discuss result.
         """
+
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)  # Execute the function first
             result = Utils.canonicalize_discuss_result(result)  # Modify the result
             return result
+
         return wrapper
 
     @staticmethod
@@ -201,11 +215,15 @@ class Utils:
         """
         Decorator to canonicalize Backend query response.
         """
+
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             response = func(*args, **kwargs)  # Execute the function first
-            response = Utils.canonicalize_query_response(response)  # Modify the response
+            response = Utils.canonicalize_query_response(
+                response
+            )  # Modify the response
             return response
+
         return wrapper
 
     @staticmethod
@@ -216,7 +234,9 @@ class Utils:
                 decorated_func = Utils.do_canonicalize_user_input(param_name)(func)
                 final_func = Utils.do_canonicalize_query_response(decorated_func)
                 return final_func(*args, **kwargs)
+
             return wrapper
+
         return outer_decorator
 
     @staticmethod
@@ -227,24 +247,32 @@ class Utils:
                 decorated_func = Utils.do_canonicalize_user_input(param_name)(func)
                 final_func = Utils.do_canonicalize_discuss_result(decorated_func)
                 return final_func(*args, **kwargs)
+
             return wrapper
+
         return outer_decorator
 
     @staticmethod
-    def download_gdrive(folder_id: str, local_dir: str = './tmp/.docs'):
+    def download_gdrive(folder_id: str, local_dir: str = "./tmp/.docs"):
         try:
             creds_data = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
             creds = Credentials.from_service_account_info(creds_data)
-            service = build('drive', 'v3', credentials=creds)
+            service = build("drive", "v3", credentials=creds)
             # pylint: disable=no-member
-            results = service.files().list(q=f"'{folder_id}' in parents", pageSize=1000).execute()
-            items = results.get('files', [])
+            results = (
+                service.files()
+                .list(q=f"'{folder_id}' in parents", pageSize=1000)
+                .execute()
+            )
+            items = results.get("files", [])
 
             if not items:
                 mlogger.info("No files found under Google Drive folder %s", folder_id)
                 return
 
-            mlogger.debug("Found %d files under Google Drive folder %s", len(items), folder_id)
+            mlogger.debug(
+                "Found %d files under Google Drive folder %s", len(items), folder_id
+            )
 
             # Create local directory if it does not exist and clear it if it does
             if os.path.exists(local_dir):
@@ -252,13 +280,17 @@ class Utils:
             os.makedirs(local_dir)
 
             for item in items:
-                request = service.files().get_media(fileId=item['id'])
-                file_handle = io.FileIO(local_dir + '/' + item['name'], 'wb')
+                request = service.files().get_media(fileId=item["id"])
+                file_handle = io.FileIO(local_dir + "/" + item["name"], "wb")
                 downloader = MediaIoBaseDownload(file_handle, request)
                 done = False
                 while done is False:
                     status, done = downloader.next_chunk()
-                    mlogger.debug("Downloading %s. Progress: %d%%.", item['name'], int(status.progress() * 100))
+                    mlogger.debug(
+                        "Downloading %s. Progress: %d%%.",
+                        item["name"],
+                        int(status.progress() * 100),
+                    )
 
         except googleapiclient.errors.HttpError as error:
             mlogger.error("An error occurred: %s", error)
@@ -266,10 +298,12 @@ class Utils:
     _S3FS: S3FileSystem = None
 
     @staticmethod
-    def download_s3(s3_paths: str | set[str], local_dir: str = './tmp/.docs'):
+    def download_s3(s3_paths: str | set[str], local_dir: str = "./tmp/.docs"):
         if not Utils._S3FS:
-            Utils._S3FS = S3FileSystem(key=os.environ.get('AWS_ACCESS_KEY_ID'),
-                                       secret=os.environ.get('AWS_SECRET_ACCESS_KEY'))
+            Utils._S3FS = S3FileSystem(
+                key=os.environ.get("AWS_ACCESS_KEY_ID"),
+                secret=os.environ.get("AWS_SECRET_ACCESS_KEY"),
+            )
 
         # Create local directory if it does not exist and clear it if it does
         if os.path.exists(local_dir):
@@ -279,11 +313,32 @@ class Utils:
         if isinstance(s3_paths, str):
             s3_paths: set[str] = {s3_paths}
 
-        for s3_file_path in set(chain.from_iterable(FileSource(path=s3_path).file_paths(relative=False)
-                                                    for s3_path in s3_paths)):
+        for s3_file_path in set(
+            chain.from_iterable(
+                FileSource(path=s3_path).file_paths(relative=False)
+                for s3_path in s3_paths
+            )
+        ):
             # temp file path each document is copied to must retain same extension/suffix
-            local_file_path: str = os.path.join(local_dir, f'{uuid4()}-{Path(s3_file_path).name}')
+            local_file_path: str = os.path.join(
+                local_dir, f"{uuid4()}-{Path(s3_file_path).name}"
+            )
 
-            Utils._S3FS.download(rpath=s3_file_path,
-                                 lpath=local_file_path,
-                                 recursive=False)
+            Utils._S3FS.download(
+                rpath=s3_file_path, lpath=local_file_path, recursive=False
+            )
+
+    @staticmethod
+    def timeit(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            func_name = func.__qualname__
+            start_time = time.perf_counter()
+            result = func(*args, **kwargs)
+            end_time = time.perf_counter()
+            logger.debug(
+                f"Function {func_name} took {end_time - start_time} seconds"
+            )
+            return result
+
+        return wrapper
