@@ -75,6 +75,7 @@ pydantic = ">=2.5"
 python-dotenv = ">=1.0"
 httpx = ">=0.25"
 google-api-python-client = ">=2.110"
+loguru = ">=0.7.2"
 
 # optional dependencies required by extras
 pylint = {version = ">=3.0", optional = true}

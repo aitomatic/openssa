@@ -11,10 +11,7 @@ PROBLEM = """I want to estimate the ALD process time for 10 cycles, each with Pu
 
 
 def use_custom_ssm():
-    service_context = LLMConfig.get_service_context_llama_2_70b()
-    agent = CustomSSM(
-        service_context=service_context,
-    )
+    agent = CustomSSM()
     agent.read_directory(FOLDER)
     print("finish reading doc")
     res = agent.discuss(PROBLEM)
@@ -23,19 +20,21 @@ def use_custom_ssm():
 
 def use_ooda():
     task_heuristics = TaskDecompositionHeuristic({})
-    highest_priority_heuristic = ('The Purge Time must be at least as long as the Precursor Pulse Time '
-                                  'to ensure that all excess precursor and reaction byproducts are removed '
-                                  'from the chamber before the next cycle begins.')
+    highest_priority_heuristic = (
+        "The Purge Time must be at least as long as the Precursor Pulse Time "
+        "to ensure that all excess precursor and reaction byproducts are removed "
+        "from the chamber before the next cycle begins."
+    )
     ooda_ssa = OodaSSA(
         task_heuristics=task_heuristics,
         highest_priority_heuristic=highest_priority_heuristic,
         agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
         llm=AitomaticLLMConfig.get_aitomatic_llm(),
-        rag_llm = LLMConfig.get_llm_llama_2_70b(),
+        rag_llm=LLMConfig.get_llm_llama_2_70b(),
         embed_model=LLMConfig.get_aito_embeddings(),
         model="gpt-4-1106-preview",
     )
-    ooda_ssa.load(FOLDER)
+    ooda_ssa.activate_resources(FOLDER)
     print("finish reading doc")
     res = ooda_ssa.solve(PROBLEM)
     print(res)
