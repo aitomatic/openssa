@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Optional
 import json
 from openai import OpenAI
 from loguru import logger
@@ -37,12 +37,12 @@ class AskUserAgent(TaskAgent):
         llm: OpenAI = AitomaticLLMConfig.get_aitomatic_llm(),
         model: str = "aitomatic-model",
         ask_user_heuristic: str = "",
-        conversation: List = [],
+        conversation: Optional[List] = None,
     ) -> None:
         self.llm = llm
         self.model = model
         self.ask_user_heuristic = ask_user_heuristic.strip()
-        self.conversation = conversation[:-10]
+        self.conversation = conversation[-10:] if conversation else []
 
     @Utils.timeit
     def execute(self, task: str = "") -> str:
@@ -62,6 +62,7 @@ class AskUserAgent(TaskAgent):
             response_format={"type": "json_object"},
         )
         json_str = response.choices[0].message.content
+        logger.debug(f"ask user response is: {json_str}")
         try:
             jobject = json.loads(json_str)
             return jobject.get("question", "")
@@ -79,11 +80,11 @@ class GoalAgent(TaskAgent):
         self,
         llm: OpenAI = AitomaticLLMConfig.get_aitomatic_llm(),
         model: str = "aitomatic-model",
-        conversation: List = [],
+        conversation: Optional[List] = None,
     ) -> None:
         self.llm = llm
         self.model = model
-        self.conversation = conversation[:-10]
+        self.conversation = conversation[-10:] if conversation else []
 
     @Utils.timeit
     def execute(self, task: str = "") -> str:
@@ -98,6 +99,7 @@ class GoalAgent(TaskAgent):
             response_format={"type": "json_object"},
         )
         json_str = response.choices[0].message.content
+        logger.debug(f"problem statement response is: {json_str}")
         try:
             jobject = json.loads(json_str)
             return jobject.get("problem statement", "")

@@ -332,11 +332,12 @@ class Utils:
     def timeit(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
+            func_name = func.__qualname__
             start_time = time.perf_counter()
             result = func(*args, **kwargs)
             end_time = time.perf_counter()
             logger.debug(
-                f"Function {func.__name__} took {end_time - start_time} seconds"
+                f"Function {func_name} took {end_time - start_time} seconds"
             )
             return result
 

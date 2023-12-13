@@ -47,15 +47,14 @@ class OodaSSA:
 
     def solve(self, message: str) -> str:
         self.conversation.add_message(message, AgentRole.USER)
-        problem_statement = GoalAgent(
-            conversation=self.conversation.get_history()
-        ).execute()
+        goal_agent = GoalAgent(conversation=self.conversation.get_history())
+        problem_statement = goal_agent.execute()
         if not problem_statement:
             return "Sorry, I don't understand your problem."
         ask_user_response = AskUserAgent(
             ask_user_heuristic=self.ask_user_heuristic,
             conversation=self.conversation.get_history(),
-        ).execute(problem_statement, self.conversation.get_history)
+        ).execute(problem_statement)
         if ask_user_response:
             return ask_user_response
         assistant_response = self.solver.run(
