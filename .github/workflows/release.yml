@@ -9,21 +9,16 @@ jobs:
   pypi-release:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version:
-          - 3.11
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set Up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.11
 
       - name: Install Poetry
-        run: python3 -m pip install Poetry --upgrade
+        run: make get-poetry
 
       - name: Build Distribution
         run: poetry build
