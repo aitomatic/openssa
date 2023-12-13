@@ -71,10 +71,11 @@ gcsfs = ">=2023.10,<2023.12"  # Google Cloud Storage
 s3fs = ">=2023.10,<2023.12"  # S3
 # misc / other
 click = ">=8.1"
+loguru = ">=0.7"
 pydantic = ">=2.5"
 python-dotenv = ">=1.0"
 httpx = ">=0.25"
-google-api-python-client = ">=2.110"
+google-api-python-client = ">=2.111"
 
 # optional dependencies required by extras
 pylint = {version = ">=3.0", optional = true}
