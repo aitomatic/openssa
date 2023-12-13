@@ -16,7 +16,7 @@ class OodaSSA:
         agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
         llm=AitomaticLLMConfig.get_aitomatic_llm(),
         rag_llm=LLMConfig.get_llm_llama_2_70b(),
-        embed_model=LLMConfig.get_aito_embeddings(),
+        embed_model=LLMConfig.get_default_embed_model(),
         model="aitomatic-model",
     ):
         # pylint: disable=too-many-arguments

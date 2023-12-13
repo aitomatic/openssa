@@ -105,8 +105,8 @@ class CustomSSM(RAGSSM):  # type: ignore
         self,
         custom_rag_backend: AbstractBackend = None,
         s3_source_path: str = "",
-        llm: RAGLLM = LLMConfig.get_aitomatic_yi_34b(),  # type: ignore
-        embed_model: OpenAIEmbedding = LLMConfig.get_aito_embeddings()
+        llm: RAGLLM = LLMConfig.get_llm_llama_2_70b(),  # type: ignore
+        embed_model: OpenAIEmbedding = LLMConfig.get_default_embed_model()
     ) -> None:
         if custom_rag_backend is None:
             service_context = ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
