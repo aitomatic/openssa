@@ -1,3 +1,6 @@
+# pylint: disable=invalid-name
+
+
 from openssa.core.ooda_rag.heuristic import (
     TaskDecompositionHeuristic,
 )
