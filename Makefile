@@ -118,7 +118,7 @@ docs-build: docs-build-clean docs-build-api
 docs-deploy:
 	git checkout gh-pages
 	rm *.html
-	cp $(DOCS_BUILD_DIR)/*.html
+	cp $(DOCS_BUILD_DIR)/*.html ./
 	git add *.html
 	git commit -m "update documentation"
 	git push
