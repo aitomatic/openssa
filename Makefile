@@ -11,9 +11,11 @@ TESTS_DIR=$(PROJECT_DIR)/tests
 DOCS_DIR=$(PROJECT_DIR)/docs
 DOCS_BUILD_DIR=$(DOCS_DIR)/_build
 DOCS_BUILD_DOCTREES_DIR=$(DOCS_BUILD_DIR)/.doctrees
-DOCS_BUILD_IMAGES_DIR=$(DOCS_BUILD_DIR)/_images
+DOCS_BUILD_IMAGES_DIR_NAME=_images
+DOCS_BUILD_IMAGES_DIR=$(DOCS_BUILD_DIR)/$(DOCS_BUILD_IMAGES_DIR_NAME)
 DOCS_BUILD_SOURCES_DIR=$(DOCS_BUILD_DIR)_sources
-DOCS_BUILD_STATIC_DIR=$(DOCS_BUILD_DIR)/_static
+DOCS_BUILD_STATIC_DIR_NAME=_static
+DOCS_BUILD_STATIC_DIR=$(DOCS_BUILD_DIR)/$(DOCS_BUILD_STATIC_DIR_NAME)
 
 
 export PYTHONPATH=$(ROOT_DIR)
@@ -117,9 +119,20 @@ docs-build: docs-build-clean docs-build-api
 
 docs-deploy:
 	git checkout gh-pages
+
 	rm *.html
 	cp $(DOCS_BUILD_DIR)/*.html ./
 	git add *.html
+
+	# rsync -av --delete --links $(DOCS_BUILD_IMAGES_DIR)/ $(DOCS_BUILD_IMAGES_DIR_NAME)/
+	# git add $(DOCS_BUILD_IMAGES_DIR_NAME)/*
+
+	rsync -av --delete --links $(DOCS_BUILD_STATIC_DIR)/ $(DOCS_BUILD_STATIC_DIR_NAME)/
+	git add $(DOCS_BUILD_STATIC_DIR_NAME)/*
+
+	cp $(DOCS_BUILD_DIR)/.nojekyll .nojekyll
+	git add .nojekyll
+
 	git commit -m "update documentation"
 	git push
 	git checkout docs
