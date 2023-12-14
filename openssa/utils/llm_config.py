@@ -7,30 +7,21 @@ from llama_index.llms import AzureOpenAI, OpenAI
 from llama_index.llms.llm import LLM
 from llama_index.llms.openai_utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
 
-# exetend ALL_AVAILABLE_MODELS to include the models we want to use
-ALL_AVAILABLE_MODELS.update(
-    {
-        "01-ai/Yi-34B-Chat": 4096,
-        "Intel/neural-chat-7b-v3-1": 4096,
-        "llama2-70b": 4096,
-        "llama2-13b": 4096,
-        "llama2-7b": 4096,
-    }
-)
-
-CHAT_MODELS.update(
-    {
-        "01-ai/Yi-34B-Chat": 4096,
-        "Intel/neural-chat-7b-v3-1": 4096,
-        "llama2-70b": 4096,
-        "llama2-13b": 4096,
-        "llama2-7b": 4096,
-    }
-)
-
-# import logging, sys
+# import sys
+# import logging
 # logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+
+EXTENDED_MODELS = {
+    "01-ai/Yi-34B-Chat": 4096,
+    "Intel/neural-chat-7b-v3-1": 4096,
+    "llama2-70b": 4096,
+    "llama2-13b": 4096,
+    "llama2-7b": 4096,
+}
+ALL_AVAILABLE_MODELS.update(EXTENDED_MODELS)
+
+CHAT_MODELS.update(EXTENDED_MODELS)
 
 
 load_dotenv(override=True)
@@ -85,16 +76,24 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
     @classmethod
     def get_llm(cls, base_model: str, model_size: str = "") -> LLM:
         # pylint: disable=too-many-return-statements
-        if (base_model == LlmBaseModel.llama2) and (model_size == LlmModelSize.llama2_70b):
+        if (base_model == LlmBaseModel.llama2) and (
+            model_size == LlmModelSize.llama2_70b
+        ):
             return cls.get_llm_llama_2_70b()
 
-        if (base_model == LlmBaseModel.llama2) and (model_size == LlmModelSize.llama2_7b):
+        if (base_model == LlmBaseModel.llama2) and (
+            model_size == LlmModelSize.llama2_7b
+        ):
             return cls.get_llm_llama_2_7b()
 
-        if (base_model == LlmBaseModel.azure_openai) and (model_size == LlmModelSize.gpt35):
+        if (base_model == LlmBaseModel.azure_openai) and (
+            model_size == LlmModelSize.gpt35
+        ):
             return cls.get_llm_azure_jp_35_16k()
 
-        if (base_model == LlmBaseModel.azure_openai) and (model_size == LlmModelSize.gpt4):
+        if (base_model == LlmBaseModel.azure_openai) and (
+            model_size == LlmModelSize.gpt4
+        ):
             return cls.get_llm_azure_jp_4_32k()
 
         if base_model == LlmBaseModel.openai and model_size == LlmModelSize.gpt4:
@@ -133,34 +132,16 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
             azure_endpoint="https://aiva-japan.openai.azure.com",
         )
 
-        embed_model = AzureOpenAIEmbedding(
-            model="text-embedding-ada-002",
-            deployment_name="text-embedding-ada-002",
-            api_key=cls.get_azure_jp_api_key(),
-            api_version="2023-09-01-preview",
-            azure_endpoint="https://aiva-japan.openai.azure.com",
-        )
-
         return ServiceContext.from_defaults(
-            llm=llm,
-            embed_model=embed_model,
+            llm=llm, embed_model=cls.get_azure_embed_model()
         )
 
     @classmethod
     def get_service_context_azure_jp_35_16k(cls) -> ServiceContext:
         llm = cls.get_llm_azure_jp_35_16k()
 
-        embed_model = AzureOpenAIEmbedding(
-            model="text-embedding-ada-002",
-            deployment_name="text-embedding-ada-002",
-            api_key=cls.get_azure_jp_api_key(),
-            api_version="2023-09-01-preview",
-            azure_endpoint="https://aiva-japan.openai.azure.com",
-        )
-
         return ServiceContext.from_defaults(
-            llm=llm,
-            embed_model=embed_model,
+            llm=llm, embed_model=cls.get_azure_embed_model()
         )
 
     @classmethod
@@ -174,16 +155,8 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
             azure_endpoint="https://aiva-japan.openai.azure.com",
         )
 
-        embed_model = AzureOpenAIEmbedding(
-            model="text-embedding-ada-002",
-            deployment_name="text-embedding-ada-002",
-            api_key=cls.get_azure_jp_api_key(),
-            api_version="2023-09-01-preview",
-            azure_endpoint="https://aiva-japan.openai.azure.com",
-        )
         return ServiceContext.from_defaults(
-            llm=llm,
-            embed_model=embed_model,
+            llm=llm, embed_model=cls.get_azure_embed_model()
         )
 
     @classmethod
@@ -197,31 +170,29 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
             azure_endpoint="https://aiva-japan.openai.azure.com",
         )
 
-        embed_model = AzureOpenAIEmbedding(
-            model="text-embedding-ada-002",
-            deployment_name="text-embedding-ada-002",
-            api_key=cls.get_azure_jp_api_key(),
-            api_version="2023-09-01-preview",
-            azure_endpoint="https://aiva-japan.openai.azure.com",
-        )
         return ServiceContext.from_defaults(
-            llm=llm,
-            embed_model=embed_model,
+            llm=llm, embed_model=cls.get_azure_embed_model()
         )
 
     @classmethod
     def get_azure_jp_api_key(cls) -> str:
-        assert (api_key := os.getenv("AZURE_OPENAI_API_KEY", "")), ValueError("AZURE_OPENAI_API_KEY is not set")
+        assert (api_key := os.getenv("AZURE_OPENAI_API_KEY", "")), ValueError(
+            "AZURE_OPENAI_API_KEY is not set"
+        )
         return api_key
 
     @classmethod
     def get_openai_api_key(cls) -> str:
-        assert (api_key := os.getenv("OPENAI_API_KEY", "")), ValueError("OPENAI_API_KEY is not set")
+        assert (api_key := os.getenv("OPENAI_API_KEY", "")), ValueError(
+            "OPENAI_API_KEY is not set"
+        )
         return api_key
 
     @classmethod
     def get_llama_2_api_key(cls) -> str:
-        assert (api_key := os.getenv("LEPTON_API_KEY", "")), ValueError("LEPTON_API_KEY is not set")
+        assert (api_key := os.getenv("LEPTON_API_KEY", "")), ValueError(
+            "LEPTON_API_KEY is not set"
+        )
         return api_key
 
     @classmethod
@@ -306,9 +277,28 @@ class LLMConfig:  # pylint: disable=too-many-public-methods
     @classmethod
     def get_aito_embeddings(cls) -> OpenAIEmbedding:  # running
         url_base = "https://aimo-api-mvp.platform.aitomatic.com/api/v1"
-        api_key = 'AITOMATIC'  # key to aitomatic
+        api_key = os.environ.get("AITOMATIC_KEY", "AITOMATIC")
+        embed_model = OpenAIEmbedding(api_base=url_base, api_key=api_key)
+        return embed_model
+
+    @classmethod
+    def get_default_embed_model(cls) -> OpenAIEmbedding:  # running
         embed_model = OpenAIEmbedding(
-            api_base=url_base,
-            api_key=api_key
+            api_base=AitomaticBaseURL.llama2_7b,
+            api_key=cls.get_llama_2_api_key(),
         )
         return embed_model
+
+    @classmethod
+    def get_openai_embed_model(cls) -> OpenAIEmbedding:
+        return OpenAIEmbedding(api_key=cls.get_openai_api_key())
+
+    @classmethod
+    def get_azure_embed_model(cls) -> AzureOpenAIEmbedding:
+        return AzureOpenAIEmbedding(
+            model="text-embedding-ada-002",
+            deployment_name="text-embedding-ada-002",
+            api_key=cls.get_azure_jp_api_key(),
+            api_version="2023-09-01-preview",
+            azure_endpoint="https://aiva-japan.openai.azure.com",
+        )
