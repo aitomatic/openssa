@@ -115,7 +115,7 @@ docs-build-api:
 docs-build: docs-build-clean docs-build-api
 	poetry run sphinx-autobuild $(DOCS_DIR) $(DOCS_BUILD_DIR)
 
-docs-deploy:
+docs-deploy: docs-build
 	git checkout gh-pages
 	rm *.html
 	cp $(DOCS_BUILD_DIR)/*.html
