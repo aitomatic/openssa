@@ -146,4 +146,4 @@ bumpversion-major:
 # MISC / OTHER
 # ============
 public:
-	rsync -av --exclude .git --delete . ../openssa/
+	rsync -av --delete --exclude .git --links . ../openssa/
