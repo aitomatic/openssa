@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>openssa.utils.fs module &#8212; OpenSSA 0.23.12.12 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=cb25574f" />
+    <script src="_static/documentation_options.js?v=2e6184dd"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-openssa.utils.fs">
+<span id="openssa-utils-fs-module"></span><h1>openssa.utils.fs module<a class="headerlink" href="#module-openssa.utils.fs" title="Link to this heading">¶</a></h1>
+<p>Utilities for managing files on local storage or cloud object storage (S3/GCS/GDrive/ADL).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.fs.DirOrFilePath">
+<span class="sig-prename descclassname"><span class="pre">openssa.utils.fs.</span></span><span class="sig-name descname"><span class="pre">DirOrFilePath</span></span><a class="headerlink" href="#openssa.utils.fs.DirOrFilePath" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.utils.fs.</span></span><span class="sig-name descname"><span class="pre">FileSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.utils.fs.FileSource" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manager class for files on local storage or cloud object storage (S3/GCS/GDrive/ADL).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource.file_paths">
+<span class="sig-name descname"><span class="pre">file_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffixes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('.txt',</span> <span class="pre">'.pdf',</span> <span class="pre">'.docx',</span> <span class="pre">'.pptx',</span> <span class="pre">'.csv',</span> <span class="pre">'.md')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">frozenset</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#openssa.utils.fs.FileSource.file_paths" title="Link to this definition">¶</a></dt>
+<dd><p>Get file paths with relevant suffixes from provided path.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource.fs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AbstractFileSystem</span></em><a class="headerlink" href="#openssa.utils.fs.FileSource.fs" title="Link to this definition">¶</a></dt>
+<dd><p>Get applicable file system.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource.is_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.utils.fs.FileSource.is_dir" title="Link to this definition">¶</a></dt>
+<dd><p>Check if source is directory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource.is_single_file">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_single_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.utils.fs.FileSource.is_single_file" title="Link to this definition">¶</a></dt>
+<dd><p>Check if source is single file.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource.native_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">native_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.utils.fs.FileSource.native_path" title="Link to this definition">¶</a></dt>
+<dd><p>Get path without protocol prefix (e.g., “gcs://”, “s3://”).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource.on_gcs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_gcs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.utils.fs.FileSource.on_gcs" title="Link to this definition">¶</a></dt>
+<dd><p>Check if source is on GCS.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.utils.fs.FileSource.on_s3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_s3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.utils.fs.FileSource.on_s3" title="Link to this definition">¶</a></dt>
+<dd><p>Check if source is on S3.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">OpenSSA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Aitomatic, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/openssa.utils.fs.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>openssa.core.backend.rag_backend module &#8212; OpenSSA 0.23.12.12 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=cb25574f" />
+    <script src="_static/documentation_options.js?v=2e6184dd"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-openssa.core.backend.rag_backend">
+<span id="openssa-core-backend-rag-backend-module"></span><h1>openssa.core.backend.rag_backend module<a class="headerlink" href="#module-openssa.core.backend.rag_backend" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.core.backend.rag_backend.</span></span><span class="sig-name descname"><span class="pre">AbstractRAGBackend</span></span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="openssa.core.backend.base_backend.html#openssa.core.backend.base_backend.BaseBackend" title="openssa.core.backend.base_backend.BaseBackend"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseBackend</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">storage_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend.load" title="Link to this definition">¶</a></dt>
+<dd><p>Load the index from the storage directory.</p>
+<p>&#64;param storage_dir: The path to the base storage directory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend.load_index_if_exists">
+<span class="sig-name descname"><span class="pre">load_index_if_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">storage_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend.load_index_if_exists" title="Link to this definition">¶</a></dt>
+<dd><p>Attempt to load an existing index from the storage directory.
+Returns True if an index was loaded, False otherwise.</p>
+<p>&#64;param storage_dir: The path to the base storage directory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend.read_directory">
+<span class="sig-name descname"><span class="pre">read_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">storage_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">re_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend.read_directory" title="Link to this definition">¶</a></dt>
+<dd><p>Read a directory of documents and create an index.</p>
+<p>&#64;param storage_dir: The path to the base storage directory.
+&#64;param re_index: [optional] If True, re-index the directory even if an index already exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend.read_gdrive">
+<span class="sig-name descname"><span class="pre">read_gdrive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">re_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend.read_gdrive" title="Link to this definition">¶</a></dt>
+<dd><p>Read a directory of documents from a Google Drive folder and create an index.
+Internally, the documents will first be downloaded to a local directory.</p>
+<p>&#64;param folder_id: The ID of the Google Drive folder.
+&#64;param storage_dir: The path to the base storage directory.
+&#64;param re_index: [optional] If True, re-index the directory even if an index already exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend.read_s3">
+<span class="sig-name descname"><span class="pre">read_s3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s3_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_existing_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend.read_s3" title="Link to this definition">¶</a></dt>
+<dd><p>Read a directory of documents from an S3 folder and create an index.
+Internally, the documents will first be downloaded to a local directory.
+&#64;param s3_dir: The path of the S3 folder.
+&#64;param storage_dir: The path to the base storage directory.
+&#64;param use_existing_index: [optional] If True, try to load an existing index from the storage directory first.
+Side effects:
+- If use_existing_index is True, the index will be automatically saved (for future use)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend.read_website">
+<span class="sig-name descname"><span class="pre">read_website</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">re_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend.read_website" title="Link to this definition">¶</a></dt>
+<dd><p>Read a directory of documents from a website and create an index.
+Internally, no documents are downloaded to a local directory.</p>
+<p>&#64;param url: The URL of the website.
+&#64;param storage_dir: The path to the base storage directory.
+&#64;param re_index: [optional] If True, re-index the directory even if an index already exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.core.backend.rag_backend.AbstractRAGBackend.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">storage_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.core.backend.rag_backend.AbstractRAGBackend.save" title="Link to this definition">¶</a></dt>
+<dd><p>Save the index to the storage directory.</p>
+<p>&#64;param storage_dir: The path to the base storage directory.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">OpenSSA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Aitomatic, Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/openssa.core.backend.rag_backend.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
