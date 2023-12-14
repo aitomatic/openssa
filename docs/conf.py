@@ -37,7 +37,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # -------------------------------------------------------------------------
 
-html_theme = 'alabaster'
+html_theme = 'press'  # sphinx-themes.org
 html_static_path = ['_static']
 
 
