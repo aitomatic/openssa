@@ -2,10 +2,19 @@
 # ===============
 PROJECT_DIR=$(PWD)
 ROOT_DIR=$(PROJECT_DIR)
-LIB_DIR=$(PROJECT_DIR)/openssa
+LIB_DIR_NAME=openssa
+LIB_DIR=$(PROJECT_DIR)/$(LIB_DIR_NAME)
 DIST_DIR=$(PROJECT_DIR)/dist
 EXAMPLES_DIR=$(PROJECT_DIR)/examples
 TESTS_DIR=$(PROJECT_DIR)/tests
+
+DOCS_DIR=$(PROJECT_DIR)/docs
+DOCS_BUILD_DIR=$(DOCS_DIR)/_build
+DOCS_BUILD_DOCTREES_DIR=$(DOCS_BUILD_DIR)/.doctrees
+DOCS_BUILD_IMAGES_DIR=$(DOCS_BUILD_DIR)/_images
+DOCS_BUILD_SOURCES_DIR=$(DOCS_BUILD_DIR)_sources
+DOCS_BUILD_STATIC_DIR=$(DOCS_BUILD_DIR)/_static
+
 
 export PYTHONPATH=$(ROOT_DIR)
 
@@ -32,7 +41,7 @@ get-poetry:
 # ============
 install:
 	poetry lock
-	poetry install --with=lint --with=test
+	poetry install --with=lint --with=test --with=docs
 
 
 # LINTING
@@ -77,11 +86,43 @@ release: build
 # =============
 docs: docs-build
 
-docs-build:
-	@PYTHONPATH=$(PYTHONPATH) cd docs && make build
+docs-build-clean:
+	rm -f $(DOCS_DIR)/*.rst
+	rm -f $(DOCS_BUILD_DIR)/*.html
+	rm -f $(DOCS_BUILD_DOCTREES_DIR)/*.doctree
+	rm -f $(DOCS_BUILD_IMAGES_DIR)/*
+	rm -f $(DOCS_BUILD_SOURCES_DIR)/*.txt
+	rm -f $(DOCS_BUILD_STATIC_DIR)/*
 
-docs-deploy: docs-build
-	@PYTHONPATH=$(PYTHONPATH) cd docs && make deploy
+docs-build-api:
+	# generate .rst files from module code & docstrings
+	# any pathnames given at the end are paths to be excluded ignored during generation.
+	# sphinx-doc.org/en/master/man/sphinx-apidoc.html
+	sphinx-apidoc \
+		--force \
+		--follow-links \
+		--maxdepth 4 \
+		--separate \
+		--implicit-namespaces \
+		--module-first \
+		--output-dir $(DOCS_DIR) $(LIB_DIR)
+
+	# get rid of undocumented members
+	# grep -C2 ":undoc-members:" $(DOCS_DIR)/$(LIB_DIR_NAME)*.rst
+	sed -e /:undoc-members:/d -i .orig $(DOCS_DIR)/$(LIB_DIR_NAME)*.rst
+	rm $(DOCS_DIR)/*.orig
+
+docs-build: docs-build-clean docs-build-api
+	poetry run sphinx-autobuild $(DOCS_DIR) $(DOCS_BUILD_DIR)
+
+docs-deploy:
+	git checkout gh-pages
+	rm *.html
+	cp $(DOCS_BUILD_DIR)/*.html
+	git add *.html
+	git commit -m "update documentation"
+	git push
+	git checkout docs
 
 
 # VERSION MANAGEMENT

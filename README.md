@@ -1,4 +1,4 @@
-# OpenSSA – Small Specialist Agents for Industrial AI
+# `OpenSSA`: Small Specialist Agents for Industrial AI
 
 > __Documentation__: [aitomatic.github.io/openssa](https://aitomatic.github.io/openssa)
 >
@@ -100,3 +100,6 @@ OpenSSA is a community-driven initiative, and we warmly welcome contributions. W
 ## License
 
 OpenSSA is released under the [Apache 2.0 License](docs/LICENSE.md).
+
+
+## [API](modules)
