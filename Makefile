@@ -43,7 +43,7 @@ get-poetry:
 # ============
 install:
 	poetry lock
-	poetry install --with=lint --with=test --with=docs
+	poetry install --extras=contrib --with=docs --with=lint --with=test
 
 
 # LINTING
@@ -158,5 +158,8 @@ bumpversion-major:
 
 # MISC / OTHER
 # ============
+launch-solver:
+	poetry run openssa launch solver
+
 public:
 	rsync -av --delete --exclude .git --links . ../openssa/
