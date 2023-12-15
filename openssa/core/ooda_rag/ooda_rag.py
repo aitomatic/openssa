@@ -1,5 +1,6 @@
 import json
 import uuid
+from typing import List, Optional
 from openssa.core.ooda_rag.prompts import OODAPrompts
 from openssa.core.ooda_rag.notifier import Notifier, SimpleNotifier, EventTypes
 from openssa.core.ooda_rag.heuristic import (
@@ -21,6 +22,8 @@ class History:
     def get_history(self) -> list:
         return self._messages
 
+    def append_history(self, history: list) -> None:
+        self._messages = history + self._messages
 
 class Model:
     def __init__(self, llm, model) -> None:
@@ -147,15 +150,20 @@ class Solver:
         llm=None,
         model: str = "llama2",
         highest_priority_heuristic: str = "",
+        enable_generative: bool = False,
+        conversation: Optional[List] = None,
     ) -> None:
         self.task_heuristics = task_heuristics
         self.ooda_heuristics = ooda_heuristics
         self.notifier = notifier
         self.history = History()
-        self.planner = Planner(task_heuristics, prompts)
+        self.planner = Planner(
+            task_heuristics, prompts, enable_generative=enable_generative
+        )
         self.model = Model(llm=llm, model=model)
         self.prompts = prompts
         self.highest_priority_heuristic = highest_priority_heuristic.strip()
+        self.conversation = conversation or []
 
     def run(self, input_message: str, tools: dict) -> str:
         """
@@ -198,6 +206,7 @@ class Solver:
             heuristic += f"{self.highest_priority_heuristic}"
 
         synthesize_prompt = self.prompts.SYNTHESIZE_RESULT.format(heuristic=heuristic)
+        self.history.append_history(self.conversation[:-1])
         response = self.model.get_response(synthesize_prompt, self.history)
         self.notifier.notify(EventTypes.TASK_RESULT, {"response": response})
         return response
