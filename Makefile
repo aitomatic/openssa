@@ -139,20 +139,8 @@ docs-deploy:
 
 # VERSION MANAGEMENT
 # ==================
-bumpversion-setup:
-	pip install --upgrade bump2version
-
-bumpversion-patch:
-	bump2version --allow-dirty patch
-	cd docs && make build
-
-bumpversion-minor:
-	bump2version --allow-dirty minor
-	cd docs && make build
-
-bumpversion-major:
-	bump2version --allow-dirty major
-	cd docs && make build
+version:
+	poetry version $(v)
 
 
 # MISC / OTHER

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.23.12.14"
+version = "0.23.12.15"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
