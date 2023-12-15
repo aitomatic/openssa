@@ -2,7 +2,7 @@
 
 > __Documentation__: [aitomatic.github.io/openssa](https://aitomatic.github.io/openssa)
 >
-> __Installation__: `pip install openssa` _(Python 3.10-3.11)_
+> __Installation__: `pip install openssa` _(Python 3.11)_
 >
 > __SSA Problem-Solver App Launcher__ _(after installation by `pip install openssa[contrib]`)_: `openssa launch solver`
 > (try out the same app hosted at [openssa.streamlit.app](https://openssa.streamlit.app))
