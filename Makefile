@@ -1,10 +1,9 @@
-# DIRECTORY PATHS
-# ===============
+# DIRECTORY NAMES & PATHS
+# =======================
 PROJECT_DIR=$(PWD)
 ROOT_DIR=$(PROJECT_DIR)
 LIB_DIR_NAME=openssa
 LIB_DIR=$(PROJECT_DIR)/$(LIB_DIR_NAME)
-DIST_DIR=$(PROJECT_DIR)/dist
 EXAMPLES_DIR=$(PROJECT_DIR)/examples
 TESTS_DIR=$(PROJECT_DIR)/tests
 
@@ -16,9 +15,6 @@ DOCS_BUILD_IMAGES_DIR=$(DOCS_BUILD_DIR)/$(DOCS_BUILD_IMAGES_DIR_NAME)
 DOCS_BUILD_SOURCES_DIR=$(DOCS_BUILD_DIR)_sources
 DOCS_BUILD_STATIC_DIR_NAME=_static
 DOCS_BUILD_STATIC_DIR=$(DOCS_BUILD_DIR)/$(DOCS_BUILD_STATIC_DIR_NAME)
-
-
-export PYTHONPATH=$(ROOT_DIR)
 
 
 # COLORIZED OUTPUT
@@ -55,12 +51,7 @@ lint:
 # TESTING
 # =======
 test:
-	@echo $(ANSI_GREEN)
-	@echo "--------------------------------"
-	@echo "|        Python Testing        |"
-	@echo "--------------------------------"
-	@echo $(ANSI_NORMAL)
-	PYTHONPATH=$(PYTHONPATH):$(TESTS_DIR) poetry run pytest $(OPTIONS)
+	poetry run pytest $(OPTIONS)
 
 
 # PRE-COMMIT LINTING & TESTING
@@ -75,9 +66,9 @@ dist:
 
 pypi-auth:
 	@if [ "$(PYPI_TOKEN)" = "" ] ; then \
-		echo $(ANSI_RED) Environment var PYPI_TOKEN must be set for pypi publishing $(ANSI_NORMAL) ;\
+		echo $(ANSI_RED) Environment var PYPI_TOKEN must be set for pypi publishing $(ANSI_NORMAL) ; \
 	else \
-		poetry config pypi-token.pypi $(PYPI_TOKEN) ;\
+		poetry config pypi-token.pypi $(PYPI_TOKEN) ; \
 	fi
 
 release: build
@@ -89,12 +80,12 @@ release: build
 docs: docs-build
 
 docs-build-clean:
-	rm -f $(DOCS_DIR)/*.rst
-	rm -f $(DOCS_BUILD_DIR)/*.html
-	rm -f $(DOCS_BUILD_DOCTREES_DIR)/*.doctree
-	rm -f $(DOCS_BUILD_IMAGES_DIR)/*
-	rm -f $(DOCS_BUILD_SOURCES_DIR)/*.txt
-	rm -f $(DOCS_BUILD_STATIC_DIR)/*
+	rm -f "$(DOCS_DIR)"/*.rst
+	rm -f "$(DOCS_BUILD_DIR)"/*.html
+	rm -f "$(DOCS_BUILD_DOCTREES_DIR)"/*.doctree
+	rm -f "$(DOCS_BUILD_IMAGES_DIR)"/*
+	rm -f "$(DOCS_BUILD_SOURCES_DIR)"/*.txt
+	rm -f "$(DOCS_BUILD_STATIC_DIR)"/*
 
 docs-build-api:
 	# generate .rst files from module code & docstrings
@@ -107,30 +98,29 @@ docs-build-api:
 		--separate \
 		--implicit-namespaces \
 		--module-first \
-		--output-dir $(DOCS_DIR) $(LIB_DIR)
+		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)"
 
 	# get rid of undocumented members
-	# grep -C2 ":undoc-members:" $(DOCS_DIR)/$(LIB_DIR_NAME)*.rst
-	sed -e /:undoc-members:/d -i .orig $(DOCS_DIR)/$(LIB_DIR_NAME)*.rst
-	rm $(DOCS_DIR)/*.orig
+	sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR_NAME)*.rst
+	rm "$(DOCS_DIR)"/*.orig
 
 docs-build: docs-build-clean docs-build-api
-	poetry run sphinx-autobuild $(DOCS_DIR) $(DOCS_BUILD_DIR)
+	poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-deploy:
 	git checkout gh-pages
 
 	rm *.html
-	cp $(DOCS_BUILD_DIR)/*.html ./
+	cp "$(DOCS_BUILD_DIR)"/*.html ./
 	git add *.html
 
-	# rsync -av --delete --links $(DOCS_BUILD_IMAGES_DIR)/ $(DOCS_BUILD_IMAGES_DIR_NAME)/
+	# rsync -av --delete --links "$(DOCS_BUILD_IMAGES_DIR)"/ $(DOCS_BUILD_IMAGES_DIR_NAME)/
 	# git add $(DOCS_BUILD_IMAGES_DIR_NAME)/*
 
-	rsync -av --delete --links $(DOCS_BUILD_STATIC_DIR)/ $(DOCS_BUILD_STATIC_DIR_NAME)/
+	rsync -av --delete --links "$(DOCS_BUILD_STATIC_DIR)"/ $(DOCS_BUILD_STATIC_DIR_NAME)/
 	git add $(DOCS_BUILD_STATIC_DIR_NAME)/*
 
-	cp $(DOCS_BUILD_DIR)/.nojekyll .nojekyll
+	cp "$(DOCS_BUILD_DIR)"/.nojekyll .nojekyll
 	git add .nojekyll
 
 	git commit -m "update documentation"
