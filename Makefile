@@ -70,7 +70,7 @@ pre-commit: lint test
 
 # DISTRIBUTION BUILDING & PYPI RELEASE
 # ====================================
-build:
+dist:
 	poetry build
 
 pypi-auth:
