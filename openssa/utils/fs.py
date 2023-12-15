@@ -106,7 +106,7 @@ class FileSource:
             native_path_w_trail_slash: DirOrFilePath = f'{self.native_path}/'
             path_len_wo_protocol_prefix_w_trail_slash: int = len(native_path_w_trail_slash)
 
-            file_paths: list[str] = sum((self.fs.glob(f'{native_path_w_trail_slash}**{suffix}')
+            file_paths: list[str] = sum((self.fs.glob(f'{native_path_w_trail_slash}**/*{suffix}')
                                          for suffix in suffixes), start=[])
             file_relpaths: FilePathSet = frozenset(_[path_len_wo_protocol_prefix_w_trail_slash:] for _ in file_paths)
 
