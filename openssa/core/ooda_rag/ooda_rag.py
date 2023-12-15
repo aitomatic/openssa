@@ -206,7 +206,7 @@ class Solver:
             heuristic += f"{self.highest_priority_heuristic}"
 
         synthesize_prompt = self.prompts.SYNTHESIZE_RESULT.format(heuristic=heuristic)
-        self.history.append_history(self.conversation)
+        self.history.append_history(self.conversation[:-1])
         response = self.model.get_response(synthesize_prompt, self.history)
         self.notifier.notify(EventTypes.TASK_RESULT, {"response": response})
         return response

@@ -31,7 +31,6 @@ def use_ooda():
     ooda_ssa = OodaSSA(
         task_heuristics=task_heuristics,
         highest_priority_heuristic=highest_priority_heuristic,
-        agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
         llm=AitomaticLLMConfig.get_aitomatic_llm(),
         rag_llm=LLMConfig.get_llm_llama_2_70b(),
         embed_model=LLMConfig.get_aito_embeddings(),
