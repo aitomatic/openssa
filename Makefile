@@ -102,7 +102,7 @@ docs-build-api:
 
 	# get rid of undocumented members
 	sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR_NAME)*.rst
-	rm $(DOCS_DIR)/*.orig
+	rm "$(DOCS_DIR)"/*.orig
 
 docs-build: docs-build-clean docs-build-api
 	poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
