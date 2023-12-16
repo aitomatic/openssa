@@ -5,6 +5,13 @@
 
 
 from collections.abc import Sequence
+from datetime import date
+from pathlib import Path
+from sys import version_info
+if version_info < (3, 11):
+    import tomli as tomllib
+else:
+    import tomllib
 
 
 # pylint: disable=invalid-name
@@ -14,10 +21,13 @@ from collections.abc import Sequence
 # sphinx-doc.org/en/master/usage/configuration.html#project-information
 # ---------------------------------------------------------------------
 
-project = 'OpenSSA'
-copyright = '2023, Aitomatic, Inc.'  # pylint: disable=redefined-builtin
-author = 'Aitomatic, Inc.'
-release = '0.23.12.12'
+with open(file=Path(__file__).parent.parent / 'pyproject.toml', mode='rb') as f:
+    pkg_meta: dict[str, str] = tomllib.load(f)['tool']['poetry']
+
+project: str = pkg_meta['name']
+author: str = pkg_meta['authors'][0]
+copyright: str = f'{date.today().year}, {author}'  # pylint: disable=redefined-builtin
+release: str = pkg_meta['version']
 
 
 # General configuration
@@ -29,20 +39,20 @@ extensions: Sequence[str] = [
     'sphinx.ext.autodoc',  # include documentation from docstrings
 ]
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+templates_path: Sequence[str] = ['_templates']
+exclude_patterns: Sequence[str] = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # Options for HTML output
 # sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # -------------------------------------------------------------------------
 
-html_theme = 'press'  # sphinx-themes.org
-html_static_path = ['_static']
+html_theme: str = 'press'  # sphinx-themes.org
+html_static_path: Sequence[str] = ['_static']
 
 
 # Markdown Sources
 # sphinx-doc.org/en/master/usage/markdown.html
 # --------------------------------------------
 
-source_suffix = {'.md': 'markdown', '.rst': 'restructuredtext'}
+source_suffix: dict[str, str] = {'.md': 'markdown', '.rst': 'restructuredtext'}

@@ -12,7 +12,8 @@ EXAMPLES_DIR=$(PROJECT_DIR)/$(EXAMPLES_DIR_NAME)
 TESTS_DIR_NAME=tests
 TESTS_DIR=$(PROJECT_DIR)/$(TESTS_DIR_NAME)
 
-DOCS_DIR=$(PROJECT_DIR)/docs
+DOCS_DIR_NAME=docs
+DOCS_DIR=$(PROJECT_DIR)/$(DOCS_DIR_NAME)
 
 DOCS_BUILD_DIR=$(DOCS_DIR)/_build
 DOCS_BUILD_DOCTREES_DIR=$(DOCS_BUILD_DIR)/.doctrees
@@ -54,7 +55,7 @@ install:
 # LINTING
 # =======
 lint:
-	poetry run pylint $(LIB_DIR_NAME) $(EXAMPLES_DIR_NAME) $(TESTS_DIR_NAME)
+	poetry run pylint $(LIB_DIR_NAME) $(DOCS_DIR_NAME) $(EXAMPLES_DIR_NAME) $(TESTS_DIR_NAME)
 
 
 # TESTING
@@ -86,7 +87,8 @@ release: build
 
 # DOCUMENTATION
 # =============
-docs: docs-build
+docs: docs-build-clean docs-build-api
+	poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-build-clean:
 	rm -f "$(DOCS_DIR)"/*.rst
@@ -100,7 +102,7 @@ docs-build-api:
 	# generate .rst files from module code & docstrings
 	# any pathnames given at the end are paths to be excluded ignored during generation.
 	# sphinx-doc.org/en/master/man/sphinx-apidoc.html
-	sphinx-apidoc \
+	poetry run sphinx-apidoc \
 		--force \
 		--follow-links \
 		--maxdepth 4 \
@@ -114,9 +116,9 @@ docs-build-api:
 	rm "$(DOCS_DIR)"/*.orig
 
 docs-build: docs-build-clean docs-build-api
-	poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
+	poetry run sphinx-build "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
-docs-deploy:
+docs-deploy: docs-build
 	git checkout gh-pages
 
 	rm *.html
@@ -129,8 +131,10 @@ docs-deploy:
 	rsync -av --delete --links "$(DOCS_BUILD_STATIC_DIR)"/ $(DOCS_BUILD_STATIC_DIR_NAME)/
 	git add $(DOCS_BUILD_STATIC_DIR_NAME)/*
 
-	cp "$(DOCS_BUILD_DIR)"/.nojekyll .nojekyll
-	git add .nojekyll
+	if [ -f "$(DOCS_BUILD_DIR)"/.nojekyll ] ; then \
+		cp "$(DOCS_BUILD_DIR)"/.nojekyll .nojekyll ; \
+		git add .nojekyll ; \
+	fi
 
 	git commit -m "update documentation"
 	git push

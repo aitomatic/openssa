@@ -46,6 +46,7 @@ exclude = [
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.2"
+sphinx-autobuild = ">=2021.3.14"
 sphinx-press-theme = ">=0.8"
 myst-parser = ">=2.0"
 

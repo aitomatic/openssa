@@ -99,7 +99,7 @@ OpenSSA is a community-driven initiative, and we warmly welcome contributions. W
 
 ## License
 
-OpenSSA is released under the [Apache 2.0 License](docs/LICENSE.md).
+OpenSSA is released under the [Apache 2.0 License](LICENSE.md).
 
 
-## [API](modules)
+## [API References](modules)
