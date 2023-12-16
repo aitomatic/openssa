@@ -1,11 +1,12 @@
-import os
+from collections.abc import Sequence
+from pathlib import Path
+from sys import version_info
+if version_info < (3, 11):
+    import tomli as tomllib
+else:
+    import tomllib
 
-with open(os.path.join(os.path.dirname(__file__), "VERSION"), "r", encoding="utf-8") as f:
-    __version__ = f.read().strip()
-
-
-from importlib.metadata import version
-
+# pylint: disable=wrong-import-position
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.core.prompts import Prompts
@@ -26,3 +27,12 @@ from openssa.integrations.openai.ssm import GPT3CompletionSSM as OpenAIGPT3Compl
 from openssa.utils.config import Config
 from openssa.utils.logs import Logs, logger, mlogger
 from openssa.utils.utils import Utils
+
+
+with open(file=Path(__file__).parent.parent / 'pyproject.toml', mode='rb') as f:
+    __version__: str = tomllib.load(f)['tool']['poetry']['version']
+
+
+__all__: Sequence[str] = (
+    '__version__',
+)

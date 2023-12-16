@@ -18,7 +18,7 @@ class OODAPrompts:
 
     DECOMPOSE_INTO_SUBTASKS = (
         "Given the tools available, if the task cannot be completed directly with the current tools"
-        " and resources, break it down into smaller subtasks that can be directly addressed in"
+        " and resources, break it down into maximum 3 smaller subtasks that can be directly addressed in"
         " order. If it does not need to be broken down, return an empty list of subtasks."
         ' Return a JSON dictionary {"subtasks": ["subtask 1", "subtask 2", ...]}'
         " each subtask should be a sentence or question not a function call."

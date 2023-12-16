@@ -13,7 +13,6 @@ class OodaSSA:
         task_heuristics,
         highest_priority_heuristic: str = "",
         ask_user_heuristic: str = "",
-        agent_service_context=LLMConfig.get_service_context_llama_2_70b(),
         llm=AitomaticLLMConfig.get_aitomatic_llm(),
         rag_llm=LLMConfig.get_llm_llama_2_70b(),
         embed_model=LLMConfig.get_default_embed_model(),
@@ -23,7 +22,6 @@ class OodaSSA:
         self.llm = llm
         self.rag_llm = rag_llm
         self.embed_model = embed_model
-        self.agent_service_context = agent_service_context
         self.solver = Solver(
             task_heuristics=task_heuristics,
             ooda_heuristics=DefaultOODAHeuristic(),
