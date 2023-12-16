@@ -1,7 +1,12 @@
 from collections.abc import Sequence
 from pathlib import Path
-import tomllib
+from sys import version_info
+if version_info < (3, 11):
+    import tomli as tomllib
+else:
+    import tomllib
 
+# pylint: disable=wrong-import-position
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.core.prompts import Prompts
