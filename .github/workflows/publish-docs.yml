@@ -1,0 +1,32 @@
+name: Publish Documentation
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  publish-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install Poetry
+        run: make get-poetry
+
+      - name: Install Package & Dependencies
+        run: make install
+
+      - name: Publish Documentation
+        if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'docs'
+        run: make docs-deploy
+        env:
+          LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}

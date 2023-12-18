@@ -46,10 +46,13 @@ exclude = [
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.2"
+sphinx-autobuild = ">=2021.3.14"
+sphinx-press-theme = ">=0.8"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
 pylint = ">=3.0"
+pydocstyle = ">=6.3"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=7.4"
