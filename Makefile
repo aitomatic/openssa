@@ -16,15 +16,8 @@ DOCS_DIR_NAME=docs
 DOCS_DIR=$(PROJECT_DIR)/$(DOCS_DIR_NAME)
 
 DOCS_BUILD_DIR=$(DOCS_DIR)/_build
-DOCS_BUILD_DOCTREES_DIR=$(DOCS_BUILD_DIR)/.doctrees
 
-DOCS_BUILD_IMAGES_DIR_NAME=_images
-DOCS_BUILD_IMAGES_DIR=$(DOCS_BUILD_DIR)/$(DOCS_BUILD_IMAGES_DIR_NAME)
-
-DOCS_BUILD_SOURCES_DIR=$(DOCS_BUILD_DIR)/_sources
-
-DOCS_BUILD_STATIC_DIR_NAME=_static
-DOCS_BUILD_STATIC_DIR=$(DOCS_BUILD_DIR)/$(DOCS_BUILD_STATIC_DIR_NAME)
+DOCS_SUBDIRS_TO_PUBLISH := _images _static
 
 
 # COLORIZED OUTPUT
@@ -92,11 +85,7 @@ docs: docs-build-clean docs-build-api
 
 docs-build-clean:
 	rm -f "$(DOCS_DIR)"/*.rst
-	rm -f "$(DOCS_BUILD_DIR)"/*.html
-	rm -f "$(DOCS_BUILD_DOCTREES_DIR)"/*.doctree
-	rm -f "$(DOCS_BUILD_IMAGES_DIR)"/*
-	rm -f "$(DOCS_BUILD_SOURCES_DIR)"/*.txt
-	rm -f "$(DOCS_BUILD_STATIC_DIR)"/*
+	rm -rf "$(DOCS_BUILD_DIR)"
 
 docs-build-api:
 	# generate .rst files from module code & docstrings
@@ -105,40 +94,43 @@ docs-build-api:
 	poetry run sphinx-apidoc \
 		--force \
 		--follow-links \
-		--maxdepth 4 \
+		--maxdepth 9 \
 		--separate \
 		--implicit-namespaces \
 		--module-first \
-		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)"
+		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)" \
+		*/contrib/streamlit_ssa_prob_solver/main.py */contrib/streamlit_ssa_prob_solver/pages
 
 	# get rid of undocumented members
-	sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR_NAME)*.rst
-	rm "$(DOCS_DIR)"/*.orig
+	# sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR_NAME)*.rst
+	# rm "$(DOCS_DIR)"/*.orig
 
 docs-build: docs-build-clean docs-build-api
 	poetry run sphinx-build "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-deploy: docs-build
-	git checkout gh-pages
+	git fetch --all
+
+	git checkout gh-pages --
+
+	git config user.email "TheVinhLuong@gmail.com"
+	git config user.name "The Vinh LUONG (LƯƠNG Thế Vinh)"
 
 	rm *.html
-	cp "$(DOCS_BUILD_DIR)"/*.html ./
-	git add *.html
+	cp "$(DOCS_BUILD_DIR)"/*.html .
+	git add --all "*.html"
+	git reset "$(DOCS_DIR_NAME)/*.html"
 
-	# rsync -av --delete --links "$(DOCS_BUILD_IMAGES_DIR)"/ $(DOCS_BUILD_IMAGES_DIR_NAME)/
-	# git add $(DOCS_BUILD_IMAGES_DIR_NAME)/*
+	for docs_subdir_to_publish in $(DOCS_SUBDIRS_TO_PUBLISH) ; do \
+		echo "syncing $$docs_subdir_to_publish..." ; \
+		rsync -av --delete --links "$(DOCS_BUILD_DIR)/$$docs_subdir_to_publish"/ $$docs_subdir_to_publish/ ; \
+		git add --all "$$docs_subdir_to_publish/*" ; \
+	done
 
-	rsync -av --delete --links "$(DOCS_BUILD_STATIC_DIR)"/ $(DOCS_BUILD_STATIC_DIR_NAME)/
-	git add $(DOCS_BUILD_STATIC_DIR_NAME)/*
-
-	if [ -f "$(DOCS_BUILD_DIR)"/.nojekyll ] ; then \
-		cp "$(DOCS_BUILD_DIR)"/.nojekyll .nojekyll ; \
-		git add .nojekyll ; \
-	fi
-
-	git commit -m "update documentation"
+	git commit -m "update GitHub Pages documentation site"
 	git push
-	git checkout docs
+
+	git checkout docs --
 
 
 # VERSION MANAGEMENT

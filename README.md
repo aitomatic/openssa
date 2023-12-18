@@ -16,7 +16,6 @@ SSAs are light-weight, domain-focused and incorporate reasoning and planning cap
 
 The trend towards specialization in AI models is a clear trajectory seen by many in the field.
 
-<!-- markdownlint-disable MD028 -->
 > &nbsp;
 > _Specialization is crucial for quality .. not general purpose Al models_ – Eric Schmidt, Schmidt Foundation
 > &nbsp;
@@ -40,7 +39,6 @@ The trend towards specialization in AI models is a clear trajectory seen by many
 > &nbsp;
 > _.. small models are .. a massive paradigm shift .. about deploying AI models at scale_ – Rob Toews, Radical Ventures
 > &nbsp;
-<!-- markdownlint-enable MD028 -->
 
 As predicted by Eric Schmidt and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.” SSAs are the central part in the architecture of these systems.
 
@@ -103,3 +101,6 @@ OpenSSA is released under the [Apache 2.0 License](LICENSE.md).
 
 
 ## [API References](modules)
+
+
+## Note: Lepton API Key
