@@ -54,7 +54,7 @@ lint:
 # TESTING
 # =======
 test:
-	poetry run pytest $(OPTIONS)
+	poetry run pytest
 
 
 # PRE-COMMIT LINTING & TESTING
