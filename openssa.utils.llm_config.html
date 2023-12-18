@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.utils.llm_config module</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -87,6 +87,245 @@
             
   <section id="module-openssa.utils.llm_config">
 <span id="openssa-utils-llm-config-module"></span><h1>openssa.utils.llm_config module<a class="headerlink" href="#module-openssa.utils.llm_config" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.AitomaticBaseURL">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.utils.llm_config.</span></span><span class="sig-name descname"><span class="pre">AitomaticBaseURL</span></span><a class="headerlink" href="#openssa.utils.llm_config.AitomaticBaseURL" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.AitomaticBaseURL.intel_neural_chat_7b">
+<span class="sig-name descname"><span class="pre">intel_neural_chat_7b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'http://34.145.174.152:8000/v1'</span></em><a class="headerlink" href="#openssa.utils.llm_config.AitomaticBaseURL.intel_neural_chat_7b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.AitomaticBaseURL.llama2_70b">
+<span class="sig-name descname"><span class="pre">llama2_70b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://llama2-70b.lepton.run/api/v1'</span></em><a class="headerlink" href="#openssa.utils.llm_config.AitomaticBaseURL.llama2_70b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.AitomaticBaseURL.llama2_7b">
+<span class="sig-name descname"><span class="pre">llama2_7b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://llama2-7b.lepton.run/api/v1'</span></em><a class="headerlink" href="#openssa.utils.llm_config.AitomaticBaseURL.llama2_7b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.AitomaticBaseURL.yi_34b">
+<span class="sig-name descname"><span class="pre">yi_34b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'http://35.230.174.89:8000/v1'</span></em><a class="headerlink" href="#openssa.utils.llm_config.AitomaticBaseURL.yi_34b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.utils.llm_config.</span></span><span class="sig-name descname"><span class="pre">LLMConfig</span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_aito_embeddings">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_aito_embeddings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpenAIEmbedding</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_aito_embeddings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_aitomatic_13b">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_aitomatic_13b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_aitomatic_13b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_aitomatic_yi_34b">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_aitomatic_yi_34b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_aitomatic_yi_34b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_azure_embed_model">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_azure_embed_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AzureOpenAIEmbedding</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_azure_embed_model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_azure_jp_api_key">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_azure_jp_api_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_azure_jp_api_key" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_default_embed_model">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_default_embed_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpenAIEmbedding</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_default_embed_model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_intel_neural_chat_7b">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_intel_neural_chat_7b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_intel_neural_chat_7b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llama_2_api_key">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llama_2_api_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llama_2_api_key" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_35_16k">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_azure_jp_35_16k</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_35_16k" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_4_32k">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_azure_jp_4_32k</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_4_32k" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_llama_2_70b">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_llama_2_70b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_llama_2_70b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_llama_2_7b">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_llama_2_7b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_llama_2_7b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_openai_35_turbo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_0613">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_openai_35_turbo_0613</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_0613" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_1106">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_openai_35_turbo_1106</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_1106" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_llm_openai_4">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_llm_openai_4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LLM</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_llm_openai_4" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_openai_api_key">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_openai_api_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_openai_api_key" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_openai_embed_model">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_openai_embed_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpenAIEmbedding</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_openai_embed_model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_azure_gpt4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4_32k">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_azure_gpt4_32k</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4_32k" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_azure_jp_35</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35_16k">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_azure_jp_35_16k</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35_16k" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_70b">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_llama_2_70b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_70b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_7b">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_llama_2_7b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_7b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_openai_35_turbo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo_1106">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service_context_openai_35_turbo_1106</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ServiceContext</span></span></span><a class="headerlink" href="#openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo_1106" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmBaseModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.utils.llm_config.</span></span><span class="sig-name descname"><span class="pre">LlmBaseModel</span></span><a class="headerlink" href="#openssa.utils.llm_config.LlmBaseModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmBaseModel.azure_openai">
+<span class="sig-name descname"><span class="pre">azure_openai</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AzureOpenAI'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmBaseModel.azure_openai" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmBaseModel.llama2">
+<span class="sig-name descname"><span class="pre">llama2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'llama2'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmBaseModel.llama2" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmBaseModel.neural_chat">
+<span class="sig-name descname"><span class="pre">neural_chat</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'neural</span> <span class="pre">chat'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmBaseModel.neural_chat" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmBaseModel.openai">
+<span class="sig-name descname"><span class="pre">openai</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'OpenAI'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmBaseModel.openai" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmBaseModel.yi">
+<span class="sig-name descname"><span class="pre">yi</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'yi'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmBaseModel.yi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.utils.llm_config.</span></span><span class="sig-name descname"><span class="pre">LlmModelSize</span></span><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize.gpt35">
+<span class="sig-name descname"><span class="pre">gpt35</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GPT-3.5'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize.gpt35" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize.gpt4">
+<span class="sig-name descname"><span class="pre">gpt4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GPT-4'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize.gpt4" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize.llama2_13b">
+<span class="sig-name descname"><span class="pre">llama2_13b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'13B'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize.llama2_13b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize.llama2_70b">
+<span class="sig-name descname"><span class="pre">llama2_70b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'70B'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize.llama2_70b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize.llama2_7b">
+<span class="sig-name descname"><span class="pre">llama2_7b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'7B'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize.llama2_7b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize.neutral_chat_7b">
+<span class="sig-name descname"><span class="pre">neutral_chat_7b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'7b'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize.neutral_chat_7b" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.utils.llm_config.LlmModelSize.yi_34">
+<span class="sig-name descname"><span class="pre">yi_34</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'34'</span></em><a class="headerlink" href="#openssa.utils.llm_config.LlmModelSize.yi_34" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -94,7 +333,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

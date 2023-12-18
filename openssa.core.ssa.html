@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.core.ssa namespace</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -94,6 +94,11 @@
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html">openssa.core.ssa.rag_ssa module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM"><code class="docutils literal notranslate"><span class="pre">RAGSSM</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.custom_discuss"><code class="docutils literal notranslate"><span class="pre">RAGSSM.custom_discuss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.is_passthrough"><code class="docutils literal notranslate"><span class="pre">RAGSSM.is_passthrough()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.rag_backend"><code class="docutils literal notranslate"><span class="pre">RAGSSM.rag_backend</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.read_directory"><code class="docutils literal notranslate"><span class="pre">RAGSSM.read_directory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.read_gdrive"><code class="docutils literal notranslate"><span class="pre">RAGSSM.read_gdrive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.read_website"><code class="docutils literal notranslate"><span class="pre">RAGSSM.read_website()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -111,6 +116,12 @@
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.BaseSSA.train"><code class="docutils literal notranslate"><span class="pre">BaseSSA.train()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA"><code class="docutils literal notranslate"><span class="pre">RagSSA</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA.add_knowledge"><code class="docutils literal notranslate"><span class="pre">RagSSA.add_knowledge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA.chat"><code class="docutils literal notranslate"><span class="pre">RagSSA.chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA.train"><code class="docutils literal notranslate"><span class="pre">RagSSA.train()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ssa.ssa_service.html">openssa.core.ssa.ssa_service module</a><ul>
@@ -118,7 +129,15 @@
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.AbstractSSAService.train"><code class="docutils literal notranslate"><span class="pre">AbstractSSAService.train()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService"><code class="docutils literal notranslate"><span class="pre">SSARAGService</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService.add_knowledge"><code class="docutils literal notranslate"><span class="pre">SSARAGService.add_knowledge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService.chat"><code class="docutils literal notranslate"><span class="pre">SSARAGService.chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService.create_rag_agent"><code class="docutils literal notranslate"><span class="pre">SSARAGService.create_rag_agent()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService"><code class="docutils literal notranslate"><span class="pre">SSAService</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.AISO_API_KEY"><code class="docutils literal notranslate"><span class="pre">SSAService.AISO_API_KEY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.AISO_API_URL"><code class="docutils literal notranslate"><span class="pre">SSAService.AISO_API_URL</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.chat"><code class="docutils literal notranslate"><span class="pre">SSAService.chat()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.train"><code class="docutils literal notranslate"><span class="pre">SSAService.train()</span></code></a></li>
 </ul>
@@ -135,7 +154,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

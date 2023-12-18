@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.contrib.streamlit_ssa_prob_solver package</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -93,39 +93,94 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.contrib.streamlit_ssa_prob_solver.</span></span><span class="sig-name descname"><span class="pre">SSAProbSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unique_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">UUID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expert_instructions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fine_tuned_model_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_src_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_src_file_relpaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">frozenset</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">frozenset({})</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>SSA Problem-Solver Streamlit Component.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY">
+<span class="sig-name descname"><span class="pre">DOC_SRC_FILE_RELPATH_SETS_SSS_KEY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_doc_src_file_relpath_sets'</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DOC_SRC_PATHS_SSS_KEY">
+<span class="sig-name descname"><span class="pre">DOC_SRC_PATHS_SSS_KEY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_doc_src_paths'</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DOC_SRC_PATHS_SSS_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DocSrcHash">
+<span class="sig-name descname"><span class="pre">DocSrcHash</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">type</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">str</span> <span class="pre">|</span> <span class="pre">frozenset[str]</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DocSrcHash" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.EXPERT_INSTRUCTIONS_SSS_KEY">
+<span class="sig-name descname"><span class="pre">EXPERT_INSTRUCTIONS_SSS_KEY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_expert_instructions'</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.EXPERT_INSTRUCTIONS_SSS_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.FINE_TUNED_MODELS_SSS_KEY">
+<span class="sig-name descname"><span class="pre">FINE_TUNED_MODELS_SSS_KEY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_fine_tuned_models'</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.FINE_TUNED_MODELS_SSS_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.PROBLEMS_SSS_KEY">
+<span class="sig-name descname"><span class="pre">PROBLEMS_SSS_KEY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_problems'</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.PROBLEMS_SSS_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.SSAS_SSS_KEY">
+<span class="sig-name descname"><span class="pre">SSAS_SSS_KEY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_ssas'</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.SSAS_SSS_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.Uid">
+<span class="sig-name descname"><span class="pre">Uid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">type</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">int</span> <span class="pre">|</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">uuid.UUID</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.Uid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.append_expert_instructions">
+<span class="sig-name descname"><span class="pre">append_expert_instructions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addl_expert_instructions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.append_expert_instructions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.doc_src_file_relpaths">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">doc_src_file_relpaths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">frozenset</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.doc_src_file_relpaths" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.doc_src_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">doc_src_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.doc_src_path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.expert_instructions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expert_instructions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.expert_instructions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.fine_tuned_model_url">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fine_tuned_model_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.fine_tuned_model_url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.problem">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">problem</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.problem" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.run" title="Link to this definition">¶</a></dt>
 <dd><p>Run SSA Problem-Solver Streamlit Component on Streamlit app page.</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.ssa">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ssa</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA" title="openssa.core.ssa.ssa.RagSSA"><span class="pre">RagSSA</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.ssa" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.ssa_solve">
+<span class="sig-name descname"><span class="pre">ssa_solve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.ssa_solve" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
-<section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="openssa.contrib.streamlit_ssa_prob_solver.pages.html">openssa.contrib.streamlit_ssa_prob_solver.pages namespace</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="openssa.contrib.streamlit_ssa_prob_solver.pages.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="openssa.contrib.streamlit_ssa_prob_solver.pages.Semiconductor_ALD_SSA.html">openssa.contrib.streamlit_ssa_prob_solver.pages.Semiconductor_ALD_SSA module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="openssa.contrib.streamlit_ssa_prob_solver.pages.Your_SSA_%231.html">openssa.contrib.streamlit_ssa_prob_solver.pages.Your_SSA_#1 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="openssa.contrib.streamlit_ssa_prob_solver.pages.Your_SSA_%232.html">openssa.contrib.streamlit_ssa_prob_solver.pages.Your_SSA_#2 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="openssa.contrib.streamlit_ssa_prob_solver.pages.Your_SSA_%233.html">openssa.contrib.streamlit_ssa_prob_solver.pages.Your_SSA_#3 module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="openssa.contrib.streamlit_ssa_prob_solver.main.html">openssa.contrib.streamlit_ssa_prob_solver.main module</a></li>
-</ul>
-</div>
-</section>
 </section>
 
 
@@ -133,7 +188,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

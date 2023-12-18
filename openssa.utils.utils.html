@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.utils.utils module</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -132,6 +132,31 @@ e.g., [{“role”: “user”, “content”: “hello”}].</p>
 <dd><p>Decorator to canonicalize SSM user input.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.utils.Utils.do_canonicalize_user_input_and_discuss_result">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_canonicalize_user_input_and_discuss_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.utils.utils.Utils.do_canonicalize_user_input_and_discuss_result" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.utils.Utils.do_canonicalize_user_input_and_query_response">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_canonicalize_user_input_and_query_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.utils.utils.Utils.do_canonicalize_user_input_and_query_response" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.utils.Utils.download_gdrive">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download_gdrive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'./tmp/.docs'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.utils.utils.Utils.download_gdrive" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.utils.Utils.download_s3">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">download_s3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s3_paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'./tmp/.docs'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.utils.utils.Utils.download_s3" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.utils.utils.Utils.timeit">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timeit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.utils.utils.Utils.timeit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -141,7 +166,7 @@ e.g., [{“role”: “user”, “content”: “hello”}].</p>
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

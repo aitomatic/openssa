@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.core.slm.memory namespace</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -92,11 +92,25 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html">openssa.core.slm.memory.conversation_db module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB"><code class="docutils literal notranslate"><span class="pre">ConversationDB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB"><code class="docutils literal notranslate"><span class="pre">ConversationDB</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.append_conversation"><code class="docutils literal notranslate"><span class="pre">ConversationDB.append_conversation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.close"><code class="docutils literal notranslate"><span class="pre">ConversationDB.close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.connect"><code class="docutils literal notranslate"><span class="pre">ConversationDB.connect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.create_table"><code class="docutils literal notranslate"><span class="pre">ConversationDB.create_table()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.get_conversation"><code class="docutils literal notranslate"><span class="pre">ConversationDB.get_conversation()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html">openssa.core.slm.memory.sqlite_conversation_db module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB"><code class="docutils literal notranslate"><span class="pre">SQLiteConversationDB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB"><code class="docutils literal notranslate"><span class="pre">SQLiteConversationDB</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.append_conversation"><code class="docutils literal notranslate"><span class="pre">SQLiteConversationDB.append_conversation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.close"><code class="docutils literal notranslate"><span class="pre">SQLiteConversationDB.close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.connect"><code class="docutils literal notranslate"><span class="pre">SQLiteConversationDB.connect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.create_table"><code class="docutils literal notranslate"><span class="pre">SQLiteConversationDB.create_table()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.get_conversation"><code class="docutils literal notranslate"><span class="pre">SQLiteConversationDB.get_conversation()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -109,7 +123,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

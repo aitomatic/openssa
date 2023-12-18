@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -98,6 +98,7 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -108,6 +109,8 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -132,6 +135,10 @@
       <li><a href="openssa.core.ssm.abstract_ssm.html#openssa.core.ssm.abstract_ssm.AbstractSSM">AbstractSSM (class in openssa.core.ssm.abstract_ssm)</a>
 </li>
       <li><a href="openssa.core.ssm.abstract_ssm_builder.html#openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder">AbstractSSMBuilder (class in openssa.core.ssm.abstract_ssm_builder)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.ACT">ACT (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.solver.html#openssa.core.ooda_rag.solver.OodaSSA.activate_resources">activate_resources() (openssa.core.ooda_rag.solver.OodaSSA method)</a>
 </li>
       <li><a href="openssa.core.slm.abstract_slm.html#openssa.core.slm.abstract_slm.AbstractSLM.adapter">adapter (openssa.core.slm.abstract_slm.AbstractSLM property)</a>
 
@@ -159,19 +166,27 @@
         <li><a href="openssa.core.backend.text_backend.html#openssa.core.backend.text_backend.TextBackend.add_fact">(openssa.core.backend.text_backend.TextBackend method)</a>
 </li>
       </ul></li>
-      <li><a href="openssa.core.backend.abstract_backend.html#openssa.core.backend.abstract_backend.AbstractBackend.add_heuristic">add_heuristic() (openssa.core.backend.abstract_backend.AbstractBackend method)</a>
+      <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.add_feedback">add_feedback() (openssa.core.ooda_rag.custom.CustomBackend method)</a>
 
       <ul>
+        <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomSSM.add_feedback">(openssa.core.ooda_rag.custom.CustomSSM method)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.core.adapter.base_adapter.html#openssa.core.adapter.base_adapter.BaseAdapter.add_heuristic">add_heuristic() (openssa.core.adapter.base_adapter.BaseAdapter method)</a>
+
+      <ul>
+        <li><a href="openssa.core.backend.abstract_backend.html#openssa.core.backend.abstract_backend.AbstractBackend.add_heuristic">(openssa.core.backend.abstract_backend.AbstractBackend method)</a>
+</li>
         <li><a href="openssa.core.backend.base_backend.html#openssa.core.backend.base_backend.BaseBackend.add_heuristic">(openssa.core.backend.base_backend.BaseBackend method)</a>
 </li>
         <li><a href="openssa.core.backend.text_backend.html#openssa.core.backend.text_backend.TextBackend.add_heuristic">(openssa.core.backend.text_backend.TextBackend method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="openssa.core.backend.abstract_backend.html#openssa.core.backend.abstract_backend.AbstractBackend.add_inferencer">add_inferencer() (openssa.core.backend.abstract_backend.AbstractBackend method)</a>
+      <li><a href="openssa.core.adapter.base_adapter.html#openssa.core.adapter.base_adapter.BaseAdapter.add_inferencer">add_inferencer() (openssa.core.adapter.base_adapter.BaseAdapter method)</a>
 
       <ul>
+        <li><a href="openssa.core.backend.abstract_backend.html#openssa.core.backend.abstract_backend.AbstractBackend.add_inferencer">(openssa.core.backend.abstract_backend.AbstractBackend method)</a>
+</li>
         <li><a href="openssa.core.backend.base_backend.html#openssa.core.backend.base_backend.BaseBackend.add_inferencer">(openssa.core.backend.base_backend.BaseBackend method)</a>
 </li>
         <li><a href="openssa.core.backend.text_backend.html#openssa.core.backend.text_backend.TextBackend.add_inferencer">(openssa.core.backend.text_backend.TextBackend method)</a>
@@ -181,9 +196,13 @@
         <li><a href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.add_inferencer">(openssa.core.ssm.base_ssm_builder.BaseSSMBuilder method)</a>
 </li>
       </ul></li>
-      <li><a href="openssa.core.ssm.abstract_ssm.html#openssa.core.ssm.abstract_ssm.AbstractSSM.add_knowledge">add_knowledge() (openssa.core.ssm.abstract_ssm.AbstractSSM method)</a>
+      <li><a href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA.add_knowledge">add_knowledge() (openssa.core.ssa.ssa.RagSSA method)</a>
 
       <ul>
+        <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService.add_knowledge">(openssa.core.ssa.ssa_service.SSARAGService class method)</a>
+</li>
+        <li><a href="openssa.core.ssm.abstract_ssm.html#openssa.core.ssm.abstract_ssm.AbstractSSM.add_knowledge">(openssa.core.ssm.abstract_ssm.AbstractSSM method)</a>
+</li>
         <li><a href="openssa.core.ssm.abstract_ssm_builder.html#openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder.add_knowledge">(openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder method)</a>
 </li>
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.add_knowledge">(openssa.core.ssm.base_ssm.BaseSSM method)</a>
@@ -191,6 +210,22 @@
         <li><a href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.add_knowledge">(openssa.core.ssm.base_ssm_builder.BaseSSMBuilder method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History.add_message">add_message() (openssa.core.ooda_rag.ooda_rag.History method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole">AgentRole (class in openssa.core.ooda_rag.builtin_agents)</a>
+</li>
+      <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.AISO_API_KEY">AISO_API_KEY (openssa.core.ssa.ssa_service.SSAService attribute)</a>
+</li>
+      <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.AISO_API_URL">AISO_API_URL (openssa.core.ssa.ssa_service.SSAService attribute)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL">AitomaticBaseURL (class in openssa.utils.llm_config)</a>
+</li>
+      <li><a href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig">AitomaticLLMConfig (class in openssa.utils.aitomatic_llm_config)</a>
+</li>
+      <li><a href="openssa.core.backend.text_backend.html#openssa.core.backend.text_backend.TextBackend.all_texts">all_texts() (openssa.core.backend.text_backend.TextBackend method)</a>
+</li>
       <li><a href="openssa.core.ssm.abstract_ssm.html#openssa.core.ssm.abstract_ssm.AbstractSSM.api_call">api_call() (openssa.core.ssm.abstract_ssm.AbstractSSM method)</a>
 
       <ul>
@@ -205,6 +240,16 @@
         <li><a href="openssa.integrations.openai.ssm.html#openssa.integrations.openai.ssm.APIContext">(class in openssa.integrations.openai.ssm)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.append_conversation">append_conversation() (openssa.core.slm.memory.conversation_db.ConversationDB method)</a>
+
+      <ul>
+        <li><a href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.append_conversation">(openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB method)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.append_expert_instructions">append_expert_instructions() (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History.append_history">append_history() (openssa.core.ooda_rag.ooda_rag.History method)</a>
+</li>
       <li><a href="openssa.core.ooda_rag.heuristic.html#openssa.core.ooda_rag.heuristic.DefaultOODAHeuristic.apply_heuristic">apply_heuristic() (openssa.core.ooda_rag.heuristic.DefaultOODAHeuristic method)</a>
 
       <ul>
@@ -215,9 +260,35 @@
         <li><a href="openssa.core.ooda_rag.heuristic.html#openssa.core.ooda_rag.heuristic.TaskDecompositionHeuristic.apply_heuristic">(openssa.core.ooda_rag.heuristic.TaskDecompositionHeuristic method)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.BuiltInAgentPrompt.ASK_USER">ASK_USER (openssa.core.ooda_rag.prompts.BuiltInAgentPrompt attribute)</a>
+</li>
       <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AskUserAgent">AskUserAgent (class in openssa.core.ooda_rag.builtin_agents)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.tools.html#openssa.core.ooda_rag.tools.AskUserTool">AskUserTool (class in openssa.core.ooda_rag.tools)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole.ASSISTANT">ASSISTANT (openssa.core.ooda_rag.builtin_agents.AgentRole attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_API_KEY">AZURE_GPT3_API_KEY (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_API_URL">AZURE_GPT3_API_URL (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_API_VERSION">AZURE_GPT3_API_VERSION (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_ENGINE">AZURE_GPT3_ENGINE (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_MODEL">AZURE_GPT3_MODEL (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_API_KEY">AZURE_GPT4_API_KEY (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_API_URL">AZURE_GPT4_API_URL (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_API_VERSION">AZURE_GPT4_API_VERSION (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_ENGINE">AZURE_GPT4_ENGINE (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_MODEL">AZURE_GPT4_MODEL (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.azure_openai">azure_openai (openssa.utils.llm_config.LlmBaseModel attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -237,6 +308,8 @@
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.backends">(openssa.core.ssm.base_ssm.BaseSSM property)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.base">base (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
+</li>
       <li><a href="openssa.core.adapter.base_adapter.html#openssa.core.adapter.base_adapter.BaseAdapter">BaseAdapter (class in openssa.core.adapter.base_adapter)</a>
 </li>
   </ul></td>
@@ -252,6 +325,8 @@
       <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM">BaseSSM (class in openssa.core.ssm.base_ssm)</a>
 </li>
       <li><a href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder">BaseSSMBuilder (class in openssa.core.ssm.base_ssm_builder)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.BuiltInAgentPrompt">BuiltInAgentPrompt (class in openssa.core.ooda_rag.prompts)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -270,23 +345,47 @@
       <ul>
         <li><a href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.BaseSSA.chat">(openssa.core.ssa.ssa.BaseSSA method)</a>
 </li>
+        <li><a href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA.chat">(openssa.core.ssa.ssa.RagSSA method)</a>
+</li>
+        <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService.chat">(openssa.core.ssa.ssa_service.SSARAGService class method)</a>
+</li>
         <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.chat">(openssa.core.ssa.ssa_service.SSAService class method)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.close">close() (openssa.core.slm.memory.conversation_db.ConversationDB method)</a>
+
+      <ul>
+        <li><a href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.close">(openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB method)</a>
 </li>
       </ul></li>
       <li><a href="openssa.utils.config.html#openssa.utils.config.Config">Config (class in openssa.utils.config)</a>
 </li>
-      <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.conversation_tracking">conversation_tracking (openssa.core.ssm.base_ssm.BaseSSM property)</a>
+      <li><a href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.connect">connect() (openssa.core.slm.memory.conversation_db.ConversationDB method)</a>
+
+      <ul>
+        <li><a href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.connect">(openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.conversation_tracking">conversation_tracking (openssa.core.ssm.base_ssm.BaseSSM property)</a>
+</li>
       <li><a href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB">ConversationDB (class in openssa.core.slm.memory.conversation_db)</a>
 </li>
       <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.conversations">conversations (openssa.core.ssm.base_ssm.BaseSSM property)</a>
+</li>
+      <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService.create_rag_agent">create_rag_agent() (openssa.core.ssa.ssa_service.SSARAGService class method)</a>
 </li>
       <li><a href="openssa.core.ssm.abstract_ssm_builder.html#openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder.create_ssm">create_ssm() (openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder method)</a>
 
       <ul>
         <li><a href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.create_ssm">(openssa.core.ssm.base_ssm_builder.BaseSSMBuilder method)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.create_table">create_table() (openssa.core.slm.memory.conversation_db.ConversationDB method)</a>
+
+      <ul>
+        <li><a href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.create_table">(openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB method)</a>
 </li>
       </ul></li>
       <li><a href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.custom_discuss">custom_discuss() (openssa.core.ssa.rag_ssa.RAGSSM method)</a>
@@ -307,6 +406,18 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.DEBUG">DEBUG (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.DECIDE">DECIDE (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.DECOMPOSE_INTO_OODA">DECOMPOSE_INTO_OODA (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.DECOMPOSE_INTO_SUBTASKS">DECOMPOSE_INTO_SUBTASKS (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner.decompose_task">decompose_task() (openssa.core.ooda_rag.ooda_rag.Planner method)</a>
+</li>
+      <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.DEFAULT_CONVERSATION_ID">DEFAULT_CONVERSATION_ID (openssa.core.ssm.base_ssm.BaseSSM attribute)</a>
+</li>
       <li><a href="openssa.core.ooda_rag.heuristic.html#openssa.core.ooda_rag.heuristic.DefaultOODAHeuristic">DefaultOODAHeuristic (class in openssa.core.ooda_rag.heuristic)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.tools.html#openssa.core.ooda_rag.tools.Tool.description">description (openssa.core.ooda_rag.tools.Tool property)</a>
@@ -321,13 +432,17 @@
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.discuss">(openssa.core.ssm.base_ssm.BaseSSM method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_discuss_result">do_canonicalize_discuss_result() (openssa.utils.utils.Utils static method)</a>
 </li>
       <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_query_response">do_canonicalize_query_response() (openssa.utils.utils.Utils static method)</a>
 </li>
       <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_user_input">do_canonicalize_user_input() (openssa.utils.utils.Utils static method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_user_input_and_discuss_result">do_canonicalize_user_input_and_discuss_result() (openssa.utils.utils.Utils static method)</a>
+</li>
+      <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_user_input_and_query_response">do_canonicalize_user_input_and_query_response() (openssa.utils.utils.Utils static method)</a>
 </li>
       <li><a href="openssa.core.slm.abstract_slm.html#openssa.core.slm.abstract_slm.AbstractSLM.do_discuss">do_discuss() (openssa.core.slm.abstract_slm.AbstractSLM method)</a>
 
@@ -337,18 +452,42 @@
         <li><a href="openssa.core.slm.base_slm.html#openssa.core.slm.base_slm.PassthroughSLM.do_discuss">(openssa.core.slm.base_slm.PassthroughSLM method)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.utils.logs.html#openssa.utils.logs.Logs.do_log_entry">do_log_entry() (openssa.utils.logs.Logs static method)</a>
+</li>
+      <li><a href="openssa.utils.logs.html#openssa.utils.logs.Logs.do_log_entry_and_exit">do_log_entry_and_exit() (openssa.utils.logs.Logs static method)</a>
+</li>
+      <li><a href="openssa.utils.logs.html#openssa.utils.logs.Logs.do_log_exit">do_log_exit() (openssa.utils.logs.Logs static method)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY">DOC_SRC_FILE_RELPATH_SETS_SSS_KEY (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.doc_src_file_relpaths">doc_src_file_relpaths (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver property)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.doc_src_path">doc_src_path (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver property)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DOC_SRC_PATHS_SSS_KEY">DOC_SRC_PATHS_SSS_KEY (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.DocSrcHash">DocSrcHash (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
+</li>
+      <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.download_gdrive">download_gdrive() (openssa.utils.utils.Utils static method)</a>
+</li>
+      <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.download_s3">download_s3() (openssa.utils.utils.Utils static method)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.engine">engine (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
+</li>
       <li><a href="openssa.core.adapter.abstract_adapter.html#openssa.core.adapter.abstract_adapter.AbstractAdapter.enumerate_backends">enumerate_backends() (openssa.core.adapter.abstract_adapter.AbstractAdapter method)</a>
 
       <ul>
         <li><a href="openssa.core.adapter.base_adapter.html#openssa.core.adapter.base_adapter.BaseAdapter.enumerate_backends">(openssa.core.adapter.base_adapter.BaseAdapter method)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes">EventTypes (class in openssa.core.ooda_rag.notifier)</a>
+</li>
       <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AskUserAgent.execute">execute() (openssa.core.ooda_rag.builtin_agents.AskUserAgent method)</a>
 
       <ul>
@@ -367,6 +506,16 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Executor.execute_task">execute_task() (openssa.core.ooda_rag.ooda_rag.Executor method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.EXECUTING">EXECUTING (openssa.core.ooda_rag.notifier.EventTypes attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Executor">Executor (class in openssa.core.ooda_rag.ooda_rag)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.expert_instructions">expert_instructions (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver property)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.EXPERT_INSTRUCTIONS_SSS_KEY">EXPERT_INSTRUCTIONS_SSS_KEY (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
+</li>
       <li><a href="openssa.core.ssm.abstract_ssm_builder.html#openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder.extract_structured_information">extract_structured_information() (openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder method)</a>
 
       <ul>
@@ -393,15 +542,27 @@
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.facts">(openssa.core.ssm.base_ssm.BaseSSM property)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.FALCON7B_API_KEY">FALCON7B_API_KEY (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.FALCON7B_API_URL">FALCON7B_API_URL (openssa.utils.config.Config attribute)</a>
+</li>
       <li><a href="openssa.integrations.huggingface.slm.html#openssa.integrations.huggingface.slm.Falcon7bSLM">Falcon7bSLM (class in openssa.integrations.huggingface.slm)</a>
+</li>
+      <li><a href="openssa.integrations.huggingface.ssm.html#openssa.integrations.huggingface.ssm.Falcon7bSSM">Falcon7bSSM (class in openssa.integrations.huggingface.ssm)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="openssa.integrations.huggingface.ssm.html#openssa.integrations.huggingface.ssm.Falcon7bSSM">Falcon7bSSM (class in openssa.integrations.huggingface.ssm)</a>
-</li>
       <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource.file_paths">file_paths() (openssa.utils.fs.FileSource method)</a>
 </li>
       <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource">FileSource (class in openssa.utils.fs)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.fine_tuned_model_url">fine_tuned_model_url (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver property)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.FINE_TUNED_MODELS_SSS_KEY">FINE_TUNED_MODELS_SSS_KEY (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.FORMULATE_TASK">FORMULATE_TASK (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner.formulate_task">formulate_task() (openssa.core.ooda_rag.ooda_rag.Planner method)</a>
 </li>
       <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.from_defaults">from_defaults() (openssa.integrations.api_context.AbstractAPIContext class method)</a>
 
@@ -427,10 +588,112 @@
         <li><a href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.generate_training_data">(openssa.core.ssm.base_ssm_builder.BaseSSMBuilder method)</a>
 </li>
       </ul></li>
-      <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.get_conversation">get_conversation() (openssa.core.ssm.base_ssm.BaseSSM method)</a>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner.generative_decompose_task">generative_decompose_task() (openssa.core.ooda_rag.ooda_rag.Planner method)</a>
+</li>
+      <li><a href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_aimo_llm">get_aimo_llm() (openssa.utils.aitomatic_llm_config.AitomaticLLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_aito_embeddings">get_aito_embeddings() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_aitomatic_13b">get_aitomatic_13b() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_aitomatic_llm">get_aitomatic_llm() (openssa.utils.aitomatic_llm_config.AitomaticLLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_aitomatic_yi_34b">get_aitomatic_yi_34b() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_azure_embed_model">get_azure_embed_model() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_azure_jp_api_key">get_azure_jp_api_key() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.get_citation_type">get_citation_type() (openssa.core.ooda_rag.custom.CustomBackend method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.get_citations">get_citations() (openssa.core.ooda_rag.custom.CustomBackend method)</a>
+</li>
+      <li><a href="openssa.core.slm.memory.conversation_db.html#openssa.core.slm.memory.conversation_db.ConversationDB.get_conversation">get_conversation() (openssa.core.slm.memory.conversation_db.ConversationDB method)</a>
+
+      <ul>
+        <li><a href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB.get_conversation">(openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB method)</a>
+</li>
+        <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.get_conversation">(openssa.core.ssm.base_ssm.BaseSSM method)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_default_embed_model">get_default_embed_model() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.get_evaluation_data">get_evaluation_data() (openssa.core.ooda_rag.custom.CustomBackend method)</a>
+
+      <ul>
+        <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomSSM.get_evaluation_data">(openssa.core.ooda_rag.custom.CustomSSM method)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History.get_history">get_history() (openssa.core.ooda_rag.ooda_rag.History method)</a>
+</li>
+      <li><a href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_intel_neural_chat_7b">get_intel_neural_chat_7b() (openssa.utils.aitomatic_llm_config.AitomaticLLMConfig class method)</a>
+
+      <ul>
+        <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_intel_neural_chat_7b">(openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_llama2_70b">get_llama2_70b() (openssa.utils.aitomatic_llm_config.AitomaticLLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llama_2_api_key">get_llama_2_api_key() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm">get_llm() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_35_16k">get_llm_azure_jp_35_16k() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_4_32k">get_llm_azure_jp_4_32k() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_llama_2_70b">get_llm_llama_2_70b() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_llama_2_7b">get_llm_llama_2_7b() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo">get_llm_openai_35_turbo() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_0613">get_llm_openai_35_turbo_0613() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_1106">get_llm_openai_35_turbo_1106() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_4">get_llm_openai_4() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.logs.html#openssa.utils.logs.Logs.get_logger">get_logger() (openssa.utils.logs.Logs static method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_openai">get_openai() (openssa.utils.aitomatic_llm_config.AitomaticLLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_openai_api_key">get_openai_api_key() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_openai_embed_model">get_openai_embed_model() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Model.get_response">get_response() (openssa.core.ooda_rag.ooda_rag.Model method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4">get_service_context_azure_gpt4() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4_32k">get_service_context_azure_gpt4_32k() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35">get_service_context_azure_jp_35() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35_16k">get_service_context_azure_jp_35_16k() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_70b">get_service_context_llama_2_70b() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_7b">get_service_context_llama_2_7b() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo">get_service_context_openai_35_turbo() (openssa.utils.llm_config.LLMConfig class method)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo_1106">get_service_context_openai_35_turbo_1106() (openssa.utils.llm_config.LLMConfig class method)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.GoalAgent">GoalAgent (class in openssa.core.ooda_rag.builtin_agents)</a>
 </li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.gpt35">gpt35 (openssa.utils.llm_config.LlmModelSize attribute)</a>
+</li>
+      <li><a href="openssa.integrations.azure.ssm.html#openssa.integrations.azure.ssm.APIContext.gpt3_defaults">gpt3_defaults() (openssa.integrations.azure.ssm.APIContext class method)</a>
+
+      <ul>
+        <li><a href="openssa.integrations.lepton_ai.ssm.html#openssa.integrations.lepton_ai.ssm.APIContext.gpt3_defaults">(openssa.integrations.lepton_ai.ssm.APIContext class method)</a>
+</li>
+        <li><a href="openssa.integrations.openai.ssm.html#openssa.integrations.openai.ssm.APIContext.gpt3_defaults">(openssa.integrations.openai.ssm.APIContext class method)</a>
+</li>
+      </ul></li>
       <li><a href="openssa.integrations.azure.ssm.html#openssa.integrations.azure.ssm.GPT3ChatCompletionSLM">GPT3ChatCompletionSLM (class in openssa.integrations.azure.ssm)</a>
 
       <ul>
@@ -443,8 +706,6 @@
         <li><a href="openssa.integrations.openai.ssm.html#openssa.integrations.openai.ssm.GPT3ChatCompletionSSM">(class in openssa.integrations.openai.ssm)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="openssa.integrations.azure.ssm.html#openssa.integrations.azure.ssm.GPT3CompletionSLM">GPT3CompletionSLM (class in openssa.integrations.azure.ssm)</a>
 
       <ul>
@@ -459,6 +720,16 @@
       </ul></li>
       <li><a href="openssa.integrations.llama_index.ssm.html#openssa.integrations.llama_index.ssm.GPT3SSM">GPT3SSM (class in openssa.integrations.llama_index.ssm)</a>
 </li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.gpt4">gpt4 (openssa.utils.llm_config.LlmModelSize attribute)</a>
+</li>
+      <li><a href="openssa.integrations.azure.ssm.html#openssa.integrations.azure.ssm.APIContext.gpt4_defaults">gpt4_defaults() (openssa.integrations.azure.ssm.APIContext class method)</a>
+
+      <ul>
+        <li><a href="openssa.integrations.lepton_ai.ssm.html#openssa.integrations.lepton_ai.ssm.APIContext.gpt4_defaults">(openssa.integrations.lepton_ai.ssm.APIContext class method)</a>
+</li>
+        <li><a href="openssa.integrations.openai.ssm.html#openssa.integrations.openai.ssm.APIContext.gpt4_defaults">(openssa.integrations.openai.ssm.APIContext class method)</a>
+</li>
+      </ul></li>
       <li><a href="openssa.integrations.azure.ssm.html#openssa.integrations.azure.ssm.GPT4ChatCompletionSLM">GPT4ChatCompletionSLM (class in openssa.integrations.azure.ssm)</a>
 </li>
       <li><a href="openssa.integrations.azure.ssm.html#openssa.integrations.azure.ssm.GPT4ChatCompletionSSM">GPT4ChatCompletionSSM (class in openssa.integrations.azure.ssm)</a>
@@ -490,11 +761,17 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History">History (class in openssa.core.ooda_rag.ooda_rag)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.integrations.llama_index.backend.html#openssa.integrations.llama_index.backend.Backend.index">index (openssa.integrations.llama_index.backend.Backend property)</a>
+</li>
       <li><a href="openssa.core.ssm.abstract_ssm.html#openssa.core.ssm.abstract_ssm.AbstractSSM.infer">infer() (openssa.core.ssm.abstract_ssm.AbstractSSM method)</a>
 
       <ul>
@@ -517,9 +794,27 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.intel_neural_chat_7b">intel_neural_chat_7b (openssa.utils.llm_config.AitomaticBaseURL attribute)</a>
+</li>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.is_chat_completion">is_chat_completion (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
+</li>
       <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource.is_dir">is_dir (openssa.utils.fs.FileSource property)</a>
 </li>
+      <li><a href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.is_passthrough">is_passthrough() (openssa.core.ssa.rag_ssa.RAGSSM method)</a>
+
+      <ul>
+        <li><a href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.is_passthrough">(openssa.core.ssm.rag_ssm.RAGSSM method)</a>
+</li>
+      </ul></li>
       <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource.is_single_file">is_single_file (openssa.utils.fs.FileSource property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.key">key (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -527,7 +822,35 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.LEPTONAI_API_KEY">LEPTONAI_API_KEY (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.LEPTONAI_API_URL">LEPTONAI_API_URL (openssa.utils.config.Config attribute)</a>
+</li>
       <li><a href="openssa.integrations.llama_index.ssm.html#openssa.integrations.llama_index.ssm.LeptonLlamaIndexSSM">LeptonLlamaIndexSSM (class in openssa.integrations.llama_index.ssm)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.llama2">llama2 (openssa.utils.llm_config.LlmBaseModel attribute)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.llama2_13b">llama2_13b (openssa.utils.llm_config.LlmModelSize attribute)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.llama2_70b">llama2_70b (openssa.utils.llm_config.AitomaticBaseURL attribute)</a>
+
+      <ul>
+        <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.llama2_70b">(openssa.utils.llm_config.LlmModelSize attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.llama2_7b">llama2_7b (openssa.utils.llm_config.AitomaticBaseURL attribute)</a>
+
+      <ul>
+        <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.llama2_7b">(openssa.utils.llm_config.LlmModelSize attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.integrations.llama_index.backend.html#openssa.integrations.llama_index.backend.Backend.llm">llm (openssa.integrations.llama_index.backend.Backend property)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel">LlmBaseModel (class in openssa.utils.llm_config)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig">LLMConfig (class in openssa.utils.llm_config)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize">LlmModelSize (class in openssa.utils.llm_config)</a>
 </li>
       <li><a href="openssa.core.adapter.abstract_adapter.html#openssa.core.adapter.abstract_adapter.AbstractAdapter.load">load() (openssa.core.adapter.abstract_adapter.AbstractAdapter method)</a>
 
@@ -567,13 +890,23 @@
       </ul></li>
       <li><a href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend.load_index_if_exists">load_index_if_exists() (openssa.core.backend.rag_backend.AbstractRAGBackend method)</a>
 </li>
+      <li><a href="openssa.utils.logs.html#openssa.utils.logs.Logs">Logs (class in openssa.utils.logs)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.MAINTASK">MAINTASK (openssa.core.ooda_rag.notifier.EventTypes attribute)</a>
+</li>
       <li><a href="openssa.core.prompts.html#openssa.core.prompts.Prompts.make_prompt">make_prompt() (openssa.core.prompts.Prompts method)</a>
+</li>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.max_tokens">max_tokens (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Model">Model (class in openssa.core.ooda_rag.ooda_rag)</a>
+</li>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.model">model (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
 </li>
       <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.model_config">model_config (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
 
@@ -604,8 +937,6 @@
         <li><a href="openssa.contrib.html#module-openssa.contrib">openssa.contrib</a>
 </li>
         <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#module-openssa.contrib.streamlit_ssa_prob_solver">openssa.contrib.streamlit_ssa_prob_solver</a>
-</li>
-        <li><a href="openssa.contrib.streamlit_ssa_prob_solver.pages.html#module-openssa.contrib.streamlit_ssa_prob_solver.pages">openssa.contrib.streamlit_ssa_prob_solver.pages</a>
 </li>
         <li><a href="openssa.core.html#module-openssa.core">openssa.core</a>
 </li>
@@ -742,8 +1073,14 @@
 </li>
       <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource.native_path">native_path (openssa.utils.fs.FileSource property)</a>
 </li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.neural_chat">neural_chat (openssa.utils.llm_config.LlmBaseModel attribute)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.neutral_chat_7b">neutral_chat_7b (openssa.utils.llm_config.LlmModelSize attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.NOTIFICATION">NOTIFICATION (openssa.core.ooda_rag.notifier.EventTypes attribute)</a>
+</li>
       <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.Notifier">Notifier (class in openssa.core.ooda_rag.notifier)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.Notifier.notify">notify() (openssa.core.ooda_rag.notifier.Notifier method)</a>
@@ -758,9 +1095,21 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.OBSERVE">OBSERVE (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
       <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource.on_gcs">on_gcs (openssa.utils.fs.FileSource property)</a>
 </li>
       <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource.on_s3">on_s3 (openssa.utils.fs.FileSource property)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts">OODAPrompts (class in openssa.core.ooda_rag.prompts)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.solver.html#openssa.core.ooda_rag.solver.OodaSSA">OodaSSA (class in openssa.core.ooda_rag.solver)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.openai">openai (openssa.utils.llm_config.LlmBaseModel attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.OPENAI_API_KEY">OPENAI_API_KEY (openssa.utils.config.Config attribute)</a>
+</li>
+      <li><a href="openssa.utils.config.html#openssa.utils.config.Config.OPENAI_API_URL">OPENAI_API_URL (openssa.utils.config.Config attribute)</a>
 </li>
       <li>
     openssa
@@ -781,13 +1130,6 @@
 
       <ul>
         <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#module-openssa.contrib.streamlit_ssa_prob_solver">module</a>
-</li>
-      </ul></li>
-      <li>
-    openssa.contrib.streamlit_ssa_prob_solver.pages
-
-      <ul>
-        <li><a href="openssa.contrib.streamlit_ssa_prob_solver.pages.html#module-openssa.contrib.streamlit_ssa_prob_solver.pages">module</a>
 </li>
       </ul></li>
       <li>
@@ -986,6 +1328,8 @@
         <li><a href="openssa.core.slm.memory.sqlite_conversation_db.html#module-openssa.core.slm.memory.sqlite_conversation_db">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     openssa.core.ssa
 
@@ -993,8 +1337,6 @@
         <li><a href="openssa.core.ssa.html#module-openssa.core.ssa">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     openssa.core.ssa.rag_ssa
 
@@ -1226,25 +1568,41 @@
         <li><a href="openssa.utils.utils.html#module-openssa.utils.utils">module</a>
 </li>
       </ul></li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.ORIENT">ORIENT (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Model.parse_output">parse_output() (openssa.core.ooda_rag.ooda_rag.Model method)</a>
+</li>
       <li><a href="openssa.core.slm.base_slm.html#openssa.core.slm.base_slm.PassthroughSLM">PassthroughSLM (class in openssa.core.slm.base_slm)</a>
+</li>
+      <li><a href="openssa.utils.fs.html#openssa.utils.fs.FileSource.path">path (openssa.utils.fs.FileSource attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.persist">persist() (openssa.core.ooda_rag.custom.CustomBackend method)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner">Planner (class in openssa.core.ooda_rag.ooda_rag)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="openssa.core.inferencer.abstract_inferencer.html#openssa.core.inferencer.abstract_inferencer.AbstractInferencer.predict">predict() (openssa.core.inferencer.abstract_inferencer.AbstractInferencer method)</a>
 
       <ul>
         <li><a href="openssa.core.inferencer.base_inferencer.html#openssa.core.inferencer.base_inferencer.BaseInferencer.predict">(openssa.core.inferencer.base_inferencer.BaseInferencer method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.problem">problem (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver property)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.BuiltInAgentPrompt.PROBLEM_STATEMENT">PROBLEM_STATEMENT (openssa.core.ooda_rag.prompts.BuiltInAgentPrompt attribute)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.PROBLEMS_SSS_KEY">PROBLEMS_SSS_KEY (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
+</li>
       <li><a href="openssa.core.prompts.html#openssa.core.prompts.Prompts">Prompts (class in openssa.core.prompts)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.PROVIDE_TOOLS">PROVIDE_TOOLS (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1272,12 +1630,22 @@
         <li><a href="openssa.core.adapter.base_adapter.html#openssa.core.adapter.base_adapter.BaseAdapter.query_all">(openssa.core.adapter.base_adapter.BaseAdapter method)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.integrations.llama_index.backend.html#openssa.integrations.llama_index.backend.Backend.query_engine">query_engine (openssa.integrations.llama_index.backend.Backend property)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.rag_backend">rag_backend (openssa.core.ssa.rag_ssa.RAGSSM property)</a>
+
+      <ul>
+        <li><a href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.rag_backend">(openssa.core.ssm.rag_ssm.RAGSSM property)</a>
+</li>
+      </ul></li>
+      <li><a href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA">RagSSA (class in openssa.core.ssa.ssa)</a>
+</li>
       <li><a href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM">RAGSSM (class in openssa.core.ssa.rag_ssa)</a>
 
       <ul>
@@ -1287,15 +1655,37 @@
 </li>
       </ul></li>
       <li><a href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend.read_directory">read_directory() (openssa.core.backend.rag_backend.AbstractRAGBackend method)</a>
+
+      <ul>
+        <li><a href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.read_directory">(openssa.core.ssa.rag_ssa.RAGSSM method)</a>
 </li>
+        <li><a href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_directory">(openssa.core.ssm.rag_ssm.RAGSSM method)</a>
+</li>
+      </ul></li>
       <li><a href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend.read_gdrive">read_gdrive() (openssa.core.backend.rag_backend.AbstractRAGBackend method)</a>
+
+      <ul>
+        <li><a href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.read_gdrive">(openssa.core.ssa.rag_ssa.RAGSSM method)</a>
 </li>
-      <li><a href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend.read_s3">read_s3() (openssa.core.backend.rag_backend.AbstractRAGBackend method)</a>
+        <li><a href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_gdrive">(openssa.core.ssm.rag_ssm.RAGSSM method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend.read_website">read_website() (openssa.core.backend.rag_backend.AbstractRAGBackend method)</a>
+      <li><a href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend.read_s3">read_s3() (openssa.core.backend.rag_backend.AbstractRAGBackend method)</a>
+
+      <ul>
+        <li><a href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_s3">(openssa.core.ssm.rag_ssm.RAGSSM method)</a>
 </li>
+      </ul></li>
+      <li><a href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend.read_website">read_website() (openssa.core.backend.rag_backend.AbstractRAGBackend method)</a>
+
+      <ul>
+        <li><a href="openssa.core.ssa.rag_ssa.html#openssa.core.ssa.rag_ssa.RAGSSM.read_website">(openssa.core.ssa.rag_ssa.RAGSSM method)</a>
+</li>
+        <li><a href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_website">(openssa.core.ssm.rag_ssm.RAGSSM method)</a>
+</li>
+      </ul></li>
       <li><a href="openssa.core.ooda_rag.tools.html#openssa.core.ooda_rag.tools.ReasearchAgentTool">ReasearchAgentTool (class in openssa.core.ooda_rag.tools)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.tools.html#openssa.core.ooda_rag.tools.ResearchDocumentsTool">ResearchDocumentsTool (class in openssa.core.ooda_rag.tools)</a>
@@ -1307,7 +1697,11 @@
 </li>
       </ul></li>
       <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.run">run() (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver method)</a>
+
+      <ul>
+        <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Solver.run">(openssa.core.ooda_rag.ooda_rag.Solver method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1362,8 +1756,6 @@
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.select_heuristics">(openssa.core.ssm.base_ssm.BaseSSM method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="openssa.core.adapter.abstract_adapter.html#openssa.core.adapter.abstract_adapter.AbstractAdapter.select_inferencers">select_inferencers() (openssa.core.adapter.abstract_adapter.AbstractAdapter method)</a>
 
       <ul>
@@ -1378,6 +1770,8 @@
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.select_inferencers">(openssa.core.ssm.base_ssm.BaseSSM method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="openssa.utils.config.html#openssa.utils.config.Config.setenv">setenv() (openssa.utils.config.Config static method)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.SimpleNotifier">SimpleNotifier (class in openssa.core.ooda_rag.notifier)</a>
@@ -1396,15 +1790,29 @@
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.slm">(openssa.core.ssm.base_ssm.BaseSSM property)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.core.ooda_rag.solver.html#openssa.core.ooda_rag.solver.OodaSSA.solve">solve() (openssa.core.ooda_rag.solver.OodaSSA method)</a>
+</li>
       <li><a href="openssa.core.ssm.abstract_ssm.html#openssa.core.ssm.abstract_ssm.AbstractSSM.solve_problem">solve_problem() (openssa.core.ssm.abstract_ssm.AbstractSSM method)</a>
 
       <ul>
         <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.solve_problem">(openssa.core.ssm.base_ssm.BaseSSM method)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Solver">Solver (class in openssa.core.ooda_rag.ooda_rag)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.sort_longest_nodes">sort_longest_nodes() (openssa.core.ooda_rag.custom.CustomBackend method)</a>
+</li>
       <li><a href="openssa.core.slm.memory.sqlite_conversation_db.html#openssa.core.slm.memory.sqlite_conversation_db.SQLiteConversationDB">SQLiteConversationDB (class in openssa.core.slm.memory.sqlite_conversation_db)</a>
 </li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.ssa">ssa (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver property)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.ssa_solve">ssa_solve() (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver method)</a>
+</li>
       <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver">SSAProbSolver (class in openssa.contrib.streamlit_ssa_prob_solver)</a>
+</li>
+      <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSARAGService">SSARAGService (class in openssa.core.ssa.ssa_service)</a>
+</li>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.SSAS_SSS_KEY">SSAS_SSS_KEY (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
 </li>
       <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService">SSAService (class in openssa.core.ssa.ssa_service)</a>
 </li>
@@ -1414,7 +1822,19 @@
         <li><a href="openssa.integrations.llama_index.ssm.html#openssa.integrations.llama_index.ssm.SSM">(class in openssa.integrations.llama_index.ssm)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.ssm">ssm (openssa.core.ssm.base_ssm_builder.BaseSSMBuilder property)</a>
+</li>
+      <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.storage_dir">storage_dir (openssa.core.ssm.base_ssm.BaseSSM property)</a>
+</li>
       <li><a href="openssa.contrib.html#openssa.contrib.StreamlitSSAProbSolver">StreamlitSSAProbSolver (in module openssa.contrib)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.SUBTASK">SUBTASK (openssa.core.ooda_rag.notifier.EventTypes attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.SYNTHESIZE_RESULT">SYNTHESIZE_RESULT (openssa.core.ooda_rag.prompts.OODAPrompts attribute)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Solver.synthesize_result">synthesize_result() (openssa.core.ooda_rag.ooda_rag.Solver method)</a>
+</li>
+      <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole.SYSTEM">SYSTEM (openssa.core.ooda_rag.builtin_agents.AgentRole attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1422,43 +1842,79 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.TASK_RESULT">TASK_RESULT (openssa.core.ooda_rag.notifier.EventTypes attribute)</a>
+</li>
       <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.TaskAgent">TaskAgent (class in openssa.core.ooda_rag.builtin_agents)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.heuristic.html#openssa.core.ooda_rag.heuristic.TaskDecompositionHeuristic">TaskDecompositionHeuristic (class in openssa.core.ooda_rag.heuristic)</a>
 </li>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.temperature">temperature (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
+</li>
       <li><a href="openssa.core.backend.text_backend.html#openssa.core.backend.text_backend.TextBackend">TextBackend (class in openssa.core.backend.text_backend)</a>
+</li>
+      <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils.timeit">timeit() (openssa.utils.utils.Utils static method)</a>
 </li>
       <li><a href="openssa.core.ooda_rag.tools.html#openssa.core.ooda_rag.tools.Tool">Tool (class in openssa.core.ooda_rag.tools)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.AbstractSSA.train">train() (openssa.core.ssa.ssa.AbstractSSA class method)</a>
 
       <ul>
         <li><a href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.BaseSSA.train">(openssa.core.ssa.ssa.BaseSSA class method)</a>
+</li>
+        <li><a href="openssa.core.ssa.ssa.html#openssa.core.ssa.ssa.RagSSA.train">(openssa.core.ssa.ssa.RagSSA class method)</a>
 </li>
         <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.AbstractSSAService.train">(openssa.core.ssa.ssa_service.AbstractSSAService class method)</a>
 </li>
         <li><a href="openssa.core.ssa.ssa_service.html#openssa.core.ssa.ssa_service.SSAService.train">(openssa.core.ssa.ssa_service.SSAService class method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="openssa.core.ssm.abstract_ssm_builder.html#openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder.train_slm">train_slm() (openssa.core.ssm.abstract_ssm_builder.AbstractSSMBuilder method)</a>
 
       <ul>
         <li><a href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.train_slm">(openssa.core.ssm.base_ssm_builder.BaseSSMBuilder method)</a>
 </li>
       </ul></li>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.type">type (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.contrib.streamlit_ssa_prob_solver.html#openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver.Uid">Uid (openssa.contrib.streamlit_ssa_prob_solver.SSAProbSolver attribute)</a>
+</li>
       <li><a href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.update_conversation">update_conversation() (openssa.core.ssm.base_ssm.BaseSSM method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole.USER">USER (openssa.core.ooda_rag.builtin_agents.AgentRole attribute)</a>
+</li>
       <li><a href="openssa.utils.utils.html#openssa.utils.utils.Utils">Utils (class in openssa.utils.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.integrations.api_context.html#openssa.integrations.api_context.AbstractAPIContext.version">version (openssa.integrations.api_context.AbstractAPIContext attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.yi">yi (openssa.utils.llm_config.LlmBaseModel attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.yi_34">yi_34 (openssa.utils.llm_config.LlmModelSize attribute)</a>
+</li>
+      <li><a href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.yi_34b">yi_34b (openssa.utils.llm_config.AitomaticBaseURL attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1469,7 +1925,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

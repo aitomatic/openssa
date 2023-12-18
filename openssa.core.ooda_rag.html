@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.core.ooda_rag namespace</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -92,6 +92,12 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.builtin_agents.html">openssa.core.ooda_rag.builtin_agents module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole"><code class="docutils literal notranslate"><span class="pre">AgentRole</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole.ASSISTANT"><code class="docutils literal notranslate"><span class="pre">AgentRole.ASSISTANT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole.SYSTEM"><code class="docutils literal notranslate"><span class="pre">AgentRole.SYSTEM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AgentRole.USER"><code class="docutils literal notranslate"><span class="pre">AgentRole.USER</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AskUserAgent"><code class="docutils literal notranslate"><span class="pre">AskUserAgent</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.builtin_agents.html#openssa.core.ooda_rag.builtin_agents.AskUserAgent.execute"><code class="docutils literal notranslate"><span class="pre">AskUserAgent.execute()</span></code></a></li>
 </ul>
@@ -108,11 +114,19 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.custom.html">openssa.core.ooda_rag.custom module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend"><code class="docutils literal notranslate"><span class="pre">CustomBackend</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.add_feedback"><code class="docutils literal notranslate"><span class="pre">CustomBackend.add_feedback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.get_citation_type"><code class="docutils literal notranslate"><span class="pre">CustomBackend.get_citation_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.get_citations"><code class="docutils literal notranslate"><span class="pre">CustomBackend.get_citations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.get_evaluation_data"><code class="docutils literal notranslate"><span class="pre">CustomBackend.get_evaluation_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.persist"><code class="docutils literal notranslate"><span class="pre">CustomBackend.persist()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.query"><code class="docutils literal notranslate"><span class="pre">CustomBackend.query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomBackend.sort_longest_nodes"><code class="docutils literal notranslate"><span class="pre">CustomBackend.sort_longest_nodes()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomSSM"><code class="docutils literal notranslate"><span class="pre">CustomSSM</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomSSM.add_feedback"><code class="docutils literal notranslate"><span class="pre">CustomSSM.add_feedback()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomSSM.discuss"><code class="docutils literal notranslate"><span class="pre">CustomSSM.discuss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.custom.html#openssa.core.ooda_rag.custom.CustomSSM.get_evaluation_data"><code class="docutils literal notranslate"><span class="pre">CustomSSM.get_evaluation_data()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -137,6 +151,14 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html">openssa.core.ooda_rag.notifier module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes"><code class="docutils literal notranslate"><span class="pre">EventTypes</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.EXECUTING"><code class="docutils literal notranslate"><span class="pre">EventTypes.EXECUTING</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.MAINTASK"><code class="docutils literal notranslate"><span class="pre">EventTypes.MAINTASK</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.NOTIFICATION"><code class="docutils literal notranslate"><span class="pre">EventTypes.NOTIFICATION</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.SUBTASK"><code class="docutils literal notranslate"><span class="pre">EventTypes.SUBTASK</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.EventTypes.TASK_RESULT"><code class="docutils literal notranslate"><span class="pre">EventTypes.TASK_RESULT</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.Notifier"><code class="docutils literal notranslate"><span class="pre">Notifier</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.notifier.html#openssa.core.ooda_rag.notifier.Notifier.notify"><code class="docutils literal notranslate"><span class="pre">Notifier.notify()</span></code></a></li>
 </ul>
@@ -148,11 +170,62 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html">openssa.core.ooda_rag.ooda_rag module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner"><code class="docutils literal notranslate"><span class="pre">Planner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Executor"><code class="docutils literal notranslate"><span class="pre">Executor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Executor.execute_task"><code class="docutils literal notranslate"><span class="pre">Executor.execute_task()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html">openssa.core.ooda_rag.prompts module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.solver.html">openssa.core.ooda_rag.solver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History"><code class="docutils literal notranslate"><span class="pre">History</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History.add_message"><code class="docutils literal notranslate"><span class="pre">History.add_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History.append_history"><code class="docutils literal notranslate"><span class="pre">History.append_history()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.History.get_history"><code class="docutils literal notranslate"><span class="pre">History.get_history()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Model.get_response"><code class="docutils literal notranslate"><span class="pre">Model.get_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Model.parse_output"><code class="docutils literal notranslate"><span class="pre">Model.parse_output()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner"><code class="docutils literal notranslate"><span class="pre">Planner</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner.decompose_task"><code class="docutils literal notranslate"><span class="pre">Planner.decompose_task()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner.formulate_task"><code class="docutils literal notranslate"><span class="pre">Planner.formulate_task()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Planner.generative_decompose_task"><code class="docutils literal notranslate"><span class="pre">Planner.generative_decompose_task()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Solver"><code class="docutils literal notranslate"><span class="pre">Solver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Solver.run"><code class="docutils literal notranslate"><span class="pre">Solver.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.ooda_rag.html#openssa.core.ooda_rag.ooda_rag.Solver.synthesize_result"><code class="docutils literal notranslate"><span class="pre">Solver.synthesize_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html">openssa.core.ooda_rag.prompts module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.BuiltInAgentPrompt"><code class="docutils literal notranslate"><span class="pre">BuiltInAgentPrompt</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.BuiltInAgentPrompt.ASK_USER"><code class="docutils literal notranslate"><span class="pre">BuiltInAgentPrompt.ASK_USER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.BuiltInAgentPrompt.PROBLEM_STATEMENT"><code class="docutils literal notranslate"><span class="pre">BuiltInAgentPrompt.PROBLEM_STATEMENT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts"><code class="docutils literal notranslate"><span class="pre">OODAPrompts</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.ACT"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.ACT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.DECIDE"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.DECIDE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.DECOMPOSE_INTO_OODA"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.DECOMPOSE_INTO_OODA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.DECOMPOSE_INTO_SUBTASKS"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.DECOMPOSE_INTO_SUBTASKS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.FORMULATE_TASK"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.FORMULATE_TASK</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.OBSERVE"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.OBSERVE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.ORIENT"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.ORIENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.PROVIDE_TOOLS"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.PROVIDE_TOOLS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.prompts.html#openssa.core.ooda_rag.prompts.OODAPrompts.SYNTHESIZE_RESULT"><code class="docutils literal notranslate"><span class="pre">OODAPrompts.SYNTHESIZE_RESULT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.solver.html">openssa.core.ooda_rag.solver module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.solver.html#openssa.core.ooda_rag.solver.OodaSSA"><code class="docutils literal notranslate"><span class="pre">OodaSSA</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.solver.html#openssa.core.ooda_rag.solver.OodaSSA.activate_resources"><code class="docutils literal notranslate"><span class="pre">OodaSSA.activate_resources()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.solver.html#openssa.core.ooda_rag.solver.OodaSSA.solve"><code class="docutils literal notranslate"><span class="pre">OodaSSA.solve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ooda_rag.tools.html">openssa.core.ooda_rag.tools module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ooda_rag.tools.html#openssa.core.ooda_rag.tools.AskUserTool"><code class="docutils literal notranslate"><span class="pre">AskUserTool</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ooda_rag.tools.html#openssa.core.ooda_rag.tools.AskUserTool.execute"><code class="docutils literal notranslate"><span class="pre">AskUserTool.execute()</span></code></a></li>
@@ -183,7 +256,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

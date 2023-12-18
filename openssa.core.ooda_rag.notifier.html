@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.core.ooda_rag.notifier module</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -88,6 +88,37 @@
   <section id="module-openssa.core.ooda_rag.notifier">
 <span id="openssa-core-ooda-rag-notifier-module"></span><h1>openssa.core.ooda_rag.notifier module<a class="headerlink" href="#module-openssa.core.ooda_rag.notifier" title="Link to this heading">¶</a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.notifier.EventTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.core.ooda_rag.notifier.</span></span><span class="sig-name descname"><span class="pre">EventTypes</span></span><a class="headerlink" href="#openssa.core.ooda_rag.notifier.EventTypes" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.notifier.EventTypes.EXECUTING">
+<span class="sig-name descname"><span class="pre">EXECUTING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'executing'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.notifier.EventTypes.EXECUTING" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.notifier.EventTypes.MAINTASK">
+<span class="sig-name descname"><span class="pre">MAINTASK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ooda-maintask'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.notifier.EventTypes.MAINTASK" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.notifier.EventTypes.NOTIFICATION">
+<span class="sig-name descname"><span class="pre">NOTIFICATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'notification'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.notifier.EventTypes.NOTIFICATION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.notifier.EventTypes.SUBTASK">
+<span class="sig-name descname"><span class="pre">SUBTASK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ooda-subtask'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.notifier.EventTypes.SUBTASK" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.notifier.EventTypes.TASK_RESULT">
+<span class="sig-name descname"><span class="pre">TASK_RESULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'task_result'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.notifier.EventTypes.TASK_RESULT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="openssa.core.ooda_rag.notifier.Notifier">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.core.ooda_rag.notifier.</span></span><span class="sig-name descname"><span class="pre">Notifier</span></span><a class="headerlink" href="#openssa.core.ooda_rag.notifier.Notifier" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
@@ -118,7 +149,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

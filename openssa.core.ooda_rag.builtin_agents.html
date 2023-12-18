@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.core.ooda_rag.builtin_agents module</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -88,6 +88,27 @@
   <section id="module-openssa.core.ooda_rag.builtin_agents">
 <span id="openssa-core-ooda-rag-builtin-agents-module"></span><h1>openssa.core.ooda_rag.builtin_agents module<a class="headerlink" href="#module-openssa.core.ooda_rag.builtin_agents" title="Link to this heading">¶</a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.builtin_agents.AgentRole">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.core.ooda_rag.builtin_agents.</span></span><span class="sig-name descname"><span class="pre">AgentRole</span></span><a class="headerlink" href="#openssa.core.ooda_rag.builtin_agents.AgentRole" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.builtin_agents.AgentRole.ASSISTANT">
+<span class="sig-name descname"><span class="pre">ASSISTANT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'assistant'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.builtin_agents.AgentRole.ASSISTANT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.builtin_agents.AgentRole.SYSTEM">
+<span class="sig-name descname"><span class="pre">SYSTEM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'system'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.builtin_agents.AgentRole.SYSTEM" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.core.ooda_rag.builtin_agents.AgentRole.USER">
+<span class="sig-name descname"><span class="pre">USER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'user'</span></em><a class="headerlink" href="#openssa.core.ooda_rag.builtin_agents.AgentRole.USER" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="openssa.core.ooda_rag.builtin_agents.AskUserAgent">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.core.ooda_rag.builtin_agents.</span></span><span class="sig-name descname"><span class="pre">AskUserAgent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llm:</span> <span class="pre">~openai.OpenAI</span> <span class="pre">=</span> <span class="pre">&lt;openai.OpenAI</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'aitomatic-model'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ask_user_heuristic:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversation:</span> <span class="pre">~typing.List</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.core.ooda_rag.builtin_agents.AskUserAgent" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#openssa.core.ooda_rag.builtin_agents.TaskAgent" title="openssa.core.ooda_rag.builtin_agents.TaskAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">TaskAgent</span></code></a></p>
@@ -133,7 +154,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

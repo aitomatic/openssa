@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.core.ssm namespace</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -128,6 +128,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ssm.base_ssm.html">openssa.core.ssm.base_ssm module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM"><code class="docutils literal notranslate"><span class="pre">BaseSSM</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.DEFAULT_CONVERSATION_ID"><code class="docutils literal notranslate"><span class="pre">BaseSSM.DEFAULT_CONVERSATION_ID</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.adapter"><code class="docutils literal notranslate"><span class="pre">BaseSSM.adapter</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.add_knowledge"><code class="docutils literal notranslate"><span class="pre">BaseSSM.add_knowledge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.api_call"><code class="docutils literal notranslate"><span class="pre">BaseSSM.api_call()</span></code></a></li>
@@ -150,6 +151,7 @@
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.select_inferencers"><code class="docutils literal notranslate"><span class="pre">BaseSSM.select_inferencers()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.slm"><code class="docutils literal notranslate"><span class="pre">BaseSSM.slm</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.solve_problem"><code class="docutils literal notranslate"><span class="pre">BaseSSM.solve_problem()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.storage_dir"><code class="docutils literal notranslate"><span class="pre">BaseSSM.storage_dir</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm.html#openssa.core.ssm.base_ssm.BaseSSM.update_conversation"><code class="docutils literal notranslate"><span class="pre">BaseSSM.update_conversation()</span></code></a></li>
 </ul>
 </li>
@@ -162,6 +164,7 @@
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.create_ssm"><code class="docutils literal notranslate"><span class="pre">BaseSSMBuilder.create_ssm()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.extract_structured_information"><code class="docutils literal notranslate"><span class="pre">BaseSSMBuilder.extract_structured_information()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.generate_training_data"><code class="docutils literal notranslate"><span class="pre">BaseSSMBuilder.generate_training_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.ssm"><code class="docutils literal notranslate"><span class="pre">BaseSSMBuilder.ssm</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.base_ssm_builder.html#openssa.core.ssm.base_ssm_builder.BaseSSMBuilder.train_slm"><code class="docutils literal notranslate"><span class="pre">BaseSSMBuilder.train_slm()</span></code></a></li>
 </ul>
 </li>
@@ -170,6 +173,12 @@
 <li class="toctree-l1"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html">openssa.core.ssm.rag_ssm module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM"><code class="docutils literal notranslate"><span class="pre">RAGSSM</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.custom_discuss"><code class="docutils literal notranslate"><span class="pre">RAGSSM.custom_discuss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.is_passthrough"><code class="docutils literal notranslate"><span class="pre">RAGSSM.is_passthrough()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.rag_backend"><code class="docutils literal notranslate"><span class="pre">RAGSSM.rag_backend</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_directory"><code class="docutils literal notranslate"><span class="pre">RAGSSM.read_directory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_gdrive"><code class="docutils literal notranslate"><span class="pre">RAGSSM.read_gdrive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_s3"><code class="docutils literal notranslate"><span class="pre">RAGSSM.read_s3()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.core.ssm.rag_ssm.html#openssa.core.ssm.rag_ssm.RAGSSM.read_website"><code class="docutils literal notranslate"><span class="pre">RAGSSM.read_website()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -184,7 +193,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

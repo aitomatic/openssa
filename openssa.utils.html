@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>openssa.utils namespace</title>
     
@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=2e6184dd"></script>
+        <script src="_static/documentation_options.js?v=e5e81410"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -28,7 +28,7 @@
     <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
   <router-link to="index.html" class="home-link">
     
-      <span class="site-name">OpenSSA</span>
+      <span class="site-name">openssa</span>
     
   </router-link>
 
@@ -94,7 +94,10 @@
 <li class="toctree-l1"><a class="reference internal" href="openssa.utils.cli.html">openssa.utils.cli package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.utils.cli.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.cli.contrib.html">openssa.utils.cli.contrib namespace</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="openssa.utils.cli.contrib.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.utils.cli.contrib.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="openssa.utils.cli.contrib.ssa_prob_solver.html">openssa.utils.cli.contrib.ssa_prob_solver module</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -108,9 +111,36 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html">openssa.utils.aitomatic_llm_config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html">openssa.utils.aitomatic_llm_config module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig"><code class="docutils literal notranslate"><span class="pre">AitomaticLLMConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_aimo_llm"><code class="docutils literal notranslate"><span class="pre">AitomaticLLMConfig.get_aimo_llm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_aitomatic_llm"><code class="docutils literal notranslate"><span class="pre">AitomaticLLMConfig.get_aitomatic_llm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_intel_neural_chat_7b"><code class="docutils literal notranslate"><span class="pre">AitomaticLLMConfig.get_intel_neural_chat_7b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_llama2_70b"><code class="docutils literal notranslate"><span class="pre">AitomaticLLMConfig.get_llama2_70b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.aitomatic_llm_config.html#openssa.utils.aitomatic_llm_config.AitomaticLLMConfig.get_openai"><code class="docutils literal notranslate"><span class="pre">AitomaticLLMConfig.get_openai()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.utils.config.html">openssa.utils.config module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_API_KEY"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT3_API_KEY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_API_URL"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT3_API_URL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_API_VERSION"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT3_API_VERSION</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_ENGINE"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT3_ENGINE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT3_MODEL"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT3_MODEL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_API_KEY"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT4_API_KEY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_API_URL"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT4_API_URL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_API_VERSION"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT4_API_VERSION</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_ENGINE"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT4_ENGINE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.AZURE_GPT4_MODEL"><code class="docutils literal notranslate"><span class="pre">Config.AZURE_GPT4_MODEL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.DEBUG"><code class="docutils literal notranslate"><span class="pre">Config.DEBUG</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.FALCON7B_API_KEY"><code class="docutils literal notranslate"><span class="pre">Config.FALCON7B_API_KEY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.FALCON7B_API_URL"><code class="docutils literal notranslate"><span class="pre">Config.FALCON7B_API_URL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.LEPTONAI_API_KEY"><code class="docutils literal notranslate"><span class="pre">Config.LEPTONAI_API_KEY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.LEPTONAI_API_URL"><code class="docutils literal notranslate"><span class="pre">Config.LEPTONAI_API_URL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.OPENAI_API_KEY"><code class="docutils literal notranslate"><span class="pre">Config.OPENAI_API_KEY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.OPENAI_API_URL"><code class="docutils literal notranslate"><span class="pre">Config.OPENAI_API_URL</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.config.html#openssa.utils.config.Config.setenv"><code class="docutils literal notranslate"><span class="pre">Config.setenv()</span></code></a></li>
 </ul>
 </li>
@@ -126,12 +156,79 @@
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.fs.html#openssa.utils.fs.FileSource.native_path"><code class="docutils literal notranslate"><span class="pre">FileSource.native_path</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.fs.html#openssa.utils.fs.FileSource.on_gcs"><code class="docutils literal notranslate"><span class="pre">FileSource.on_gcs</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.fs.html#openssa.utils.fs.FileSource.on_s3"><code class="docutils literal notranslate"><span class="pre">FileSource.on_s3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.fs.html#openssa.utils.fs.FileSource.path"><code class="docutils literal notranslate"><span class="pre">FileSource.path</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="openssa.utils.llm_config.html">openssa.utils.llm_config module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="openssa.utils.logs.html">openssa.utils.logs module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openssa.utils.llm_config.html">openssa.utils.llm_config module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL"><code class="docutils literal notranslate"><span class="pre">AitomaticBaseURL</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.intel_neural_chat_7b"><code class="docutils literal notranslate"><span class="pre">AitomaticBaseURL.intel_neural_chat_7b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.llama2_70b"><code class="docutils literal notranslate"><span class="pre">AitomaticBaseURL.llama2_70b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.llama2_7b"><code class="docutils literal notranslate"><span class="pre">AitomaticBaseURL.llama2_7b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.AitomaticBaseURL.yi_34b"><code class="docutils literal notranslate"><span class="pre">AitomaticBaseURL.yi_34b</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig"><code class="docutils literal notranslate"><span class="pre">LLMConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_aito_embeddings"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_aito_embeddings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_aitomatic_13b"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_aitomatic_13b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_aitomatic_yi_34b"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_aitomatic_yi_34b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_azure_embed_model"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_azure_embed_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_azure_jp_api_key"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_azure_jp_api_key()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_default_embed_model"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_default_embed_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_intel_neural_chat_7b"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_intel_neural_chat_7b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llama_2_api_key"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llama_2_api_key()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_35_16k"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_azure_jp_35_16k()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_azure_jp_4_32k"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_azure_jp_4_32k()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_llama_2_70b"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_llama_2_70b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_llama_2_7b"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_llama_2_7b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_openai_35_turbo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_0613"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_openai_35_turbo_0613()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_35_turbo_1106"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_openai_35_turbo_1106()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_llm_openai_4"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_llm_openai_4()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_openai_api_key"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_openai_api_key()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_openai_embed_model"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_openai_embed_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_azure_gpt4()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_gpt4_32k"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_azure_gpt4_32k()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_azure_jp_35()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_azure_jp_35_16k"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_azure_jp_35_16k()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_70b"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_llama_2_70b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_llama_2_7b"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_llama_2_7b()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_openai_35_turbo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LLMConfig.get_service_context_openai_35_turbo_1106"><code class="docutils literal notranslate"><span class="pre">LLMConfig.get_service_context_openai_35_turbo_1106()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel"><code class="docutils literal notranslate"><span class="pre">LlmBaseModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.azure_openai"><code class="docutils literal notranslate"><span class="pre">LlmBaseModel.azure_openai</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.llama2"><code class="docutils literal notranslate"><span class="pre">LlmBaseModel.llama2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.neural_chat"><code class="docutils literal notranslate"><span class="pre">LlmBaseModel.neural_chat</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.openai"><code class="docutils literal notranslate"><span class="pre">LlmBaseModel.openai</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmBaseModel.yi"><code class="docutils literal notranslate"><span class="pre">LlmBaseModel.yi</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize"><code class="docutils literal notranslate"><span class="pre">LlmModelSize</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.gpt35"><code class="docutils literal notranslate"><span class="pre">LlmModelSize.gpt35</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.gpt4"><code class="docutils literal notranslate"><span class="pre">LlmModelSize.gpt4</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.llama2_13b"><code class="docutils literal notranslate"><span class="pre">LlmModelSize.llama2_13b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.llama2_70b"><code class="docutils literal notranslate"><span class="pre">LlmModelSize.llama2_70b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.llama2_7b"><code class="docutils literal notranslate"><span class="pre">LlmModelSize.llama2_7b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.neutral_chat_7b"><code class="docutils literal notranslate"><span class="pre">LlmModelSize.neutral_chat_7b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.llm_config.html#openssa.utils.llm_config.LlmModelSize.yi_34"><code class="docutils literal notranslate"><span class="pre">LlmModelSize.yi_34</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="openssa.utils.logs.html">openssa.utils.logs module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="openssa.utils.logs.html#openssa.utils.logs.Logs"><code class="docutils literal notranslate"><span class="pre">Logs</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.logs.html#openssa.utils.logs.Logs.do_log_entry"><code class="docutils literal notranslate"><span class="pre">Logs.do_log_entry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.logs.html#openssa.utils.logs.Logs.do_log_entry_and_exit"><code class="docutils literal notranslate"><span class="pre">Logs.do_log_entry_and_exit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.logs.html#openssa.utils.logs.Logs.do_log_exit"><code class="docutils literal notranslate"><span class="pre">Logs.do_log_exit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.logs.html#openssa.utils.logs.Logs.get_logger"><code class="docutils literal notranslate"><span class="pre">Logs.get_logger()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="openssa.utils.utils.html">openssa.utils.utils module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.canonicalize_discuss_result"><code class="docutils literal notranslate"><span class="pre">Utils.canonicalize_discuss_result()</span></code></a></li>
@@ -140,6 +237,11 @@
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_discuss_result"><code class="docutils literal notranslate"><span class="pre">Utils.do_canonicalize_discuss_result()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_query_response"><code class="docutils literal notranslate"><span class="pre">Utils.do_canonicalize_query_response()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_user_input"><code class="docutils literal notranslate"><span class="pre">Utils.do_canonicalize_user_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_user_input_and_discuss_result"><code class="docutils literal notranslate"><span class="pre">Utils.do_canonicalize_user_input_and_discuss_result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.do_canonicalize_user_input_and_query_response"><code class="docutils literal notranslate"><span class="pre">Utils.do_canonicalize_user_input_and_query_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.download_gdrive"><code class="docutils literal notranslate"><span class="pre">Utils.download_gdrive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.download_s3"><code class="docutils literal notranslate"><span class="pre">Utils.download_s3()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.utils.utils.html#openssa.utils.utils.Utils.timeit"><code class="docutils literal notranslate"><span class="pre">Utils.timeit()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -154,7 +256,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc..
+      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>
