@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
 from sys import version_info
 if version_info < (3, 11):
@@ -29,8 +30,12 @@ from openssa.utils.logs import Logs, logger, mlogger
 from openssa.utils.utils import Utils
 
 
-with open(file=Path(__file__).parent.parent / 'pyproject.toml', mode='rb') as f:
-    __version__: str = tomllib.load(f)['tool']['poetry']['version']
+try:
+    __version__: str = version(distribution_name='OpenSSA')
+
+except PackageNotFoundError:
+    with open(file=Path(__file__).parent.parent / 'pyproject.toml', mode='rb') as f:
+        __version__: str = tomllib.load(f)['tool']['poetry']['version']
 
 
 __all__: Sequence[str] = (
