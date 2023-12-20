@@ -22,7 +22,7 @@ jobs:
         run: make get-poetry
 
       - name: Build Distribution
-        run: make dist
+        run: make build
 
       - name: Publish Distribution
         uses: pypa/gh-action-pypi-publish@release/v1

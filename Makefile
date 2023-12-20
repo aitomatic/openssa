@@ -60,7 +60,7 @@ pre-commit: lint test
 
 # DISTRIBUTION BUILDING & PYPI RELEASE
 # ====================================
-dist:
+build:
 	poetry build
 
 pypi-auth:
@@ -70,7 +70,7 @@ pypi-auth:
 		poetry config pypi-token.pypi $(PYPI_TOKEN) ; \
 	fi
 
-release: dist
+release: build
 	poetry publish
 
 

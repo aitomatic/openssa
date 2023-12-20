@@ -74,12 +74,12 @@ set DOCS_BUILD_DIR=%DOCS_DIR%\_build
 
 :: DISTRIBUTION BUILDING & PYPI RELEASE
 :: ====================================
-:dist
+:build
   poetry build
   GOTO end
 
 :release
-  GOTO dist
+  GOTO build
   poetry publish
   GOTO end
 
