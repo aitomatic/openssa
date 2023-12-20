@@ -10,8 +10,19 @@ IF "%TARGET%"=="get-poetry" GOTO get-poetry
 IF "%TARGET%"=="install" GOTO install
 
 IF "%TARGET%"=="lint" GOTO lint
+IF "%TARGET%"=="lint-flake8" GOTO lint-flake8
+IF "%TARGET%"=="lint-pylint" GOTO lint-pylint
 
 IF "%TARGET%"=="test" GOTO test
+
+IF "%TARGET%"=="pre-commit" GOTO pre-commit
+
+IF "%TARGET%"=="build" GOTO build
+IF "%TARGET%"=="release" GOTO release
+
+IF "%TARGET%"=="version" GOTO version
+
+IF "%TARGET%"=="launch-solver" GOTO launch-solver
 
 
 :: DIRECTORY NAMES & PATHS
