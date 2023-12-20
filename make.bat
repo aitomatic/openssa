@@ -16,18 +16,13 @@ IF "%TARGET%"=="test" GOTO test
 
 :: DIRECTORY NAMES & PATHS
 :: =======================
-set LIB_DIR_NAME=openssa
-set LIB_DIR=.\%LIB_DIR_NAME%
+set LIB_DIR=openssa
 
-set EXAMPLES_DIR_NAME=examples
-set EXAMPLES_DIR=.\%EXAMPLES_DIR_NAME%
+set EXAMPLES_DIR=examples
 
-set TESTS_DIR_NAME=tests
-set TESTS_DIR=.\%TESTS_DIR_NAME%
+set TESTS_DIR=tests
 
-set DOCS_DIR_NAME=docs
-set DOCS_DIR=.\%DOCS_DIR_NAME%
-
+set DOCS_DIR=docs
 set DOCS_BUILD_DIR=%DOCS_DIR%\_build
 
 
@@ -54,11 +49,11 @@ set DOCS_BUILD_DIR=%DOCS_DIR%\_build
   GOTO end
 
 :lint-flake8
-	poetry run flake8 %LIB_DIR_NAME% %DOCS_DIR_NAME% %EXAMPLES_DIR_NAME% %TESTS_DIR_NAME%
+	poetry run flake8 %LIB_DIR% %DOCS_DIR% %EXAMPLES_DIR% %TESTS_DIR%
   GOTO end
 
 :lint-pylint
-	poetry run pylint %LIB_DIR_NAME% %DOCS_DIR_NAME% %EXAMPLES_DIR_NAME% %TESTS_DIR_NAME%
+	poetry run pylint %LIB_DIR% %DOCS_DIR% %EXAMPLES_DIR% %TESTS_DIR%
   GOTO end
 
 
@@ -66,6 +61,40 @@ set DOCS_BUILD_DIR=%DOCS_DIR%\_build
 :: =======
 :test
   poetry run pytest
+  GOTO end
+
+
+:: PRE-COMMIT LINTING & TESTING
+:: ============================
+:pre-commit
+  GOTO lint
+  GOTO test
+  GOTO end
+
+
+:: DISTRIBUTION BUILDING & PYPI RELEASE
+:: ====================================
+:dist
+  poetry build
+  GOTO end
+
+:release
+  GOTO dist
+  poetry publish
+  GOTO end
+
+
+:: VERSION MANAGEMENT
+:: ==================
+:version
+  poetry version %2
+  GOTO end
+
+
+:: MISC / OTHER
+:: ============
+:launch-solver
+  poetry run openssa launch solver
   GOTO end
 
 
