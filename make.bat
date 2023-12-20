@@ -5,6 +5,8 @@
 :: =======
 SET TARGET=%1
 
+IF "%TARGET%"=="get-poetry" GOTO get-poetry
+
 IF "%TARGET%"=="install" GOTO install
 
 IF "%TARGET%"=="lint" GOTO lint
@@ -29,13 +31,18 @@ set DOCS_DIR=.\%DOCS_DIR_NAME%
 set DOCS_BUILD_DIR=%DOCS_DIR%\_build
 
 
+:: POETRY
+:: ======
+:get-poetry
+  python3 -m pip install Poetry --upgrade --user
+  GOTO end
+
+
 :: INSTALLATION
 :: ============
 :install
-  :: package with main & contrib dependencies
-  python3 -m pip install -e ".[contrib]" --upgrade --user
-  :: extra developer dependencies
-  python3 -m pip install -r requirements/docs.txt -r requirements/lint.txt -r requirements/test.txt --upgrade --user
+  poetry lock
+  poetry install --extras=contrib --with=docs --with=lint --with=test 
   GOTO end
 
 
@@ -47,18 +54,18 @@ set DOCS_BUILD_DIR=%DOCS_DIR%\_build
   GOTO end
 
 :lint-flake8
-	flake8 %LIB_DIR_NAME% %DOCS_DIR_NAME% %EXAMPLES_DIR_NAME% %TESTS_DIR_NAME%
+	poetry run flake8 %LIB_DIR_NAME% %DOCS_DIR_NAME% %EXAMPLES_DIR_NAME% %TESTS_DIR_NAME%
   GOTO end
 
 :lint-pylint
-	pylint %LIB_DIR_NAME% %DOCS_DIR_NAME% %EXAMPLES_DIR_NAME% %TESTS_DIR_NAME%
+	poetry run pylint %LIB_DIR_NAME% %DOCS_DIR_NAME% %EXAMPLES_DIR_NAME% %TESTS_DIR_NAME%
   GOTO end
 
 
 :: TESTING
 :: =======
 :test
-  pytest
+  poetry run pytest
   GOTO end
 
 
