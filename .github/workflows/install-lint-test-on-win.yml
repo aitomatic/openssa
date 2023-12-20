@@ -1,4 +1,4 @@
-name: Install Package, Lint Code & Run Tests
+name: Install Package, Lint Code & Run Tests on Windows
 
 on:
   push:
@@ -10,8 +10,8 @@ on:
       - "*"
 
 jobs:
-  install-lint-test:
-    runs-on: ubuntu-latest
+  install-lint-test-on-win:
+    runs-on: windows-latest
 
     strategy:
       matrix:
@@ -28,16 +28,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        run: make get-poetry
-
       - name: Install Package & Dependencies
-        run: make install
+        run: .\make install
 
       - name: Lint Code
-        run: make lint
+        run: .\make lint
 
       - name: Run Tests
-        run: make test
+        run: .\make test
         env:
           LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}

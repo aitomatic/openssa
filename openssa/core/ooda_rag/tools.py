@@ -83,7 +83,6 @@ class ReasearchAgentTool(Tool):
         super().__init__(description)
         self.agent = agent
 
-
     def execute(self, question: str) -> str:
         """
         Query a document base for factual information.
@@ -91,6 +90,6 @@ class ReasearchAgentTool(Tool):
         :param question (str): The question to ask the document base.
         :return (str): The answer to the question.
         """
-        response =  self.agent.discuss(question)
+        response = self.agent.discuss(question)
         print(f"debug: {response}")
         return response

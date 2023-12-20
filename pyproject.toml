@@ -51,6 +51,7 @@ sphinx-press-theme = ">=0.8"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
+flake8 = ">=6.1"
 pylint = ">=3.0"
 pydocstyle = ">=6.3"
 
