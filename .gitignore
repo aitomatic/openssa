@@ -8,6 +8,7 @@ poetry.lock
 __pycache__/
 .pytest_cache/
 .ropeproject/
+.venv/
 
 
 # DOCUMENTATION
