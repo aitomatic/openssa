@@ -47,7 +47,12 @@ install:
 
 # LINTING
 # =======
-lint:
+lint: lint-flake8 lint-pylint
+
+lint-flake8:
+	poetry run flake8 $(LIB_DIR_NAME) $(DOCS_DIR_NAME) $(EXAMPLES_DIR_NAME) $(TESTS_DIR_NAME)
+
+lint-pylint:
 	poetry run pylint $(LIB_DIR_NAME) $(DOCS_DIR_NAME) $(EXAMPLES_DIR_NAME) $(TESTS_DIR_NAME)
 
 
