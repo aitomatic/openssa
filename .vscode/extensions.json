@@ -5,12 +5,12 @@
 
     "charliermarsh.ruff",  // Ruff
 
-    "garaioag.garaio-vscode-unwanted-recommendations",  // Unwanted Recommendations
+    "garaioag.garaio-vscode-unwanted-recommendations"  // Unwanted Recommendations
   ],
 
   "unwantedRecommendations": [
     "ms-python.mypy-type-checker",  // MyPy Type Checker (Microsoft)
 
-    "matangover.mypy",  // MyPy
-  ],
+    "matangover.mypy"  // MyPy
+  ]
 }

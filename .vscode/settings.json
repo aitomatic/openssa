@@ -11,7 +11,7 @@
     "**/__pycache__": true,
     "**/.pytest_cache": true,
     "**/.ropeproject": true,
-    "**/.ruff_cache": true,
+    "**/.ruff_cache": true
   },
 
 
@@ -19,7 +19,7 @@
   // ======
 
   "[python]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": false
   },
 
   "python.analysis.diagnosticSeverityOverrides": {
@@ -33,7 +33,7 @@
   // Each argument should be provided as a separate string in the array.
   "flake8.args": [
     "--verbose",
-    "--color=always",
+    "--color=always"
   ],
 
   // Sets the current working directory used to lint Python files with Flake8.
@@ -50,7 +50,7 @@
     "fatal": "Error",
     "info": "Information",
     "refactor": "Hint",
-    "warning": "Warning",
+    "warning": "Warning"
   },	
 
   // Path or command to be used by the extension to lint Python files with Flake8.
@@ -85,8 +85,7 @@
   // Configure glob patterns as supported by the fnmatch Python library (https://docs.python.org/3/library/fnmatch.html)
   // to exclude files or folders from being linted with Flake8.
   "flake8.ignorePatterns": [
-    ".venv/*",
-    "venv/*",
+    ".venv/*", "venv/*"
   ],
 
 
@@ -118,7 +117,7 @@
     "fatal": "Error",
     "info": "Information",
     "refactor": "Hint",
-    "warning": "Warning",
+    "warning": "Warning"
   },
 
   // Path or command to be used by the extension to lint Python files with Pylint.
@@ -153,8 +152,7 @@
   // Configure glob patterns as supported by the fnmatch Python library
   // to exclude files or folders from being linted with Pylint.
   "pylint.ignorePatterns": [
-    ".venv/*",
-    "venv/*",
+    ".venv/*", "venv/*"
   ],
 
 
@@ -198,5 +196,5 @@
   "ruff.codeAction.disableRuleComment.enable": true,
 
   // Setting to control when a notification is shown: off, onError, onWarning, always.
-  "ruff.showNotification": "onWarning",
+  "ruff.showNotification": "onWarning"
 }
