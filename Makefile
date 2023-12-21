@@ -157,4 +157,12 @@ launch-solver:
 	poetry run openssa launch solver
 
 public:
-	rsync -av --delete --exclude .git --links . ../openssa/
+	rsync . ../openssa/ \
+		--archive \
+		--delete \
+		--exclude .git \
+		--exclude __pycache__ --exclude .mypy_cache --exclude .pytest_cache --exclude .ruff_cache \
+		--exclude .venv --exclude venv \
+		--exclude *.rst --exclude "docs/_build" \
+		--links \
+		--verbose
