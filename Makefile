@@ -35,16 +35,32 @@ install:
 	poetry lock
 	poetry install --extras=contrib --with=docs --with=lint --with=test
 
+install-editable:
+	python3 -m pip install -e ".[contrib]" --upgrade --user
+
 
 # LINTING
 # =======
-lint: lint-flake8 lint-pylint
+lint: lint-flake8 lint-pylint lint-ruff
 
 lint-flake8:
-	poetry run flake8 $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR)
+	# flake8.pycqa.org/en/latest/user/invocation.html
+	# flake8.pycqa.org/en/latest/user/options.html
+	poetry run flake8 $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
+		--verbose --color always
 
 lint-pylint:
+	# pylint.readthedocs.io/en/latest/user_guide/usage/run.html
 	poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR)
+
+lint-ruff:
+	# docs.astral.sh/ruff/linter
+	poetry run ruff check $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
+		--show-source \
+		--output-format text \
+		--target-version py310 \
+		--preview \
+		--respect-gitignore
 
 
 # TESTING
@@ -141,4 +157,12 @@ launch-solver:
 	poetry run openssa launch solver
 
 public:
-	rsync -av --delete --exclude .git --links . ../openssa/
+	rsync . ../openssa/ \
+		--archive \
+		--delete \
+		--exclude .git \
+		--exclude __pycache__ --exclude .mypy_cache --exclude .pytest_cache --exclude .ruff_cache \
+		--exclude .venv --exclude venv \
+		--exclude *.rst --exclude "docs/_build" \
+		--links \
+		--verbose

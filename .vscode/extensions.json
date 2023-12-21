@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "ms-python.flake8",  // Flake8 (Microsoft)
+    "ms-python.pylint",  // PyLint (Microsoft)
+
+    "charliermarsh.ruff",  // Ruff
+
+    "garaioag.garaio-vscode-unwanted-recommendations"  // Unwanted Recommendations
+  ],
+
+  "unwantedRecommendations": [
+    "ms-python.mypy-type-checker",  // MyPy Type Checker (Microsoft)
+
+    "matangover.mypy"  // MyPy
+  ]
+}

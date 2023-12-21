@@ -40,7 +40,7 @@ packages = [
 include = [
 ]
 exclude = [
-  "**/.openssa/"
+  "**/.openssa/",  # OpenSSA cache data
 ]
 
 
@@ -53,6 +53,7 @@ myst-parser = ">=2.0"
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=6.1"
 pylint = ">=3.0"
+ruff = ">=0.1"
 pydocstyle = ">=6.3"
 
 [tool.poetry.group.test.dependencies]
@@ -101,6 +102,25 @@ openssa = "openssa.utils.cli:openssa_cli"
 build-backend = "poetry.core.masonry.api"
 requires = [
   "poetry-core >= 1.8",
+]
+
+
+# pylint.readthedocs.io/en/latest/user_guide/usage/run.html
+# pylint.readthedocs.io/en/latest/user_guide/configuration/index.html
+[tool.pylint."messages control"]
+disable = [
+  "attribute-defined-outside-init",
+  "duplicate-code",
+  "fixme",
+  "import-error",
+  "line-too-long",
+  "missing-class-docstring",
+  "missing-function-docstring",
+  "missing-module-docstring",
+  "raw-checker-failed",
+  "redefined-outer-name",
+  "too-few-public-methods",
+  "unnecessary-pass",
 ]
 
 
