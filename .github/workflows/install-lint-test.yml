@@ -1,4 +1,4 @@
-name: Install Package, Lint Code & Run Tests on Mac
+name: Install Package, Lint Code & Run Tests
 
 on:
   push:
@@ -10,8 +10,8 @@ on:
       - "*"
 
 jobs:
-  install-lint-test-on-mac:
-    runs-on: macos-latest
+  install-lint-test:
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:

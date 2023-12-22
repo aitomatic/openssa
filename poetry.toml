@@ -1,3 +1,2 @@
 [virtualenvs]
 create = true
-in-project = true  # important on Windows to avoid path lengths exceeding default max length of 260

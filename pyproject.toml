@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.23.12.19"
+version = "0.23.12.18"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -40,20 +40,18 @@ packages = [
 include = [
 ]
 exclude = [
-  "**/.openssa/",  # OpenSSA cache data
+  "**/.openssa/"
 ]
 
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.2"
-sphinx-autobuild = ">=2021.3"
+sphinx-autobuild = ">=2021.3.14"
 sphinx-press-theme = ">=0.8"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
-flake8 = ">=6.1"
 pylint = ">=3.0"
-ruff = ">=0.1"
 pydocstyle = ">=6.3"
 
 [tool.poetry.group.test.dependencies]
@@ -61,11 +59,11 @@ pytest = ">=7.4"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
-# OpenAI interface
-openai = ">=1.6"
+# OpenAI & related
+openai = ">=1.4"
 # LlamaIndex & related
-llama-index = ">=0.9.17"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
-llama-hub = ">=0.0.60"
+llama-index = ">=0.9.15"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
+llama-hub = ">=0.0.59"
 docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=3.17"  # for reading .pdf files
 pycryptodome = ">=3.19"  # for reading .pdf files: PyCryptodome is required for AES algorithm
@@ -102,25 +100,6 @@ openssa = "openssa.utils.cli:openssa_cli"
 build-backend = "poetry.core.masonry.api"
 requires = [
   "poetry-core >= 1.8",
-]
-
-
-# pylint.readthedocs.io/en/latest/user_guide/usage/run.html
-# pylint.readthedocs.io/en/latest/user_guide/configuration/index.html
-[tool.pylint."messages control"]
-disable = [
-  "attribute-defined-outside-init",
-  "duplicate-code",
-  "fixme",
-  "import-error",
-  "line-too-long",
-  "missing-class-docstring",
-  "missing-function-docstring",
-  "missing-module-docstring",
-  "raw-checker-failed",
-  "redefined-outer-name",
-  "too-few-public-methods",
-  "unnecessary-pass",
 ]
 
 
