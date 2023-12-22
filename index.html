@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=e5e81410"></script>
+        <script src="_static/documentation_options.js?v=9e72b9a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -95,44 +95,21 @@
 </div></blockquote>
 <p>OpenSSA is an open-source framework for Small Specialist Agents (SSAs), problem-solving AI agents for industrial applications. Harnessing the power of human domain expertise, SSAs operate either alone or in collaborative “teams”, and can integrate with both informational and operational sensors/actuators to deliver real-world industrial AI solutions.</p>
 <p>SSAs are light-weight, domain-focused and incorporate reasoning and planning capabilities. These characteristics make them ideal for complex hierarchical tasks typically found in industrial applications.</p>
+<p><img alt="OpenSSA One Pager" src="docs/diagrams/openssa-onepager.png" /></p>
 <section id="small-size-specific-domain-specialization">
 <h2>Small Size, Specific-Domain Specialization<a class="headerlink" href="#small-size-specific-domain-specialization" title="Link to this heading">¶</a></h2>
 <p>The trend towards specialization in AI models is a clear trajectory seen by many in the field.</p>
 <blockquote>
 <div><p> 
-<em>Specialization is crucial for quality .. not general purpose Al models</em> – Eric Schmidt, Schmidt Foundation
- </p>
-</div></blockquote>
-<blockquote>
-<div><p> 
-<em>.. small models .. for a specific task that are good</em> –  Matei Zaharia, Databricks
- </p>
-</div></blockquote>
-<blockquote>
-<div><p> 
-<em>.. small agents working together .. specific and best in their tasks</em> – Harrison Chase, Langchain
- </p>
-</div></blockquote>
-<blockquote>
-<div><p> 
 <em>.. realize that smaller, cheaper, more specialized models make more sense for 99% of AI use-cases ..</em> – Clem Delangue, Hugging Face
  </p>
 </div></blockquote>
-<blockquote>
-<div><p> 
-<em>.. small but highly capable expert models</em> – Andrej Karpathy, OpenAI
- </p>
-</div></blockquote>
-<blockquote>
-<div><p> 
-<em>.. small models are .. a massive paradigm shift .. about deploying AI models at scale</em> – Rob Toews, Radical Ventures
- </p>
-</div></blockquote>
-<p>As predicted by Eric Schmidt and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.” SSAs are the central part in the architecture of these systems.</p>
+<p>As predicted by Clem Delangue and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.” SSAs are the central part in the architecture of these systems.</p>
 </section>
 <section id="system-1-system-2-intelligence">
 <h2>System-1 &amp; System-2 Intelligence<a class="headerlink" href="#system-1-system-2-intelligence" title="Link to this heading">¶</a></h2>
 <p>In addition to information-retrieval and inferencing (“System-1 intelligence”) capabilities, SSAs are additionally designed with hierachical reasoning and planning (“System-2 intelligence”) capabilities. They can execute tasks following general-purpose problem-solving paradigms (such as OODA) and domain-specific expert heuristics, in order to solve a diverse variery of problems that are hard for System-1-only Large Language Models (LLMs) and traditional AI models.</p>
+<p>System 2 thinking is often considered advantageous in certain contexts due to its deliberate, analytical nature. It excels in handling complex and novel situations, enabling individuals to engage in thoughtful reflection and make well-reasoned decisions. System 2 thinking is particularly valuable for risk assessment, mitigating impulsive judgments, and adapting mental models based on intentional learning. Moreover, it helps avoid cognitive biases and stereotypes by involving conscious, effortful processing. While System 1 thinking is valuable for quick and intuitive decision-making in familiar scenarios, System 2 thinking’s strengths lie in its ability to navigate intricate situations, analyze information thoroughly, and make informed choices that consider long-term consequences. The effectiveness of each thinking system depends on the specific demands of the task at hand, with both contributing to the overall cognitive toolkit.</p>
 </section>
 <section id="ssa-vs-llm">
 <h2>SSA vs LLM<a class="headerlink" href="#ssa-vs-llm" title="Link to this heading">¶</a></h2>
@@ -156,13 +133,62 @@
 </section>
 <section id="ssa-architecture">
 <h2>SSA Architecture<a class="headerlink" href="#ssa-architecture" title="Link to this heading">¶</a></h2>
+<section id="openssa-framework-library">
+<h3>OpenSSA Framework Library<a class="headerlink" href="#openssa-framework-library" title="Link to this heading">¶</a></h3>
+<p><img alt="OpenSSA Key Components" src="docs/diagrams/ssm-key-components.drawio.png" /></p>
 </section>
-<section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h2>
-<p>See our <a class="reference internal" href="#docs/GETTING_STARTED.md"><span class="xref myst">Getting Started Guide</span></a> for more information.</p>
+<section id="high-level-class-diagram">
+<h3>High-Level Class Diagram<a class="headerlink" href="#high-level-class-diagram" title="Link to this heading">¶</a></h3>
+<p><img alt="OpenSSA High-Level Class Diagram" src="docs/diagrams/ssm-class-diagram.drawio.png" /></p>
 </section>
-<section id="roadmap">
-<h2>Roadmap<a class="headerlink" href="#roadmap" title="Link to this heading">¶</a></h2>
+</section>
+<section id="getting-started-with-openssa">
+<h2>Getting Started with OpenSSA<a class="headerlink" href="#getting-started-with-openssa" title="Link to this heading">¶</a></h2>
+<section id="who-are-you">
+<h3>Who Are You?<a class="headerlink" href="#who-are-you" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>An end-user of OpenSSA-based applications</p></li>
+<li><p>A developer of applications or services using OpenSSA</p></li>
+<li><p>An aspiring contributor to OpenSSA</p></li>
+<li><p>A committer to OpenSSA</p></li>
+</ol>
+</section>
+<section id="getting-started-as-an-end-user">
+<h3>Getting Started as an End-User<a class="headerlink" href="#getting-started-as-an-end-user" title="Link to this heading">¶</a></h3>
+</section>
+<section id="getting-started-as-a-developer">
+<h3>Getting Started as a Developer<a class="headerlink" href="#getting-started-as-a-developer" title="Link to this heading">¶</a></h3>
+<p>See some example user programs in the <a class="reference internal" href="#./examples/notebooks"><span class="xref myst">examples/notebooks</span></a> directory. For example, the see the sample use case on ALD semiconductor knowledge, do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examples/notebooks
+</pre></div>
+</div>
+<section id="common-make-targets-for-openssm-developers">
+<h4>Common <code class="docutils literal notranslate"><span class="pre">make</span></code> targets for OpenSSM developers<a class="headerlink" href="#common-make-targets-for-openssm-developers" title="Link to this heading">¶</a></h4>
+<p>See <a class="reference internal" href="dev/makefile_info.html"><span class="std std-doc">MAKEFILE</span></a> for more details.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>make<span class="w"> </span>clean
+%<span class="w"> </span>make<span class="w"> </span>build
+%<span class="w"> </span>make<span class="w"> </span>rebuild
+%<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+
+%<span class="w"> </span>make<span class="w"> </span>poetry-init
+%<span class="w"> </span>make<span class="w"> </span>poetry-install
+%<span class="w"> </span>make<span class="w"> </span>install<span class="w">      </span><span class="c1"># local installation of openssm</span>
+
+%<span class="w"> </span>make<span class="w"> </span>pypi-auth<span class="w">    </span><span class="c1"># only for maintainers</span>
+%<span class="w"> </span>make<span class="w"> </span>publish<span class="w">      </span><span class="c1"># only for maintainers</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="getting-started-as-an-aspiring-contributor">
+<h3>Getting Started as an Aspiring Contributor<a class="headerlink" href="#getting-started-as-an-aspiring-contributor" title="Link to this heading">¶</a></h3>
+<p>OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it’s enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our <span class="xref myst">Contribution Guide</span> for more details.</p>
+<p>You can begin contributing to the OpenSSM project in the <code class="docutils literal notranslate"><span class="pre">contrib/</span></code> directory.</p>
+</section>
+<section id="getting-started-as-a-committer">
+<h3>Getting Started as a Committer<a class="headerlink" href="#getting-started-as-a-committer" title="Link to this heading">¶</a></h3>
+<p>You already know what to do.</p>
+</section>
 </section>
 <section id="community">
 <h2>Community<a class="headerlink" href="#community" title="Link to this heading">¶</a></h2>
@@ -181,6 +207,16 @@
 </section>
 <section id="note-lepton-api-key">
 <h2>Note: Lepton API Key<a class="headerlink" href="#note-lepton-api-key" title="Link to this heading">¶</a></h2>
+<p>Head to <a class="reference external" href="https://dashboard.lepton.ai/">Lepton</a> to get your API key.</p>
+<ul class="simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Settings</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">tokens</span></code></p></li>
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">&lt;YOUR_LEPTON_API_TOKEN&gt;</span></code></p></li>
+</ul>
+<p>In terminal, run</p>
+<div class="highlight-bash= notranslate"><div class="highlight"><pre><span></span>export LEPTON_API_KEY=&lt;YOUR_LEPTON_API_TOKEN&gt;
+</pre></div>
+</div>
 </section>
 </section>
 
