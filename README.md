@@ -11,41 +11,26 @@ OpenSSA is an open-source framework for Small Specialist Agents (SSAs), problem-
 
 SSAs are light-weight, domain-focused and incorporate reasoning and planning capabilities. These characteristics make them ideal for complex hierarchical tasks typically found in industrial applications.
 
+![OpenSSA One Pager](/docs/diagrams/openssa-onepager.png)
 
 ## Small Size, Specific-Domain Specialization
 
 The trend towards specialization in AI models is a clear trajectory seen by many in the field.
 
 > &nbsp;
-> _Specialization is crucial for quality .. not general purpose Al models_ – Eric Schmidt, Schmidt Foundation
-> &nbsp;
-
-> &nbsp;
-> _.. small models .. for a specific task that are good_ –  Matei Zaharia, Databricks
-> &nbsp;
-
-> &nbsp;
-> _.. small agents working together .. specific and best in their tasks_ – Harrison Chase, Langchain
-> &nbsp;
-
-> &nbsp;
 > _.. realize that smaller, cheaper, more specialized models make more sense for 99% of AI use-cases .._ – Clem Delangue, Hugging Face
 > &nbsp;
 
-> &nbsp;
-> _.. small but highly capable expert models_ – Andrej Karpathy, OpenAI
-> &nbsp;
 
-> &nbsp;
-> _.. small models are .. a massive paradigm shift .. about deploying AI models at scale_ – Rob Toews, Radical Ventures
-> &nbsp;
-
-As predicted by Eric Schmidt and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.” SSAs are the central part in the architecture of these systems.
+As predicted by Clem Delangue and others, we will see “a rich ecosystem to emerge [of] high-value, specialized AI systems.” SSAs are the central part in the architecture of these systems.
 
 
 ## System-1 & System-2 Intelligence
 
 In addition to information-retrieval and inferencing ("System-1 intelligence") capabilities, SSAs are additionally designed with hierachical reasoning and planning ("System-2 intelligence") capabilities. They can execute tasks following general-purpose problem-solving paradigms (such as OODA) and domain-specific expert heuristics, in order to solve a diverse variery of problems that are hard for System-1-only Large Language Models (LLMs) and traditional AI models.
+
+
+System 2 thinking is often considered advantageous in certain contexts due to its deliberate, analytical nature. It excels in handling complex and novel situations, enabling individuals to engage in thoughtful reflection and make well-reasoned decisions. System 2 thinking is particularly valuable for risk assessment, mitigating impulsive judgments, and adapting mental models based on intentional learning. Moreover, it helps avoid cognitive biases and stereotypes by involving conscious, effortful processing. While System 1 thinking is valuable for quick and intuitive decision-making in familiar scenarios, System 2 thinking's strengths lie in its ability to navigate intricate situations, analyze information thoroughly, and make informed choices that consider long-term consequences. The effectiveness of each thinking system depends on the specific demands of the task at hand, with both contributing to the overall cognitive toolkit.
 
 
 ## SSA vs LLM
@@ -75,14 +60,65 @@ Our primary audience includes:
 
 
 ## SSA Architecture
+### OpenSSA Framework Library
+
+![OpenSSA Key Components](/docs/diagrams/ssm-key-components.drawio.png)
+
+### High-Level Class Diagram
+
+![OpenSSA High-Level Class Diagram](/docs/diagrams/ssm-class-diagram.drawio.png)
 
 
-## Getting Started
+## Getting Started with OpenSSA
 
-See our [Getting Started Guide](docs/GETTING_STARTED.md) for more information.
+### Who Are You?
+
+1. An end-user of OpenSSA-based applications
+
+2. A developer of applications or services using OpenSSA
+
+3. An aspiring contributor to OpenSSA
+
+4. A committer to OpenSSA
+
+### Getting Started as an End-User
 
 
-## Roadmap
+### Getting Started as a Developer
+
+See some example user programs in the [examples/notebooks](./examples/notebooks) directory. For example, the see the sample use case on ALD semiconductor knowledge, do:
+
+```bash
+% cd examples/notebooks
+```
+
+#### Common `make` targets for OpenSSM developers
+
+See [MAKEFILE](dev/makefile_info.md) for more details.
+
+```bash
+% make clean
+% make build
+% make rebuild
+% make test
+
+% make poetry-init
+% make poetry-install
+% make install      # local installation of openssm
+
+% make pypi-auth    # only for maintainers
+% make publish      # only for maintainers
+```
+
+### Getting Started as an Aspiring Contributor
+
+OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
+
+You can begin contributing to the OpenSSM project in the `contrib/` directory.
+
+### Getting Started as a Committer
+
+You already know what to do.
 
 
 ## Community
@@ -104,3 +140,12 @@ OpenSSA is released under the [Apache 2.0 License](LICENSE.md).
 
 
 ## Note: Lepton API Key
+Head to [Lepton](https://dashboard.lepton.ai/) to get your API key.
+* Go to `Settings`
+* Select `API tokens`
+* Copy `<YOUR_LEPTON_API_TOKEN>`
+
+In terminal, run 
+```bash=
+export LEPTON_API_KEY=<YOUR_LEPTON_API_TOKEN>
+```

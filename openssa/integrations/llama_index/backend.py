@@ -67,7 +67,8 @@ class Backend(AbstractRAGBackend):
             self._query_engine = self.index.as_query_engine(
                 vector_store_query_mode="mmr",
                 vector_store_kwargs={"mmr_threshold": self._relevance_threshold},
-                service_context=self._service_context or ServiceContext.from_defaults(llm=self.llm),
+                service_context=self._service_context
+                or ServiceContext.from_defaults(llm=self.llm),
                 similarity_top_k=self._similarity_top_k,
             )
         return self._query_engine

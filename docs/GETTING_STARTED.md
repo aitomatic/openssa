@@ -1,4 +1,4 @@
-# Getting Started with OpenSSM
+# Getting Started with OpenSSA
 
 ## Who Are You?
 
@@ -14,12 +14,10 @@
 
 ## Getting Started as a Developer
 
-See some example user programs in the [examples](./examples) directory. For example, to run the `chatssm` example, do:
+See some example user programs in the [examples/notebooks](./examples/notebooks) directory. For example, the see the sample use case on ALD semiconductor knowledge, do:
 
 ```bash
-% cd examples/chatssm
-% make clean
-% make
+% cd examples/notebooks
 ```
 
 ### Common `make` targets for OpenSSM developers
