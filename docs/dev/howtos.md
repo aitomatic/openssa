@@ -2,21 +2,21 @@
 
 ## Observability
 
-`OpenSSM` has built-in observability and tracing.
+`OpenSSA` has built-in observability and tracing.
 
 ## Logging
 
-Users of `OpenSSM` can use the `logger` object provided by the `OpenSSM` package:
+Users of `OpenSSA` can use the `logger` object provided by the `OpenSSA` package:
 
 ```python
-from OpenSSM import logger
+from OpenSSA import logger
 logger.warning("xyz = %s", xyz)
 ```
 
-If you are an `OpenSSM` contributor, you may use the `openssm` logger:
+If you are an `OpenSSA` contributor, you may use the `OpenSSA` logger:
 
 ```python
-from openssm import mlogger
+from OpenSSA import mlogger
 mlogger.warning("xyz = %s", xyz)
 ```
 
@@ -25,7 +25,7 @@ mlogger.warning("xyz = %s", xyz)
 There are some useful decorators for automatically logging function entry and exit.
 
 ```python
-from openssm import Logs
+from OpenSSA import Logs
 
 @Logs.do_log_entry_and_exit()  # upon both entry and exit
 def func(param1, param2):
@@ -40,7 +40,7 @@ The above will automatically log function entry with its parameters, and functio
 If you want to use your own logger with its own name, use
 
 ```python
-from openssm import Logs
+from OpenSSA import Logs
 my_logger = Logs.get_logger(app_name, logger.INFO)
 
 @Logs.do_log_entry_and_exit(logger=my_logger)

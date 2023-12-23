@@ -1,6 +1,6 @@
-# OpenSSM and LlamaIndex Integration
+# OpenSSA and LlamaIndex Integration
 
-This guide provides an overview and examples of how Small Specialist Models (SSMs, from the [OpenSSM](https://github.com/aitomatic/openssm) project) integrate with LlamaIndex.
+This guide provides an overview and examples of how Small Specialist Models (SSMs, from the [OpenSSA](https://github.com/aitomatic/OpenSSA) project) integrate with LlamaIndex.
 
 ## Overview
 
@@ -24,10 +24,10 @@ Here are some examples to get you started.
 
 ### Basic Integration
 
-OpenSSM makes using LlamaIndex as simple as 3 lines of code:
+OpenSSA makes using LlamaIndex as simple as 3 lines of code:
 
 ```python
-from openssm import LlamaIndexSSM  # Instantiate a LlamaIndexSSM
+from OpenSSA import LlamaIndexSSM  # Instantiate a LlamaIndexSSM
 
 ssm = LlamaIndexSSM()
 ssm.read_directory('docs/ylecun')  # Read the docs for the first time
@@ -48,7 +48,7 @@ ssm.load('storage/ylecun')  # Load the index from storage
 In the example below, we put a domain-specific SSM (an SLM or small language model trained on data related to Yann LeCun’s work) in front of LlamaIndex.
 
 ```python
-from openssm import LlamaIndexSSM, FineTunedSLM
+from OpenSSA import LlamaIndexSSM, FineTunedSLM
 
 slm = FineTunedSLM(...)  # Instantiate a domain-specific SLM
 ssm = LlamaIndexSSM(slm=slm) # Instantiate a LlamaIndexSSM with the SLM
@@ -59,7 +59,7 @@ response = ssm.discuss("What is the main point made by Yann LeCun?")
 
 The response from this ssm would be much richer and more informed about Yann LeCun’s work than a generic SSM performing the same task.
 
-In all of the above examples, the SSM is using LlamaIndex as a [`Backend`](/openssm/core/backend/abstract_backend), as shown below.
+In all of the above examples, the SSM is using LlamaIndex as a [`Backend`](/OpenSSA/core/backend/abstract_backend), as shown below.
 
 ![Integration Architecture](../../../docs/diagrams/ssm-llama-index-integration.drawio.png)
 
@@ -74,7 +74,7 @@ Here, we cover three primary use cases:
 An agent can retrieve context-specific data to inform responses. For example, in a financial setting:
 
 ```python
-from openssm import LlamaIndexSSM, ContextRetrievalAgent
+from OpenSSA import LlamaIndexSSM, ContextRetrievalAgent
 
 context = """
 XYZ company reported Q2 revenues of $4.5 billion, up 18% YoY. The rise is primarily due to a 32% growth in their cloud division.
@@ -94,7 +94,7 @@ This agent can retrieve and analyze data from relevant financial reports, taking
 In cases where the set of tools is extensive, the agent can retrieve the most relevant ones dynamically during query time. For example, in a data analysis setting:
 
 ```python
-from openssm import LlamaIndexSSM, FunctionRetrievalAgent
+from OpenSSA import LlamaIndexSSM, FunctionRetrievalAgent
 
 agent = FunctionRetrievalAgent('tools/data_tools')
 ssm = LlamaIndexSSM(agents=[tool_agent])
@@ -107,10 +107,10 @@ This allows the SSM to retrieve and apply the most suitable data analysis tool b
 
 #### Query Planning
 
-For more complex tasks, OpenSSM can be made capable of advanced query planning thanks to LlamaIndex. It could, for instance, plan and execute a series of queries to answer a question about a company’s revenue growth over specific months.
+For more complex tasks, OpenSSA can be made capable of advanced query planning thanks to LlamaIndex. It could, for instance, plan and execute a series of queries to answer a question about a company’s revenue growth over specific months.
 
 ```python
-from openssm import LlamaIndexSSM, QueryPlanningAgent
+from OpenSSA import LlamaIndexSSM, QueryPlanningAgent
 
 query_plan_tool = QueryPlanTool.from_defaults(
     query_engine_tools=[query_tool_sept, query_tool_june, query_tool_march]
@@ -127,7 +127,7 @@ This illustrates how an SSM with a Query Planning Agent can plan and execute a s
 
 ### Future Enhancements
 
-As we continue to enhance the integration between OpenSSM and LlamaIndex, here are a few promising directions:
+As we continue to enhance the integration between OpenSSA and LlamaIndex, here are a few promising directions:
 
 - **SSMs as agents for LlamaIndex**: We are exploring ways to make SSMs available as agents for LlamaIndex, allowing for more complex interactions between SSMs and LlamaIndex.
 
