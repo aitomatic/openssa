@@ -1,6 +1,6 @@
-# OpenSSM Project Philosophy
+# OpenSSA Project Philosophy
 
-At OpenSSM, we believe in the democratization of AI. Our goal is to create an ecosystem where anyone, regardless of their resources, can have access to efficient and domain-specific AI solutions. We envision a future where AI is not only accessible but also robust, reliable, and trustworthy.
+At OpenSSA, we believe in the democratization of AI. Our goal is to create an ecosystem where anyone, regardless of their resources, can have access to efficient and domain-specific AI solutions. We envision a future where AI is not only accessible but also robust, reliable, and trustworthy.
 
 Our project is guided by the following principles:
 
