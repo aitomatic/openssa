@@ -1,3 +1,4 @@
+"""
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -9,7 +10,7 @@ class AitomaticLLMConfig:
     @classmethod
     def get_llama2_70b(cls):
         return OpenAI(
-            api_key=os.environ.get("LEPTON_API_KEY"),
+            api_key=os.environ.get("LEPTON_API_KEY", ""),
             base_url="https://llama2-70b.lepton.run/api/v1",
         )
 
@@ -23,7 +24,7 @@ class AitomaticLLMConfig:
 
     @classmethod
     def get_aimo_llm(cls):
-        url_base = os.environ.get("AIMO_STANDARD_URL_BASE")
+        url_base = os.environ.get("AIMO_STANDARD_URL_BASE", "")
         llm = OpenAI(
             base_url=url_base,
         )
@@ -32,13 +33,19 @@ class AitomaticLLMConfig:
     @classmethod
     def get_openai(cls):
         return OpenAI(
-            api_key=os.environ.get("OPENAI_API_KEY"),
+            api_key=os.environ.get("OPENAI_API_KEY", ""),
             base_url="https://api.openai.com/v1",
         )
 
     @classmethod
     def get_aitomatic_llm(cls):
+        return cls.get_openai()
+
+    @classmethod
+    def get_aitomatic_llm_secured(cls):
         return OpenAI(
             api_key=os.environ.get("AITOMATIC_API_KEY", "AITOMATIC"),
             base_url="https://aimo-api-mvp.platform.aitomatic.com/api/v1",
         )
+
+"""

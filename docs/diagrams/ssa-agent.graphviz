@@ -1,0 +1,56 @@
+digraph ClassDiagram {
+    graph [fontsize=10 fontname="Verdana"]
+    node [shape=record fontsize=10 fontname="Verdana"]
+
+    Agent [label="{Agent|+ solve(task: Task): TaskResult\l+ update_memory(key: string, value: string, memory_type: string)\l+ use_tool(tool_name: string, query: string): string\l|llm: LLM\ltools: dict\lshort_term_memory: History\llong_term_memory: LongTermMemory\lheuristics: list\l}"]
+
+    Task [label="{Task|+ add_subtask(subtask: Task)\l+ set_ooda_loop(ooda_loop: OODALoop)\l+ set_result(result: TaskResult)\l|goal: string\lsubtasks: list\lparent: Task\looda_loop: OODALoop\lresult: TaskResult\lresources: dict\l}"]
+
+    OODALoop [label="{OODALoop|+ run(agent: Agent, task: Task): TaskResult\l|objective: string\lsteps: OODAStep\l}"]
+    
+    OODALoop_Step [label="{Step|+ execute(llm: LLM, history: History): string\l|name: string\lprompt_function: lambda\linput_data: string\loutput_data: string\l}"]
+
+    OODA_Step_Observe [label="{Observe|+ execute()}"]
+    OODA_Step_Orient [label="{Orient|+ execute()}"]
+    OODA_Step_Decide [label="{Decide|+ execute()}"]
+    OODA_Step_Act [label="{Act|+ execute()}"]
+
+    Heuristic [label="{Heuristic|+ should_subtask(task: Task): bool}"]
+
+    ConversationHistory [label="{History|+ update()}"]
+
+    LLM [label="{LLM|+ get_response(prompt: string)\l|model_name: string\l}"]
+
+    SubTask [label="{SubTask|+ status: string\l+ response: string\l+ references: list\l+ metrics: dict\l+ additional_info: dict\l}"]
+
+    Memory [label="{Memory|data: dict\l}"]
+
+    ShortTermMemory [label="{ShortTermMemory|data: dict\l}"]
+    
+    LongTermMemory [label="{LongTermMemory|data: dict\l}"]
+
+    Tool [label="{Tool|+ use(query: string): string\l|name: string\laccess_info: string\ltool_specific_info: string\l}"]
+
+    Agent -> Task [label="solves"]
+    Agent -> Tool [label="uses"]
+    Agent -> LLM [label="uses"]
+    Agent -> Memory [label="updates"]
+    Agent -> Heuristic [label="knows about"]
+
+    Task -> SubTask [label="0 or n"]
+    
+    Task -> OODALoop [label="1 or 0"]
+
+    Heuristic -> Task [label="creates"]
+
+    Memory -> ConversationHistory
+    Memory -> ShortTermMemory
+    Memory -> LongTermMemory
+
+    OODALoop -> OODALoop_Step [label="comprises"]
+
+    OODALoop_Step -> OODA_Step_Observe
+    OODALoop_Step -> OODA_Step_Orient
+    OODALoop_Step -> OODA_Step_Decide
+    OODALoop_Step -> OODA_Step_Act
+}

@@ -18,7 +18,6 @@ Config.OPENAI_API_URL: Optional[str] = (
 )
 
 
-
 # pylint: disable=too-many-instance-attributes
 class APIContext(AbstractAPIContext):
     @classmethod

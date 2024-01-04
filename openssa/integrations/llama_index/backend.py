@@ -20,7 +20,6 @@ class Backend(AbstractRAGBackend):
     def __init__(
         self,
         relevance_threshold: float = 0.5,
-        rag_llm: RAGLLM = None,
         similarity_top_k: int = 4,
         service_context: ServiceContext = None,
     ):
@@ -36,20 +35,10 @@ class Backend(AbstractRAGBackend):
         self._query_engine = None
         self._relevance_threshold = relevance_threshold
         self._similarity_top_k = similarity_top_k
-        self._rag_llm = rag_llm
-        self._service_context = service_context
+        self._service_context = service_context or ServiceContext.from_defaults(
+            llm=OpenAI(model="gpt-3.5-turbo"), chunk_size=2000, chunk_overlap=200
+        )
         super().__init__()
-
-    @property
-    def llm(self) -> RAGLLM:
-        if self._rag_llm is None:
-            self._rag_llm = OpenAI(model="gpt-3.5-turbo")
-            # self._llm = OpenAI(model="gpt-3.5-turbo")
-        return self._rag_llm
-
-    @llm.setter
-    def llm(self, llm: RAGLLM):
-        self._rag_llm = llm
 
     @property
     def index(self) -> BaseIndex:
@@ -67,8 +56,7 @@ class Backend(AbstractRAGBackend):
             self._query_engine = self.index.as_query_engine(
                 vector_store_query_mode="mmr",
                 vector_store_kwargs={"mmr_threshold": self._relevance_threshold},
-                service_context=self._service_context
-                or ServiceContext.from_defaults(llm=self.llm),
+                service_context=self._service_context,
                 similarity_top_k=self._similarity_top_k,
             )
         return self._query_engine
@@ -107,11 +95,8 @@ class Backend(AbstractRAGBackend):
         return result
 
     def _create_index(self, documents, storage_dir: str):
-        service_context = self._service_context or ServiceContext.from_defaults(
-            llm=self.llm, chunk_size=3000, chunk_overlap=200
-        )
         self.index = VectorStoreIndex.from_documents(
-            documents, service_context=service_context
+            documents, service_context=self._service_context
         )
 
     def _do_read_directory(self, storage_dir: str):
@@ -120,9 +105,9 @@ class Backend(AbstractRAGBackend):
             input_files=None,
             exclude=None,
             exclude_hidden=False,  # non-default
-            errors='strict',  # non-default
+            errors="strict",  # non-default
             recursive=True,  # non-default
-            encoding='utf-8',
+            encoding="utf-8",
             filename_as_id=False,
             required_exts=None,
             file_extractor=None,
@@ -151,4 +136,6 @@ class Backend(AbstractRAGBackend):
         storage_context = StorageContext.from_defaults(
             persist_dir=self._get_index_dir(storage_dir)
         )
-        self.index = load_index_from_storage(storage_context, service_context=self._service_context)
+        self.index = load_index_from_storage(
+            storage_context, service_context=self._service_context
+        )

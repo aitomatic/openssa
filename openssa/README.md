@@ -22,7 +22,7 @@
   - `openssa.capture`: Tools and APIs for capturing and encoding domain knowledge into various backends.
   - `openssa.composer`: Tools for composing multiple SSMs together.
   - `openssa.industrial`: Industrial-AI specific tools and APIs (trust, reliability, safety, etc.)
-  - `openssm.integration`: Tools for integrating SSMs into industrial applications.
+  - `openssa.integration`: Tools for integrating SSMs into industrial applications.
 
 - `tests`: Unit tests for the framework's components (located at the top level of the project).
 

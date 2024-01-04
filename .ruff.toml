@@ -1,11 +1,127 @@
+# docs.astral.sh/ruff/configuration
+
+
+extend-exclude = [
+]
+
+line-length = 120
+
+
 [format]
 
 exclude = [
-  '*.py',
+  "*.py",
+  "*.toml",
 ]
 
 
 [lint]
-
+select = ["ALL"]
+extend-select = [
+]
 ignore = [
+  "A001",  # variable ... is shadowing a Python builtin
+  "A003",  # class attribute is shadowing a Python builtin
+  "ANN001",  # missing type annotation for function argument
+  "ANN002",  # missing type annotation for `*args`
+  "ANN003",  # missing type annotation for `**kwargs`
+  "ANN101",  # missing type annotation for `self` in method
+  "ANN102",  # missing type annotation for `cls` in classmethod
+  "ANN201",  # missing return type annotation for public function
+  "ANN202",  # missing return type annotation for private function
+  "ANN204",  # missing return type annotation for special method `__init__`
+  "ANN205",  # missing return type annotation for staticmethod
+  "ANN206",  # missing return type annotation for classmethod `setUpClass`
+  "ANN401",  # dynamically typed expressions (typing.Any) are disallowed
+  "ARG002",  # unused method argument: `storage_dir`
+  "B008",  # do not perform function call in argument defaults;
+           # instead, perform the call within the function, or read the default from a module-level singleton variable
+  "B027",  # ... is an empty method in an abstract base class, but has no abstract decorator
+  "B905",  # `zip()` without an explicit `strict=` parameter
+  "COM812",  # trailing comma missing
+  "CPY001",  # missing copyright notice at top of file
+  "D100",  # missing docstring in public module
+  "D101",  # missing docstring in public class
+  "D102",  # missing docstring in public method
+  "D103",  # missing docstring in public function
+  "D104",  # missing docstring in public package
+  "D107",  # missing docstring in `__init__`
+  "D200",  # one-line docstring should fit on one line
+  "D202",  # no blank lines allowed after function docstring
+  "D204",  # 1 blank line required after class docstring
+  "D205",  # 1 blank line required between summary line and description
+  "D212",  # multi-line docstring summary should start at the first line
+  "D213",  # multi-line docstring summary should start at the second line
+  "D400",  # first line should end with a period
+  "D401",  # first line of docstring should be in imperative mood
+  "D404",  # first word of the docstring should not be
+  "D407",  # missing dashed underline after section
+  "D410",  # Missing blank line after section
+  "D411",  # missing blank line before section
+  "D415",  # first line should end with a period, question mark, or exclamation point
+  "DTZ011",  # the use of `datetime.date.today()` is not allowed, use `datetime.datetime.now(tz=).date()` instead
+  "E261",  # insert at least two spaces before an inline comment
+  "E501",  # line too long
+  "EM101",  # exception must not use a string literal, assign to variable first
+  "EM102",  # exception must not use an f-string literal, assign to variable first
+  "ERA001",  # found commented-out code
+  "F401",  # imported but unused
+  "FBT001",  # boolean-typed positional argument in function definition
+  "FBT002",  # boolean default positional argument in function definition
+  "FBT003",  # boolean positional value in function call
+  "FIX002",  # line contains TODO, consider resolving the issue
+  "I001",  # import block is un-sorted or un-formatted
+  "INP001",  # file is part of an implicit namespace package; add an `__init__.py`
+  "LOG009",  # use of undocumented `logging.WARN` constant
+  "N811",  # constant `SSM` imported as non-constant `LlamaIndexSSM`
+  "PERF401",  # use a list comprehension to create a transformed list
+  "PGH003",  # use specific rule codes when ignoring type issues
+  "PIE790",  # unnecessary `pass` statement
+  "PTH100",  # `os.path.abspath()` should be replaced by `Path.resolve()`
+  "PTH103",  # `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
+  "PTH109",  # `os.getcwd()` should be replaced by `Path.cwd()`
+  "PTH110",  # `os.path.exists()` should be replaced by `Path.exists()`
+  "PTH112",  # `os.path.isdir()` should be replaced by `Path.is_dir()`
+  "PTH118",  # `os.path.join()` should be replaced by `Path` with `/` operator
+  "PTH119",  # `os.path.basename()` should be replaced by `Path.name`
+  "PTH123",  # `open()` should be replaced by `Path.open()`
+  "PLC0415",  # `import` should be at the top-level of a file
+  "PLR0904",  # too many public methods
+  "PLR0917",  # too many positional arguments
+  "PLR0911",  # too many return statements
+  "PLR0913",  # too many arguments in function definition
+  "PLR2004",  # magic value used in comparison, consider replacing with a constant variable
+  "PLR6301",  # method could be a function, class method, or static method
+  "PT009",  # use a regular `assert` instead of unittest-style `assertIsInstance`
+  "PT018",  # assertion should be broken down into multiple parts
+  "PT027",  # use `pytest.raises` instead of unittest-style `assertRaises`
+  "Q000",  # single quotes found but double quotes preferred
+  "Q001",  # single quote multiline found but double quotes preferred
+  "Q003",  # change outer quotes to avoid escaping inner quotes
+  "RET504",  # unnecessary assignment to `response` before `return` statement
+  "RUF001",  # string contains ambiguous `’` (RIGHT SINGLE QUOTATION MARK); did you mean ``` (GRAVE ACCENT)?
+  "RUF002",  # docstring contains ambiguous `’` (RIGHT SINGLE QUOTATION MARK); did you mean ``` (GRAVE ACCENT)?
+  "RUF003",  # comment contains ambiguous `’` (RIGHT SINGLE QUOTATION MARK); did you mean ``` (GRAVE ACCENT)?
+  "RUF005",  # consider `[..., *...]` instead of concatenation
+  "RUF013",  # PEP 484 prohibits implicit `Optional`
+  "RUF017",  # Avoid quadratic list summation"
+  "RUF018",  # avoid assignment expressions in `assert` statements
+  "S101",  # use of `assert` detected
+  "S106",  # possible hardcoded password assigned to argument
+  "S605",  # starting a process with a shell, possible injection detected
+  "SIM102",  # use a single `if` statement instead of nested `if` statements
+  "SIM108",  # use ternary operator `temp = temp["content"] if isinstance(temp, dict) else temp.content` instead of `if`-`else`-block
+  "SIM112",  # use capitalized environment variable
+  "SIM401",  # use `item.get("role", "assistant")` instead of an `if` block
+  "SLF001",  # private member accessed
+  "T201",  # `print` found
+  "TD002",  # missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+  "TD003",  # missing issue link on the line following this TODO
+  "TRY003",  # avoid specifying long messages outside the exception class
+  "TRY004",  # prefer `TypeError` exception for invalid type
+  "UP006",  # use `list` instead of `List` for type annotation
+  "UP007",  # use `X | Y` for type annotations
+  "UP035",  # `typing.[X]` is deprecated, use `[x]` instead
+  "UP039",  # unnecessary parentheses after class definition
+  "D203",   # one-blank-line-before-class
 ]

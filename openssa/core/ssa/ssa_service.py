@@ -83,7 +83,6 @@ class SSARAGService:
         }
 
         aiso_url = SSAService.AISO_API_URL
-
         with httpx.Client(timeout=5000) as client:
             response = client.post(aiso_url + "/api/agents/chat", json=payload)
             return response.json()

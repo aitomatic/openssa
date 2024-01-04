@@ -5,8 +5,8 @@
 With OpenSSA, you can simply use `Vectara` with just a few lines of code.
 
 ```python
-from openssa import VectaraSSM
-ssm = VectaraSSM()
+from OpenSSA import VectaraSSA
+ssm = VectaraSSA()
 ssm.read_directory("path/to/directory")
 response = ssm.discuss(conversation_id, "what is xyz?")
 ```
@@ -17,7 +17,6 @@ In the OpenSSA context, Vectara is treated as a backend, as shown below..
 
 ![LlamaIndex Integration](../diagrams/ssm-llama-index-integration.drawio.png)
 
-`LlamaIndexSSM` is simply an SSM with a passthrough (dummy) SLM that sends user queries directory to the Vectara backend.
+`LlamaIndexSSA` is simply an SSA with a passthrough (dummy) SLM that sends user queries directory to the Vectara backend.
 
 ## Roadmap
-To be updated

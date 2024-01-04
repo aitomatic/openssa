@@ -10,18 +10,13 @@ class OODAPrompts:
         ' thinking here", "task": "your task here"}'
     )
 
-    # " For example, if the user input is 'Was Obama"
-    # " born on an odd or even day?', the task could be 'Determine whether Obama was born on an"
-    # " odd or even day.' If the input is 'I need to get to the airport.', the task could be 'Get"
-    # " to the airport.' If the input is 'I am getting error code 404.', the task could be 'Fix"
-    # " error code 404."
-
     DECOMPOSE_INTO_SUBTASKS = (
         "Given the tools available, if the task cannot be completed directly with the current tools"
-        " and resources, break it down into maximum 3 smaller subtasks that can be directly addressed in"
+        " and resources, break it down into maximum 2 smaller subtasks that can be directly addressed in"
         " order. If it does not need to be broken down, return an empty list of subtasks."
         ' Return a JSON dictionary {"subtasks": ["subtask 1", "subtask 2", ...]}'
-        " each subtask should be a sentence or question not a function call."
+        " each subtask should be a sentence or command or question not a function call."
+        " Return json only, nothing else. Think step by step."
     )
 
     DECOMPOSE_INTO_OODA = (
@@ -57,15 +52,6 @@ class OODAPrompts:
         ' complete the task at hand. Return a JSON dictionary {"content": "your response here"}'
     )
 
-    # SYNTHESIZE_RESULT = (
-    #     "You are an reasoning expert. You are reviewing a conversation between user, assistant and system. "
-    #     "This is the final message and instruction, so follow this extremely carefully. "
-    #     "You will produce the final result for user question (the first message in the conversation) "
-    #     "by reasoning through all messages and doing calculations if needed. "
-    #     "The challenging is some of messages from assistants might not be useful, or even misleading since it is synthesized from unsufficient information. "
-    #     "So you need to consider available information carefully to pick the right messages to reasonign step by step. "
-    # )
-
     SYNTHESIZE_RESULT = (
         "As an expert in reasoning, you are examining a dialogue involving a user, an assistant, and a system. "
         "Your task is to synthesize the final answer to the user's initial question based on this conversation. "
@@ -73,22 +59,22 @@ class OODAPrompts:
         "You will derive the final response by critically analyzing all the messages in the conversation and performing any necessary calculations. "
         "Be aware that some contributions from the assistant may not be relevant or could be misleading due to being based on incomplete information. "
         "{heuristic} "
+        "If the conversation does not provide sufficient information to synthesize the answer then admit you cannot produce accurate answer. "
+        "Do not use any information outside of the conversation context. "
         "Exercise discernment in selecting the appropriate messages to construct a logical and step-by-step reasoning process."
     )
 
 
 class BuiltInAgentPrompt:
     PROBLEM_STATEMENT = (
-        "You are tasked with identifying the problem statement from a conversation "
+        "You are tasked with constructing the problem statement from a conversation "
         "between a user and an AI chatbot. Your focus should be on the entire context "
-        "of the conversation, especially the most recent message from the user, "
+        "of the conversation, especially the most recent messages from the user, "
         "to understand the issue comprehensively. Extract specific details "
-        "that define the current concern or question posed by the user, "
+        "that define the current concerns or questions posed by the user, "
         "which the assistant is expected to address. The problem statement should be "
-        "concise, clear, and presented as a question, command, or task, reflecting "
-        "the conversation's context and in the user's voice. In cases where "
-        "the conversation is ambiguous return empty value for problem statement. "
-        'Output the response in JSON format with the keyword "problem statement".\n'
+        "clear, and constructed carefully with complete context and in the user's voice. "
+        'Output the response in JSON format with the keyword "problem statement". Think step by step.\n'
         "Example 1:\n"
         "Assistant: Hello, what can I help you with today?\n"
         "User: My boiler is not functioning, please help to troubleshoot.\n"
@@ -142,4 +128,113 @@ class BuiltInAgentPrompt:
         "Here is the problem statement or the user's current question:\n"
         "###{problem_statement}###\n\n"
         'Output the response in JSON format with the keyword "question".'
+    )
+
+    ASK_USER_OODA = (
+        "Your task is to assist an AI assistant in formulating a question for the user. "
+        "This is done through using OODA reasoning. "
+        "This should be based on the ongoing conversation, the presented problem statement, "
+        "and a specific heuristic guideline. "
+        "The assistant should formulate the question strictly based on the heuristic. "
+        "If the heuristic does not apply or is irrelevant to the problem statement, "
+        "return empty string for the question. "
+        "Output the response of ooda reasoning in JSON format with the keyword "
+        '"observe", "orient", "decide", "act". Example output key value:\n'
+        "\n"
+        '    "observe": "Here, articulate your initial assessment of the task, '
+        'capturing essential details and contextual elements.",\n'
+        '    "orient": "In this phase, analyze and synthesize the gathered '
+        'information, considering different angles and strategies.",\n'
+        '    "decide": "Now, determine the most suitable action based on your '
+        'observations and analysis.",\n'
+        '    "act": "The question to ask the user is here."\n '
+        "\n\n"
+        "Below is the heuristic guideline:\n"
+        "###{heuristic}###\n\n"
+        "Here is the problem statement or the user's current question:\n"
+        "###{problem_statement}###\n\n"
+        "Output the JSON only. Think step by step."
+    )
+
+    CONTENT_VALIDATION = (
+        "You are tasked as an expert in reasoning and contextual analysis. Your "
+        "role is to evaluate whether the provided context and past conversation "
+        "contain enough information to accurately respond to a given query.\n\n"
+        "Please analyze the past conversation and the following context. Then, "
+        "determine if the information is sufficient to form an accurate answer. "
+        "Respond only in JSON format with the keyword 'is_sufficient'. This "
+        "should be a boolean value: True if the information is adequate, and "
+        "False if it is not.\n\n"
+        "Your response should be in the following format:\n"
+        "{{\n"
+        '    "is_sufficient": [True/False]\n'
+        "}}\n\n"
+        "Do not include any additional commentary. Focus solely on evaluating "
+        "the sufficiency of the provided context and conversation.\n\n"
+        "Context:\n"
+        "========\n"
+        "{context}\n"
+        "========\n\n"
+        "Query:\n"
+        "{query}\n"
+    )
+
+    SYNTHESIZE_RESULT = (
+        "As an expert in problem-solving and contextual analysis, you are to "
+        "synthesize an answer for a given query. This task requires you to use "
+        "only the information provided in the previous conversation and the "
+        "context given below. Your answer should exclusively rely on this "
+        "information as the base knowledge.\n\n"
+        "Your response must be in JSON format, using the keyword 'answer'. "
+        "The format should strictly adhere to the following structure:\n"
+        "{{\n"
+        '    "answer": "Your synthesized answer here"\n'
+        "}}\n\n"
+        "Please refrain from including any additional commentary or information "
+        "outside of the specified context and past conversation.\n\n"
+        "Context:\n"
+        "========\n"
+        "{context}\n"
+        "========\n\n"
+        "Query:\n"
+        "{query}\n"
+    )
+
+    GENERATE_OODA_PLAN = (
+        "As a specialist in problem-solving, your task is to utilize the OODA loop "
+        "as a cognitive framework for addressing various tasks, which could include "
+        "questions, commands, or messages. You have at your disposal a range of tools "
+        "to aid in resolving these issues. Your responses should be methodically "
+        "structured according to the OODA loop, formatted as a JSON dictionary. "
+        "Each dictionary key represents one of the OODA loop's four stages: "
+        "Observe, Orient, Decide, and Act. Within each stage, detail your analytical "
+        "process and, when relevant, specify the execution of tools, including "
+        "their names and parameters. Only output the JSON and nothing else. "
+        "The proposed output format is as follows: \n"
+        "{\n"
+        "    'observe': {\n"
+        "        'thought': 'Here, articulate your initial assessment of the task, "
+        "capturing essential details and contextual elements.',\n"
+        "        'calls': [{'tool_name': '', 'parameters': ''}, ...]  // List tools and "
+        "their parameters, if any are used in this stage.\n"
+        "    },\n"
+        "    'orient': {\n"
+        "        'thought': 'In this phase, analyze and synthesize the gathered "
+        "information, considering different angles and strategies.',\n"
+        "        'calls': [{'tool_name': '', 'parameters': ''}, ...]   // Include any "
+        "tools that aid in this analytical phase.\n"
+        "    },\n"
+        "    'decide': {\n"
+        "        'thought': 'Now, determine the most suitable action based on your "
+        "observations and analysis.',\n"
+        "        'calls': [{'tool_name': '', 'parameters': ''}, ...]   // Specify tools "
+        "that assist in making this decision, if applicable.\n"
+        "    },\n"
+        "    'act': {\n"
+        "        'thought': 'Finally, outline the implementation steps based on your "
+        "decision, including any practical actions or responses.',\n"
+        "        'calls': [{'tool_name': '', 'parameters': ''}, ...]   // List any tools "
+        "used in the implementation of the decision.\n"
+        "    }\n"
+        "}"
     )

@@ -6,8 +6,6 @@ from openssa.core.ooda_rag.heuristic import (
 )
 from openssa.core.ooda_rag.custom import CustomSSM
 from openssa.core.ooda_rag.solver import OodaSSA
-from openssa.utils.llm_config import LLMConfig
-from openssa.utils.aitomatic_llm_config import AitomaticLLMConfig
 
 FOLDER = "/Users/sang/WorkSpace/Aitomatic/openssa-ald"
 PROBLEM = """I want to estimate the ALD process time for 10 cycles, each with Pulse Time = 15 secs, Purge Time = 10 secs and negligible Inert"""
@@ -31,10 +29,6 @@ def use_ooda():
     ooda_ssa = OodaSSA(
         task_heuristics=task_heuristics,
         highest_priority_heuristic=highest_priority_heuristic,
-        llm=AitomaticLLMConfig.get_aitomatic_llm(),
-        rag_llm=LLMConfig.get_llm_llama_2_70b(),
-        embed_model=LLMConfig.get_aito_embeddings(),
-        model="gpt-4-1106-preview",
     )
     ooda_ssa.activate_resources(FOLDER)
     print("finish reading doc")

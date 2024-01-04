@@ -1,20 +1,25 @@
-from llama_index import Document, Response, SimpleDirectoryReader, ServiceContext, OpenAIEmbedding
+from llama_index import (
+    Document,
+    Response,
+    SimpleDirectoryReader,
+    ServiceContext,
+    OpenAIEmbedding,
+)
 from llama_index.evaluation import DatasetGenerator
-from llama_index.llms.llm import LLM as RAGLLM
+from llama_index.llms import OpenAI
 from llama_index.node_parser import SimpleNodeParser
 
 from openssa.core.backend.abstract_backend import AbstractBackend
 from openssa.core.slm.base_slm import PassthroughSLM
 from openssa.core.ssm.rag_ssm import RAGSSM
 from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
-from openssa.utils.llm_config import LLMConfig
 
 FILE_NAME = "file_name"
 
 
 class CustomBackend(LlamaIndexBackend):  # type: ignore
-    def __init__(self, rag_llm: RAGLLM = None, service_context=None) -> None:  # type: ignore
-        super().__init__(rag_llm=rag_llm, service_context=service_context)
+    def __init__(self, service_context=None) -> None:  # type: ignore
+        super().__init__(service_context=service_context)
 
     def _do_read_directory(self, storage_dir: str) -> None:
         def filename_fn(filename: str) -> dict:
@@ -25,9 +30,9 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
             input_files=None,
             exclude=None,
             exclude_hidden=False,  # non-default
-            errors='strict',  # non-default
+            errors="strict",  # non-default
             recursive=True,  # non-default
-            encoding='utf-8',
+            encoding="utf-8",
             filename_as_id=True,
             required_exts=None,
             file_extractor=None,
@@ -72,7 +77,9 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
         print("persist_path", persist_path)
         self._index.storage_context.persist(persist_path)
 
-    def query(self, query: str, source_path: str = "") -> dict:  # pylint: disable=arguments-renamed
+    def query(
+        self, query: str, source_path: str = ""
+    ) -> dict:  # pylint: disable=arguments-renamed
         """Returns a response dict with keys role, content, and citations."""
         if self.query_engine is None:
             return {"content": "No index to query. Please load something first."}
@@ -85,7 +92,7 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
         if self.documents:
             data_generator = DatasetGenerator.from_documents(self.documents)
             nodes = self.sort_longest_nodes(self.documents)
-            service_context = LLMConfig.get_service_context_openai_35_turbo()
+            service_context = ServiceContext.from_defaults(llm=self.llm)
             data_generator = DatasetGenerator(
                 nodes=nodes[:5],
                 service_context=service_context,
@@ -105,19 +112,21 @@ class CustomSSM(RAGSSM):  # type: ignore
         self,
         custom_rag_backend: AbstractBackend = None,
         s3_source_path: str = "",
-        llm: RAGLLM = LLMConfig.get_llm_llama_2_70b(),  # type: ignore
-        embed_model: OpenAIEmbedding = LLMConfig.get_default_embed_model()
     ) -> None:
         if custom_rag_backend is None:
-            service_context = ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
-            custom_rag_backend = CustomBackend(rag_llm=llm, service_context=service_context)
+            service_context = ServiceContext.from_defaults(
+                llm=OpenAI(model="gpt-4-1106-preview"), embed_model=OpenAIEmbedding()
+            )
+            custom_rag_backend = CustomBackend(service_context=service_context)
 
         slm = PassthroughSLM()
         self._rag_backend = custom_rag_backend
         self.s3_source_path = s3_source_path
         super().__init__(slm=slm, rag_backend=self._rag_backend)
 
-    def discuss(self, query: str, conversation_id: str = "") -> dict:  # pylint: disable=arguments-renamed
+    def discuss(
+        self, query: str, conversation_id: str = ""
+    ) -> dict:  # pylint: disable=arguments-renamed
         """Return response with keys role, content, and citations."""
         return self._rag_backend.query(query, source_path=self.s3_source_path)
 
