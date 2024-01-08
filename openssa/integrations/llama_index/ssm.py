@@ -17,11 +17,8 @@ class SSM(RAGSSM):
         name: str = None,
         storage_dir: str = None,
         relevance_threshold: float = 0.5,
-        rag_llm: RAGLLM = None,
     ):
-        rag_backend = LlamaIndexBackend(
-            relevance_threshold=relevance_threshold, rag_llm=rag_llm
-        )
+        rag_backend = LlamaIndexBackend(relevance_threshold=relevance_threshold)
 
         super().__init__(
             slm=slm, rag_backend=rag_backend, name=name, storage_dir=storage_dir
@@ -35,14 +32,11 @@ class GPT3SSM(SSM):
         storage_dir: str = None,
         relevance_threshold: float = 0.5,
     ):
-        rag_llm = OpenAI(model="gpt-3.5-turbo-16k")
-
         super().__init__(
             slm=GPT3ChatCompletionSLM(),
             name=name,
             storage_dir=storage_dir,
             relevance_threshold=relevance_threshold,
-            rag_llm=rag_llm,
         )
 
 
@@ -54,14 +48,12 @@ class GPT4SSM(SSM):
         relevance_threshold: float = 0.5,
     ):
         # pylint: disable=no-member
-        rag_llm = AzureOpenAI(engine=Config.AZURE_GPT4_ENGINE)
 
         super().__init__(
             slm=PassthroughSLM(),
             name=name,
             storage_dir=storage_dir,
             relevance_threshold=relevance_threshold,
-            rag_llm=rag_llm,
         )
 
 
@@ -72,12 +64,9 @@ class LeptonLlamaIndexSSM(SSM):
         storage_dir: str = None,
         relevance_threshold: float = 0.5,
     ):
-        rag_llm = OpenAI(model="gpt-3.5-turbo-16k")
-
         super().__init__(
             name=name,
             slm=LeptonSLM(),
             storage_dir=storage_dir,
             relevance_threshold=relevance_threshold,
-            rag_llm=rag_llm,
         )

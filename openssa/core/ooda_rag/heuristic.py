@@ -1,3 +1,4 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Union
 
@@ -41,12 +42,11 @@ class DefaultOODAHeuristic(Heuristic):
     def apply_heuristic(self, task: str) -> dict:
         observe = {
             "thought": f"Gather information from research document to solve the task \n {task}",
-            "calls": [{"research_documents": task}],
+            "calls": [{"tool_name": "research_documents", "parameters": {"task": task}}],
         }
         orient = {
             "thought": (
                 "Analyze the information gathered from research documents. "
-                "Checking any other tools that can be used to solve the task: No"
             ),
             "calls": [],
         }

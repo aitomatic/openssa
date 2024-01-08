@@ -8,6 +8,7 @@ poetry.lock
 __pycache__/
 .pytest_cache/
 .ropeproject/
+.venv/
 
 
 # DOCUMENTATION
@@ -33,3 +34,6 @@ docs/_build/
 # DATA FILES
 # ==========
 .openssa/
+.env
+tmp/
+examples/data/cache/dense

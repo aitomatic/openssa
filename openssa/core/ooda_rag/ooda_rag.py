@@ -1,6 +1,7 @@
 import json
 import uuid
 from typing import List, Optional
+from loguru import logger
 from openssa.core.ooda_rag.prompts import OODAPrompts
 from openssa.core.ooda_rag.notifier import Notifier, SimpleNotifier, EventTypes
 from openssa.core.ooda_rag.heuristic import (
@@ -9,42 +10,25 @@ from openssa.core.ooda_rag.heuristic import (
     DefaultOODAHeuristic,
 )
 from openssa.core.ooda_rag.tools import Tool
+from openssa.core.ooda_rag.builtin_agents import OODAPlanAgent, Persona
+from openssa.utils.utils import Utils
+from openssa.utils.llms import OpenAILLM, AnLLM
 
 
 class History:
     def __init__(self) -> None:
         self._messages: list = []
 
-    def add_message(self, message: str, role: str) -> None:
+    def add_message(self, message: str, role: str, verbose: bool = True) -> None:
         self._messages.append({"content": message, "role": role})
-        print(f"\n{role}: {message}")
+        if verbose:
+            print(f"\n{role}: {message}")
 
     def get_history(self) -> list:
         return self._messages
 
-    def append_history(self, history: list) -> None:
-        self._messages = history + self._messages
-
-class Model:
-    def __init__(self, llm, model) -> None:
-        self.llm = llm
-        self.model = model
-
-    def get_response(self, message: str, history: History) -> str:
-        history.add_message(message, "system")
-        completions = self.llm.chat.completions.create(
-            model=self.model, messages=history.get_history()
-        )
-        response = completions.choices[0].message.content
-        history.add_message(response, "assistant")
-        return response
-
-    def parse_output(self, output: str) -> dict:
-        try:
-            return json.loads(output)
-        except json.JSONDecodeError:
-            print("Failed to decode the response as JSON.")
-            return {}
+    def append_history(self, prehistory: list) -> None:
+        self._messages = prehistory + self._messages
 
 
 class Executor:
@@ -65,43 +49,70 @@ class Executor:
         self.uuid = str(uuid.uuid4())
 
     def execute_task(self, history: History) -> None:
-        ooda_plan = self.ooda_heuristics.apply_heuristic(self.task)
+        if not self.is_main_task:
+            self.notifier.notify(
+                event=EventTypes.SUBTASK_BEGIN,
+                data={"uuid": self.uuid, "task-name": self.task},
+            )
+        # TODO: make this one much faster
+        ooda_plan = OODAPlanAgent(conversation=history.get_history()).execute(self.task)
+        if not ooda_plan:
+            ooda_plan = self.ooda_heuristics.apply_heuristic(self.task)
+        self.check_resource_call(ooda_plan)
         self._execute_step(ooda_plan["observe"], history, "observe")
         self._execute_step(ooda_plan["orient"], history, "orient")
         self._execute_step(ooda_plan["decide"], history, "decide")
         self._execute_step(ooda_plan["act"], history, "act")
 
+    def check_resource_call(self, ooda_plan: dict) -> None:
+        steps = ["observe", "orient", "decide", "act"]
+        for step in steps:
+            calls = ooda_plan.get(step, {}).get("calls", [])
+            for call in calls:
+                if call.get("tool_name", "") == "research_documents":
+                    return
+        observe = ooda_plan["observe"]
+        observe["calls"] = [
+            {"tool_name": "research_documents", "parameters": {"task": self.task}}
+        ]
+
     def _execute_step(self, step: dict, history: History, step_name: str) -> None:
         thought = step.get("thought", "")
         calls = step.get("calls", [])
         tool_results = {}
+        data = {"thought": thought, "tool_results": tool_results, "uuid": self.uuid}
         if calls:
+            data["tool_executions"] = "\n".join([str(call) for call in calls])
             tool_results = self._execute_tools(calls)
-            history.add_message(f"Tool results: {tool_results}", "assistant")
+            content_result = self._get_content_result(tool_results)
+            data["tool_results"] = {
+                "content": content_result,
+                "citations": tool_results.get("research_documents", {}).get(
+                    "citations", []
+                ),
+            }
+            history.add_message(
+                f"Tool results for question {self.task} is: {content_result}",
+                Persona.ASSISTANT,
+            )
         event = EventTypes.MAINTASK if self.is_main_task else EventTypes.SUBTASK
-        self.notifier.notify(
-            event=event + "-" + step_name,
-            data={"thought": thought, "tool_results": tool_results, "uuid": self.uuid},
-        )
+        self.notifier.notify(event=event + "-" + step_name, data=data)
 
-    def _execute_step_with_model(
-        self, model: Model, history: History, command: str, has_calls: bool
-    ) -> None:
-        response = model.get_response(command, history)
-        response = model.parse_output(response)
-        if has_calls:
-            tool_results = self._execute_tools(response.get("calls", []))
-            tool_results = f"tool results: {tool_results}"
-            history.add_message(tool_results, "assistant")
+    def _get_content_result(self, tool_results: str) -> str:
+        if "research_documents" in tool_results:
+            return tool_results["research_documents"].get("content", "")
+        return ""
 
     def _execute_tools(self, calls: list[dict]) -> str:
         tool_results: dict = {}
         for call in calls:
-            for tool, params in call.items():
-                if tool in self.tools:
-                    tool_results[tool] = self.tools[tool].execute(params)
-                else:
-                    print(f"Tool {tool} not found.")
+            tool = call.get("tool_name", "")
+            if tool == "research_documents":
+                tool_results[tool] = self.tools[tool].execute(self.task)
+            elif tool:
+                logger.debug(f"Tool {tool} not found.")
+            else:
+                continue
         return tool_results
 
 
@@ -120,12 +131,17 @@ class Planner:
         self.prompts = prompts
         self.enable_generative = enable_generative
 
-    def formulate_task(self, model: Model, history: History) -> str:
-        response = model.get_response(self.prompts.FORMULATE_TASK, history)
+    def formulate_task(self, model: AnLLM, history: History) -> str:
+        response = model.get_response(
+            self.prompts.FORMULATE_TASK,
+            history.get_history(),
+            Persona.SYSTEM,
+            response_format={"type": "json_object"},
+        )
         response = model.parse_output(response)
         return response.get("task", "")
 
-    def decompose_task(self, model: Model, task: str, history: History) -> list[str]:
+    def decompose_task(self, model: AnLLM, task: str, history: History) -> list[str]:
         subtasks = self.heuristics.apply_heuristic(task)
         if len(subtasks) > self.max_subtasks:
             return subtasks[: self.max_subtasks]
@@ -134,9 +150,15 @@ class Planner:
             subtasks.extend(generative_subtasks)
         return subtasks[: self.max_subtasks]
 
-    def generative_decompose_task(self, model: Model, history: History) -> list[str]:
-        response = model.get_response(self.prompts.DECOMPOSE_INTO_SUBTASKS, history)
+    def generative_decompose_task(self, model: AnLLM, history: History) -> list[str]:
+        response = model.get_response(
+            self.prompts.DECOMPOSE_INTO_SUBTASKS,
+            history.get_history(),
+            Persona.SYSTEM,
+            response_format={"type": "json_object"},
+        )
         response = model.parse_output(response)
+        history.add_message(str(response), Persona.ASSISTANT)
         return response.get("subtasks", [])
 
 
@@ -147,57 +169,64 @@ class Solver:
         ooda_heuristics: Heuristic = DefaultOODAHeuristic(),
         notifier: Notifier = SimpleNotifier(),
         prompts: OODAPrompts = OODAPrompts(),
-        llm=None,
-        model: str = "llama2",
+        llm=OpenAILLM.get_gpt_4_1106_preview(),
         highest_priority_heuristic: str = "",
         enable_generative: bool = False,
         conversation: Optional[List] = None,
     ) -> None:
-        self.task_heuristics = task_heuristics
+        self.task_heuristics = task_heuristics or TaskDecompositionHeuristic({})
         self.ooda_heuristics = ooda_heuristics
         self.notifier = notifier
-        self.history = History()
+        self.history = History()  # internal conversation
         self.planner = Planner(
-            task_heuristics, prompts, enable_generative=enable_generative
+            self.task_heuristics, prompts, enable_generative=enable_generative
         )
-        self.model = Model(llm=llm, model=model)
+        self.model = llm
         self.prompts = prompts
         self.highest_priority_heuristic = highest_priority_heuristic.strip()
         self.conversation = conversation or []
 
-    def run(self, input_message: str, tools: dict) -> str:
+    def run(self, problem_statement: str, tools: dict) -> str:
         """
-        Run the solver on input_message
+        Run the solver on problem_statement
 
-        :param input_message: the input to the solver
+        :param problem_statement: the input to the solver
         :param tools: the tools to use in the solver
         """
 
-        self.history.add_message(input_message, "user")
+        self.notifier.notify(
+            EventTypes.MAIN_PROBELM_STATEMENT, {"message": problem_statement}
+        )
+        self.history.add_message(
+            problem_statement, Persona.USER
+        )  # internal conversation
         tool_descriptions = [f"{name}: {fn.__doc__}" for name, fn in tools.items()]
         tool_message = self.prompts.PROVIDE_TOOLS.format(
             tool_descriptions=tool_descriptions
         )
-        self.history.add_message(tool_message, "system")
+        self.history.add_message(tool_message, Persona.SYSTEM)
 
         # task = self.planner.formulate_task(self.model, self.history)
-        subtasks = self.planner.decompose_task(self.model, input_message, self.history)
-        print(f"\nSubtasks: {subtasks}\n")
+        subtasks = self.planner.decompose_task(
+            self.model, problem_statement, self.history
+        )
+        logger.info(f"\nSubtasks: {subtasks}\n")
 
         for subtask in subtasks:
-            self.notifier.notify(
-                EventTypes.NOTIFICATION, {"message": "starting sub-task"}
-            )
             executor = Executor(subtask, tools, self.ooda_heuristics, self.notifier)
             executor.execute_task(self.history)
         executor = Executor(
-            input_message, tools, self.ooda_heuristics, self.notifier, True
+            problem_statement, tools, self.ooda_heuristics, self.notifier, True
         )
-        self.notifier.notify(EventTypes.NOTIFICATION, {"message": "starting main-task"})
+        self.notifier.notify(
+            EventTypes.NOTIFICATION, {"message": "starting main steps"}
+        )
         executor.execute_task(self.history)
         return self.synthesize_result()
 
+    @Utils.timeit
     def synthesize_result(self) -> str:
+        heuristic = ""
         if self.highest_priority_heuristic:
             heuristic = (
                 "Always applying the following heuristic (highest rule, overwrite all other instructions) to "
@@ -207,6 +236,12 @@ class Solver:
 
         synthesize_prompt = self.prompts.SYNTHESIZE_RESULT.format(heuristic=heuristic)
         self.history.append_history(self.conversation[:-1])
-        response = self.model.get_response(synthesize_prompt, self.history)
+        # logger.debug(f"synthesize: ==== \n {self.history.get_history()}\n ====")
+        response = self.model.get_response(
+            synthesize_prompt,
+            self.history.get_history(),
+            Persona.SYSTEM,
+            response_format={"type": "text"},
+        )
         self.notifier.notify(EventTypes.TASK_RESULT, {"response": response})
         return response

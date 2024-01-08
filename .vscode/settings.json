@@ -2,18 +2,199 @@
   "editor.rulers": [120],
 
   "files.exclude": {
-    "**/*.egg-info": true,
+    // Git
     "**/.git": true,
+
+    // Python & related
+    "**/*.egg-info": true,
     "**/.mypy_cache": true,
     "**/__pycache__": true,
     "**/.pytest_cache": true,
-    "**/.ropeproject": true
+    "**/.ropeproject": true,
+    "**/.ruff_cache": true
   },
+
+
+  // PYTHON
+  // ======
 
   "[python]": {
     "editor.formatOnSave": false
   },
 
   "python.analysis.diagnosticSeverityOverrides": {
-  }
+  },
+
+
+  // FLAKE8
+  // ======
+
+  // Arguments passed to Flake8 for linting Python files.
+  // Each argument should be provided as a separate string in the array.
+  "flake8.args": [
+    "--verbose",
+    "--color=always"
+  ],
+
+  // Sets the current working directory used to lint Python files with Flake8.
+  // By default, it uses the root directory of the workspace ${workspaceFolder}.
+  // You can set it to ${fileDirname} to use the parent folder of the file being linted
+  // as the working directory for Flake8.
+  "flake8.cwd": "${workspaceFolder}",
+
+  // Mapping of Flake8's message types to VS Code's diagnostic severity levels as displayed in the Problems window.
+  // You can also use it to override specific Flake8 error codes.
+  "flake8.severity": {
+    "convention": "Information",
+    "error": "Error",
+    "fatal": "Error",
+    "info": "Information",
+    "refactor": "Hint",
+    "warning": "Warning"
+  },	
+
+  // Path or command to be used by the extension to lint Python files with Flake8.
+  // Accepts an array of a single or multiple strings.
+  // If passing a command, each argument should be provided as a separate string in the array.
+  // If set to ["flake8"], it will use the version of Flake8 available in the PATH environment variable.
+  // Note: Using this option may slowdown linting.
+  // "flake8.path": [], 
+
+  // Path to a Python executable or a command that will be used to launch the Flake8 server and any subprocess.
+  // Accepts an array of a single or multiple strings.
+  // When set to [], the extension will use the path to the selected Python interpreter.
+  // If passing a command, each argument should be provided as a separate string in the array.
+  "flake8.interpreter":	[],
+
+  // Defines which Flake8 binary to be used to lint Python files.
+  // When set to useBundled, the extension will use the Flake8 binary that is shipped with the extension.
+  // When set to fromEnvironment, the extension will attempt to use the Flake8 binary and all dependencies
+  // that are available in the currently selected environment.
+  // Note: If the extension can't find a valid Flake8 binary in the selected environment,
+  // it will fallback to using the Flake8 binary that is shipped with the extension.
+  // This setting will be overriden if flake8.path is set.
+  "flake8.importStrategy": "fromEnvironment",
+
+  // Controls when notifications are shown by this extension.
+  // Accepted values are onError, onWarning, always and off.
+  "flake8.showNotification": "onWarning",
+
+  // Enable linting Python files with Flake8 as you type.
+  "flake8.lintOnChange": true,
+
+  // Configure glob patterns as supported by the fnmatch Python library (https://docs.python.org/3/library/fnmatch.html)
+  // to exclude files or folders from being linted with Flake8.
+  "flake8.ignorePatterns": [
+    ".venv/*", "venv/*"
+  ],
+
+
+  // PYLINT
+  // ======
+
+  // Arguments passed to Pylint for linting Python files.
+  // Each argument should be provided as a separate string in the array.
+  "pylint.args": [
+  ],
+
+  // Sets the current working directory used to lint Python files with Pylint.
+  // By default, it uses the root directory of the workspace ${workspaceFolder}.
+  // You can set it to ${fileDirname} to use the parent folder of the file being linted
+  // as the working directory for Pylint.
+  "pylint.cwd": "${workspaceFolder}",
+
+  // Enable/disable linting Python files with Pylint.
+  // This setting can be applied globally or at the workspace level.
+  // If disabled, the linting server itself will continue to be active and monitor read and write events,
+  // but it won't perform linting or expose code actions.
+  "pylint.enabled": true,
+
+  // Mapping of Pylint's message types to VS Code's diagnostic severity levels as displayed in the Problems window.
+  // You can also use it to override specific Pylint error codes.
+  "pylint.severity": {
+    "convention": "Information",
+    "error": "Error",
+    "fatal": "Error",
+    "info": "Information",
+    "refactor": "Hint",
+    "warning": "Warning"
+  },
+
+  // Path or command to be used by the extension to lint Python files with Pylint.
+  // Accepts an array of a single or multiple strings.
+  // If passing a command, each argument should be provided as a separate string in the array.
+  // If set to ["pylint"], it will use the version of Pylint available in the PATH environment variable.
+  // Note: Using this option may slowdown linting.
+  // "pylint.path": [],
+
+  // Path to a Python executable or a command that will be used to launch the Pylint server and any subprocess.
+  // Accepts an array of a single or multiple strings.
+  // When set to [], the extension will use the path to the selected Python interpreter.
+  // If passing a command, each argument should be provided as a separate string in the array.
+  "pylint.interpreter": [],
+
+  // Defines which Pylint binary to be used to lint Python files.
+  // When set to useBundled, the extension will use the Pylint binary that is shipped with the extension.
+  // When set to fromEnvironment, the extension will attempt to use the Pylint binary and all dependencies
+  // that are available in the currently selected environment.
+  // Note: If the extension can't find a valid Pylint binary in the selected environment,
+  // it will fallback to using the Pylint binary that is shipped with the extension.
+  // This setting will be overriden if pylint.path is set.
+  "pylint.importStrategy": "fromEnvironment",
+
+  // Controls when notifications are shown by this extension.
+  // Accepted values are onError, onWarning, always and off.
+  "pylint.showNotification": "onWarning",
+
+  // Enable linting Python files with Pylint as you type.
+  "pylint.lintOnChange": true,
+
+  // Configure glob patterns as supported by the fnmatch Python library
+  // to exclude files or folders from being linted with Pylint.
+  "pylint.ignorePatterns": [
+    ".venv/*", "venv/*"
+  ],
+
+
+  // RUFF
+  // ====
+
+  // Additional command-line arguments to pass to ruff check, e.g., "args": ["--config=/path/to/pyproject.toml"].
+  // Supports a subset of Ruff's command-line arguments, ignoring those that are required to operate the LSP,
+  // like --force-exclude and --verbose.
+  "ruff.lint.args": [
+  ],
+
+  // Path to a custom ruff executable, e.g., ["/path/to/ruff"].
+  "ruff.path": [],
+
+  // Path to a Python interpreter to use to run the linter server.
+  "ruff.interpreter": [],
+
+  // Strategy for loading the ruff executable.
+  // fromEnvironment picks up Ruff from the environment, falling back to the bundled version if needed.
+  // useBundled uses the version bundled with the extension.
+  "ruff.importStrategy": "fromEnvironment",
+
+  // Run Ruff on every keystroke (onType) or on save (onSave).
+  "ruff.lint.run": "onSave",
+
+  // Whether to enable the Ruff extension.
+  // Modifying this setting requires restarting VS Code to take effect.
+  "ruff.enable": true,
+
+  // Whether to register Ruff as capable of handling source.organizeImports actions.
+  "ruff.organizeImports": true,
+
+  // Whether to register Ruff as capable of handling source.fixAll actions.
+  "ruff.fixAll": false,
+
+  // Whether to display Quick Fix actions to autofix violations.
+  "ruff.codeAction.fixViolation.enable": true,
+
+  // Whether to display Quick Fix actions to disable rules via noqa suppression comments.
+  "ruff.codeAction.disableRuleComment.enable": true,
+
+  // Setting to control when a notification is shown: off, onError, onWarning, always.
+  "ruff.showNotification": "onWarning"
 }

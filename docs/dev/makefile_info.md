@@ -25,7 +25,7 @@ Here are the key targets for the top-level `Makefile`.
 
 - `docs-build`:  build web-based documentation
 
-- `docs-deploy`: deploy web-based documentation to GitHub, e.g., [aitomatic.github.io/openssm](https://aitomatic.github.io/openssm)
+- `docs-deploy`: deploy web-based documentation to GitHub, e.g., [aitomatic.github.io/openssa](https://aitomatic.github.io/openssa)
 
 - Miscellaneous: internal use or sub-targets
 

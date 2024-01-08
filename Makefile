@@ -1,22 +1,13 @@
 # DIRECTORY NAMES & PATHS
 # =======================
-PROJECT_DIR=$(PWD)
-ROOT_DIR=$(PROJECT_DIR)
+LIB_DIR=openssa
 
-LIB_DIR_NAME=openssa
-LIB_DIR=$(PROJECT_DIR)/$(LIB_DIR_NAME)
+EXAMPLES_DIR=examples
 
-EXAMPLES_DIR_NAME=examples
-EXAMPLES_DIR=$(PROJECT_DIR)/$(EXAMPLES_DIR_NAME)
+TESTS_DIR=tests
 
-TESTS_DIR_NAME=tests
-TESTS_DIR=$(PROJECT_DIR)/$(TESTS_DIR_NAME)
-
-DOCS_DIR_NAME=docs
-DOCS_DIR=$(PROJECT_DIR)/$(DOCS_DIR_NAME)
-
+DOCS_DIR=docs
 DOCS_BUILD_DIR=$(DOCS_DIR)/_build
-
 DOCS_SUBDIRS_TO_PUBLISH := _images _static
 
 
@@ -44,11 +35,32 @@ install:
 	poetry lock
 	poetry install --extras=contrib --with=docs --with=lint --with=test
 
+install-editable:
+	python3 -m pip install -e ".[contrib]" --upgrade --user
+
 
 # LINTING
 # =======
-lint:
-	poetry run pylint $(LIB_DIR_NAME) $(DOCS_DIR_NAME) $(EXAMPLES_DIR_NAME) $(TESTS_DIR_NAME)
+lint: lint-flake8 lint-pylint lint-ruff
+
+lint-flake8:
+	# flake8.pycqa.org/en/latest/user/invocation.html
+	# flake8.pycqa.org/en/latest/user/options.html
+	poetry run flake8 $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
+		--verbose --color always
+
+lint-pylint:
+	# pylint.readthedocs.io/en/latest/user_guide/usage/run.html
+	poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR)
+
+lint-ruff:
+	# docs.astral.sh/ruff/linter
+	poetry run ruff check $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
+		--show-source \
+		--output-format text \
+		--target-version py310 \
+		--preview \
+		--respect-gitignore
 
 
 # TESTING
@@ -64,7 +76,7 @@ pre-commit: lint test
 
 # DISTRIBUTION BUILDING & PYPI RELEASE
 # ====================================
-dist:
+build:
 	poetry build
 
 pypi-auth:
@@ -102,7 +114,7 @@ docs-build-api:
 		*/contrib/streamlit_ssa_prob_solver/main.py */contrib/streamlit_ssa_prob_solver/pages
 
 	# get rid of undocumented members
-	# sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR_NAME)*.rst
+	# sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR)*.rst
 	# rm "$(DOCS_DIR)"/*.orig
 
 docs-build: docs-build-clean docs-build-api
@@ -119,7 +131,7 @@ docs-deploy: docs-build
 	rm *.html
 	cp "$(DOCS_BUILD_DIR)"/*.html .
 	git add --all "*.html"
-	git reset "$(DOCS_DIR_NAME)/*.html"
+	git reset "$(DOCS_DIR)/*.html"
 
 	for docs_subdir_to_publish in $(DOCS_SUBDIRS_TO_PUBLISH) ; do \
 		echo "syncing $$docs_subdir_to_publish..." ; \
@@ -145,4 +157,12 @@ launch-solver:
 	poetry run openssa launch solver
 
 public:
-	rsync -av --delete --exclude .git --links . ../openssa/
+	rsync . ../openssa/ \
+		--archive \
+		--delete \
+		--exclude .git \
+		--exclude __pycache__ --exclude .mypy_cache --exclude .pytest_cache --exclude .ruff_cache \
+		--exclude .venv --exclude venv \
+		--exclude *.rst --exclude "docs/_build" \
+		--links \
+		--verbose
