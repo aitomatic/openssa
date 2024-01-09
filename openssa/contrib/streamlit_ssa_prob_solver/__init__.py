@@ -1,22 +1,23 @@
 """SSA Problem-Solver Streamlit Component."""
 
 
-from collections.abc import Iterable, MutableMapping, Sequence
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
 from collections import defaultdict
 from uuid import UUID
 
 import streamlit as st
 from streamlit_mic_recorder import speech_to_text
 
-from openssa.core.ssa.ssa import RagSSA
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.ooda_rag.custom import CustomSSM
 from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
-from openssa.utils.llm_config import LLMConfig
 
-
-__all__: Sequence[str] = ('SSAProbSolver',)
+if TYPE_CHECKING:
+    from collections.abc import Iterable, MutableMapping
+    from openssa.core.ssa.ssa import RagSSA
 
 
 # Streamlit Session State alias "SSS" for brevity
@@ -198,9 +199,7 @@ class SSAProbSolver:
                      type="primary",
                      disabled=False,
                      use_container_width=False):
-            llm = LLMConfig.get_llm_llama_2_70b()
-            embed_model = LLMConfig.get_aito_embeddings()
-            ssa: RagSSA = CustomSSM(llm=llm, embed_model=embed_model)
+            ssa: RagSSA = CustomSSM()
 
             st.write('_Building SSA, please wait..._')
 

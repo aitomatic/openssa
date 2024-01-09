@@ -17,7 +17,7 @@ class AbstractSSAService(ABC):
 
 
 class SSAService(AbstractSSAService):
-    AISO_API_URL = os.environ.get("AISO_API_URL", "http://149.28.132.159:8000/api")
+    AIMO_API_URL = os.environ.get("AIMO_API_URL", "http://149.28.132.159:8000/api")
     AISO_API_KEY = os.environ.get("AISO_API_KEY", "1234567890")
 
     @classmethod
@@ -32,11 +32,11 @@ class SSAService(AbstractSSAService):
             "model_size": "7b",
             "compression": "int5",
             "learning_rate": "0.7",
-            "api_key": SSAService.AISO_API_URL,
+            "api_key": SSAService.AIMO_API_URL,
         }
 
         with httpx.Client() as client:
-            response = client.post(SSAService.AISO_API_URL + "/train", json=payload)
+            response = client.post(SSAService.AIMO_API_URL + "/train", json=payload)
 
         return response.json()
 
@@ -51,7 +51,7 @@ class SSAService(AbstractSSAService):
             "endpoint_name": config.get("endpoint_name"),
         }
 
-        aiso_url = config.get("aiso_url") or SSAService.AISO_API_URL
+        aiso_url = config.get("aiso_url") or SSAService.AIMO_API_URL
 
         with httpx.Client() as client:
             response = client.post(aiso_url + "/api/chat", json=payload)
@@ -68,7 +68,7 @@ class SSARAGService:
 
         with httpx.Client(timeout=5000) as client:
             response = client.post(
-                SSAService.AISO_API_URL + "/api/agents/create", json=payload
+                SSAService.AIMO_API_URL + "/api/agents/create", json=payload
             )
             return response.json()
 
@@ -82,8 +82,7 @@ class SSARAGService:
             "agent_id": agent_id,
         }
 
-        aiso_url = SSAService.AISO_API_URL
-
+        aiso_url = SSAService.AIMO_API_URL
         with httpx.Client(timeout=5000) as client:
             response = client.post(aiso_url + "/api/agents/chat", json=payload)
             return response.json()
@@ -98,7 +97,7 @@ class SSARAGService:
             "agent_id": agent_id,
         }
 
-        aiso_url = SSAService.AISO_API_URL
+        aiso_url = SSAService.AIMO_API_URL
 
         with httpx.Client(timeout=5000) as client:
             response = client.post(aiso_url + "/api/agents/add-knowledge", json=payload)

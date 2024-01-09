@@ -93,7 +93,7 @@ See some example user programs in the [examples/notebooks](./examples/notebooks)
 % cd examples/notebooks
 ```
 
-#### Common `make` targets for OpenSSM developers
+#### Common `make` targets for OpenSSA developers
 
 See [MAKEFILE](dev/makefile_info.md) for more details.
 
@@ -105,7 +105,7 @@ See [MAKEFILE](dev/makefile_info.md) for more details.
 
 % make poetry-init
 % make poetry-install
-% make install      # local installation of openssm
+% make install      # local installation of openssa
 
 % make pypi-auth    # only for maintainers
 % make publish      # only for maintainers
@@ -113,9 +113,9 @@ See [MAKEFILE](dev/makefile_info.md) for more details.
 
 ### Getting Started as an Aspiring Contributor
 
-OpenSSM is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSMs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
+OpenSSA is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSAs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
 
-You can begin contributing to the OpenSSM project in the `contrib/` directory.
+You can begin contributing to the OpenSSA project in the `contrib/` directory.
 
 ### Getting Started as a Committer
 
