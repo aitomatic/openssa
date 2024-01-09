@@ -8,7 +8,7 @@ from openssa.utils.utils import Utils
 from openssa.utils.llms import OpenAILLM, AnLLM
 
 
-class AgentRole:
+class Persona:
     USER = "user"
     SYSTEM = "system"
     ASSISTANT = "assistant"
@@ -40,15 +40,15 @@ class AskUserAgent(TaskAgent):
     ) -> None:
         self.llm = llm
         self.ask_user_heuristic = ask_user_heuristic.strip()
-        self.conversation = conversation[-10:] if conversation else []
+        self.conversation = conversation[-10:-1] if conversation else []
 
     @Utils.timeit
-    def execute(self, task: str = "") -> str:
+    def execute(self, task: str = "") -> dict:
         if not self.ask_user_heuristic:
             return ""
         system_message = {
-            "role": AgentRole.SYSTEM,
-            "content": BuiltInAgentPrompt.ASK_USER.format(
+            "role": Persona.SYSTEM,
+            "content": BuiltInAgentPrompt.ASK_USER_OODA.format(
                 problem_statement=task,
                 heuristic=self.ask_user_heuristic,
             ),
@@ -61,11 +61,10 @@ class AskUserAgent(TaskAgent):
         json_str = response.choices[0].message.content
         logger.debug(f"ask user response is: {json_str}")
         try:
-            jobject = json.loads(json_str)
-            return jobject.get("question", "")
+            return json.loads(json_str)
         except json.JSONDecodeError:
             logger.error("Failed to decode the response as JSON for ask user agent.")
-            return ""
+            return {}
 
 
 class GoalAgent(TaskAgent):
@@ -84,22 +83,20 @@ class GoalAgent(TaskAgent):
     @Utils.timeit
     def execute(self, task: str = "") -> str:
         system_message = {
-            "role": AgentRole.SYSTEM,
+            "role": Persona.SYSTEM,
             "content": BuiltInAgentPrompt.PROBLEM_STATEMENT,
         }
-        conversation = self.conversation + [system_message]
         response = self.llm.call(
-            messages=conversation,
+            messages=self.conversation + [system_message],
             response_format={"type": "json_object"},
         )
         json_str = response.choices[0].message.content
         logger.debug(f"problem statement response is: {json_str}")
         try:
-            jobject = json.loads(json_str)
-            return jobject.get("problem statement", "")
+            return json.loads(json_str).get("problem statement", "")
         except json.JSONDecodeError:
-            logger.error("Failed to decode the response as JSON for goal agent.")
-            return conversation[-1].get("content", "")
+            logger.error("Failed to decode JSON for goal agent.")
+            return task
 
 
 class ContextValidator(TaskAgent):
@@ -130,16 +127,47 @@ class ContextValidator(TaskAgent):
             messages=conversation,
             response_format={"type": "json_object"},
         )
-        json_str = response.choices[0].message.content
         try:
-            jobject = json.loads(json_str)
+            return json.loads(response.choices[0].message.content)
         except json.JSONDecodeError:
-            logger.error(
-                "Failed to decode the response as JSON for content validation agent."
-            )
+            logger.error("Failed to decode JSON for content validation agent.")
             return {}
 
-        return jobject
+
+class AnswerValidator(TaskAgent):
+    """
+    AnswerValidator helps to determine whether the answer is complete
+    """
+
+    def __init__(
+        self,
+        llm: AnLLM = OpenAILLM.get_gpt_4_1106_preview(),
+        answer: str = "",
+    ) -> None:
+        self.llm = llm
+        self.answer = answer
+
+    @Utils.timeit
+    def execute(self, task: str = "") -> bool:
+        system_message = {
+            "role": "system",
+            "content": BuiltInAgentPrompt.ANSWER_VALIDATION,
+        }
+        user_message = {
+            "role": "user",
+            "content": (
+                "Please evaluate the following question and answer pair. "
+                "Respond with 'yes' or 'no' only, based on system instruction \n\n"
+                f"Question: {task}\n"
+                f"Answer: {self.answer}"
+            ),
+        }
+        conversation = [system_message, user_message]
+        response = self.llm.call(
+            messages=conversation,
+            response_format={"type": "text"},
+        )
+        return response.choices[0].message.content.lower() == "yes"
 
 
 class SynthesizingAgent(TaskAgent):
@@ -170,13 +198,10 @@ class SynthesizingAgent(TaskAgent):
             messages=conversation,
             response_format={"type": "json_object"},
         )
-        json_str = response.choices[0].message.content
         try:
-            return json.loads(json_str)
+            return json.loads(response.choices[0].message.content)
         except json.JSONDecodeError:
-            logger.error(
-                "Failed to decode the response as JSON for content validation agent."
-            )
+            logger.error("Failed to decode JSON for synthesizing agent.")
             return {}
 
 
@@ -187,7 +212,7 @@ class OODAPlanAgent(TaskAgent):
 
     def __init__(
         self,
-        llm: AnLLM = OpenAILLM.get_gpt_4_1106_preview(),
+        llm: AnLLM = OpenAILLM.get_gpt_35_turbo_1106(),
         conversation: Optional[List] = None,
     ) -> None:
         self.llm = llm
@@ -209,5 +234,5 @@ class OODAPlanAgent(TaskAgent):
         try:
             return json.loads(json_str)
         except json.JSONDecodeError:
-            logger.error("Failed to decode the response as JSON for OODA plan agent.")
+            logger.error("Failed to decode JSON for OODA plan agent.")
             return {}

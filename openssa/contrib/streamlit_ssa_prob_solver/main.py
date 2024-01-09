@@ -26,3 +26,6 @@ st.session_state['LEPTON_API_KEY']: str | None = \
 
 if st.session_state['LEPTON_API_KEY']:
     os.environ['LEPTON_API_KEY']: str = st.session_state['LEPTON_API_KEY']
+
+
+os.environ['OPENAI_API_KEY']: str = st.secrets.get('OPENAI_API_KEY', '')

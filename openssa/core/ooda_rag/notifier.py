@@ -21,3 +21,4 @@ class EventTypes:
     SUBTASK = "ooda-subtask"
     SUBTASK_BEGIN = "ooda-subtask-begin"
     TASK_RESULT = "task_result"
+    SWICTH_MODE = "switch_mode"

@@ -1,4 +1,6 @@
 """SSA Problem-Solver Streamlit Component."""
+
+
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
@@ -14,11 +16,8 @@ from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable, MutableMapping
     from openssa.core.ssa.ssa import RagSSA
-    from collections.abc import Iterable, MutableMapping, Sequence
-
-
-__all__: Sequence[str] = ('SSAProbSolver',)  # TODO: this is terrible, what is this for and why is it so poorly named?
 
 
 # Streamlit Session State alias "SSS" for brevity

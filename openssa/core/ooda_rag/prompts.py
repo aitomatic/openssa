@@ -179,6 +179,27 @@ class BuiltInAgentPrompt:
         "{query}\n"
     )
 
+    ANSWER_VALIDATION = (
+        "Your role is to act as an expert in reasoning and contextual analysis. "
+        "You need to evaluate if the provided answer effectively and clearly addresses the query. "
+        "Respond with 'yes' if the answer is clear and confident, and 'no' if it is not. "
+        "Here are some examples to guide you: \n\n"
+        "Example 1:\n"
+        "Query: Can I print a part 50 cm long with this machine?\n"
+        "Answer: Given the information and the lack of detailed specifications, "
+        "it is not possible to determine if the machine can print a part 50 cm long.\n"
+        "Evaluation: no\n\n"
+        "Example 2:\n"
+        "Query: Can I print a part 50 cm long with this machine?\n"
+        "Answer: No, it is not possible to print a part 50 cm long with this machine.\n"
+        "Evaluation: yes\n\n"
+        "Example 3:\n"
+        "Query: How to go to the moon?\n"
+        "Answer: I'm sorry, but based on the given context information, "
+        "there is no information provided on how to go to the moon.\n"
+        "Evaluation: no\n\n"
+    )
+
     SYNTHESIZE_RESULT = (
         "As an expert in problem-solving and contextual analysis, you are to "
         "synthesize an answer for a given query. This task requires you to use "

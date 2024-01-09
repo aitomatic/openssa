@@ -1,5 +1,6 @@
 import asyncio
 import json
+from pathlib import Path
 import yaml
 from typing import Any, Dict, List, Optional
 from json import JSONDecodeError
@@ -71,6 +72,8 @@ def store_nodes_dict(nodes_dict: Dict[str, TextNode], nodes_cache_path) -> None:
     output_dict = {}
     for node_id, node in nodes_dict.items():
         output_dict[node_id] = node.to_json()
+    nodes_cache_path = Path(nodes_cache_path)
+    nodes_cache_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(nodes_cache_path, "w") as f:  # noqa: PLW1514
         json.dump(output_dict, f)

@@ -34,7 +34,7 @@ Config.LEPTON_API_URL: Optional[str] = (
 )
 
 
-class AnLLM():
+class AnLLM:
     """
     This class provides a consistent API for the different LLM services.
     Intended usage:
@@ -84,9 +84,11 @@ class AnLLM():
     def create_embeddings(self):
         return self.client.embeddings.create(model=self.model)
 
-    def get_response(self, prompt: str, history: list = None, **kwargs) -> str:
-        messages = history or []
-        messages.append({"role": "user", "content": prompt})
+    def get_response(
+        self, prompt: str, messages: list = None, role: str = "user", **kwargs
+    ) -> str:
+        messages = messages if messages else []
+        messages.append({"role": role, "content": prompt})
         return self.call(messages=messages, **kwargs).choices[0].message.content
 
     def parse_output(self, output: str) -> dict:

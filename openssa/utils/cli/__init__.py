@@ -1,14 +1,9 @@
 """OpenSSA CLI."""
 
 
-from collections.abc import Sequence
-
 import click
 
 from .contrib.ssa_prob_solver import openssa_contrib_ssa_prob_solver_cli
-
-
-__all__: Sequence[str] = ('openssa_cli',)
 
 
 @click.group(name='launch',

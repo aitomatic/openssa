@@ -36,3 +36,4 @@ docs/_build/
 .openssa/
 .env
 tmp/
+examples/data/cache/dense

@@ -33,6 +33,8 @@ extend-ignore =
   E501,
   # imported but unused
   F401,
+  # constant imported as non-constant
+  N811,
   # doc line too long
   W505,
 

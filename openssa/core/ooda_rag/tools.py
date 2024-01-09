@@ -58,15 +58,16 @@ class ResearchDocumentsTool(Tool):
         super().__init__(description)
         self.agent_id = agent_id
 
-    def execute(self, task: str) -> str:
+    def execute(self, task: str) -> dict:
         """
         Query a document base for factual information.
 
         :param task (str): The question to ask the document base.
-        :return (str): The answer to the question.
+        :return (dict): The answer to the question including content and citations
         """
         try:
-            return RagSSA().chat(self.agent_id, task)
+            response = RagSSA().chat(self.agent_id, task)
+            return response.get("message", {})
         except (RequestError, TimeoutException, HTTPStatusError, JSONDecodeError) as e:
             traceback.print_exc()
             print(f"An error occurred while querying the document base: {e}")
@@ -83,16 +84,16 @@ class ReasearchAgentTool(Tool):
         super().__init__(description)
         self.agent = agent
 
-    def execute(self, task: str) -> str:
+    def execute(self, task: str) -> dict:
         """
         Query a document base for factual information.
 
         :param task (str): The question to ask the document base.
-        :return (str): The answer to the question.
+        :return (dict): The answer to the question.
         """
         response = self.agent.discuss(task)
         print(f"debug: {response}")
-        return response
+        return {"content": response}
 
 
 class PythonCodeTool(Tool):
@@ -136,14 +137,14 @@ class ResearchQueryEngineTool(Tool):
             )
         return citations
 
-    def execute(self, question: str) -> str:
+    def execute(self, question: str) -> dict:
         """
         Query a document base for factual information.
 
         :param question (str): The question to ask the document base.
-        :return (str): The answer to the question.
+        :return (dict): The answer to the question.
         """
         response = self.query_engine.query(question)
         content = response.response
         citations = self.get_citations(response.metadata)
-        return {"message": {"content": content, "citations": citations}}
+        return {"content": content, "citations": citations}

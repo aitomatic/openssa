@@ -19,8 +19,8 @@ class TestGoalAgent(unittest.TestCase):
             {"role": "user", "content": "new one"},
         ]
         goal_agent = GoalAgent(conversation=conversation)
-        problem_statement = goal_agent.execute(conversation)
-        mock_execute.assert_called_once_with(conversation)
+        problem_statement = goal_agent.execute("do something")
+        mock_execute.assert_called_once_with("do something")
         assert problem_statement == "mocked_problem_statement"
 
 

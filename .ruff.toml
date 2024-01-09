@@ -66,6 +66,7 @@ ignore = [
   "EM102",  # exception must not use an f-string literal, assign to variable first
   "ERA001",  # found commented-out code
   "F401",  # imported but unused
+  "FA102",  # missing `from __future__ import annotations`, but uses PEP 604 union
   "FBT001",  # boolean-typed positional argument in function definition
   "FBT002",  # boolean default positional argument in function definition
   "FBT003",  # boolean positional value in function call

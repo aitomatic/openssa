@@ -10,7 +10,7 @@ from openssa.core.ooda_rag.heuristic import (
     DefaultOODAHeuristic,
 )
 from openssa.core.ooda_rag.tools import Tool
-from openssa.core.ooda_rag.builtin_agents import OODAPlanAgent
+from openssa.core.ooda_rag.builtin_agents import OODAPlanAgent, Persona
 from openssa.utils.utils import Utils
 from openssa.utils.llms import OpenAILLM, AnLLM
 
@@ -27,8 +27,8 @@ class History:
     def get_history(self) -> list:
         return self._messages
 
-    def append_history(self, history: list) -> None:
-        self._messages = history + self._messages
+    def append_history(self, prehistory: list) -> None:
+        self._messages = prehistory + self._messages
 
 
 class Executor:
@@ -54,13 +54,27 @@ class Executor:
                 event=EventTypes.SUBTASK_BEGIN,
                 data={"uuid": self.uuid, "task-name": self.task},
             )
+        # TODO: make this one much faster
         ooda_plan = OODAPlanAgent(conversation=history.get_history()).execute(self.task)
         if not ooda_plan:
             ooda_plan = self.ooda_heuristics.apply_heuristic(self.task)
+        self.check_resource_call(ooda_plan)
         self._execute_step(ooda_plan["observe"], history, "observe")
         self._execute_step(ooda_plan["orient"], history, "orient")
         self._execute_step(ooda_plan["decide"], history, "decide")
         self._execute_step(ooda_plan["act"], history, "act")
+
+    def check_resource_call(self, ooda_plan: dict) -> None:
+        steps = ["observe", "orient", "decide", "act"]
+        for step in steps:
+            calls = ooda_plan.get(step, {}).get("calls", [])
+            for call in calls:
+                if call.get("tool_name", "") == "research_documents":
+                    return
+        observe = ooda_plan["observe"]
+        observe["calls"] = [
+            {"tool_name": "research_documents", "parameters": {"task": self.task}}
+        ]
 
     def _execute_step(self, step: dict, history: History, step_name: str) -> None:
         thought = step.get("thought", "")
@@ -71,27 +85,22 @@ class Executor:
             data["tool_executions"] = "\n".join([str(call) for call in calls])
             tool_results = self._execute_tools(calls)
             content_result = self._get_content_result(tool_results)
-            data["tool_results"] = content_result
-            history.add_message(f"Tool results: {content_result}", "assistant")
+            data["tool_results"] = {
+                "content": content_result,
+                "citations": tool_results.get("research_documents", {}).get(
+                    "citations", []
+                ),
+            }
+            history.add_message(
+                f"Tool results for question {self.task} is: {content_result}",
+                Persona.ASSISTANT,
+            )
         event = EventTypes.MAINTASK if self.is_main_task else EventTypes.SUBTASK
         self.notifier.notify(event=event + "-" + step_name, data=data)
 
-    def _execute_step_with_model(
-        self, model: AnLLM, history: History, command: str, has_calls: bool
-    ) -> None:
-        response = model.get_response(
-            command, history, response_format={"type": "json_object"}
-        )
-        response = model.parse_output(response)
-        if has_calls:
-            tool_results = self._execute_tools(response.get("calls", []))
-            content_result = self._get_content_result(tool_results)
-            history.add_message(content_result, "assistant")
-
     def _get_content_result(self, tool_results: str) -> str:
         if "research_documents" in tool_results:
-            message = tool_results["research_documents"].get("message", {})
-            return message.get("content", "")
+            return tool_results["research_documents"].get("content", "")
         return ""
 
     def _execute_tools(self, calls: list[dict]) -> str:
@@ -100,8 +109,10 @@ class Executor:
             tool = call.get("tool_name", "")
             if tool == "research_documents":
                 tool_results[tool] = self.tools[tool].execute(self.task)
-            else:
+            elif tool:
                 logger.debug(f"Tool {tool} not found.")
+            else:
+                continue
         return tool_results
 
 
@@ -123,7 +134,8 @@ class Planner:
     def formulate_task(self, model: AnLLM, history: History) -> str:
         response = model.get_response(
             self.prompts.FORMULATE_TASK,
-            history,
+            history.get_history(),
+            Persona.SYSTEM,
             response_format={"type": "json_object"},
         )
         response = model.parse_output(response)
@@ -141,10 +153,12 @@ class Planner:
     def generative_decompose_task(self, model: AnLLM, history: History) -> list[str]:
         response = model.get_response(
             self.prompts.DECOMPOSE_INTO_SUBTASKS,
-            history,
+            history.get_history(),
+            Persona.SYSTEM,
             response_format={"type": "json_object"},
         )
         response = model.parse_output(response)
+        history.add_message(str(response), Persona.ASSISTANT)
         return response.get("subtasks", [])
 
 
@@ -163,7 +177,7 @@ class Solver:
         self.task_heuristics = task_heuristics or TaskDecompositionHeuristic({})
         self.ooda_heuristics = ooda_heuristics
         self.notifier = notifier
-        self.history = History()
+        self.history = History()  # internal conversation
         self.planner = Planner(
             self.task_heuristics, prompts, enable_generative=enable_generative
         )
@@ -172,33 +186,37 @@ class Solver:
         self.highest_priority_heuristic = highest_priority_heuristic.strip()
         self.conversation = conversation or []
 
-    def run(self, input_message: str, tools: dict) -> str:
+    def run(self, problem_statement: str, tools: dict) -> str:
         """
-        Run the solver on input_message
+        Run the solver on problem_statement
 
-        :param input_message: the input to the solver
+        :param problem_statement: the input to the solver
         :param tools: the tools to use in the solver
         """
 
         self.notifier.notify(
-            EventTypes.MAIN_PROBELM_STATEMENT, {"message": input_message}
+            EventTypes.MAIN_PROBELM_STATEMENT, {"message": problem_statement}
         )
-        self.history.add_message(input_message, "user")
+        self.history.add_message(
+            problem_statement, Persona.USER
+        )  # internal conversation
         tool_descriptions = [f"{name}: {fn.__doc__}" for name, fn in tools.items()]
         tool_message = self.prompts.PROVIDE_TOOLS.format(
             tool_descriptions=tool_descriptions
         )
-        self.history.add_message(tool_message, "system")
+        self.history.add_message(tool_message, Persona.SYSTEM)
 
         # task = self.planner.formulate_task(self.model, self.history)
-        subtasks = self.planner.decompose_task(self.model, input_message, self.history)
+        subtasks = self.planner.decompose_task(
+            self.model, problem_statement, self.history
+        )
         logger.info(f"\nSubtasks: {subtasks}\n")
 
         for subtask in subtasks:
             executor = Executor(subtask, tools, self.ooda_heuristics, self.notifier)
             executor.execute_task(self.history)
         executor = Executor(
-            input_message, tools, self.ooda_heuristics, self.notifier, True
+            problem_statement, tools, self.ooda_heuristics, self.notifier, True
         )
         self.notifier.notify(
             EventTypes.NOTIFICATION, {"message": "starting main steps"}
@@ -218,8 +236,12 @@ class Solver:
 
         synthesize_prompt = self.prompts.SYNTHESIZE_RESULT.format(heuristic=heuristic)
         self.history.append_history(self.conversation[:-1])
+        # logger.debug(f"synthesize: ==== \n {self.history.get_history()}\n ====")
         response = self.model.get_response(
-            synthesize_prompt, self.history, response_format={"type": "text"}
+            synthesize_prompt,
+            self.history.get_history(),
+            Persona.SYSTEM,
+            response_format={"type": "text"},
         )
         self.notifier.notify(EventTypes.TASK_RESULT, {"response": response})
         return response
