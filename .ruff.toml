@@ -48,6 +48,7 @@ ignore = [
   "D107",  # missing docstring in `__init__`
   "D200",  # one-line docstring should fit on one line
   "D202",  # no blank lines allowed after function docstring
+  "D203",  # one blank line before class
   "D204",  # 1 blank line required after class docstring
   "D205",  # 1 blank line required between summary line and description
   "D212",  # multi-line docstring summary should start at the first line
@@ -110,6 +111,7 @@ ignore = [
   "S101",  # use of `assert` detected
   "S106",  # possible hardcoded password assigned to argument
   "S605",  # starting a process with a shell, possible injection detected
+  "S607",  # starting a process with a partial executable path
   "SIM102",  # use a single `if` statement instead of nested `if` statements
   "SIM108",  # use ternary operator `temp = temp["content"] if isinstance(temp, dict) else temp.content` instead of `if`-`else`-block
   "SIM112",  # use capitalized environment variable
@@ -124,5 +126,4 @@ ignore = [
   "UP007",  # use `X | Y` for type annotations
   "UP035",  # `typing.[X]` is deprecated, use `[x]` instead
   "UP039",  # unnecessary parentheses after class definition
-  "D203",   # one-blank-line-before-class
 ]

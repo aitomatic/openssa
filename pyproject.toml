@@ -51,7 +51,7 @@ sphinx-press-theme = ">=0.8"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
-flake8 = ">=6.1"
+flake8 = ">=7.0"
 pylint = ">=3.0"
 ruff = ">=0.1"
 pydocstyle = ">=6.3"
@@ -62,30 +62,29 @@ pytest = ">=7.4"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 # OpenAI interface
-openai = ">=1.6"
+openai = ">=1.7"
 # LlamaIndex & related
-llama-index = ">=0.9.17"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
-llama-hub = ">=0.0.60"
+llama-index = ">=0.9.31"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
+llama-hub = ">=0.0.72"
 docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=3.17"  # for reading .pdf files
-pycryptodome = ">=3.19"  # for reading .pdf files: PyCryptodome is required for AES algorithm
+pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = "~2023.10.0"  # base/local file system
-adlfs = "~2023.10.0"  # Azure Data Lake
-gcsfs = "~2023.10.0"  # Google Cloud Storage
-s3fs = "~2023.10.0"  # S3
+fsspec = ">=2023.12"  # base/local file system
+adlfs = ">=2023.12"  # Azure Data Lake
+gcsfs = ">=2023.12"  # Google Cloud Storage
+s3fs = ">=2023.12"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.111"
-httpx = ">=0.25"
+google-api-python-client = ">=2.113"
+httpx = ">=0.26"
 loguru = ">=0.7"
-# pydantic = ">=2.5"
 pydantic = "1.10.9"
 python-dotenv = ">=1.0"
 tomli = { version = ">=2.0", python = "<3.11" }
 
 # optional dependencies required by extras
-streamlit = {version = ">=1.29", optional = true}
+streamlit = {version = ">=1.30", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.4", optional = true}
 
 [tool.poetry.extras]
