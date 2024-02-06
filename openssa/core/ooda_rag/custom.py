@@ -8,11 +8,13 @@ from llama_index import (
 from llama_index.evaluation import DatasetGenerator
 from llama_index.llms import OpenAI
 from llama_index.node_parser import SimpleNodeParser
+from loguru import logger
 
 from openssa.core.backend.abstract_backend import AbstractBackend
 from openssa.core.slm.base_slm import PassthroughSLM
 from openssa.core.ssm.rag_ssm import RAGSSM
 from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
+from openssa.core.ooda_rag.query_rewritting_engine import QueryRewritingRetrieverPack
 
 FILE_NAME = "file_name"
 
@@ -48,7 +50,6 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
 
     def get_citations(self, response: Response, source_path: str = "") -> list[dict]:
         citations: list = []
-        print("metadata", response.metadata)
         if not response.metadata:
             return citations
         for data in response.metadata.values():
@@ -80,12 +81,12 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
     def query(
         self, query: str, source_path: str = ""
     ) -> dict:  # pylint: disable=arguments-renamed
-        """Returns a response dict with keys role, content, and citations."""
-        if self.query_engine is None:
-            return {"content": "No index to query. Please load something first."}
+        self.query_engine = QueryRewritingRetrieverPack(
+            index=self._index, chunk_size=1024, service_context=self._service_context
+        ).query_engine
         response: Response = self.query_engine.query(query)
         citations = self.get_citations(response, source_path)
-        print("citations", citations)
+        logger.debug(f"response: {response.response}")
         return {"content": response.response, "citations": citations}
 
     async def get_evaluation_data(self) -> list:

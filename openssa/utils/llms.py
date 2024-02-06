@@ -137,11 +137,11 @@ class OpenAILLM(AnLLM):
 
     @classmethod
     def get_gpt_35_turbo_0613(cls) -> OpenAILLM:
-        return cls(model="gpt-3.5-turbo")
+        return cls(model="gpt-3.5-turbo-0613")
 
     @classmethod
     def get_gpt_35_turbo(cls) -> OpenAILLM:
-        return cls(model="gpt-3.5-turbo-0613")
+        return cls(model="gpt-3.5-turbo")
 
     @classmethod
     def get_gpt_4(cls) -> OpenAILLM:

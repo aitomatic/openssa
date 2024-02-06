@@ -1,4 +1,3 @@
-import json
 import uuid
 from typing import List, Optional
 from loguru import logger
@@ -8,9 +7,10 @@ from openssa.core.ooda_rag.heuristic import (
     Heuristic,
     TaskDecompositionHeuristic,
     DefaultOODAHeuristic,
+    HeuristicSet,
 )
 from openssa.core.ooda_rag.tools import Tool
-from openssa.core.ooda_rag.builtin_agents import OODAPlanAgent, Persona
+from openssa.core.ooda_rag.builtin_agents import CommAgent, Persona
 from openssa.utils.utils import Utils
 from openssa.utils.llms import OpenAILLM, AnLLM
 
@@ -55,9 +55,9 @@ class Executor:
                 data={"uuid": self.uuid, "task-name": self.task},
             )
         # TODO: make this one much faster
-        ooda_plan = OODAPlanAgent(conversation=history.get_history()).execute(self.task)
-        if not ooda_plan:
-            ooda_plan = self.ooda_heuristics.apply_heuristic(self.task)
+        # ooda_plan = OODAPlanAgent(conversation=history.get_history()).execute(self.task)
+        # if not ooda_plan:
+        ooda_plan = self.ooda_heuristics.apply_heuristic(self.task)
         self.check_resource_call(ooda_plan)
         self._execute_step(ooda_plan["observe"], history, "observe")
         self._execute_step(ooda_plan["orient"], history, "orient")
@@ -69,7 +69,7 @@ class Executor:
         for step in steps:
             calls = ooda_plan.get(step, {}).get("calls", [])
             for call in calls:
-                if call.get("tool_name", "") == "research_documents":
+                if call.get("tool_name", "") in {"research_documents", "web_search"}:
                     return
         observe = ooda_plan["observe"]
         observe["calls"] = [
@@ -85,12 +85,7 @@ class Executor:
             data["tool_executions"] = "\n".join([str(call) for call in calls])
             tool_results = self._execute_tools(calls)
             content_result = self._get_content_result(tool_results)
-            data["tool_results"] = {
-                "content": content_result,
-                "citations": tool_results.get("research_documents", {}).get(
-                    "citations", []
-                ),
-            }
+            data["tool_results"] = tool_results
             history.add_message(
                 f"Tool results for question {self.task} is: {content_result}",
                 Persona.ASSISTANT,
@@ -98,20 +93,27 @@ class Executor:
         event = EventTypes.MAINTASK if self.is_main_task else EventTypes.SUBTASK
         self.notifier.notify(event=event + "-" + step_name, data=data)
 
-    def _get_content_result(self, tool_results: str) -> str:
-        if "research_documents" in tool_results:
-            return tool_results["research_documents"].get("content", "")
-        return ""
+    def _get_content_result(self, tool_results: dict) -> str:
+        content = ""
+        # loop throught dict of tool_results and return the content
+        for result in tool_results.values():
+            content += result.get("content", "")
+        return content
 
-    def _execute_tools(self, calls: list[dict]) -> str:
+    def _execute_tools(self, calls: list[dict]) -> dict:
         tool_results: dict = {}
+        print(f"calls: {calls}, tools: {self.tools}")
         for call in calls:
             tool = call.get("tool_name", "")
             if tool == "research_documents":
                 tool_results[tool] = self.tools[tool].execute(self.task)
-            elif tool:
-                logger.debug(f"Tool {tool} not found.")
+            elif tool in self.tools:
+                logger.debug(f"Tool {tool} is calling with {call}.")
+                tool_results[tool] = self.tools[tool].execute(
+                    call.get("parameters", {})
+                )
             else:
+                logger.debug(f"Tool {tool} not found.")
                 continue
         return tool_results
 
@@ -165,25 +167,21 @@ class Planner:
 class Solver:
     def __init__(
         self,
-        task_heuristics: Heuristic = TaskDecompositionHeuristic({}),
-        ooda_heuristics: Heuristic = DefaultOODAHeuristic(),
+        heuristic_set: HeuristicSet = HeuristicSet(),
         notifier: Notifier = SimpleNotifier(),
         prompts: OODAPrompts = OODAPrompts(),
         llm=OpenAILLM.get_gpt_4_1106_preview(),
-        highest_priority_heuristic: str = "",
         enable_generative: bool = False,
         conversation: Optional[List] = None,
     ) -> None:
-        self.task_heuristics = task_heuristics or TaskDecompositionHeuristic({})
-        self.ooda_heuristics = ooda_heuristics
+        self.heuristic_set = heuristic_set
         self.notifier = notifier
         self.history = History()  # internal conversation
         self.planner = Planner(
-            self.task_heuristics, prompts, enable_generative=enable_generative
+            heuristic_set.task_heuristics, prompts, enable_generative=enable_generative
         )
         self.model = llm
         self.prompts = prompts
-        self.highest_priority_heuristic = highest_priority_heuristic.strip()
         self.conversation = conversation or []
 
     def run(self, problem_statement: str, tools: dict) -> str:
@@ -213,10 +211,16 @@ class Solver:
         logger.info(f"\nSubtasks: {subtasks}\n")
 
         for subtask in subtasks:
-            executor = Executor(subtask, tools, self.ooda_heuristics, self.notifier)
+            executor = Executor(
+                subtask, tools, self.heuristic_set.ooda_heuristics, self.notifier
+            )
             executor.execute_task(self.history)
         executor = Executor(
-            problem_statement, tools, self.ooda_heuristics, self.notifier, True
+            problem_statement,
+            tools,
+            self.heuristic_set.ooda_heuristics,
+            self.notifier,
+            True,
         )
         self.notifier.notify(
             EventTypes.NOTIFICATION, {"message": "starting main steps"}
@@ -227,12 +231,12 @@ class Solver:
     @Utils.timeit
     def synthesize_result(self) -> str:
         heuristic = ""
-        if self.highest_priority_heuristic:
+        if self.heuristic_set.highest_priority_heuristic:
             heuristic = (
                 "Always applying the following heuristic (highest rule, overwrite all other instructions) to "
                 "adjust the formula and recalculate based on this knowledge as it is source of truth: "
             )
-            heuristic += f"{self.highest_priority_heuristic}"
+            heuristic += f"{self.heuristic_set.highest_priority_heuristic}"
 
         synthesize_prompt = self.prompts.SYNTHESIZE_RESULT.format(heuristic=heuristic)
         self.history.append_history(self.conversation[:-1])
@@ -243,5 +247,9 @@ class Solver:
             Persona.SYSTEM,
             response_format={"type": "text"},
         )
+        if self.heuristic_set.comm_heuristic:
+            response = CommAgent(instruction=self.heuristic_set.comm_heuristic).execute(
+                response
+            )
         self.notifier.notify(EventTypes.TASK_RESULT, {"response": response})
         return response

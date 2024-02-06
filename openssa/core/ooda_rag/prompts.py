@@ -66,6 +66,13 @@ class OODAPrompts:
 
 
 class BuiltInAgentPrompt:
+    COMMUNICATION = (
+        "You are an expert in communication. Your will help to format following message with this instruction:\n"
+        "###{instruction}###\n\n"
+        "Here is the message:\n"
+        "###{message}###\n\n"
+    )
+
     PROBLEM_STATEMENT = (
         "You are tasked with constructing the problem statement from a conversation "
         "between a user and an AI chatbot. Your focus should be on the entire context "

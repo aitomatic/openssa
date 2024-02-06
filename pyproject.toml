@@ -46,37 +46,37 @@ exclude = [
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.2"
-sphinx-autobuild = ">=2021.3"
+sphinx-autobuild = ">=2024.2"
 sphinx-press-theme = ">=0.8"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=7.0"
 pylint = ">=3.0"
-ruff = ">=0.1"
+ruff = ">=0.2"
 pydocstyle = ">=6.3"
 
 [tool.poetry.group.test.dependencies]
-pytest = ">=7.4"
+pytest = ">=8.0"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 # OpenAI interface
-openai = ">=1.7"
+openai = ">=1.11"
 # LlamaIndex & related
-llama-index = ">=0.9.31"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
-llama-hub = ">=0.0.72"
+llama-index = ">=0.9.44"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
+llama-hub = ">=0.0.77"
 docx2txt = ">=0.8"  # for reading .docx files
-pypdf = ">=3.17"  # for reading .pdf files
+pypdf = ">=4.0"  # for reading .pdf files
 pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = ">=2023.12"  # base/local file system
-adlfs = ">=2023.12"  # Azure Data Lake
-gcsfs = ">=2023.12"  # Google Cloud Storage
-s3fs = ">=2023.12"  # S3
+fsspec = ">=2024.2"  # base/local file system
+adlfs = ">=2024.2"  # Azure Data Lake
+gcsfs = ">=2024.2"  # Google Cloud Storage
+s3fs = ">=2024.2"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.113"
+google-api-python-client = ">=2.116"
 httpx = ">=0.26"
 loguru = ">=0.7"
 pydantic = "1.10.9"
@@ -84,7 +84,7 @@ python-dotenv = ">=1.0"
 tomli = { version = ">=2.0", python = "<3.11" }
 
 # optional dependencies required by extras
-streamlit = {version = ">=1.30", optional = true}
+streamlit = {version = ">=1.31", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.4", optional = true}
 
 [tool.poetry.extras]
@@ -101,7 +101,7 @@ openssa = "openssa.utils.cli:openssa_cli"
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = [
-  "poetry-core >= 1.8",
+  "poetry-core >= 1.9",
 ]
 
 

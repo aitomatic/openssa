@@ -67,6 +67,33 @@ class AskUserAgent(TaskAgent):
             return {}
 
 
+class CommAgent(TaskAgent):
+    """
+    CommAgent helps update tone, voice, format and language of the assistant final response
+    """
+
+    def __init__(
+        self, llm: AnLLM = OpenAILLM.get_gpt_35_turbo_1106(), instruction: str = ""
+    ) -> None:
+        self.llm = llm
+        self.instruction = instruction
+
+    @Utils.timeit
+    def execute(self, task: str = "") -> str:
+        system_message = {
+            "role": Persona.SYSTEM,
+            "content": BuiltInAgentPrompt.COMMUNICATION.format(
+                instruction=self.instruction, message=task
+            ),
+        }
+        conversation = [system_message]
+        response = self.llm.call(
+            messages=conversation,
+            response_format={"type": "text"},
+        )
+        return response.choices[0].message.content
+
+
 class GoalAgent(TaskAgent):
     """
     GoalAgent helps to determine problem statement from the conversation between user and SSA

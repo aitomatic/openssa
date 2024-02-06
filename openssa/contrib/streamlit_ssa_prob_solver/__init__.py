@@ -217,7 +217,8 @@ class SSAProbSolver:
 
     def ssa_solve(self):
         ooda_ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
-                           highest_priority_heuristic=self.expert_instructions)
+                           highest_priority_heuristic=self.expert_instructions,
+                           enable_generative=True)
 
         ooda_ssa.activate_resources(self.doc_src_path)
 

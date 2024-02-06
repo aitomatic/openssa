@@ -15,7 +15,9 @@ class AbstractSSA(ABC):
             document_path (str): Path to the document to train the agent.
         Returns:
             str: Training session ID.
+
         """
+
         pass
 
     @classmethod
@@ -28,7 +30,9 @@ class AbstractSSA(ABC):
             training_session_id (str): Training session ID.
         Returns:
             AbstractSSA: Trained agent.
+
         """
+
         pass
 
     @abstractmethod
@@ -57,7 +61,7 @@ class BaseSSA(AbstractSSA):
         return SSAService.chat(message, config)
 
 
-class RagSSA():
+class RagSSA:
     def __init__(self):
         pass
 
