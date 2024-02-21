@@ -64,9 +64,10 @@ python = ">=3.10,<3.12"
 # OpenAI interface
 openai = ">=1.11"
 # LlamaIndex & related
-llama-index = ">=0.9.44"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
+llama-index = ">=0.9.48,<0.10"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
 llama-hub = ">=0.0.77"
 docx2txt = ">=0.8"  # for reading .docx files
+html2text = "2020.1.16"  # for reading web pages
 pypdf = ">=4.0"  # for reading .pdf files
 pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems

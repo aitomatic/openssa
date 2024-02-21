@@ -1,0 +1,7 @@
+# OpenSSA
+
+Mechanize >= 0.4.9
+PDFKit >= 1.0.0
+PyHTML2PDF >= 0.0.7
+Pyppeteer >= 1.0.2
+XHTML2PDF >= 0.2.14

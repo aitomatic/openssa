@@ -36,7 +36,7 @@ install:
 	poetry install --extras=contrib --with=docs --with=lint --with=test
 
 install-editable:
-	python3 -m pip install -e ".[contrib]" --upgrade --user
+	python3 -m pip install -e ".[contrib]" --upgrade
 
 
 # LINTING

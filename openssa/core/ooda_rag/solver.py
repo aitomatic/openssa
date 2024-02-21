@@ -35,13 +35,13 @@ class OodaSSA:
         self.conversation.add_message("Hi, what can I help you?", Persona.ASSISTANT)
         self.research_documents_tool = research_documents_tool
 
-    def activate_resources(self, folder_path: str) -> None:
+    def activate_resources(self, folder_path: str, re_index: bool = False) -> None:
         agent = CustomSSM()
 
         if folder_path.startswith("s3://"):
             agent.read_s3(folder_path)
         else:
-            agent.read_directory(folder_path)
+            agent.read_directory(folder_path, re_index=re_index)
 
         self.research_documents_tool = ReasearchAgentTool(agent=agent)
 

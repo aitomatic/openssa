@@ -31,6 +31,7 @@ class TestSSMClasses(unittest.TestCase):
         # self.assertIsInstance(ssm.slm, GPT3ChatCompletionSLM)
         pass
 
+
 class TestBackend(unittest.TestCase):
     def test_query_engine(self):
         backend = LlamaIndexBackend()

@@ -30,7 +30,10 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
         documents = SimpleDirectoryReader(
             input_dir=self._get_source_dir(storage_dir),
             input_files=None,
-            exclude=None,
+            exclude=[
+                '.DS_Store',  # MacOS-specific
+                '*.json',  # index files that may be stored in subdirs
+            ],
             exclude_hidden=False,  # non-default
             errors="strict",  # non-default
             recursive=True,  # non-default

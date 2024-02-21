@@ -94,9 +94,9 @@ class Backend(AbstractRAGBackend):
         return result
 
     def _create_index(self, documents, storage_dir: str):
-        self.index = VectorStoreIndex.from_documents(
-            documents, service_context=self._service_context
-        )
+        self.index = VectorStoreIndex.from_documents(documents,
+                                                     service_context=self._service_context,
+                                                     show_progress=True)
 
     def _do_read_directory(self, storage_dir: str):
         documents = SimpleDirectoryReader(

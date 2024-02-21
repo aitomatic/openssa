@@ -1,5 +1,6 @@
 from openssa.core.ssa.agent import Agent
 
+
 def solve(objective):
     # Create an instance of the Agent class
     agent = Agent()
