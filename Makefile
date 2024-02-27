@@ -36,7 +36,7 @@ install:
 	poetry install --extras=contrib --with=docs --with=lint --with=test
 
 install-editable:
-	python3 -m pip install -e ".[contrib]" --upgrade --user
+	python3 -m pip install -e ".[contrib]" --upgrade
 
 
 # LINTING
@@ -56,7 +56,6 @@ lint-pylint:
 lint-ruff:
 	# docs.astral.sh/ruff/linter
 	poetry run ruff check $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
-		--show-source \
 		--output-format text \
 		--target-version py310 \
 		--preview \

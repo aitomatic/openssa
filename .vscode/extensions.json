@@ -9,8 +9,11 @@
   ],
 
   "unwantedRecommendations": [
-    "ms-python.mypy-type-checker",  // MyPy Type Checker (Microsoft)
+    "ms-python.autopep8",  // AutoPEP8 (Microsoft)
+    "ms-python.black-formatter",  // Black Formatter (Microsoft)
+    "eeyore.yapf",  // Yet Another Python Formatter
 
+    "ms-python.mypy-type-checker",  // MyPy Type Checker (Microsoft)
     "matangover.mypy"  // MyPy
   ]
 }

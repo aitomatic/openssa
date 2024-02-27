@@ -13,6 +13,7 @@ from openssa.integrations.openai.ssm import APIContext as OpenAIAPIContext
 Config.LEPTONAI_API_KEY: Optional[str] = os.environ.get('LEPTONAI_API_KEY') or None
 Config.LEPTONAI_API_URL: Optional[str] = os.environ.get('LEPTONAI_API_URL') or None
 
+
 # pylint: disable=too-many-instance-attributes
 class APIContext(OpenAIAPIContext):
     @classmethod

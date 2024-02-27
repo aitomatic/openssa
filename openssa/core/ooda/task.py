@@ -9,6 +9,7 @@ class Task:
         ooda_loop: The OODA loop to which the task belongs.
         result: The result of the task.
         resources: Additional resources associated with the task.
+
     """
 
     class Result:
@@ -21,8 +22,17 @@ class Task:
             references: A list of references related to the task.
             metrics: Metrics associated with the task.
             additional_info: Additional information about the task result.
+
         """
-        def __init__(self, status='pending', response=None, references=None, metrics=None, additional_info=None):
+
+        def __init__(
+            self,
+            status="pending",
+            response=None,
+            references=None,
+            metrics=None,
+            additional_info=None,
+        ):
             self.status = status
             self.response = response
             self.references = references if references else []
