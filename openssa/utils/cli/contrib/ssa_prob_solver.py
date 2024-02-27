@@ -1,13 +1,10 @@
 """OpenSSA Contrib SSA Problem Solver CLI."""
 
 
-from collections.abc import Sequence
 import os
+from pathlib import Path
 
 import click
-
-
-__all__: Sequence[str] = ('openssa_contrib_ssa_prob_solver_cli',)
 
 
 @click.command(name='solver',
@@ -23,4 +20,5 @@ __all__: Sequence[str] = ('openssa_contrib_ssa_prob_solver_cli',)
 def openssa_contrib_ssa_prob_solver_cli():
     """Launch StreamlitSSAProbSolver."""
     from openssa.contrib.streamlit_ssa_prob_solver import __path__  # pylint: disable=import-outside-toplevel
-    os.system(f'streamlit run {__path__[0]}/main.py --server.allowRunOnSave=true --server.runOnSave=true')
+    os.chdir(Path(__path__[0]))
+    os.system('streamlit run main.py --server.allowRunOnSave=true --server.runOnSave=true')

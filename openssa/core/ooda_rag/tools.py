@@ -71,7 +71,7 @@ class ResearchDocumentsTool(Tool):
         except (RequestError, TimeoutException, HTTPStatusError, JSONDecodeError) as e:
             traceback.print_exc()
             print(f"An error occurred while querying the document base: {e}")
-            return ""
+            return {}
 
 
 class ReasearchAgentTool(Tool):
@@ -93,7 +93,7 @@ class ReasearchAgentTool(Tool):
         """
         response = self.agent.discuss(task)
         print(f"debug: {response}")
-        return {"content": response}
+        return response
 
 
 class PythonCodeTool(Tool):

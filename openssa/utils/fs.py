@@ -36,7 +36,7 @@ _DEFAULT_SUFFIXES: tuple[str] = (
 _LOCAL_FS = LocalFileSystem(auto_mkdir=True, use_listings_cache=False, listings_expiry_time=None, max_paths=None)
 
 # GCS file system
-_GCS_FS = GCSFileSystem()
+# _GCS_FS = GCSFileSystem()
 _GCS_PROTOCOL_PREFIX: str = 'gcs://'
 _GCS_PROTOCOL_PREFIX_LEN: int = len(_GCS_PROTOCOL_PREFIX)
 
@@ -83,7 +83,7 @@ class FileSource:
     def fs(self) -> AbstractFileSystem:  # pylint: disable=invalid-name
         """Get applicable file system."""
         if self.on_gcs:
-            return _GCS_FS
+            return GCSFileSystem()
 
         if self.on_s3:
             return _S3_FS

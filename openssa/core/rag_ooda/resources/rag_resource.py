@@ -1,4 +1,5 @@
-from llama_index.core import BaseQueryEngine, BaseRetriever
+from llama_index.core.retrievers import BaseRetriever
+from llama_index.core.query_engine import BaseQueryEngine
 
 
 class RagResource:

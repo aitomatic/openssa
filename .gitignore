@@ -37,3 +37,4 @@ docs/_build/
 .env
 tmp/
 examples/data/cache/dense
+examples/data/*.csv

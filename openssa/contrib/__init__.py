@@ -7,4 +7,5 @@ Contributions that may or may not go into `openssa.core` and `openssa.integratio
 """
 
 
+from .recursive_ssa_prob_solver import RecursiveOodaSSA  # noqa: F401
 from .streamlit_ssa_prob_solver import SSAProbSolver as StreamlitSSAProbSolver

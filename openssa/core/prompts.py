@@ -59,6 +59,8 @@ _PROMPTS = {"openssa": {"core": {
         }
     }
 }}}
+
+
 class Prompts:
     """
     The `Prompts` class provides a way to retrieve and format prompts in the OpenSSA project. The prompts are stored in a nested dictionary `self.

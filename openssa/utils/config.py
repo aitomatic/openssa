@@ -1,6 +1,7 @@
 import os
 import dotenv
 from openssa.utils.logs import mlogger
+from typing import Optional
 
 
 dotenv.load_dotenv(override=True)
@@ -15,22 +16,47 @@ class Config:
     But the user can override them by setting them directly
     in the Config object.
     """
+
     _dummy = "value is not set"
 
     DEBUG = False
 
-    # get OPENAI_API_KEY from environment variable
-    # moved to openssa/integrations/openai/slm.py
-    # OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY') or _dummy
+    DEFAULT_TEMPERATURE = 0.0
 
-    # get HUGGING_FACE_HUB_TOKEN from environment variable
-    # HUGGING_FACE_HUB_TOKEN = os.environ.get('HUGGING_FACE_HUB_TOKEN') or _dummy
+    AITOMATIC_API_KEY: Optional[str] = os.environ.get("AITOMATIC_API_KEY")
+    AITOMATIC_API_URL: Optional[str] = (
+        os.environ.get("AITOMATIC_API_URL")
+        or "https://aimo-api-mvp.platform.aitomatic.com/api/v1"
+    )
 
-    # Falcon7b server token (HuggingFace’s, or our own server)
-    # FALCON7B_API_KEY = os.environ.get('FALCON7B_API_KEY') or HUGGING_FACE_HUB_TOKEN
+    AITOMATIC_API_URL_7B: Optional[str] = os.environ.get("AITOMATIC_API_URL_7B")
+    AITOMATIC_API_URL_70B: Optional[str] = os.environ.get("AITOMATIC_API_URL_70B")
 
-    # Falcon7b server URL (HuggingFace’s, or our own server)
-    # FALCON7B_MODEL_URL = os.environ.get('FALCON7B_MODEL_URL')
+    OPENAI_API_KEY: Optional[str] = os.environ.get("OPENAI_API_KEY")
+    OPENAI_API_URL: Optional[str] = (
+        os.environ.get("OPENAI_API_URL") or "https://api.openai.com/v1"
+    )
+
+    AZURE_API_VERSION: Optional[str] = (
+        os.environ.get("AZURE_API_VERSION") or "2024-02-15-preview"
+    )
+    # https://learn.microsoft.com/en-us/azure/ai-services/openai/api-version-deprecation#latest-preview-api-release
+
+    AZURE_OPENAI_API_KEY: Optional[str] = os.environ.get("AZURE_OPENAI_API_KEY")
+    AZURE_OPENAI_API_URL: Optional[str] = (
+        os.environ.get("AZURE_OPENAI_API_URL") or "https://aiva-japan.openai.azure.com"
+    )
+
+    US_AZURE_OPENAI_API_KEY: Optional[str] = os.environ.get("US_AZURE_OPENAI_API_KEY")
+    US_AZURE_OPENAI_API_BASE: Optional[str] = (
+        os.environ.get("US_AZURE_OPENAI_API_BASE")
+        or "https://aiva-dev.openai.azure.com/"
+    )
+
+    LEPTON_API_KEY: Optional[str] = os.environ.get("LEPTON_API_KEY")
+    LEPTON_API_URL: Optional[str] = (
+        os.environ.get("LEPTON_API_URL") or "https://llama2-7b.lepton.run/api/v1"
+    )
 
     @staticmethod
     def setenv(var_name):

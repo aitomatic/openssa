@@ -1,6 +1,7 @@
 import unittest
 from openssa.core.ooda.ooda_loop import OODALoop
 
+
 class TestOODALoop(unittest.TestCase):
     def test_run(self):
         # Create an instance of OODALoop

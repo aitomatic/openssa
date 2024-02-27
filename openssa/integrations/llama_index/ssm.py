@@ -1,11 +1,8 @@
-from llama_index.llms.llm import LLM as RAGLLM
-from llama_index.llms import OpenAI, AzureOpenAI
 from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
 from openssa.integrations.openai.ssm import GPT3ChatCompletionSLM
 from openssa.core.ssm.rag_ssm import RAGSSM
 from openssa.core.slm.abstract_slm import AbstractSLM
 from openssa.integrations.lepton_ai.ssm import SLM as LeptonSLM
-from openssa.utils.config import Config
 from openssa.core.slm.base_slm import PassthroughSLM
 
 
