@@ -2,6 +2,7 @@ from __future__ import annotations
 import json
 from openai import OpenAI, AzureOpenAI
 from openssa.utils.config import Config
+from openssa.utils.usage_logger import BasicUsageLogger, AbstractUsageLogger
 
 
 class AnLLM:
@@ -28,11 +29,15 @@ class AnLLM:
         model: str = None,
         api_base: str = None,
         api_key: str = None,
+        user_id: str = "openssa",
+        usage_logger: AbstractUsageLogger = BasicUsageLogger(),
         **additional_kwargs,
     ):
         self.model = model
         self.api_base = api_base
         self.api_key = api_key
+        self.user_id = user_id
+        self.usage_logger = usage_logger
         self._client = None
         self._additional_kwargs = additional_kwargs
 
@@ -49,6 +54,7 @@ class AnLLM:
             result = self.client.completions.create(
                 model=self.model, **kwargs, **self._additional_kwargs
             )
+        self.usage_logger.log_usage(user=self.user_id, result=result)
         return result
 
     def create_embeddings(self):
