@@ -123,6 +123,7 @@ ignore = [
   "SIM401",  # use `item.get("role", "assistant")` instead of an `if` block
   "SLF001",  # private member accessed
   "T201",  # `print` found
+  "T203",  # `pprint` found
   "TD002",  # missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
   "TD003",  # missing issue link on the line following this TODO
   "TRY003",  # avoid specifying long messages outside the exception class
