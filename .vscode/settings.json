@@ -23,6 +23,8 @@
   },
 
   "python.analysis.diagnosticSeverityOverrides": {
+    "reportInvalidTypeForm": "none",
+    "reportMissingImports": "none"
   },
 
 
