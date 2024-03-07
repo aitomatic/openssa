@@ -73,7 +73,6 @@ llama-index-llms-azure-openai = ">=0.1"
 llama-index-embeddings-azure-openai = ">=0.1"
 llama-index-readers-web = ">=0.1"
 docx2txt = ">=0.8"  # for reading .docx files
-html2text = ">=2024.2"  # for reading web pages
 pypdf = ">=4.1"  # for reading .pdf files
 pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
