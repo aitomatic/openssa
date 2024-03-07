@@ -7,11 +7,7 @@
 from collections.abc import Sequence
 from datetime import date
 from pathlib import Path
-from sys import version_info
-if version_info < (3, 11):
-    import tomli as tomllib
-else:
-    import tomllib
+import tomllib
 
 
 # pylint: disable=invalid-name

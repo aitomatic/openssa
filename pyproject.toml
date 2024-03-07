@@ -60,7 +60,7 @@ pydocstyle = ">=6.3"
 pytest = ">=8.0"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = ">=3.11,<3.12"
 # OpenAI interface
 openai = ">=1.13"
 # LlamaIndex & related
@@ -86,7 +86,6 @@ loguru = ">=0.7"
 pydantic = "1.10.9"
 python-dotenv = ">=1.0"
 tqdm = ">=4.66"
-tomli = { version = ">=2.0", python = "<3.11" }
 
 # optional dependencies required by extras
 streamlit = {version = ">=1.31", optional = true}
