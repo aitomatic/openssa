@@ -123,6 +123,7 @@ disable = [
   "missing-module-docstring",
   "raw-checker-failed",
   "redefined-outer-name",
+  "relative-beyond-top-level",
   "too-few-public-methods",
   "unnecessary-pass",
 ]
