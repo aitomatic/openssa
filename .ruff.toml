@@ -38,6 +38,7 @@ ignore = [
            # instead, perform the call within the function, or read the default from a module-level singleton variable
   "B027",  # ... is an empty method in an abstract base class, but has no abstract decorator
   "B905",  # `zip()` without an explicit `strict=` parameter
+  "BLE001",  # do not catch blind exception
   "COM812",  # trailing comma missing
   "CPY001",  # missing copyright notice at top of file
   "D100",  # missing docstring in public module

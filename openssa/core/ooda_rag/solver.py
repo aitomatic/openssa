@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from openssa.core.ooda_rag.custom import CustomSSM
 from openssa.core.ooda_rag.ooda_rag import Solver, History
 from openssa.core.ooda_rag.heuristic import (
@@ -35,10 +37,12 @@ class OodaSSA:
         self.conversation.add_message("Hi, what can I help you?", Persona.ASSISTANT)
         self.research_documents_tool = research_documents_tool
 
-    def activate_resources(self, folder_path: str, re_index: bool = False) -> None:
+    def activate_resources(self, folder_path: Path | str, re_index: bool = False) -> None:
         agent = CustomSSM()
 
-        if folder_path.startswith("s3://"):
+        if isinstance(folder_path, Path):
+            agent.read_directory(folder_path, re_index=re_index)
+        elif folder_path.startswith("s3://"):
             agent.read_s3(folder_path)
         else:
             agent.read_directory(folder_path, re_index=re_index)
