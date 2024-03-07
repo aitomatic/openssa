@@ -1,6 +1,6 @@
 # DIRECTORY NAMES & PATHS
 # =======================
-LIB_DIR=openssa/l2/
+LIB_DIR=openssa
 
 EXAMPLES_DIR=examples
 
