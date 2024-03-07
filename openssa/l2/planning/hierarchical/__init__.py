@@ -15,7 +15,6 @@ from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.abstract import TaskDict
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
-from openssa.utils.llms import AnLLM, OpenAILLM
 
 from ._prompts import (HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE,
                        HTP_RESULTS_SYNTH_PROMPT_TEMPLATE)
@@ -52,7 +51,7 @@ class HTP(AbstractPlan):
     @classmethod
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
         """Create hierarchical task plan from dictionary representation."""
-        return HTP(task=Task.from_dict_or_str(htp_dict['task']),
+        return HTP(task=Task.from_dict_or_str(htp_dict['task']),  # pylint: disable=unexpected-keyword-arg
                    sub_plans=[HTP.from_dict(d) for d in htp_dict.get('sub-plans', [])])
 
     def to_dict(self) -> HTPDict:
