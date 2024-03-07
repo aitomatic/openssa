@@ -1,5 +1,11 @@
+"""Language Model (LM) interfaces."""
+
+
 from __future__ import annotations
+
 import json
+from loguru import logger
+
 from openai import OpenAI, AzureOpenAI
 from openssa.utils.config import Config
 from openssa.utils.usage_logger import BasicUsageLogger, AbstractUsageLogger
@@ -70,8 +76,9 @@ class AnLLM:
     def parse_output(self, output: str) -> dict:
         try:
             return json.loads(output)
+
         except json.JSONDecodeError:
-            print("Failed to decode the response as JSON.")
+            logger.debug(f'*** Could Not JSONify:\n{output} ***')
             return {}
 
 

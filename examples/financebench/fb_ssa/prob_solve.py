@@ -11,8 +11,8 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from ssa_fb.data import META_DF, OUTPUT_FILE_PATH  # noqa: E402
-from ssa_fb.ssas import get_or_create_ooda_ssa  # noqa: E402
+from fb_ssa.data import META_DF, OUTPUT_FILE_PATH  # noqa: E402
+from fb_ssa.ssas import get_or_create_ooda_ssa  # noqa: E402
 
 
 def solve(financebench_id: str) -> str:

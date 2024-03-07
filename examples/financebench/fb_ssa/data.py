@@ -5,11 +5,7 @@ from pathlib import Path
 from pandas import DataFrame, read_csv
 import requests
 
-from dotenv import load_dotenv
-load_dotenv()
-
-# pylint: disable=wrong-import-position
-from openssa.utils.fs import FileSource  # noqa: E402
+from openssa.utils.fs import FileSource
 
 
 __all__: Sequence[str] = (
