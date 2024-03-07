@@ -1,10 +1,6 @@
 from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
-from sys import version_info
-if version_info < (3, 11):
-    import tomli as tomllib
-else:
-    import tomllib
+import tomllib
 
 # pylint: disable=wrong-import-position
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
