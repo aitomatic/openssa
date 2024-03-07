@@ -4,22 +4,11 @@
 from functools import cached_property
 import os
 from pathlib import Path
-from typing import TYPE_CHECKING
 
-# pylint: disable=unused-import
-from llama_index.core.readers.file.base import SimpleDirectoryReader
-from llama_index.core.indices.vector_store.base import VectorStoreIndex
-from llama_index.core.settings import Settings
-
-from openssa.integrations.llama_index.backend import Backend as LlamaIndexRAG
 from openssa import LlamaIndexSSM
 
 from .abstract import AbstractResource
 from ._global import global_register
-
-if TYPE_CHECKING:
-    from openssa.core.backend.rag_backend import AbstractRAGBackend
-    from openssa.core.ssm.rag_ssm import RAGSSM
 
 
 @global_register
