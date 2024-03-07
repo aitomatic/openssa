@@ -10,8 +10,8 @@ import streamlit as st
 
 sys.path.insert(1, str(Path(__file__).parent.parent.parent))  # to use OpenSSA in same repo
 
-from ssa_fb.data import DOC_LINKS_BY_NAME, QS_BY_ID, QAIDS_BY_DOC_NAME, cached_file_path  # noqa: E402
-from ssa_fb.prob_solve import solve  # noqa: E402
+from fb_ssa.data import DOC_LINKS_BY_NAME, QS_BY_ID, QAIDS_BY_DOC_NAME, cached_file_path  # noqa: E402
+from fb_ssa.prob_solve import solve  # noqa: E402
 
 
 DOC_NAMES: list[str] = [

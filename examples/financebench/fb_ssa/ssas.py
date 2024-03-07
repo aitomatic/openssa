@@ -6,8 +6,8 @@ load_dotenv()
 # pylint: disable=wrong-import-order,wrong-import-position
 from openssa import OodaSSA, TaskDecompositionHeuristic  # noqa: E402
 
-from ssa_fb.data import get_or_create_cached_dir_path  # noqa: E402
-from ssa_fb.heuristics import (  # noqa: E402
+from fb_ssa.data import get_or_create_cached_dir_path  # noqa: E402
+from fb_ssa.heuristics import (  # noqa: E402
     THREE_FIN_STATEMENTS_HEURISTICS,
 )
 
