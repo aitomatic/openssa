@@ -38,6 +38,9 @@ install:
 install-editable:
 	@python3 -m pip install -e ".[contrib]" --upgrade
 
+install-editable-mac-sys:
+	@python3 -m pip install -e ".[contrib]" --upgrade --user --break-system-packages
+
 
 # LINTING
 # =======
