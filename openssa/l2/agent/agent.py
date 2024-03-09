@@ -3,7 +3,7 @@
 
 from dataclasses import dataclass, field
 
-from openssa.l2.planning.abstract import AbstractPlanner
+from openssa.l2.planning.abstract import APlanner
 from openssa.l2.planning.hierarchical import AutoHTPlanner
 
 from .abstract import AbstractAgent
@@ -22,4 +22,4 @@ from .abstract import AbstractAgent
 class Agent(AbstractAgent):
     """Agent with planning, reasoning & informational resources."""
 
-    planner: AbstractPlanner = field(default_factory=AutoHTPlanner)
+    planner: APlanner = field(default_factory=AutoHTPlanner)

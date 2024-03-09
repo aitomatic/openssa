@@ -63,12 +63,11 @@ pydocstyle = ">=6.3"
 pytest = ">=8.0"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.12"
+python = ">=3.12,<3.13"
 # OpenAI interface
 openai = ">=1.13"
 # LlamaIndex & related
 llama-index = ">=0.10.17"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
-llama-hub = ">=0.0.79"
 llama-index-llms-azure-openai = ">=0.1"
 llama-index-embeddings-azure-openai = ">=0.1"
 llama-index-readers-web = ">=0.1"
