@@ -5,14 +5,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass, asdict, field
 import json
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 
 from loguru import logger
 from tqdm import tqdm
 
 from openssa.l2.planning.abstract import AbstractPlan, AbstractPlanner
 from openssa.l2.reasoning.base import BaseReasoner
-from openssa.l2.task.abstract import TaskDict
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
@@ -22,9 +21,12 @@ from ._prompts import (HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.resource.abstract import AResource
+    from openssa.l2.task.abstract import TaskDict
 
 
-type HTPDict = dict[str, TaskDict | str | list[dict]]
+class HTPDict(TypedDict, total=False):
+    task: Required[TaskDict | str]
+    sub_plans: NotRequired[list[HTPDict]]
 
 
 @dataclass(init=True,
