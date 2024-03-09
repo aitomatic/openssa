@@ -36,7 +36,7 @@ get-poetry-mac-sys:
 # ============
 install:
 	@poetry lock
-	@poetry install --extras=contrib --with=docs --with=lint --with=test
+	@poetry install --extras=contrib --with=dev --with=docs --with=lint --with=test
 
 install-editable:
 	@python3 -m pip install -e ".[contrib]" --upgrade
