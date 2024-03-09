@@ -26,7 +26,10 @@ ANSI_WHITE="\033[0;37m"
 # POETRY
 # ======
 get-poetry:
-	python3 -m pip install Poetry --upgrade
+	@python3 -m pip install Poetry --upgrade
+
+get-poetry-mac-sys:
+	@python3 -m pip install Poetry --upgrade --user --break-system-packages
 
 
 # INSTALLATION
