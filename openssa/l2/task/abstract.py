@@ -3,7 +3,7 @@
 
 from abc import ABC
 from dataclasses import dataclass
-from typing import Self, TypedDict, Required, NotRequired
+from typing import Self, TypedDict, Required, NotRequired, TypeVar
 
 from openssa.l2.resource.abstract import AbstractResource
 from openssa.l2.resource._global import GLOBAL_RESOURCES
@@ -63,3 +63,6 @@ class AbstractTask(ABC):
             return cls.from_str(dict_or_str)
 
         raise TypeError(f'*** {dict_or_str} IS NEITHER A DICTIONARY NOR A STRING ***')
+
+
+ATask: TypeVar = TypeVar('ATask', bound=AbstractTask, covariant=False, contravariant=False)
