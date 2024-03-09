@@ -52,12 +52,12 @@ class HTP(AbstractPlan):
 
     @classmethod
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
-        """Create hierarchical task plan from dictionary representation."""
+        """Create HTP from dictionary representation."""
         return HTP(task=Task.from_dict_or_str(htp_dict['task']),  # pylint: disable=unexpected-keyword-arg
                    sub_plans=[HTP.from_dict(d) for d in htp_dict.get('sub-plans', [])])
 
     def to_dict(self) -> HTPDict:
-        """Return dictionary representation."""
+        """Return dictionary representation of HTP."""
         return {'task': asdict(self.task),
                 'sub-plans': [p.to_dict() for p in self.sub_plans]}
 
@@ -107,7 +107,7 @@ class AutoHTPlanner(AbstractPlanner):
     max_subtasks_per_decomp: int = 9
 
     def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
-        """Make hierarchical task plan (HTP) for solving problem."""
+        """Make HTP for solving problem."""
         prompt: str = (
             HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
                                                       resource_overviews={r.unique_name: r.overview for r in resources},
@@ -132,7 +132,7 @@ class AutoHTPlanner(AbstractPlanner):
         return htp
 
     def update_plan_resources(self, plan: HTP, /, resources: set[AResource]) -> HTP:
-        """Make updated hierarchical task plan (HTP) copy with relevant informational resources."""
+        """Make updated HTP copy with relevant informational resources."""
         assert isinstance(plan, HTP), TypeError(f'*** {plan} NOT OF TYPE {HTP.__name__} ***')
         assert resources, ValueError(f'*** {resources} NOT A NON-EMPTY SET OF INFORMATIONAL RESOURCES ***')
 
