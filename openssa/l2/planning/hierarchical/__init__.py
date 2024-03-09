@@ -20,8 +20,8 @@ from ._prompts import (HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, 
                        HTP_RESULTS_SYNTH_PROMPT_TEMPLATE)
 
 if TYPE_CHECKING:
-    from openssa.l2.reasoning.abstract import AbstractReasoner
-    from openssa.l2.resource.abstract import AbstractResource
+    from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.resource.abstract import AResource
 
 
 type HTPDict = dict[str, TaskDict | str | list[dict]]
@@ -63,10 +63,10 @@ class HTP(AbstractPlan):
         """Fix missing resources in HTP."""
         for p in self.sub_plans:
             if not p.task.resource:
-                p.task.resource: AbstractResource | None = self.task.resource
+                p.task.resource: AResource | None = self.task.resource
             p.fix_missing_resources()
 
-    def execute(self, reasoner: AbstractReasoner = BaseReasoner()) -> str:
+    def execute(self, reasoner: AReasoner = BaseReasoner()) -> str:
         """Execute and return result, using specified reasoner to reason through involved tasks."""
         if self.sub_plans:
             sub_results: tuple[str, str] = ((p.task.ask, p.execute(reasoner)) for p in tqdm(self.sub_plans))
@@ -104,7 +104,7 @@ class AutoHTPlanner(AbstractPlanner):
     max_depth: int = 3
     max_subtasks_per_decomp: int = 9
 
-    def plan(self, problem: str, resources: set[AbstractResource] | None = None) -> HTP:
+    def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
         """Make hierarchical task plan (HTP) for solving problem."""
         prompt: str = (
             HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
@@ -129,7 +129,7 @@ class AutoHTPlanner(AbstractPlanner):
 
         return htp
 
-    def update_plan_resources(self, plan: HTP, /, resources: set[AbstractResource]) -> HTP:
+    def update_plan_resources(self, plan: HTP, /, resources: set[AResource]) -> HTP:
         """Make updated hierarchical task plan (HTP) copy with relevant informational resources."""
         assert isinstance(plan, HTP), TypeError(f'*** {plan} NOT OF TYPE {HTP.__name__} ***')
         assert resources, ValueError(f'*** {resources} NOT A NON-EMPTY SET OF INFORMATIONAL RESOURCES ***')

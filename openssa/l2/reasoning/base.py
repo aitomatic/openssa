@@ -3,7 +3,7 @@
 
 from dataclasses import dataclass
 
-from openssa.l2.task.abstract import AbstractTask
+from openssa.l2.task.abstract import ATask
 
 from .abstract import AbstractReasoner
 
@@ -21,7 +21,7 @@ from .abstract import AbstractReasoner
 class BaseReasoner(AbstractReasoner):
     """Base reasoner."""
 
-    def reason(self, task: AbstractTask) -> str:
+    def reason(self, task: ATask) -> str:
         """Reason through task and return conclusion."""
         return (task.resource.answer(question=task.ask)
                 if task.resource
