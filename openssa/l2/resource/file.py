@@ -29,18 +29,18 @@ class FileResource(AbstractResource):
 
     @cached_property
     def unique_name(self) -> str:
-        """Return globally-unique name."""
+        """Return globally-unique name of file-stored informational resource."""
         return self.path
 
     @cached_property
     def name(self) -> str:
-        """Return potentially non-unique, but informationally helpful name."""
+        """Return potentially non-unique, but informationally helpful name of file-stored informational resource."""
         return os.path.basename(self.path)
 
     def __repr__(self) -> str:
-        """Return string representation."""
+        """Return string representation of file-stored informational resource."""
         return f'"{self.name}" {type(self).__name__}[{self.path}]'
 
-    def answer(self, question: str) -> str:
-        """Answer question from informational resource."""
-        return self.rag.discuss(user_input=question)['content']
+    def answer(self, question: str, n_words: int = 300) -> str:
+        """Answer question by RAG from file-stored informational resource."""
+        return self.rag.discuss(user_input=f'`[WITHIN {n_words:,} WORDS:]`\n{question}')['content']
