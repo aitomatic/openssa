@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from openssa.l2.resource.abstract import AbstractResource
 
 
-HTPDict: type = dict[str, TaskDict | str | list[dict]]
+type HTPDict = dict[str, TaskDict | str | list[dict]]
 
 
 @dataclass(init=True,

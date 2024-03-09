@@ -11,7 +11,7 @@ from openssa.l2.resource._global import GLOBAL_RESOURCES
 from .status import TaskStatus
 
 
-TaskDict: type = dict[str, str | AbstractResource | TaskStatus | None]
+type TaskDict = dict[str, str | AbstractResource | TaskStatus | None]
 
 
 @dataclass(init=True,
