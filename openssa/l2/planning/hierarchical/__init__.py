@@ -70,21 +70,28 @@ class HTP(AbstractPlan):
 
     def execute(self, reasoner: AReasoner = BaseReasoner()) -> str:
         """Execute and return result, using specified reasoner to reason through involved tasks."""
+        reasoning_wo_sub_plans: str = reasoner.reason(self.task)
+
         if self.sub_plans:
             sub_results: tuple[str, str] = ((p.task.ask, p.execute(reasoner)) for p in tqdm(self.sub_plans))
 
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
-                supporting_info='\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                             '\n'
-                                             f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                            for i, (ask, result) in enumerate(sub_results)))
+                info=(
+                    f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_plans}\n'
+                    '\n\n' +
+                    '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                 '\n'
+                                 f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                for i, (ask, result) in enumerate(sub_results))
+                )
+            )
             logger.debug(prompt)
 
             self.task.result: str = reasoner.lm.get_response(prompt)
 
         else:
-            self.task.result: str = reasoner.reason(self.task)
+            self.task.result: str = reasoning_wo_sub_plans
 
         self.task.status: TaskStatus = TaskStatus.DONE
         return self.task.result
