@@ -4,3 +4,14 @@ RESOURCE_OVERVIEW_PROMPT_TEMPLATE: str = (
     'and give an overview of the key KINDS of INFO contained in your resource, '
     'without mentioning specific facts.'
 )
+
+RESOURCE_QA_PROMPT_TEMPLATE: str = (
+"""Within {n_words:,} words, please answer the following question:
+
+```
+{question}
+```
+
+DO NOT include in your answer any examples/facts/numbers not concretely mentioned in your informational resource.
+"""  # noqa: E122
+)
