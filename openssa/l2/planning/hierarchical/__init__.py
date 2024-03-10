@@ -26,6 +26,10 @@ if TYPE_CHECKING:
 
 class HTPDict(TypedDict, total=False):
     task: Required[TaskDict | str]
+
+    super_plan: NotRequired[HTPDict]
+    index_under_super_plan: NotRequired[int]
+
     sub_plans: NotRequired[list[HTPDict]]
 
 
@@ -41,6 +45,9 @@ class HTPDict(TypedDict, total=False):
            weakref_slot=False)
 class HTP(AbstractPlan):
     """Hierarchical task plan (HTP)."""
+
+    super_plan: HTP | None = None
+    index_under_super_plan: int | None = None
 
     sub_plans: list[HTP] = field(default_factory=list,
                                  init=True,
