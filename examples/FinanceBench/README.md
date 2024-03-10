@@ -23,10 +23,3 @@ __`make solve id=...`__.
 
 - refer to `FinanceBench` dataset above for `financebench_id`s
 and corresponding information
-
-## Notes to Aitomatic Developers
-
-The OpenSSA dependency for this benchmarking project is from the `experimental`
-branch of the private [SSA](https://github.com/aitomatic/ssa) repository.
-Hence, all improvements to OpenSSA during this project must be
-committed/pushed/merged into that repository and branch.
