@@ -9,6 +9,7 @@ from openssa import LlamaIndexSSM
 
 from .abstract import AbstractResource
 from ._global import global_register
+from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
 
 
 @global_register
@@ -43,4 +44,4 @@ class FileResource(AbstractResource):
 
     def answer(self, question: str, n_words: int = 300) -> str:
         """Answer question by RAG from file-stored informational resource."""
-        return self.rag.discuss(user_input=f'`[WITHIN {n_words:,} WORDS:]`\n{question}')['content']
+        return self.rag.discuss(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question))['content']
