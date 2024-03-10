@@ -29,6 +29,9 @@ class HTPDict(TypedDict, total=False):
     sub_plans: NotRequired[list[HTPDict]]
 
 
+type AskAnsPair = tuple[str, str]
+
+
 @dataclass(init=True,
            repr=True,
            eq=True,
@@ -68,23 +71,40 @@ class HTP(AbstractPlan):
                 p.task.resource: AResource | None = self.task.resource
             p.fix_missing_resources()
 
-    def execute(self, reasoner: AReasoner = BaseReasoner()) -> str:
+    def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return result, using specified reasoner to reason through involved tasks."""
+        reasoning_wo_sub_results: str = reasoner.reason(self.task)
+
         if self.sub_plans:
-            sub_results: tuple[str, str] = ((p.task.ask, p.execute(reasoner)) for p in tqdm(self.sub_plans))
+            sub_results: list[AskAnsPair] = []
+            for p in tqdm(self.sub_plans):
+                sub_result: AskAnsPair = p.task.ask, p.execute(reasoner, other_results=sub_results)
+                sub_results.append(sub_result)
 
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
-                supporting_info='\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                             '\n'
-                                             f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                            for i, (ask, result) in enumerate(sub_results)))
+                info=(
+                    f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
+                    '\n\n' +
+                    '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                 '\n'
+                                 f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                for i, (ask, result) in enumerate(sub_results)) +
+                    (('\n\n' +
+                      '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                   '\n'
+                                   f'OTHER RESULT #{i + 1}:\n{result}\n')
+                                  for i, (ask, result) in enumerate(other_results)))
+                     if other_results
+                     else '')
+                )
+            )
             logger.debug(prompt)
 
             self.task.result: str = reasoner.lm.get_response(prompt)
 
         else:
-            self.task.result: str = reasoner.reason(self.task)
+            self.task.result: str = reasoning_wo_sub_results
 
         self.task.status: TaskStatus = TaskStatus.DONE
         return self.task.result
@@ -104,7 +124,7 @@ class AutoHTPlanner(AbstractPlanner):
     """Automated (generative) hierarchical task planner."""
 
     max_depth: int = 3
-    max_subtasks_per_decomp: int = 9
+    max_subtasks_per_decomp: int = 3
 
     def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
         """Make HTP for solving problem."""
