@@ -60,16 +60,16 @@ ruff = ">=0.3"
 pydocstyle = ">=6.3"
 
 [tool.poetry.group.test.dependencies]
-pytest = ">=8.0"
+pytest = ">=8.1"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 # OpenAI interface
 openai = ">=1.13"
 # LlamaIndex & related
-llama-index = ">=0.10.17"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
-llama-index-llms-azure-openai = ">=0.1"
+llama-index = ">=0.10.18"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
 llama-index-embeddings-azure-openai = ">=0.1"
+llama-index-llms-azure-openai = ">=0.1"
 llama-index-readers-web = ">=0.1"
 docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=4.1"  # for reading .pdf files
@@ -89,7 +89,7 @@ python-dotenv = ">=1.0"
 tqdm = ">=4.66"
 
 # optional dependencies required by extras
-streamlit = {version = ">=1.31", optional = true}
+streamlit = {version = ">=1.32", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
 [tool.poetry.extras]
