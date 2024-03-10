@@ -114,6 +114,7 @@ requires = [
 # pylint.readthedocs.io/en/latest/user_guide/configuration/index.html
 [tool.pylint."messages control"]
 disable = [
+  "astroid-error",
   "attribute-defined-outside-init",
   "duplicate-code",
   "fixme",
