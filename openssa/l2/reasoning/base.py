@@ -21,8 +21,8 @@ from .abstract import AbstractReasoner
 class BaseReasoner(AbstractReasoner):
     """Base reasoner."""
 
-    def reason(self, task: ATask) -> str:
+    def reason(self, task: ATask, n_words: int = 300) -> str:
         """Reason through task and return conclusion."""
-        return (task.resource.answer(question=task.ask)
+        return (task.resource.answer(question=task.ask, n_words=n_words)
                 if task.resource
-                else self.lm.get_response(prompt=task.ask))
+                else self.lm.get_response(prompt=f'`[WITHIN {n_words:,} WORDS:]`\n{task.ask}'))
