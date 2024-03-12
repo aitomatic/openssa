@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD013 -->
+
 # `OpenSSA`: Small Specialist Agents for Industrial AI
 
 > __Documentation__: [aitomatic.github.io/openssa](https://aitomatic.github.io/openssa)
