@@ -10,7 +10,7 @@ class TestOODALoop(unittest.TestCase):
 
         # Create a mock LLM and history
         class MockLLM:
-            def get_response(self, prompt, history):
+            def get_response(self, prompt):
                 return f"Response to: {prompt}"
 
         llm = MockLLM()
