@@ -70,10 +70,6 @@ Our primary audience includes:
 
 4. A committer to OpenSSA
 
-### Getting Started as an End-User
-
-Go straight to [OpenSSA Streamlit app](https://openssa.streamlit.app/) and start building your own SSA with your domain document today!
-
 ### Getting Started as a Developer
 
 See some example user programs in the [examples/](./examples/) directory.
