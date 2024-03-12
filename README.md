@@ -2,13 +2,11 @@
 
 > __Documentation__: [aitomatic.github.io/openssa](https://aitomatic.github.io/openssa)
 >
-> __Installation__: `pip install openssa` _(Python 3.12)__
+> __Installation__: `pip install openssa` _(Python 3.12)_
 
 OpenSSA is an open-source framework for Small Specialist Agents (SSAs), problem-solving AI agents for industrial applications. Harnessing the power of human domain expertise, SSAs operate either alone or in collaborative "teams", and can integrate with both informational and operational sensors/actuators to deliver real-world industrial AI solutions.
 
 SSAs are light-weight, domain-focused and incorporate reasoning and planning capabilities. These characteristics make them ideal for complex hierarchical tasks typically found in industrial applications.
-
-![OpenSSA One Pager](/docs/diagrams/openssa-onepager.png)
 
 ## Small Size, Specific-Domain Specialization
 
