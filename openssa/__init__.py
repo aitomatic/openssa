@@ -1,12 +1,7 @@
 from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
-from sys import version_info
-if version_info < (3, 11):
-    import tomli as tomllib
-else:
-    import tomllib
+import tomllib
 
-# pylint: disable=wrong-import-position
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.ooda_rag.solver import OodaSSA
 from openssa.core.prompts import Prompts
@@ -27,6 +22,21 @@ from openssa.integrations.openai.ssm import GPT3CompletionSSM as OpenAIGPT3Compl
 from openssa.utils.config import Config
 from openssa.utils.logs import Logs, logger, mlogger
 from openssa.utils.utils import Utils
+
+from .l2.agent.agent import Agent
+
+from .l2.planning.abstract import AbstractPlan, AbstractPlanner
+from .l2.planning.hierarchical import HTP, AutoHTPlanner
+
+from .l2.reasoning.abstract import AbstractReasoner
+from .l2.reasoning.base import BaseReasoner
+from .l2.reasoning.ooda import OodaReasoner
+
+from .l2.resource.abstract import AbstractResource
+from .l2.resource.file import FileResource
+
+from .l2.task.abstract import AbstractTask
+from .l2.task.task import Task
 
 
 try:

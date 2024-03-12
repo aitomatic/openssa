@@ -58,7 +58,7 @@ class Agent:
     def run_ooda_loop(self, task, heuristic):
         task.status = "ooda_looping"
         task.ooda_loop = OODALoop(task.goal)
-        output = task.ooda_loop.run(self.llm, task)
+        output = task.ooda_loop.run(self.llm, [])
         task.result = Task.Result(status="completed", response=output)
 
     def update_memory(self, key, value, memory_type="short"):

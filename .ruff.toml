@@ -38,6 +38,7 @@ ignore = [
            # instead, perform the call within the function, or read the default from a module-level singleton variable
   "B027",  # ... is an empty method in an abstract base class, but has no abstract decorator
   "B905",  # `zip()` without an explicit `strict=` parameter
+  "BLE001",  # do not catch blind exception
   "COM812",  # trailing comma missing
   "CPY001",  # missing copyright notice at top of file
   "D100",  # missing docstring in public module
@@ -72,6 +73,7 @@ ignore = [
   "FBT002",  # boolean default positional argument in function definition
   "FBT003",  # boolean positional value in function call
   "FIX002",  # line contains TODO, consider resolving the issue
+  "FURB101",  # `open` and `read` should be replaced by `Path(file_path).read_bytes()`
   "I001",  # import block is un-sorted or un-formatted
   "INP001",  # file is part of an implicit namespace package; add an `__init__.py`
   "LOG009",  # use of undocumented `logging.WARN` constant
@@ -79,6 +81,7 @@ ignore = [
   "PERF401",  # use a list comprehension to create a transformed list
   "PGH003",  # use specific rule codes when ignoring type issues
   "PIE790",  # unnecessary `pass` statement
+  "PLC2701",  # private name import from external module
   "PTH100",  # `os.path.abspath()` should be replaced by `Path.resolve()`
   "PTH103",  # `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
   "PTH109",  # `os.getcwd()` should be replaced by `Path.cwd()`
@@ -108,16 +111,21 @@ ignore = [
   "RUF013",  # PEP 484 prohibits implicit `Optional`
   "RUF017",  # Avoid quadratic list summation"
   "RUF018",  # avoid assignment expressions in `assert` statements
+  "RUF022",  # __all__` is not sorted
+  "RUF100",  # unused `noqa` directive
   "S101",  # use of `assert` detected
   "S106",  # possible hardcoded password assigned to argument
+  "S110",  # `try`-`except`-`pass` detected, consider logging the exception
   "S605",  # starting a process with a shell, possible injection detected
   "S607",  # starting a process with a partial executable path
   "SIM102",  # use a single `if` statement instead of nested `if` statements
   "SIM108",  # use ternary operator `temp = temp["content"] if isinstance(temp, dict) else temp.content` instead of `if`-`else`-block
+  "SIM105",  # use `contextlib.suppress(Exception)` instead of `try`-`except`-`pass`
   "SIM112",  # use capitalized environment variable
   "SIM401",  # use `item.get("role", "assistant")` instead of an `if` block
   "SLF001",  # private member accessed
   "T201",  # `print` found
+  "T203",  # `pprint` found
   "TD002",  # missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
   "TD003",  # missing issue link on the line following this TODO
   "TRY003",  # avoid specifying long messages outside the exception class

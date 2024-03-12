@@ -42,12 +42,12 @@ class DefaultOODAHeuristic(Heuristic):
     def apply_heuristic(self, task: str) -> dict:
         observe = {
             "thought": f"Gather information from research document to solve the task \n {task}",
-            "calls": [{"tool_name": "research_documents", "parameters": {"task": task}}],
+            "calls": [
+                {"tool_name": "research_documents", "parameters": {"task": task}}
+            ],
         }
         orient = {
-            "thought": (
-                "Analyze the information gathered from research documents. "
-            ),
+            "thought": ("Analyze the information gathered from research documents. "),
             "calls": [],
         }
         decide = {
@@ -73,3 +73,22 @@ class GPTOODAHeuristic(Heuristic):
         Apply the heuristic rules to decompose the task into subtasks.
         """
         print(task)
+
+
+class HeuristicSet:
+    """
+    A set of heuristics.
+    """
+
+    def __init__(self, **kwargs) -> None:
+        """
+        Initialize the heuristic set.
+        """
+        self.task_heuristics = kwargs.get(
+            "task_heuristics", TaskDecompositionHeuristic({})
+        )
+        self.ooda_heuristics = kwargs.get("ooda_heuristics", DefaultOODAHeuristic())
+        self.highest_priority_heuristic = kwargs.get("highest_priority_heuristic", "")
+        self.comm_heuristic = kwargs.get("comm_heuristic", "")
+        self.ask_user_heuristic = kwargs.get("ask_user_heuristic", "")
+        self.goal_heuristics = kwargs.get("goal_heuristics", "")

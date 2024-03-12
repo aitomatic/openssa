@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.23.12.19"
+version = "0.24.3.6"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -44,49 +44,53 @@ exclude = [
 ]
 
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = ">=6.29"
+
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.2"
-sphinx-autobuild = ">=2021.3"
+sphinx-autobuild = ">=2024.2"
 sphinx-press-theme = ">=0.8"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
-flake8 = ">=6.1"
-pylint = ">=3.0"
-ruff = ">=0.1"
+flake8 = ">=7.0"
+pylint = ">=3.1"
+ruff = ">=0.3"
 pydocstyle = ">=6.3"
 
 [tool.poetry.group.test.dependencies]
-pytest = ">=7.4"
+pytest = ">=8.1"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = ">=3.12,<3.13"
 # OpenAI interface
-openai = ">=1.6"
+openai = ">=1.13"
 # LlamaIndex & related
-llama-index = ">=0.9.17"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
-llama-hub = ">=0.0.60"
+llama-index = ">=0.10.18"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
+llama-index-embeddings-azure-openai = ">=0.1"
+llama-index-llms-azure-openai = ">=0.1"
+llama-index-readers-web = ">=0.1"
 docx2txt = ">=0.8"  # for reading .docx files
-pypdf = ">=3.17"  # for reading .pdf files
-pycryptodome = ">=3.19"  # for reading .pdf files: PyCryptodome is required for AES algorithm
+pypdf = ">=4.1"  # for reading .pdf files
+pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = "~2023.10.0"  # base/local file system
-adlfs = "~2023.10.0"  # Azure Data Lake
-gcsfs = "~2023.10.0"  # Google Cloud Storage
-s3fs = "~2023.10.0"  # S3
+fsspec = ">=2024.2"  # base/local file system
+adlfs = ">=2024.2"  # Azure Data Lake
+gcsfs = ">=2024.2"  # Google Cloud Storage
+s3fs = ">=2024.2"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.111"
-httpx = ">=0.25"
+google-api-python-client = ">=2.121"
+httpx = ">=0.27"
 loguru = ">=0.7"
-# pydantic = ">=2.5"
-pydantic = "1.10.9"
+pydantic = ">=2.6"
 python-dotenv = ">=1.0"
-tomli = { version = ">=2.0", python = "<3.11" }
+tqdm = ">=4.66"
 
 # optional dependencies required by extras
-streamlit = {version = ">=1.29", optional = true}
-streamlit-mic-recorder = {version = ">=0.0.4", optional = true}
+streamlit = {version = ">=1.32", optional = true}
+streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
 [tool.poetry.extras]
 contrib = [
@@ -102,7 +106,7 @@ openssa = "openssa.utils.cli:openssa_cli"
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = [
-  "poetry-core >= 1.8",
+  "poetry-core >= 1.9",
 ]
 
 
@@ -110,6 +114,7 @@ requires = [
 # pylint.readthedocs.io/en/latest/user_guide/configuration/index.html
 [tool.pylint."messages control"]
 disable = [
+  "astroid-error",
   "attribute-defined-outside-init",
   "duplicate-code",
   "fixme",
@@ -120,6 +125,7 @@ disable = [
   "missing-module-docstring",
   "raw-checker-failed",
   "redefined-outer-name",
+  "relative-beyond-top-level",
   "too-few-public-methods",
   "unnecessary-pass",
 ]

@@ -1,5 +1,6 @@
 from openssa.utils.utils import Utils
 
+
 class TestUtils:
     def test_canonicalize_user_input_str(self):
         assert Utils.canonicalize_user_input('hello') == [{'role': 'user', 'content': 'hello'}]

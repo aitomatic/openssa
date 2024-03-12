@@ -81,7 +81,8 @@ Our primary audience includes:
 
 4. A committer to OpenSSA
 
-## Getting Started as an End-User
+### Getting Started as an End-User
+
 Go straight to [OpenSSA Streamlit app](https://openssa.streamlit.app/) and start building your own SSA with your domain document today!
 
 
@@ -146,7 +147,7 @@ Head to [Lepton](https://dashboard.lepton.ai/) to get your API key.
 * Select `API tokens`
 * Copy `<YOUR_LEPTON_API_TOKEN>`
 
-In terminal, run 
+In terminal, run
 ```bash=
 export LEPTON_API_KEY=<YOUR_LEPTON_API_TOKEN>
 ```

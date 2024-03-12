@@ -45,8 +45,8 @@ class SSAProbSolver:
 
     # some typing for clarity to developers/maintainers
     # =================================================
-    Uid: type = int | str | UUID  # accepted type(s) for unique IDs of SSAProbSolver instances & SSA conversations
-    DocSrcHash: type = DirOrFilePath | FilePathSet  # type for documentary knowledge source hashes
+    type Uid = int | str | UUID  # accepted type(s) for unique IDs of SSAProbSolver instances & SSA conversations
+    type DocSrcHash = DirOrFilePath | FilePathSet  # type for documentary knowledge source hashes
 
     # relevant Streamlit Session State (SSS) elements
     # ===============================================
@@ -217,7 +217,8 @@ class SSAProbSolver:
 
     def ssa_solve(self):
         ooda_ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
-                           highest_priority_heuristic=self.expert_instructions)
+                           highest_priority_heuristic=self.expert_instructions,
+                           enable_generative=True)
 
         ooda_ssa.activate_resources(self.doc_src_path)
 

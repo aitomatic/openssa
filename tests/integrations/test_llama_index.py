@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from llama_index import Response
-from llama_index.indices.base import BaseIndex
-from llama_index.indices.query.base import BaseQueryEngine
+from llama_index.core import Response
+from llama_index.core.indices.base import BaseIndex
+from llama_index.core.query_engine import BaseQueryEngine
 from openssa.core.slm.abstract_slm import AbstractSLM
 from openssa.core.slm.base_slm import PassthroughSLM
 from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
@@ -30,6 +30,7 @@ class TestSSMClasses(unittest.TestCase):
         # ssm = GPT3SSM()
         # self.assertIsInstance(ssm.slm, GPT3ChatCompletionSLM)
         pass
+
 
 class TestBackend(unittest.TestCase):
     def test_query_engine(self):
