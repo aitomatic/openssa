@@ -78,24 +78,6 @@ Go straight to [OpenSSA Streamlit app](https://openssa.streamlit.app/) and start
 
 See some example user programs in the [examples/](./examples/) directory.
 
-#### Common `make` targets for OpenSSA developers
-
-See [MAKEFILE](dev/makefile_info.md) for more details.
-
-```bash
-% make clean
-% make build
-% make rebuild
-% make test
-
-% make poetry-init
-% make poetry-install
-% make install      # local installation of openssa
-
-% make pypi-auth    # only for maintainers
-% make publish      # only for maintainers
-```
-
 ### Getting Started as an Aspiring Contributor
 
 OpenSSA is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSAs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
