@@ -9,9 +9,7 @@ on the `FinanceBench` dataset.
 
 ## Running Aitomatic SSA benchmarking project
 
-Have Python 3.10-3.11 installed.
-
-Have Poetry installed: __`make get-poetry`__.
+Have Python 3.12 installed.
 
 __Install__ project, and update its dependencies from time to time:
 __`make install`__.

@@ -6,7 +6,7 @@ from requests.exceptions import HTTPError
 
 # Note JOHNSON&JOHNSON is not downloadable
 
-FINANCEBENCH_METADATA_URL: str = (
+METADATA_URL: str = (
     "https://raw.githubusercontent.com/patronus-ai/"
     "financebench/main/financebench_sample_150.csv"
 )
@@ -14,7 +14,7 @@ FINANCEBENCH_METADATA_URL: str = (
 
 def download_dataset():
     # Read the CSV file
-    df_finbench = pd.read_csv(FINANCEBENCH_METADATA_URL)
+    df_finbench = pd.read_csv(METADATA_URL)
     df_finbench["status"] = "ok"
 
     base_directory = "tmp/finance-bench/docs"

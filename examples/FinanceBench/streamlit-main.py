@@ -10,7 +10,7 @@ import streamlit as st
 
 sys.path.insert(1, str(Path(__file__).parent.parent.parent))  # to use OpenSSA in same repo
 
-from fb_ssa.data import DOC_LINKS_BY_NAME, QS_BY_ID, QAIDS_BY_DOC_NAME, cached_file_path  # noqa: E402
+from fb_ssa.data import DOC_LINKS_BY_NAME, QS_BY_ID, QAIDS_BY_DOC_NAME, cache_file_path  # noqa: E402
 from fb_ssa.prob_solve import solve  # noqa: E402
 
 
@@ -78,7 +78,7 @@ st.session_state.doc_name: str = st.selectbox(label='SEC Document',
 st.write(DOC_LINKS_BY_NAME[st.session_state.doc_name])
 
 try:
-    display_pdf(cached_file_path(st.session_state.doc_name))
+    display_pdf(cache_file_path(st.session_state.doc_name))
 except:  # noqa: E722
     print('document cannot be rendered')
 
