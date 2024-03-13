@@ -71,70 +71,76 @@ class BuiltInAgentPrompt:
         "###{instruction}###\n\n"
         "Here is the message:\n"
         "###{message}###\n\n"
+        "Output the response in JSON format with the keyword 'message'."
     )
 
     PROBLEM_STATEMENT = (
-        "You are tasked with constructing the problem statement from a conversation "
-        "between a user and an AI chatbot. Your focus should be on the entire context "
-        "of the conversation, especially the most recent messages from the user, "
-        "to understand the issue comprehensively. Extract specific details "
-        "that define the current concerns or questions posed by the user, "
-        "which the assistant is expected to address. The problem statement should be "
-        "clear, and constructed carefully with complete context and in the user's voice. "
-        'Output the response in JSON format with the keyword "problem statement". Think step by step.\n'
-        "Example 1:\n"
-        "Assistant: Hello, what can I help you with today?\n"
-        "User: My boiler is not functioning, please help to troubleshoot.\n"
-        "Assistant: Can you check and provide the temperature, pressure, and on-off status?\n"
-        "User: The temperature is 120°C.\n\n"
+        "Formulate a concise problem statement from the most recent question asked by a user in a conversation "
+        "with an AI expert. Focus on the question that remains unanswered (Question B), "
+        "ignoring any questions that have already been addressed (Question A). The problem statement should be "
+        "direct and to the point, avoiding any additional explanatory text or context not explicitly mentioned "
+        "by the user. Ensure to correct any spelling or grammatical errors, and replace pronouns or ambiguous terms "
+        "with precise names or technical terms. The outcome should be "
+        "a succinct problem statement, accurately reflecting the user's query for use in a retrieval system. "
+        "Format the response in JSON, clearly labeled as 'problem statement'.\n\n"
+        "Example:\n"
+        "User: What is the flow rate for Argon in machine XYZ? (Question A)\n"
+        "Assistant: The flow rate for Argon is 500 cm^3 per minute.\n"
+        "User: Can you also give me its velocity? (Question B)\n\n"
         "Response:\n"
         "{\n"
-        '    "problem statement": "Can you help to troubleshoot a non-functioning '
-        'boiler, given the temperature is 120°C?"\n'
+        '    "problem statement": "What is the velocity of Argon in machine XYZ."\n'
         "}\n\n"
-        "Example 2:\n"
-        "Assistant: Hi, what can I help you with?\n"
-        "User: I don't know how to go to the airport\n"
-        "Assistant: Where are you and which airport do you want to go to?\n"
-        "User: I'm in New York\n"
-        "Response:\n"
-        "{\n"
-        '    "problem statement": "How do I get to the airport from my current '
-        'location in New York?"\n'
-        "}\n\n"
-        "Example 3 (Ambiguity):\n"
-        "Assistant: How can I assist you today?\n"
-        "User: I'm not sure what's wrong, but my computer is acting weird.\n"
-        "Assistant: Can you describe the issues you are experiencing?\n"
-        "User: Hey I am good, the sky is blue.\n\n"
-        "Response:\n"
-        "{\n"
-        '    "problem statement": ""\n'
-        "}\n\n"
-        "Example 4 (Multiple Issues):\n"
-        "Assistant: What do you need help with?\n"
-        "User: My internet is down, and I can't access my email either.\n"
-        "Assistant: Are both issues related, or did they start separately?\n"
-        "User: They started at the same time, I think.\n\n"
-        "Response:\n"
-        "{\n"
-        '    "problem statement": "Can you help with my internet being down and also '
-        'accessing my email?"\n'
-        "}"
     )
 
+    # ASK_USER = (
+    #     "Your task is to assist an AI assistant in formulating a question for the user. "
+    #     "This should be based on the ongoing conversation, the presented problem statement, "
+    #     "and a specific heuristic guideline. "
+    #     "The assistant should formulate the question strictly based on the heuristic. "
+    #     "If the heuristic does not apply or is irrelevant to the problem statement, "
+    #     "return empty string for the question. "
+    #     "Below is the heuristic guideline:\n"
+    #     "###{heuristic}###\n\n"
+    #     "Here is the problem statement or the user's current question:\n"
+    #     "###{problem_statement}###\n\n"
+    #     'Output the response in JSON format with the keyword "question".'
+    # )
+
     ASK_USER = (
-        "Your task is to assist an AI assistant in formulating a question for the user. "
-        "This should be based on the ongoing conversation, the presented problem statement, "
-        "and a specific heuristic guideline. "
-        "The assistant should formulate the question strictly based on the heuristic. "
-        "If the heuristic does not apply or is irrelevant to the problem statement, "
-        "return empty string for the question. "
-        "Below is the heuristic guideline:\n"
+        "Your task is to generate a question for the user to gather necessary "
+        "information for troubleshooting or solving their problem, based on the "
+        "ongoing conversation. Follow the heuristic guidelines closely to "
+        "determine the relevance and necessity of asking a question. If the "
+        "discussion does not align with these guidelines or the required "
+        "information has already been addressed and the user has indicated "
+        "ignorance on the matter, you should refrain from asking a question. "
+        "In such cases, produce an output with an empty 'question' field in JSON "
+        "format. Ask questions judiciously, only when the conditions explicitly "
+        "meet the heuristic criteria.\n"
+        "Guidelines for Question Generation:\n"
+        "1. Relevance: Ensure the question is directly related to the user's "
+        "stated issue.\n"
+        "2. Condition Clarity: Only ask if the scenario clearly matches the "
+        "heuristics.\n"
+        "3. Non-redundancy: Avoid repeating questions already answered or where "
+        "the user expressed ignorance.\n"
+        "4. Output Format: Provide the question in a JSON object with the keyword "
+        "'question'. If no question is warranted, return an empty 'question' value.\n\n"
+        "Example 1:\n"
+        '- User says: "My printer is not working, can you help me fix it?"\n'
+        "- Heuristic guideline: Ask for the printer model if the user seeks help "
+        "with a printer issue but does not specify the model.\n"
+        "- Output:\n"
+        '{{ "question": "Could you provide the printer model?" }}\n\n'
+        "Example 2:\n"
+        '- User says: "I couldn\'t open the cabin of my car, can you help?"\n'
+        "- Heuristic guideline: Ask about boiler's status and external "
+        "conditions if the user is seeking help with mechanical troubleshooting.\n"
+        "- Output:\n"
+        '{{ "question": "" }}\n\n'
+        "Below is the heuristic guideline:\n\n"
         "###{heuristic}###\n\n"
-        "Here is the problem statement or the user's current question:\n"
-        "###{problem_statement}###\n\n"
-        'Output the response in JSON format with the keyword "question".'
     )
 
     ASK_USER_OODA = (
