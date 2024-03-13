@@ -1,66 +1,52 @@
-<!-- markdownlint-disable MD013 -->
+# OpenSSA: Small Specialist Agents
 
-# `OpenSSA`: Unmatched Accuracy, Powered by Domain Knowledge
+## Enabling Efficient, Domain-Specific Planning and Reasoning for AI
 
-Struggling with accuracy on your RAG projects? You're not alone.
+OpenSSA is an open-source framework for creating efficient, domain-specific AI agents. Build AI assistants for customer support, personalized recommendation engines, or autonomous systems for research. OpenSSA provides the tools to build Small Specialist Agents (SSAs) that solve complex problems in specific domains.
 
-The core problem? Generic language models, which fall short in delivering the accuracy and relevance required for complex, multi-step problems.
+SSAs tackle multi-step problems that require planning and reasoning beyond traditional language models. They apply OODA for deliberative reasoning (OODAR) and iterative, hierarchical task planning (HTP). This "System-2 Intelligence" breaks down complex tasks into manageable steps. SSAs make informed decisions based on domain-specific knowledge. With OpenSSA, create agents that process, generate, and reason about information. This makes them more effective and efficient in solving real-world challenges.
 
-Meet OpenSSA — an open-source framework that boosts RAG accuracy to a minimum of 80% by leveraging domain-specific fine-tuned models.
+### Key Features
 
-> __Documentation__: [aitomatic.github.io/openssa](https://aitomatic.github.io/openssa)
->
-> __Installation__: `pip install openssa` _(Python 3.12)_
+- **Small**: Create lightweight, resource-efficient AI agents through model compression techniques
+- **Specialist**: Enhance agent performance with domain-specific facts, rules, heuristics, and fine-tuning for deterministic, accurate results
+- **Agents**: Enable goal-oriented, multi-step problem-solving for complex tasks via systematic HTP planning and OODAR reasoning
+- **Integration-Ready**: Works seamlessly with popular AI frameworks and tools for easy adoption
+- **Extensible Architecture**: Easily integrate new models and domains to expand capabilities
+- **Versatile Applications**: Build AI agents for industrial field service, customer support, recommendations, research, and more
 
-## Features
+### Example Use Cases
 
-## Context 
-### The Challenge
-Retrieval-Augmented Generation (RAG) has transformed the way we approach question-answering with AI. Yet, even the most advanced RAG applications hit a common set of challenges:
+#### Boost RAG Performance with Reasoning
 
-Limited Accuracy: Despite their vast knowledge base, generic language models often lack the depth needed for high-accuracy outcomes in specialized domains. This limitation leads to a significant accuracy gap, making it tough for developers to meet the demands of complex AI projects.
+OpenSSA significantly boosts the accuracy of Retrieval-Augmented Generation (RAG) systems. It fine-tunes the embedding or completion model with domain-specific knowledge. It also adds the ability to reason about queries and underlying documents. This powerful combination lifts RAG performance by significant margins, overcoming the limitations of generic language models.
 
-Lack of Advanced Problem-Solving: Beyond accuracy, the ability to plan and reason through multi-step problems is critical. Generic foundation models, without domain-specific tuning, struggle to navigate the complexity of such tasks, limiting the potential of RAG applications in real-world problem-solving scenarios.
+#### Enhance Conversational AI for Improved Customer Support
 
-These challenges underscore a pivotal need: a system that not only improves accuracy by leveraging domain knowledge but also enhances the ability to tackle complex problems with sophisticated planning and reasoning.
+Build AI assistants that provide accurate, context-aware responses in customer support, healthcare, and other domains. OpenSSA's domain-specific fine-tuning capabilities enable you to create AI agents that understand and respond to user queries with unprecedented accuracy and relevance. This leads to improved customer satisfaction, reduced response times, and increased efficiency in handling customer inquiries.
 
-### The Solution
-OpenSSA is designed to overcome the limitations when using generic language models. By integrating domain-specific fine-tuned models, OpenSSA enhances the accuracy and depth of understanding for specialized tasks, pushing the boundaries of what's achievable with AI in specific domains.
+#### Enable Efficient Planning and Reasoning for Problem Solving
 
-Further advancements in OpenSSA aim to incorporate planning and reasoning capabilities, enabling AI to navigate through multi-step problem-solving processes more effectively. This evolution will mark a significant leap towards autonomous agentic systems capable of addressing complex challenges with nuanced, context-aware solutions.
+OpenSSA enables you to create AI agents that can effectively plan and reason within specific domains to solve complex problems. By leveraging domain-specific knowledge and fine-tuned models, SSAs break down multi-step problems into manageable tasks. They efficiently and precisely solve these tasks, leading to accurate and timely solutions to real-world challenges.
 
-## Getting Involved
-We welcome contributions from the community! Whether you're interested in adding new models, improving the framework, or providing feedback, your input is valuable. Check out our [Community Discussions](https://github.com/aitomatic/openssa/discussions).
+#### Optimize Industrial Field Service Operations
 
-### As a Developer
-See some example user programs in the [examples/](./examples/) directory.
+Create AI agents that can guide field service technicians through complex maintenance and repair procedures. By leveraging domain-specific knowledge and reasoning capabilities, SSAs can provide step-by-step instructions, troubleshoot issues, and optimize resource allocation. This results in reduced downtime, increased first-time fix rates, and improved overall efficiency in industrial field service operations.
 
-### As an Aspiring Contributor
-OpenSSA is a community-driven initiative, and we welcome contributions. Whether it's enhancing existing models, creating new SSAs for different domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
+### Getting Started
 
-You can begin contributing to the OpenSSA project in the `contrib/` directory.
+1. Install OpenSSA: `pip install openssa` (Python 3.12)
+2. Explore the `examples/` directory
+3. Start building your own Small Specialist Agents
 
-### As a Committer
-You already know what to do :)
+Detailed tutorials and guides are available in our [Documentation](https://aitomatic.github.io/openssa).
 
-## Community
-Join our vibrant community of AI enthusiasts, researchers, developers.  Participate in the discussions, share your ideas, or ask for help on our [Community Discussions](https://github.com/aitomatic/openssa/discussions).
+### Contributing
 
-## License
-OpenSSA is released under the [Apache 2.0 License](LICENSE.md).
+We welcome contributions from the community!
 
-## [API References](modules)
+- Join the discussion on our [Community Forum](https://aitomatic.github.io/openssa/community)
+- Explore the `contrib/` directory for ongoing work and open issues
+- Submit pull requests for bug fixes, enhancements, or new features
 
-## Note: Lepton API Key
-
-Head to [Lepton](https://dashboard.lepton.ai/) to get your API key.
-
-- Go to `Settings`
-- Select `API tokens`
-- Copy `<YOUR_LEPTON_API_TOKEN>`
-
-In terminal, run
-
-```bash
-export LEPTON_API_KEY=<YOUR_LEPTON_API_TOKEN>
-```
+For more information, see our [Contribution Guide](https://aitomatic.github.io/openssa/contribute).
