@@ -10,7 +10,7 @@
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
       
       <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=9e72b9a1"></script>
+        <script src="_static/documentation_options.js?v=d1d0e38f"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
@@ -89,16 +89,11 @@
 <span id="openssa-integrations-llama-index-backend-module"></span><h1>openssa.integrations.llama_index.backend module<a class="headerlink" href="#module-openssa.integrations.llama_index.backend" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.integrations.llama_index.backend.Backend">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.integrations.llama_index.backend.</span></span><span class="sig-name descname"><span class="pre">Backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relevance_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rag_llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">llama_index.llms.llm.LLM</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">llama_index.service_context.ServiceContext</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.integrations.llama_index.backend.Backend" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.integrations.llama_index.backend.</span></span><span class="sig-name descname"><span class="pre">Backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relevance_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">llama_index.core.service_context.ServiceContext</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.integrations.llama_index.backend.Backend" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="openssa.core.backend.rag_backend.html#openssa.core.backend.rag_backend.AbstractRAGBackend" title="openssa.core.backend.rag_backend.AbstractRAGBackend"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRAGBackend</span></code></a></p>
 <dl class="py property">
 <dt class="sig sig-object py" id="openssa.integrations.llama_index.backend.Backend.index">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BaseIndex</span></em><a class="headerlink" href="#openssa.integrations.llama_index.backend.Backend.index" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.integrations.llama_index.backend.Backend.llm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">llm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LLM</span></em><a class="headerlink" href="#openssa.integrations.llama_index.backend.Backend.llm" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -122,7 +117,7 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
+      &#169; Copyright 2024, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>
