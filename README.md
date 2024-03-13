@@ -14,44 +14,39 @@ Meet OpenSSA — an open-source framework that boosts RAG accuracy to a minimum 
 
 ## Features
 
-## SSA Architecture
+## Context 
+### The Challenge
+Retrieval-Augmented Generation (RAG) has transformed the way we approach question-answering and complex problem-solving with AI. Yet, even the most advanced RAG applications hit a common set of challenges:
 
-### OpenSSA Framework Library
+Generic LLMs Exhibit Limited Domain-Specific Accuracy: Despite their vast knowledge base, generic LLMs often lack the depth needed for high-accuracy outcomes in specialized domains. This limitation leads to a significant accuracy gap, making it tough for developers to meet the demands of domain-specific applications.
 
-### High-Level Class Diagram
+Generic LLMs Lack Advanced Problem-Solving: Beyond accuracy, the ability to plan and reason through multi-step problems is critical. Generic LLMs, without domain-specific tuning, struggle to navigate the complexity of such tasks, limiting the potential of RAG applications in real-world problem-solving scenarios.
 
-## Getting Started with OpenSSA
+These challenges underscore a pivotal need: a system that not only improves accuracy by leveraging domain knowledge but also enhances the ability to tackle complex problems with sophisticated planning and reasoning.
 
-### Who Are You?
+### The Solution
+OpenSSA is designed to overcome the limitations faced by RAG developers when using generic language models. By integrating domain-specific fine-tuned models, OpenSSA enhances the accuracy and depth of understanding for specialized tasks, pushing the boundaries of what's achievable with AI in specific domains.
 
-1. An end-user of OpenSSA-based applications
+Further advancements in OpenSSA aim to incorporate planning and reasoning capabilities, enabling AI to navigate through multi-step problem-solving processes more effectively. This evolution will mark a significant leap towards autonomous agentic systems capable of addressing complex challenges with nuanced, context-aware solutions.
 
-2. A developer of applications or services using OpenSSA
+## Getting Involved
+We welcome contributions from the community! Whether you're interested in adding new models, improving the framework, or providing feedback, your input is valuable. Check out our [Community Discussions](https://github.com/aitomatic/openssa/discussions).
 
-3. An aspiring contributor to OpenSSA
-
-4. A committer to OpenSSA
-
-### Getting Started as a Developer
-
+### As a Developer
 See some example user programs in the [examples/](./examples/) directory.
 
-### Getting Started as an Aspiring Contributor
-
+### As an Aspiring Contributor
 OpenSSA is a community-driven initiative, and we welcome contributions. Whether it's enhancing existing models, creating new SSAs for different domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
 
 You can begin contributing to the OpenSSA project in the `contrib/` directory.
 
-### Getting Started as a Committer
-
-You already know what to do.
+### As a Committer
+You already know what to do :)
 
 ## Community
-
 Join our vibrant community of AI enthusiasts, researchers, developers.  Participate in the discussions, share your ideas, or ask for help on our [Community Discussions](https://github.com/aitomatic/openssa/discussions).
 
 ## License
-
 OpenSSA is released under the [Apache 2.0 License](LICENSE.md).
 
 ## [API References](modules)
