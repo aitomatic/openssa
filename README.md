@@ -47,8 +47,8 @@ Detailed tutorials and guides are available in our [Documentation](https://aitom
 
 We welcome contributions from the community!
 
-- Join the discussion on our [Community Forum](https://aitomatic.github.io/openssa/community)
+- Join the discussion on our [Community Forum](https://github.com/aitomatic/openssa/discussions)
 - Explore the `contrib/` directory for ongoing work and open issues
 - Submit pull requests for bug fixes, enhancements, or new features
 
-For more information, see our [Contribution Guide](https://aitomatic.github.io/openssa/contribute).
+For more information, see our [Contribution Guide](CONTRIBUTING.md).
