@@ -4,7 +4,7 @@
 
 Struggling with accuracy on your RAG projects? You're not alone.
 
-The core problem? Generic Language Models, which fall short in delivering the accuracy and relevance required for complex, multi-step problems.
+The core problem? Generic language models, which fall short in delivering the accuracy and relevance required for complex, multi-step problems.
 
 Meet OpenSSA — an open-source framework that boosts RAG accuracy to a minimum of 80% by leveraging domain-specific fine-tuned models.
 
