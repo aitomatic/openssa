@@ -38,7 +38,7 @@ See some example user programs in the [examples/](./examples/) directory.
 
 ### Getting Started as an Aspiring Contributor
 
-OpenSSA is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSAs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
+OpenSSA is a community-driven initiative, and we welcome contributions. Whether it's enhancing existing models, creating new SSAs for different domains, or improving our documentation, every contribution counts. See our [Contribution Guide](../CONTRIBUTING.md) for more details.
 
 You can begin contributing to the OpenSSA project in the `contrib/` directory.
 
@@ -48,11 +48,7 @@ You already know what to do.
 
 ## Community
 
-Join our vibrant community of AI enthusiasts, researchers, developers, and businesses who are democratizing industrial AI through SSAs.  Participate in the discussions, share your ideas, or ask for help on our [Community Discussions](https://github.com/aitomatic/openssa/discussions).
-
-## Contribute
-
-OpenSSA is a community-driven initiative, and we warmly welcome contributions. Whether it's enhancing existing models, creating new SSAs for different industrial domains, or improving our documentation, every contribution counts. See our [Contribution Guide](docs/community/CONTRIBUTING.md) for more details.
+Join our vibrant community of AI enthusiasts, researchers, developers.  Participate in the discussions, share your ideas, or ask for help on our [Community Discussions](https://github.com/aitomatic/openssa/discussions).
 
 ## License
 
