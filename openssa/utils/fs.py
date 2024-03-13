@@ -47,8 +47,8 @@ _S3_PROTOCOL_PREFIX_LEN: int = len(_S3_PROTOCOL_PREFIX)
 
 
 # explicit typing for clarity to developers/maintainers
-DirOrFilePath: type = str
-FilePathSet: type = frozenset[DirOrFilePath]
+type DirOrFilePath = str
+type FilePathSet = frozenset[DirOrFilePath]
 
 
 @dataclass(init=True, repr=True, eq=True, order=False, unsafe_hash=False, frozen=True,  # frozen -> hashable

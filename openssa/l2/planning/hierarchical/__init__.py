@@ -5,14 +5,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass, asdict, field
 import json
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 
 from loguru import logger
 from tqdm import tqdm
 
 from openssa.l2.planning.abstract import AbstractPlan, AbstractPlanner
 from openssa.l2.reasoning.base import BaseReasoner
-from openssa.l2.task.abstract import TaskDict
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
@@ -20,11 +19,17 @@ from ._prompts import (HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, 
                        HTP_RESULTS_SYNTH_PROMPT_TEMPLATE)
 
 if TYPE_CHECKING:
-    from openssa.l2.reasoning.abstract import AbstractReasoner
-    from openssa.l2.resource.abstract import AbstractResource
+    from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.resource.abstract import AResource
+    from openssa.l2.task.abstract import TaskDict
 
 
-HTPDict: type = dict[str, TaskDict | str | list[dict]]
+class HTPDict(TypedDict, total=False):
+    task: Required[TaskDict | str]
+    sub_plans: NotRequired[list[HTPDict]]
+
+
+type AskAnsPair = tuple[str, str]
 
 
 @dataclass(init=True,
@@ -50,12 +55,12 @@ class HTP(AbstractPlan):
 
     @classmethod
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
-        """Create hierarchical task plan from dictionary representation."""
+        """Create HTP from dictionary representation."""
         return HTP(task=Task.from_dict_or_str(htp_dict['task']),  # pylint: disable=unexpected-keyword-arg
                    sub_plans=[HTP.from_dict(d) for d in htp_dict.get('sub-plans', [])])
 
     def to_dict(self) -> HTPDict:
-        """Return dictionary representation."""
+        """Return dictionary representation of HTP."""
         return {'task': asdict(self.task),
                 'sub-plans': [p.to_dict() for p in self.sub_plans]}
 
@@ -63,26 +68,43 @@ class HTP(AbstractPlan):
         """Fix missing resources in HTP."""
         for p in self.sub_plans:
             if not p.task.resource:
-                p.task.resource: AbstractResource | None = self.task.resource
+                p.task.resource: AResource | None = self.task.resource
             p.fix_missing_resources()
 
-    def execute(self, reasoner: AbstractReasoner = BaseReasoner()) -> str:
+    def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return result, using specified reasoner to reason through involved tasks."""
+        reasoning_wo_sub_results: str = reasoner.reason(self.task)
+
         if self.sub_plans:
-            sub_results: tuple[str, str] = ((p.task.ask, p.execute(reasoner)) for p in tqdm(self.sub_plans))
+            sub_results: list[AskAnsPair] = []
+            for p in tqdm(self.sub_plans):
+                sub_result: AskAnsPair = p.task.ask, p.execute(reasoner, other_results=sub_results)
+                sub_results.append(sub_result)
 
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
-                supporting_info='\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                             '\n'
-                                             f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                            for i, (ask, result) in enumerate(sub_results)))
+                info=(
+                    f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
+                    '\n\n' +
+                    '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                 '\n'
+                                 f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                for i, (ask, result) in enumerate(sub_results)) +
+                    (('\n\n' +
+                      '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                   '\n'
+                                   f'OTHER RESULT #{i + 1}:\n{result}\n')
+                                  for i, (ask, result) in enumerate(other_results)))
+                     if other_results
+                     else '')
+                )
+            )
             logger.debug(prompt)
 
             self.task.result: str = reasoner.lm.get_response(prompt)
 
         else:
-            self.task.result: str = reasoner.reason(self.task)
+            self.task.result: str = reasoning_wo_sub_results
 
         self.task.status: TaskStatus = TaskStatus.DONE
         return self.task.result
@@ -102,10 +124,10 @@ class AutoHTPlanner(AbstractPlanner):
     """Automated (generative) hierarchical task planner."""
 
     max_depth: int = 3
-    max_subtasks_per_decomp: int = 9
+    max_subtasks_per_decomp: int = 3
 
-    def plan(self, problem: str, resources: set[AbstractResource] | None = None) -> HTP:
-        """Make hierarchical task plan (HTP) for solving problem."""
+    def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
+        """Make HTP for solving problem."""
         prompt: str = (
             HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
                                                       resource_overviews={r.unique_name: r.overview for r in resources},
@@ -129,8 +151,8 @@ class AutoHTPlanner(AbstractPlanner):
 
         return htp
 
-    def update_plan_resources(self, plan: HTP, /, resources: set[AbstractResource]) -> HTP:
-        """Make updated hierarchical task plan (HTP) copy with relevant informational resources."""
+    def update_plan_resources(self, plan: HTP, /, resources: set[AResource]) -> HTP:
+        """Make updated HTP copy with relevant informational resources."""
         assert isinstance(plan, HTP), TypeError(f'*** {plan} NOT OF TYPE {HTP.__name__} ***')
         assert resources, ValueError(f'*** {resources} NOT A NON-EMPTY SET OF INFORMATIONAL RESOURCES ***')
 

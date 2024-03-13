@@ -106,10 +106,10 @@ HTP_RESULTS_SYNTH_PROMPT_TEMPLATE: str = (
 {ask}
 ```
 
-given the following supporting information:
+given the following collection of reasoning and results:
 
 ```
-{supporting_info}
+{info}
 ```
 """  # noqa: E122
 )
