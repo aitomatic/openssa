@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD013 -->
+
 # `OpenSSA`: Small Specialist Agents for Industrial AI
 
 > __Documentation__: [aitomatic.github.io/openssa](https://aitomatic.github.io/openssa)
@@ -52,11 +54,7 @@ Our primary audience includes:
 
 ### OpenSSA Framework Library
 
-![OpenSSA Key Components](/docs/diagrams/ssm-key-components.drawio.png)
-
 ### High-Level Class Diagram
-
-![OpenSSA High-Level Class Diagram](/docs/diagrams/ssm-class-diagram.drawio.png)
 
 ## Getting Started with OpenSSA
 
