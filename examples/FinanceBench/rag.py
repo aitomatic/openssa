@@ -5,6 +5,8 @@ import pandas as pd
 from openssa.core.ooda_rag.custom import CustomSSM
 from openssa.utils.utils import Utils
 
+from data import OUTPUT_FILE_PATH
+
 nest_asyncio.apply()
 
 PATH = "./tmp/finance-bench/docs"
