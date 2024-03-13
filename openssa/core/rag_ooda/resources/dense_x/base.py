@@ -5,24 +5,19 @@ import yaml
 from typing import Any, Dict, List, Optional
 from json import JSONDecodeError
 from yaml import YAMLError
-from llama_index import Document, ServiceContext, VectorStoreIndex
-from llama_index.embeddings import OpenAIEmbedding, BaseEmbedding
-from llama_index.llama_pack.base import BaseLlamaPack
-from llama_index.llms import OpenAI
-from llama_index.node_parser.interface import TextSplitter
-from llama_index.node_parser.text import SentenceSplitter
-from llama_index.response.schema import RESPONSE_TYPE
-from llama_index.retrievers import RecursiveRetriever
-from llama_index.query_engine import RetrieverQueryEngine
-from llama_index.schema import IndexNode, TextNode
-from llama_index.prompts import PromptTemplate
-from llama_index.async_utils import run_jobs
-
-# backwards compatibility
-try:
-    from llama_index.llms.llm import LLM
-except ImportError:
-    from llama_index.llms.base import LLM
+from llama_index.core import Document, ServiceContext, VectorStoreIndex
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.core.embeddings import BaseEmbedding
+from llama_index.core.llama_pack import BaseLlamaPack
+from llama_index.llms.openai import OpenAI
+from llama_index.core.node_parser import TextSplitter
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core.retrievers import RecursiveRetriever
+from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.schema import IndexNode, TextNode
+from llama_index.core import PromptTemplate
+from llama_index.core.async_utils import run_jobs
+from llama_index.core.llms import LLM
 
 
 PROPOSITIONS_PROMPT = PromptTemplate(
@@ -205,6 +200,6 @@ class DenseXRetrievalPack(BaseLlamaPack):
             "retriever": self.retriever,
         }
 
-    def run(self, query_str: str, **kwargs: Any) -> RESPONSE_TYPE:
+    def run(self, query_str: str, **kwargs: Any) -> Any:
         """Run the pipeline."""
         return self.query_engine.query(query_str)

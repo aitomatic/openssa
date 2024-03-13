@@ -26,17 +26,23 @@ ANSI_WHITE="\033[0;37m"
 # POETRY
 # ======
 get-poetry:
-	python3 -m pip install Poetry --upgrade
+	@python3 -m pip install Poetry --upgrade
+
+get-poetry-mac-sys:
+	@python3 -m pip install Poetry --upgrade --user --break-system-packages
 
 
 # INSTALLATION
 # ============
 install:
-	poetry lock
-	poetry install --extras=contrib --with=docs --with=lint --with=test
+	@poetry lock
+	@poetry install --extras=contrib --with=dev --with=docs --with=lint --with=test
 
 install-editable:
-	python3 -m pip install -e ".[contrib]" --upgrade
+	@python3 -m pip install -e ".[contrib]" --upgrade
+
+install-editable-mac-sys:
+	@python3 -m pip install -e ".[contrib]" --upgrade --user --break-system-packages
 
 
 # LINTING
@@ -46,17 +52,17 @@ lint: lint-flake8 lint-pylint lint-ruff
 lint-flake8:
 	# flake8.pycqa.org/en/latest/user/invocation.html
 	# flake8.pycqa.org/en/latest/user/options.html
-	poetry run flake8 $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
+	@poetry run flake8 $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
 		--verbose --color always
 
 lint-pylint:
 	# pylint.readthedocs.io/en/latest/user_guide/usage/run.html
-	poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR)
+	@poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR)
 
 lint-ruff:
 	# docs.astral.sh/ruff/linter
-	poetry run ruff check $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
-		--output-format full \
+	@poetry run ruff check $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
+		--output-format text \
 		--target-version py310 \
 		--preview \
 		--respect-gitignore
@@ -92,17 +98,17 @@ release: build
 # DOCUMENTATION
 # =============
 docs: docs-build-clean docs-build-api
-	poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
+	@poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-build-clean:
-	rm -f "$(DOCS_DIR)"/*.rst
-	rm -rf "$(DOCS_BUILD_DIR)"
+	@rm -f "$(DOCS_DIR)"/*.rst
+	@rm -rf "$(DOCS_BUILD_DIR)"
 
 docs-build-api:
 	# generate .rst files from module code & docstrings
 	# any pathnames given at the end are paths to be excluded ignored during generation.
 	# sphinx-doc.org/en/master/man/sphinx-apidoc.html
-	poetry run sphinx-apidoc \
+	@poetry run sphinx-apidoc \
 		--force \
 		--follow-links \
 		--maxdepth 9 \
@@ -117,46 +123,46 @@ docs-build-api:
 	# rm "$(DOCS_DIR)"/*.orig
 
 docs-build: docs-build-clean docs-build-api
-	poetry run sphinx-build "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
+	@poetry run sphinx-build "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-deploy: docs-build
-	git fetch --all
+	@git fetch --all
 
-	git checkout gh-pages --
+	@git checkout gh-pages --
 
-	git config user.email "TheVinhLuong@gmail.com"
-	git config user.name "The Vinh LUONG (LƯƠNG Thế Vinh)"
+	@git config user.email "TheVinhLuong@gmail.com"
+	@git config user.name "The Vinh LUONG (LƯƠNG Thế Vinh)"
 
-	rm *.html
-	cp "$(DOCS_BUILD_DIR)"/*.html .
-	git add --all "*.html"
-	git reset "$(DOCS_DIR)/*.html"
+	@rm *.html
+	@cp "$(DOCS_BUILD_DIR)"/*.html .
+	@git add --all "*.html"
+	@git reset "$(DOCS_DIR)/*.html"
 
-	for docs_subdir_to_publish in $(DOCS_SUBDIRS_TO_PUBLISH) ; do \
+	@for docs_subdir_to_publish in $(DOCS_SUBDIRS_TO_PUBLISH) ; do \
 		echo "syncing $$docs_subdir_to_publish..." ; \
 		rsync -av --delete --links "$(DOCS_BUILD_DIR)/$$docs_subdir_to_publish"/ $$docs_subdir_to_publish/ ; \
 		git add --all "$$docs_subdir_to_publish/*" ; \
 	done
 
-	git commit -m "update GitHub Pages documentation site"
-	git push
+	@git commit -m "update GitHub Pages documentation site"
+	@git push
 
-	git checkout docs --
+	@git checkout docs --
 
 
 # VERSION MANAGEMENT
 # ==================
 version:
-	poetry version $(v)
+	@poetry version $(v)
 
 
 # MISC / OTHER
 # ============
 launch-solver:
-	poetry run openssa launch solver
+	@poetry run openssa launch solver
 
 public:
-	rsync . ../openssa/ \
+	@rsync . ../openssa/ \
 		--archive \
 		--delete \
 		--exclude .git \

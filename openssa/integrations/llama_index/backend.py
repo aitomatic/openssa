@@ -1,16 +1,16 @@
 from dataclasses import dataclass
-from llama_index import (
-    download_loader,
+from llama_index.core import (
     load_index_from_storage,
     SimpleDirectoryReader,
     VectorStoreIndex,
     Response,
     ServiceContext,
 )
-from llama_index.llms import OpenAI
-from llama_index.indices.base import BaseIndex
-from llama_index.indices.query.base import BaseQueryEngine
-from llama_index.storage import StorageContext
+from llama_index.llms.openai import OpenAI
+from llama_index.core.indices.base import BaseIndex
+from llama_index.core.query_engine import BaseQueryEngine
+from llama_index.core import StorageContext
+from llama_index.readers.web import SimpleWebPageReader
 from openssa.core.backend.rag_backend import AbstractRAGBackend
 
 
@@ -94,9 +94,9 @@ class Backend(AbstractRAGBackend):
         return result
 
     def _create_index(self, documents, storage_dir: str):
-        self.index = VectorStoreIndex.from_documents(documents,
-                                                     service_context=self._service_context,
-                                                     show_progress=True)
+        self.index = VectorStoreIndex.from_documents(
+            documents, service_context=self._service_context, show_progress=True
+        )
 
     def _do_read_directory(self, storage_dir: str):
         documents = SimpleDirectoryReader(
@@ -117,9 +117,7 @@ class Backend(AbstractRAGBackend):
         self._create_index(documents, storage_dir)
 
     def _do_read_website(self, urls: list[str], storage_dir: str):
-        the_class = download_loader("SimpleWebPageReader")
-        loader = the_class()
-        documents = loader.load_data(urls=urls)
+        documents = SimpleWebPageReader(html_to_text=True).load_data(urls)
         self._create_index(documents, storage_dir)
 
     def _do_save(self, storage_dir: str):

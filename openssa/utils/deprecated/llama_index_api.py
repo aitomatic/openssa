@@ -1,11 +1,13 @@
 from __future__ import annotations
 from typing import Optional
 import os
-from llama_index import ServiceContext
-from llama_index.embeddings import AzureOpenAIEmbedding, OpenAIEmbedding
-from llama_index.llms import AzureOpenAI, OpenAI as LlamaIndexOpenAI
-from llama_index.llms.llm import LLM  # noqa: TCH002
-from llama_index.llms.openai_utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
+from llama_index.core import ServiceContext
+from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.llms.azure_openai import AzureOpenAI
+from llama_index.core.llms import OpenAI as LlamaIndexOpenAI
+from llama_index.core.llms.llm import LLM  # noqa: TCH002
+from llama_index.core.llms.openai_utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
 from openssa.utils.config import Config
 
 # import sys

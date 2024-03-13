@@ -1,7 +1,7 @@
 from typing import Union, ClassVar
 from uuid import uuid4
-from llama_index.retrievers import BaseRetriever  # noqa: TCH002
-from llama_index.schema import NodeWithScore  # noqa: TCH002
+from llama_index.core.retrievers import BaseRetriever  # noqa: TCH002
+from llama_index.core.schema import NodeWithScore  # noqa: TCH002
 from openssa.core.ooda_rag.builtin_agents import (
     ContextValidator,
     SynthesizingAgent,

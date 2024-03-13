@@ -5,8 +5,6 @@ from openssa.core.ooda_rag.prompts import OODAPrompts
 from openssa.core.ooda_rag.notifier import Notifier, SimpleNotifier, EventTypes
 from openssa.core.ooda_rag.heuristic import (
     Heuristic,
-    TaskDecompositionHeuristic,
-    DefaultOODAHeuristic,
     HeuristicSet,
 )
 from openssa.core.ooda_rag.tools import Tool

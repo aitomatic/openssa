@@ -1,13 +1,13 @@
 """Query Rewriting Retriever Pack."""
 from typing import Any, Dict
 
-from llama_index.indices.service_context import ServiceContext
-from llama_index.indices.vector_store import VectorStoreIndex
-from llama_index.llama_pack.base import BaseLlamaPack
-from llama_index.llms import OpenAI
-from llama_index.query_engine import RetrieverQueryEngine
-from llama_index.retrievers import QueryFusionRetriever
-from llama_index.retrievers.fusion_retriever import FUSION_MODES
+from llama_index.core import ServiceContext
+from llama_index.core import VectorStoreIndex
+from llama_index.core.llama_pack import BaseLlamaPack
+from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.retrievers import QueryFusionRetriever
+from llama_index.core.retrievers.fusion_retriever import FUSION_MODES
+from openssa.utils.rag_service_contexts import ServiceContextManager
 
 
 class QueryRewritingRetrieverPack(BaseLlamaPack):
@@ -29,12 +29,7 @@ class QueryRewritingRetrieverPack(BaseLlamaPack):
     ) -> None:
         """Init params."""
         if not service_context:
-            service_context = ServiceContext.from_defaults(
-                # chunk_size=chunk_size,
-                # llm=OpenAI(model="gpt-4-1106-preview")
-                chunk_size=chunk_size,
-                llm=OpenAI(model="gpt-3.5-turbo-1106"),
-            )
+            service_context = ServiceContextManager.get_openai_sc(chunk_size=chunk_size)
         self.vector_retriever = index.as_retriever(
             similarity_top_k=vector_similarity_top_k
         )

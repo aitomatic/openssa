@@ -1,13 +1,6 @@
-from llama_index import (
-    Document,
-    Response,
-    SimpleDirectoryReader,
-    ServiceContext,
-    OpenAIEmbedding,
-)
-from llama_index.evaluation import DatasetGenerator
-from llama_index.llms import OpenAI
-from llama_index.node_parser import SimpleNodeParser
+from llama_index.core import Document, Response, SimpleDirectoryReader, ServiceContext
+from llama_index.core.evaluation import DatasetGenerator
+from llama_index.core.node_parser import SimpleNodeParser
 from loguru import logger
 
 from openssa.core.backend.abstract_backend import AbstractBackend
@@ -15,6 +8,7 @@ from openssa.core.slm.base_slm import PassthroughSLM
 from openssa.core.ssm.rag_ssm import RAGSSM
 from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
 from openssa.core.ooda_rag.query_rewritting_engine import QueryRewritingRetrieverPack
+from openssa.utils.rag_service_contexts import ServiceContextManager
 
 FILE_NAME = "file_name"
 
@@ -118,9 +112,10 @@ class CustomSSM(RAGSSM):  # type: ignore
         s3_source_path: str = "",
     ) -> None:
         if custom_rag_backend is None:
-            service_context = ServiceContext.from_defaults(
-                llm=OpenAI(model="gpt-4-1106-preview"), embed_model=OpenAIEmbedding()
-            )
+            service_context = ServiceContextManager.get_openai_4_0125_preview_sc()
+            # service_context = ServiceContextManager.get_azure_openai_4_0125_preview_sc()
+            # service_context = ServiceContextManager.get_azure_openai_sc()
+            # service_context = ServiceContextManager.get_openai_sc()
             custom_rag_backend = CustomBackend(service_context=service_context)
 
         slm = PassthroughSLM()

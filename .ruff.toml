@@ -38,6 +38,7 @@ ignore = [
            # instead, perform the call within the function, or read the default from a module-level singleton variable
   "B027",  # ... is an empty method in an abstract base class, but has no abstract decorator
   "B905",  # `zip()` without an explicit `strict=` parameter
+  "BLE001",  # do not catch blind exception
   "COM812",  # trailing comma missing
   "CPY001",  # missing copyright notice at top of file
   "D100",  # missing docstring in public module
@@ -80,6 +81,7 @@ ignore = [
   "PERF401",  # use a list comprehension to create a transformed list
   "PGH003",  # use specific rule codes when ignoring type issues
   "PIE790",  # unnecessary `pass` statement
+  "PLC2701",  # private name import from external module
   "PTH100",  # `os.path.abspath()` should be replaced by `Path.resolve()`
   "PTH103",  # `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
   "PTH109",  # `os.getcwd()` should be replaced by `Path.cwd()`
@@ -123,6 +125,7 @@ ignore = [
   "SIM401",  # use `item.get("role", "assistant")` instead of an `if` block
   "SLF001",  # private member accessed
   "T201",  # `print` found
+  "T203",  # `pprint` found
   "TD002",  # missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
   "TD003",  # missing issue link on the line following this TODO
   "TRY003",  # avoid specifying long messages outside the exception class

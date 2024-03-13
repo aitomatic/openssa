@@ -73,7 +73,7 @@ class CommAgent(TaskAgent):
     """
 
     def __init__(
-        self, llm: AnLLM = OpenAILLM.get_gpt_35_turbo_1106(), instruction: str = ""
+        self, llm: AnLLM = OpenAILLM(), instruction: str = ""
     ) -> None:
         self.llm = llm
         self.instruction = instruction
@@ -239,7 +239,7 @@ class OODAPlanAgent(TaskAgent):
 
     def __init__(
         self,
-        llm: AnLLM = OpenAILLM.get_gpt_35_turbo_1106(),
+        llm: AnLLM = OpenAILLM(),
         conversation: Optional[List] = None,
     ) -> None:
         self.llm = llm
