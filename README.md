@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD013 -->
+
 # OpenSSA: Small Specialist Agents
 
 ## Enabling Efficient, Domain-Specific Planning and Reasoning for AI
