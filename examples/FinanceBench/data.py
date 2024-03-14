@@ -22,11 +22,14 @@ type QAFunc = Callable[[FbId], Answer]
 BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
     'ADOBE_2015_10K', 'ADOBE_2016_10K', 'ADOBE_2017_10K', 'ADOBE_2022_10K',
     'JOHNSON&JOHNSON_2022_10K', 'JOHNSON&JOHNSON_2022Q4_EARNINGS',
+    'JOHNSON&JOHNSON_2023_8K_dated-2023-08-30', 'JOHNSON&JOHNSON_2023Q2_EARNINGS',
+    'MGMRESORTS_2022Q4_EARNINGS',
 }
 
 
 METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
 META_DF: DataFrame = read_csv(METADATA_URL)
+META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
 DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
 DOC_LINKS_BY_NAME: dict[str, DocName] = dict(zip(META_DF.doc_name, META_DF.doc_link))
@@ -99,7 +102,7 @@ class update_or_create_output_file:  # noqa: N801
             else:
                 output_df: DataFrame = META_DF[['financebench_id', 'doc_name',
                                                 'question', 'evidence_text', 'page_number', 'answer']]
-                output_df[self.col_name] = None
+                output_df.loc[:, self.col_name] = None
 
             output_df.loc[(META_DF.financebench_id == fb_id).idxmax(), self.col_name] = answer
 
