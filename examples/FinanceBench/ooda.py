@@ -31,7 +31,7 @@ def get_or_create_ooda_ssa(doc_name: DocName,
 @enable_batch_qa
 @update_or_create_output_file('OODA')
 def solve(fb_id: FbId) -> str:
-    return (ooda_ssa.solve(problem=QS_BY_FB_ID[fb_id])
+    return (ooda_ssa.solve(QS_BY_FB_ID[fb_id])
             if (ooda_ssa := get_or_create_ooda_ssa(DOC_NAMES_BY_FB_ID[fb_id]))
             else 'ERROR: doc not found')
 
