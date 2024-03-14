@@ -9,10 +9,12 @@ from typing import TYPE_CHECKING
 from fsspec.spec import AbstractFileSystem
 from fsspec.implementations.local import LocalFileSystem
 
+from llama_index.core.base.embeddings.base import BaseEmbedding
 from llama_index.core.indices.loading import load_index_from_storage
 from llama_index.core.indices.vector_store.base import VectorStoreIndex
 from llama_index.core.readers.file.base import SimpleDirectoryReader
 from llama_index.core.storage.storage_context import StorageContext
+from llama_index.embeddings.openai.base import OpenAIEmbedding
 
 from .abstract import AbstractResource
 from ._global import global_register
@@ -20,7 +22,6 @@ from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
-    from llama_index.core.schema import Document
 
 
 @global_register
@@ -28,18 +29,19 @@ class FileResource(AbstractResource):
     """File-stored informational resource."""
 
     def __init__(self,
-                 path: Path | str, fs: AbstractFileSystem = LocalFileSystem(auto_mkdir=True),
-                 embed_model_name: str = 'indexes', re_index: bool = False):
+                 path: Path | str,
+                 fs: AbstractFileSystem = LocalFileSystem(auto_mkdir=False),  # TODO: fix after Llama-Index bug fix
+                 embed_model: BaseEmbedding = OpenAIEmbedding(), re_index: bool = False):
         """Initialize file-stored informational resource and associated RAG."""
         self.path: str = (path.resolve(strict=True)
                           if isinstance(path, Path)
                           else path.lstrip().rstrip('/\\'))
 
-        self.embed_model_name: str = embed_model_name
+        self.embed_model_name: str = embed_model.model_name
 
-        self.hidden_index_dir_path: str = (str(self.path / f'.{embed_model_name}')
+        self.hidden_index_dir_path: str = (str(self.path / f'.{self.embed_model_name}')
                                            if isinstance(path, Path)
-                                           else f'{self.path}/.{embed_model_name}')
+                                           else f'{self.path}/.{self.embed_model_name}')
 
         if fs.isdir(path=self.hidden_index_dir_path) and fs.ls(path=self.hidden_index_dir_path, detail=False) \
                 and (not re_index):
