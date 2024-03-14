@@ -29,7 +29,8 @@ class FileResource(AbstractResource):
     """File-stored informational resource."""
 
     def __init__(self,
-                 path: Path | str, fs: AbstractFileSystem = LocalFileSystem(auto_mkdir=True),
+                 path: Path | str,
+                 fs: AbstractFileSystem = LocalFileSystem(auto_mkdir=False),  # TODO: fix after Llama-Index bug fix
                  embed_model: BaseEmbedding = OpenAIEmbedding(), re_index: bool = False):
         """Initialize file-stored informational resource and associated RAG."""
         self.path: str = (path.resolve(strict=True)
