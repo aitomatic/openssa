@@ -40,7 +40,7 @@ OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 
 @cache
-def cache_dir_path(doc_name: DocName) -> Path:
+def cache_dir_path(doc_name: DocName) -> Path | None:
     dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / doc_name
 
     if not (file_path := dir_path / f'{doc_name}.pdf').is_file():
@@ -48,14 +48,21 @@ def cache_dir_path(doc_name: DocName) -> Path:
 
         with open(file=file_path, mode='wb', buffering=-1, encoding=None,
                   newline=None, closefd=True, opener=None) as f:
-            f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=9, stream=True).content)
+            try:
+                f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=9, stream=True).content)
+
+            except requests.exceptions.ConnectionError as err:
+                print(err)
+                return None
 
     return dir_path
 
 
 @cache
-def cache_file_path(doc_name: DocName) -> Path:
-    return cache_dir_path(doc_name) / f'{doc_name}.pdf'
+def cache_file_path(doc_name: DocName) -> Path | None:
+    return (dir_path / f'{doc_name}.pdf'
+            if (dir_path := cache_dir_path(doc_name))
+            else None)
 
 
 def enable_batch_qa(qa_func: QAFunc) -> QAFunc:
