@@ -4,11 +4,12 @@ from functools import cache
 from openssa.l2.resource.file import FileResource
 
 # pylint: disable=wrong-import-order
-from data import FbId, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path, enable_batch_qa, update_or_create_output_file
+from data import (DocName, FbId, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
+                  cache_dir_path, enable_batch_qa, update_or_create_output_file)
 
 
 @cache
-def get_or_create_file_resource(doc_name: str) -> FileResource | None:
+def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
     return (FileResource(path=dir_path)
             if (dir_path := cache_dir_path(doc_name))
             else None)

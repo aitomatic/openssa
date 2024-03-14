@@ -7,7 +7,8 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 from openssa.l2.resource.file import FileResource
 
 # pylint: disable=wrong-import-order
-from data import FbId, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path, enable_batch_qa, update_or_create_output_file
+from data import (DocName, FbId, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
+                  cache_dir_path, enable_batch_qa, update_or_create_output_file)
 
 
 EMBED_MODEL = OpenAIEmbedding(model='text-embedding-3-large',
@@ -16,7 +17,7 @@ EMBED_MODEL = OpenAIEmbedding(model='text-embedding-3-large',
 
 
 @cache
-def get_or_create_file_resource(doc_name: str) -> FileResource | None:
+def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
     return (FileResource(path=dir_path, embed_model=EMBED_MODEL)
             if (dir_path := cache_dir_path(doc_name))
             else None)
