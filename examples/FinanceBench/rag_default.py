@@ -27,8 +27,6 @@ if __name__ == '__main__':
     arg_parser = ArgumentParser()
     arg_parser.add_argument('fb_id')
     args = arg_parser.parse_args()
-
-    if 'all' in (fb_id := args.fb_id):
-        answer('all')
-    else:
-        print(answer(fb_id if fb_id.startswith(FB_ID_COL_NAME) else f'{FB_ID_COL_NAME}_{fb_id}'))
+    print(answer(fb_id
+                 if (fb_id := args.fb_id).startswith(FB_ID_COL_NAME)
+                 else f'{FB_ID_COL_NAME}_{fb_id}'))
