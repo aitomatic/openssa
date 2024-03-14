@@ -28,8 +28,8 @@ BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
 
 
 METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
-INDEX_COL_NAME: str = 'financebench_id'
-META_DF: DataFrame = read_csv(METADATA_URL, index_col=INDEX_COL_NAME)
+FB_ID_COL_NAME: str = 'financebench_id'
+META_DF: DataFrame = read_csv(METADATA_URL, index_col=FB_ID_COL_NAME)
 META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
 DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
@@ -96,7 +96,7 @@ class update_or_create_output_file:  # noqa: N801
             answer: str = qa_func(fb_id)
 
             if OUTPUT_FILE_PATH.is_file():
-                output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=INDEX_COL_NAME)
+                output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
 
             else:
                 output_df: DataFrame = META_DF[['doc_name', 'question', 'evidence_text', 'page_number', 'answer']]
