@@ -1,21 +1,11 @@
-"""FinanceBench data handling."""
-
-
-from collections.abc import Sequence
 from functools import cache
 from pathlib import Path
 
 from pandas import DataFrame, read_csv
 import requests
 
-from openssa.utils.fs import FileSource
-
-
-__all__: Sequence[str] = (
-    'META_DF', 'DOC_LINKS_BY_NAME',
-    'LOCAL_CACHE_DIR_PATH', 'LOCAL_CACHE_DOCS_DIR_PATH', 'OUTPUT_FILE_PATH',
-    'get_or_create_cache_dir_path',
-)
+from dotenv import load_dotenv
+load_dotenv()
 
 
 METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
@@ -33,18 +23,17 @@ OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 
 @cache
-def get_or_create_cache_dir_path(doc_name: str) -> str:
+def cache_dir_path(doc_name: str) -> Path:
     dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / doc_name
 
-    doc_path: Path = dir_path / f'{doc_name}.pdf'
+    if not (file_path := dir_path / doc_name / '.pdf').is_file():
+        with open(file=file_path, mode='wb', buffering=-1, encoding=None,
+                  errors='strict', newline=None, closefd=True, opener=None) as f:
+            f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=9, stream=True).content)
 
-    if not (file_src := FileSource(path=str(doc_path))).is_single_file:
-        file_src.fs.write_bytes(path=file_src.native_path,
-                                value=requests.get(url=DOC_LINKS_BY_NAME[doc_name], stream=True, timeout=9).content)
-
-    return str(dir_path)
+    return dir_path
 
 
 @cache
-def cache_file_path(doc_name: str) -> str:
-    return Path(get_or_create_cache_dir_path(doc_name)) / f'{doc_name}.pdf'
+def cache_file_path(doc_name: str) -> Path:
+    return cache_dir_path(doc_name) / doc_name / '.pdf'
