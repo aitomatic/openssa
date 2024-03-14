@@ -94,7 +94,7 @@ class log_qa_and_update_output_file:  # noqa: N801
 
     def __call__(self, qa_func: QAFunc) -> QAFunc:
         def decorated_qa_func(fb_id: FbId) -> Answer:
-            logger.info(f'\n{DOC_NAMES_BY_FB_ID[fb_id]}: {QS_BY_FB_ID[fb_id]}\n'
+            logger.info(f'\n{DOC_NAMES_BY_FB_ID[fb_id]}:\n{QS_BY_FB_ID[fb_id]}\n'
                         f'\n{self.col_name.upper()}:\n{(answer := qa_func(fb_id))}\n')
 
             if OUTPUT_FILE_PATH.is_file():
