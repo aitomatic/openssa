@@ -91,6 +91,8 @@ tqdm = ">=4.66"
 # optional dependencies required by extras
 streamlit = {version = ">=1.32", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
+evaluate = "^0.4.1"
+bert-score = "^0.3.13"
 
 [tool.poetry.extras]
 contrib = [
