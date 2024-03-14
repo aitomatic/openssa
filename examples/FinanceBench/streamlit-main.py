@@ -10,7 +10,7 @@ import streamlit as st
 
 sys.path.insert(1, str(Path(__file__).parent.parent.parent))  # to use OpenSSA in same repo
 
-from data import DOC_LINKS_BY_NAME, QS_BY_ID, QAIDS_BY_DOC_NAME, cache_file_path  # noqa: E402
+from data import DOC_LINKS_BY_NAME, QS_BY_FB_ID, FB_IDS_BY_DOC_NAME, cache_file_path  # noqa: E402
 from prob_solve import solve  # noqa: E402
 
 
@@ -84,9 +84,9 @@ except:  # noqa: E722
 
 
 question_id: str = st.selectbox(label='Question',
-                                options=QAIDS_BY_DOC_NAME[st.session_state.doc_name],
+                                options=FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
                                 index=0,
-                                format_func=lambda i: QS_BY_ID[i],
+                                format_func=lambda i: QS_BY_FB_ID[i],
                                 key=None,
                                 help='Question',
                                 on_change=None, args=None, kwargs=None,
@@ -94,7 +94,7 @@ question_id: str = st.selectbox(label='Question',
                                 disabled=False,
                                 label_visibility='visible')
 
-if st.button(label=f'__SOLVE__: _{QS_BY_ID[question_id]}_',
+if st.button(label=f'__SOLVE__: _{QS_BY_FB_ID[question_id]}_',
              key=None,
              on_click=None, args=None, kwargs=None,
              type='primary',
