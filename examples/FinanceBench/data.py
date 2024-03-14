@@ -36,7 +36,7 @@ QAS_BY_FB_ID: dict[FbId, tuple[Question, Answer]] = dict(zip(META_DF.financebenc
 QS_BY_FB_ID: dict[FbId, Question] = {i: q for i, (q, a) in QAS_BY_FB_ID.items()}
 
 
-LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent.parent / '.data'
+LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
 LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
 OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
@@ -45,9 +45,11 @@ OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 def cache_dir_path(doc_name: DocName) -> Path:
     dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / doc_name
 
-    if not (file_path := dir_path / doc_name / '.pdf').is_file():
+    if not (file_path := dir_path / f'{doc_name}.pdf').is_file():
+        dir_path.mkdir(parents=True, exist_ok=True)
+
         with open(file=file_path, mode='wb', buffering=-1, encoding=None,
-                  errors='strict', newline=None, closefd=True, opener=None) as f:
+                  newline=None, closefd=True, opener=None) as f:
             f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=9, stream=True).content)
 
     return dir_path
@@ -55,7 +57,7 @@ def cache_dir_path(doc_name: DocName) -> Path:
 
 @cache
 def cache_file_path(doc_name: DocName) -> Path:
-    return cache_dir_path(doc_name) / doc_name / '.pdf'
+    return cache_dir_path(doc_name) / f'{doc_name}.pdf'
 
 
 def enable_batch_qa(qa_func: QAFunc) -> QAFunc:
