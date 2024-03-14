@@ -19,6 +19,23 @@ class TaskAgent(ABC):
     Abstract base class for all task agents.
     """
 
+    def __init__(self, llm: AnLLM, messages: List) -> None:
+        self.llm = llm
+        self.messages = messages
+
+    def _execute(self, is_json: bool = True) -> str:
+        """
+        Execute the task agent with the given task.
+        """
+        if is_json:
+            response = self.llm.call(
+                messages=self.messages,
+                response_format={"type": "json_object"},
+            )
+        else:
+            response = self.llm.call(messages=self.messages)
+        return response.choices[0].message.content
+
     @abstractmethod
     def execute(self, task: str) -> str:
         """
@@ -67,14 +84,51 @@ class AskUserAgent(TaskAgent):
             return {}
 
 
+class AskUserAgentV2(TaskAgent):
+    """
+    AskUserAgent helps to determine if user wants to provide additional information
+    """
+
+    def __init__(
+        self,
+        llm: AnLLM = OpenAILLM.get_gpt_4_1106_preview(),
+        ask_user_heuristic: str = "",
+        conversation: Optional[List] = None,
+    ) -> None:
+        self.llm = llm
+        self.ask_user_heuristic = ask_user_heuristic.strip()
+        self.conversation = conversation[-10:] if conversation else []
+
+    @Utils.timeit
+    def execute(self, task: str = "") -> str:
+        if not self.ask_user_heuristic:
+            return ""
+        system_message = {
+            "role": Persona.SYSTEM,
+            "content": BuiltInAgentPrompt.ASK_USER.format(
+                heuristic=self.ask_user_heuristic
+            ),
+        }
+        messages = self.conversation + [system_message]
+        response = self.llm.call(
+            messages=messages,
+            response_format={"type": "json_object"},
+        )
+        json_str = response.choices[0].message.content
+        logger.debug(f"ask user response is: {json_str}")
+        try:
+            return json.loads(json_str).get("question", "")
+        except json.JSONDecodeError:
+            logger.error("Failed to decode the response as JSON for ask user agent.")
+            return ""
+
+
 class CommAgent(TaskAgent):
     """
     CommAgent helps update tone, voice, format and language of the assistant final response
     """
 
-    def __init__(
-        self, llm: AnLLM = OpenAILLM(), instruction: str = ""
-    ) -> None:
+    def __init__(self, llm: AnLLM = OpenAILLM(), instruction: str = "") -> None:
         self.llm = llm
         self.instruction = instruction
 
@@ -89,9 +143,15 @@ class CommAgent(TaskAgent):
         conversation = [system_message]
         response = self.llm.call(
             messages=conversation,
-            response_format={"type": "text"},
+            response_format={"type": "json_object"},
         )
-        return response.choices[0].message.content
+        json_str = response.choices[0].message.content
+        logger.debug(f"comm response is: {json_str}")
+        try:
+            return json.loads(json_str).get("message", "")
+        except json.JSONDecodeError:
+            logger.error("Failed to decode the response as JSON for ask comm agent.")
+            return task
 
 
 class GoalAgent(TaskAgent):

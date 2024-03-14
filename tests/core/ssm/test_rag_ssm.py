@@ -123,4 +123,3 @@ class TestRAGSSM(unittest.TestCase):
 if __name__ == '__main__':
     test = TestRAGSSM()
     test.test_initialization()
-    test.test_make_conversation()
