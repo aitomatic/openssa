@@ -4,7 +4,11 @@ from openssa import OodaSSA, TaskDecompositionHeuristic
 
 # pylint: disable=wrong-import-order
 from data import cache_dir_path
-from heuristics import THREE_FIN_STATEMENTS_HEURISTICS
+
+
+THREE_FIN_STATEMENTS_HEURISTICS: str = (
+    'pay attention to Balance Sheet, Cash Flow Statement and Profit & Loss (P&L) Statement'
+)
 
 
 @cache
