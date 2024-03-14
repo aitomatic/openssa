@@ -1,5 +1,3 @@
-from collections.abc import Callable
-from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 
@@ -7,7 +5,6 @@ from dotenv import load_dotenv
 from loguru import logger
 from pandas import DataFrame, read_csv
 import requests
-from tqdm import tqdm
 
 
 load_dotenv()
@@ -17,7 +14,6 @@ type DocName = str
 type FbId = str
 type Question = str
 type Answer = str
-type QAFunc = Callable[[FbId], Answer]
 
 
 BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
@@ -72,42 +68,3 @@ def cache_file_path(doc_name: DocName) -> Path | None:
     return (dir_path / f'{doc_name}.pdf'
             if (dir_path := cache_dir_path(doc_name))
             else None)
-
-
-def enable_batch_qa(qa_func: QAFunc) -> QAFunc:
-    def decorated_qa_func(fb_id: FbId) -> Answer:
-        if 'all' in fb_id.lower():
-            for _fb_id in tqdm(FB_IDS):
-                qa_func(_fb_id)
-
-            return None
-
-        return qa_func(fb_id)
-
-    return decorated_qa_func
-
-
-@dataclass
-class log_qa_and_update_output_file:  # noqa: N801
-    # pylint: disable=invalid-name
-    col_name: str
-
-    def __call__(self, qa_func: QAFunc) -> QAFunc:
-        def decorated_qa_func(fb_id: FbId) -> Answer:
-            logger.info(f'\n{DOC_NAMES_BY_FB_ID[fb_id]}:\n{QS_BY_FB_ID[fb_id]}\n'
-                        f'\n{self.col_name.upper()}:\n{(answer := qa_func(fb_id))}\n')
-
-            if OUTPUT_FILE_PATH.is_file():
-                output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
-
-            else:
-                output_df: DataFrame = META_DF[['doc_name', 'question', 'evidence_text', 'page_number', 'answer']]
-                output_df.loc[:, self.col_name] = None
-
-            output_df.loc[fb_id, self.col_name] = answer
-
-            output_df.to_csv(OUTPUT_FILE_PATH, index=True)
-
-            return answer
-
-        return decorated_qa_func
