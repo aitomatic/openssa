@@ -24,7 +24,7 @@ docs/_build/
 
 # Visual Studio Code
 *.code-workspace
-
+.vscode
 
 # MISC / OTHER
 # ============
