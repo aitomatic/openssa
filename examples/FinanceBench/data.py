@@ -4,6 +4,7 @@ from functools import cache
 from pathlib import Path
 
 from dotenv import load_dotenv
+from loguru import logger
 from pandas import DataFrame, read_csv
 import requests
 from tqdm import tqdm
@@ -60,7 +61,7 @@ def cache_dir_path(doc_name: DocName) -> Path | None:
                 f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=30, stream=True).content)
 
             except requests.exceptions.ConnectionError as err:
-                print(f'*** {doc_name} ***\n{err}')
+                logger.error(f'*** {doc_name} ***\n{err}')
                 return None
 
     return dir_path
@@ -87,13 +88,14 @@ def enable_batch_qa(qa_func: QAFunc) -> QAFunc:
 
 
 @dataclass
-class update_or_create_output_file:  # noqa: N801
+class log_qa_and_update_output_file:  # noqa: N801
     # pylint: disable=invalid-name
     col_name: str
 
     def __call__(self, qa_func: QAFunc) -> QAFunc:
         def decorated_qa_func(fb_id: FbId) -> Answer:
-            answer: str = qa_func(fb_id)
+            logger.info(f'{DOC_NAMES_BY_FB_ID[fb_id]}: {QS_BY_FB_ID[fb_id]}')
+            logger.info(f'ANSWER: {(answer := qa_func(fb_id))}')
 
             if OUTPUT_FILE_PATH.is_file():
                 output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
