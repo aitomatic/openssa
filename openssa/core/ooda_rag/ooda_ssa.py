@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from openssa.core.ooda_rag.custom import CustomSSM
-from openssa.core.ooda_rag.ooda_rag import Solver, History
+from openssa.core.ooda_rag.ooda import Solver, History
 from openssa.core.ooda_rag.heuristic import (
     Heuristic,
     TaskDecompositionHeuristic,

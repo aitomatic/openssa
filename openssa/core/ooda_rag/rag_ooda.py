@@ -12,8 +12,8 @@ from openssa.core.ooda_rag.tools import (
     ResearchQueryEngineTool,
     Tool,
 )
-from openssa.core.rag_ooda.resources.rag_resource import RagResource
-from openssa.core.ooda_rag.ooda_rag import Solver, Notifier, SimpleNotifier, EventTypes
+from openssa.core.ooda_rag.resources.rag_resource import RagResource
+from openssa.core.ooda_rag.ooda import Solver, Notifier, SimpleNotifier, EventTypes
 from openssa.utils.utils import Utils
 
 
