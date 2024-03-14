@@ -1,8 +1,10 @@
 from argparse import ArgumentParser
 from functools import cache
 
-from data import FbId, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path, enable_batch_qa, update_or_create_output_file
 from openssa.l2.resource.file import FileResource
+
+# pylint: disable=wrong-import-order
+from data import FbId, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path, enable_batch_qa, update_or_create_output_file
 
 
 @cache

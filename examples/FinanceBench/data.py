@@ -2,7 +2,6 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
-import sys
 
 from dotenv import load_dotenv
 from pandas import DataFrame, read_csv
@@ -10,7 +9,6 @@ import requests
 from tqdm import tqdm
 
 
-sys.path.append(str(Path(__file__).parent.parent.parent))
 load_dotenv()
 
 
@@ -18,7 +16,7 @@ type DocName = str
 type FbId = str
 type Question = str
 type Answer = str
-type QAFunc = Callable[FbId, Answer]
+type QAFunc = Callable[[FbId], Answer]
 
 
 METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
