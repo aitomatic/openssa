@@ -3,3 +3,6 @@ run-streamlit:
 
 rag-default-answer:
 	@poetry run python rag.py ${id}
+
+rag-finetuned-answer:
+	@poetry run python rag.py ${id}
