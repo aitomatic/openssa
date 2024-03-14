@@ -1,8 +1,11 @@
 run-streamlit:
 	@streamlit run streamlit-main.py --server.allowRunOnSave=true --server.runOnSave=true
 
-rag-default-answer:
-	@poetry run python rag.py ${id}
+default-rag-answer:
+	@poetry run python rag_default.py ${id}
 
-rag-finetuned-answer:
-	@poetry run python rag.py ${id}
+finetuned-rag-answer:
+	@poetry run python rag_finetuned.py ${id}
+
+ooda-ssa-solve:
+	@poetry run python ooda_ssa.py ${id}
