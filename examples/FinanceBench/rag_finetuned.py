@@ -7,7 +7,7 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 from openssa.l2.resource.file import FileResource
 
 # pylint: disable=wrong-import-order
-from data import (DocName, FbId, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
+from data import (DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
                   cache_dir_path, enable_batch_qa, update_or_create_output_file)
 
 
@@ -25,7 +25,7 @@ def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
 
 @enable_batch_qa
 @update_or_create_output_file('RAG-FineTuned')
-def answer(fb_id: FbId) -> str:
+def answer(fb_id: FbId) -> Answer:
     return (file_resource.answer(QS_BY_FB_ID[fb_id])
             if (file_resource := get_or_create_file_resource(DOC_NAMES_BY_FB_ID[fb_id]))
             else 'ERROR: doc not found')
