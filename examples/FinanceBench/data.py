@@ -18,7 +18,7 @@ type DocName = str
 type FbId = str
 type Question = str
 type Answer = str
-type QAFunc = Callable[[DocName, Question], Answer]
+type QAFunc = Callable[FbId, Answer]
 
 
 METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
@@ -61,7 +61,7 @@ def cache_file_path(doc_name: DocName) -> Path:
 
 
 def enable_batch_qa(qa_func: QAFunc) -> QAFunc:
-    def decorated_qa_func(fb_id: FbId) -> str:
+    def decorated_qa_func(fb_id: FbId) -> Answer:
         if 'all' in fb_id.lower():
             for _fb_id in tqdm(FB_IDS):
                 qa_func(_fb_id)
@@ -79,7 +79,7 @@ class update_or_create_output_file:  # noqa: N801
     col_name: str
 
     def __call__(self, qa_func: QAFunc) -> QAFunc:
-        def decorated_qa_func(fb_id: FbId) -> str:
+        def decorated_qa_func(fb_id: FbId) -> Answer:
             answer: str = qa_func(fb_id)
 
             if OUTPUT_FILE_PATH.is_file():
@@ -90,10 +90,9 @@ class update_or_create_output_file:  # noqa: N801
                                                 'question', 'evidence_text', 'page_number', 'answer']]
                 output_df[self.col_name] = None
 
-                matching_fb_id_row_num: int = (META_DF.financebench_id == fb_id).idxmax()
+            output_df.loc[(META_DF.financebench_id == fb_id).idxmax(), self.col_name] = answer
 
-                output_df.loc[matching_fb_id_row_num, self.col_name] = answer
-                output_df.to_csv(OUTPUT_FILE_PATH, index=False)
+            output_df.to_csv(OUTPUT_FILE_PATH, index=False)
 
             return answer
 
