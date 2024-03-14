@@ -19,6 +19,12 @@ type Answer = str
 type QAFunc = Callable[[FbId], Answer]
 
 
+BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
+    'ADOBE_2015_10K', 'ADOBE_2016_10K', 'ADOBE_2017_10K', 'ADOBE_2022_10K',
+    'JOHNSON&JOHNSON_2022_10K', 'JOHNSON&JOHNSON_2022Q4_EARNINGS',
+}
+
+
 METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
 META_DF: DataFrame = read_csv(METADATA_URL)
 
@@ -52,7 +58,7 @@ def cache_dir_path(doc_name: DocName) -> Path | None:
                 f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=9, stream=True).content)
 
             except requests.exceptions.ConnectionError as err:
-                print(err)
+                print(f'*** {doc_name} ***\n{err}')
                 return None
 
     return dir_path
