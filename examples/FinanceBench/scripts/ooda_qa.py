@@ -3,7 +3,7 @@ from loguru import logger
 import nest_asyncio
 import pandas as pd
 from openssa.utils.utils import Utils
-from openssa.core.ooda_rag.solver import OodaSSA
+from openssa.core.ooda_rag.ooda_ssa import OodaSSA
 
 nest_asyncio.apply()
 
