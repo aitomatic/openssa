@@ -7,7 +7,7 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 from openssa.l2.resource.file import FileResource
 
 # pylint: disable=wrong-import-order
-from data import (DocName, FbId, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
+from data import (DocName, FbId, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
                   cache_dir_path, enable_batch_qa, update_or_create_output_file)
 
 
@@ -35,4 +35,6 @@ if __name__ == '__main__':
     arg_parser = ArgumentParser()
     arg_parser.add_argument('fb_id')
     args = arg_parser.parse_args()
-    print(answer(args.fb_id))
+    print(answer(fb_id
+                 if (fb_id := args.fb_id).startswith(FB_ID_COL_NAME)
+                 else f'{FB_ID_COL_NAME}_{fb_id}'))
