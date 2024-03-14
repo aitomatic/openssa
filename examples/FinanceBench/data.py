@@ -28,19 +28,18 @@ BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
 
 
 METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
-META_DF: DataFrame = read_csv(METADATA_URL)
+INDEX_COL_NAME: str = 'financebench_id'
+META_DF: DataFrame = read_csv(METADATA_URL, index_col=INDEX_COL_NAME)
 META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
 DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
 DOC_LINKS_BY_NAME: dict[str, DocName] = dict(zip(META_DF.doc_name, META_DF.doc_link))
-DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = dict(zip(META_DF.financebench_id, META_DF.doc_name))
+DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
 
-FB_IDS: list[FbId] = META_DF.financebench_id.to_list()
-FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = META_DF.groupby('doc_name').apply(lambda _: _.financebench_id.to_list())
+FB_IDS: list[FbId] = META_DF.index.to_list()
+FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
 
-QAS_BY_FB_ID: dict[FbId, tuple[Question, Answer]] = dict(zip(META_DF.financebench_id,
-                                                             zip(META_DF.question, META_DF.answer)))
-QS_BY_FB_ID: dict[FbId, Question] = {i: q for i, (q, a) in QAS_BY_FB_ID.items()}
+QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
 
 
 LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
@@ -58,7 +57,7 @@ def cache_dir_path(doc_name: DocName) -> Path | None:
         with open(file=file_path, mode='wb', buffering=-1, encoding=None,
                   newline=None, closefd=True, opener=None) as f:
             try:
-                f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=9, stream=True).content)
+                f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=30, stream=True).content)
 
             except requests.exceptions.ConnectionError as err:
                 print(f'*** {doc_name} ***\n{err}')
@@ -97,16 +96,15 @@ class update_or_create_output_file:  # noqa: N801
             answer: str = qa_func(fb_id)
 
             if OUTPUT_FILE_PATH.is_file():
-                output_df: DataFrame = read_csv(OUTPUT_FILE_PATH)
+                output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=INDEX_COL_NAME)
 
             else:
-                output_df: DataFrame = META_DF[['financebench_id', 'doc_name',
-                                                'question', 'evidence_text', 'page_number', 'answer']]
+                output_df: DataFrame = META_DF[['doc_name', 'question', 'evidence_text', 'page_number', 'answer']]
                 output_df.loc[:, self.col_name] = None
 
-            output_df.loc[(META_DF.financebench_id == fb_id).idxmax(), self.col_name] = answer
+            output_df.loc[fb_id, self.col_name] = answer
 
-            output_df.to_csv(OUTPUT_FILE_PATH, index=False)
+            output_df.to_csv(OUTPUT_FILE_PATH, index=True)
 
             return answer
 
