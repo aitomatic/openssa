@@ -17,7 +17,7 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from s3fs import S3FileSystem
-from openssa.l2.resource.file import FileSource
+from openssa.l2.resource.file import FileResource
 from openssa.utils.logs import mlogger
 
 
@@ -315,7 +315,7 @@ class Utils:
 
         for s3_file_path in set(
             chain.from_iterable(
-                FileSource(path=s3_path).file_paths(relative=False)
+                FileResource(path=s3_path).file_paths(relative=False)
                 for s3_path in s3_paths
             )
         ):
