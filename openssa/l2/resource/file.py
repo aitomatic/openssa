@@ -258,7 +258,7 @@ class FileResource(AbstractResource):
             llm=self.lm,
 
             # other VectorIndexRetriever.__init__(...) args:
-            # docs.llamaindex.ai/en/latest/api_reference/query/retrievers/vector_store.html#llama_index.core.indices.vector_store.retrievers.retriever.VectorIndexRetriever    
+            # docs.llamaindex.ai/en/latest/api_reference/query/retrievers/vector_store.html#llama_index.core.indices.vector_store.retrievers.retriever.VectorIndexRetriever
             similarity_top_k=5,
             vector_store_query_mode=VectorStoreQueryMode.MMR,
             filters=None,
