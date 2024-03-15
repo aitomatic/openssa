@@ -22,4 +22,4 @@ StreamlitSSAProbSolver(unique_name='PROBLEM-SOLVING SSA',
                        expert_instructions=('Purge Time must be at least as long as Pulse Time in each cycle '
                                             'to ensure all excess precursor and reaction byproducts are removed '
                                             'from the chamber before the next cycle begins'),
-                       doc_src_path='s3://aitomatic-public/KnowledgeBase/Semiconductor/ALD')
+                       doc_src_path='s3://aitomatic-public/KnowledgeBase/Semiconductor/ALD/ALD-Process.txt')
