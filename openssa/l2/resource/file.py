@@ -82,7 +82,7 @@ class FileResource(AbstractResource):
             self.path: Path = self.path.resolve(strict=True)
             self.str_path: DirOrFileStrPath = str(self.path)
         else:
-            self.str_path = self.path = os.path.abspath(path=self.path.lstrip().rstrip('/\\'))
+            self.str_path = self.path = self.path.lstrip().rstrip('/\\')
 
         self.embed_model_name: str = self.embed_model.model_name
 
