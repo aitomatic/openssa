@@ -90,7 +90,7 @@ class FileResource(AbstractResource):
 
         self.index_dir_path: DirOrFileStrPath = ((str(self.path / f'.{self.embed_model_name}')
                                                   if isinstance(self.path, Path)
-                                                  else f'{self.path}/.{self.embed_model_name}')
+                                                  else os.path.join(self.path, f'.{self.embed_model_name}'))
                                                  if self.is_dir
                                                  else mkdtemp(suffix=None, prefix=None, dir=None))
 
