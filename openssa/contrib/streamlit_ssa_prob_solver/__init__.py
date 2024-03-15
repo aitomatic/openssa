@@ -13,7 +13,7 @@ from streamlit_mic_recorder import speech_to_text
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.ooda_rag.custom import CustomSSM
 from openssa.core.ooda_rag.ooda_ssa import OodaSSA
-from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
+from openssa.l2.resource.file import DirOrFilePath, FilePathSet, FileResource
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, MutableMapping
@@ -160,9 +160,9 @@ class SSAProbSolver:
             sss[self.DOC_SRC_PATHS_SSS_KEY][self.unique_name]: DirOrFilePath = clean_path
 
     @property
-    def _doc_file_src(self) -> FileSource:
+    def _doc_file_src(self) -> FileResource:
         assert (_ := self.doc_src_path), ValueError('Documentary Knowledge Source Path not yet specified')
-        return FileSource(_)
+        return FileResource(_)
 
     @property
     def doc_src_file_relpaths(self) -> FilePathSet:
