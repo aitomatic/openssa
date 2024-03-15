@@ -6,7 +6,7 @@ from dataclasses import dataclass, field, InitVar
 from functools import cached_property
 import os
 from pathlib import Path
-from typing import TYPE_CHECKING, TypeVar
+from typing import TypeVar
 
 from fsspec.spec import AbstractFileSystem
 from fsspec.implementations.local import LocalFileSystem
@@ -16,6 +16,7 @@ from s3fs.core import S3FileSystem
 from llama_index.core.base.embeddings.base import BaseEmbedding
 from llama_index.core.indices.loading import load_index_from_storage
 from llama_index.core.indices.vector_store.base import VectorStoreIndex
+from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
 from llama_index.core.readers.file.base import SimpleDirectoryReader
 from llama_index.core.storage.storage_context import StorageContext
 from llama_index.embeddings.openai.base import OpenAIEmbedding
@@ -23,9 +24,6 @@ from llama_index.embeddings.openai.base import OpenAIEmbedding
 from .abstract import AbstractResource
 from ._global import global_register
 from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
-
-if TYPE_CHECKING:
-    from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
 
 
 # file suffixes: text files, plus a subset of those supported by Llama Index
@@ -88,20 +86,25 @@ class FileResource(AbstractResource):
 
         self.embed_model_name: str = self.embed_model.model_name
 
+        self.re_index: bool = re_index
+
+    @cached_property
+    def query_engine(self) -> RetrieverQueryEngine:
         if self.is_dir:
             self.hidden_index_dir_path: DirOrFileStrPath = (str(self.path / f'.{self.embed_model_name}')
                                                             if isinstance(self.path, Path)
                                                             else f'{self.path}/.{self.embed_model_name}')
 
             if self.fs.isdir(path=self.hidden_index_dir_path) and self.fs.ls(path=self.hidden_index_dir_path, detail=False) \
-                    and (not re_index):
+                    and (not self.re_index):
                 index: VectorStoreIndex = load_index_from_storage(
                     storage_context=StorageContext.from_defaults(persist_dir=self.hidden_index_dir_path, fs=self.fs),
                     index_id=None)
 
             else:
+                print(f'*** {self.native_str_path} ***')
                 index: VectorStoreIndex = VectorStoreIndex.from_documents(
-                    documents=SimpleDirectoryReader(input_dir=self.path,
+                    documents=SimpleDirectoryReader(input_dir=self.native_str_path,
                                                     input_files=None,
                                                     exclude=[
                                                         '.DS_Store',  # MacOS
@@ -125,7 +128,7 @@ class FileResource(AbstractResource):
 
                 index.storage_context.persist(persist_dir=self.hidden_index_dir_path, fs=self.fs)
 
-        self.query_engine: RetrieverQueryEngine = index.as_query_engine()
+        return index.as_query_engine()
 
     def __hash__(self) -> int:
         """Return integer hash."""
