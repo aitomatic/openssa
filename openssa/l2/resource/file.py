@@ -6,6 +6,7 @@ from dataclasses import dataclass, field, InitVar
 from functools import cached_property
 import os
 from pathlib import Path
+from tempfile import mkdtemp
 from typing import TypeVar
 
 from fsspec.spec import AbstractFileSystem
@@ -76,63 +77,36 @@ class FileResource(AbstractResource):
     re_index: InitVar[bool] = False
 
     def __post_init__(self, re_index: bool):
-        """Post-initialize file-stored informational resource and associated RAG index & query engine."""
+        """Post-initialize file-stored informational resource."""
         if isinstance(self.path, Path):
             self.path: Path = self.path.resolve(strict=True)
             self.str_path: DirOrFileStrPath = str(self.path)
-
         else:
             self.str_path = self.path = self.path.lstrip().rstrip('/\\')
 
         self.embed_model_name: str = self.embed_model.model_name
 
-        self.re_index: bool = re_index
+        self.to_re_index: bool = re_index
 
-    @cached_property
-    def query_engine(self) -> RetrieverQueryEngine:
-        if self.is_dir:
-            self.hidden_index_dir_path: DirOrFileStrPath = (str(self.path / f'.{self.embed_model_name}')
-                                                            if isinstance(self.path, Path)
-                                                            else f'{self.path}/.{self.embed_model_name}')
-
-            if self.fs.isdir(path=self.hidden_index_dir_path) and self.fs.ls(path=self.hidden_index_dir_path, detail=False) \
-                    and (not self.re_index):
-                index: VectorStoreIndex = load_index_from_storage(
-                    storage_context=StorageContext.from_defaults(persist_dir=self.hidden_index_dir_path, fs=self.fs),
-                    index_id=None)
-
-            else:
-                print(f'*** {self.native_str_path} ***')
-                index: VectorStoreIndex = VectorStoreIndex.from_documents(
-                    documents=SimpleDirectoryReader(input_dir=self.native_str_path,
-                                                    input_files=None,
-                                                    exclude=[
-                                                        '.DS_Store',  # MacOS
-                                                        '*.json',  # potential nested index files
-                                                    ],
-                                                    exclude_hidden=False,
-                                                    errors='strict',
-                                                    recursive=True,
-                                                    encoding='utf-8',
-                                                    filename_as_id=False,
-                                                    required_exts=None,
-                                                    file_extractor=None,
-                                                    num_files_limit=None,
-                                                    file_metadata=None,
-                                                    fs=self.fs).load_data(show_progress=True,
-                                                                          num_workers=os.cpu_count()),
-                    storage_context=None,
-                    show_progress=True,
-                    callback_manager=None,
-                    transformations=None)
-
-                index.storage_context.persist(persist_dir=self.hidden_index_dir_path, fs=self.fs)
-
-        return index.as_query_engine()
+        self.index_dir_path: DirOrFileStrPath = ((str(self.path / f'.{self.embed_model_name}')
+                                                  if isinstance(self.path, Path)
+                                                  else f'{self.path}/.{self.embed_model_name}')
+                                                 if self.is_dir
+                                                 else mkdtemp(suffix=None, prefix=None, dir=None))
 
     def __hash__(self) -> int:
         """Return integer hash."""
-        return hash((self.hidden_index_dir_path, self.embed_model_name))
+        return hash(self.unique_name)
+
+    @cached_property
+    def unique_name(self) -> str:
+        """Return globally-unique name of file-stored informational resource."""
+        return self.index_dir_path
+
+    @cached_property
+    def name(self) -> str:
+        """Return potentially non-unique, but informationally helpful name of file-stored informational resource."""
+        return os.path.basename(self.path)
 
     @cached_property
     def on_gcs(self) -> bool:
@@ -176,16 +150,6 @@ class FileResource(AbstractResource):
         """Check if source is single file."""
         return self.fs.isfile(self.native_str_path)
 
-    @cached_property
-    def unique_name(self) -> str:
-        """Return globally-unique name of file-stored informational resource."""
-        return self.hidden_index_dir_path
-
-    @cached_property
-    def name(self) -> str:
-        """Return potentially non-unique, but informationally helpful name of file-stored informational resource."""
-        return os.path.basename(self.path)
-
     def file_paths(self, *, relative: bool = False, suffixes: Collection[str] = _DEFAULT_SUFFIXES) -> FileStrPathSet:
         """Get file paths with relevant suffixes from provided path."""
         if self.is_dir:
@@ -201,6 +165,44 @@ class FileResource(AbstractResource):
         assert self.is_single_file and (Path(self.path).suffix in suffixes), \
             ValueError(f'"{self.path}" not a file with suffix among {suffixes}')
         return frozenset({self.path})
+
+    @cached_property
+    def query_engine(self) -> RetrieverQueryEngine:
+        if self.is_dir and (self.fs.isdir(path=self.index_dir_path) and
+                            self.fs.ls(path=self.index_dir_path, detail=False)) and (not self.to_re_index):
+            index: VectorStoreIndex = load_index_from_storage(
+                storage_context=StorageContext.from_defaults(persist_dir=self.index_dir_path, fs=self.fs),
+                index_id=None)
+
+        else:
+            fs: AFileSystem | None = self.fs if self.is_dir else None
+
+            index: VectorStoreIndex = VectorStoreIndex.from_documents(
+                documents=SimpleDirectoryReader(input_dir=self.native_str_path,
+                                                input_files=None,
+                                                exclude=[
+                                                    '.DS_Store',  # MacOS
+                                                    '*.json',  # potential nested index files
+                                                ],
+                                                exclude_hidden=False,
+                                                errors='strict',
+                                                recursive=True,
+                                                encoding='utf-8',
+                                                filename_as_id=False,
+                                                required_exts=None,
+                                                file_extractor=None,
+                                                num_files_limit=None,
+                                                file_metadata=None,
+                                                fs=fs).load_data(show_progress=True,
+                                                                 num_workers=os.cpu_count()),
+                storage_context=None,
+                show_progress=True,
+                callback_manager=None,
+                transformations=None)
+
+            index.storage_context.persist(persist_dir=self.index_dir_path, fs=fs)
+
+        return index.as_query_engine()
 
     def answer(self, question: str, n_words: int = 300) -> str:
         """Answer question by RAG from file-stored informational resource."""
