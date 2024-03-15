@@ -6,5 +6,10 @@ from ._global import global_register
 
 
 @global_register
-class WebResource(AbstractResource):
-    """Web informational resource."""
+class WebPageResource(AbstractResource):
+    """Web page informational resource."""
+
+
+@global_register
+class WebSearchResource(AbstractResource):
+    """Web search informational resource."""
