@@ -1,5 +1,5 @@
 import pandas as pd
-from openssa.core.rag_ooda.rag_ooda import RagOODA
+from openssa.core.ooda_rag.rag_ooda import RagOODA
 from openssa.core.ooda_rag.tools import ResearchDocumentsTool
 
 

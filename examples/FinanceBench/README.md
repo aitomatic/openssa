@@ -9,9 +9,7 @@ on the `FinanceBench` dataset.
 
 ## Running Aitomatic SSA benchmarking project
 
-Have Python 3.10-3.11 installed.
-
-Have Poetry installed: __`make get-poetry`__.
+Have Python 3.12 installed.
 
 __Install__ project, and update its dependencies from time to time:
 __`make install`__.
@@ -23,10 +21,3 @@ __`make solve id=...`__.
 
 - refer to `FinanceBench` dataset above for `financebench_id`s
 and corresponding information
-
-## Notes to Aitomatic Developers
-
-The OpenSSA dependency for this benchmarking project is from the `experimental`
-branch of the private [SSA](https://github.com/aitomatic/ssa) repository.
-Hence, all improvements to OpenSSA during this project must be
-committed/pushed/merged into that repository and branch.

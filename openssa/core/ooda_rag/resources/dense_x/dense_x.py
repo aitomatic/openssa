@@ -6,12 +6,12 @@ from llama_index.core import StorageContext, load_index_from_storage, ServiceCon
 from llama_index.core.retrievers import RecursiveRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.node_parser import SentenceSplitter
-from openssa.core.rag_ooda.resources.dense_x.base import (
+from openssa.core.ooda_rag.resources.dense_x.base import (
     DenseXRetrievalPack,
     load_nodes_dict,
     store_nodes_dict,
 )
-from openssa.core.rag_ooda.resources.rag_resource import RagResource
+from openssa.core.ooda_rag.resources.rag_resource import RagResource
 
 
 @Utils.timeit
