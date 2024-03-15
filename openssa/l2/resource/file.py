@@ -84,6 +84,9 @@ class FileResource(AbstractResource):
         else:
             self.str_path = self.path = os.path.abspath(path=self.path.lstrip().rstrip('/\\'))
 
+            if not self.on_remote:
+                self.str_path = self.path = os.path.abspath(path=self.path)
+
         self.embed_model_name: str = self.embed_model.model_name
 
         self.to_re_index: bool = re_index
@@ -117,6 +120,11 @@ class FileResource(AbstractResource):
     def on_s3(self) -> bool:
         """Check if source is on S3."""
         return self.str_path.startswith(_S3_PROTOCOL_PREFIX)
+
+    @cached_property
+    def on_remote(self) -> bool:
+        """Check if source is on remote file service."""
+        return self.on_gcs or self.on_s3
 
     @cached_property
     def fs(self) -> AFileSystem:
