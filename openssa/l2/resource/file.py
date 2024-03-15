@@ -98,11 +98,11 @@ class FileResource(AbstractResource):
 
         self.to_re_index: bool = re_index
 
-        self.index_dir_path: DirOrFileStrPath = ((str(self.path / f'.{self.embed_model_name}')
-                                                  if isinstance(self.path, Path)
-                                                  else os.path.join(self.path, f'.{self.embed_model_name}'))
-                                                 if self.is_dir
-                                                 else mkdtemp(suffix=None, prefix=None, dir=None))
+        self.index_dir_str_path: DirOrFileStrPath = ((str(self.path / f'.{self.embed_model_name}')
+                                                      if isinstance(self.path, Path)
+                                                      else os.path.join(self.path, f'.{self.embed_model_name}'))
+                                                     if self.is_dir
+                                                     else mkdtemp(suffix=None, prefix=None, dir=None))
 
     def __hash__(self) -> int:
         """Return integer hash."""
@@ -111,7 +111,7 @@ class FileResource(AbstractResource):
     @cached_property
     def unique_name(self) -> str:
         """Return globally-unique name of file-stored informational resource."""
-        return self.index_dir_path
+        return self.index_dir_str_path
 
     @cached_property
     def name(self) -> str:
@@ -183,10 +183,10 @@ class FileResource(AbstractResource):
 
     @cached_property
     def query_engine(self) -> RetrieverQueryEngine:
-        if self.is_dir and (self.fs.isdir(path=self.index_dir_path) and
-                            self.fs.ls(path=self.index_dir_path, detail=False)) and (not self.to_re_index):
+        if self.is_dir and (self.fs.isdir(path=self.index_dir_str_path) and
+                            self.fs.ls(path=self.index_dir_str_path, detail=False)) and (not self.to_re_index):
             index: VectorStoreIndex = load_index_from_storage(
-                storage_context=StorageContext.from_defaults(persist_dir=self.index_dir_path, fs=self.fs),
+                storage_context=StorageContext.from_defaults(persist_dir=self.index_dir_str_path, fs=self.fs),
                 index_id=None)
 
         else:
@@ -215,7 +215,7 @@ class FileResource(AbstractResource):
                 callback_manager=None,
                 transformations=None)
 
-            index.storage_context.persist(persist_dir=self.index_dir_path, fs=fs)
+            index.storage_context.persist(persist_dir=self.index_dir_str_path, fs=fs)
 
         return index.as_query_engine()
 
