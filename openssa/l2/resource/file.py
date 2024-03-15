@@ -22,6 +22,7 @@ from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryE
 from llama_index.core.readers.file.base import SimpleDirectoryReader
 from llama_index.core.response_synthesizers.type import ResponseMode
 from llama_index.core.storage.storage_context import StorageContext
+from llama_index.core.vector_stores.types import VectorStoreQueryMode
 from llama_index.embeddings.openai.base import OpenAIEmbedding
 from llama_index.llms.openai.base import OpenAI as OpenAILM
 
@@ -255,6 +256,17 @@ class FileResource(AbstractResource):
         return index.as_query_engine(
             # docs.llamaindex.ai/en/latest/understanding/querying/querying.html
             llm=self.lm,
+
+            # other VectorIndexRetriever.__init__(...) args:
+            # docs.llamaindex.ai/en/latest/api_reference/query/retrievers/vector_store.html#llama_index.core.indices.vector_store.retrievers.retriever.VectorIndexRetriever    
+            similarity_top_k=5,
+            vector_store_query_mode=VectorStoreQueryMode.MMR,
+            filters=None,
+            alpha=None,
+            doc_ids=None,
+            sparse_top_k=None,
+            embed_model=self.embed_model,
+            verbose=False,
 
             # other RetrieverQueryEngine.from_args(...) args:
             # docs.llamaindex.ai/en/latest/api_reference/query/query_engines/retriever_query_engine.html#llama_index.core.query_engine.retriever_query_engine.RetrieverQueryEngine.from_args
