@@ -321,7 +321,7 @@ class Utils:
         ):
             # temp file path each document is copied to must retain same extension/suffix
             local_file_path: str = os.path.join(
-                local_dir, f"{uuid4()}-{Path(s3_file_path).name}"
+                local_dir, f"{uuid4()} ~ {Path(s3_file_path).name}"
             )
 
             Utils._S3FS.download(
