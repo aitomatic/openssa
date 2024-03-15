@@ -193,6 +193,7 @@ class FileResource(AbstractResource):
             fs: AFileSystem | None = self.fs if self.is_dir else None
 
             index: VectorStoreIndex = VectorStoreIndex.from_documents(
+                # BaseIndex.from_documents(...) args:
                 documents=SimpleDirectoryReader(input_dir=self.native_str_path,
                                                 input_files=None,
                                                 exclude=[
@@ -213,7 +214,16 @@ class FileResource(AbstractResource):
                 storage_context=None,
                 show_progress=True,
                 callback_manager=None,
-                transformations=None)
+                transformations=None,
+
+                # VectorStoreIndex.__init__(...) args:
+                nodes=None,
+                use_async=False,
+                store_nodes_override=False,
+                embed_model=self.embed_model,
+                insert_batch_size=2048,
+                objects=None,
+                index_struct=None)
 
             index.storage_context.persist(persist_dir=self.index_dir_str_path, fs=fs)
 
