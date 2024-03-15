@@ -15,12 +15,14 @@ from gcsfs.core import GCSFileSystem
 from s3fs.core import S3FileSystem
 
 from llama_index.core.base.embeddings.base import BaseEmbedding
+from llama_index.core.base.llms.base import BaseLLM
 from llama_index.core.indices.loading import load_index_from_storage
 from llama_index.core.indices.vector_store.base import VectorStoreIndex
 from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
 from llama_index.core.readers.file.base import SimpleDirectoryReader
 from llama_index.core.storage.storage_context import StorageContext
 from llama_index.embeddings.openai.base import OpenAIEmbedding
+from llama_index.llms.openai.base import OpenAI as OpenAILM
 
 from .abstract import AbstractResource
 from ._global import global_register
@@ -57,6 +59,9 @@ _S3_PROTOCOL_PREFIX_LEN: int = len(_S3_PROTOCOL_PREFIX)
 type DirOrFileStrPath = str
 type FileStrPathSet = frozenset[DirOrFileStrPath]
 
+AnEmbedModel: TypeVar = TypeVar('AnEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)
+AnLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=False)
+
 
 @global_register
 @dataclass(init=True,
@@ -72,18 +77,20 @@ class FileResource(AbstractResource):
     """File-stored informational resource."""
 
     path: Path | DirOrFileStrPath
-    embed_model: BaseEmbedding = field(default_factory=OpenAIEmbedding)
 
+    embed_model: AnEmbedModel = field(default_factory=OpenAIEmbedding)
     re_index: InitVar[bool] = False
+
+    lm: AnLM = field(default_factory=OpenAILM)
 
     def __post_init__(self, re_index: bool):
         """Post-initialize file-stored informational resource."""
         if isinstance(self.path, Path):
             self.path: Path = self.path.resolve(strict=True)
             self.str_path: DirOrFileStrPath = str(self.path)
+
         else:
             self.str_path = self.path = self.path.lstrip().rstrip('/\\')
-
             if not self.on_remote:
                 self.str_path = self.path = os.path.abspath(path=self.path)
 
