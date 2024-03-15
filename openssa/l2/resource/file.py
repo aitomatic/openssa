@@ -1,17 +1,23 @@
 """File-stored informational resource."""
 
 
+from collections.abc import Collection
+from dataclasses import dataclass, field, InitVar
 from functools import cached_property
 import os
 from pathlib import Path
-from typing import TYPE_CHECKING
+from tempfile import mkdtemp
+from typing import TypeVar
 
 from fsspec.spec import AbstractFileSystem
 from fsspec.implementations.local import LocalFileSystem
+from gcsfs.core import GCSFileSystem
+from s3fs.core import S3FileSystem
 
 from llama_index.core.base.embeddings.base import BaseEmbedding
 from llama_index.core.indices.loading import load_index_from_storage
 from llama_index.core.indices.vector_store.base import VectorStoreIndex
+from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
 from llama_index.core.readers.file.base import SimpleDirectoryReader
 from llama_index.core.storage.storage_context import StorageContext
 from llama_index.embeddings.openai.base import OpenAIEmbedding
@@ -20,38 +26,159 @@ from .abstract import AbstractResource
 from ._global import global_register
 from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
 
-if TYPE_CHECKING:
-    from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
+
+# file suffixes: text files, plus a subset of those supported by Llama Index
+_DEFAULT_SUFFIXES: tuple[str] = (
+    '.txt',
+    '.pdf',
+    '.docx',
+    '.pptx',
+    # '.jpg', '.jpeg', '.png',
+    # '.mp3', '.mp4',
+    '.csv',
+    # '.epub',
+    '.md',
+    # '.mbox',
+    # '.ipynb',
+)
+
+
+AFileSystem: TypeVar = TypeVar('AFileSystem', bound=AbstractFileSystem, covariant=False, contravariant=False)
+
+# GCS file system
+_GCS_PROTOCOL_PREFIX: str = 'gcs://'
+_GCS_PROTOCOL_PREFIX_LEN: int = len(_GCS_PROTOCOL_PREFIX)
+
+# S3 file system
+_S3_PROTOCOL_PREFIX: str = 's3://'
+_S3_PROTOCOL_PREFIX_LEN: int = len(_S3_PROTOCOL_PREFIX)
+
+
+type DirOrFileStrPath = str
+type FileStrPathSet = frozenset[DirOrFileStrPath]
 
 
 @global_register
+@dataclass(init=True,
+           repr=True,
+           eq=True,
+           order=False,
+           unsafe_hash=False,
+           frozen=False,  # mutable
+           match_args=True,
+           kw_only=False,
+           slots=False)
 class FileResource(AbstractResource):
     """File-stored informational resource."""
 
-    def __init__(self,
-                 path: Path | str,
-                 fs: AbstractFileSystem = LocalFileSystem(auto_mkdir=False),  # TODO: fix after Llama-Index bug fix
-                 embed_model: BaseEmbedding = OpenAIEmbedding(), re_index: bool = False):
-        """Initialize file-stored informational resource and associated RAG."""
-        self.path: str = (path.resolve(strict=True)
-                          if isinstance(path, Path)
-                          else path.lstrip().rstrip('/\\'))
+    path: Path | DirOrFileStrPath
+    embed_model: BaseEmbedding = field(default_factory=OpenAIEmbedding)
 
-        self.embed_model_name: str = embed_model.model_name
+    re_index: InitVar[bool] = False
 
-        self.hidden_index_dir_path: str = (str(self.path / f'.{self.embed_model_name}')
-                                           if isinstance(path, Path)
-                                           else f'{self.path}/.{self.embed_model_name}')
+    def __post_init__(self, re_index: bool):
+        """Post-initialize file-stored informational resource."""
+        if isinstance(self.path, Path):
+            self.path: Path = self.path.resolve(strict=True)
+            self.str_path: DirOrFileStrPath = str(self.path)
+        else:
+            self.str_path = self.path = self.path.lstrip().rstrip('/\\')
 
-        if fs.isdir(path=self.hidden_index_dir_path) and fs.ls(path=self.hidden_index_dir_path, detail=False) \
-                and (not re_index):
+        self.embed_model_name: str = self.embed_model.model_name
+
+        self.to_re_index: bool = re_index
+
+        self.index_dir_path: DirOrFileStrPath = ((str(self.path / f'.{self.embed_model_name}')
+                                                  if isinstance(self.path, Path)
+                                                  else f'{self.path}/.{self.embed_model_name}')
+                                                 if self.is_dir
+                                                 else mkdtemp(suffix=None, prefix=None, dir=None))
+
+    def __hash__(self) -> int:
+        """Return integer hash."""
+        return hash(self.unique_name)
+
+    @cached_property
+    def unique_name(self) -> str:
+        """Return globally-unique name of file-stored informational resource."""
+        return self.index_dir_path
+
+    @cached_property
+    def name(self) -> str:
+        """Return potentially non-unique, but informationally helpful name of file-stored informational resource."""
+        return os.path.basename(self.path)
+
+    @cached_property
+    def on_gcs(self) -> bool:
+        """Check if source is on GCS."""
+        return self.str_path.startswith(_GCS_PROTOCOL_PREFIX)
+
+    @cached_property
+    def on_s3(self) -> bool:
+        """Check if source is on S3."""
+        return self.str_path.startswith(_S3_PROTOCOL_PREFIX)
+
+    @cached_property
+    def fs(self) -> AFileSystem:
+        """Get applicable file system."""
+        if self.on_gcs:
+            return GCSFileSystem()
+
+        if self.on_s3:
+            return S3FileSystem(key=os.environ.get('AWS_ACCESS_KEY_ID'), secret=os.environ.get('AWS_SECRET_ACCESS_KEY'))
+
+        return LocalFileSystem(auto_mkdir=True, use_listings_cache=False, listings_expiry_time=None, max_paths=None)
+
+    @cached_property
+    def native_str_path(self) -> DirOrFileStrPath:
+        """Get path without protocol prefix (e.g., "gcs://", "s3://")."""
+        if self.on_gcs:
+            return self.str_path[_GCS_PROTOCOL_PREFIX_LEN:]
+
+        if self.on_s3:
+            return self.str_path[_S3_PROTOCOL_PREFIX_LEN:]
+
+        return self.str_path
+
+    @cached_property
+    def is_dir(self) -> bool:
+        """Check if source is directory."""
+        return self.fs.isdir(self.native_str_path)
+
+    @cached_property
+    def is_single_file(self) -> bool:
+        """Check if source is single file."""
+        return self.fs.isfile(self.native_str_path)
+
+    def file_paths(self, *, relative: bool = False, suffixes: Collection[str] = _DEFAULT_SUFFIXES) -> FileStrPathSet:
+        """Get file paths with relevant suffixes from provided path."""
+        if self.is_dir:
+            native_str_path_w_trail_slash: DirOrFileStrPath = f'{self.native_str_path}/'
+            path_len_wo_protocol_prefix_w_trail_slash: int = len(native_str_path_w_trail_slash)
+
+            file_paths: list[str] = sum((self.fs.glob(f'{native_str_path_w_trail_slash}**/*{suffix}')
+                                         for suffix in suffixes), start=[])
+            file_relpaths: FileStrPathSet = frozenset(_[path_len_wo_protocol_prefix_w_trail_slash:] for _ in file_paths)
+
+            return file_relpaths if relative else frozenset(f'{self.path}/{_}' for _ in file_relpaths)
+
+        assert self.is_single_file and (Path(self.path).suffix in suffixes), \
+            ValueError(f'"{self.path}" not a file with suffix among {suffixes}')
+        return frozenset({self.path})
+
+    @cached_property
+    def query_engine(self) -> RetrieverQueryEngine:
+        if self.is_dir and (self.fs.isdir(path=self.index_dir_path) and
+                            self.fs.ls(path=self.index_dir_path, detail=False)) and (not self.to_re_index):
             index: VectorStoreIndex = load_index_from_storage(
-                storage_context=StorageContext.from_defaults(persist_dir=self.hidden_index_dir_path, fs=fs),
+                storage_context=StorageContext.from_defaults(persist_dir=self.index_dir_path, fs=self.fs),
                 index_id=None)
 
         else:
+            fs: AFileSystem | None = self.fs if self.is_dir else None
+
             index: VectorStoreIndex = VectorStoreIndex.from_documents(
-                documents=SimpleDirectoryReader(input_dir=self.path,
+                documents=SimpleDirectoryReader(input_dir=self.native_str_path,
                                                 input_files=None,
                                                 exclude=[
                                                     '.DS_Store',  # MacOS
@@ -73,23 +200,9 @@ class FileResource(AbstractResource):
                 callback_manager=None,
                 transformations=None)
 
-            index.storage_context.persist(persist_dir=self.hidden_index_dir_path, fs=fs)
+            index.storage_context.persist(persist_dir=self.index_dir_path, fs=fs)
 
-        self.query_engine: RetrieverQueryEngine = index.as_query_engine()
-
-    @cached_property
-    def unique_name(self) -> str:
-        """Return globally-unique name of file-stored informational resource."""
-        return self.hidden_index_dir_path
-
-    @cached_property
-    def name(self) -> str:
-        """Return potentially non-unique, but informationally helpful name of file-stored informational resource."""
-        return os.path.basename(self.path)
-
-    def __repr__(self) -> str:
-        """Return string representation of file-stored informational resource."""
-        return f'"{self.name}" {type(self).__name__}[{self.path}]'
+        return index.as_query_engine()
 
     def answer(self, question: str, n_words: int = 300) -> str:
         """Answer question by RAG from file-stored informational resource."""
