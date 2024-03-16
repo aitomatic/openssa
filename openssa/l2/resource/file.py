@@ -177,6 +177,13 @@ class FileResource(AbstractResource):
 
     @cached_property
     def query_engine(self) -> RetrieverQueryEngine:
+        """Return RAG query engine."""
+        # TODO: get Llama Index to fix known issues:
+        # - error with remote FS when using Windows:
+        #   github.com/run-llama/llama_index/issues/11810
+        # - loading from remote FS encounters error `.load_data() got unexpected keyword argument 'fs'`:
+        #   github.com/run-llama/llama_index/issues/9793
+
         if self.is_dir and (self.fs.isdir(path=self.index_dir_str_path) and
                             self.fs.ls(path=self.index_dir_str_path, detail=False)) and (not self.to_re_index):
             index: VectorStoreIndex = load_index_from_storage(
