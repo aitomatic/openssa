@@ -51,11 +51,9 @@ AFileSystem: TypeVar = TypeVar('AFileSystem', bound=AbstractFileSystem, covarian
 
 # GCS file system
 _GCS_PROTOCOL_PREFIX: str = 'gcs://'
-_GCS_PROTOCOL_PREFIX_LEN: int = len(_GCS_PROTOCOL_PREFIX)
 
 # S3 file system
 _S3_PROTOCOL_PREFIX: str = 's3://'
-_S3_PROTOCOL_PREFIX_LEN: int = len(_S3_PROTOCOL_PREFIX)
 
 
 type DirOrFileStrPath = str
@@ -149,13 +147,7 @@ class FileResource(AbstractResource):
     @cached_property
     def native_str_path(self) -> DirOrFileStrPath:
         """Get path without protocol prefix (e.g., "gcs://", "s3://")."""
-        if self.on_gcs:
-            return self.str_path[_GCS_PROTOCOL_PREFIX_LEN:]
-
-        if self.on_s3:
-            return self.str_path[_S3_PROTOCOL_PREFIX_LEN:]
-
-        return self.str_path
+        return self.fs._strip_protocol(path=self.str_path)  # pylint: disable=protected-access
 
     @cached_property
     def is_dir(self) -> bool:
