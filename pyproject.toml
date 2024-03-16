@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.24.3.12"
+version = "0.24.3.16"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -65,9 +65,9 @@ pytest = ">=8.1"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 # OpenAI interface
-openai = ">=1.13"
+openai = ">=1.14"
 # LlamaIndex & related
-llama-index = ">=0.10.18"  # should keep up-to-date with Llama-Index's minor releases (often backward-incompatible)
+llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
 llama-index-llms-azure-openai = ">=0.1"
 llama-index-readers-web = ">=0.1"
@@ -81,7 +81,7 @@ gcsfs = ">=2024.2"  # Google Cloud Storage
 s3fs = ">=2024.2"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.121"
+google-api-python-client = ">=2.122"
 httpx = ">=0.27"
 loguru = ">=0.7"
 pydantic = ">=2.6"
