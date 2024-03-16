@@ -1,7 +1,3 @@
-install:
-	@poetry lock
-	@poetry install --extras=contrib --with=dev --with=docs --with=lint --with=test
-
 rag-default-answer:
 	@poetry run python rag_default.py ${id}
 
