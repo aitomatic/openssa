@@ -224,7 +224,7 @@ class FileResource(AbstractResource):
                     ],
                     exclude_hidden=False,
                     errors='strict',
-                    recursive=True,
+                    recursive=self.is_dir,
                     encoding='utf-8',
                     filename_as_id=False,
                     required_exts=None,
