@@ -10,7 +10,7 @@ from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_B
 from util import enable_batch_qa, log_qa_and_update_output_file
 
 
-LM = OpenAILM(model='ft:gpt-3.5-turbo-0125:self:finance-bench:93YKdO27')
+LM = OpenAILM(model='ft:gpt-3.5-turbo-0125:aitomatic-inc:finance-bench:93b9h3QZ')
 
 
 @cache

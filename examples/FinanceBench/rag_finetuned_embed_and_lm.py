@@ -16,7 +16,7 @@ EMBED_MODEL = OpenAIEmbedding(model='text-embedding-3-large',
                               api_key=os.environ['AITO_KEY'],
                               api_base=f'http://{os.environ['AITO_HOST']}:8000/v1_aito')
 
-LM = OpenAILM(model='ft:gpt-3.5-turbo-0125:self:finance-bench:93YKdO27')
+LM = OpenAILM(model='ft:gpt-3.5-turbo-0125:aitomatic-inc:finance-bench:93b9h3QZ')
 
 
 @cache
