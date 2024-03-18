@@ -18,7 +18,3 @@ from openssa.l2.reasoning.base import BaseReasoner
            weakref_slot=False)
 class OodaReasoner(BaseReasoner):
     """OODA reasoner."""
-
-    max_depth: int = 3
-
-    # TODO: full OODA reasoning
