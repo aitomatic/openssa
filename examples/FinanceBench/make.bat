@@ -10,6 +10,7 @@ IF "%TARGET%"=="rag-finetuned-embed-answer" GOTO rag-finetuned-embed-answer
 IF "%TARGET%"=="rag-finetuned-lm-answer" GOTO rag-finetuned-lm-answer
 IF "%TARGET%"=="rag-finetuned-both-answer" GOTO rag-finetuned-both-answer
 IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
+IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
 
 IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
@@ -34,6 +35,10 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :ooda-solve
   poetry run python ooda.py %2
+  GOTO end
+
+:ssm-discuss
+  poetry run python ssm.py %2
   GOTO end
 
 
