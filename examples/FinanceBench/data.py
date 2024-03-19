@@ -3,7 +3,6 @@ from functools import cache
 from pathlib import Path
 
 from dotenv import load_dotenv
-from loguru import logger
 from pandas import DataFrame, read_csv
 import requests
 
@@ -23,7 +22,6 @@ NON_BOT_REQUEST_HEADERS: dict[str, str] = {
 
 
 BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
-    'ADOBE_2015_10K', 'ADOBE_2016_10K', 'ADOBE_2017_10K', 'ADOBE_2022_10K',
     'JOHNSON&JOHNSON_2022_10K', 'JOHNSON&JOHNSON_2022Q4_EARNINGS',
     'JOHNSON&JOHNSON_2023_8K_dated-2023-08-30', 'JOHNSON&JOHNSON_2023Q2_EARNINGS',
     'MGMRESORTS_2022Q4_EARNINGS',
