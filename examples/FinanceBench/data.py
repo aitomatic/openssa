@@ -1,3 +1,4 @@
+import base64
 from functools import cache
 from pathlib import Path
 
@@ -16,6 +17,11 @@ type Question = str
 type Answer = str
 
 
+NON_BOT_REQUEST_HEADERS: dict[str, str] = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+}
+
+
 BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
     'ADOBE_2015_10K', 'ADOBE_2016_10K', 'ADOBE_2017_10K', 'ADOBE_2022_10K',
     'JOHNSON&JOHNSON_2022_10K', 'JOHNSON&JOHNSON_2022Q4_EARNINGS',
@@ -30,7 +36,7 @@ META_DF: DataFrame = read_csv(METADATA_URL, index_col=FB_ID_COL_NAME)
 META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
 DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
-DOC_LINKS_BY_NAME: dict[str, DocName] = dict(zip(META_DF.doc_name, META_DF.doc_link))
+DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(META_DF.doc_name, META_DF.doc_link))
 DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
 
 FB_IDS: list[FbId] = META_DF.index.to_list()
@@ -51,14 +57,19 @@ def cache_dir_path(doc_name: DocName) -> Path | None:
     if not (file_path := dir_path / f'{doc_name}.pdf').is_file():
         dir_path.mkdir(parents=True, exist_ok=True)
 
-        with open(file=file_path, mode='wb', buffering=-1, encoding=None,
-                  newline=None, closefd=True, opener=None) as f:
-            try:
-                f.write(requests.get(url=DOC_LINKS_BY_NAME[doc_name], timeout=30, stream=True).content)
+        response: requests.Response = requests.get(
+            url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
+                          .decode(encoding='utf-8', errors='strict'))
+                         if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[doc_name])
+                         else doc_link)),
+            headers=NON_BOT_REQUEST_HEADERS,
+            timeout=60,
+            stream=True)
 
-            except requests.exceptions.ConnectionError as err:
-                logger.error(f'*** {doc_name} ***\n{err}')
-                return None
+        assert response.headers['Content-Type'] == 'application/pdf', f'*** CANNOT GET PDF FROM {url} ***'
+
+        with open(file=file_path, mode='wb', buffering=-1, encoding=None, newline=None, closefd=True, opener=None) as f:
+            f.write(response.content)
 
     return dir_path
 
