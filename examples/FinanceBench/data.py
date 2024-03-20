@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 import base64
 from functools import cache
 from pathlib import Path
@@ -24,7 +25,6 @@ NON_BOT_REQUEST_HEADERS: dict[str, str] = {
 BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
     'JOHNSON&JOHNSON_2022_10K', 'JOHNSON&JOHNSON_2022Q4_EARNINGS',
     'JOHNSON&JOHNSON_2023_8K_dated-2023-08-30', 'JOHNSON&JOHNSON_2023Q2_EARNINGS',
-    'MGMRESORTS_2022Q4_EARNINGS',
 }
 
 
@@ -48,6 +48,25 @@ LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
 OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 
+def get_doc(doc_name: DocName) -> requests.Response:
+    response: requests.Response = requests.get(
+        url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
+                      .decode(encoding='utf-8', errors='strict'))
+                     if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[doc_name])
+                     else doc_link)),
+        # headers=NON_BOT_REQUEST_HEADERS,
+        timeout=60,
+        stream=True)
+
+    if response.headers.get('Content-Type') != 'application/pdf':
+        response: requests.Response = requests.get(url=url,
+                                                   headers=NON_BOT_REQUEST_HEADERS,
+                                                   timeout=60,
+                                                   stream=True)
+
+    return response
+
+
 @cache
 def cache_dir_path(doc_name: DocName) -> Path | None:
     dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / doc_name
@@ -55,16 +74,7 @@ def cache_dir_path(doc_name: DocName) -> Path | None:
     if not (file_path := dir_path / f'{doc_name}.pdf').is_file():
         dir_path.mkdir(parents=True, exist_ok=True)
 
-        response: requests.Response = requests.get(
-            url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
-                          .decode(encoding='utf-8', errors='strict'))
-                         if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[doc_name])
-                         else doc_link)),
-            headers=NON_BOT_REQUEST_HEADERS,
-            timeout=60,
-            stream=True)
-
-        assert response.headers['Content-Type'] == 'application/pdf', f'*** CANNOT GET PDF FROM {url} ***'
+        response: requests.Response = get_doc(doc_name)
 
         with open(file=file_path, mode='wb', buffering=-1, encoding=None, newline=None, closefd=True, opener=None) as f:
             f.write(response.content)
@@ -77,3 +87,11 @@ def cache_file_path(doc_name: DocName) -> Path | None:
     return (dir_path / f'{doc_name}.pdf'
             if (dir_path := cache_dir_path(doc_name))
             else None)
+
+
+if __name__ == '__main__':
+    arg_parser = ArgumentParser()
+    arg_parser.add_argument('doc_name')
+    args = arg_parser.parse_args()
+
+    get_doc(args.doc_name)

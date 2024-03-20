@@ -5,6 +5,8 @@
 :: =======
 SET TARGET=%1
 
+IF "%TARGET%"=="get-doc" GOTO get-doc
+
 IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
 IF "%TARGET%"=="rag-finetuned-embed-answer" GOTO rag-finetuned-embed-answer
 IF "%TARGET%"=="rag-finetuned-lm-answer" GOTO rag-finetuned-lm-answer
@@ -13,6 +15,13 @@ IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
 IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
 
 IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
+
+
+:: DATA PROCESSING
+:: ===============
+:get-doc
+  poetry run python data.py %2
+  GOTO end
 
 
 :: BATCH INFERENCING

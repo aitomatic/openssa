@@ -1,3 +1,6 @@
+get-doc:
+	@poetry run python data.py ${name}
+
 rag-default-answer:
 	@poetry run python rag_default.py ${id}
 
