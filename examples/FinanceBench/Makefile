@@ -13,6 +13,9 @@ rag-finetuned-lm-answer:
 rag-finetuned-both-answer:
 	@poetry run python rag_finetuned_embed_and_lm.py ${id}
 
+rag-gpt4-lm-answer:
+	@poetry run python rag_gpt4_lm.py ${id}
+
 ooda-solve:
 	@poetry run python ooda.py ${id}
 
