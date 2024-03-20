@@ -258,12 +258,13 @@ class FileResource(AbstractResource):
 
             # other VectorIndexRetriever.__init__(...) args:
             # docs.llamaindex.ai/en/latest/api_reference/query/retrievers/vector_store.html#llama_index.core.indices.vector_store.retrievers.retriever.VectorIndexRetriever
-            similarity_top_k=5,
+            similarity_top_k=12,
             vector_store_query_mode=VectorStoreQueryMode.MMR,
             filters=None,
             alpha=None,
             doc_ids=None,
             sparse_top_k=None,
+            vector_store_kwargs={'mmr_threshold': 0.5},
             embed_model=self.embed_model,
             verbose=False,
 
