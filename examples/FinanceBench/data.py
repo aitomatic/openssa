@@ -54,7 +54,6 @@ def get_doc(doc_name: DocName) -> requests.Response:
                       .decode(encoding='utf-8', errors='strict'))
                      if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[doc_name])
                      else doc_link)),
-        # headers=NON_BOT_REQUEST_HEADERS,
         timeout=60,
         stream=True)
 
