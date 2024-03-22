@@ -50,11 +50,13 @@ IF "%TARGET%"=="launch-solver" GOTO launch-solver
 :: ============
 :install
   poetry lock
-  poetry install --extras=contrib --with=docs --with=lint --with=test
+  poetry install ^
+    --extras=contrib --extras=llama-index-callbacks ^ 
+    --with=docs --with=lint --with=test
   GOTO end
 
 :install-editable
-  python3 -m pip install -e ".[contrib]" --upgrade --user
+  python3 -m pip install -e ".[contrib, llama-index-callbacks]" --upgrade --user
   GOTO end
 
 
