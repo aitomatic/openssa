@@ -51,7 +51,7 @@ IF "%TARGET%"=="launch-solver" GOTO launch-solver
 :install
   poetry lock
   poetry install ^
-    --extras=contrib --extras=llama-index-callbacks ^ 
+    --extras=contrib --extras=llama-index-callbacks ^
     --with=docs --with=lint --with=test
   GOTO end
 
