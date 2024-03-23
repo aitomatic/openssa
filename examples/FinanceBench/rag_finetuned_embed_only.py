@@ -24,7 +24,7 @@ def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
 
 
 @enable_batch_qa
-@log_qa_and_update_output_file(output_name='RAG-FineTuned')
+@log_qa_and_update_output_file(output_name='RAG-FineTuned-Embed-Only')
 def answer(fb_id: FbId) -> Answer:
     return (file_resource.answer(QS_BY_FB_ID[fb_id])
             if (file_resource := get_or_create_file_resource(DOC_NAMES_BY_FB_ID[fb_id]))
