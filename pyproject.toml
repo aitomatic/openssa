@@ -50,7 +50,7 @@ ipykernel = ">=6.29"
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.2"
 sphinx-autobuild = ">=2024.2"
-sphinx-press-theme = ">=0.8"
+sphinx-press-theme = ">=0.9"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
