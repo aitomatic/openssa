@@ -57,7 +57,6 @@ myst-parser = ">=2.0"
 flake8 = ">=7.0"
 pylint = ">=3.1"
 ruff = ">=0.3"
-pydocstyle = ">=6.3"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=8.1"
