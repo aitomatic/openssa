@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.24.3.16"
+version = "0.24.3.31"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -80,7 +80,7 @@ gcsfs = ">=2024.2"  # Google Cloud Storage
 s3fs = ">=2024.2"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.123"
+google-api-python-client = ">=2.124"
 httpx = ">=0.27"
 loguru = ">=0.7"
 pydantic = ">=2.6"

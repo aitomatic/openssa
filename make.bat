@@ -77,7 +77,7 @@ IF "%TARGET%"=="launch-solver" GOTO launch-solver
 
 :lint-pylint
   :: pylint.readthedocs.io/en/latest/user_guide/usage/run.html
-  poetry run pylint %LIB_DIR% %DOCS_DIR% %EXAMPLES_DIR% %TESTS_DIR%
+  poetry run pylint %LIB_DIR% %DOCS_DIR% %EXAMPLES_DIR% %TESTS_DIR% --recursive=y
   GOTO end
 
 :lint-ruff
