@@ -59,7 +59,7 @@ lint-flake8:
 
 lint-pylint:
 	# pylint.readthedocs.io/en/latest/user_guide/usage/run.html
-	@poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR)
+	@poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) --recursive=y
 
 lint-ruff:
 	# docs.astral.sh/ruff/linter
