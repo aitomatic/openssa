@@ -119,6 +119,7 @@ ignore = [
   "S605",  # starting a process with a shell, possible injection detected
   "S607",  # starting a process with a partial executable path
   "SIM102",  # use a single `if` statement instead of nested `if` statements
+  "SIM103",  # return the condition directly
   "SIM108",  # use ternary operator `temp = temp["content"] if isinstance(temp, dict) else temp.content` instead of `if`-`else`-block
   "SIM105",  # use `contextlib.suppress(Exception)` instead of `try`-`except`-`pass`
   "SIM112",  # use capitalized environment variable

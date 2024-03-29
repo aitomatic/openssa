@@ -1,12 +1,9 @@
 """Language Model (LM) interfaces."""
 
-
 from __future__ import annotations
-
 import json
 from loguru import logger
-
-from openai import OpenAI, AzureOpenAI
+from openai import OpenAI, AzureOpenAI, AsyncOpenAI, AsyncAzureOpenAI
 from openssa.utils.config import Config
 from openssa.utils.usage_logger import BasicUsageLogger, AbstractUsageLogger
 
@@ -45,10 +42,15 @@ class AnLLM:
         self.user_id = user_id
         self.usage_logger = usage_logger
         self._client = None
+        self._aclient = None
         self._additional_kwargs = additional_kwargs
 
     @property
     def client(self):
+        pass
+
+    @property
+    def aclient(self):
         pass
 
     def call(self, is_chat: bool = True, **kwargs):
@@ -58,6 +60,18 @@ class AnLLM:
             )
         else:
             result = self.client.completions.create(
+                model=self.model, **kwargs, **self._additional_kwargs
+            )
+        self.usage_logger.log_usage(user=self.user_id, result=result)
+        return result
+
+    async def acall(self, is_chat: bool = True, **kwargs):
+        if is_chat:
+            result = await self.aclient.chat.completions.create(
+                model=self.model, **kwargs, **self._additional_kwargs
+            )
+        else:
+            result = await self.aclient.completions.create(
                 model=self.model, **kwargs, **self._additional_kwargs
             )
         self.usage_logger.log_usage(user=self.user_id, result=result)
@@ -76,9 +90,8 @@ class AnLLM:
     def parse_output(self, output: str) -> dict:
         try:
             return json.loads(output)
-
         except json.JSONDecodeError:
-            logger.debug(f'*** Could Not JSONify:\n{output} ***')
+            logger.debug(f"*** Could Not JSONify:\n{output} ***")
             return {}
 
 
@@ -103,6 +116,12 @@ class OpenAILLM(AnLLM):
         if self._client is None:
             self._client = OpenAI(api_key=self.api_key, base_url=self.api_base)
         return self._client
+
+    @property
+    def aclient(self) -> AsyncOpenAI:
+        if self._aclient is None:
+            self._aclient = AsyncOpenAI(api_key=self.api_key, base_url=self.api_base)
+        return self._aclient
 
     @classmethod
     def get_default(cls) -> OpenAILLM:
@@ -197,6 +216,14 @@ class AzureLLM(AnLLM):
                 api_key=self.api_key, azure_endpoint=self.api_base
             )
         return self._client
+
+    @property
+    def aclient(self) -> AsyncAzureOpenAI:
+        if self._aclient is None:
+            self._aclient = AsyncAzureOpenAI(
+                api_key=self.api_key, azure_endpoint=self.api_base
+            )
+        return self._aclient
 
     @classmethod
     def get_default(cls) -> AzureLLM:
