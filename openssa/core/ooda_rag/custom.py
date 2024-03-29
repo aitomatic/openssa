@@ -1,3 +1,5 @@
+from multiprocessing import cpu_count
+
 from llama_index.core import Document, Response, SimpleDirectoryReader, ServiceContext
 from llama_index.core.evaluation import DatasetGenerator
 from llama_index.core.node_parser import SimpleNodeParser
@@ -37,7 +39,9 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
             file_extractor=None,
             num_files_limit=None,
             file_metadata=filename_fn,
-        ).load_data()
+        ).load_data(show_progress=True,
+                    num_workers=cpu_count())
+
         self.documents = documents
         self._create_index(documents, storage_dir)
 
