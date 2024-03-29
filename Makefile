@@ -167,6 +167,7 @@ public:
 	@rsync . ../openssa/ \
 		--archive \
 		--delete \
+		--exclude .data \
 		--exclude .git \
 		--exclude __pycache__ --exclude .mypy_cache --exclude .pytest_cache --exclude .ruff_cache \
 		--exclude .venv --exclude venv \
