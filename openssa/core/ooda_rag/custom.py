@@ -39,8 +39,7 @@ class CustomBackend(LlamaIndexBackend):  # type: ignore
             file_extractor=None,
             num_files_limit=None,
             file_metadata=filename_fn,
-        ).load_data(show_progress=True,
-                    num_workers=cpu_count())
+        ).load_data(show_progress=True)
 
         self.documents = documents
         self._create_index(documents, storage_dir)
