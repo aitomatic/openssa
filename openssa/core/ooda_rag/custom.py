@@ -1,5 +1,3 @@
-from multiprocessing import cpu_count
-
 from llama_index.core import Document, Response, SimpleDirectoryReader, ServiceContext
 from llama_index.core.evaluation import DatasetGenerator
 from llama_index.core.node_parser import SimpleNodeParser
