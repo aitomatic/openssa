@@ -21,7 +21,7 @@ class Backend(AbstractRAGBackend):
     def __init__(
         self,
         relevance_threshold: float = 0.5,
-        similarity_top_k: int = 4,
+        similarity_top_k: int = 10,
         service_context: ServiceContext = None,
     ):
         """
