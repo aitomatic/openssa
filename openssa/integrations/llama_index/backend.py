@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from multiprocessing import cpu_count
+
 from llama_index.core import (
     load_index_from_storage,
     SimpleDirectoryReader,
@@ -102,7 +104,10 @@ class Backend(AbstractRAGBackend):
         documents = SimpleDirectoryReader(
             input_dir=self._get_source_dir(storage_dir),
             input_files=None,
-            exclude=None,
+            exclude=[
+                '.DS_Store',  # MacOS
+                '*.json',  # potential nested index files
+            ],
             exclude_hidden=False,  # non-default
             errors="strict",  # non-default
             recursive=True,  # non-default
@@ -112,7 +117,8 @@ class Backend(AbstractRAGBackend):
             file_extractor=None,
             num_files_limit=None,
             file_metadata=None,
-        ).load_data(num_workers=5)
+        ).load_data(show_progress=True,
+                    num_workers=cpu_count())
 
         self._create_index(documents, storage_dir)
 
