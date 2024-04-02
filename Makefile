@@ -64,7 +64,7 @@ lint-pylint:
 lint-ruff:
 	# docs.astral.sh/ruff/linter
 	@poetry run ruff check $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
-		--output-format text \
+		--output-format full \
 		--target-version py310 \
 		--preview \
 		--respect-gitignore
