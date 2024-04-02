@@ -35,7 +35,7 @@ def solve(fb_id: FbId) -> Answer:
         try:
             return ooda_ssa.solve(QS_BY_FB_ID[fb_id])
 
-        except Exception as err:
+        except Exception as err:  # pylint: disable=broad-exception-caught
             return f'ERROR: {err}'
 
     return 'ERROR: doc not found'
