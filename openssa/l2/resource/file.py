@@ -51,11 +51,9 @@ AFileSystem: TypeVar = TypeVar('AFileSystem', bound=AbstractFileSystem, covarian
 
 # GCS file system
 _GCS_PROTOCOL_PREFIX: str = 'gcs://'
-_GCS_PROTOCOL_PREFIX_LEN: int = len(_GCS_PROTOCOL_PREFIX)
 
 # S3 file system
 _S3_PROTOCOL_PREFIX: str = 's3://'
-_S3_PROTOCOL_PREFIX_LEN: int = len(_S3_PROTOCOL_PREFIX)
 
 
 type DirOrFileStrPath = str
@@ -149,13 +147,7 @@ class FileResource(AbstractResource):
     @cached_property
     def native_str_path(self) -> DirOrFileStrPath:
         """Get path without protocol prefix (e.g., "gcs://", "s3://")."""
-        if self.on_gcs:
-            return self.str_path[_GCS_PROTOCOL_PREFIX_LEN:]
-
-        if self.on_s3:
-            return self.str_path[_S3_PROTOCOL_PREFIX_LEN:]
-
-        return self.str_path
+        return self.fs._strip_protocol(path=self.str_path)  # pylint: disable=protected-access
 
     @cached_property
     def is_dir(self) -> bool:
@@ -185,6 +177,13 @@ class FileResource(AbstractResource):
 
     @cached_property
     def query_engine(self) -> RetrieverQueryEngine:
+        """Return RAG query engine."""
+        # TODO: get Llama Index to fix known issues:
+        # - error with remote FS when using Windows:
+        #   github.com/run-llama/llama_index/issues/11810
+        # - loading from remote FS encounters error `.load_data() got unexpected keyword argument 'fs'`:
+        #   github.com/run-llama/llama_index/issues/9793
+
         if self.is_dir and (self.fs.isdir(path=self.index_dir_str_path) and
                             self.fs.ls(path=self.index_dir_str_path, detail=False)) and (not self.to_re_index):
             index: VectorStoreIndex = load_index_from_storage(
@@ -224,7 +223,7 @@ class FileResource(AbstractResource):
                     ],
                     exclude_hidden=False,
                     errors='strict',
-                    recursive=True,
+                    recursive=self.is_dir,
                     encoding='utf-8',
                     filename_as_id=False,
                     required_exts=None,
@@ -259,12 +258,13 @@ class FileResource(AbstractResource):
 
             # other VectorIndexRetriever.__init__(...) args:
             # docs.llamaindex.ai/en/latest/api_reference/query/retrievers/vector_store.html#llama_index.core.indices.vector_store.retrievers.retriever.VectorIndexRetriever
-            similarity_top_k=5,
+            similarity_top_k=12,
             vector_store_query_mode=VectorStoreQueryMode.MMR,
             filters=None,
             alpha=None,
             doc_ids=None,
             sparse_top_k=None,
+            vector_store_kwargs={'mmr_threshold': 0.5},
             embed_model=self.embed_model,
             verbose=False,
 
