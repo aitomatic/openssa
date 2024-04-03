@@ -94,7 +94,7 @@ class DenseXRetrievalPack(BaseLlamaPack):
         query_llm: Optional[LLM] = None,
         embed_model: Optional[BaseEmbedding] = None,
         text_splitter: TextSplitter = SentenceSplitter(),
-        similarity_top_k: int = 4,
+        similarity_top_k: int = 10,
     ) -> None:
         """Init params."""
         self._proposition_llm = proposition_llm or OpenAI(
