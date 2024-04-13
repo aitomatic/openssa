@@ -8,16 +8,7 @@ from openssa.l2.task.abstract import ATask
 from .abstract import AbstractReasoner
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class BaseReasoner(AbstractReasoner):
     """Base reasoner."""
 

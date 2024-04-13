@@ -18,16 +18,7 @@ class TaskDict(TypedDict, total=False):
     result: NotRequired[str]
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AbstractTask(ABC):
     """Abstract task."""
 

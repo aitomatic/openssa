@@ -32,16 +32,7 @@ class HTPDict(TypedDict, total=False):
 type AskAnsPair = tuple[str, str]
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class HTP(AbstractPlan):
     """Hierarchical task plan (HTP)."""
 
@@ -107,16 +98,7 @@ class HTP(AbstractPlan):
         return self.task.result
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AutoHTPlanner(AbstractPlanner):
     """Automated (generative) hierarchical task planner."""
 
