@@ -64,7 +64,7 @@ pytest = ">=8.1"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 # OpenAI interface
-openai = ">=1.14"
+openai = ">=1.13"  # TODO: consider range
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
