@@ -1,7 +1,7 @@
 import pandas as pd
-from openssa.core.rag_ooda.rag_ooda import RagOODA
-from openssa.core.rag_ooda.resources.standard_vi.standard_vi import load_standard_vi
-from openssa.core.rag_ooda.resources.dense_x.dense_x import load_dense_x
+from openssa.core.ooda_rag.rag_ooda import RagOODA
+from openssa.core.ooda_rag.resources.standard_vi.standard_vi import load_standard_vi
+from openssa.core.ooda_rag.resources.dense_x.dense_x import load_dense_x
 
 
 class RagStrategy:

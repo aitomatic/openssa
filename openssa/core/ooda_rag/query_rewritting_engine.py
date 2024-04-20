@@ -22,7 +22,7 @@ class QueryRewritingRetrieverPack(BaseLlamaPack):
         self,
         index: VectorStoreIndex = None,  # type: ignore
         chunk_size: int = 1024,
-        vector_similarity_top_k: int = 5,
+        vector_similarity_top_k: int = 10,
         fusion_similarity_top_k: int = 10,
         service_context: ServiceContext = None,
         **kwargs: Any,

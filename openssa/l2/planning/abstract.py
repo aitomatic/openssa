@@ -16,16 +16,7 @@ if TYPE_CHECKING:
     from openssa.l2.task.abstract import ATask
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AbstractPlan(ABC):
     """Abstract plan."""
     task: ATask
@@ -38,16 +29,7 @@ class AbstractPlan(ABC):
 APlan: TypeVar = TypeVar('APlan', bound=AbstractPlan, covariant=False, contravariant=False)
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AbstractPlanner(ABC):
     """Abstract planner."""
 

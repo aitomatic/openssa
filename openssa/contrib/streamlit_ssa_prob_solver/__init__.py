@@ -12,8 +12,8 @@ from streamlit_mic_recorder import speech_to_text
 
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.ooda_rag.custom import CustomSSM
-from openssa.core.ooda_rag.solver import OodaSSA
-from openssa.utils.fs import DirOrFilePath, FilePathSet, FileSource
+from openssa.core.ooda_rag.ooda_ssa import OodaSSA
+from openssa.l2.resource.file import DirOrFileStrPath, FileStrPathSet, FileResource
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, MutableMapping
@@ -46,7 +46,7 @@ class SSAProbSolver:
     # some typing for clarity to developers/maintainers
     # =================================================
     type Uid = int | str | UUID  # accepted type(s) for unique IDs of SSAProbSolver instances & SSA conversations
-    type DocSrcHash = DirOrFilePath | FilePathSet  # type for documentary knowledge source hashes
+    type DocSrcHash = DirOrFileStrPath | FileStrPathSet  # type for documentary knowledge source hashes
 
     # relevant Streamlit Session State (SSS) elements
     # ===============================================
@@ -62,7 +62,7 @@ class SSAProbSolver:
     def __init__(self, unique_name: Uid, domain: str = '',
                  problem: str = '', expert_instructions: str = '',
                  fine_tuned_model_url: str = '',
-                 doc_src_path: DirOrFilePath = '', doc_src_file_relpaths: FilePathSet = frozenset()):
+                 doc_src_path: DirOrFileStrPath = '', doc_src_file_relpaths: FileStrPathSet = frozenset()):
         # pylint: disable=too-many-arguments
         """Initialize and start running SSAProbSolver instance."""
         # initialize Streamlit Session State (SSS) elements if necessary
@@ -90,9 +90,9 @@ class SSAProbSolver:
 
         # set Documentary Knowledge Source Path & any specific File Relative Paths if given
         if doc_src_path:
-            self.doc_src_path: DirOrFilePath = doc_src_path
+            self.doc_src_path: DirOrFileStrPath = doc_src_path
             if doc_src_file_relpaths:
-                self.doc_src_file_relpaths: FilePathSet = doc_src_file_relpaths
+                self.doc_src_file_relpaths: FileStrPathSet = doc_src_file_relpaths
 
         # start running in Streamlit app page
         self.run()
@@ -100,10 +100,10 @@ class SSAProbSolver:
     @classmethod
     def _init_sss(cls):
         if cls.DOC_SRC_PATHS_SSS_KEY not in sss:
-            sss[cls.DOC_SRC_PATHS_SSS_KEY]: defaultdict[cls.Uid, DirOrFilePath] = defaultdict(str)
+            sss[cls.DOC_SRC_PATHS_SSS_KEY]: defaultdict[cls.Uid, DirOrFileStrPath] = defaultdict(str)
 
         if cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY not in sss:
-            sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[cls.Uid, defaultdict[DirOrFilePath, FilePathSet]] = \
+            sss[cls.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY]: defaultdict[cls.Uid, defaultdict[DirOrFileStrPath, FileStrPathSet]] = \
                 defaultdict(lambda: defaultdict(frozenset))
 
         if cls.PROBLEMS_SSS_KEY not in sss:
@@ -149,23 +149,23 @@ class SSAProbSolver:
             sss[self.FINE_TUNED_MODELS_SSS_KEY][self.unique_name]: str = fine_tuned_model_url
 
     @property
-    def doc_src_path(self) -> DirOrFilePath:
+    def doc_src_path(self) -> DirOrFileStrPath:
         return sss[self.DOC_SRC_PATHS_SSS_KEY][self.unique_name]
 
     @doc_src_path.setter
-    def doc_src_path(self, path: DirOrFilePath, /):
+    def doc_src_path(self, path: DirOrFileStrPath, /):
         assert (clean_path := path.strip().rstrip('/')), ValueError(f'{path} not non-empty path')
 
         if clean_path != sss[self.DOC_SRC_PATHS_SSS_KEY][self.unique_name]:
-            sss[self.DOC_SRC_PATHS_SSS_KEY][self.unique_name]: DirOrFilePath = clean_path
+            sss[self.DOC_SRC_PATHS_SSS_KEY][self.unique_name]: DirOrFileStrPath = clean_path
 
     @property
-    def _doc_file_src(self) -> FileSource:
+    def _doc_file_src(self) -> FileResource:
         assert (_ := self.doc_src_path), ValueError('Documentary Knowledge Source Path not yet specified')
-        return FileSource(_)
+        return FileResource(_)
 
     @property
-    def doc_src_file_relpaths(self) -> FilePathSet:
+    def doc_src_file_relpaths(self) -> FileStrPathSet:
         assert self._doc_file_src.is_dir, ValueError('Documentary Knowledge Source Path not directory')
 
         return sss[self.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY][self.unique_name][self.doc_src_path]
@@ -176,7 +176,7 @@ class SSAProbSolver:
 
         if (file_relpath_set := frozenset(file_relpaths)) != \
                 sss[self.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY][self.unique_name][self.doc_src_path]:
-            sss[self.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY][self.unique_name][self.doc_src_path]: FilePathSet = file_relpath_set
+            sss[self.DOC_SRC_FILE_RELPATH_SETS_SSS_KEY][self.unique_name][self.doc_src_path]: FileStrPathSet = file_relpath_set
 
     @property
     def _hashable_doc_src_repr(self) -> DocSrcHash:
@@ -317,10 +317,10 @@ class SSAProbSolver:
                                          placeholder='Resources Directory/File Path (Local|S3)',
                                          disabled=False,
                                          label_visibility='visible'):
-            self.doc_src_path: DirOrFilePath = doc_src_path
+            self.doc_src_path: DirOrFileStrPath = doc_src_path
 
             if self._doc_file_src.is_dir:
-                self.doc_src_file_relpaths: FilePathSet = frozenset(
+                self.doc_src_file_relpaths: FileStrPathSet = frozenset(
                     st.multiselect(label='Specific File Relpaths _(if cherry-picking)_',
                                    options=self._doc_file_src.file_paths(relative=True),
                                    default=sorted(self.doc_src_file_relpaths),

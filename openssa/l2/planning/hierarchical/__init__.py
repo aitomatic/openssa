@@ -32,16 +32,7 @@ class HTPDict(TypedDict, total=False):
 type AskAnsPair = tuple[str, str]
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class HTP(AbstractPlan):
     """Hierarchical task plan (HTP)."""
 
@@ -67,8 +58,8 @@ class HTP(AbstractPlan):
     def fix_missing_resources(self):
         """Fix missing resources in HTP."""
         for p in self.sub_plans:
-            if not p.task.resource:
-                p.task.resource: AResource | None = self.task.resource
+            if not p.task.resources:
+                p.task.resources: set[AResource] | None = self.task.resources
             p.fix_missing_resources()
 
     def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
@@ -83,22 +74,19 @@ class HTP(AbstractPlan):
 
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
-                info=(
-                    f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
-                    '\n\n' +
-                    '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                 '\n'
-                                 f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                for i, (ask, result) in enumerate(sub_results)) +
-                    (('\n\n' +
-                      '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                info=(f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
+                      '\n\n' +
+                      '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
                                    '\n'
-                                   f'OTHER RESULT #{i + 1}:\n{result}\n')
-                                  for i, (ask, result) in enumerate(other_results)))
-                     if other_results
-                     else '')
-                )
-            )
+                                   f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                  for i, (ask, result) in enumerate(sub_results)) +
+                      (('\n\n' +
+                        '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                     '\n'
+                                     f'OTHER RESULT #{i + 1}:\n{result}\n')
+                                    for i, (ask, result) in enumerate(other_results)))
+                       if other_results
+                       else '')))
             logger.debug(prompt)
 
             self.task.result: str = reasoner.lm.get_response(prompt)
@@ -110,16 +98,7 @@ class HTP(AbstractPlan):
         return self.task.result
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AutoHTPlanner(AbstractPlanner):
     """Automated (generative) hierarchical task planner."""
 

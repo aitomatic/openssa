@@ -6,15 +6,6 @@ from dataclasses import dataclass
 from openssa.l2.reasoning.base import BaseReasoner
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class OodaReasoner(BaseReasoner):
     """OODA reasoner."""

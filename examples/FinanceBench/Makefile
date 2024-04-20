@@ -1,5 +1,26 @@
-run-streamlit:
-	@streamlit run streamlit-main.py --server.allowRunOnSave=true --server.runOnSave=true
+get-doc:
+	@poetry run python data.py ${name}
 
-solve:
-	@poetry run python3 fb_ssa/prob_solve.py ${id}
+rag-default-answer:
+	@poetry run python rag_default.py ${id}
+
+rag-finetuned-embed-answer:
+	@poetry run python rag_finetuned_embed_only.py ${id}
+
+rag-finetuned-lm-answer:
+	@poetry run python rag_finetuned_lm_only.py ${id}
+
+rag-finetuned-both-answer:
+	@poetry run python rag_finetuned_embed_and_lm.py ${id}
+
+rag-gpt4-lm-answer:
+	@poetry run python rag_gpt4_lm.py ${id}
+
+ooda-solve:
+	@poetry run python ooda.py ${id}
+
+ssm-discuss:
+	@poetry run python ssm.py ${id}
+
+streamlit-run:
+	@poetry run streamlit run streamlit-main.py --server.allowRunOnSave=true --server.runOnSave=true
