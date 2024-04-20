@@ -23,7 +23,7 @@ class AbstractTask(ABC):
     """Abstract task."""
 
     ask: str
-    resource: AbstractResource | None = None
+    resources: set[AbstractResource] | None = None
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
 
@@ -32,8 +32,9 @@ class AbstractTask(ABC):
         """Create resource instance from dictionary representation."""
         task: Self = cls(**d)
 
-        if isinstance(task.resource, str):
-            task.resource: AbstractResource = GLOBAL_RESOURCES[task.resource]
+        if task.resources:
+            task.resources: set[AbstractResource] = {(GLOBAL_RESOURCES[r] if isinstance(r, str) else r)
+                                                     for r in task.resources}
 
         task.status: TaskStatus = TaskStatus(task.status)
 
