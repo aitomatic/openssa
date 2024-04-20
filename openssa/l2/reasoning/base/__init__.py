@@ -3,9 +3,8 @@
 
 from dataclasses import dataclass
 
+from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.task.abstract import ATask
-
-from .abstract import AbstractReasoner
 
 
 @dataclass
