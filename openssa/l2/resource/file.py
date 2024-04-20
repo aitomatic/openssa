@@ -64,15 +64,7 @@ AnLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=Fa
 
 
 @global_register
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False)
+@dataclass
 class FileResource(AbstractResource):
     """File-stored informational resource."""
 

@@ -11,16 +11,7 @@ from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.resource.abstract import AResource
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AbstractAgent(ABC):
     """Abstract agent with planning, reasoning & informational resources."""
 
