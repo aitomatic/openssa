@@ -15,7 +15,7 @@ from openssa.l2.resource.abstract import AResource
 class AbstractAgent(ABC):
     """Abstract agent with planning, reasoning & informational resources."""
 
-    planner: APlanner
+    planner: APlanner | None = None
     reasoner: AReasoner = field(default_factory=BaseReasoner)
     resources: set[AResource] = field(default_factory=set,
                                       init=True,

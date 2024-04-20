@@ -5,7 +5,7 @@ from abc import ABC
 from dataclasses import dataclass
 from typing import Self, TypedDict, Required, NotRequired, TypeVar
 
-from openssa.l2.resource.abstract import AbstractResource
+from openssa.l2.resource.abstract import AResource
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .status import TaskStatus
@@ -13,7 +13,7 @@ from .status import TaskStatus
 
 class TaskDict(TypedDict, total=False):
     ask: Required[str]
-    resource: NotRequired[AbstractResource]
+    resource: NotRequired[AResource]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
 
@@ -23,7 +23,7 @@ class AbstractTask(ABC):
     """Abstract task."""
 
     ask: str
-    resources: set[AbstractResource] | None = None
+    resources: set[AResource] | None = None
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
 
@@ -33,8 +33,8 @@ class AbstractTask(ABC):
         task: Self = cls(**d)
 
         if task.resources:
-            task.resources: set[AbstractResource] = {(GLOBAL_RESOURCES[r] if isinstance(r, str) else r)
-                                                     for r in task.resources}
+            task.resources: set[AResource] = {(GLOBAL_RESOURCES[r] if isinstance(r, str) else r)
+                                              for r in task.resources}
 
         task.status: TaskStatus = TaskStatus(task.status)
 
