@@ -15,18 +15,19 @@ class BaseReasoner(AbstractReasoner):
 
     def reason(self, task: ATask, n_words: int = 300) -> str:
         """Reason through task and return conclusion."""
-        return (RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(
-                    question=task.ask, n_words=n_words,
-                    resources_and_answers='\n\n'.join(
-                        (f'INFORMATIONAL RESOURCE #{i + 1} (name: "{r.name}"):\n'
-                         '\n'
-                         f'INFORMATIONAL RESOURCE #{i + 1} OVERVIEW:\n{r.overview}\n'
-                         '\n'
-                         f'ANSWER #{i + 1}:\n{r.answer(question=task.ask, n_words=n_words)}\n')
-                        for i, r in enumerate(task.resources)
-                    )
-                )
+        if task.resources:
+            if len(task.resources) > 1:
+                return self.lm.get_response(
+                    prompt=RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(
+                        question=task.ask, n_words=n_words,
+                        resources_and_answers='\n\n'.join(
+                            (f'INFORMATIONAL RESOURCE #{i + 1} (name: "{r.name}"):\n'
+                             '\n'
+                             f'INFORMATIONAL RESOURCE #{i + 1} OVERVIEW:\n{r.overview}\n'
+                             '\n'
+                             f'ANSWER #{i + 1}:\n{r.answer(question=task.ask, n_words=n_words)}\n')
+                            for i, r in enumerate(task.resources))))
 
-                if task.resources
+            return next(task.resources).answer(question=task.ask, n_words=n_words)
 
-                else self.lm.get_response(prompt=f'`[WITHIN {n_words:,} WORDS:]`\n{task.ask}'))
+        return self.lm.get_response(prompt=f'`[WITHIN {n_words:,} WORDS:]`\n{task.ask}')
