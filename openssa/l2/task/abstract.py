@@ -13,7 +13,7 @@ from .status import TaskStatus
 
 class TaskDict(TypedDict, total=False):
     ask: Required[str]
-    resource: NotRequired[AResource]
+    resources: NotRequired[set[AResource]]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
 
