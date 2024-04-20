@@ -28,6 +28,6 @@ class BaseReasoner(AbstractReasoner):
                              f'ANSWER #{i + 1}:\n{r.answer(question=task.ask, n_words=n_words)}\n')
                             for i, r in enumerate(task.resources))))
 
-            return next(task.resources).answer(question=task.ask, n_words=n_words)
+            return next(iter(task.resources)).answer(question=task.ask, n_words=n_words)
 
         return self.lm.get_response(prompt=f'`[WITHIN {n_words:,} WORDS:]`\n{task.ask}')
