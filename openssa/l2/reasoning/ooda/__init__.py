@@ -2,20 +2,22 @@
 
 
 from dataclasses import dataclass
-from typing import TypedDict
+from typing import TypedDict, NotRequired
+
+from loguru import logger
 
 from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.task.abstract import ATask
 from openssa.l2.task.status import TaskStatus
 
-from ._prompts import OBSERVATION_CONSO_PROMPT_TEMPLATE, DECIDE_PROMPT_TEMPLATE
+from ._prompts import OBSERVE_PROMPT_TEMPLATE, DECIDE_PROMPT_TEMPLATE
 
 
 type Observation = tuple[str, str, str]
 
 class OrientResult(TypedDict):
     confident: bool
-    answer: str | None
+    answer: NotRequired[str]
 
 
 @dataclass
@@ -37,7 +39,7 @@ class OodaReasoner(AbstractReasoner):
 
     def orient(self, task: ATask, observations: list[Observation], n_words: int = 300) -> OrientResult:
         """Orient whether observed answers are adequate for direct task resolution."""
-        prompt: str = OBSERVATION_CONSO_PROMPT_TEMPLATE.format(
+        prompt: str = OBSERVE_PROMPT_TEMPLATE.format(
             question=task.ask, n_words=n_words,
             resources_and_answers='\n\n'.join((f'INFORMATIONAL RESOURCE #{i + 1} (name: "{name}"):\n'
                                                '\n'
@@ -46,11 +48,11 @@ class OodaReasoner(AbstractReasoner):
                                                f'ANSWER #{i + 1}:\n{answer}\n')
                                               for i, (name, overview, answer) in enumerate(observations)))
 
+        logger.debug(prompt)
+
         def is_valid(orient_result_dict: OrientResult) -> bool:
-            return (isinstance(orient_result_dict.get('confident'), bool) and
-                    (('answer' in orient_result_dict) and
-                     (((answer := orient_result_dict['answer']) is None) or
-                      isinstance(answer, str))))
+            return (isinstance((confident := orient_result_dict.get('confident')), bool) and
+                    (('answer' in orient_result_dict) == confident))
 
         # TODO: more rigorous JSON schema validation
         orient_result_dict: OrientResult = {}

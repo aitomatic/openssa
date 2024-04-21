@@ -1,4 +1,4 @@
-OBSERVATION_CONSO_PROMPT_TEMPLATE: str = \
+OBSERVE_PROMPT_TEMPLATE: str = \
 """Assuming that the following question/task is asked
 
 ```
@@ -6,13 +6,13 @@ OBSERVATION_CONSO_PROMPT_TEMPLATE: str = \
 ```
 
 and you have received various answers from different informational resources as detailed below,
-please evaluate whether you can answer the posed question/task confidently.
+please evaluate whether you can answer the posed question/task confidently with concrete results.
 
-If you can answer confidently, return a JSON dictionary
+If you can answer confidently with concrete results, return a JSON dictionary
 `{{"confident": true, "answer": "<fill in your answer using up to {n_words:,} words>"}}`.
 
-If you cannot answer confidently, return a JSON dictionary
-`{{"confident: false, "answer": null}}`.
+If you cannot answer confidently with concrete results, return a JSON dictionary
+`{{"confident": false}}`.
 
 Please return ONLY the JSON DICTIONARY and no other text, not even the "```json" wrapping!
 
