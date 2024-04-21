@@ -6,6 +6,7 @@ from enum import StrEnum, auto
 
 class TaskStatus(StrEnum):
     PENDING: str = auto()
+    DECOMPOSED: str = auto()
     IN_PROGRESS: str = auto()
     DONE: str = auto()
     FAILED: str = auto()
