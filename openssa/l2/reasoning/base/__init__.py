@@ -24,7 +24,7 @@ class BaseReasoner(AbstractReasoner):
                                          '\n'
                                          f'INFORMATIONAL RESOURCE #{i + 1} OVERVIEW:\n{r.overview}\n'
                                          '\n'
-                                         f'ANSWER #{i + 1}:\n{r.answer(question=task.ask, n_words=n_words)}\n')
+                                         f'ANSWER/SOLUTION #{i + 1}:\n{r.answer(question=task.ask, n_words=n_words)}\n')
                                         for i, r in enumerate(task.resources))))
 
                              if len(task.resources) > 1
