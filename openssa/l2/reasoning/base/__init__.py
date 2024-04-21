@@ -14,7 +14,7 @@ from ._prompts import RESOURCE_QA_CONSO_PROMPT_TEMPLATE
 class BaseReasoner(AbstractReasoner):
     """Base reasoner."""
 
-    def reason(self, task: ATask, n_words: int = 300) -> str:
+    def reason(self, task: ATask, n_words: int = 1000) -> str:
         """Reason through task and return conclusion."""
         task.result: str = ((self.lm.get_response(
                                 prompt=RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(

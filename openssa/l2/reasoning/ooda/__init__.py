@@ -24,7 +24,7 @@ class OrientResult(TypedDict):
 class OodaReasoner(AbstractReasoner):
     """OODA reasoner."""
 
-    def reason(self, task: ATask, n_words: int = 300) -> str:
+    def reason(self, task: ATask, n_words: int = 1000) -> str:
         """Reason through task and return conclusion."""
         observations: list[Observation] = self.observe(task=task, n_words=n_words)
         orient_result: OrientResult = self.orient(task=task, observations=observations, n_words=n_words)
@@ -32,12 +32,12 @@ class OodaReasoner(AbstractReasoner):
         self.act(task=task, orient_result=orient_result, decision=decision)
         return task.result
 
-    def observe(self, task: ATask, n_words: int = 300) -> list[Observation]:
+    def observe(self, task: ATask, n_words: int = 1000) -> list[Observation]:
         """Observe answers from informational resources."""
         return [(r.name, r.overview, r.answer(question=task.ask, n_words=n_words))
                 for r in task.resources]
 
-    def orient(self, task: ATask, observations: list[Observation], n_words: int = 300) -> OrientResult:
+    def orient(self, task: ATask, observations: list[Observation], n_words: int = 1000) -> OrientResult:
         """Orient whether observed answers are adequate for direct task resolution."""
         prompt: str = OBSERVE_PROMPT_TEMPLATE.format(
             question=task.ask, n_words=n_words,

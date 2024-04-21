@@ -22,7 +22,7 @@ class AbstractResource(ABC):
         """Return potentially non-unique, but informationally helpful name of informational resource."""
 
     @abstractmethod
-    def answer(self, question: str, n_words: int = 300) -> str:
+    def answer(self, question: str, n_words: int = 1000) -> str:
         """Answer question from informational resource."""
 
     @cached_property
