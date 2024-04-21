@@ -23,8 +23,3 @@ Use no other information than the below answers.
 {resources_and_answers}
 ```
 """  # noqa: E122
-
-
-DECIDE_PROMPT_TEMPLATE: str = \
-"""
-"""  # noqa: E122

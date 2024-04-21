@@ -10,7 +10,7 @@ from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.task.abstract import ATask
 from openssa.l2.task.status import TaskStatus
 
-from ._prompts import OBSERVE_PROMPT_TEMPLATE, DECIDE_PROMPT_TEMPLATE
+from ._prompts import OBSERVE_PROMPT_TEMPLATE
 
 
 type Observation = tuple[str, str, str]
