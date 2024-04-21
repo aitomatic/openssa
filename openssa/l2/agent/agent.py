@@ -9,16 +9,7 @@ from openssa.l2.planning.hierarchical import AutoHTPlanner
 from .abstract import AbstractAgent
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class Agent(AbstractAgent):
     """Agent with planning, reasoning & informational resources."""
 

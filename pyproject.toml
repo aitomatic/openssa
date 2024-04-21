@@ -48,15 +48,15 @@ exclude = [
 ipykernel = ">=6.29"
 
 [tool.poetry.group.docs.dependencies]
-sphinx = ">=7.2"
-sphinx-autobuild = ">=2024.2"
+sphinx = ">=7.3"
+sphinx-autobuild = ">=2024.4"
 sphinx-press-theme = ">=0.9"
 myst-parser = ">=2.0"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=7.0"
 pylint = ">=3.1"
-ruff = ">=0.3,!=0.3.5"
+ruff = ">=0.4"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=8.1"
@@ -64,26 +64,26 @@ pytest = ">=8.1"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 # OpenAI interface
-openai = ">=1.14"
+openai = ">=1.23"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
 llama-index-llms-azure-openai = ">=0.1"
 llama-index-readers-web = ">=0.1"
 docx2txt = ">=0.8"  # for reading .docx files
-pypdf = ">=4.1"  # for reading .pdf files
+pypdf = ">=4.2"  # for reading .pdf files
 pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = ">=2024.2"  # base/local file system
-adlfs = ">=2024.2"  # Azure Data Lake
-gcsfs = ">=2024.2"  # Google Cloud Storage
-s3fs = ">=2024.2"  # S3
+fsspec = ">=2024.3"  # base/local file system
+adlfs = ">=2024.4"  # Azure Data Lake
+gcsfs = ">=2024.3"  # Google Cloud Storage
+s3fs = ">=2024.3"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.124"
+google-api-python-client = ">=2.126"
 httpx = ">=0.27"
 loguru = ">=0.7"
-pydantic = ">=2.6"
+pydantic = ">=2.7"
 python-dotenv = ">=1.0"
 tqdm = ">=4.66"
 
@@ -96,7 +96,7 @@ llama-index-callbacks-langfuse = {version = ">=0.1", optional = true}
 llama-index-callbacks-openinference = {version = ">=0.1", optional = true}
 llama-index-callbacks-promptlayer = {version = ">=0.1", optional = true}
 llama-index-callbacks-wandb = {version = ">=0.1", optional = true}
-streamlit = {version = ">=1.32", optional = true}
+streamlit = {version = ">=1.33", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
 [tool.poetry.extras]

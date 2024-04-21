@@ -32,16 +32,7 @@ class HTPDict(TypedDict, total=False):
 type AskAnsPair = tuple[str, str]
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class HTP(AbstractPlan):
     """Hierarchical task plan (HTP)."""
 
@@ -67,8 +58,8 @@ class HTP(AbstractPlan):
     def fix_missing_resources(self):
         """Fix missing resources in HTP."""
         for p in self.sub_plans:
-            if not p.task.resource:
-                p.task.resource: AResource | None = self.task.resource
+            if not p.task.resources:
+                p.task.resources: set[AResource] | None = self.task.resources
             p.fix_missing_resources()
 
     def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
@@ -107,16 +98,7 @@ class HTP(AbstractPlan):
         return self.task.result
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AutoHTPlanner(AbstractPlanner):
     """Automated (generative) hierarchical task planner."""
 
