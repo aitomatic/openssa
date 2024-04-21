@@ -24,7 +24,7 @@ class OrientResult(TypedDict):
 class OodaReasoner(AbstractReasoner):
     """OODA reasoner."""
 
-    def reason(self, task: ATask, n_words: int = 1000) -> str:
+    def reason(self, task: ATask, n_words: int = 1000) -> str | None:
         """Reason through task and return conclusion."""
         observations: list[Observation] = self.observe(task=task, n_words=n_words)
         orient_result: OrientResult = self.orient(task=task, observations=observations, n_words=n_words)
@@ -47,7 +47,6 @@ class OodaReasoner(AbstractReasoner):
                                                '\n'
                                                f'ANSWER #{i + 1}:\n{answer}\n')
                                               for i, (name, overview, answer) in enumerate(observations)))
-
         logger.debug(prompt)
 
         def is_valid(orient_result_dict: OrientResult) -> bool:
@@ -70,3 +69,6 @@ class OodaReasoner(AbstractReasoner):
         if decision:
             task.status: TaskStatus = TaskStatus.DONE
             task.result: str = orient_result['answer']
+
+        else:
+            task.status: TaskStatus = TaskStatus.NEEDING_DECOMPOSITION
