@@ -74,6 +74,7 @@ ignore = [
   "FBT003",  # boolean positional value in function call
   "FIX002",  # line contains TODO, consider resolving the issue
   "FURB101",  # `open` and `read` should be replaced by `Path(file_path).read_bytes()`
+  "FURB110",  # [*] Replace ternary `if` expression with `or` operator
   "I001",  # import block is un-sorted or un-formatted
   "INP001",  # file is part of an implicit namespace package; add an `__init__.py`
   "LOG009",  # use of undocumented `logging.WARN` constant
@@ -96,6 +97,7 @@ ignore = [
   "PLR0911",  # too many return statements
   "PLR0913",  # too many arguments in function definition
   "PLR2004",  # magic value used in comparison, consider replacing with a constant variable
+  "PLR6104",  # use `+=` to perform an augmented assignment directly
   "PLR6301",  # method could be a function, class method, or static method
   "PT009",  # use a regular `assert` instead of unittest-style `assertIsInstance`
   "PT018",  # assertion should be broken down into multiple parts
@@ -119,6 +121,7 @@ ignore = [
   "S605",  # starting a process with a shell, possible injection detected
   "S607",  # starting a process with a partial executable path
   "SIM102",  # use a single `if` statement instead of nested `if` statements
+  "SIM103",  # return the condition directly
   "SIM108",  # use ternary operator `temp = temp["content"] if isinstance(temp, dict) else temp.content` instead of `if`-`else`-block
   "SIM105",  # use `contextlib.suppress(Exception)` instead of `try`-`except`-`pass`
   "SIM112",  # use capitalized environment variable

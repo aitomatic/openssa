@@ -21,14 +21,14 @@ def display_pdf(file_path):
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 
-st.set_page_config(page_title='Analyses of SEC Filings (`FinanceBench` Dataset) with aiVA',
+st.set_page_config(page_title='Analyses of SEC Filings (`FinanceBench` Dataset)',
                    page_icon=None,
                    layout='centered',
                    initial_sidebar_state='auto',
                    menu_items=None)
 
 
-st.title('Analyses of SEC Filings (`FinanceBench` Dataset) with aiVA')
+st.title('Analyses of SEC Filings (`FinanceBench` Dataset)')
 
 
 if 'doc_name' not in st.session_state:
