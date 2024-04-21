@@ -45,7 +45,7 @@ class OodaReasoner(AbstractReasoner):
                                                '\n'
                                                f'INFORMATIONAL RESOURCE #{i + 1} OVERVIEW:\n{overview}\n'
                                                '\n'
-                                               f'ANSWER #{i + 1}:\n{answer}\n')
+                                               f'ANSWER/SOLUTION #{i + 1}:\n{answer}\n')
                                               for i, (name, overview, answer) in enumerate(observations)))
         logger.debug(prompt)
 
