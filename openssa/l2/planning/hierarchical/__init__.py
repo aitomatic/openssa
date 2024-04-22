@@ -102,7 +102,13 @@ class HTP(AbstractPlan):
 class AutoHTPlanner(AbstractPlanner):
     """Automated (generative) hierarchical task planner."""
 
-    def reduce_depth(self) -> AutoHTPlanner:
+    def one_level_deep(self) -> AutoHTPlanner:
+        """Make 1-level-deep planner."""
+        return AutoHTPlanner(lm=self.lm,
+                             max_depth=1,
+                             max_subtasks_per_decomp=self.max_subtasks_per_decomp)
+
+    def one_fewer_level_deep(self) -> AutoHTPlanner:
         """Make 1-fewer-level-deep planner."""
         return AutoHTPlanner(lm=self.lm,
                              max_depth=self.max_depth - 1,
