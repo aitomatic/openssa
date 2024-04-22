@@ -9,6 +9,7 @@ from openssa.l2.planning.abstract import APlan, APlanner
 from openssa.l2.reasoning.abstract import AReasoner
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.resource.abstract import AResource
+from openssa.l2.task.abstract import ATask
 from openssa.l2.task.task import Task
 
 
@@ -53,7 +54,8 @@ class AbstractAgent(ABC):
         elif self.planner:
             if dynamic:
                 # if no Plan is given but Planner is, and if solving dynamically,
-                result: str = ...  # TODO: dynamic solution
+                task: ATask = Task(ask=problem, resources=self.resources)
+                result: str | None = self.reasoner.reason(task)
 
             else:
                 # if no Plan is given but Planner is, and if solving statically,
