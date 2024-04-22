@@ -15,8 +15,6 @@ class AbstractReasoner(ABC):
 
     lm: AnLLM = field(default_factory=OpenAILLM.get_gpt_4_1106_preview)
 
-    # exit_condition: str = ...
-
     @abstractmethod
     def reason(self, task: ATask, n_words: int = 1000) -> str:
         """Reason through task and return conclusion."""
