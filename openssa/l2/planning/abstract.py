@@ -40,7 +40,7 @@ class AbstractPlanner(ABC):
 
     @abstractmethod
     def reduce_depth(self) -> Self:
-        """Make 1-fewer-level-deep plan."""
+        """Make 1-fewer-level-deep planner."""
 
     @abstractmethod
     def plan(self, problem: str, resources: set[AResource] | None = None) -> APlan:
