@@ -39,7 +39,11 @@ class AbstractPlanner(ABC):
     max_subtasks_per_decomp: int = 3
 
     @abstractmethod
-    def reduce_depth(self) -> Self:
+    def one_level_deep(self) -> Self:
+        """Make 1-level-deep planner."""
+
+    @abstractmethod
+    def one_fewer_level_deep(self) -> Self:
         """Make 1-fewer-level-deep planner."""
 
     @abstractmethod
