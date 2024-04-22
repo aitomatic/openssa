@@ -13,10 +13,12 @@ If the question/problem/task involves any NUMERICAL QUANTITIES (e.g., MULTIPLES 
 the concrete results MUST CONTAIN SPECIFIC VALUES for such quantities for the answer/solution to be considered confident.
 
 If you can answer/solve confidently with concrete results, return a JSON dictionary
-`{{"confident": true, "answer": "<fill in your answer using up to {n_words:,} words>"}}`.
+`{{"confident": true,
+   "answer": "<confident answer/solution of up to {n_words:,} words, covering reasoning flow and supporting details>"}}`.
 
 If you cannot answer/solve confidently with concrete results, return a JSON dictionary
-`{{"confident": false}}`.
+`{{"confident": false,
+   "answer": "<best-effort answer/solution of up to {n_words:,} words, covering potentially useful supporting details>"}}`.
 
 Please return ONLY the JSON DICTIONARY and no other text, not even the "```json" wrapping!
 
