@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict, field
+from dataclasses import dataclass, field
 import json
 from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 
@@ -52,14 +52,14 @@ class HTP(AbstractPlan):
 
     def to_dict(self) -> HTPDict:
         """Return dictionary representation of HTP."""
-        return {'task': asdict(self.task),
+        return {'task': self.task.to_json_dict(),
                 'sub-plans': [p.to_dict() for p in self.sub_plans]}
 
     def fix_missing_resources(self):
         """Fix missing resources in HTP."""
         for p in self.sub_plans:
             if not p.task.resources:
-                p.task.resources: set[AResource] | None = self.task.resources
+                p.task.resources: set[AResource] = self.task.resources
             p.fix_missing_resources()
 
     def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
