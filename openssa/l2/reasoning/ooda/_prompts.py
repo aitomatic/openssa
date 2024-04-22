@@ -20,8 +20,6 @@ If you cannot answer/solve confidently with concrete results, return a JSON dict
 
 Please return ONLY the JSON DICTIONARY and no other text, not even the "```json" wrapping!
 
-Use no other information than the below answers/solutions.
-
 
 ```
 {resources_and_answers}
