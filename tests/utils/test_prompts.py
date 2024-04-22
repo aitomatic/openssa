@@ -52,4 +52,3 @@ class TestPrompts(unittest.TestCase):
 if __name__ == '__main__':
     test = TestPrompts()
     test.setUpClass()
-    test.test_get_module_prompt()

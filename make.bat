@@ -50,11 +50,13 @@ IF "%TARGET%"=="launch-solver" GOTO launch-solver
 :: ============
 :install
   poetry lock
-  poetry install --extras=contrib --with=docs --with=lint --with=test
+  poetry install ^
+    --extras=contrib --extras=llama-index-callbacks ^
+    --with=docs --with=lint --with=test
   GOTO end
 
 :install-editable
-  python3 -m pip install -e ".[contrib]" --upgrade --user
+  python3 -m pip install -e ".[contrib, llama-index-callbacks]" --upgrade --user
   GOTO end
 
 
@@ -75,13 +77,13 @@ IF "%TARGET%"=="launch-solver" GOTO launch-solver
 
 :lint-pylint
   :: pylint.readthedocs.io/en/latest/user_guide/usage/run.html
-  poetry run pylint %LIB_DIR% %DOCS_DIR% %EXAMPLES_DIR% %TESTS_DIR%
+  poetry run pylint %LIB_DIR% %DOCS_DIR% %EXAMPLES_DIR% %TESTS_DIR% --recursive=y
   GOTO end
 
 :lint-ruff
   :: docs.astral.sh/ruff/linter
   poetry run ruff check %LIB_DIR% %DOCS_DIR% %EXAMPLES_DIR% %TESTS_DIR% ^
-    --output-format text ^
+    --output-format full ^
     --target-version py310 ^
     --preview ^
     --respect-gitignore

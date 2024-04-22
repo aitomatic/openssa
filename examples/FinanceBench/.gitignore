@@ -1,0 +1,4 @@
+.data/
+.streamlit/secrets.toml
+*.ipynb
+*.log

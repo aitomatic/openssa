@@ -8,7 +8,6 @@ from openssa.utils.utils import Utils
 
 class AbstractRAGBackend(BaseBackend, ABC):
     def _get_source_dir(self, storage_dir: str):
-        # return os.path.join(storage_dir, ".sources")
         if storage_dir is None:
             storage_dir = './'
         return os.path.abspath(storage_dir)

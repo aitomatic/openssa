@@ -3,7 +3,7 @@ from pathlib import Path
 import tomllib
 
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
-from openssa.core.ooda_rag.solver import OodaSSA
+from openssa.core.ooda_rag.ooda_ssa import OodaSSA
 from openssa.core.prompts import Prompts
 from openssa.core.slm.base_slm import BaseSLM
 from openssa.core.ssa.ssa import BaseSSA

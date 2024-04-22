@@ -4,45 +4,84 @@
 from abc import ABC
 from dataclasses import dataclass, field
 from pprint import pprint
+from typing import TYPE_CHECKING
 
-from openssa.l2.planning.abstract import AbstractPlan, AbstractPlanner
-from openssa.l2.reasoning.abstract import AbstractReasoner
+from openssa.l2.planning.abstract import APlan, APlanner
+from openssa.l2.reasoning.abstract import AReasoner
 from openssa.l2.reasoning.base import BaseReasoner
-from openssa.l2.resource.abstract import AbstractResource
+from openssa.l2.resource.abstract import AResource
+from openssa.l2.task.task import Task
+
+if TYPE_CHECKING:
+    from openssa.l2.task.abstract import ATask
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AbstractAgent(ABC):
     """Abstract agent with planning, reasoning & informational resources."""
 
-    planner: AbstractPlanner
-    reasoner: AbstractReasoner = field(default_factory=BaseReasoner)
-    resources: set[AbstractResource] = field(default_factory=set,
-                                             init=True,
-                                             repr=True,
-                                             hash=False,  # mutable
-                                             compare=True,
-                                             metadata=None,
-                                             kw_only=True)
+    planner: APlanner | None = None
+    reasoner: AReasoner = field(default_factory=BaseReasoner)
+    resources: set[AResource] = field(default_factory=set,
+                                      init=True,
+                                      repr=True,
+                                      hash=False,  # mutable
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=True)
 
     @property
     def resource_overviews(self) -> dict[str, str]:
         return {r.unique_name: r.overview for r in self.resources}
 
-    def solve(self, problem: str, plan: AbstractPlan | None = None) -> str:
+    def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str | None:
         """Solve problem, with an automatically generated plan (default) or explicitly specified plan."""
-        plan: AbstractPlan = (self.planner.update_plan_resources(plan, resources=self.resources)
-                              if plan
-                              else self.planner.plan(problem, resources=self.resources))
-        pprint(plan)
+        match (plan, self.planner, dynamic):
+            case (None, None, _):
+                # if neither Plan nor Planner is given, directly use Reasoner
+                result: str | None = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
 
-        return plan.execute(reasoner=self.reasoner)
+            case (None, _, False) if self.planner:
+                # if no Plan is given but Planner is, and if solving statically,
+                # then use Planner to generate static Plan,
+                # then execute such static plan
+                plan: APlan = self.planner.plan(problem, resources=self.resources)
+                pprint(plan)
+                result: str = plan.execute(reasoner=self.reasoner)
+
+            case (None, _, True) if self.planner:
+                # if no Plan is given but Planner is, and if solving dynamically,
+                # then first directly use Reasoner,
+                # and if that does not work, then use Planner to decompose 1 level more deeply,
+                # and recurse until reaching confident solution or running out of depth
+                result: str = self.solve_dynamically(problem=problem)
+
+            case (_, None, _) if plan:
+                # if Plan is given but no Planner is, then execute Plan statically
+                result: str = plan.execute(reasoner=self.reasoner)
+
+            case (_, _, False) if (plan and self.planner):
+                # if both Plan and Planner are given, and if solving statically,
+                # then use Planner to update Plan's resources,
+                # then execute such updated static Plan
+                plan: APlan = self.planner.update_plan_resources(plan, resources=self.resources)
+                pprint(plan)
+                result: str = plan.execute(reasoner=self.reasoner)
+
+            case (_, _, True) if (plan and self.planner):
+                # if both Plan and Planner are given, and if solving dynamically,
+                # TODO: dynamic solution
+                raise NotImplementedError('Dynamic execution of given Plan and Planner not yet implemented')
+
+            case _:
+                raise ValueError('*** Invalid Plan-Planner-Dynamism Combination ***')
+
+        return result
+
+    def solve_dynamically(self, problem: str) -> str | None:
+        task: ATask = Task(ask=problem, resources=self.resources)
+        if (result := self.reasoner.reason(task)) is None:
+            planner_1_level_deep: APlanner = self.planner.one_level_deep()
+            plan: APlan = planner_1_level_deep.plan(problem=problem)
+            planner_1_level_fewer_deep: APlanner = self.planner.one_fewer_level_deep()
+            ...

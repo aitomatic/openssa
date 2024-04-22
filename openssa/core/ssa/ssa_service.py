@@ -48,7 +48,7 @@ class SSAService(AbstractSSAService):
         config = config or {}
         payload = {
             "user_input": message,
-            "endpoint_name": config.get("endpoint_name"),
+            "endpoint_name": config.get("endpoint_name")
         }
 
         aiso_url = config.get("aiso_url") or SSAService.AIMO_API_URL
@@ -73,13 +73,14 @@ class SSARAGService:
             return response.json()
 
     @classmethod
-    def chat(cls, agent_id: str, message: str) -> str:
+    def chat(cls, agent_id: str, message: str, **kwargs) -> str:
         """Chat with a Small Specialist Agent."""
         # NOTE: before using chat, the model must be deploy after train
 
         payload = {
             "message": message,
             "agent_id": agent_id,
+            **kwargs
         }
 
         aiso_url = SSAService.AIMO_API_URL
