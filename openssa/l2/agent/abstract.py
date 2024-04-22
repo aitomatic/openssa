@@ -36,15 +36,15 @@ class AbstractAgent(ABC):
             if self.planner:
                 if dynamic:
                     # if both Plan and Planner are given, and if solving dynamically,
-                    result: str = ...  # TODO: dynamic solution
+                    # TODO: dynamic solution
+                    raise NotImplementedError('Dynamic execution of given Plan and Planner not yet implemented')
 
-                else:
-                    # if both Plan and Planner are given, and if solving statically,
-                    # then use Planner to update Plan's resources,
-                    # then execute such updated static Plan
-                    plan: APlan = self.planner.update_plan_resources(plan, resources=self.resources)
-                    pprint(plan)
-                    result: str = plan.execute(reasoner=self.reasoner)
+                # if both Plan and Planner are given, and if solving statically,
+                # then use Planner to update Plan's resources,
+                # then execute such updated static Plan
+                plan: APlan = self.planner.update_plan_resources(plan, resources=self.resources)
+                pprint(plan)
+                result: str = plan.execute(reasoner=self.reasoner)
 
             else:
                 # if Plan is given but no Planner is, then execute Plan statically
