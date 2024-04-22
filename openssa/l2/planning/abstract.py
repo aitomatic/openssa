@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, TypeVar
+from typing import TYPE_CHECKING, Self, TypeVar
 
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.utils.llms import AnLLM, OpenAILLM
@@ -34,6 +34,13 @@ class AbstractPlanner(ABC):
     """Abstract planner."""
 
     lm: AnLLM = field(default_factory=OpenAILLM.get_gpt_4_1106_preview)
+
+    max_depth: int = 3
+    max_subtasks_per_decomp: int = 3
+
+    @abstractmethod
+    def reduce_depth(self) -> Self:
+        """Make 1-fewer-level-deep plan."""
 
     @abstractmethod
     def plan(self, problem: str, resources: set[AResource] | None = None) -> APlan:
