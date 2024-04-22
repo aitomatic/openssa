@@ -2,7 +2,7 @@
 
 
 from abc import ABC
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Self, TypedDict, Required, NotRequired, TypeVar
 
 from openssa.l2.resource.abstract import AResource
@@ -23,7 +23,13 @@ class AbstractTask(ABC):
     """Abstract task."""
 
     ask: str
-    resources: set[AResource] | None = None
+    resources: set[AResource] = field(default_factory=set,
+                                      init=True,
+                                      repr=True,
+                                      hash=False,  # mutable
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=True)
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
 
