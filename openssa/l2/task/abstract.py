@@ -2,7 +2,7 @@
 
 
 from abc import ABC
-from dataclasses import dataclass, field
+from dataclasses import dataclass, asdict, field
 from typing import Self, TypedDict, Required, NotRequired, TypeVar
 
 from openssa.l2.resource.abstract import AResource
@@ -45,6 +45,11 @@ class AbstractTask(ABC):
         task.status: TaskStatus = TaskStatus(task.status)
 
         return task
+
+    def to_json_dict(self) -> dict:
+        d: TaskDict = asdict(self)
+        d['resources']: list[AResource] = list(d['resources'])
+        return d
 
     @classmethod
     def from_str(cls, s: str, /) -> Self:
