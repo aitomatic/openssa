@@ -9,6 +9,7 @@ from openssa.l2.planning.abstract import APlan, APlanner
 from openssa.l2.reasoning.abstract import AReasoner
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.resource.abstract import AResource
+from openssa.l2.task.task import Task
 
 
 @dataclass
@@ -29,11 +30,41 @@ class AbstractAgent(ABC):
     def resource_overviews(self) -> dict[str, str]:
         return {r.unique_name: r.overview for r in self.resources}
 
-    def solve(self, problem: str, plan: APlan | None = None) -> str:
+    def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str | None:
         """Solve problem, with an automatically generated plan (default) or explicitly specified plan."""
-        plan: APlan = (self.planner.update_plan_resources(plan, resources=self.resources)
-                       if plan
-                       else self.planner.plan(problem, resources=self.resources))
-        pprint(plan)
+        if plan:
+            if self.planner:
+                if dynamic:
+                    # if both Plan and Planner are given, and if solving dynamically,
+                    result: str = ...  # TODO: dynamic solution
 
-        return plan.execute(reasoner=self.reasoner)
+                else:
+                    # if both Plan and Planner are given, and if solving statically,
+                    # then use Planner to update Plan's resources,
+                    # then execute such updated static Plan
+                    plan: APlan = self.planner.update_plan_resources(plan, resources=self.resources)
+                    pprint(plan)
+                    result: str = plan.execute(reasoner=self.reasoner)
+
+            else:
+                # if Plan is given but no Planner is, then execute Plan statically
+                result: str = plan.execute(reasoner=self.reasoner)
+
+        elif self.planner:
+            if dynamic:
+                # if no Plan is given but Planner is, and if solving dynamically,
+                result: str = ...  # TODO: dynamic solution
+
+            else:
+                # if no Plan is given but Planner is, and if solving statically,
+                # then use Planner to generate static Plan,
+                # then execute such static plan
+                plan: APlan = self.planner.plan(problem, resources=self.resources)
+                pprint(plan)
+                result: str = plan.execute(reasoner=self.reasoner)
+
+        else:
+            # if neither Plan nor Planner is given, directly use Reasoner
+            result: str | None = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
+
+        return result
