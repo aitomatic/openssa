@@ -4,13 +4,16 @@
 from abc import ABC
 from dataclasses import dataclass, field
 from pprint import pprint
+from typing import TYPE_CHECKING
 
 from openssa.l2.planning.abstract import APlan, APlanner
 from openssa.l2.reasoning.abstract import AReasoner
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.resource.abstract import AResource
-from openssa.l2.task.abstract import ATask
 from openssa.l2.task.task import Task
+
+if TYPE_CHECKING:
+    from openssa.l2.task.abstract import ATask
 
 
 @dataclass
