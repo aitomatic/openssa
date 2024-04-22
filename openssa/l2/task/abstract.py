@@ -35,7 +35,7 @@ class AbstractTask(ABC):
 
     @classmethod
     def from_dict(cls, d: TaskDict, /) -> Self:
-        """Create resource instance from dictionary representation."""
+        """Create task from dictionary representation."""
         task: Self = cls(**d)
 
         if task.resources:
@@ -48,12 +48,12 @@ class AbstractTask(ABC):
 
     @classmethod
     def from_str(cls, s: str, /) -> Self:
-        """Create resource instance from dictionary representation."""
+        """Create task from string representation."""
         return cls(ask=s)
 
     @classmethod
     def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Self:
-        """Create resource instance from dictionary or string representation."""
+        """Create task from dictionary or string representation."""
         if isinstance(dict_or_str, dict):
             return cls.from_dict(dict_or_str)
 
