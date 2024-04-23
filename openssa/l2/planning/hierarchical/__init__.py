@@ -37,14 +37,6 @@ type AskAnsPair = tuple[str, str]
 class HTP(AbstractPlan):
     """Hierarchical task plan (HTP)."""
 
-    sub_plans: list[HTP] = field(default_factory=list,
-                                 init=True,
-                                 repr=True,
-                                 hash=False,  # mutable
-                                 compare=True,
-                                 metadata=None,
-                                 kw_only=True)
-
     @classmethod
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
         """Create HTP from dictionary representation."""

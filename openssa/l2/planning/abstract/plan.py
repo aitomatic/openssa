@@ -4,8 +4,8 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import TYPE_CHECKING, TypeVar
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, Self, TypeVar
 
 from openssa.l2.reasoning.base import BaseReasoner
 
@@ -17,7 +17,16 @@ if TYPE_CHECKING:
 @dataclass
 class AbstractPlan(ABC):
     """Abstract plan."""
+
     task: ATask
+
+    sub_plans: list[Self] = field(default_factory=list,
+                                  init=True,
+                                  repr=True,
+                                  hash=False,  # mutable
+                                  compare=True,
+                                  metadata=None,
+                                  kw_only=True)
 
     @abstractmethod
     def execute(self, reasoner: AReasoner = BaseReasoner()) -> str:

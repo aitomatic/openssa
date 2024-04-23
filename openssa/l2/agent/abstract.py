@@ -1,20 +1,22 @@
 """Abstract agent with planning, reasoning & informational resources."""
 
 
+from __future__ import annotations
+
 from abc import ABC
 from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
 
-from openssa.l2.planning.abstract.plan import APlan
-from openssa.l2.planning.abstract.planner import APlanner
-from openssa.l2.reasoning.abstract import AReasoner
-from openssa.l2.reasoning.base import BaseReasoner
-from openssa.l2.resource.abstract import AResource
-from openssa.l2.task.task import Task
-
 if TYPE_CHECKING:
+    from openssa.l2.planning.abstract.plan import APlan
+    from openssa.l2.planning.abstract.planner import APlanner
+    from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.reasoning.base import BaseReasoner
+    from openssa.l2.resource.abstract import AResource
     from openssa.l2.task.abstract import ATask
+    from openssa.l2.task.status import TaskStatus
+    from openssa.l2.task.task import Task
 
 
 @dataclass
@@ -79,10 +81,9 @@ class AbstractAgent(ABC):
 
         return result
 
-    def solve_dynamically(self, problem: str) -> str | None:
-        task: ATask = Task(ask=problem, resources=self.resources)
-        if (result := self.reasoner.reason(task)) is None:
-            planner_1_level_deep: APlanner = self.planner.one_level_deep()
-            plan: APlan = planner_1_level_deep.plan(problem=problem)
-            planner_1_level_fewer_deep: APlanner = self.planner.one_fewer_level_deep()
-            ...
+    def solve_dynamically(self, problem: str) -> str:
+        self.reasoner.reason(task := Task(ask=problem, resources=self.resources))
+
+        if task.status == TaskStatus.NEEDING_DECOMPOSITION:
+            task.dynamic_decomposer: APlanner = self.planner.one_level_deep()
+            plan_1_level_deep: APlan = task.decompose()
