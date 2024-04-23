@@ -8,15 +8,16 @@ from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
 
+from openssa.l2.reasoning.base import BaseReasoner
+from openssa.l2.task.status import TaskStatus
+from openssa.l2.task.task import Task
+
 if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import APlan
     from openssa.l2.planning.abstract.planner import APlanner
     from openssa.l2.reasoning.abstract import AReasoner
-    from openssa.l2.reasoning.base import BaseReasoner
     from openssa.l2.resource.abstract import AResource
     from openssa.l2.task.abstract import ATask
-    from openssa.l2.task.status import TaskStatus
-    from openssa.l2.task.task import Task
 
 
 @dataclass
@@ -37,12 +38,12 @@ class AbstractAgent(ABC):
     def resource_overviews(self) -> dict[str, str]:
         return {r.unique_name: r.overview for r in self.resources}
 
-    def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str | None:
+    def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
         """Solve problem, with an automatically generated plan (default) or explicitly specified plan."""
         match (plan, self.planner, dynamic):
             case (None, None, _):
                 # if neither Plan nor Planner is given, directly use Reasoner
-                result: str | None = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
+                result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
 
             case (None, _, False) if self.planner:
                 # if no Plan is given but Planner is, and if solving statically,
@@ -86,4 +87,8 @@ class AbstractAgent(ABC):
 
         if task.status == TaskStatus.NEEDING_DECOMPOSITION:
             task.dynamic_decomposer: APlanner = self.planner.one_level_deep()
-            plan_1_level_deep: APlan = task.decompose()
+
+            for sub_plan in (plan_1_level_deep := task.decompose()).sub_plans:
+                sub_plan.task.dynamic_decomposer: APlanner = self.planner.one_fewer_level_deep()
+
+            plan_1_level_deep.execute(reasoner=self.reasoner)
