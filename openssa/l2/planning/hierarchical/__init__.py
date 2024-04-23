@@ -10,7 +10,8 @@ from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 from loguru import logger
 from tqdm import tqdm
 
-from openssa.l2.planning.abstract import AbstractPlan, AbstractPlanner
+from openssa.l2.planning.abstract.plan import AbstractPlan
+from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
