@@ -6,15 +6,15 @@ from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
 
+from openssa.l2.planning.abstract.plan import APlan
+from openssa.l2.planning.abstract.planner import APlanner
+from openssa.l2.reasoning.abstract import AReasoner
 from openssa.l2.reasoning.base import BaseReasoner
+from openssa.l2.resource.abstract import AResource
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.abstract.plan import APlan
-    from openssa.l2.planning.abstract.planner import APlanner
-    from openssa.l2.reasoning.abstract import AReasoner
-    from openssa.l2.resource.abstract import AResource
     from openssa.l2.task.abstract import ATask
 
 
