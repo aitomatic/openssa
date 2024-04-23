@@ -76,6 +76,9 @@ class AbstractTask(ABC):
         assert isinstance(self.dynamic_decomposer, AbstractPlanner), '*** Dynamic Decomposer must be Planner instance ***'
         assert isinstance(self.dynamic_decomposer.max_depth), '*** Dynamic Decomposer must have positive Max Depth ***'
 
+        # ASSUMPTION (may change / be generalized in future implementations):
+        # sub-plans/sub-tasks would inherit same resources
+        # and be assigned dynamic decomposer of the same Planner type but 1-fewer-level deep
         for sub_plan in (plan := self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)):
             (sub_task := sub_plan.task).resources: set[AResource] = self.resources
             sub_task.dynamic_decomposer: APlanner = self.dynamic_decomposer.one_level_fewer_deep()
