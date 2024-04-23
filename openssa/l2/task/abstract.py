@@ -1,14 +1,21 @@
 """Abstract task."""
 
 
+from __future__ import annotations
+
 from abc import ABC
 from dataclasses import dataclass, asdict, field
-from typing import Self, TypedDict, Required, NotRequired, TypeVar
+from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired, TypeVar
 
-from openssa.l2.resource.abstract import AResource
+from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .status import TaskStatus
+
+if TYPE_CHECKING:
+    from openssa.l2.planning.abstract.plan import APlan
+    from openssa.l2.planning.abstract.planner import APlanner
+    from openssa.l2.resource.abstract import AResource
 
 
 class TaskDict(TypedDict, total=False):
@@ -16,6 +23,7 @@ class TaskDict(TypedDict, total=False):
     resources: NotRequired[set[AResource]]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
+    dynamic_decomposer: NotRequired[APlanner]
 
 
 @dataclass
@@ -32,6 +40,7 @@ class AbstractTask(ABC):
                                       kw_only=True)
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
+    dynamic_decomposer: APlanner | None = None
 
     @classmethod
     def from_dict(cls, d: TaskDict, /) -> Self:
@@ -66,6 +75,17 @@ class AbstractTask(ABC):
             return cls.from_str(dict_or_str)
 
         raise TypeError(f'*** {dict_or_str} IS NEITHER A DICTIONARY NOR A STRING ***')
+
+    def decompose(self) -> APlan:
+        """Decompose task into modular plan."""
+        assert isinstance(self.dynamic_decomposer, AbstractPlanner), '*** Dynamic Decomposer must be Planner instance ***'
+        assert isinstance(self.dynamic_decomposer.max_depth), '*** Dynamic Decomposer must have positive Max Depth ***'
+
+        for sub_plan in (plan := self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)):
+            (sub_task := sub_plan.task).resources: set[AResource] = self.resources
+            sub_task.dynamic_decomposer: APlanner = self.dynamic_decomposer.one_level_fewer_deep()
+
+        return plan
 
 
 ATask: TypeVar = TypeVar('ATask', bound=AbstractTask, covariant=False, contravariant=False)
