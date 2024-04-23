@@ -15,6 +15,7 @@ from ._prompts import OBSERVE_PROMPT_TEMPLATE
 
 type Observation = tuple[str, str, str]
 
+
 class OrientResult(TypedDict):
     confident: bool
     answer: str
