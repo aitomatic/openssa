@@ -6,14 +6,15 @@ from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
 
-from openssa.l2.planning.abstract.plan import APlan
-from openssa.l2.planning.abstract.planner import APlanner
-from openssa.l2.reasoning.abstract import AReasoner
 from openssa.l2.reasoning.base import BaseReasoner
-from openssa.l2.resource.abstract import AResource
+from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
 if TYPE_CHECKING:
+    from openssa.l2.planning.abstract.plan import APlan
+    from openssa.l2.planning.abstract.planner import APlanner
+    from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.resource.abstract import AResource
     from openssa.l2.task.abstract import ATask
 
 
@@ -80,9 +81,12 @@ class AbstractAgent(ABC):
         return result
 
     def solve_dynamically(self, problem: str) -> str:
-        task: ATask = Task(ask=problem, resources=self.resources)
-        if (result := self.reasoner.reason(task)) is None:
-            planner_1_level_deep: APlanner = self.planner.one_level_deep()
-            plan_1_level_deep: APlan = planner_1_level_deep.plan(problem=problem)
-            planner_1_fewer_level_deep: APlanner = self.planner.one_fewer_level_deep()
-            ...
+        self.reasoner.reason(task := Task(ask=problem, resources=self.resources))
+
+        if task.status == TaskStatus.NEEDING_DECOMPOSITION:
+            task.dynamic_decomposer: APlanner = self.planner.one_level_deep()
+
+            for sub_plan in (plan_1_level_deep := task.decompose()).sub_plans:
+                sub_plan.task.dynamic_decomposer: APlanner = self.planner.one_fewer_level_deep()
+
+            plan_1_level_deep.execute(reasoner=self.reasoner)
