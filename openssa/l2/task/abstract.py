@@ -1,14 +1,19 @@
 """Abstract task."""
 
 
+from __future__ import annotations
+
 from abc import ABC
 from dataclasses import dataclass, field
-from typing import Self, TypedDict, Required, NotRequired, TypeVar
+from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired, TypeVar
 
-from openssa.l2.resource.abstract import AResource
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .status import TaskStatus
+
+if TYPE_CHECKING:
+    from openssa.l2.planning.abstract.planner import APlanner
+    from openssa.l2.resource.abstract import AResource
 
 
 class TaskDict(TypedDict, total=False):
@@ -16,6 +21,7 @@ class TaskDict(TypedDict, total=False):
     resources: NotRequired[set[AResource]]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
+    dynamic_decomposer: NotRequired[APlanner]
 
 
 @dataclass
@@ -32,6 +38,7 @@ class AbstractTask(ABC):
                                       kw_only=True)
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
+    dynamic_decomposer: APlanner | None = None
 
     @classmethod
     def from_dict(cls, d: TaskDict, /) -> Self:
