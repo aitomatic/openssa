@@ -2,10 +2,10 @@
 
 
 from abc import ABC
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Self, TypedDict, Required, NotRequired, TypeVar
 
-from openssa.l2.resource.abstract import AbstractResource
+from openssa.l2.resource.abstract import AResource
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .status import TaskStatus
@@ -13,36 +13,34 @@ from .status import TaskStatus
 
 class TaskDict(TypedDict, total=False):
     ask: Required[str]
-    resource: NotRequired[AbstractResource]
+    resources: NotRequired[set[AResource]]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
 
 
-@dataclass(init=True,
-           repr=True,
-           eq=True,
-           order=False,
-           unsafe_hash=False,
-           frozen=False,  # mutable
-           match_args=True,
-           kw_only=False,
-           slots=False,
-           weakref_slot=False)
+@dataclass
 class AbstractTask(ABC):
     """Abstract task."""
 
     ask: str
-    resource: AbstractResource | None = None
+    resources: set[AResource] = field(default_factory=set,
+                                      init=True,
+                                      repr=True,
+                                      hash=False,  # mutable
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=True)
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
 
     @classmethod
     def from_dict(cls, d: TaskDict, /) -> Self:
-        """Create resource instance from dictionary representation."""
+        """Create task from dictionary representation."""
         task: Self = cls(**d)
 
-        if isinstance(task.resource, str):
-            task.resource: AbstractResource = GLOBAL_RESOURCES[task.resource]
+        if task.resources:
+            task.resources: set[AResource] = {(GLOBAL_RESOURCES[r] if isinstance(r, str) else r)
+                                              for r in task.resources}
 
         task.status: TaskStatus = TaskStatus(task.status)
 
@@ -50,12 +48,12 @@ class AbstractTask(ABC):
 
     @classmethod
     def from_str(cls, s: str, /) -> Self:
-        """Create resource instance from dictionary representation."""
+        """Create task from string representation."""
         return cls(ask=s)
 
     @classmethod
     def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Self:
-        """Create resource instance from dictionary or string representation."""
+        """Create task from dictionary or string representation."""
         if isinstance(dict_or_str, dict):
             return cls.from_dict(dict_or_str)
 
