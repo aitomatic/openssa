@@ -90,3 +90,5 @@ class AbstractAgent(ABC):
                 sub_plan.task.dynamic_decomposer: APlanner = self.planner.one_fewer_level_deep()
 
             plan_1_level_deep.execute(reasoner=self.reasoner)
+
+        return task.result
