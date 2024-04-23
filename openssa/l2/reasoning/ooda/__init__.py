@@ -2,7 +2,7 @@
 
 
 from dataclasses import dataclass
-from typing import TypedDict, NotRequired
+from typing import TypedDict
 
 from loguru import logger
 
@@ -17,14 +17,14 @@ type Observation = tuple[str, str, str]
 
 class OrientResult(TypedDict):
     confident: bool
-    answer: NotRequired[str]
+    answer: str
 
 
 @dataclass
 class OodaReasoner(AbstractReasoner):
     """OODA reasoner."""
 
-    def reason(self, task: ATask, n_words: int = 1000) -> str | None:
+    def reason(self, task: ATask, n_words: int = 1000) -> str:
         """Reason through task and return conclusion."""
         observations: list[Observation] = self.observe(task=task, n_words=n_words)
         orient_result: OrientResult = self.orient(task=task, observations=observations, n_words=n_words)
@@ -50,8 +50,8 @@ class OodaReasoner(AbstractReasoner):
         logger.debug(prompt)
 
         def is_valid(orient_result_dict: OrientResult) -> bool:
-            return (isinstance((confident := orient_result_dict.get('confident')), bool) and
-                    (('answer' in orient_result_dict) == confident))
+            return (isinstance(orient_result_dict.get('confident'), bool) and
+                    isinstance(orient_result_dict.get('answer'), str))
 
         # TODO: more rigorous JSON schema validation
         orient_result_dict: OrientResult = {}
@@ -66,9 +66,5 @@ class OodaReasoner(AbstractReasoner):
 
     def act(self, task: ATask, orient_result: OrientResult, decision: bool) -> str:
         """Update task status and result."""
-        if decision:
-            task.status: TaskStatus = TaskStatus.DONE
-            task.result: str = orient_result['answer']
-
-        else:
-            task.status: TaskStatus = TaskStatus.NEEDING_DECOMPOSITION
+        task.status: TaskStatus = TaskStatus.DONE if decision else TaskStatus.NEEDING_DECOMPOSITION
+        task.result: str = orient_result['answer']
