@@ -12,6 +12,7 @@ from openssa.l2.resource._global import GLOBAL_RESOURCES
 from .status import TaskStatus
 
 if TYPE_CHECKING:
+    from openssa.l2.planning.abstract.plan import APlan
     from openssa.l2.planning.abstract.planner import APlanner
     from openssa.l2.resource.abstract import AResource
 
@@ -68,6 +69,11 @@ class AbstractTask(ABC):
             return cls.from_str(dict_or_str)
 
         raise TypeError(f'*** {dict_or_str} IS NEITHER A DICTIONARY NOR A STRING ***')
+
+    def decompose(self) -> APlan:
+        """Decompose task into modular plan."""
+        assert self.dynamic_decomposer, '*** MISSING DYNAMIC DECOMPOSER ***'
+        return self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)
 
 
 ATask: TypeVar = TypeVar('ATask', bound=AbstractTask, covariant=False, contravariant=False)
