@@ -54,6 +54,11 @@ class AbstractTask(ABC):
 
         return task
 
+    def to_json_dict(self) -> dict:
+        d: TaskDict = asdict(self)
+        d['resources']: list[AResource] = list(d['resources'])
+        return d
+
     @classmethod
     def from_str(cls, s: str, /) -> Self:
         """Create task from string representation."""

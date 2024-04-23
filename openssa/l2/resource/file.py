@@ -273,6 +273,6 @@ class FileResource(AbstractResource):
             use_async=False,
             streaming=False)
 
-    def answer(self, question: str, n_words: int = 300) -> str:
+    def answer(self, question: str, n_words: int = 1000) -> str:
         """Answer question by RAG from file-stored informational resource."""
         return self.query_engine.query(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)).response
