@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from abc import ABC
-from dataclasses import dataclass, field
+from dataclasses import dataclass, asdict, field
 from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired, TypeVar
 
 from openssa.l2.resource._global import GLOBAL_RESOURCES
