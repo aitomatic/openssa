@@ -1,4 +1,4 @@
-"""Abstract planning classes."""
+"""Abstract plan."""
 
 
 from __future__ import annotations
@@ -8,11 +8,9 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, TypeVar
 
 from openssa.l2.reasoning.base import BaseReasoner
-from openssa.utils.llms import AnLLM, OpenAILLM
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
-    from openssa.l2.resource.abstract import AResource
     from openssa.l2.task.abstract import ATask
 
 
@@ -27,21 +25,3 @@ class AbstractPlan(ABC):
 
 
 APlan: TypeVar = TypeVar('APlan', bound=AbstractPlan, covariant=False, contravariant=False)
-
-
-@dataclass
-class AbstractPlanner(ABC):
-    """Abstract planner."""
-
-    lm: AnLLM = field(default_factory=OpenAILLM.get_gpt_4_1106_preview)
-
-    @abstractmethod
-    def plan(self, problem: str, resources: set[AResource] | None = None) -> APlan:
-        """Make plan for solving problem based on informational resources."""
-
-    @abstractmethod
-    def update_plan_resources(self, plan: APlan, /, resources: set[AResource]) -> APlan:
-        """Make updated plan copy with relevant informational resources."""
-
-
-APlanner: TypeVar = TypeVar('APlanner', bound=AbstractPlanner, covariant=False, contravariant=False)
