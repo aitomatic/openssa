@@ -55,6 +55,11 @@ class AbstractTask(ABC):
 
         return task
 
+    def to_json_dict(self) -> dict:
+        d: TaskDict = asdict(self)
+        d['resources']: list[AResource] = list(d['resources'])
+        return d
+
     @classmethod
     def from_str(cls, s: str, /) -> Self:
         """Create task from string representation."""
@@ -81,7 +86,7 @@ class AbstractTask(ABC):
         # and be assigned dynamic decomposer of the same Planner type but 1-fewer-level deep
         for sub_plan in (plan := self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)):
             (sub_task := sub_plan.task).resources: set[AResource] = self.resources
-            sub_task.dynamic_decomposer: APlanner = self.dynamic_decomposer.one_level_fewer_deep()
+            sub_task.dynamic_decomposer: APlanner = self.dynamic_decomposer.one_fewer_level_deep()
 
         return plan
 
