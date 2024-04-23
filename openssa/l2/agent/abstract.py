@@ -82,6 +82,6 @@ class AbstractAgent(ABC):
         task: ATask = Task(ask=problem, resources=self.resources)
         if (result := self.reasoner.reason(task)) is None:
             planner_1_level_deep: APlanner = self.planner.one_level_deep()
-            plan: APlan = planner_1_level_deep.plan(problem=problem)
-            planner_1_level_fewer_deep: APlanner = self.planner.one_fewer_level_deep()
+            plan_1_level_deep: APlan = planner_1_level_deep.plan(problem=problem)
+            planner_1_fewer_level_deep: APlanner = self.planner.one_fewer_level_deep()
             ...
