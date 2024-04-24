@@ -58,7 +58,7 @@ class AbstractAgent(ABC):
                 # then first directly use Reasoner,
                 # and if that does not work, then use Planner to decompose 1 level more deeply,
                 # and recurse until reaching confident solution or running out of depth
-                result: str = self.solve_dynamically(problem=problem)
+                result: str = self.solve_dynamically(task=Task(ask=problem, resources=self.resources))
 
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
@@ -82,14 +82,15 @@ class AbstractAgent(ABC):
 
         return result
 
-    def solve_dynamically(self, problem: str) -> str:
-        self.reasoner.reason(task := Task(ask=problem, resources=self.resources))
+    def solve_dynamically(self, task: ATask, planner: APlanner = None) -> str:
+        self.reasoner.reason(task=task)
 
-        if task.status == TaskStatus.NEEDING_DECOMPOSITION:
-            task.dynamic_decomposer: APlanner = self.planner.one_level_deep()
+        if (task.status == TaskStatus.NEEDING_DECOMPOSITION) and (planner := planner or self.planner).max_depth:
+            task.dynamic_decomposer: APlanner = planner.one_level_deep()
 
             for sub_plan in (plan_1_level_deep := task.decompose()).sub_plans:
-                sub_plan.task.dynamic_decomposer: APlanner = self.planner.one_fewer_level_deep()
+                (sub_task := sub_plan.task).resources: set[AResource] = task.resources
+                sub_task.dynamic_decomposer: APlanner = planner.one_fewer_level_deep()
 
             plan_1_level_deep.execute(reasoner=self.reasoner)
 
