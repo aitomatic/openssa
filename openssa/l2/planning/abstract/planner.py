@@ -20,7 +20,7 @@ class AbstractPlanner(ABC):
 
     lm: AnLLM = field(default_factory=OpenAILLM.get_gpt_4_1106_preview)
 
-    max_depth: int = 3
+    max_depth: int = 2
     max_subtasks_per_decomp: int = 3
 
     @abstractmethod
