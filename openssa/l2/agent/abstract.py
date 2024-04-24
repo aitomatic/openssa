@@ -95,8 +95,8 @@ class AbstractAgent(ABC):
             sub_planner: APlanner = planner.one_fewer_level_deep()
 
             sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm(plan_1_level_deep := (planner.one_level_deep()
-                                                       .plan(problem=problem, resources=self.resources)).sub_plans):
+            for sub_plan in tqdm((plan_1_level_deep := (planner.one_level_deep()
+                                                        .plan(problem=problem, resources=self.resources))).sub_plans):
                 sub_task: ATask = sub_plan.task
                 sub_task.result: str = self.solve_dynamically(problem=sub_task.ask,
                                                               planner=sub_planner,
