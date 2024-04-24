@@ -59,8 +59,9 @@ class HTP(AbstractPlan):
         if self.sub_plans:
             sub_results: list[AskAnsPair] = []
             for p in tqdm(self.sub_plans):
-                sub_result: AskAnsPair = p.task.ask, p.execute(reasoner, other_results=sub_results)
-                sub_results.append(sub_result)
+                sub_results.append((p.task.ask, (p.task.result
+                                                 if p.task.status == TaskStatus.DONE
+                                                 else p.execute(reasoner, other_results=sub_results))))
 
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
