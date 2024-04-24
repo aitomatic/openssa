@@ -15,8 +15,9 @@ jobs:
 
     strategy:
       matrix:
-        python-version:
+        python-version:  # github.com/actions/python-versions/releases
           - 3.12
+          - 3.13.0-alpha.6
 
     steps:
       - name: Checkout Repo
