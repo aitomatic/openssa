@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 from loguru import logger
 from tqdm import tqdm
 
-from openssa.l2.planning.abstract.plan import AbstractPlan
+from openssa.l2.planning.abstract.plan import AbstractPlan, AskAnsPair
 from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.status import TaskStatus
@@ -28,9 +28,6 @@ if TYPE_CHECKING:
 class HTPDict(TypedDict, total=False):
     task: Required[TaskDict | str]
     sub_plans: NotRequired[list[HTPDict]]
-
-
-type AskAnsPair = tuple[str, str]
 
 
 @dataclass

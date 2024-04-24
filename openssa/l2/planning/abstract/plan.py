@@ -14,6 +14,9 @@ if TYPE_CHECKING:
     from openssa.l2.task.abstract import ATask
 
 
+type AskAnsPair = tuple[str, str]
+
+
 @dataclass
 class AbstractPlan(ABC):
     """Abstract plan."""
@@ -29,7 +32,7 @@ class AbstractPlan(ABC):
                                   kw_only=True)
 
     @abstractmethod
-    def execute(self, reasoner: AReasoner = BaseReasoner()) -> str:
+    def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return result, using specified reasoner to reason through involved tasks."""
 
 
