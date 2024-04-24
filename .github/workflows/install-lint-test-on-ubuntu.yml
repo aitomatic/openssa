@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # github.com/actions/checkout
 
       - name: Set Up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5  # github.com/actions/setup-python
         with:
           python-version: ${{ matrix.python-version }}
 
