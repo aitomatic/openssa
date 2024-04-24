@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 from loguru import logger
 from tqdm import tqdm
 
-from openssa.l2.planning.abstract.plan import AbstractPlan
+from openssa.l2.planning.abstract.plan import AbstractPlan, AskAnsPair
 from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.status import TaskStatus
@@ -28,9 +28,6 @@ if TYPE_CHECKING:
 class HTPDict(TypedDict, total=False):
     task: Required[TaskDict | str]
     sub_plans: NotRequired[list[HTPDict]]
-
-
-type AskAnsPair = tuple[str, str]
 
 
 @dataclass
@@ -62,8 +59,9 @@ class HTP(AbstractPlan):
         if self.sub_plans:
             sub_results: list[AskAnsPair] = []
             for p in tqdm(self.sub_plans):
-                sub_result: AskAnsPair = p.task.ask, p.execute(reasoner, other_results=sub_results)
-                sub_results.append(sub_result)
+                sub_results.append((p.task.ask, (p.task.result
+                                                 if p.task.status == TaskStatus.DONE
+                                                 else p.execute(reasoner, other_results=sub_results))))
 
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
@@ -120,9 +118,8 @@ class AutoHTPlanner(AbstractPlanner):
                                             max_subtasks_per_decomp=self.max_subtasks_per_decomp)
         )
 
-        # TODO: more rigorous JSON schema validation
         htp_dict: HTPDict = {}
-        while not htp_dict:
+        while not (isinstance(htp_dict, dict) and htp_dict):
             htp_dict: HTPDict = self.lm.parse_output(self.lm.get_response(prompt))
 
         htp: HTP = HTP.from_dict(htp_dict)
@@ -141,9 +138,8 @@ class AutoHTPlanner(AbstractPlanner):
                                                                                       for r in resources},
                                                                   htp_json=json.dumps(obj=plan.to_dict()))
 
-        # TODO: more rigorous JSON schema validation
         updated_htp_dict: HTPDict = {}
-        while not updated_htp_dict:
+        while not (isinstance(updated_htp_dict, dict) and updated_htp_dict):
             updated_htp_dict: HTPDict = self.lm.parse_output(self.lm.get_response(prompt))
 
         updated_htp: HTP = HTP.from_dict(updated_htp_dict)
