@@ -36,13 +36,15 @@ get-poetry-mac-sys:
 # ============
 install:
 	@poetry lock
-	@poetry install --extras=contrib --with=dev --with=docs --with=lint --with=test
+	@poetry install \
+		--extras=contrib --extras=llama-index-callbacks \
+		--with=dev --with=docs --with=lint --with=test
 
 install-editable:
-	@python3 -m pip install -e ".[contrib]" --upgrade
+	@python3 -m pip install -e ".[contrib, llama-index-callbacks]" --upgrade
 
 install-editable-mac-sys:
-	@python3 -m pip install -e ".[contrib]" --upgrade --user --break-system-packages
+	@python3 -m pip install -e ".[contrib, llama-index-callbacks]" --upgrade --user --break-system-packages
 
 
 # LINTING
@@ -57,12 +59,12 @@ lint-flake8:
 
 lint-pylint:
 	# pylint.readthedocs.io/en/latest/user_guide/usage/run.html
-	@poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR)
+	@poetry run pylint $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) --recursive=y
 
 lint-ruff:
 	# docs.astral.sh/ruff/linter
 	@poetry run ruff check $(LIB_DIR) $(DOCS_DIR) $(EXAMPLES_DIR) $(TESTS_DIR) \
-		--output-format text \
+		--output-format full \
 		--target-version py310 \
 		--preview \
 		--respect-gitignore
@@ -165,6 +167,7 @@ public:
 	@rsync . ../openssa/ \
 		--archive \
 		--delete \
+		--exclude .data \
 		--exclude .git \
 		--exclude __pycache__ --exclude .mypy_cache --exclude .pytest_cache --exclude .ruff_cache \
 		--exclude .venv --exclude venv \

@@ -1,7 +1,8 @@
 """Map-Reduce planning classes."""
 
 
-from openssa.l2.planning.abstract import AbstractPlan, AbstractPlanner
+from openssa.l2.planning.abstract.plan import AbstractPlan
+from openssa.l2.planning.abstract.planner import AbstractPlanner
 
 
 class MRTP(AbstractPlan):
