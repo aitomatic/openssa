@@ -83,7 +83,7 @@ class AbstractTask(ABC):
 
         for sub_plan in (plan := self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)):
             (sub_task := sub_plan.task).resources: set[AResource] = self.resources
-            sub_task.dynamic_decomposer: APlanner = self.dynamic_decomposer.one_fewer_level_deep()
+            sub_task.dynamic_decomposer: APlanner = self.dynamic_decomposer.one_level_fewer_deep()
 
         return plan
 
