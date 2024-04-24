@@ -118,9 +118,8 @@ class AutoHTPlanner(AbstractPlanner):
                                             max_subtasks_per_decomp=self.max_subtasks_per_decomp)
         )
 
-        # TODO: more rigorous JSON schema validation
         htp_dict: HTPDict = {}
-        while not htp_dict:
+        while not (isinstance(htp_dict, dict) and htp_dict):
             htp_dict: HTPDict = self.lm.parse_output(self.lm.get_response(prompt))
 
         htp: HTP = HTP.from_dict(htp_dict)
@@ -139,9 +138,8 @@ class AutoHTPlanner(AbstractPlanner):
                                                                                       for r in resources},
                                                                   htp_json=json.dumps(obj=plan.to_dict()))
 
-        # TODO: more rigorous JSON schema validation
         updated_htp_dict: HTPDict = {}
-        while not updated_htp_dict:
+        while not (isinstance(updated_htp_dict, dict) and updated_htp_dict):
             updated_htp_dict: HTPDict = self.lm.parse_output(self.lm.get_response(prompt))
 
         updated_htp: HTP = HTP.from_dict(updated_htp_dict)
