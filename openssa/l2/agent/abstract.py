@@ -10,13 +10,12 @@ from typing import TYPE_CHECKING
 
 from tqdm import tqdm
 
-from openssa.l2.planning.abstract.plan import AskAnsPair
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.abstract.plan import APlan
+    from openssa.l2.planning.abstract.plan import APlan, AskAnsPair
     from openssa.l2.planning.abstract.planner import APlanner
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.resource.abstract import AResource
