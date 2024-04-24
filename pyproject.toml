@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.24.3.31"
+version = "0.24.4.24"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -51,7 +51,7 @@ ipykernel = ">=6.29"
 sphinx = ">=7.3"
 sphinx-autobuild = ">=2024.4"
 sphinx-press-theme = ">=0.9"
-myst-parser = ">=2.0"
+myst-parser = ">=3.0"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=7.0"
@@ -80,7 +80,7 @@ gcsfs = ">=2024.3"  # Google Cloud Storage
 s3fs = ">=2024.3"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.126"
+google-api-python-client = ">=2.127"
 httpx = ">=0.25"  # TODO: consider range
 loguru = ">=0.7"
 pydantic = ">=2.7"
