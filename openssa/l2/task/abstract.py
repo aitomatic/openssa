@@ -7,7 +7,6 @@ from abc import ABC
 from dataclasses import dataclass, asdict, field
 from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired, TypeVar
 
-from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .status import TaskStatus
@@ -78,14 +77,8 @@ class AbstractTask(ABC):
 
     def decompose(self) -> APlan:
         """Decompose task into modular plan."""
-        assert isinstance(self.dynamic_decomposer, AbstractPlanner), '*** Dynamic Decomposer must be Planner instance ***'
-        assert isinstance(self.dynamic_decomposer.max_depth), '*** Dynamic Decomposer must have positive Max Depth ***'
-
-        for sub_plan in (plan := self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)):
-            (sub_task := sub_plan.task).resources: set[AResource] = self.resources
-            sub_task.dynamic_decomposer: APlanner = self.dynamic_decomposer.one_level_fewer_deep()
-
-        return plan
+        assert self.dynamic_decomposer, '*** MISSING DYNAMIC DECOMPOSER ***'
+        return self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)
 
 
 ATask: TypeVar = TypeVar('ATask', bound=AbstractTask, covariant=False, contravariant=False)
