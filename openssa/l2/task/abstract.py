@@ -7,6 +7,7 @@ from abc import ABC
 from dataclasses import dataclass, asdict, field
 from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired, TypeVar
 
+from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .status import TaskStatus
@@ -77,7 +78,9 @@ class AbstractTask(ABC):
 
     def decompose(self) -> APlan:
         """Decompose task into modular plan."""
-        assert self.dynamic_decomposer, '*** MISSING DYNAMIC DECOMPOSER ***'
+        assert isinstance(self.dynamic_decomposer, AbstractPlanner), \
+            TypeError('*** Dynamic Decomposer must be Planner instance ***')
+
         return self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)
 
 
