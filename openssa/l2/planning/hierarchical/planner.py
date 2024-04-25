@@ -16,8 +16,8 @@ from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
-from ._prompts import (HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE,
-                       HTP_RESULTS_SYNTH_PROMPT_TEMPLATE)
+from .plan import HTP, HTPDict
+from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
