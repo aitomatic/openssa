@@ -43,10 +43,12 @@ class AbstractAgent(ABC):
     def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
         """Solve problem, with an automatically generated plan (default) or explicitly specified plan."""
         match (plan, self.planner, dynamic):
+            # NO PLAN
             case (None, None, _):
                 # if neither Plan nor Planner is given, directly use Reasoner
                 result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
 
+            # AUTOMATED STATIC PLAN
             case (None, _, False) if self.planner:
                 # if no Plan is given but Planner is, and if solving statically,
                 # then use Planner to generate static Plan,
@@ -55,6 +57,7 @@ class AbstractAgent(ABC):
                 pprint(plan)
                 result: str = plan.execute(reasoner=self.reasoner)
 
+            # AUTOMATED DYNAMIC PLAN
             case (None, _, True) if self.planner:
                 # if no Plan is given but Planner is, and if solving dynamically,
                 # then first directly use Reasoner,
@@ -62,10 +65,12 @@ class AbstractAgent(ABC):
                 # and recurse until reaching confident solution or running out of depth
                 result: str = self.solve_dynamically(problem=problem)
 
+            # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
                 result: str = plan.execute(reasoner=self.reasoner)
 
+            # EXPERT-GUIDED STATIC PLAN
             case (_, _, False) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving statically,
                 # then use Planner to update Plan's resources,
@@ -74,6 +79,7 @@ class AbstractAgent(ABC):
                 pprint(plan)
                 result: str = plan.execute(reasoner=self.reasoner)
 
+            # EXPERT-GUIDED DYNAMIC PLAN
             case (_, _, True) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving dynamically,
                 # TODO: dynamic solution
