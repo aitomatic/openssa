@@ -1,4 +1,4 @@
-"""Abstract planner."""
+"""Abstract Planner."""
 
 
 from __future__ import annotations
@@ -16,28 +16,30 @@ if TYPE_CHECKING:
 
 @dataclass
 class AbstractPlanner(ABC):
-    """Abstract planner."""
+    """Abstract Planner."""
 
+    # language model for generating solution Plans
     lm: AnLLM = field(default_factory=OpenAILLM.get_gpt_4_1106_preview)
 
+    # generally applicable parameters for controlling generated Plans' allowed complexity
     max_depth: int = 2
     max_subtasks_per_decomp: int = 3
 
     @abstractmethod
     def one_level_deep(self) -> Self:
-        """Make 1-level-deep planner."""
+        """Get 1-level-deep Planner."""
 
     @abstractmethod
     def one_fewer_level_deep(self) -> Self:
-        """Make 1-fewer-level-deep planner."""
+        """Get 1-fewer-level-deep Planner."""
 
     @abstractmethod
     def plan(self, problem: str, resources: set[AResource] | None = None) -> APlan:
-        """Make plan for solving problem based on informational resources."""
+        """Make Plan for solving posed Problem using Informational Resources."""
 
     @abstractmethod
-    def update_plan_resources(self, plan: APlan, /, resources: set[AResource]) -> APlan:
-        """Make updated plan copy with relevant informational resources."""
+    def update_plan_resources(self, plan: APlan, /, problem: str, resources: set[AResource]) -> APlan:
+        """Make updated Plan for solving posed Problem using relevant Informational Resources."""
 
 
 APlanner: TypeVar = TypeVar('APlanner', bound=AbstractPlanner, covariant=False, contravariant=False)
