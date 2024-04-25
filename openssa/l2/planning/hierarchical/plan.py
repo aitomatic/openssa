@@ -1,4 +1,4 @@
-"""Hierarchical task-planning classes."""
+"""Hierarchical Task Plan (HTP)."""
 
 
 from __future__ import annotations
