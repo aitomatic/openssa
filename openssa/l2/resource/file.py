@@ -1,4 +1,4 @@
-"""File-stored informational resource."""
+"""File-stored Informational Resource."""
 
 
 from collections.abc import Collection
@@ -66,7 +66,7 @@ AnLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=Fa
 @global_register
 @dataclass
 class FileResource(AbstractResource):
-    """File-stored informational resource."""
+    """File-stored Informational Resource."""
 
     path: Path | DirOrFileStrPath
 
