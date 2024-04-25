@@ -1,13 +1,7 @@
-"""Map-Reduce planning classes."""
+"""Map-Reduce Task Plan (MRTP)."""
 
 
 from openssa.l2.planning.abstract.plan import AbstractPlan
-from openssa.l2.planning.abstract.planner import AbstractPlanner
-
 
 class MRTP(AbstractPlan):
-    """Map-Reduce task plan (MRTP)."""
-
-
-class AutoMRTPlanner(AbstractPlanner):
-    """Automated (generative) Map-Reduce task planner."""
+    """Map-Reduce Task Plan (MRTP)."""
