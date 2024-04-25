@@ -1,4 +1,4 @@
-"""Base reasoner."""
+"""Base Reasoner."""
 
 
 from dataclasses import dataclass
@@ -12,10 +12,14 @@ from ._prompts import RESOURCE_QA_CONSO_PROMPT_TEMPLATE
 
 @dataclass
 class BaseReasoner(AbstractReasoner):
-    """Base reasoner."""
+    """Base Reasoner."""
 
     def reason(self, task: ATask, n_words: int = 1000) -> str:
-        """Reason through task and return conclusion."""
+        """Work through Task and return conclusion.
+
+        Simply forward the question/problem to Task's available Information Resources,
+        and then consolidate results from them.
+        """
         task.result: str = ((self.lm.get_response(
                                 prompt=RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(
                                     question=task.ask, n_words=n_words,
