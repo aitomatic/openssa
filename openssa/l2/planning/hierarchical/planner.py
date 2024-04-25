@@ -3,43 +3,22 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import json
-from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
+from typing import TYPE_CHECKING
 
-from loguru import logger
-from tqdm import tqdm
-
-from openssa.l2.planning.abstract.plan import AbstractPlan, AskAnsPair
 from openssa.l2.planning.abstract.planner import AbstractPlanner
-from openssa.l2.reasoning.base import BaseReasoner
-from openssa.l2.task.status import TaskStatus
-from openssa.l2.task.task import Task
 
 from .plan import HTP, HTPDict
 from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.resource.abstract import AResource
-    from openssa.l2.task.abstract import TaskDict
 
 
 @dataclass
 class AutoHTPlanner(AbstractPlanner):
     """Automated (Generative) Hierarchical Task Planner."""
-
-    def one_level_deep(self) -> AutoHTPlanner:
-        """Make 1-level-deep planner."""
-        return AutoHTPlanner(lm=self.lm,
-                             max_depth=1,
-                             max_subtasks_per_decomp=self.max_subtasks_per_decomp)
-
-    def one_fewer_level_deep(self) -> AutoHTPlanner:
-        """Make 1-fewer-level-deep planner."""
-        return AutoHTPlanner(lm=self.lm,
-                             max_depth=self.max_depth - 1,
-                             max_subtasks_per_decomp=self.max_subtasks_per_decomp)
 
     def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
         """Make HTP for solving problem."""
