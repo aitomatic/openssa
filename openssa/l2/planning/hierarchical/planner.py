@@ -21,7 +21,7 @@ class AutoHTPlanner(AbstractPlanner):
     """Automated (Generative) Hierarchical Task Planner."""
 
     def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
-        """Make HTP for solving problem."""
+        """Make HTP for solving posed Problem."""
         prompt: str = (
             HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
                                                       resource_overviews={r.unique_name: r.overview for r in resources},
@@ -44,13 +44,14 @@ class AutoHTPlanner(AbstractPlanner):
 
         return htp
 
-    def update_plan_resources(self, plan: HTP, /, resources: set[AResource]) -> HTP:
-        """Make updated HTP copy with relevant informational resources."""
+    def update_plan_resources(self, plan: HTP, /, problem: str, resources: set[AResource]) -> HTP:
+        """Make updated HTP for solving posed Problem with relevant Informational Resources."""
         assert isinstance(plan, HTP), TypeError(f'*** {plan} NOT OF TYPE {HTP.__name__} ***')
         assert resources, ValueError(f'*** {resources} NOT A NON-EMPTY SET OF INFORMATIONAL RESOURCES ***')
 
         prompt: str = HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE.format(resource_overviews={r.unique_name: r.overview
                                                                                       for r in resources},
+                                                                  problem=problem,
                                                                   htp_json=json.dumps(obj=plan.to_dict()))
 
         updated_htp_dict: HTPDict = {}
