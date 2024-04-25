@@ -90,7 +90,7 @@ class AbstractAgent(ABC):
                 # if both Plan and Planner are given, and if solving statically,
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
-                plan: APlan = self.planner.update_plan_resources(plan, resources=self.resources)
+                plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
                 pprint(plan)
                 result: str = plan.execute(reasoner=self.reasoner)
 
