@@ -1,4 +1,4 @@
-"""Global informational resources register."""
+"""Global Informational Resources Register."""
 
 
 from typing import TYPE_CHECKING
