@@ -1,4 +1,4 @@
-"""Agent with planning, reasoning & informational resources."""
+"""Agent with Planning, Reasoning & Informational Resources."""
 
 
 from dataclasses import dataclass, field
@@ -13,7 +13,10 @@ from .abstract import AbstractAgent
 
 @dataclass
 class Agent(AbstractAgent):
-    """Agent with planning, reasoning & informational resources."""
+    """Agent with Planning, Reasoning & Informational Resources."""
 
+    # use Automated Hierarchical Task Planner as default Planner
     planner: APlanner = field(default_factory=AutoHTPlanner)
+
+    # use OODA as default Reasoner
     reasoner: AReasoner = field(default_factory=OodaReasoner)
