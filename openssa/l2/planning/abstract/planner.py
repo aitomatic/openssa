@@ -25,13 +25,13 @@ class AbstractPlanner(ABC):
     max_depth: int = 2
     max_subtasks_per_decomp: int = 3
 
-    @abstractmethod
     def one_level_deep(self) -> Self:
         """Get 1-level-deep Planner."""
+        return type(self)(lm=self.lm, max_depth=1, max_subtasks_per_decomp=self.max_subtasks_per_decomp)
 
-    @abstractmethod
     def one_fewer_level_deep(self) -> Self:
         """Get 1-fewer-level-deep Planner."""
+        return type(self)(lm=self.lm, max_depth=self.max_depth - 1, max_subtasks_per_decomp=self.max_subtasks_per_decomp)  # noqa: E501
 
     @abstractmethod
     def plan(self, problem: str, resources: set[AResource] | None = None) -> APlan:
