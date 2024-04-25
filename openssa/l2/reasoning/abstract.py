@@ -1,4 +1,4 @@
-"""Abstract reasoner."""
+"""Abstract Reasoner."""
 
 
 from abc import ABC, abstractmethod
@@ -11,13 +11,14 @@ from openssa.utils.llms import AnLLM, OpenAILLM
 
 @dataclass
 class AbstractReasoner(ABC):
-    """Abstract reasoner."""
+    """Abstract Reasoner."""
 
+    # language model for reasoning
     lm: AnLLM = field(default_factory=OpenAILLM.get_gpt_4_1106_preview)
 
     @abstractmethod
     def reason(self, task: ATask, n_words: int = 1000) -> str:
-        """Reason through task and return conclusion."""
+        """Work through Task and return conclusion."""
 
 
 AReasoner: TypeVar = TypeVar('AReasoner', bound=AbstractReasoner, covariant=False, contravariant=False)
