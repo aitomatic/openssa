@@ -135,6 +135,7 @@ disable = [
   "duplicate-code",
   "fixme",
   "import-error",
+  "invalid-name",
   "line-too-long",
   "missing-class-docstring",
   "missing-function-docstring",

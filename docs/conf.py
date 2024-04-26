@@ -10,9 +10,6 @@ from pathlib import Path
 import tomllib
 
 
-# pylint: disable=invalid-name
-
-
 # Project information
 # sphinx-doc.org/en/master/usage/configuration.html#project-information
 # ---------------------------------------------------------------------
