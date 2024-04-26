@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from functools import cache
 
+# pylint: disable=unused-import
 from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource
 
 # pylint: disable=wrong-import-order
