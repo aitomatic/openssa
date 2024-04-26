@@ -25,13 +25,7 @@ class AbstractPlan(ABC):
     task: ATask
 
     # decomposed Sub-Plans for solving target Task
-    sub_plans: list[Self] = field(default_factory=list,
-                                  init=True,
-                                  repr=True,
-                                  hash=False,  # mutable
-                                  compare=True,
-                                  metadata=None,
-                                  kw_only=True)
+    sub_plans: list[Self] = field(default_factory=list)
 
     @abstractmethod
     def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
