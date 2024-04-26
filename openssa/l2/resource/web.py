@@ -1,4 +1,4 @@
-"""Web informational resource."""
+"""Web Informational Resources."""
 
 
 from .abstract import AbstractResource
@@ -7,9 +7,9 @@ from ._global import global_register
 
 @global_register
 class WebPageResource(AbstractResource):
-    """Web page informational resource."""
+    """Webpage Informational Resource."""
 
 
 @global_register
 class WebSearchResource(AbstractResource):
-    """Web search informational resource."""
+    """Web-Search Informational Resource."""

@@ -1,15 +1,15 @@
 HTP_JSON_TEMPLATE: str = """
 {{
-    "task": "(textual description of problem/task to solve)",
+    "task": "(textual description of question/problem/task to answer/solve)",
     "sub-plans": [
         {{
-            "task": "(textual description of 1st sub-problem/sub-task to solve)",
+            "task": "(textual description of 1st sub-question/problem/task to answer/solve)",
             "sub-plans": [
                 (... nested sub-plans ...)
             ]
         }},
         {{
-            "task": "(textual description of 2nd sub-problem/sub-task to solve)",
+            "task": "(textual description of 2nd sub-question/problem/task to answer/solve)",
             "sub-plans": [
                 (... nested sub-plans ...)
             ]
@@ -22,13 +22,15 @@ HTP_JSON_TEMPLATE: str = """
 HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
 {{
     "task": {{
-        "ask": "(textual description of problem/task to solve)"
+        "ask": "(textual description of question/problem/task to answer/solve)"
     }},
     "sub-plans": [
         {{
             "task": {{
-                "ask": "(textual description of 1st sub-problem/sub-task to solve)",
-                "resource": "(unique name of most relevant informational resource, IF ANY)" OR null
+                "ask": "(textual description of 1st sub-question/problem/task to answer/solve)",
+                "resources": [
+                    (... unique names of most relevant informational resources, if any ...)
+                ]
             }},
             "sub-plans": [
                 (... nested sub-plans ...)
@@ -36,8 +38,10 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
         }},
         {{
             "task": {{
-                "ask": "(textual description of 2nd sub-problem/sub-task to solve)",
-                "resource": "(unique name of most relevant informational resource, IF ANY)" OR null
+                "ask": "(textual description of 2nd sub-question/problem/task to answer/solve)",
+                "resources": [
+                    (... unique names of most relevant informational resources, if any ...)
+                ]
             }},
             "sub-plans": [
                 (... nested sub-plans ...)
@@ -86,9 +90,17 @@ HTP_WITH_RESOURCES_PROMPT_TEMPLATE: str = RESOURCE_OVERVIEW_PROMPT_SECTION + htp
 
 HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE: str = (
 RESOURCE_OVERVIEW_PROMPT_SECTION +  # noqa: E122
-"""please return an updated version of the following JSON hierarchical task plan
-by appropriately replacing `"resource": null` with `"resource": "(unique name of most relevant informational resource)"`
-for any case in which such a relevant informational resource can be identified for the corresponding problem/task:
+"""and consider that you are trying to solve the following top-level question/problem/task:
+
+```
+{problem}
+```
+
+please return an updated version of the following JSON hierarchical task plan
+by appropriately replacing `"resources": null` or `"resources": []`
+with `"resources": [(... unique names of most relevant informational resources ...)]`
+for any case in which such relevant informational resource(s) can be identified
+for the corresponding sub-question/problem/task:
 
 ```json
 {htp_json}
