@@ -21,27 +21,17 @@ def get_or_create_agent(doc_name: DocName) -> Agent | None:
 @enable_batch_qa
 @log_qa_and_update_output_file(output_name='HTP-auto-dynamic---OODAR')
 def solve_automatically_dynamically(fb_id: FbId) -> Answer:
-    if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]):
-        try:
-            return agent.solve(QS_BY_FB_ID[fb_id])
-
-        except Exception as err:  # pylint: disable=broad-exception-caught
-            return f'ERROR: {err}'
-
-    return 'ERROR: doc not found'
+    return (agent.solve(QS_BY_FB_ID[fb_id])
+            if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]))
+            else 'ERROR: doc not found')
 
 
 @enable_batch_qa
 @log_qa_and_update_output_file(output_name='HTP-auto-static---OODAR')
 def solve_automatically_statically(fb_id: FbId) -> Answer:
-    if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]):
-        try:
-            return agent.solve(QS_BY_FB_ID[fb_id], dynamic=False)
-
-        except Exception as err:  # pylint: disable=broad-exception-caught
-            return f'ERROR: {err}'
-
-    return 'ERROR: doc not found'
+    return (agent.solve(QS_BY_FB_ID[fb_id], dynamic=False)
+            if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]))
+            else 'ERROR: doc not found')
 
 
 if __name__ == '__main__':
