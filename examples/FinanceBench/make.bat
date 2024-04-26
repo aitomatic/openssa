@@ -7,6 +7,8 @@ SET TARGET=%1
 
 IF "%TARGET%"=="get-doc" GOTO get-doc
 
+IF "%TARGET%"=="htp-auto-dynamic-oodar-solve" GOTO htp-auto-dynamic-oodar-solve
+IF "%TARGET%"=="htp-auto-static-oodar-solve" GOTO htp-auto-static-oodar-solve
 IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
 IF "%TARGET%"=="rag-finetuned-embed-answer" GOTO rag-finetuned-embed-answer
 IF "%TARGET%"=="rag-finetuned-lm-answer" GOTO rag-finetuned-lm-answer
@@ -27,24 +29,32 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :: BATCH INFERENCING
 :: =================
+:htp-auto-dynamic-oodar-solve
+  poetry run python htp-oodar-agent.py %2
+  GOTO end
+
+:htp-auto-static-oodar-solve
+  poetry run python htp-oodar-agent.py %2 --static
+  GOTO end
+
 :rag-default-answer
-  poetry run python rag_default.py %2
+  poetry run python rag-default.py %2
   GOTO end
 
 :rag-finetuned-embed-answer
-  poetry run python rag_finetuned_embed_only.py %2
+  poetry run python rag-finetuned-embed-only.py %2
   GOTO end
 
 :rag-finetuned-lm-answer
-  poetry run python rag_finetuned_lm_only.py %2
+  poetry run python rag-finetuned-lm-only.py %2
   GOTO end
 
 :rag-finetuned-both-answer
-  poetry run python rag_finetuned_embed_and_lm.py %2
+  poetry run python rag-finetuned-embed-and-lm.py %2
   GOTO end
 
 :rag-gpt4-lm-answer
-  poetry run python rag_gpt4_lm.py %2
+  poetry run python rag-gpt4-lm.py %2
   GOTO end
 
 :ooda-solve

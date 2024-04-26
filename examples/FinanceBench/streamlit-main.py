@@ -1,4 +1,4 @@
-# pylint: disable=bare-except,invalid-name,no-name-in-module,wrong-import-position
+# pylint: disable=bare-except,no-name-in-module,wrong-import-position
 
 
 import base64
