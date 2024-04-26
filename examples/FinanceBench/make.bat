@@ -7,6 +7,8 @@ SET TARGET=%1
 
 IF "%TARGET%"=="get-doc" GOTO get-doc
 
+IF "%TARGET%"=="htp-auto-dynamic-oodar-solve" GOTO htp-auto-dynamic-oodar-solve
+IF "%TARGET%"=="htp-auto-static-oodar-solve" GOTO htp-auto-static-oodar-solve
 IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
 IF "%TARGET%"=="rag-finetuned-embed-answer" GOTO rag-finetuned-embed-answer
 IF "%TARGET%"=="rag-finetuned-lm-answer" GOTO rag-finetuned-lm-answer
@@ -27,6 +29,14 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :: BATCH INFERENCING
 :: =================
+:htp-auto-dynamic-oodar-solve
+  poetry run python htp-oodar-agent.py %2
+  GOTO end
+
+:htp-auto-static-oodar-solve
+  poetry run python htp-oodar-agent.py %2 --static
+  GOTO end
+
 :rag-default-answer
   poetry run python rag-default.py %2
   GOTO end

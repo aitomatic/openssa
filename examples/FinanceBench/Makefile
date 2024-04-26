@@ -1,8 +1,11 @@
 get-doc:
 	@poetry run python data.py ${name}
 
-htp-oodar-solve:
+htp-auto-dynamic-oodar-solve:
 	@poetry run python htp-oodar-agent.py ${id}
+
+htp-auto-static-oodar-solve:
+	@poetry run python htp-oodar-agent.py ${id} --static
 
 rag-default-answer:
 	@poetry run python rag-default.py ${id}
