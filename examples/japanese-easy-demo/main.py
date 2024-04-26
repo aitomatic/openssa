@@ -1,6 +1,6 @@
+from pathlib import Path
 from dotenv import load_dotenv
 from openssa import OodaSSA, TaskDecompositionHeuristic
-from pathlib import Path
 
 
 load_dotenv()
