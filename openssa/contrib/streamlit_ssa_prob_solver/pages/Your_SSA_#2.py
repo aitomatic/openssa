@@ -1,6 +1,3 @@
-# pylint: disable=invalid-name
-
-
 """SSAProbSolver instance #2."""
 
 

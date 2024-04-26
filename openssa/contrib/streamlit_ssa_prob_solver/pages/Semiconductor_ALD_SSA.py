@@ -1,6 +1,3 @@
-# pylint: disable=invalid-name
-
-
 """Semiconductor ALD SSAProbSolver."""
 
 
