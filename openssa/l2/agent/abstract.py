@@ -33,13 +33,7 @@ class AbstractAgent(ABC):
     reasoner: AReasoner = field(default_factory=BaseReasoner)
 
     # set of Informational Resources for answering information-querying questions
-    resources: set[AResource] = field(default_factory=set,
-                                      init=True,
-                                      repr=True,
-                                      hash=False,  # mutable
-                                      compare=True,
-                                      metadata=None,
-                                      kw_only=True)
+    resources: set[AResource] = field(default_factory=set)
 
     @property
     def resource_overviews(self) -> dict[str, str]:
