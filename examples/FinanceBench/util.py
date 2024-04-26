@@ -28,7 +28,6 @@ def enable_batch_qa(qa_func: QAFunc) -> QAFunc:
 
 @dataclass
 class log_qa_and_update_output_file:  # noqa: N801
-    # pylint: disable=invalid-name
     output_name: str
 
     def __call__(self, qa_func: QAFunc) -> QAFunc:
