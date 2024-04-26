@@ -25,7 +25,7 @@ def solve(question) -> str:
     try:
         return ooda_ssa.solve(question)
 
-    except Exception as err:
+    except Exception as err:  # pylint: disable=broad-exception-caught
         return f'ERROR: {err}'
 
 
