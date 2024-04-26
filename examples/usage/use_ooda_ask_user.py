@@ -36,7 +36,3 @@ def main():
         research_documents_tool=research_documents_tool,
     )
     ooda_ssa.solve(task)
-
-
-if __name__ == "__main__":
-    main()

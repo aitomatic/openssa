@@ -31,13 +31,7 @@ class AbstractTask(ABC):
     """Abstract task."""
 
     ask: str
-    resources: set[AResource] = field(default_factory=set,
-                                      init=True,
-                                      repr=True,
-                                      hash=False,  # mutable
-                                      compare=True,
-                                      metadata=None,
-                                      kw_only=True)
+    resources: set[AResource] = field(default_factory=set)
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
     dynamic_decomposer: APlanner | None = None
