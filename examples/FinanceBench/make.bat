@@ -28,23 +28,23 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 :: BATCH INFERENCING
 :: =================
 :rag-default-answer
-  poetry run python rag_default.py %2
+  poetry run python rag-default.py %2
   GOTO end
 
 :rag-finetuned-embed-answer
-  poetry run python rag_finetuned_embed_only.py %2
+  poetry run python rag-finetuned-embed-only.py %2
   GOTO end
 
 :rag-finetuned-lm-answer
-  poetry run python rag_finetuned_lm_only.py %2
+  poetry run python rag-finetuned-lm-only.py %2
   GOTO end
 
 :rag-finetuned-both-answer
-  poetry run python rag_finetuned_embed_and_lm.py %2
+  poetry run python rag-finetuned-embed-and-lm.py %2
   GOTO end
 
 :rag-gpt4-lm-answer
-  poetry run python rag_gpt4_lm.py %2
+  poetry run python rag-gpt4-lm.py %2
   GOTO end
 
 :ooda-solve
