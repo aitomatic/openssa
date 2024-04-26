@@ -14,8 +14,8 @@ THREE_FIN_STATEMENTS_HEURISTICS: str = (
 
 def get_or_create_ooda_ssa() -> OodaSSA:
     ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
-                    highest_priority_heuristic=THREE_FIN_STATEMENTS_HEURISTICS,
-                    enable_generative=True)
+                  highest_priority_heuristic=THREE_FIN_STATEMENTS_HEURISTICS,
+                  enable_generative=True)
     ssa.activate_resources(LOCAL_CACHE_DOCS_DIR_PATH)
     return ssa
 
