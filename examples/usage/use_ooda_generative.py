@@ -6,7 +6,6 @@ from openssa import OodaSSA
 
 
 def main():
-    # task = "what can you do?"
     task = "How to start the machine EOS M290?"
     research_documents_tool: ResearchDocumentsTool = ResearchDocumentsTool("251")
     task_heuristics = TaskDecompositionHeuristic({})
@@ -20,7 +19,3 @@ def main():
     )
     answer = ooda_ssa.solve(task)
     print(answer)
-
-
-if __name__ == "__main__":
-    main()

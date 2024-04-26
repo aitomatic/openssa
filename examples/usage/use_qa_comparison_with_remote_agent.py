@@ -45,7 +45,3 @@ def main():
         }
     )
     df.to_csv(f"{DATA_FOLDER_PATH}/qa_standard_agent_comparion.csv", index=False)
-
-
-if __name__ == "__main__":
-    main()
