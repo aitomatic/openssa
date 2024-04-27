@@ -37,7 +37,7 @@ class AbstractResource(ABC):
 
     def present_full_answer(self, question: str, n_words: int = 1000) -> str:
         """Present answer to posed question together with full name & overview of Informational Resource."""
-        return ('===========================\n'
+        return ('======================================\n'
                 f'{self.full_name}\n'
                 'has the following overview:\n'
                 '---------------------------\n'
@@ -48,7 +48,8 @@ class AbstractResource(ABC):
                 'returns the following answer/solution:\n'
                 '--------------------------------------\n'
                 f'{self.answer(question=question, n_words=n_words)}\n'
-                '--------------------------------------\n')
+                '--------------------------------------\n'
+                '======================================\n')
 
 
 AResource: TypeVar = TypeVar('AResource', bound=AbstractResource, covariant=False, contravariant=False)
