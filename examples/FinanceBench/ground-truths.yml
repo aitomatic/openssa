@@ -4,6 +4,10 @@ financebench_id_03029:
     Give a response to the question by relying on the details shown in the cash flow
     statement.
   answer: $1577.00
+
+  category: 0-RETRIEVE
+  correctness-eval: the answer contains a quantity equivalent to 1577, 1577 million or 1.577 billion
+
 financebench_id_04672:
   doc_name: 3M_2018_10K
   question: 'Assume that you are a public equities analyst. Answer the following question
