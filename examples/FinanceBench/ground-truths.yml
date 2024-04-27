@@ -9,7 +9,8 @@ financebench_id_03029:
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
-    1577, 1577 million or 1.577 billion
+    1577, 1577 million or 1.577 billion,
+    1600, 1600 million or 1.6 billion
 
 financebench_id_04672:
   doc: 3M_2018_10K
