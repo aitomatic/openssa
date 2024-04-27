@@ -100,7 +100,7 @@ def export_ground_truths():
               newline=None,
               closefd=True,
               opener=None) as f:
-        yaml.safe_dump(data={fb_id: {'doc_name': row.doc_name, 'question': row.question, 'answer': row.answer}
+        yaml.safe_dump(data={fb_id: {'doc': row.doc_name, 'question': row.question, 'answer': row.answer, 'page(s)': row.page_number}  # noqa: E501
                              for fb_id, row in META_DF.iterrows()},
                        stream=f,
                        default_style=None,
