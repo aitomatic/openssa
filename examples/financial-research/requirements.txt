@@ -1,4 +1,4 @@
-# OpenSSA
+OpenSSA[contrib] @ https://GitHub.com/Aitomatic/OpenSSA/archive/main.zip
 
 Mechanize >= 0.4
 PDFKit >= 1.0
