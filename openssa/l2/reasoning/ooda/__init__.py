@@ -10,10 +10,10 @@ from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.task.abstract import ATask
 from openssa.l2.task.status import TaskStatus
 
-from ._prompts import OBSERVE_PROMPT_TEMPLATE
+from ._prompts import ORIENT_PROMPT_TEMPLATE
 
 
-type Observation = tuple[str, str, str]
+type Observation = str
 
 
 class OrientResult(TypedDict):
@@ -33,7 +33,7 @@ class OodaReasoner(AbstractReasoner):
         - Orient & Decide whether such results are adequate for confident answer/solution
         - Act to update Task's status and result
         """
-        observations: list[Observation] = self.observe(task=task, n_words=n_words)
+        observations: set[Observation] = self.observe(task=task, n_words=n_words)
 
         # note: Orient & Decide steps are practically combined to economize LM calls
         orient_result: OrientResult = self.orient(task=task, observations=observations, n_words=n_words)
@@ -43,21 +43,13 @@ class OodaReasoner(AbstractReasoner):
 
         return task.result
 
-    def observe(self, task: ATask, n_words: int = 1000) -> list[Observation]:
+    def observe(self, task: ATask, n_words: int = 1000) -> set[Observation]:
         """Observe results from available Informational Resources."""
-        return [(r.name, r.overview, r.answer(question=task.ask, n_words=n_words))
-                for r in task.resources]
+        return {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}
 
-    def orient(self, task: ATask, observations: list[Observation], n_words: int = 1000) -> OrientResult:
+    def orient(self, task: ATask, observations: set[Observation], n_words: int = 1000) -> OrientResult:
         """Orient whether observed results are adequate for directly resolving Task."""
-        prompt: str = OBSERVE_PROMPT_TEMPLATE.format(
-            question=task.ask, n_words=n_words,
-            resources_and_answers='\n\n'.join((f'INFORMATIONAL RESOURCE #{i + 1} (name: "{name}"):\n'
-                                               '\n'
-                                               f'INFORMATIONAL RESOURCE #{i + 1} OVERVIEW:\n{overview}\n'
-                                               '\n'
-                                               f'ANSWER/SOLUTION #{i + 1}:\n{answer}\n')
-                                              for i, (name, overview, answer) in enumerate(observations)))
+        prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
         logger.debug(prompt)
 
         def is_valid(orient_result_dict: OrientResult) -> bool:

@@ -23,13 +23,8 @@ class BaseReasoner(AbstractReasoner):
         task.result: str = ((self.lm.get_response(
                                 prompt=RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(
                                     question=task.ask, n_words=n_words,
-                                    resources_and_answers='\n\n'.join(
-                                        (f'INFORMATIONAL RESOURCE #{i + 1} (name: "{r.name}"):\n'
-                                         '\n'
-                                         f'INFORMATIONAL RESOURCE #{i + 1} OVERVIEW:\n{r.overview}\n'
-                                         '\n'
-                                         f'ANSWER/SOLUTION #{i + 1}:\n{r.answer(question=task.ask, n_words=n_words)}\n')
-                                        for i, r in enumerate(task.resources))))
+                                    resources_and_answers='\n\n'.join(r.present_full_answer(question=task.ask, n_words=n_words)  # noqa: E501
+                                                                      for r in task.resources)))
 
                              if len(task.resources) > 1
 
