@@ -19,6 +19,13 @@ financebench_id_04672:
     year end FY2018 net PPNE for 3M? Answer in USD billions.'
   answer: $8.70
   page(s): '58'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    8.7, 8.738 billion, 8,738 million,
+    9, 8.7 billion, 9 billion or 9,000 million
+
 financebench_id_00499:
   doc: 3M_2022_10K
   question: Is 3M a capital-intensive business based on FY2022 data?
