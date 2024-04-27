@@ -123,5 +123,10 @@ given the following collection of reasoning and results:
 ```
 {info}
 ```
+
+Please present important reasoning flows and supporting details, but
+please DO NOT USE GENERIC NAMES/NUMBERS TO REFER TO SUPPORTING DETAILS
+(e.g., "Supporting Question/Task #3", "Supporting Result #4", etc.)
+because such generic referencing names could get very confusing when presented in larger conversations.
 """  # noqa: E122
 )
