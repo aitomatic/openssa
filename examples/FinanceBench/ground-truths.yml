@@ -38,6 +38,14 @@ financebench_id_00499:
 
     Return on Assets= 12.4%'
   page(s): 48,50,52
+
+  category: 6-OTHER-ADVANCED
+  correctness: >-
+    the answer opines that 3M is actually managing capital assets efficiently,
+    and justifies such opinion by certain calculated financial ratios
+    showing that Fixed Assets are small relative to Revenue or relative to Total Assets,
+    or that Return on Assets is quite good
+
 financebench_id_01226:
   doc: 3M_2022_10K
   question: What drove operating margin change as of FY2022 for 3M? If operating margin
