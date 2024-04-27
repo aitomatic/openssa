@@ -1,3 +1,4 @@
+# following prompt practically combines Orient & Decide steps into 1 single LM request for efficiency
 ORIENT_PROMPT_TEMPLATE: str = \
 """Assuming that the following question/problem/task is posed
 
@@ -14,7 +15,7 @@ the concrete results MUST CONTAIN SPECIFIC VALUES for such quantities for the an
 
 If you can answer/solve confidently with concrete results, return a JSON dictionary
 `{{"confident": true,
-   "answer": "<confident answer/solution of up to {n_words:,} words, covering reasoning flow and supporting details>"}}`.
+   "answer": "<confident answer/solution of up to {n_words:,} words, covering reasoning flows and supporting details>"}}`.
 
 If you cannot answer/solve confidently with concrete results, return a JSON dictionary
 `{{"confident": false,
