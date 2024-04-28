@@ -1411,6 +1411,12 @@ financebench_id_01254:
   question: Has MGM Resorts paid dividends to common shareholders in FY2022?
   answer: Yes. MGM maintained 0.01$ per share annual dividend through out FY 2022.
   page(s): '32'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative, i.e., MGM Resorts paid dividends
+
+
 financebench_id_00382:
   doc: MGMRESORTS_2022Q4_EARNINGS
   question: Which region had the Highest EBITDAR Contribution for MGM during FY2022?
