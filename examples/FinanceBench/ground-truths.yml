@@ -457,6 +457,14 @@ financebench_id_01928:
   question: What Was AMCOR's Adjusted Non GAAP EBITDA for FY 2023
   answer: AMCOR's Adj. EBITDA was $2,018mn in FY 2023
   page(s): '12'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    2018, 2018 million, 2.018 billion,
+    2000, 2000 million or 2 billion
+
+
 financebench_id_01930:
   doc: AMCOR_2023Q4_EARNINGS
   question: How much was the Real change in Sales for AMCOR in FY 2023 vs FY 2022,
