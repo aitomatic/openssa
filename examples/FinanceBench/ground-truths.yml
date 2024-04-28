@@ -408,8 +408,8 @@ financebench_id_01079:
   category: 0-RETRIEVE
   correctness: |-
     the answer mentions acquisitions in at least 2 of the following:
-    - Czech Republic
-    - New Zealand, and
+    - Czech Republic;
+    - New Zealand; and
     - Shanghai, China (or alternatively just "Shanghai" or just "China")
 
 
