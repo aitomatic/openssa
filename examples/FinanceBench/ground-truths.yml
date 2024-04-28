@@ -1541,6 +1541,14 @@ financebench_id_03531:
     much total current assets did Nike have at the end of FY2019? Answer in USD millions.
   answer: $16525.00
   page(s): '54'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity that is equivalent to or approximately equal to
+    16525, 16525 million, 16.525 billion,
+    16500, 16500 million or 16.5 billion
+
+  
 financebench_id_04080:
   doc: NIKE_2021_10K
   question: 'When primarily referencing the income statement and the statement of
