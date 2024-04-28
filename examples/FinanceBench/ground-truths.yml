@@ -939,7 +939,7 @@ financebench_id_00678:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Gross Margin percentage values for 2021 and 2022,
+    the answer contains calculated Gross Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric increased
 
 
