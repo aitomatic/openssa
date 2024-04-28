@@ -1381,6 +1381,15 @@ financebench_id_04171:
     amount of accounts payable for MGM Resorts? Answer in USD millions.
   answer: $303.00
   page(s): '57'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity that is equivalent to or approximately equal to
+    302.6, 302.6 million, 0.3026 billion,
+    303, 303 million, 0.303 billion,
+    300, 300 million or 0.3 billion
+
+
 financebench_id_03849:
   doc: MGMRESORTS_2020_10K
   question: What is the FY2018 - FY2020 3 year average of capex as a % of revenue
