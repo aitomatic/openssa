@@ -1488,6 +1488,13 @@ financebench_id_00552:
     FY2022 period?
   answer: No. Microsoft decreased its debt by $2.5bn in FY 2023 vs FY 2022.
   page(s): '60'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains calculated Total Debt values for 2022 and 2023,
+    and concludes that Total Debt decreased
+
+
 financebench_id_04458:
   doc: NETFLIX_2015_10K
   question: 'We want to calculate a financial metric. Please help us compute it by
