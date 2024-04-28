@@ -607,6 +607,16 @@ financebench_id_01028:
     of 2022?
   answer: United States, EMEA, APAC, and LACC
   page(s): '155'
+
+  category: 0-RETRIEVE
+  correctness: |-
+    the answer mentions at least 3 among:
+    - United States (US);
+    - Europe, the Middle East and Africa (EMEA);
+    - Asia Pacific, Australia and New Zealand (APAC); and
+    - Latin America, Canada and the Caribbean (LACC)
+
+
 financebench_id_00723:
   doc: AMERICANEXPRESS_2022_10K
   question: Does AMEX have an improving operating margin profile as of 2022? If operating
