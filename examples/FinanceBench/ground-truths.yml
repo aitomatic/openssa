@@ -841,6 +841,12 @@ financebench_id_04660:
     decimal places.
   answer: '1.73'
   page(s): '68'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Working Capital Ratio metric value that is between 1.70 and 1.80
+
+
 financebench_id_03838:
   doc: BLOCK_2020_10K
   question: What is the FY2019 - FY2020 total revenue growth rate for Block (formerly
