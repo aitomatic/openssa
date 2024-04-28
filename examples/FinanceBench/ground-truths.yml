@@ -131,6 +131,11 @@ financebench_id_00941:
 
     -1.500% Notes due 2031 (Trading Symbol: MMM31)'
   page(s): '1'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions debt notes/securities due 2026, 2031 and 2031
+
 financebench_id_01858:
   doc: 3M_2023Q2_10Q
   question: Does 3M maintain a stable trend of dividend distribution?
