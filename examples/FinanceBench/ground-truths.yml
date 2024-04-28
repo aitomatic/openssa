@@ -459,8 +459,8 @@ financebench_id_01928:
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
-    2018, 2018 million, 2.018 billion,
-    2000, 2000 million or 2 billion
+    2018 million, 2.018 billion,
+    2000 million or 2 billion
 
 
 financebench_id_01930:
