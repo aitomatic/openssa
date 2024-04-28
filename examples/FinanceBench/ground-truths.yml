@@ -1434,6 +1434,13 @@ financebench_id_01911:
     numerator and annual Interest Expense as the denominator?
   answer: As adjusted EBIT is negative, coverage ratio is zero
   page(s): '14'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Interest Coverage Ratio metric value that is negative,
+    or, alternatively, says that such metric is zero because of negative EBIT
+
+
 financebench_id_01912:
   doc: MGMRESORTS_2022Q4_EARNINGS
   question: Which region had the worst topline performance for MGM during FY2022?
