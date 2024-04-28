@@ -1162,6 +1162,12 @@ financebench_id_01244:
   question: Has CVS Health paid dividends to common shareholders in Q2 of FY2022?
   answer: Yes, CVS paid a $ 0.55 dividend per share every quarter in FY2022
   page(s): '68'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative, i.e., CVS Health paid dividends
+
+
 financebench_id_00839:
   doc: FOOTLOCKER_2022_8K_dated_2022-08-19
   question: Does Foot Locker's new CEO have previous CEO experience in a similar company
