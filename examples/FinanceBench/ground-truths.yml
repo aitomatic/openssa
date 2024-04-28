@@ -247,6 +247,13 @@ financebench_id_00591:
   answer: Yes, the FCF conversion (using net income as the denominator) for Adobe
     has improved by ~13% from 143% in 2021 to 156% in 2022
   page(s): '57'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains calculated Free Cash Flow Conversion Ratio metric values for 2021 and 2022,
+    and concludes that such metric increased
+
+
 financebench_id_01319:
   doc: AES_2022_10K
   question: What is the quantity of restructuring costs directly outlined in AES Corporation's
