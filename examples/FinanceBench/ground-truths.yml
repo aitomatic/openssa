@@ -730,6 +730,12 @@ financebench_id_02608:
     Answer in units of percents and round to one decimal place.
   answer: 2.8%
   page(s): '56'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated average Net Profit Margin percentage value that is approximately in the range from 2.5% to 3%
+
+
 financebench_id_04417:
   doc: BESTBUY_2019_10K
   question: What is the year end FY2019 total amount of inventories for Best Buy?
