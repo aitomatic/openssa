@@ -717,6 +717,12 @@ financebench_id_00070:
   answer: Yes. American Water Works had postivie working capital of $ 124Mn by FY
     2022.
   page(s): 81,82
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer is affirmative
+
+
 financebench_id_02608:
   doc: BESTBUY_2017_10K
   question: In agreement with the information outlined in the income statement, what
