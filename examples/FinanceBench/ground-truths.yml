@@ -799,6 +799,12 @@ financebench_id_00288:
     FY2024?
   answer: Yes, there was a decline of ~42% between FY2023 and Q2 of FY 2024.
   page(s): '20'
+    
+  category: 1-COMPARE
+  correctness: >-
+    the answer is affirmative, i.e., there was a decrease in Cash & Cash Equivalents
+
+
 financebench_id_00460:
   doc: BESTBUY_2024Q2_10Q
   question: Was there any change in the number of Best Buy stores between Q2 of FY2024
