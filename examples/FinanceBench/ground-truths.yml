@@ -471,6 +471,13 @@ financebench_id_01930:
     if we exclude the impact of FX movement, passthrough costs and one-off items?
   answer: The Real Growth was flat in FY 2023 vs FY 2022.
   page(s): '10'
+
+  category: 2-CALC-CHANGE
+  correctness: >-
+    the answer concludes that the percentage change is approximately 1%,
+    or, alternatively, concludes that the growth is flat / small
+
+
 financebench_id_03069:
   doc: AMD_2015_10K
   question: Answer the following question as if you are an equity research analyst
