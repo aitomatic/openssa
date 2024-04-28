@@ -1116,6 +1116,13 @@ financebench_id_05915:
     utilizing the line items clearly shown in the P&L statement and the balance sheet.'
   answer: '17.98'
   page(s): 302,304
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer constains a calculated Fixed Asset Turnover Ratio
+    metric value that is approximately in the range from 17.00 to 19.00
+
+
 financebench_id_00790:
   doc: CVSHEALTH_2022_10K
   question: Is CVS Health a capital-intensive business based on FY2022 data?
