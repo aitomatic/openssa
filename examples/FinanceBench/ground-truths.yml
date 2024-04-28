@@ -416,6 +416,13 @@ financebench_id_00684:
     why.
   answer: No. For AMCOR there has been a slight decline in gross margins by 0.8%.
   page(s): '50'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains calculated Gross Margin percentage values for 2022 and 2023,
+    and concludes that such metric decreased
+
+
 financebench_id_01936:
   doc: AMCOR_2023Q2_10Q
   question: What is the nature & purpose of AMCOR's restructuring liability as oF
