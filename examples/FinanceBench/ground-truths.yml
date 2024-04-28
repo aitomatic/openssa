@@ -650,6 +650,12 @@ financebench_id_01351:
   answer: The effective tax rate for American Express has changed/dropped from 24.6%
     in FY 2021 to 21.6% in FY 2022.
   page(s): '44'
+
+  category: 2-CALC-CHANGE
+  correctness: >-
+    the answer says that the effective tax rate changed from 24.6% to 21.6%, or that it decreased by 3 pencentage points
+
+
 financebench_id_01964:
   doc: AMERICANEXPRESS_2022_10K
   question: What was the largest liability in American Express's Balance Sheet in
