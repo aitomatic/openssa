@@ -812,6 +812,12 @@ financebench_id_00460:
   answer: Yes, there is decline in number stores by 1.32% from 982 stores in Q2 FY
     2023 to 969 by the end of Q2 FY2024.
   page(s): '17'
+      
+  category: 1-COMPARE
+  correctness: >-
+    the answer concludes there was a decrease in the number of stores
+
+
 financebench_id_01902:
   doc: BESTBUY_2024Q2_10Q
   question: Which Best Buy product category performed the best (by top line) in the
