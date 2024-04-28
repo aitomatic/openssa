@@ -743,6 +743,14 @@ financebench_id_04417:
     in the balance sheet.
   answer: $5409.00
   page(s): '52'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    5409, 5409 million, 5.409 billion,
+    5400, 5400 million or 5.4 billion
+
+    
 financebench_id_00685:
   doc: BESTBUY_2023_10K
   question: Are Best Buy's gross margins historically consistent (not fluctuating
