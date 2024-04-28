@@ -1286,6 +1286,13 @@ financebench_id_00206:
     like this, then please state that and explain why.
   answer: Since JPM is a financial institution, gross margin is not a relevant metric.
   page(s): '3'
+
+  category: 6-OTHER-ADVANCED
+  correctness: >-
+    the answer says that Gross Margin is not a very relevant/useful metric
+    for this business model and/or industry
+
+
 financebench_id_00394:
   doc: JPMORGAN_2022Q2_10Q
   question: In 2022 Q2, which of JPM's business segments had the highest net income?
