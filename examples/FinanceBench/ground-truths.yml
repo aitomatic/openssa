@@ -220,6 +220,12 @@ financebench_id_03856:
     within the balance sheet and the cash flow statement.'
   answer: '0.83'
   page(s): 57,61
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Operating Cash Flow Ratio metric value that is between 0.8 and 0.85
+
+
 financebench_id_00438:
   doc: ADOBE_2022_10K
   question: Does Adobe have an improving operating margin profile as of FY2022? If
