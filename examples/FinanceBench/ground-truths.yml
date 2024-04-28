@@ -1188,6 +1188,12 @@ financebench_id_00822:
     against joining than the other nominees?
   answer: Yes, his name is Richard A. Johnson
   page(s): '2'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer identifies Johnson as that person
+
+
 financebench_id_04103:
   doc: GENERALMILLS_2019_10K
   question: 'What is the FY2019 cash conversion cycle (CCC) for General Mills? CCC
