@@ -673,6 +673,12 @@ financebench_id_01981:
   question: Was American Express able to retain card members during 2022?
   answer: 'Yes'
   page(s): '45'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative
+
+
 financebench_id_05718:
   doc: AMERICANWATERWORKS_2020_10K
   question: How much (in USD billions) did American Water Works pay out in cash dividends
