@@ -868,6 +868,15 @@ financebench_id_07661:
     flow from operating activities in FY2020? Answer in USD millions.'
   answer: $382.00
   page(s): '90'
+  
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    381.6, 381.6 million
+    382, 382 million, 0.382 billion,
+    400, 400 million or 0.4 billion
+
+
 financebench_id_10285:
   doc: BOEING_2018_10K
   question: 'We need to calculate a financial metric by using information only provided
