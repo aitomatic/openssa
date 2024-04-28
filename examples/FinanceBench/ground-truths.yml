@@ -787,6 +787,12 @@ financebench_id_01275:
   answer: Best Buy generated the most cash flow from operating activities in FY 2023
     ($1.8 bn)
   page(s): '42'
+  
+  category: 1-COMPARE
+  correctness: >-
+    the answer concludes that Operations / Operating Cash Flows brought in the most cash
+
+
 financebench_id_00288:
   doc: BESTBUY_2024Q2_10Q
   question: Was there any drop in Cash & Cash equivalents between FY 2023 and Q2 of
