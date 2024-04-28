@@ -572,6 +572,12 @@ financebench_id_00563:
     did sales proportionally increase the most?
   answer: Data Center
   page(s): '48'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer concludes that Data Center segment's revenue proportionally grew the most
+
+
 financebench_id_00757:
   doc: AMD_2022_10K
   question: Did AMD report customer concentration in FY22?
