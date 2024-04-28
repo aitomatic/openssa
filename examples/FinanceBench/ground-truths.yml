@@ -970,6 +970,12 @@ financebench_id_00494:
   answer: Boeing forecasts an increase in the production rates for the 737, 777X and
     787 aircrafts in 2023.
   page(s): '9'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mention increase(s) in production
+
+
 financebench_id_00585:
   doc: BOEING_2022_10K
   question: How does Boeing's effective tax rate in FY2022 compare to FY2021?
