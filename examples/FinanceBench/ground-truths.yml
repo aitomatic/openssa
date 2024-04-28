@@ -988,8 +988,8 @@ financebench_id_00585:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains calculated Effective Tax Rate percentage values for 2021 and 2022,
-    with one percentage value being negative and the other value being positive
+    the answer contains calculated Effective Tax Rate percentage or decimal values for 2021 and 2022,
+    with one value being negative and the other value being positive
 
 
 financebench_id_03473:
