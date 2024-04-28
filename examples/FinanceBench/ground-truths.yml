@@ -1030,6 +1030,14 @@ financebench_id_06272:
     clearly displayed in the cash flow statement and the income statement.
   answer: '0.8'
   page(s): 63,66
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Dividend Payout Ratio
+    percentage value that is approximately in the range from 78.00% to 82.00%,
+    or, alternatively, a decimal value that is approximately in the range from 0.78 to 0.82
+
+
 financebench_id_10130:
   doc: CORNING_2020_10K
   question: 'Based on the information provided primarily in the balance sheet and
