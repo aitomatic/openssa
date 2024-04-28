@@ -583,6 +583,12 @@ financebench_id_00757:
   question: Did AMD report customer concentration in FY22?
   answer: Yes, one customer accounted for 16% of consolidated net revenue
   page(s): '12'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions that one customer accounted for 16% of revenue
+
+
 financebench_id_00476:
   doc: AMERICANEXPRESS_2022_10K
   question: Which debt securities are registered to trade on a national securities
