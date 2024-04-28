@@ -1086,6 +1086,13 @@ financebench_id_00005:
     2022 close. This answer considers only operating current assets and current liabilities
     that were clearly shown in the balance sheet.
   page(s): '60'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer is affirmative, i.e., Corning had positive working capital,
+    and contains a calculated Working Capital metric value that is positive
+
+
 financebench_id_04209:
   doc: COSTCO_2021_10K
   question: Using only the information within the balance sheet, how much total assets
