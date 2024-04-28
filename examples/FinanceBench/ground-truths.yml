@@ -1310,6 +1310,12 @@ financebench_id_02049:
     of 2023 decrease compared to the same period in the prior year?
   answer: Yes. It decreased.
   page(s): '85'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative, i.e., VaR decreased
+
+
 financebench_id_10499:
   doc: KRAFTHEINZ_2019_10K
   question: 'What is Kraft Heinz''s FY2019 inventory turnover ratio? Inventory turnover
