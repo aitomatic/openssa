@@ -595,6 +595,12 @@ financebench_id_00476:
     exchange under American Express' name as of 2022?
   answer: There are none
   page(s): '1'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer concludes that there are no debt securities traded
+
+
 financebench_id_01028:
   doc: AMERICANEXPRESS_2022_10K
   question: What are the geographies that American Express primarily operates in as
