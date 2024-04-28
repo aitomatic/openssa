@@ -1614,6 +1614,12 @@ financebench_id_00735:
     FY2022 and FY2021?
   answer: No, Pepsico is not involved in material legal battles.
   page(s): '26'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer says that there were NO material lawsuits / legal battles
+
+
 financebench_id_01328:
   doc: PEPSICO_2022_10K
   question: What is the quantity of restructuring costs directly outlined in Pepsico's
