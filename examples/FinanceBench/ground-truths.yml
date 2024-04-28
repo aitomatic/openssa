@@ -765,8 +765,9 @@ financebench_id_00685:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Gross Margin percentage values for 2022 and 2023,
-    and concludes that they are within 2 percentage points of each other and hence consistent
+    the answer contains calculated Gross Margin
+    percentage values for 2022 and 2023 and concludes that they are within 2 percentage points of each other,
+    or, alternatively, decimal values that are within 0.02 of each other
 
 
 financebench_id_01077:
