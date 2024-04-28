@@ -164,6 +164,12 @@ financebench_id_02987:
     of financial position.'
   answer: '24.26'
   page(s): 69,70
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Fixed Asset Turnover Ratio metric that is between 24.00 and 26.00
+
+
 financebench_id_07966:
   doc: ACTIVISIONBLIZZARD_2019_10K
   question: What is the FY2017 - FY2019 3 year average of capex as a % of revenue
