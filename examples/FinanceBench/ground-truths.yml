@@ -1398,6 +1398,14 @@ financebench_id_03849:
     the statement of income.
   answer: 7.9%
   page(s): 65,67
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated metric
+    percentage value that is approximately in the range from 7.5% to 8.5%,
+    or, alternatively, a decimal value that is approximately in the range from 0.075 to 0.085
+
+
 financebench_id_01254:
   doc: MGMRESORTS_2022_10K
   question: Has MGM Resorts paid dividends to common shareholders in FY2022?
