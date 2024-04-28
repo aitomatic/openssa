@@ -167,7 +167,7 @@ financebench_id_02987:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Fixed Asset Turnover Ratio metric value that is between 24.00 and 26.00
+    the answer contains a calculated Fixed Asset Turnover Ratio metric value that is in the range from 24.00 to 26.00
 
 
 financebench_id_07966:
