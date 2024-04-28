@@ -1298,6 +1298,12 @@ financebench_id_00394:
   question: In 2022 Q2, which of JPM's business segments had the highest net income?
   answer: Corporate & Investment Bank. Its net income was $3725 million.
   page(s): '21'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer identifies Corporate & Investment Bank segment as having higest Net Income
+
+
 financebench_id_02049:
   doc: JPMORGAN_2023Q2_10Q
   question: Looking at VaR, did the risk that JPM faced in the second fiscal quarter
