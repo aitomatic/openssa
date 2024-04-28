@@ -319,6 +319,12 @@ financebench_id_08135:
     by utilizing the line items clearly shown in the statement of income.
   answer: 30.8%
   page(s): '38'
+
+  category: 2-CALC-CHANGE
+  correctness: >-
+    the answer contains a calculated Revenue change percentage that is approximately 30%, 30.7%, 30.8% or 31%
+
+
 financebench_id_08286:
   doc: AMAZON_2019_10K
   question: By drawing conclusions from the information stated only in the income
