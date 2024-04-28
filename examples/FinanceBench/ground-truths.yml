@@ -1510,6 +1510,15 @@ financebench_id_03282:
     Base your judgments on the information provided primarily in the balance sheet.
   answer: $5466.00
   page(s): '45'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity that is equivalent to or approximately equal to
+    5466.3, 5466.3 million, 5.4663 billion,
+    5466, 5466 million, 5.466 billion,
+    5500, 5500 million or 5.5 billion
+
+
 financebench_id_04302:
   doc: NIKE_2018_10K
   question: We need to calculate a reasonable approximation (or exact number if possible)
