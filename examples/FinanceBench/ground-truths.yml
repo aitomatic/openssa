@@ -721,7 +721,8 @@ financebench_id_00070:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer is affirmative, i.e., American Water Works had positive working capital
+    the answer is affirmative, i.e., American Water Works had positive working capital,
+    and contains a calculated Working Capital metric value that is positive
 
 
 financebench_id_02608:
