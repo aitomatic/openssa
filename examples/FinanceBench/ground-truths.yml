@@ -1245,6 +1245,14 @@ financebench_id_10136:
     two decimal places.'
   answer: '0.54'
   page(s): 45,49
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Retention Ratio
+    decimal value that is approximately in the range from 0.50 to 0.55,
+    or, alternatively, a percentage value that is in the range from 50% to 55%
+
+
 financebench_id_00299:
   doc: JPMORGAN_2021Q1_10Q
   question: Which of JPM's business segments had the lowest net revenue in 2021 Q1?
