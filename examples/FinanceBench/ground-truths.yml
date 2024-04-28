@@ -932,6 +932,13 @@ financebench_id_00678:
     improved from $3,017 million in FY2021 to $3,502 million in FY2022. Gross margin
     % improved from 4.8% in FY2021 to 5.3% in FY2022.
   page(s): '55'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains calculated Gross Margin percentage values for 2021 and 2022,
+    and concludes that such metric increased
+
+
 financebench_id_01290:
   doc: BOEING_2022_10K
   question: Who are the primary customers of Boeing as of FY2022?
