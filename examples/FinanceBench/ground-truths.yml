@@ -380,6 +380,13 @@ financebench_id_00799:
   answer: The quick ratio has slightly improved from 0.67 times to 0.69 times between
     FY 2023 and FY 2022.(3.4% jump)
   page(s): '52'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains calculated Quick Ratio metric values for 2022 and 2023,
+    and concludes that such metric increased
+
+
 financebench_id_01079:
   doc: AMCOR_2023_10K
   question: What are major acquisitions that AMCOR has done in FY2023, FY2022 and
