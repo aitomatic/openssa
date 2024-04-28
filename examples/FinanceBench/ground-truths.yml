@@ -1689,6 +1689,12 @@ financebench_id_01482:
   answer: The shareholder proposal for a congruency report by Pepsico on net-zero
     emissions policies was defeated.
   page(s): '4'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer says that the proposal related to Net-Zero Emissions was defeated / not successful
+
+
 financebench_id_00705:
   doc: PEPSICO_2023_8K_dated-2023-05-30
   question: By how much did Pepsico increase its unsecured five year revolving credit
