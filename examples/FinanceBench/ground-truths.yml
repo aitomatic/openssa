@@ -1461,6 +1461,12 @@ financebench_id_00407:
   answer: the biggest short term investment is in corporate bonds (almost 82% of the
     total investment)
   page(s): '11'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer identifies corporate bonds as having received largest short-term investment
+
+
 financebench_id_04700:
   doc: MICROSOFT_2016_10K
   question: What is the FY2016 COGS for Microsoft? Please state answer in USD millions.
