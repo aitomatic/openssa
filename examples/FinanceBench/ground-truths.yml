@@ -1597,7 +1597,7 @@ financebench_id_04980:
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity that is equivalent to or approximately equal to
-    4.625, 4.625 billion, 4625 million, 
+    4.625, 4.625 billion, 4625 million,
     4.6, 4.6 billion or 4600 million
 
 
