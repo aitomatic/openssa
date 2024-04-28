@@ -901,6 +901,15 @@ financebench_id_00517:
     which comprises 39% of total revenue, Defence which comprises 35% of total revenue
     and Services which comprises 26% of total revenue.
   page(s): '62'
+
+  category: 3-CALC-COMPLEX
+  correctness: |-
+    the answer mentions the following 3 categories:
+    - Commercial Airplanes;
+    - Defense (or fully written "Defense, Space & Security"); and
+    - Services (or fully written "Global Services")
+
+
 financebench_id_01091:
   doc: BOEING_2022_10K
   question: Has Boeing reported any materially important ongoing legal battles from
