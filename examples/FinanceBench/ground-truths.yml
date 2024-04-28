@@ -1557,6 +1557,12 @@ financebench_id_04080:
     and FY2021). Round your answer to two decimal places.'
   answer: '3.46'
   page(s): 59,61
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Inventory Turnover Ratio metric value that is approximately in the range from 3.00 to 4.00
+
+
 financebench_id_01163:
   doc: NIKE_2023_10K
   question: Among operations, investing, and financing activities, which brought in
