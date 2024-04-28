@@ -884,6 +884,14 @@ financebench_id_10285:
     year end FY2018 net property, plant, and equipment (in USD millions)?'
   answer: $12645.00
   page(s): '52'
+  
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    12645, 12645 million, 12.645 billion,
+    12600, 12600 million or 12.6 billion
+
+
 financebench_id_00517:
   doc: BOEING_2022_10K
   question: Are there any product categories / service categories that represent more
