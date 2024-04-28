@@ -1176,6 +1176,12 @@ financebench_id_00839:
     large retail company that has brick and mortar + online business. So yes she was
     a CEO in a similar company to Foot Locker before this.
   page(s): '2'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative and mentions Ulta Beauty
+
+
 financebench_id_00822:
   doc: FOOTLOCKER_2022_8K_dated-2022-05-20
   question: Were there any board member nominees who had substantially more votes
