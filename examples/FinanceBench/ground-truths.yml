@@ -1131,6 +1131,13 @@ financebench_id_00790:
     that a significant portion of this asset base is goodwill, and CVS's fixed assets/total
     assets ratio is on the lower side of 5.6%.
   page(s): 108,110
+
+  category: 6-OTHER-ADVANCED
+  correctness: >-
+    the answer either mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity),
+    or mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
+
+
 financebench_id_01107:
   doc: CVSHEALTH_2022_10K
   question: Has CVS Health reported any materially important ongoing legal battles
