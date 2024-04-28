@@ -1448,6 +1448,12 @@ financebench_id_01912:
     presented. Its revenue declined 44% in FY2022 whereas the other regions presented
     increased their revenues.
   page(s): 3,4,4
+
+  category: 1-COMPARE
+  correctness: |-
+    the answer identifies MGM China as having worst top-line Revenue performance
+
+
 financebench_id_00407:
   doc: MGMRESORTS_2023Q2_10Q
   question: Which type of debt received the largest investment among the short term
