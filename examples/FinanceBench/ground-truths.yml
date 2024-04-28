@@ -1099,6 +1099,15 @@ financebench_id_04209:
     did Costco have at the end of FY2021? Answer in USD millions.
   answer: $59268.00
   page(s): '38'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    59268, 59268 million, 59.268 billion,
+    59300, 59300 million, 59.3 billion
+    59000, 59000 million or 59 billion
+
+
 financebench_id_05915:
   doc: CVSHEALTH_2018_10K
   question: 'What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset
