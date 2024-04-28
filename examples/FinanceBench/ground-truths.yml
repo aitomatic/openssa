@@ -1701,6 +1701,13 @@ financebench_id_00705:
     agreement on May 26, 2023?
   answer: $400,000,000 increase.
   page(s): '2'
+
+  category: 2-CALC-CHANGE
+  correctness: >-
+    the answer contains a calculated change quantity that is equivalent to or approximately equal to
+    400,000,000, 400 million or 0.4 billion
+
+
 financebench_id_00882:
   doc: PEPSICO_2023_8K_dated-2023-05-30
   question: As of May 26, 2023, what is the total amount Pepsico may borrow under
