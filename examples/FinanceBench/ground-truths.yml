@@ -1151,6 +1151,12 @@ financebench_id_01107:
     around opioids for which CVS has agreed to pay up to $4.3 billion to claimants
     in remediation and $625 million to attorneys and fees'
   page(s): 173,173,174
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative, i.e., CVS Health faced lawsuits / legal battles
+
+
 financebench_id_01244:
   doc: CVSHEALTH_2022_10K
   question: Has CVS Health paid dividends to common shareholders in Q2 of FY2022?
