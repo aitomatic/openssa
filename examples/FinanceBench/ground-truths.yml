@@ -366,6 +366,12 @@ financebench_id_01935:
     North America) for the Former Issuer (Amcor Finance) and the assumption of covenants
     under the indentures. (In essence a novation agreement)
   page(s): '2'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions supplemental indentures related to debt notes
+
+
 financebench_id_00799:
   doc: AMCOR_2023_10K
   question: Has AMCOR's quick ratio improved or declined between FY2023 and FY2022?
