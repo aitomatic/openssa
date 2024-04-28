@@ -1569,6 +1569,12 @@ financebench_id_01163:
     the most (or lost the least) cash flow for Nike in FY2023?
   answer: Among the three, cash flow from operations was the highest for Nike in FY2023.
   page(s): '62'
+    
+  category: 1-COMPARE
+  correctness: >-
+    the answer concludes that Operations / Operating Cash Flows brought in the most cash
+
+
 financebench_id_00080:
   doc: PAYPAL_2022_10K
   question: Does Paypal have positive working capital based on FY2022 data? If working
