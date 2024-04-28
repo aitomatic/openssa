@@ -1715,6 +1715,13 @@ financebench_id_00882:
   answer: Total amount Pepsico may borrow under unsecured revolving credit agreements
     = $8,400,000,000.
   page(s): '2'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated total quantity that is equivalent to or approximately equal to
+    8,400,000,000, 8400 million or 8.4 billion
+
+
 financebench_id_01474:
   doc: PEPSICO_2023Q1_EARNINGS
   question: As of FY2023Q1, why did Pepsico raise full year guidance for FY2023?
