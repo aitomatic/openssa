@@ -825,6 +825,14 @@ financebench_id_01902:
   answer: The entertainment segment experienced the highest growth of 9% during Q2
     FY2024, primarily from gaming division.
   page(s): '18'
+        
+  category: 1-COMPARE
+  correctness: |-
+    the answer identifies the best-performing product category as either:
+    - Entertainment (highest relative growth); or
+    - Computing and Mobile Phones (highest revenue)
+
+
 financebench_id_04660:
   doc: BLOCK_2016_10K
   question: Considering the data in the balance sheet, what is Block's (formerly known
