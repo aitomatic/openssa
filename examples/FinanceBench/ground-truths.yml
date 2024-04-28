@@ -434,7 +434,7 @@ financebench_id_00684:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Gross Margin percentage values for 2022 and 2023,
+    the answer contains calculated Gross Margin percentage or decimal values for 2022 and 2023,
     and concludes that such metric decreased
 
 
