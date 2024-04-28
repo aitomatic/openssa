@@ -274,6 +274,14 @@ financebench_id_00540:
     is not meaningful for the company then state that and explain why.
   answer: AES has converted inventory 9.5 times in FY 2022.
   page(s): 130,132
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Inventory Turnover Ratio metric value that is either:
+    - approximately in the range from 9 to 10 times (if using ending Inventory as denominator), or
+    - approximately 12 times (if using average Inventory as denominator)
+
+
 financebench_id_10420:
   doc: AES_2022_10K
   question: 'Based on the information provided primarily in the statement of financial
