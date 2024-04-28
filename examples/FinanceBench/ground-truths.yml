@@ -624,6 +624,12 @@ financebench_id_00723:
     why.
   answer: Performance is not measured through operating margin
   page(s): '96'
+
+  category: 6-OTHER-ADVANCED
+  correctness: >-
+    the answer says that Operating Margin is not a very relevant/useful metric for American Express's business model
+
+
 financebench_id_00720:
   doc: AMERICANEXPRESS_2022_10K
   question: What drove gross margin change as of the FY2022 for American Express?
