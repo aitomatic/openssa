@@ -1593,6 +1593,14 @@ financebench_id_04980:
     can only use the details shown within the statement of cash flows.
   answer: $4.60
   page(s): '63'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity that is equivalent to or approximately equal to
+    4.625, 4.625 billion, 4625 million, 
+    4.6, 4.6 billion or 4600 million
+
+
 financebench_id_01009:
   doc: PEPSICO_2022_10K
   question: What are the geographies that Pepsico primarily operates in as of FY2022?
