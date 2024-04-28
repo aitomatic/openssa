@@ -306,6 +306,12 @@ financebench_id_06655:
     the balance sheet and the P&L statement.'
   answer: '93.86'
   page(s): 38,40
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Days Payable Outstanding (DPO) metric value that is in the range from 90.00 to 120.00
+
+
 financebench_id_08135:
   doc: AMAZON_2017_10K
   question: What is Amazon's year-over-year change in revenue from FY2016 to FY2017
