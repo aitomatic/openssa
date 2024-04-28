@@ -1214,6 +1214,12 @@ financebench_id_03471:
     Round your answer to two decimal places.
   answer: '0.68'
   page(s): '50'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Working Capital Ratio metric value that is in the range from 0.65 to 0.70
+
+
 financebench_id_04854:
   doc: GENERALMILLS_2020_10K
   question: 'According to the information provided in the statement of cash flows,
