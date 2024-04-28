@@ -1008,6 +1008,14 @@ financebench_id_09724:
     utilizing the line items clearly shown in the income statement.
   answer: 39.7%
   page(s): '62'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Cost of Goods Sold (COGS) Margin
+    percentage value that is in the range from 39.00% to 40.00%,
+    or, alternatively, a decimal value that is in the range from 0.39 to 0.40
+
+
 financebench_id_06272:
   doc: COCACOLA_2022_10K
   question: What is Coca Cola's FY2022 dividend payout ratio (using total cash dividends
