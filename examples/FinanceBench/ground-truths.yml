@@ -444,6 +444,14 @@ financebench_id_01936:
     Q2 of FY2023 close?
   answer: 87% of the total restructuring liability is related Employee liabilities.
   page(s): '15'
+
+  category: 0-RETRIEVE
+  correctness: |-
+    the answer mentions Employee costs and, OPTIONALLY, also some of the following:
+    - Russia-Ukraine conflict
+    - integration of acquired Bemis operations
+
+
 financebench_id_01928:
   doc: AMCOR_2023Q4_EARNINGS
   question: What Was AMCOR's Adjusted Non GAAP EBITDA for FY 2023
