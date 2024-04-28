@@ -662,6 +662,12 @@ financebench_id_01964:
     2022?
   answer: Customer deposits
   page(s): '98'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer identifies Customer Deposits as the largest liability
+
+
 financebench_id_01981:
   doc: AMERICANEXPRESS_2022_10K
   question: Was American Express able to retain card members during 2022?
