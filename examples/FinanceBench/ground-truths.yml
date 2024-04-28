@@ -12,6 +12,7 @@ financebench_id_03029:
     1577, 1577 million, 1.577 billion,
     1600, 1600 million or 1.6 billion
 
+
 financebench_id_04672:
   doc: 3M_2018_10K
   question: 'Assume that you are a public equities analyst. Answer the following question
@@ -25,6 +26,7 @@ financebench_id_04672:
     the answer contains a quantity equivalent to or approximately equal to
     8.7, 8.738 billion, 8,738 million,
     9, 8.7 billion, 9 billion or 9,000 million
+
 
 financebench_id_00499:
   doc: 3M_2022_10K
@@ -45,6 +47,7 @@ financebench_id_00499:
     and justifies such opinion by certain calculated financial ratios
     showing that Fixed Assets are small relative to Revenue or relative to Total Assets,
     or that Return on Assets is quite good
+
 
 financebench_id_01226:
   doc: 3M_2022_10K
@@ -93,6 +96,7 @@ financebench_id_01226:
     (within the Transportation and Electronics business).
     ```
 
+
 financebench_id_01865:
   doc: 3M_2022_10K
   question: If we exclude the impact of M&A, which segment has dragged down 3M's overall
@@ -104,6 +108,7 @@ financebench_id_01865:
   correctness: >-
     the answer concludes that the Consumer segment, with a negative change in Organic Sales,
     has negatively impacted 3M's overall growth excluding M&A
+
 
 financebench_id_00807:
   doc: 3M_2023Q2_10Q
@@ -117,6 +122,7 @@ financebench_id_00807:
   category: 4-CALC-AND-JUDGE
   correctness: >-
     the answer contains a calculated Quick Ratio metric that is slightly less than 1
+
 
 financebench_id_00941:
   doc: 3M_2023Q2_10Q
@@ -136,6 +142,7 @@ financebench_id_00941:
   correctness: >-
     the answer mentions debt notes/securities due 2026, 2031 and 2031
 
+
 financebench_id_01858:
   doc: 3M_2023Q2_10Q
   question: Does 3M maintain a stable trend of dividend distribution?
@@ -146,6 +153,7 @@ financebench_id_01858:
   category: 0-RETRIEVE
   correctness: >-
     the answer is affirmative and mentions "65 years", "65th year" or something similar
+
 
 financebench_id_02987:
   doc: ACTIVISIONBLIZZARD_2019_10K
