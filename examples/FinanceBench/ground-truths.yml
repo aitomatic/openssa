@@ -56,6 +56,43 @@ financebench_id_01226:
     \ litigation, impairment related to exiting PFAS manufacturing, costs related\
     \ to exiting Russia and divestiture-related restructuring\ncharges"
   page(s): '27'
+
+  category: 0-RETRIEVE
+  correctness: |-
+    the answer highlights at least 3 salient changes among those discussed below:
+
+    ```
+    COST OF SALES:
+    Cost of sales, measured as a percent of sales, increased in 2022 when compared to the same period last year.
+    Increases were primarily due to 2022 special item costs for significant litigation from additional commitments
+    to address PFAS-related matters at 3M's Zwijndrecht, Belgium site, higher raw materials and logistics costs,
+    manufacturing productivity headwinds which were further magnified by the shutdown of certain operations in Belgium
+    and progress on restarting previously-idled operations, and investments in growth, productivity and sustainability.
+    On a percent of sales basis, these increases were partially offset by increases in selling prices.
+
+    SELLING, GENERAL AND ADMINISTRATIVE EXPENSES:
+    SG&A, measured as a percent of sales, increased in 2022 when compared to the same period last year.
+    SG&A was impacted by increased special item costs for significant litigation primarily related to steps toward
+    resolving Combat Arms Earplugs litigation resulting in a 2022 second quarter pre-tax charge of approximately $1.2 billion,
+    certain impairment costs related to exiting PFAS manufacturing, costs related to exiting Russia,
+    divestiture-related restructuring charges, and continued investment in key growth initiatives.
+    These increases were partially offset by restructuring benefits and ongoing general 3M cost management.
+
+    RESEARCH, DEVELOPMENT AND RELATED EXPENSES:
+    R&D, measured as a percent of sales, decreased in 2022 when compared to the same period last year.
+    3M continues to invest in a range of R&D activities from application development, product and manufacturing support,
+    product development and technology development aimed at disruptive innovations.
+
+    GAIN ON BUSINESS DIVESTITURES:
+    In the third quarter of 2022, 3M recorded a pre-tax gain of $2.7 billion ($2.7 billion after tax)
+    related to the split-off and combination of its Food Safety business with Neogen Corporation.
+
+    GOODWILL IMPAIRMENT EXPENSE:
+    As a result of 3M's commitment to exit per- and polyfluoroalkyl substance (PFAS) manufacturing,
+    3M recorded a goodwill impairment charge related to the Advanced Materials reporting unit
+    (within the Transportation and Electronics business).
+    ```
+
 financebench_id_01865:
   doc: 3M_2022_10K
   question: If we exclude the impact of M&A, which segment has dragged down 3M's overall
