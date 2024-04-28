@@ -686,6 +686,14 @@ financebench_id_05718:
     in the statement of cash flows.
   answer: $0.40
   page(s): '86'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    0.389, 0.389 billion, 389 million,
+    0.4, 0.4 billion or 400 million
+
+
 financebench_id_04254:
   doc: AMERICANWATERWORKS_2021_10K
   question: Basing your judgments off of the cash flow statement and the income statement,
