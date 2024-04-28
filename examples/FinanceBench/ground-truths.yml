@@ -234,6 +234,13 @@ financebench_id_00438:
   answer: No the operating margins of Adobe have recently declined from 36.8% in FY
     2021 to 34.6% in FY2022. A drop by 2.2% in a year.
   page(s): '54'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains calculated Operating Margin metric values for 2021 and 2022,
+    and concludes that such metric decreased
+
+
 financebench_id_00591:
   doc: ADOBE_2022_10K
   question: Does Adobe have an improving Free cashflow conversion as of FY2022?
