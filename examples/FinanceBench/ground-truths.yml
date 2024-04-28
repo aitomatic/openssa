@@ -1655,6 +1655,16 @@ financebench_id_03620:
     the statement of cash flows and the income statement.
   answer: $9068.00
   page(s): 62,64
+
+  category: 3-CALC-COMPLEX
+  correctness: |-
+    the answer contains a calculated metric value that is either:
+    - approximately in the range of 8500 to 9500 (with implicit unit of millions);
+    - approximately in the range of 8500 million to 9500 million;
+    - approximately in the range of 8.5 billion to 9.5 billion; or
+    - stated as approximately 9000 million or 9 billion
+
+
 financebench_id_04481:
   doc: PEPSICO_2022_10K
   question: What is the FY2022 unadjusted EBITDA % margin for PepsiCo? Calculate unadjusted
