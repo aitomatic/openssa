@@ -946,6 +946,12 @@ financebench_id_01290:
     airlines and the US government. The US government accounted for 40% of Boeing's
     total revenues in FY2022.
   page(s): 8, 10, 14
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions commercial airlines and the US government
+
+
 financebench_id_00464:
   doc: BOEING_2022_10K
   question: Is Boeing's business subject to cyclicality?
