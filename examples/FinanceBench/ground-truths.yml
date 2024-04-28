@@ -1638,6 +1638,14 @@ financebench_id_01328:
     then state 0.
   answer: Pepsico's restructuring costs in FY2022 amounted to $411 million .
   page(s): '78'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity that is equivalent to or approximately equal to
+    411 million, 0.411 billion,
+    400 million or 0.4 billion
+
+
 financebench_id_03620:
   doc: PEPSICO_2022_10K
   question: What is the FY2022 unadjusted EBITDA less capex for PepsiCo? Define unadjusted
