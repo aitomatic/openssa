@@ -1473,6 +1473,15 @@ financebench_id_04700:
     Provide a response to the question by primarily using the statement of income.
   answer: $32780.00
   page(s): '52'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity that is equivalent to or approximately equal to
+    32780, 32780 million, 32.78 billion,
+    32800, 32800 million, 32.8 billion
+    33000, 33000 million or 33 billion
+
+
 financebench_id_00552:
   doc: MICROSOFT_2023_10K
   question: Has Microsoft increased its debt on balance sheet between FY2023 and the
