@@ -99,6 +99,12 @@ financebench_id_01865:
     growth in 2022?
   answer: The consumer segment shrunk by 0.9% organically.
   page(s): '25'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer concludes that the Consumer segment, with a negative change in Organic Sales,
+    has negatively impacted 3M's overall growth excluding M&A
+
 financebench_id_00807:
   doc: 3M_2023Q2_10Q
   question: Does 3M have a reasonably healthy liquidity profile based on its quick
