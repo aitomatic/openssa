@@ -1450,7 +1450,7 @@ financebench_id_01912:
   page(s): 3,4,4
 
   category: 1-COMPARE
-  correctness: |-
+  correctness: >-
     the answer identifies MGM China as having worst top-line Revenue performance
 
 
