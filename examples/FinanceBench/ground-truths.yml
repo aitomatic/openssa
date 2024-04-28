@@ -290,6 +290,13 @@ financebench_id_10420:
     FY2022). Round your answer to two decimal places.'
   answer: '-0.02'
   page(s): 130,132
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Return on Assets (RoA) Ratio metric value that is NEGATIVE
+    and approximately in the range from -2% to -1.5%
+
+
 financebench_id_06655:
   doc: AMAZON_2017_10K
   question: 'What is Amazon''s FY2017 days payable outstanding (DPO)? DPO is defined
