@@ -1353,6 +1353,15 @@ financebench_id_03031:
     analyst who can only use the details shown within the balance sheet.
   answer: $5818.00
   page(s): '68'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Net Working Capital metric value that is equivalent to or approximately equal to
+    5818, 5818 million, 5.818 billion,
+    5800, 5800 million, 5.8 billion,
+    6000, 6000 million or 6 billion
+
+
 financebench_id_03718:
   doc: LOCKHEEDMARTIN_2022_10K
   question: What is Lockheed Martin's 2 year total revenue CAGR from FY2020 to FY2022
