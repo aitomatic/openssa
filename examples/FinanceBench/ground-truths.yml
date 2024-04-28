@@ -1227,6 +1227,15 @@ financebench_id_04854:
     as: (cash from operations - capex). Answer in USD millions.'
   answer: $3215.00
   page(s): '52'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Free Cash Flows (FCF) metric value that is equivalent to or approximately equal to
+    3215.4, 3215.4 million, 3.2154 billion,
+    3215, 3215 million, 3.215 billion,
+    3200, 3200 million or 3.2 billion
+
+
 financebench_id_10136:
   doc: GENERALMILLS_2022_10K
   question: 'We want to calculate a financial metric. Please help us compute it by
