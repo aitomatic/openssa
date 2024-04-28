@@ -196,7 +196,7 @@ financebench_id_04735:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Operating Cash Flow Ratio metric value that is between 0.6 and 0.7
+    the answer contains a calculated Operating Cash Flow Ratio metric value that is in the range from 0.60 to 0.70
 
 
 financebench_id_07507:
