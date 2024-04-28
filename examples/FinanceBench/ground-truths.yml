@@ -1659,9 +1659,9 @@ financebench_id_03620:
   category: 3-CALC-COMPLEX
   correctness: |-
     the answer contains a calculated metric value that is either:
-    - approximately in the range of 8500 to 9500 (with implicit unit of millions);
-    - approximately in the range of 8500 million to 9500 million;
-    - approximately in the range of 8.5 billion to 9.5 billion; or
+    - approximately in the range from 8500 to 9500 (with implicit unit of millions);
+    - approximately in the range from 8500 million to 9500 million;
+    - approximately in the range from 8.5 billion to 9.5 billion; or
     - stated as approximately 9000 million or 9 billion
 
 
