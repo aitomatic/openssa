@@ -1339,6 +1339,12 @@ financebench_id_04412:
     total assets between FY2019 and FY2020). Round your answer to two decimal places.'
   answer: '1.33'
   page(s): 67,69
+  
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Asset Turnover Ratio metric value that is approximately in the range from 1.30 to 1.40
+
+
 financebench_id_03031:
   doc: LOCKHEEDMARTIN_2021_10K
   question: What is Lockheed Martin's FY2021 net working capital? Define net working
