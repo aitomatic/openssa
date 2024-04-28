@@ -908,6 +908,12 @@ financebench_id_01091:
   answer: Yes. Multiple lawsuits have been filed against Boeing resulting from a 2018
     Lion Air crash and a 2019 Ethiopian Airlines crash.
   page(s): '113'
+  
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative, i.e., Boeing faced lawsuits / legal battles
+
+
 financebench_id_00678:
   doc: BOEING_2022_10K
   question: Does Boeing have an improving gross margin profile as of FY2022? If gross
