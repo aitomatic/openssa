@@ -1582,6 +1582,13 @@ financebench_id_00080:
     that and explain why.
   answer: Yes. Paypal has a positive working capital of $ 1.6Bn as of FY2022 end.
   page(s): '61'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer is affirmative, i.e., Paypal had positive working capital,
+    and contains a calculated Working Capital metric value that is positive
+
+
 financebench_id_04980:
   doc: PEPSICO_2021_10K
   question: What is the FY2021 capital expenditure amount (in USD billions) for PepsiCo?
