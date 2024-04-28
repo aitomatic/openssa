@@ -503,6 +503,12 @@ financebench_id_00222:
     term investments+Accounts receivable, net+receivables from related parties)/ (current
     liabilities).
   page(s): '56'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains a calculated Quick Ratio metric value that is greater than 1
+
+
 financebench_id_00995:
   doc: AMD_2022_10K
   question: What are the major products and services that AMD sells as of FY22?
