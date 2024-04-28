@@ -1069,6 +1069,13 @@ financebench_id_01346:
   answer: The effective tax rate of Corning has changed from 20% in FY2021 to 23%
     in FY 2022.
   page(s): '24'
+
+  category: 2-CALC-CHANGE
+  correctness: >-
+    the answer states that the Effective Tax Rate changed from 20% to 23%,
+    and/or that it increased by 3 percentage points
+
+
 financebench_id_00005:
   doc: CORNING_2022_10K
   question: Does Corning have positive working capital based on FY2022 data? If working
