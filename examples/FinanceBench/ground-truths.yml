@@ -1673,6 +1673,14 @@ financebench_id_04481:
     cash flows and the P&L statement.
   answer: 16.5%
   page(s): 62,64
+
+  category: 3-CALC-COMPLEX
+  correctness: |-
+    the answer contains a calculated EBITDA Margin
+    percentage value that is approximately in the range from 16.00% to 17.00%,
+    or, alternatively, a decimal value that is approximately in the range from 0.16 to 0.17
+
+
 financebench_id_01482:
   doc: PEPSICO_2023_8K_dated-2023-05-05
   question: At the Pepsico AGM held on May 3, 2023, what was the outcome of the shareholder
