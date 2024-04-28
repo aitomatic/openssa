@@ -855,6 +855,12 @@ financebench_id_03838:
     analyst who only has access to the statement of income.
   answer: 101.5%
   page(s): '86'
+
+  category: 2-CALC-CHANGE
+  correctness: >-
+    the answer contains a calculated Revenue growth percentage value that is over 100.0%
+
+
 financebench_id_07661:
   doc: BLOCK_2020_10K
   question: 'Using the cash flow statement, answer the following question to the best
