@@ -759,6 +759,13 @@ financebench_id_00685:
   answer: Yes, the margins have been consistent, there has been a minor decline of
     1.1% in gross margins between FY2022 and FY2023.
   page(s): '40'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains calculated Gross Margin percentage values for 2022 and 2023,
+    and concludes that they are within 2 percentage points of each other and hence consistent
+
+
 financebench_id_01077:
   doc: BESTBUY_2023_10K
   question: What are major acquisitions that Best Buy has done in FY2023, FY2022 and
