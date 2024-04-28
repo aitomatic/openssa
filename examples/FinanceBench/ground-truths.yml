@@ -548,6 +548,12 @@ financebench_id_00917:
   answer: The decrease in AMD's operating income was primarily driven by amortization
     of intangible assets associated with the Xilinx acquisition
   page(s): '43'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions amortization of intangible assets associated with Xilinx acquisition
+
+
 financebench_id_01279:
   doc: AMD_2022_10K
   question: Among operations, investing, and financing activities, which brought in
