@@ -701,6 +701,14 @@ financebench_id_04254:
     and amortization from the cash flow statement (unadjusted EBITDA) in USD millions?
   answer: $1832.00
   page(s): 86,88
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a quantity equivalent to or approximately equal to
+    1832, 1832 million, 1.832 billion,
+    1800, 1800 million or 1.8 billion
+
+
 financebench_id_00070:
   doc: AMERICANWATERWORKS_2022_10K
   question: Does American Water Works have positive working capital based on FY2022
