@@ -418,6 +418,12 @@ financebench_id_01148:
   question: What industry does AMCOR primarily operate in?
   answer: Amcor is a global leader in packaging production for various use cases.
   page(s): '5'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions "packaging"
+
+
 financebench_id_00684:
   doc: AMCOR_2023_10K
   question: Does AMCOR have an improving gross margin profile as of FY2023? If gross
