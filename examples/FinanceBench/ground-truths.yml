@@ -121,7 +121,7 @@ financebench_id_00807:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio metric that is slightly less than 1
+    the answer contains a calculated Quick Ratio metric value that is slightly less than 1
 
 
 financebench_id_00941:
