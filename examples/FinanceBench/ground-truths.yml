@@ -996,6 +996,12 @@ financebench_id_03473:
     on the details shown in the balance sheet and the P&L statement.'
   answer: '0.01'
   page(s): 74,76
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Return on Assets (RoA) percentage value that is in the range from 1.00% to 2.00%
+
+
 financebench_id_09724:
   doc: COCACOLA_2021_10K
   question: What is Coca Cola's FY2021 COGS % margin? Calculate what was asked by
