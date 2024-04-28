@@ -337,8 +337,7 @@ financebench_id_08286:
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
     11588, 11588 million, 11.588 billion,
-    11500, 11500 million, 11.5 billion,
-    11600, 11600 million, 11.6 billion
+    11600, 11600 million or 11.6 billion
 
 
 financebench_id_03882:
