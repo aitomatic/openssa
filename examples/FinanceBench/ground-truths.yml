@@ -560,6 +560,12 @@ financebench_id_01279:
     the most (or lost the least) cash flow for AMD in FY22?
   answer: In 2022, AMD brought in the most cashflow from Operations
   page(s): '58'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer concludes that Operations / Operating Cash Flows brought in the most cash
+
+
 financebench_id_00563:
   doc: AMD_2022_10K
   question: From FY21 to FY22, excluding Embedded, in which AMD reporting segment
