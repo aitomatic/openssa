@@ -774,6 +774,12 @@ financebench_id_01077:
     owned by Best Buy, but Best Buy acquired all outstanding shares of these two companies
     during FY 2022: (1) Current Health Ltd and (2) Two Peaks, LLC d/b/a Yardbird Furniture'
   page(s): '51'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions Current Health and Two Peaks (which is also alternatively called Yardbird)
+
+
 financebench_id_01275:
   doc: BESTBUY_2023_10K
   question: Among operations, investing, and financing activities, which brought in
