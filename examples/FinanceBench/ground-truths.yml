@@ -930,6 +930,12 @@ financebench_id_00464:
   answer: Yes, Boeing's business is subject to cyclicality due to its exposure to
     the airline industry which is a cyclical industry.
   page(s): '8'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative, i.e., Boeing's business is subject to cyclicality
+
+
 financebench_id_00494:
   doc: BOEING_2022_10K
   question: What production rate changes is Boeing forecasting for FY2023?
