@@ -113,6 +113,11 @@ financebench_id_00807:
   answer: No. The quick ratio for 3M was 0.96 by Jun'23 close, which needs a bit of
     an improvement to touch the 1x mark
   page(s): '5'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains a calculated Quick Ratio metric that is slightly less than 1
+
 financebench_id_00941:
   doc: 3M_2023Q2_10Q
   question: Which debt securities are registered to trade on a national securities
