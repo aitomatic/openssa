@@ -531,6 +531,15 @@ financebench_id_01198:
   answer: In 2022, AMD reported Higher sales of their EPYC server processors, higher
     semi-custom product sales, and the inclusion of Xilinx embedded product sales
   page(s): '43'
+
+  category: 0-RETRIEVE
+  correctness: |-
+    the answer mentions at least 2 of the following:
+    - EPYC server processors;
+    - Gaming; and
+    - inclusion of Xilinx
+
+
 financebench_id_00917:
   doc: AMD_2022_10K
   question: What drove operating margin change as of the FY22 for AMD? If operating
