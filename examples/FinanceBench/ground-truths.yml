@@ -1270,6 +1270,13 @@ financebench_id_02119:
     assets to pay its shareholders, how much could each shareholder get?
   answer: They could receive $66.56 per share.
   page(s): '6'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer contains a quantity that is equivalent to or approximately equal to
+    66.56 or 67
+
+
 financebench_id_00206:
   doc: JPMORGAN_2022_10K
   question: Are JPM's gross margins historically consistent (not fluctuating more
