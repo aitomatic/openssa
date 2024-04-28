@@ -1422,6 +1422,12 @@ financebench_id_00382:
   question: Which region had the Highest EBITDAR Contribution for MGM during FY2022?
   answer: Las Vegas resorts contributed ~90% of company level EBITDAR during FY2022.
   page(s): '13'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer identifies Las Vegas resorts as having highest EBITDAR
+
+
 financebench_id_01911:
   doc: MGMRESORTS_2022Q4_EARNINGS
   question: What was MGM's interest coverage ratio using FY2022 Adjusted EBIT as the
