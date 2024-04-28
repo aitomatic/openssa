@@ -178,6 +178,12 @@ financebench_id_07966:
     cash flow statement.
   answer: 1.9%
   page(s): 70,73
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated metric value that is approximately in the range from 1.8% to 2.1%
+
+
 financebench_id_04735:
   doc: ADOBE_2015_10K
   question: 'You are an investment banker and your only resource(s) to answer the
