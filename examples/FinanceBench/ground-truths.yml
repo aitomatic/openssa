@@ -1324,6 +1324,12 @@ financebench_id_10499:
     provided primarily in the balance sheet and the P&L statement.'
   answer: '6.25'
   page(s): 50,52
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Inventory Turnover Ratio metric value that is approximately in the range from 6.00 to 6.50
+
+
 financebench_id_04412:
   doc: LOCKHEEDMARTIN_2020_10K
   question: 'We need to calculate a reasonable approximation (or exact number if possible)
