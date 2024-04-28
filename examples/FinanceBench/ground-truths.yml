@@ -448,7 +448,7 @@ financebench_id_01936:
   category: 0-RETRIEVE
   correctness: |-
     the answer mentions Employee costs and, OPTIONALLY, also some of the following:
-    - Russia-Ukraine conflict
+    - Russia-Ukraine conflict; and
     - integration of acquired Bemis operations
 
 
