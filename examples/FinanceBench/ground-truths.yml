@@ -1054,6 +1054,14 @@ financebench_id_02981:
     for Corning? Answer in units of percents and round to one decimal place.
   answer: 10.3%
   page(s): '65'
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer constains a calculated Average Operating Income Margin
+    percentage value that is approximately in the range from 9.00% to 11.00%,
+    or, alternatively, a decimal value that is approximately in the range from 0.090 to 0.110
+
+
 financebench_id_01346:
   doc: CORNING_2022_10K
   question: How much has the effective tax rate of Corning changed between FY2021
