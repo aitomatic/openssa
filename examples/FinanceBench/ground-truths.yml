@@ -142,6 +142,11 @@ financebench_id_01858:
   answer: Yes, not only they distribute the dividends on a routine basis, 3M has also
     been increasing the per share dividend for consecutive 65 years
   page(s): '62'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer is affirmative and mentions "65 years", "65th year" or something similar
+
 financebench_id_02987:
   doc: ACTIVISIONBLIZZARD_2019_10K
   question: 'What is the FY2019 fixed asset turnover ratio for Activision Blizzard?
