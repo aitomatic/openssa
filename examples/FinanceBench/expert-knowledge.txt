@@ -92,6 +92,12 @@ Capital-Return Metric Formulas
 `Retention Ratio` = 1 - `Dividend Payout Ratio`
 
 
+Miscellaneous/Other Metric Formulas
+-----------------------------------
+
+`Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
+
+
 CAPITAL-INTENSITY EVALUATION
 ============================
 
