@@ -3,3 +3,11 @@ FINANCIAL MARGIN METRICS
 - When we see the word "margin" in financial-analysis contexts,
   we usually need to divide a certain Profit-and-Loss (P&L) line item by the Total Revenue,
   for the concerned financial reporting period(s)
+
+
+FINANCIAL METRIC FORMULAS
+
+`Days Payable Outstanding, a.k.a. DPO` = (
+  365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
+  / (`Cost of Goods Sold, a.k.a. COGS` + `change in Inventory, typically between two consecutive fiscal year-ends`)
+)
