@@ -34,6 +34,14 @@ FINANCIAL METRIC FORMULAS
 )
 
 
+CAPITAL-INTENSITY EVALUATION
+
+Capital-intensive businesses tend to have one or several of the following characteristics:
+- high Fixed Assets as proportion of Total Assets
+- high Capital Expenditure (CapEx) as proportion of Revenue
+- low Return on Asset (RoA) metric value
+
+
 FINANCIAL-ANALYSIS LANGUAGE/WORDING
 
 - When we see the word "average" used before a Balance Sheet line item in financial-analysis contexts,
