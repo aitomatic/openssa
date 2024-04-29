@@ -1982,6 +1982,16 @@ financebench_id_04784:
     Walmart? Answer in units of percents and round to one decimal place.
   answer: 0.2%
   page(s): '48'
+
+  category: 3-CALC-COMPLEX
+  correctness: |-
+    the answer contains either:
+    - calculated Operating Income Margin percentage values for 2018 and 2019,
+      and their difference, which is a percentage value less than 0.5% in magnitude; or
+    - calculated Operating Income Margin decimal values for 2028 and 2019,
+      and their difference, which is a decimal value less than 0.005 in magnitude
+
+
 financebench_id_06741:
   doc: WALMART_2020_10K
   question: What is the FY2018 - FY2020 3 year average unadjusted EBITDA % margin
