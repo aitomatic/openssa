@@ -1865,6 +1865,12 @@ financebench_id_00603:
     47 new stores. The answer here assumes FY2023 refers to the 12 months ended on
     January 28, 2023 (although the company refers to this period as its fiscal 2022.
   page(s): '2'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions new stores
+
+
 financebench_id_00605:
   doc: ULTABEAUTY_2023Q4_EARNINGS
   question: What percent of Ulta Beauty's total spend on stock repurchases for FY
