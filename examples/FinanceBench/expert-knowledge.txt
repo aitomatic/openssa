@@ -1,7 +1,9 @@
 FINANCIAL METRIC FORMULAS
+=========================
 
 
-Turnover Ratio Metric Formulas:
+Turnover Ratio Metric Formulas
+------------------------------
 
 `Fixed Asset Turnover Ratio` = (
   `Revenue` /
@@ -14,7 +16,8 @@ Turnover Ratio Metric Formulas:
 )
 
 
-Profitability Margin Metric Formulas:
+Profitability Margin Metric Formulas
+------------------------------------
 
 `Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `Revenue` 
 
@@ -29,7 +32,8 @@ Profitability Margin Metric Formulas:
 `Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `Revenue`
 
 
-Capital-Intensity / Return-on-Capital Metric Formulas 
+Capital-Intensity / Return-on-Capital Metric Formulas
+-----------------------------------------------------
 
 `Return on Assets, a.k.a. RoA` = (
   `Net Income, a.k.a. Net Profit` /
@@ -37,7 +41,8 @@ Capital-Intensity / Return-on-Capital Metric Formulas
 )
 
 
-Liquidity Metric Formulas:
+Liquidity Metric Formulas
+-------------------------
 
 `Quick Ratio` = ...
 
@@ -66,6 +71,7 @@ Liquidity Metric Formulas:
 
 
 CAPITAL-INTENSITY EVALUATION
+============================
 
 Capital-intensive businesses tend to have one or several of the following characteristics:
 - high Fixed Assets as proportion of Total Assets
@@ -74,6 +80,7 @@ Capital-intensive businesses tend to have one or several of the following charac
 
 
 FINANCIAL-ANALYSIS LANGUAGE/WORDING
+===================================
 
 - When we see the word "average" used before a Balance Sheet line item in financial-analysis contexts,
   it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
