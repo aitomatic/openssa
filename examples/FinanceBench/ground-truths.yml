@@ -597,7 +597,8 @@ financebench_id_00476:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer concludes that there are no debt securities traded
+    the answer concludes that there are no debt securities traded,
+    or that no such debt securies are explicitly reported
 
 
 financebench_id_01028:
