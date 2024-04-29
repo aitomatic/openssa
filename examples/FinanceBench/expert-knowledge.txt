@@ -7,6 +7,20 @@ for the concerned financial reporting period(s)
 
 FINANCIAL METRIC FORMULAS
 
+
+`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `Revenue` 
+
+`Gross (Profit) Margin` = `Gross Profit` / `Revenue`
+
+`Operating (Profit) Margin` = `Operating Profit` / `Revenue`
+
+`EBITDA Margin` = `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `Revenue`
+
+`EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Revenue`
+
+`Net (Profit) Margin` = `Net Profit` / `Revenue`
+
+
 `Days Inventory Outstanding, a.k.a. DIO` = (
   365 * `average Inventory, typically between two consecutive fiscal year-ends`
   / `Cost of Goods Sold, a.k.a. COGS`
