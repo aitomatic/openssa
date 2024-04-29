@@ -1788,6 +1788,12 @@ financebench_id_00283:
     USD million?
   answer: '77.78'
   page(s): '41'
+
+  category: 6-OTHER-ADVANCED
+  correctness: >-
+    the answer contains a quantity that is approximately in the range from 70 million to 80 million
+
+
 financebench_id_00724:
   doc: Pfizer_2023Q2_10Q
   question: For Pfizer, which geographic region had the biggest drop in Q22023 year
