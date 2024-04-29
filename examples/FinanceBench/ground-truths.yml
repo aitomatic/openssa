@@ -1764,6 +1764,12 @@ financebench_id_00702:
     operations that substantially increased net income in 2019?
   answer: Yes, the gain on completion of Consumer Healthcare JV Transaction
   page(s): '57'
+
+  category: 5-EXPLAIN-FACTORS
+  correctness: >-
+    the answer mentions Consumer Healthcare JV transaction
+
+
 financebench_id_02416:
   doc: PFIZER_2021_10K
   question: What are three main companies acquired by Pfizer mentioned in this 10K
