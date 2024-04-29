@@ -1049,6 +1049,12 @@ financebench_id_10130:
     to two decimal places.'
   answer: '63.86'
   page(s): 70,72
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Days Payable Outstanding (DPO) metric value that is in the range from 50.00 to 65.00
+
+
 financebench_id_02981:
   doc: CORNING_2021_10K
   question: Taking into account the information outlined in the income statement,
@@ -1207,6 +1213,12 @@ financebench_id_04103:
     income statement and the balance sheet.'
   answer: '-3.7'
   page(s): 53,55
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Cash Conversion Cycle (CCC) metric value
+
+
 financebench_id_03471:
   doc: GENERALMILLS_2020_10K
   question: By drawing conclusions from the information stated only in the statement
@@ -1984,6 +1996,12 @@ financebench_id_06247:
     statement of financial position and the P&L statement.'
   answer: '42.69'
   page(s): 57,59
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Days Payable Outstanding (DPO) metric value that is in the range from 35.00 to 50.00
+
+
 financebench_id_04784:
   doc: WALMART_2019_10K
   question: Based on the information provided primarily in the statement of income,

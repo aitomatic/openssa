@@ -1,0 +1,5 @@
+FINANCIAL MARGIN METRICS
+
+- When we see the word "margin" in financial-analysis contexts,
+  we usually need to divide a certain Profit-and-Loss (P&L) line item by the Total Revenue,
+  for the concerned financial reporting period(s)
