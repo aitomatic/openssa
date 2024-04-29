@@ -7,7 +7,7 @@ Turnover Ratio Metric Formulas
 
 `Fixed Asset Turnover Ratio` = (
   `Revenue` /
-  `average Plant, Property & Equipment, a.k.a. PP&E, typically between two consecutive fiscal year-ends`
+  `average Property, Plant & Equipment, a.k.a. PP&E, typically between two consecutive fiscal year-ends`
 )
 
 `Inventory Turnover Ratio` = (
