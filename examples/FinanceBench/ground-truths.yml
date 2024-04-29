@@ -1947,6 +1947,13 @@ financebench_id_00215:
     means that it took approximately $2.77 of assets to generate $1 of revenue and
     thus, Verizon can be considered capital intensive.
   page(s): 56, 23
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer opines that Verizon's business is capital-intensive,
+    and justifies such opinion with a calculated ratio
+
+
 financebench_id_00566:
   doc: VERIZON_2022_10K
   question: Has Verizon increased its debt on balance sheet between 2022 and the 2021
