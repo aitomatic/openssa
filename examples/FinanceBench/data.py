@@ -54,6 +54,7 @@ GroundTruthDict = TypedDict('GroundTruthDict', {'doc': Required[DocName],
                                                 'question': Required[Question],
                                                 'answer': Required[Answer],
                                                 'page(s)': Required[str],
+                                                'category': Required[str],
                                                 'correctness': Required[str]})
 with open(file=GROUND_TRUTHS_FILE_PATH,
           buffering=-1,
