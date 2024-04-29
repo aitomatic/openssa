@@ -1502,6 +1502,15 @@ financebench_id_04458:
     flow statement).'
   answer: 5.4%
   page(s): 40,42
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated EDITBA Margin
+    percentage value that is approximately in the range from 5.00% to 5.50%,
+    or, alternatively, a decimal value that is approximately in the range from 0.050 to 0.055,
+    assuming that EBITDA = "Operating Income" + "Depreciation & Amortization of Property, Equipment & Intangibles"
+
+
 financebench_id_03282:
   doc: NETFLIX_2017_10K
   question: What is Netflix's year end FY2017 total current liabilities (in USD millions)?
