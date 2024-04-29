@@ -1,10 +1,3 @@
-FINANCIAL MARGIN METRICS
-
-When we see the word "margin" in financial-analysis contexts,
-we usually need to divide a certain Profit-and-Loss (P&L) line item by the Total Revenue,
-for the concerned financial reporting period(s)
-
-
 FINANCIAL METRIC FORMULAS
 
 
@@ -41,9 +34,13 @@ FINANCIAL METRIC FORMULAS
 )
 
 
-MISCELLANEOUS / OTHER
+FINANCIAL-ANALYSIS LANGUAGE/WORDING
 
 - When we see the word "average" used before a Balance Sheet line item in financial-analysis contexts,
   it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
+
+- When we see the word "margin" in financial-analysis contexts,
+  we usually need to divide a certain Profit-and-Loss (P&L) line item by the Total Revenue,
+  for the concerned financial reporting period(s)
 
 - "Cost of Goods Sold (COGS)" is sometimes called "Cost of Revenue"
