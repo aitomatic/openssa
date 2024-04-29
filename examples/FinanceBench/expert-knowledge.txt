@@ -77,6 +77,12 @@ Liquidity Metric Formulas
 )
 
 
+Capital-Return Metric Formulas
+------------------------------
+
+`Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit`
+
+
 CAPITAL-INTENSITY EVALUATION
 ============================
 
