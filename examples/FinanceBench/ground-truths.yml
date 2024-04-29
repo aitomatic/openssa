@@ -2010,3 +2010,9 @@ financebench_id_06741:
     clearly shown in the P&L statement and the cash flow statement.
   answer: 6.2%
   page(s): 51,56
+
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated EDITBA Margin
+    percentage value that is approximately in the range from 5.50% to 6.50%,
+    or, alternatively, a decimal value that is approximately in the range from 0.055 to 0.065
