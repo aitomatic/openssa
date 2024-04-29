@@ -1727,6 +1727,12 @@ financebench_id_01474:
   question: As of FY2023Q1, why did Pepsico raise full year guidance for FY2023?
   answer: Pepsico experienced a strong start to FY2023.
   page(s): '1'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions strong business performance
+
+
 financebench_id_01476:
   doc: PEPSICO_2023Q1_EARNINGS
   question: As of FY2023Q1, by how many percentage points did Pepsico raise full year
