@@ -46,7 +46,10 @@ Capital-Intensity / Return-on-Capital Metric Formulas
 Liquidity Metric Formulas
 -------------------------
 
-`Quick Ratio` = ...
+`Quick Ratio` = (
+  (`Cash & Cash Equivalents` + `Short-Term Investments` + `Accounts Receivable`)
+  / `Current Liabilities`
+)
 
 `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Total Current Liabilities`
 
