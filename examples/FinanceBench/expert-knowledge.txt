@@ -51,6 +51,8 @@ Liquidity Metric Formulas
   / `Current Liabilities`
 )
 
+`Working Capital Ratio` = `Current Assets` / `Current Liabilities`
+
 `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Total Current Liabilities`
 
 `Free Cash Flow Conversion Ratio` = ...
