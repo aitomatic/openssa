@@ -1892,6 +1892,12 @@ financebench_id_00606:
     here assumes FY2023 refers to the 12 months ended on January 28, 2023 (although
     the company refers to this period as its fiscal 2022.
   page(s): '2'
+
+  category: 6-OTHER-ADVANCED
+  correctness: >-
+    the answer concludes that Wages as percent of Net Sales increased
+
+
 financebench_id_00859:
   doc: VERIZON_2021_10K
   question: Among all of the derivative instruments that Verizon used to manage the
