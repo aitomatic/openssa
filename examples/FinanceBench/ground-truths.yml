@@ -1934,6 +1934,12 @@ financebench_id_00216:
   answer: No. The quick ratio was approximately 0.54 for Verizon. It indicated that
     Verizon does not have a healthy liquidity profile.
   page(s): '56'
+
+  category: 4-CALC-AND-JUDGE
+  correctness: >-
+    the answer contains a calculated Quick Ratio metric value that is less than 1
+
+
 financebench_id_00215:
   doc: VERIZON_2022_10K
   question: Is Verizon a capital intensive business based on FY 2022 data?
