@@ -25,3 +25,9 @@ FINANCIAL METRIC FORMULAS
 `Cash Conversion Cycle, a.k.a. CCC` = (
   `Days Inventory Outstanding, a.k.a. DIO` + `Days Sales Oustanding, a.k.a. DSO` - `Days Payable Outstanding, a.k.a. DPO`
 )
+
+
+MISCELLANEOUS / OTHER
+
+- When we see the word "average" used before a Balance Sheet line item in financial-analysis contexts,
+  it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
