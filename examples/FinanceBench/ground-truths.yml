@@ -1851,6 +1851,12 @@ financebench_id_00601:
     sales. The answer here assumes FY2023 refers to the 12 months ended on January
     28, 2023 (although the company refers to this period as its fiscal 2022.
   page(s): '2'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions leverage of marketing expenses and incentive compensation due to higher sales
+
+
 financebench_id_00603:
   doc: ULTABEAUTY_2023Q4_EARNINGS
   question: What drove the increase in Ulta Beauty's merchandise inventories balance
