@@ -51,6 +51,8 @@ Capital-Intensity / Return-on-Capital Metric Formulas
 Liquidity Metric Formulas
 -------------------------
 
+`Net Working Capital` = `Current Assets` - `Current Liabilities`
+
 `Quick Ratio` = (
   (`Cash & Cash Equivalents` + `Short-Term Investments` + `Accounts Receivable`)
   / `Current Liabilities`
