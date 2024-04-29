@@ -14,6 +14,9 @@ FINANCIAL METRIC FORMULAS
 `Net (Profit) Margin` = `Net Profit` / `Revenue`
 
 
+`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Total Current Liabilities`
+
+
 `Days Inventory Outstanding, a.k.a. DIO` = (
   365 * `average Inventory, typically between two consecutive fiscal year-ends`
   / `Cost of Goods Sold, a.k.a. COGS`
