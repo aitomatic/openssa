@@ -1,21 +1,49 @@
 FINANCIAL METRIC FORMULAS
 
 
+Turnover Ratio Metric Formulas:
+
+`Fixed Asset Turnover Ratio` = (
+  `Revenue` /
+  `average Plant, Property & Equipment, a.k.a. PP&E, typically between two consecutive fiscal year-ends`
+)
+
+`Inventory Turnover Ratio` = (
+  `Revenue` /
+  `average Inventory, typically between two consecutive fiscal year-ends`
+)
+
+
+Profitability Margin Metric Formulas:
+
 `Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `Revenue` 
 
-`Gross (Profit) Margin` = `Gross Profit` / `Revenue`
+`Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `Revenue`
 
-`Operating (Profit) Margin` = `Operating Profit` / `Revenue`
+`Operating (Income or Profit) Margin` = `Operating Income, a.k.a. Operating Profit` / `Revenue`
 
 `EBITDA Margin` = `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `Revenue`
 
 `EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Revenue`
 
-`Net (Profit) Margin` = `Net Profit` / `Revenue`
+`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `Revenue`
 
+
+Capital-Intensity / Return-on-Capital Metric Formulas 
+
+`Return on Assets, a.k.a. RoA` = (
+  `Net Income, a.k.a. Net Profit` /
+  `average Total Assets, typically between two consecutive fiscal year-ends`
+)
+
+
+Liquidity Metric Formulas:
+
+`Quick Ratio` = ...
 
 `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Total Current Liabilities`
 
+`Free Cash Flow Conversion Ratio` = ...
 
 `Days Inventory Outstanding, a.k.a. DIO` = (
   365 * `average Inventory, typically between two consecutive fiscal year-ends`
