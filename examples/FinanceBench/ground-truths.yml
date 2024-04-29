@@ -1776,6 +1776,12 @@ financebench_id_02416:
     report?
   answer: Trillium, Array, and Therachon
   page(s): 70, 71
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions Trillium, Array and Therachon
+
+
 financebench_id_00283:
   doc: Pfizer_2023Q2_10Q
   question: How much does Pfizer expect to pay to spin off Upjohn in the future in
