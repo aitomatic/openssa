@@ -1216,7 +1216,8 @@ financebench_id_04103:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Cash Conversion Cycle (CCC) metric value
+    the answer contains a calculated Cash Conversion Cycle (CCC) metric value based on supporting calculated
+    Days Inventory Oustanding (DIO), Days Sales Outstanding (DSO) and Days Payable Outstanding (DPO) metric values
 
 
 financebench_id_03471:
