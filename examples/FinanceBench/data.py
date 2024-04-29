@@ -50,12 +50,12 @@ LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
 OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
-GroundTruthDict = TypedDict('GroundTruthDict', {'doc': Required[DocName],
-                                                'question': Required[Question],
-                                                'answer': Required[Answer],
-                                                'page(s)': Required[str],
-                                                'category': Required[str],
-                                                'correctness': Required[str]})
+type GroundTruthDict = TypedDict('GroundTruthDict', {'doc': Required[DocName],
+                                                     'question': Required[Question],
+                                                     'answer': Required[Answer],
+                                                     'page(s)': Required[str],
+                                                     'category': Required[str],
+                                                     'correctness': Required[str]})
 with open(file=GROUND_TRUTHS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
