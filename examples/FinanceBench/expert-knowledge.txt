@@ -51,4 +51,8 @@ FINANCIAL-ANALYSIS LANGUAGE/WORDING
   we usually need to divide a certain Profit-and-Loss (P&L) line item by the Total Revenue,
   for the concerned financial reporting period(s)
 
+- When we see the word "turnover ratio" used after a Balance Sheet line item in financial-analysis contexts,
+  we usually need to divide the Total Revenue for the fiscal year by the average of that Balance Sheet line item
+  between the latest fiscal year-end and the immediately-preceeding fiscal year-end
+
 - "Cost of Goods Sold (COGS)" is sometimes called "Cost of Revenue"
