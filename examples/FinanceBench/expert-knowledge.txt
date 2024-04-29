@@ -7,7 +7,21 @@ for the concerned financial reporting period(s)
 
 FINANCIAL METRIC FORMULAS
 
+`Days Inventory Outstanding, a.k.a. DIO` = (
+  365 * `average Inventory, typically between two consecutive fiscal year-ends`
+  / `Cost of Goods Sold, a.k.a. COGS`
+)
+
 `Days Payable Outstanding, a.k.a. DPO` = (
   365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
   / (`Cost of Goods Sold, a.k.a. COGS` + `change in Inventory, typically between two consecutive fiscal year-ends`)
+)
+
+`Days Sales Oustanding, a.k.a. DSO` = (
+  365 * `average Accounts Receivable, typically between two consecutive fiscal year-ends`
+  / `Revenue`
+)
+
+`Cash Conversion Cycle, a.k.a. CCC` = (
+  `Days Inventory Outstanding, a.k.a. DIO` + `Days Sales Oustanding, a.k.a. DSO` - `Days Payable Outstanding, a.k.a. DPO`
 )
