@@ -1752,6 +1752,12 @@ financebench_id_00302:
   question: Did Pfizer grow its PPNE between FY20 and FY21?
   answer: Yes, change in PPNE was positive year over year
   page(s): '59'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer concludes that Property, Plant & Equipment (PP&E or PPNE) increased
+
+
 financebench_id_00702:
   doc: PFIZER_2021_10K
   question: Were there any potential events that are not in Pfizer's standard business
