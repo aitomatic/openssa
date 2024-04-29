@@ -5,13 +5,18 @@ FINANCIAL METRIC FORMULAS
 Turnover Ratio Metric Formulas
 ------------------------------
 
+`Asset Turnover Ratio` = (
+  `Revenue` /
+  `average Total Assets, typically between two consecutive fiscal year-ends`
+)
+
 `Fixed Asset Turnover Ratio` = (
   `Revenue` /
   `average Property, Plant & Equipment, a.k.a. PP&E, typically between two consecutive fiscal year-ends`
 )
 
 `Inventory Turnover Ratio` = (
-  `Revenue` /
+  `Cost of Goods Sold, a.k.a. COGS` /
   `average Inventory, typically between two consecutive fiscal year-ends`
 )
 
