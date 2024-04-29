@@ -27,6 +27,8 @@ Profitability Margin Metric Formulas
 
 `EBITDA Margin` = `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `Revenue`
 
+`Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `Revenue`
+
 `EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Revenue`
 
 `Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `Revenue`
