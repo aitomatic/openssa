@@ -1811,6 +1811,12 @@ financebench_id_02419:
   question: As of Q2'2023, is Pfizer spinning off any large business segments?
   answer: Yes, it's spinning off Upjohn.
   page(s): '41'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions Upjohn
+
+
 financebench_id_00746:
   doc: ULTABEAUTY_2023_10K
   question: Which debt securities are registered to trade on a national securities
