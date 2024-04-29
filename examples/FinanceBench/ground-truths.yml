@@ -1824,6 +1824,13 @@ financebench_id_00746:
     exchange under Ulta Beauty's name as of FY2023?
   answer: There are none
   page(s): '1'
+
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer concludes that there are no debt securities traded,
+    or that no such debt securies are explicitly reported
+
+
 financebench_id_00521:
   doc: ULTABEAUTY_2023_10K
   question: What are major acquisitions that Ulta Beauty has done in FY2023 and FY2022?
