@@ -31,3 +31,5 @@ MISCELLANEOUS / OTHER
 
 - When we see the word "average" used before a Balance Sheet line item in financial-analysis contexts,
   it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
+
+- "Cost of Goods Sold (COGS)" is sometimes called "Cost of Revenue"
