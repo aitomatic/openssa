@@ -668,7 +668,7 @@ financebench_id_01964:
 
   category: 1-COMPARE
   correctness: >-
-    the answer identifies Customer Deposits as the largest liability
+    the answer identifies Customer Deposits as largest liability
 
 
 financebench_id_01981:
