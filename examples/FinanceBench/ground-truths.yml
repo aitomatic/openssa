@@ -1905,6 +1905,12 @@ financebench_id_00859:
     which one had the highest notional value in FY 2021?
   answer: Cross currency swaps. Its notional value was $32,502 million.
   page(s): '85'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer identifies Cross Currency Swaps as having highest notional value
+
+
 financebench_id_02024:
   doc: VERIZON_2021_10K
   question: As of FY 2021, how much did Verizon expect to pay for its retirees in
