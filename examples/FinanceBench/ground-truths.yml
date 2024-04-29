@@ -1918,6 +1918,14 @@ financebench_id_02024:
   answer: The estimated pension benefits were $1097 million, and the estimated health
     care and life insurance benefits were $862 million.
   page(s): 63, 94
+
+  category: 0-RETRIEVE
+  correctness: |-
+    the answer mentions both "Pension (Benefits)" and "Health Care & Life (Insurance)", and:
+    - mentions amounts of 1,097 million and 862 million or approximately equivalent amounts; or
+    - mentions total amount of 1,959 million or an approximately equivalent amount
+
+
 financebench_id_00216:
   doc: VERIZON_2022_10K
   question: Does Verizon have a reasonably healthy liquidity profile based on its
