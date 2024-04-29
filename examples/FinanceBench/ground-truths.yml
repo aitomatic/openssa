@@ -1800,6 +1800,12 @@ financebench_id_00724:
     over year revenues (on a percentage basis)?
   answer: Developed Rest of the World
   page(s): '38'
+
+  category: 1-COMPARE
+  correctness: >-
+    the answer identifies Developed Rest of World as having worst percentage/relative decline
+
+
 financebench_id_02419:
   doc: Pfizer_2023Q2_10Q
   question: As of Q2'2023, is Pfizer spinning off any large business segments?
