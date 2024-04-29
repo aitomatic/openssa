@@ -1740,6 +1740,13 @@ financebench_id_01476:
   answer: Pepsico raised full year guidance in respect of core constant currency EPS
     growth by 1 percentage point.
   page(s): '1'
+
+  category: 2-CALC-CHANGE
+  correctness: >-
+    the answer mentions growth guidance raised from 8% to 9%,
+    and/or growth guidance raised by 1 percentage point
+
+
 financebench_id_00302:
   doc: PFIZER_2021_10K
   question: Did Pfizer grow its PPNE between FY20 and FY21?
