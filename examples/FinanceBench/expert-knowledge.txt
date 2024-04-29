@@ -1,0 +1,124 @@
+FINANCIAL METRIC FORMULAS
+=========================
+
+
+Turnover Ratio Metric Formulas
+------------------------------
+
+`Asset Turnover Ratio` = (
+  `Revenue` /
+  `average Total Assets, typically between two consecutive fiscal year-ends`
+)
+
+`Fixed Asset Turnover Ratio` = (
+  `Revenue` /
+  `average Property, Plant & Equipment, a.k.a. PP&E, typically between two consecutive fiscal year-ends`
+)
+
+`Inventory Turnover Ratio` = (
+  `Cost of Goods Sold, a.k.a. COGS` /
+  `average Inventory, typically between two consecutive fiscal year-ends`
+)
+
+
+Profitability Margin Metric Formulas
+------------------------------------
+
+`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `Revenue` 
+
+`Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `Revenue`
+
+`Operating (Income or Profit) Margin` = `Operating Income, a.k.a. Operating Profit` / `Revenue`
+
+`EBITDA Margin` = `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `Revenue`
+
+`Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `Revenue`
+
+`EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Revenue`
+
+`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `Revenue`
+
+
+Capital-Intensity / Return-on-Capital Metric Formulas
+-----------------------------------------------------
+
+`Return on Assets, a.k.a. RoA` = (
+  `Net Income, a.k.a. Net Profit` /
+  `average Total Assets, typically between two consecutive fiscal year-ends`
+)
+
+
+Liquidity Metric Formulas
+-------------------------
+
+`Net Working Capital` = `Current Assets` - `Current Liabilities`
+
+`Quick Ratio` = (
+  (`Cash & Cash Equivalents` + `Short-Term Investments` + `Accounts Receivable`)
+  / `Current Liabilities`
+)
+
+`Working Capital Ratio` = `Current Assets` / `Current Liabilities`
+
+`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Total Current Liabilities`
+
+`Free Cash Flow Conversion Ratio` = `Free Cash Flows` / `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA`
+
+`Days Inventory Outstanding, a.k.a. DIO` = (
+  365 * `average Inventory, typically between two consecutive fiscal year-ends`
+  / `Cost of Goods Sold, a.k.a. COGS`
+)
+
+`Days Payable Outstanding, a.k.a. DPO` = (
+  365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
+  / (`Cost of Goods Sold, a.k.a. COGS` + `change in Inventory, typically between two consecutive fiscal year-ends`)
+)
+
+`Days Sales Oustanding, a.k.a. DSO` = (
+  365 * `average Accounts Receivable, typically between two consecutive fiscal year-ends`
+  / `Revenue`
+)
+
+`Cash Conversion Cycle, a.k.a. CCC` = (
+  `Days Inventory Outstanding, a.k.a. DIO` + `Days Sales Oustanding, a.k.a. DSO` - `Days Payable Outstanding, a.k.a. DPO`
+)
+
+
+Capital-Return Metric Formulas
+------------------------------
+
+`Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit`
+
+`Retention Ratio` = 1 - `Dividend Payout Ratio`
+
+
+Miscellaneous/Other Metric Formulas
+-----------------------------------
+
+`Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
+
+
+CAPITAL-INTENSITY EVALUATION
+============================
+
+Capital-intensive businesses tend to have one or several of the following characteristics:
+- high Fixed Assets as proportion of Total Assets
+- high Capital Expenditure (CapEx) as proportion of Revenue
+- low Return on Asset (RoA) metric value
+
+
+FINANCIAL-ANALYSIS LANGUAGE/WORDING
+===================================
+
+- When we see the word "average" used before a Balance Sheet line item in financial-analysis contexts,
+  it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
+
+- When we see the word "margin" in financial-analysis contexts,
+  we usually need to divide a certain Profit-and-Loss (P&L) line item by the Total Revenue,
+  for the concerned financial reporting period(s)
+
+- When we see the word "turnover ratio" used after a Balance Sheet line item in financial-analysis contexts,
+  we usually need to divide the Total Revenue for the fiscal year by the average of that Balance Sheet line item
+  between the latest fiscal year-end and the immediately-preceeding fiscal year-end
+
+- "Cost of Goods Sold (COGS)" is sometimes called "Cost of Revenue"

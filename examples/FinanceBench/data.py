@@ -2,10 +2,12 @@ from argparse import ArgumentParser
 import base64
 from functools import cache
 from pathlib import Path
+from typing import TypedDict, Required
 
 from dotenv import load_dotenv
 from pandas import DataFrame, read_csv
 import requests
+import yaml
 
 
 load_dotenv()
@@ -47,6 +49,22 @@ LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
 LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
 OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
+GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
+type GroundTruthDict = TypedDict('GroundTruthDict', {'doc': Required[DocName],
+                                                     'question': Required[Question],
+                                                     'answer': Required[Answer],
+                                                     'page(s)': Required[str],
+                                                     'category': Required[str],
+                                                     'correctness': Required[str]})
+with open(file=GROUND_TRUTHS_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    GROUND_TRUTHS: dict[FbId, GroundTruthDict] = yaml.safe_load(stream=f)
+
 
 def get_doc(doc_name: DocName) -> requests.Response:
     response: requests.Response = requests.get(
@@ -86,6 +104,33 @@ def cache_file_path(doc_name: DocName) -> Path | None:
     return (dir_path / f'{doc_name}.pdf'
             if (dir_path := cache_dir_path(doc_name))
             else None)
+
+
+def export_ground_truths():
+    with open(file=GROUND_TRUTHS_FILE_PATH,
+              mode='w',
+              buffering=-1,
+              encoding='utf-8',
+              errors='strict',
+              newline=None,
+              closefd=True,
+              opener=None) as f:
+        yaml.safe_dump(data={fb_id: {'doc': row.doc_name, 'question': row.question, 'answer': row.answer, 'page(s)': row.page_number}  # noqa: E501
+                             for fb_id, row in META_DF.iterrows()},
+                       stream=f,
+                       default_style=None,
+                       default_flow_style=False,
+                       canonical=None,
+                       indent=2,
+                       width=80,
+                       allow_unicode=True,
+                       line_break=None,
+                       encoding='utf-8',
+                       explicit_start=None,
+                       explicit_end=None,
+                       version=None,
+                       tags=None,
+                       sort_keys=False)
 
 
 if __name__ == '__main__':
