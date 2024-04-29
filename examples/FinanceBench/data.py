@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 import base64
 from functools import cache
 from pathlib import Path
+from typing import TypedDict, Required
 
 from dotenv import load_dotenv
 from pandas import DataFrame, read_csv
@@ -49,6 +50,19 @@ LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
 OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
+GroundTruthDict = TypedDict('GroundTruthDict', {'doc': Required[DocName],
+                                                'question': Required[Question],
+                                                'answer': Required[Answer],
+                                                'page(s)': Required[str],
+                                                'correctness': Required[str]})
+with open(file=GROUND_TRUTHS_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    GROUND_TRUTHS: dict[FbId, GroundTruthDict] = yaml.safe_load(stream=f)
 
 
 def get_doc(doc_name: DocName) -> requests.Response:
