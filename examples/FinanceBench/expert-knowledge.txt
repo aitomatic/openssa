@@ -82,6 +82,8 @@ Capital-Return Metric Formulas
 
 `Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit`
 
+`Retention Ratio` = 1 - `Dividend Payout Ratio`
+
 
 CAPITAL-INTENSITY EVALUATION
 ============================
