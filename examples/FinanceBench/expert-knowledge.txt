@@ -5,20 +5,22 @@ FINANCIAL SYNONYMS
 - "Balance Sheet", "Statement of Financial Position"
 
 
-Balance Sheet Line-Item Synonyms
+Balance-Sheet Line-Item Synonyms
 --------------------------------
 
-- "Fixed Assets", "Property, Plant & Equipment", "PP&E"
+- "Fixed Assets", "FA(s)", "Property, Plant & Equipment", "PP&E"
+- "Total Assets", "TA(s)"
 
 
-Cash Flow Line-Item Synonyms
+Cash-Flow Line-Item Synonyms
 ----------------------------
 
+- "Cash (Flows) from Operations", "Cash (Flows) from Operating Activities", "Operating Cash Flows"
 - "Capital Expenditure", "CapEx"
 
 
-Profit & Loss (P&L) Line-Item Synonyms
---------------------------------------
+Profit-and-Loss (P&L) Line-Item Synonyms
+----------------------------------------
 
 - "Cost of Goods Sold", "COGS", "Cost of Revenue"
 - "Gross Income", "Gross Profit"
