@@ -857,7 +857,9 @@ financebench_id_04660:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Working Capital Ratio metric value that is in the range from 1.70 to 1.80
+    the answer contains a calculated Working Capital Ratio
+    decimal value that is approximately in the range from 1.70 to 1.80,
+    or, alternatively, a calculated percentage value that is approximately in the range from 170% to 180%
 
 
 financebench_id_03838:
