@@ -1663,7 +1663,8 @@ financebench_id_00735:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer says that there were NO material lawsuits / legal battles
+    the answer says that there were NO material lawsuits / legal battles,
+    or, alternatively, that no such lawsuits / legal battles were explicitly reported
 
 
 financebench_id_01328:
