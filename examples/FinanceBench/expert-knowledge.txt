@@ -2,6 +2,18 @@ FINANCIAL SYNONYMS
 ==================
 
 
+Balance Sheet Line Items
+------------------------
+
+- "Fixed Assets", "Property, Plant & Equipment", "PP&E"
+
+
+Cash Flow Line Items
+--------------------
+
+- "Capital Expenditure", "CapEx"
+
+
 Profit & Loss (P&L) Line Items
 ------------------------------
 
@@ -14,12 +26,6 @@ Profit & Loss (P&L) Line Items
 - "Depreciation & Amortization", "D&A"
 - "Earnings before Interest & Tax", "EBIT"
 - "Net Income", "Net Profit"
-
-
-Cash Flow (CF) Line Items
--------------------------
-
-- "Capital Expenditure", "CapEx"
 
 
 FINANCIAL METRIC FORMULAS
