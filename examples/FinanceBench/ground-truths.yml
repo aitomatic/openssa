@@ -253,7 +253,7 @@ financebench_id_00591:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Free Cash Flow Conversion Ratio metric values for 2021 and 2022,
+    the answer contains calculated Free Cash Flow Conversion Ratio percentage or decimal values for 2021 and 2022,
     and concludes that such metric increased
 
 
