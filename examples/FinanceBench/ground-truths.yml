@@ -1089,8 +1089,7 @@ financebench_id_01346:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer states that the Effective Tax Rate changed from 20% to 23%,
-    and/or that it increased by 3 percentage points
+    the answer says that Effective Tax Rate changed from 20% to 23%, and/or that it increased by 3 percentage points
 
 
 financebench_id_00005:
