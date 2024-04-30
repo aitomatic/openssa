@@ -122,13 +122,13 @@ Miscellaneous/Other Metric Formulas
 `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
 
 
-CAPITAL-INTENSITY EVALUATION
-============================
+CAPITAL-INTENSIVENESS EVALUATION
+================================
 
 Capital-intensive businesses tend to have one or several of the following characteristics:
+- high Capital Expenditure (CapEx) relative to Revenue
 - high Fixed Assets as proportion of Total Assets
-- high Capital Expenditure (CapEx) as proportion of Revenue
-- low Return on Asset (RoA) metric value
+- low Return on Asset (RoA)
 
 
 FINANCIAL-ANALYSIS LANGUAGE/WORDING
