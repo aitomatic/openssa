@@ -63,8 +63,8 @@ Turnover Ratio Metric Formulas
 Adjusted Income Metric Formulas
 -------------------------------
 
-`Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` = (
-  `Operating Income, a.k.a. Operating Profit` +
+`(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` = (
+  `(Unadjusted) Operating Income, a.k.a. Operating Profit` +
   `Depreciation & Amortization, a.k.a. D&A`
 )
 
@@ -76,9 +76,9 @@ Profitability Margin Metric Formulas
 
 `Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `Revenue`
 
-`Operating (Income or Profit) Margin` = `Operating Income, a.k.a. Operating Profit` / `Revenue`
+`(Unadjusted) Operating (Income or Profit) Margin` = `(Unadjusted) Operating Income, a.k.a. Operating Profit` / `Revenue`
 
-`EBITDA Margin` = `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `Revenue`
+`(Unadjusted) EBITDA Margin` = `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `Revenue`
 
 `Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `Revenue`
 
