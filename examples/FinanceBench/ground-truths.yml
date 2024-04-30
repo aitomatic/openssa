@@ -1426,7 +1426,7 @@ financebench_id_03849:
   correctness: >-
     the answer contains a calculated metric
     percentage value that is approximately in the range from 7.5% to 8.5%,
-    or, alternatively, a decimal value that is approximately in the range from 0.075 to 0.085
+    or, alternatively, a decimal value that is approximately in the range from 0.0750 to 0.0850
 
 
 financebench_id_01254:
