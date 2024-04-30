@@ -78,7 +78,7 @@ Liquidity Metric Formulas
 `Net Working Capital` = `Current Assets` - `Current Liabilities`
 
 `Quick Ratio` = (
-  (`Cash & Cash Equivalents` + `Short-Term Investments` + `Accounts Receivable`)
+  (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `Accounts Receivable`)
   / `Current Liabilities`
 )
 
