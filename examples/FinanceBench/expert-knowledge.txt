@@ -60,6 +60,15 @@ Turnover Ratio Metric Formulas
 )
 
 
+Adjusted Income Metric Formulas
+-------------------------------
+
+`Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` = (
+  `Operating Income, a.k.a. Operating Profit` +
+  `Depreciation & Amortization, a.k.a. D&A`
+)
+
+
 Profitability Margin Metric Formulas
 ------------------------------------
 
