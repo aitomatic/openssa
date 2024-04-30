@@ -1076,7 +1076,7 @@ financebench_id_02981:
   correctness: >-
     the answer constains a calculated Average Operating Income Margin
     percentage value that is approximately in the range from 9.00% to 11.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.090 to 0.110
+    or, alternatively, a decimal value that is approximately in the range from 0.0900 to 0.1100
 
 
 financebench_id_01346:
