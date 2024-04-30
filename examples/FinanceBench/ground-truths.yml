@@ -180,7 +180,8 @@ financebench_id_07966:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated metric value that is approximately in the range from 1.8% to 2.1%
+    the answer contains a calculated percentage value that is approximately in the range from 1.70% to 2.10%,
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0170 to 0.0210
 
 
 financebench_id_04735:
