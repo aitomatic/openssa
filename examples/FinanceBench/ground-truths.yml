@@ -1966,7 +1966,8 @@ financebench_id_00216:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio metric value that is less than 1
+    the answer contains a calculated Quick Ratio decimal value that is less than 1.00,
+    or, alternatively, a calculated percentage value that is less than 100%
 
 
 financebench_id_00215:
