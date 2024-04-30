@@ -1592,7 +1592,7 @@ financebench_id_04080:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Inventory Turnover Ratio metric value that is approximately in the range from 3.00 to 4.00
+    the answer contains a calculated Inventory Turnover Ratio decimal value that is approximately in the range from 3.00 to 4.00
 
 
 financebench_id_01163:
