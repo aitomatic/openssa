@@ -1148,9 +1148,10 @@ financebench_id_00790:
   page(s): 108,110
 
   category: 6-OTHER-ADVANCED
-  correctness: >-
-    the answer either mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity),
-    or mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
+  correctness: |-
+    the answer either:
+    - mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity); or
+    - mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
 
 
 financebench_id_01107:
