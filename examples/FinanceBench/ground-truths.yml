@@ -2014,7 +2014,7 @@ financebench_id_06247:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Days Payable Outstanding (DPO) metric value that is in the range from 35.00 to 50.00
+    the answer contains a calculated Days Payable Outstanding (DPO) decimal value that is in the range from 35.00 to 50.00
 
 
 financebench_id_04784:
