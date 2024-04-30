@@ -1562,8 +1562,9 @@ financebench_id_04302:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated percentage value that is approximately in the range from 50.00% to 60.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.5 to 0.6
+    the answer contains a calculated metric
+    percentage value that is approximately in the range from 50.00% to 60.00%,
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.50 to 0.60
 
 
 financebench_id_03531:
