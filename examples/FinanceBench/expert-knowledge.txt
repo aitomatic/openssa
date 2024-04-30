@@ -9,10 +9,10 @@ FINANCIAL SYNONYMS
 Balance-Sheet Line-Item Synonyms
 --------------------------------
 
-- "Accounts Receivable", "AR"
+- "(Net) Accounts Receivable", "(Net) AR"
 - "Fixed Assets", "FA(s)", "Property, Plant & Equipment", "PP&E"
 - "Total Assets", "TA(s)"
-- "Accounts Payable", "AP"
+- "(Net) Accounts Payable", "(Net) AP"
 
 
 Cash-Flow-Statement Line-Item Synonyms
@@ -89,7 +89,7 @@ Capital-Intensiveness / Return-on-Capital Metric Formulas
 Liquidity Metric Formulas
 -------------------------
 
-`Net Working Capital` = `Current Assets` - `Current Liabilities`
+`(Net) Working Capital` = `Current Assets` - `Current Liabilities`
 
 `Quick Ratio` = (
   (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `Accounts Receivable`)
