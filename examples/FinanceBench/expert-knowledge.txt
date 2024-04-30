@@ -44,7 +44,7 @@ FINANCIAL METRIC FORMULAS
 Turnover Ratio Metric Formulas
 ------------------------------
 
-`Asset Turnover Ratio` = (
+`(Total) Asset Turnover Ratio` = (
   `Revenue` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
 )
