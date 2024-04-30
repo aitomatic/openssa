@@ -638,7 +638,7 @@ financebench_id_00720:
     that and explain why.
   answer: Performance is not measured through gross margin
   page(s): '96'
-  
+
   category: 6-OTHER-ADVANCED
   correctness: >-
     the answer says that Gross Margin is not a very relevant/useful metric
@@ -756,7 +756,7 @@ financebench_id_04417:
     5409, 5409 million, 5.409 billion,
     5400, 5400 million or 5.4 billion
 
-    
+
 financebench_id_00685:
   doc: BESTBUY_2023_10K
   question: Are Best Buy's gross margins historically consistent (not fluctuating
@@ -794,7 +794,7 @@ financebench_id_01275:
   answer: Best Buy generated the most cash flow from operating activities in FY 2023
     ($1.8 bn)
   page(s): '42'
-  
+
   category: 1-COMPARE
   correctness: >-
     the answer concludes that Operations / Operating Cash Flows brought in the most cash
@@ -806,7 +806,7 @@ financebench_id_00288:
     FY2024?
   answer: Yes, there was a decline of ~42% between FY2023 and Q2 of FY 2024.
   page(s): '20'
-    
+
   category: 1-COMPARE
   correctness: >-
     the answer is affirmative, i.e., Cash & Cash Equivalents decreased
@@ -819,7 +819,7 @@ financebench_id_00460:
   answer: Yes, there is decline in number stores by 1.32% from 982 stores in Q2 FY
     2023 to 969 by the end of Q2 FY2024.
   page(s): '17'
-      
+
   category: 1-COMPARE
   correctness: >-
     the answer mentions the number of stores decreased
@@ -832,7 +832,7 @@ financebench_id_01902:
   answer: The entertainment segment experienced the highest growth of 9% during Q2
     FY2024, primarily from gaming division.
   page(s): '18'
-        
+
   category: 1-COMPARE
   correctness: |-
     the answer identifies the best-performing product category as either:
@@ -875,7 +875,7 @@ financebench_id_07661:
     flow from operating activities in FY2020? Answer in USD millions.'
   answer: $382.00
   page(s): '90'
-  
+
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
@@ -891,7 +891,7 @@ financebench_id_10285:
     year end FY2018 net property, plant, and equipment (in USD millions)?'
   answer: $12645.00
   page(s): '52'
-  
+
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
@@ -924,7 +924,7 @@ financebench_id_01091:
   answer: Yes. Multiple lawsuits have been filed against Boeing resulting from a 2018
     Lion Air crash and a 2019 Ethiopian Airlines crash.
   page(s): '113'
-  
+
   category: 0-RETRIEVE
   correctness: >-
     the answer is affirmative, i.e., there were material lawsuits / legal battles
@@ -1352,7 +1352,7 @@ financebench_id_04412:
     total assets between FY2019 and FY2020). Round your answer to two decimal places.'
   answer: '1.33'
   page(s): 67,69
-  
+
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Asset Turnover Ratio metric value that is approximately in the range from 1.30 to 1.40
@@ -1569,7 +1569,7 @@ financebench_id_03531:
     16525, 16525 million, 16.525 billion,
     16500, 16500 million or 16.5 billion
 
-  
+
 financebench_id_04080:
   doc: NIKE_2021_10K
   question: 'When primarily referencing the income statement and the statement of
@@ -1590,7 +1590,7 @@ financebench_id_01163:
     the most (or lost the least) cash flow for Nike in FY2023?
   answer: Among the three, cash flow from operations was the highest for Nike in FY2023.
   page(s): '62'
-    
+
   category: 1-COMPARE
   correctness: >-
     the answer concludes that Operations / Operating Cash Flows brought in the most cash
