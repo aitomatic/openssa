@@ -11,7 +11,7 @@ Balance-Sheet Line-Item Synonyms
 --------------------------------
 
 - "(Net) Accounts Receivable", "(Net) AR"
-- "Fixed Assets", "FA(s)", "Property, Plant & Equipment", "PP&E"
+- "(Net) Fixed Assets", "(Net) FA(s)", "(Net) Property, Plant & Equipment", "(Net) PP&E"
 - "Total Assets", "TA(s)"
 - "(Net) Accounts Payable", "(Net) AP"
 
