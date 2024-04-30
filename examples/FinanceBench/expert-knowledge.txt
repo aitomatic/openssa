@@ -90,6 +90,8 @@ Profitability Margin Metric Formulas
 Capital-Intensiveness / Return-on-Capital Metric Formulas
 ---------------------------------------------------------
 
+`Capital Intensity Ratio` = `Total Assets` / `Revenue`
+
 `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
   `Net Income, a.k.a. Net Profit` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
