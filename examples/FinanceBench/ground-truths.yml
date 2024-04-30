@@ -1531,7 +1531,7 @@ financebench_id_04458:
   correctness: >-
     the answer contains a calculated EDITBA Margin
     percentage value that is approximately in the range from 5.00% to 5.50%,
-    or, alternatively, a decimal value that is approximately in the range from 0.050 to 0.055,
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0500 to 0.0550,
     assuming that EBITDA = "Operating Income" + "Depreciation & Amortization of Property, Equipment & Intangibles"
 
 
