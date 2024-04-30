@@ -2048,4 +2048,4 @@ financebench_id_06741:
   correctness: >-
     the answer contains a calculated EDITBA Margin
     percentage value that is approximately in the range from 5.50% to 6.50%,
-    or, alternatively, a decimal value that is approximately in the range from 0.055 to 0.065
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0550 to 0.0650
