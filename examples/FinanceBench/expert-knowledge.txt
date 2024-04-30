@@ -2,7 +2,8 @@ FINANCIAL SYNONYMS
 ==================
 
 
-- "Balance Sheet", "Statement of Financial Position"
+- "(Consolidated) Balance Sheet", "Statement of (Consolidated) Financial Position"
+- "(Consolidated) Profit-and-Loss Statement", "Statement of (Consolidated) Income"
 
 
 Balance-Sheet Line-Item Synonyms
@@ -26,7 +27,7 @@ Profit-and-Loss (P&L) Line-Item Synonyms
 - "Gross Income", "Gross Profit"
 - "Operating Expenditure", "Operating Expenses", "OpEx"
 - "Selling, General & Administrative (Expenses)", "SG&A (Expenses)"
-- "Operating Income", "Operating Profit"
+- "(Unadjusted) Operating Income", "(Unadjusted) Operating Profit"
 - "Earnings before Interest, Tax, Depreciation & Amortization", "EBITDA"
 - "Depreciation & Amortization", "D&A"
 - "Earnings before Interest & Tax", "EBIT"
