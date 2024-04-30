@@ -241,7 +241,7 @@ financebench_id_00438:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Operating Margin metric values for 2021 and 2022,
+    the answer contains calculated Operating Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric decreased
 
 
