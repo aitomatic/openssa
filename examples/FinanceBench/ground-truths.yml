@@ -1646,7 +1646,7 @@ financebench_id_01009:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions at least 3 of the following geographies:
+    the answer mentions at least 3 of following geographies:
     - North America, which includes United States and Canada;
     - Latin America (LatAm);
     - Europe;
