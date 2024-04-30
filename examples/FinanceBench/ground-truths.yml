@@ -1875,7 +1875,7 @@ financebench_id_00521:
   category: 0-RETRIEVE
   correctness: >-
     the answer concludes that there are no major acquisitions,
-    or that no such major acquisitions are explicitly reported
+    or, alternatively, that no such major acquisitions are explicitly reported
 
 
 financebench_id_00601:
