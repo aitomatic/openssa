@@ -386,7 +386,7 @@ financebench_id_00799:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Quick Ratio metric values for 2022 and 2023,
+    the answer contains calculated Quick Ratio decimal or percentage values for 2022 and 2023,
     and concludes that such metric increased
 
 
