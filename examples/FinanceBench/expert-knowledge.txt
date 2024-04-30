@@ -1,3 +1,27 @@
+FINANCIAL SYNONYMS
+==================
+
+
+Profit & Loss (P&L) Line Items
+------------------------------
+
+- "Cost of Goods Sold", "COGS", "Cost of Revenue"
+- "Gross Income", "Gross Profit"
+- "Operating Expenditure", "Operating Expenses", "OpEx"
+- "Selling, General & Administrative (Expenses)", "SG&A (Expenses)"
+- "Operating Income", "Operating Profit"
+- "Earnings before Interest, Tax, Depreciation & Amortization", "EBITDA"
+- "Depreciation & Amortization", "D&A"
+- "Earnings before Interest & Tax", "EBIT"
+- "Net Income", "Net Profit"
+
+
+Cash Flow (CF) Line Items
+-------------------------
+
+- "Capital Expenditure", "CapEx"
+
+
 FINANCIAL METRIC FORMULAS
 =========================
 
@@ -24,7 +48,7 @@ Turnover Ratio Metric Formulas
 Profitability Margin Metric Formulas
 ------------------------------------
 
-`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `Revenue` 
+`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `Revenue`
 
 `Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `Revenue`
 
@@ -120,5 +144,3 @@ FINANCIAL-ANALYSIS LANGUAGE/WORDING
 - When we see the word "turnover ratio" used after a Balance Sheet line item in financial-analysis contexts,
   we usually need to divide the Total Revenue for the fiscal year by the average of that Balance Sheet line item
   between the latest fiscal year-end and the immediately-preceeding fiscal year-end
-
-- "Cost of Goods Sold (COGS)" is sometimes called "Cost of Revenue"
