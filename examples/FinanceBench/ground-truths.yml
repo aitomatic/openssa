@@ -297,8 +297,9 @@ financebench_id_10420:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Return on Assets (RoA) Ratio metric value that is NEGATIVE
-    and approximately in the range from -2% to -1.5%
+    the answer contains a calculated Return on Assets (RoA) Ratio
+    percentage value that is NEGATIVE and approximately in the range from -2.0% to -1.5%,
+    or, alternatively, a calculated decimal value that is NEGATIVE and approximately in the range from -0.020 to -0.015
 
 
 financebench_id_06655:
