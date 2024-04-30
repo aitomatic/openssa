@@ -3,7 +3,7 @@ FINANCIAL SYNONYMS
 
 
 - "(Consolidated) Balance Sheet", "Statement of (Consolidated) Financial Position"
-- "(Consolidated) Profit-and-Loss Statement", "Statement of (Consolidated) Income"
+- "(Consolidated) Income Statement", "(Consolidated) Profit-and-Loss Statement", "(Consolidated) P&L (Statement)", "Statement of (Consolidated) Income"
 
 
 Balance-Sheet Line-Item Synonyms
@@ -13,15 +13,15 @@ Balance-Sheet Line-Item Synonyms
 - "Total Assets", "TA(s)"
 
 
-Cash-Flow Line-Item Synonyms
-----------------------------
+Cash-Flow-Statement Line-Item Synonyms
+--------------------------------------
 
 - "Cash (Flows) from Operations", "Cash (Flows) from Operating Activities", "Operating Cash Flows"
 - "Capital Expenditure", "CapEx"
 
 
-Profit-and-Loss (P&L) Line-Item Synonyms
-----------------------------------------
+Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
+-----------------------------------------------------------------------
 
 - "Cost of Goods Sold", "COGS", "Cost of Revenue"
 - "Gross Income", "Gross Profit"
