@@ -9,8 +9,10 @@ FINANCIAL SYNONYMS
 Balance-Sheet Line-Item Synonyms
 --------------------------------
 
+- "Accounts Receivable", "AR"
 - "Fixed Assets", "FA(s)", "Property, Plant & Equipment", "PP&E"
 - "Total Assets", "TA(s)"
+- "Accounts Payable", "AP"
 
 
 Cash-Flow-Statement Line-Item Synonyms
@@ -31,7 +33,7 @@ Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
 - "Earnings before Interest, Tax, Depreciation & Amortization", "EBITDA"
 - "Depreciation & Amortization", "D&A"
 - "Earnings before Interest & Tax", "EBIT"
-- "Net Income", "Net Profit"
+- "Net Income (Attributable to Shareholders)", "Net Profit (Attributable to Shareholders)"
 
 
 FINANCIAL METRIC FORMULAS
