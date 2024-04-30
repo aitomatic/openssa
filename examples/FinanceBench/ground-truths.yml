@@ -477,8 +477,8 @@ financebench_id_01930:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer concludes that the percentage change is approximately 1%,
-    or, alternatively, concludes that the growth is flat / small
+    the answer concludes that the percentage change was approximately 1%,
+    or, alternatively, concludes that the growth was flat / small
 
 
 financebench_id_03069:
