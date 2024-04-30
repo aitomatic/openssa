@@ -63,10 +63,10 @@ Profitability Margin Metric Formulas
 `Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `Revenue`
 
 
-Capital-Intensity / Return-on-Capital Metric Formulas
------------------------------------------------------
+Capital-Intensiveness / Return-on-Capital Metric Formulas
+---------------------------------------------------------
 
-`Return on Assets, a.k.a. RoA` = (
+`Return on (Total) Assets, a.k.a. RoA or RoTA` = (
   `Net Income, a.k.a. Net Profit` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
 )
@@ -128,7 +128,7 @@ CAPITAL-INTENSIVENESS EVALUATION
 Capital-intensive businesses tend to have one or several of the following characteristics:
 - high Capital Expenditure (CapEx) relative to Revenue
 - high Fixed Assets as proportion of Total Assets
-- low Return on Asset (RoA)
+- low Return on (Total) Assets (RoA or RoTA)
 
 
 FINANCIAL-ANALYSIS LANGUAGE/WORDING
