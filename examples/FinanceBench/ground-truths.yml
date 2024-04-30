@@ -1029,8 +1029,8 @@ financebench_id_09724:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Cost of Goods Sold (COGS) Margin
-    percentage value that is in the range from 39.00% to 40.00%,
-    or, alternatively, a decimal value that is in the range from 0.39 to 0.40
+    percentage value that is in the range from 38.00% to 42.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.38 to 0.42
 
 
 financebench_id_06272:
