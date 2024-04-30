@@ -226,7 +226,7 @@ financebench_id_03856:
   correctness: >-
     the answer contains a calculated Operating Cash Flow Ratio
     decimal value that is approximately in the range from 0.80 to 0.85,
-    or, alternatively, a calculated percentage value that is approximately in the range from 80% to 85%
+    or, alternatively, a calculated percentage value that is approximately in the range from 80.00% to 85.00%
 
 
 financebench_id_00438:
