@@ -1016,7 +1016,7 @@ financebench_id_03473:
   correctness: >-
     the answer contains a calculated Return on Assets (RoA)
     percentage value that is in the range from 1.00% to 2.00%,
-    or, alternatively, decimal value that is in the range from 0.0100 to 0.0200
+    or, alternatively, a calculated decimal value that is in the range from 0.0100 to 0.0200
 
 
 financebench_id_09724:
