@@ -43,8 +43,8 @@ financebench_id_00499:
 
   category: 6-OTHER-ADVANCED
   correctness: |-
-    the answer opines that 3M is actually managing capital assets efficiently,
-    and justifies such opinion by certain calculated financial ratio metric(s) showing at least one of the following:
+    the answer opines that 3M is actually managing capital assets efficiently, and justifies such opinion
+    by certain calculated financial ratio metric value(s) showing at least one of the following:
     - Capital Expenditure (CapEx) is not high relative to Revenue;
     - Fixed Assets is not large as proportion of Total Assets; or
     - Return on Assets (RoA) is quite good
