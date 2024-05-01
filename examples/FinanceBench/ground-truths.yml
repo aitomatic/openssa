@@ -42,11 +42,12 @@ financebench_id_00499:
   page(s): 48,50,52
 
   category: 6-OTHER-ADVANCED
-  correctness: >-
-    the answer opines that 3M is actually managing capital assets efficiently,
-    and justifies such opinion by certain calculated financial ratios
-    showing that Fixed Assets are small relative to Revenue or relative to Total Assets,
-    or that Return on Assets (RoA) is quite good
+  correctness: |-
+    the answer opines that 3M is actually managing capital assets efficiently, and justifies such opinion
+    by certain calculated financial ratio metric value(s) showing at least one of the following:
+    - Capital Expenditure (CapEx) is not high relative to Revenue;
+    - Fixed Assets is not large as proportion of Total Assets; or
+    - Return on Assets (RoA) is quite good
 
 
 financebench_id_01226:
@@ -64,7 +65,6 @@ financebench_id_01226:
   correctness: |-
     the answer highlights at least 3 salient changes among those discussed below:
 
-    ```
     COST OF SALES:
     Cost of sales, measured as a percent of sales, increased in 2022 when compared to the same period last year.
     Increases were primarily due to 2022 special item costs for significant litigation from additional commitments
@@ -94,7 +94,6 @@ financebench_id_01226:
     As a result of 3M's commitment to exit per- and polyfluoroalkyl substance (PFAS) manufacturing,
     3M recorded a goodwill impairment charge related to the Advanced Materials reporting unit
     (within the Transportation and Electronics business).
-    ```
 
 
 financebench_id_01865:
@@ -106,8 +105,7 @@ financebench_id_01865:
 
   category: 1-COMPARE
   correctness: >-
-    the answer concludes that the Consumer segment, with a negative change in Organic Sales,
-    has negatively impacted 3M's overall growth excluding M&A
+    the answer identifies Consumer segment as negative contributor
 
 
 financebench_id_00807:
@@ -121,7 +119,8 @@ financebench_id_00807:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio metric value that is slightly less than 1
+    the answer contains a calculated Quick Ratio decimal value that is slightly less than 1.00,
+    or, alternatively, a calculated percentage value that is slightly less than 100%
 
 
 financebench_id_00941:
@@ -140,7 +139,7 @@ financebench_id_00941:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions debt notes/securities due 2026, 2031 and 2031
+    the answer mentions debt notes/securities due 2026, 2030 and 2031
 
 
 financebench_id_01858:
@@ -167,7 +166,7 @@ financebench_id_02987:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Fixed Asset Turnover Ratio metric value that is in the range from 24.00 to 26.00
+    the answer contains a calculated Fixed Asset Turnover Ratio decimal value that is in the range from 23.00 to 25.00
 
 
 financebench_id_07966:
@@ -181,7 +180,8 @@ financebench_id_07966:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated metric value that is approximately in the range from 1.8% to 2.1%
+    the answer contains a calculated percentage value that is approximately in the range from 1.70% to 2.10%,
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0170 to 0.0210
 
 
 financebench_id_04735:
@@ -196,7 +196,9 @@ financebench_id_04735:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Operating Cash Flow Ratio metric value that is in the range from 0.60 to 0.70
+    the answer contains a calculated Operating Cash Flow Ratio
+    decimal value that is approximately in the range from 0.60 to 0.70,
+    or, alternatively, a calculated percentage value that is approximately in the range from 60.00% to 70.00%
 
 
 financebench_id_07507:
@@ -209,7 +211,7 @@ financebench_id_07507:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer contains a calculated Operating Income change percentage that is approximately 65% or 65.4%
+    the answer contains a calculated Operating Income change percentage value that is approximately 65% or 65.4%
 
 
 financebench_id_03856:
@@ -223,7 +225,9 @@ financebench_id_03856:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Operating Cash Flow Ratio metric value that is in the range from 0.80 to 0.85
+    the answer contains a calculated Operating Cash Flow Ratio
+    decimal value that is approximately in the range from 0.80 to 0.85,
+    or, alternatively, a calculated percentage value that is approximately in the range from 80.00% to 85.00%
 
 
 financebench_id_00438:
@@ -237,7 +241,7 @@ financebench_id_00438:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Operating Margin metric values for 2021 and 2022,
+    the answer contains calculated Operating Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric decreased
 
 
@@ -250,7 +254,7 @@ financebench_id_00591:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Free Cash Flow Conversion Ratio metric values for 2021 and 2022,
+    the answer contains calculated Free Cash Flow Conversion Ratio percentage or decimal values for 2021 and 2022,
     and concludes that such metric increased
 
 
@@ -278,8 +282,8 @@ financebench_id_00540:
   category: 3-CALC-COMPLEX
   correctness: |-
     the answer contains a calculated Inventory Turnover Ratio metric value that is either:
-    - approximately in the range from 9 to 10 times (if using ending Inventory as denominator), or
-    - approximately 12 times (if using average Inventory as denominator)
+    - approximately in the range from 9.0 to 10.0 times (if using ending Inventory as denominator), or
+    - approximately 12.0 times (if using average Inventory as denominator)
 
 
 financebench_id_10420:
@@ -293,8 +297,9 @@ financebench_id_10420:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Return on Assets (RoA) Ratio metric value that is NEGATIVE
-    and approximately in the range from -2% to -1.5%
+    the answer contains a calculated Return on Assets (RoA)
+    percentage value that is NEGATIVE and approximately in the range from -2.00% to -1.40%,
+    or, alternatively, a calculated decimal value that is NEGATIVE and approximately in the range from -0.0200 to -0.0140
 
 
 financebench_id_06655:
@@ -309,7 +314,8 @@ financebench_id_06655:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Days Payable Outstanding (DPO) metric value that is in the range from 90.00 to 100.00
+    the answer contains a calculated Days Payable Outstanding (DPO)
+    decimal value that is approximately in the range from 90.00 to 100.00
 
 
 financebench_id_08135:
@@ -322,7 +328,7 @@ financebench_id_08135:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer contains a calculated Revenue change percentage that is approximately 30%, 30.7%, 30.8% or 31%
+    the answer contains a calculated Revenue change percentage value that is approximately 30%, 30.7%, 30.8% or 31%
 
 
 financebench_id_08286:
@@ -367,7 +373,7 @@ financebench_id_01935:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions supplemental indentures related to debt notes
+    the answer mentions supplemental indentures related to debt
 
 
 financebench_id_00799:
@@ -381,7 +387,7 @@ financebench_id_00799:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains calculated Quick Ratio metric values for 2022 and 2023,
+    the answer contains calculated Quick Ratio decimal or percentage values for 2022 and 2023,
     and concludes that such metric increased
 
 
@@ -408,7 +414,7 @@ financebench_id_01079:
     the answer mentions acquisitions in at least 2 of the following:
     - Czech Republic;
     - New Zealand; and
-    - Shanghai, China (or alternatively just "Shanghai" or just "China")
+    - Shanghai, China (or, alternatively, just "Shanghai" or just "China")
 
 
 financebench_id_01148:
@@ -472,8 +478,8 @@ financebench_id_01930:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer concludes that the percentage change is approximately 1%,
-    or, alternatively, concludes that the growth is flat / small
+    the answer concludes that the percentage change was approximately 1%,
+    or, alternatively, concludes that the growth was flat / small
 
 
 financebench_id_03069:
@@ -488,9 +494,9 @@ financebench_id_03069:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Depreciation & Amortization (D&A) Margin percentage value,
-    (using Net Revenue as denominator) that is approximately 4% or 4.2%,
-    or, alternatively, a decimal value that is approximately 0.04
+    the answer contains a calculated Depreciation & Amortization (D&A) Margin (using Net Revenue as denominator)
+    percentage value that is approximately in the range from 4.00% to 4.50%,
+    or, alternatively, a decimal value that is approximately in the range from 0.0400 to 0.0450
 
 
 financebench_id_00222:
@@ -505,7 +511,8 @@ financebench_id_00222:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio metric value that is greater than 1
+    the answer contains a calculated Quick Ratio decimal value that is greater than 1.00,
+    or, alternatively, a calculated percentage value that is greater than 100%
 
 
 financebench_id_00995:
@@ -562,7 +569,7 @@ financebench_id_01279:
 
   category: 1-COMPARE
   correctness: >-
-    the answer concludes that Operations / Operating Cash Flows brought in the most cash
+    the answer identifies Operations / Operating Cash Flows as bringing in most cash
 
 
 financebench_id_00563:
@@ -574,7 +581,7 @@ financebench_id_00563:
 
   category: 1-COMPARE
   correctness: >-
-    the answer concludes that Data Center segment's revenue proportionally grew the most
+    the answer identifies Data Center segment as proportionally growing most strongly
 
 
 financebench_id_00757:
@@ -598,7 +605,7 @@ financebench_id_00476:
   category: 0-RETRIEVE
   correctness: >-
     the answer concludes that there are no debt securities traded,
-    or that no such debt securies are explicitly reported
+    or, alternatively, that no such debt securities are explicitly reported
 
 
 financebench_id_01028:
@@ -638,7 +645,7 @@ financebench_id_00720:
     that and explain why.
   answer: Performance is not measured through gross margin
   page(s): '96'
-  
+
   category: 6-OTHER-ADVANCED
   correctness: >-
     the answer says that Gross Margin is not a very relevant/useful metric
@@ -655,8 +662,7 @@ financebench_id_01351:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer says that the effective tax rate changed from 24.6% to 21.6%,
-    and/or that it decreased by 3 pencentage points
+    the answer says Effective Tax Rate changed from 24.6% to 21.6%, and/or that it decreased by 3 pencentage points
 
 
 financebench_id_01964:
@@ -738,8 +744,8 @@ financebench_id_02608:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated average Net Profit Margin
-    percentage value that is approximately in the range from 2.5% to 3%,
-    or, alternatively, a decimal value that is approximately in the range from 0.025 to 0.030
+    percentage value that is approximately in the range from 2.50% to 3.00%,
+    or, alternatively, a decimal value that is approximately in the range from 0.0250 to 0.0300
 
 
 financebench_id_04417:
@@ -756,7 +762,7 @@ financebench_id_04417:
     5409, 5409 million, 5.409 billion,
     5400, 5400 million or 5.4 billion
 
-    
+
 financebench_id_00685:
   doc: BESTBUY_2023_10K
   question: Are Best Buy's gross margins historically consistent (not fluctuating
@@ -770,7 +776,7 @@ financebench_id_00685:
   correctness: >-
     the answer contains calculated Gross Margin
     percentage values for 2022 and 2023 and concludes that they are within 2 percentage points of each other,
-    or, alternatively, decimal values that are within 0.02 of each other
+    or, alternatively, calculated decimal values that are within 0.02 of each other
 
 
 financebench_id_01077:
@@ -794,10 +800,10 @@ financebench_id_01275:
   answer: Best Buy generated the most cash flow from operating activities in FY 2023
     ($1.8 bn)
   page(s): '42'
-  
+
   category: 1-COMPARE
   correctness: >-
-    the answer concludes that Operations / Operating Cash Flows brought in the most cash
+    the answer identifies that Operations / Operating Cash Flows as bringing in most cash
 
 
 financebench_id_00288:
@@ -806,7 +812,7 @@ financebench_id_00288:
     FY2024?
   answer: Yes, there was a decline of ~42% between FY2023 and Q2 of FY 2024.
   page(s): '20'
-    
+
   category: 1-COMPARE
   correctness: >-
     the answer is affirmative, i.e., Cash & Cash Equivalents decreased
@@ -819,10 +825,10 @@ financebench_id_00460:
   answer: Yes, there is decline in number stores by 1.32% from 982 stores in Q2 FY
     2023 to 969 by the end of Q2 FY2024.
   page(s): '17'
-      
+
   category: 1-COMPARE
   correctness: >-
-    the answer mentions the number of stores decreased
+    the answer mentions that number of stores decreased
 
 
 financebench_id_01902:
@@ -832,10 +838,10 @@ financebench_id_01902:
   answer: The entertainment segment experienced the highest growth of 9% during Q2
     FY2024, primarily from gaming division.
   page(s): '18'
-        
+
   category: 1-COMPARE
   correctness: |-
-    the answer identifies the best-performing product category as either:
+    the answer identifies best-performing product category as either:
     - Entertainment (highest relative growth); or
     - Computing and Mobile Phones (highest revenue)
 
@@ -851,7 +857,9 @@ financebench_id_04660:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Working Capital Ratio metric value that is in the range from 1.70 to 1.80
+    the answer contains a calculated Working Capital Ratio
+    decimal value that is approximately in the range from 1.70 to 1.80,
+    or, alternatively, a calculated percentage value that is approximately in the range from 170% to 180%
 
 
 financebench_id_03838:
@@ -875,7 +883,7 @@ financebench_id_07661:
     flow from operating activities in FY2020? Answer in USD millions.'
   answer: $382.00
   page(s): '90'
-  
+
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
@@ -891,7 +899,7 @@ financebench_id_10285:
     year end FY2018 net property, plant, and equipment (in USD millions)?'
   answer: $12645.00
   page(s): '52'
-  
+
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
@@ -911,7 +919,7 @@ financebench_id_00517:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer mentions the following 3 categories:
+    the answer mentions following 3 categories:
     - Commercial Airplanes;
     - Defense (or fully written "Defense, Space & Security"); and
     - Services (or fully written "Global Services")
@@ -924,7 +932,7 @@ financebench_id_01091:
   answer: Yes. Multiple lawsuits have been filed against Boeing resulting from a 2018
     Lion Air crash and a 2019 Ethiopian Airlines crash.
   page(s): '113'
-  
+
   category: 0-RETRIEVE
   correctness: >-
     the answer is affirmative, i.e., there were material lawsuits / legal battles
@@ -968,7 +976,7 @@ financebench_id_00464:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., Boeing's business is subject to cyclicality
+    the answer is affirmative, i.e., cyclicality is present
 
 
 financebench_id_00494:
@@ -980,7 +988,7 @@ financebench_id_00494:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mention increase(s) in production
+    the answer mentions increase(s) in production rate(s)
 
 
 financebench_id_00585:
@@ -1008,7 +1016,7 @@ financebench_id_03473:
   correctness: >-
     the answer contains a calculated Return on Assets (RoA)
     percentage value that is in the range from 1.00% to 2.00%,
-    or, alternatively, decimal value that is in the range from 0.0100 to 0.0200
+    or, alternatively, a calculated decimal value that is in the range from 0.0100 to 0.0200
 
 
 financebench_id_09724:
@@ -1021,8 +1029,8 @@ financebench_id_09724:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Cost of Goods Sold (COGS) Margin
-    percentage value that is in the range from 39.00% to 40.00%,
-    or, alternatively, a decimal value that is in the range from 0.39 to 0.40
+    percentage value that is in the range from 38.00% to 42.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.38 to 0.42
 
 
 financebench_id_06272:
@@ -1037,8 +1045,8 @@ financebench_id_06272:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Dividend Payout Ratio
-    percentage value that is approximately in the range from 78.00% to 82.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.78 to 0.82
+    decimal value that is approximately in the range from 0.78 to 0.82,
+    or, alternatively, a calculated percentage value that is approximately in the range from 78.00% to 82.00%
 
 
 financebench_id_10130:
@@ -1053,7 +1061,7 @@ financebench_id_10130:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Days Payable Outstanding (DPO) metric value that is in the range from 60.00 to 70.00
+    the answer contains a calculated Days Payable Outstanding (DPO) decimal value that is in the range from 60.00 to 70.00
 
 
 financebench_id_02981:
@@ -1068,7 +1076,7 @@ financebench_id_02981:
   correctness: >-
     the answer constains a calculated Average Operating Income Margin
     percentage value that is approximately in the range from 9.00% to 11.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.090 to 0.110
+    or, alternatively, a decimal value that is approximately in the range from 0.0900 to 0.1100
 
 
 financebench_id_01346:
@@ -1081,8 +1089,7 @@ financebench_id_01346:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer states that the Effective Tax Rate changed from 20% to 23%,
-    and/or that it increased by 3 percentage points
+    the answer says that Effective Tax Rate changed from 20% to 23%, and/or that it increased by 3 percentage points
 
 
 financebench_id_00005:
@@ -1128,7 +1135,7 @@ financebench_id_05915:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer constains a calculated Fixed Asset Turnover Ratio
-    metric value that is approximately in the range from 17.00 to 19.00
+    decimal value that is approximately in the range from 17.00 to 19.00
 
 
 financebench_id_00790:
@@ -1141,9 +1148,10 @@ financebench_id_00790:
   page(s): 108,110
 
   category: 6-OTHER-ADVANCED
-  correctness: >-
-    the answer either mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity),
-    or mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
+  correctness: |-
+    the answer either:
+    - mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity); or
+    - mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
 
 
 financebench_id_01107:
@@ -1173,7 +1181,7 @@ financebench_id_01244:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., dividends were paid 
+    the answer is affirmative, i.e., dividends were paid
 
 
 financebench_id_00839:
@@ -1199,7 +1207,7 @@ financebench_id_00822:
 
   category: 1-COMPARE
   correctness: >-
-    the answer identifies Johnson as that person
+    the answer identifies Johnson as receiving many votes against
 
 
 financebench_id_04103:
@@ -1232,7 +1240,9 @@ financebench_id_03471:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Working Capital Ratio metric value that is in the range from 0.65 to 0.70
+    the answer contains a calculated Working Capital Ratio
+    decimal value that is in the range from 0.65 to 0.70,
+    or, alternatively, a calculated percentage value that is in the range from 65% to 70%
 
 
 financebench_id_04854:
@@ -1265,7 +1275,7 @@ financebench_id_10136:
   correctness: >-
     the answer contains a calculated Retention Ratio
     decimal value that is approximately in the range from 0.50 to 0.55,
-    or, alternatively, a percentage value that is in the range from 50% to 55%
+    or, alternatively, a percentage value that is approximately in the range from 50% to 55%
 
 
 financebench_id_00299:
@@ -1340,7 +1350,8 @@ financebench_id_10499:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Inventory Turnover Ratio metric value that is approximately in the range from 6.00 to 6.50
+    the answer contains a calculated Inventory Turnover Ratio
+    decimal value that is approximately in the range from 6.00 to 6.50
 
 
 financebench_id_04412:
@@ -1352,10 +1363,10 @@ financebench_id_04412:
     total assets between FY2019 and FY2020). Round your answer to two decimal places.'
   answer: '1.33'
   page(s): 67,69
-  
+
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Asset Turnover Ratio metric value that is approximately in the range from 1.30 to 1.40
+    the answer contains a calculated Asset Turnover Ratio decimal value that is approximately in the range from 1.30 to 1.40
 
 
 financebench_id_03031:
@@ -1415,7 +1426,7 @@ financebench_id_03849:
   correctness: >-
     the answer contains a calculated metric
     percentage value that is approximately in the range from 7.5% to 8.5%,
-    or, alternatively, a decimal value that is approximately in the range from 0.075 to 0.085
+    or, alternatively, a decimal value that is approximately in the range from 0.0750 to 0.0850
 
 
 financebench_id_01254:
@@ -1426,7 +1437,7 @@ financebench_id_01254:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., MGM Resorts paid dividends
+    the answer is affirmative, i.e., dividends were paid
 
 
 financebench_id_00382:
@@ -1503,8 +1514,7 @@ financebench_id_00552:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains calculated Total Debt values for 2022 and 2023,
-    and concludes that Total Debt decreased
+    the answer contains calculated Total Debt values for 2022 and 2023, and concludes that Total Debt decreased
 
 
 financebench_id_04458:
@@ -1521,7 +1531,7 @@ financebench_id_04458:
   correctness: >-
     the answer contains a calculated EDITBA Margin
     percentage value that is approximately in the range from 5.00% to 5.50%,
-    or, alternatively, a decimal value that is approximately in the range from 0.050 to 0.055,
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0500 to 0.0550,
     assuming that EBITDA = "Operating Income" + "Depreciation & Amortization of Property, Equipment & Intangibles"
 
 
@@ -1552,8 +1562,9 @@ financebench_id_04302:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated percentage value that is approximately in the range from 50.00% to 60.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.5 to 0.6
+    the answer contains a calculated metric
+    percentage value that is approximately in the range from 50.00% to 60.00%,
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.50 to 0.60
 
 
 financebench_id_03531:
@@ -1569,7 +1580,7 @@ financebench_id_03531:
     16525, 16525 million, 16.525 billion,
     16500, 16500 million or 16.5 billion
 
-  
+
 financebench_id_04080:
   doc: NIKE_2021_10K
   question: 'When primarily referencing the income statement and the statement of
@@ -1581,7 +1592,7 @@ financebench_id_04080:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Inventory Turnover Ratio metric value that is approximately in the range from 3.00 to 4.00
+    the answer contains a calculated Inventory Turnover Ratio decimal value that is approximately in the range from 3.00 to 4.00
 
 
 financebench_id_01163:
@@ -1590,10 +1601,10 @@ financebench_id_01163:
     the most (or lost the least) cash flow for Nike in FY2023?
   answer: Among the three, cash flow from operations was the highest for Nike in FY2023.
   page(s): '62'
-    
+
   category: 1-COMPARE
   correctness: >-
-    the answer concludes that Operations / Operating Cash Flows brought in the most cash
+    the answer identifies Operations / Operating Cash Flows as bringing in most cash
 
 
 financebench_id_00080:
@@ -1635,7 +1646,7 @@ financebench_id_01009:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions at least 3 of the following geographies:
+    the answer mentions at least 3 of following geographies:
     - North America, which includes United States and Canada;
     - Latin America (LatAm);
     - Europe;
@@ -1652,7 +1663,8 @@ financebench_id_00735:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer says that there were NO material lawsuits / legal battles
+    the answer says that there were NO material lawsuits / legal battles,
+    or, alternatively, that no such lawsuits / legal battles were explicitly reported
 
 
 financebench_id_01328:
@@ -1702,7 +1714,7 @@ financebench_id_04481:
   correctness: |-
     the answer contains a calculated EBITDA Margin
     percentage value that is approximately in the range from 16.00% to 17.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.16 to 0.17
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.1600 to 0.1700
 
 
 financebench_id_01482:
@@ -1716,7 +1728,7 @@ financebench_id_01482:
 
   category: 1-COMPARE
   correctness: >-
-    the answer says that the proposal related to Net-Zero Emissions was defeated / not successful
+    the answer says proposal related to Net-Zero Emissions was defeated / not successful
 
 
 financebench_id_00705:
@@ -1767,8 +1779,7 @@ financebench_id_01476:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer mentions growth guidance raised from 8% to 9%,
-    and/or growth guidance raised by 1 percentage point
+    the answer mentions growth guidance raised from 8% to 9%, and/or growth guidance raised by 1 percentage point
 
 
 financebench_id_00302:
@@ -1852,7 +1863,7 @@ financebench_id_00746:
   category: 0-RETRIEVE
   correctness: >-
     the answer concludes that there are no debt securities traded,
-    or that no such debt securies are explicitly reported
+    or, alternatively, that no such debt securities are explicitly reported
 
 
 financebench_id_00521:
@@ -1864,7 +1875,7 @@ financebench_id_00521:
   category: 0-RETRIEVE
   correctness: >-
     the answer concludes that there are no major acquisitions,
-    or that no such major acquisitions are explicitly reported
+    or, alternatively, that no such major acquisitions are explicitly reported
 
 
 financebench_id_00601:
@@ -1961,7 +1972,8 @@ financebench_id_00216:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio metric value that is less than 1
+    the answer contains a calculated Quick Ratio decimal value that is less than 1.00,
+    or, alternatively, a calculated percentage value that is less than 100%
 
 
 financebench_id_00215:
@@ -2002,7 +2014,7 @@ financebench_id_06247:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Days Payable Outstanding (DPO) metric value that is in the range from 35.00 to 50.00
+    the answer contains a calculated Days Payable Outstanding (DPO) decimal value that is in the range from 35.00 to 50.00
 
 
 financebench_id_04784:
@@ -2036,4 +2048,4 @@ financebench_id_06741:
   correctness: >-
     the answer contains a calculated EDITBA Margin
     percentage value that is approximately in the range from 5.50% to 6.50%,
-    or, alternatively, a decimal value that is approximately in the range from 0.055 to 0.065
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0550 to 0.0650
