@@ -1,0 +1,23 @@
+# The below worked for WALMART FY2018. It failed for AMAZON FY2017.
+financebench_id_06247:
+  sub-plans:
+    task: "In $, what was the Cost of sales in the given fiscal year? This can be found under operating expenses, costs and expenses, or the consolidated income statement."
+    task: "What were the values of Accounts payable for the given fiscal year and the previous fiscal year? These are in the Consolidated Balance Sheet under Current liabilities."
+    task: "What were the values of Inventories for the given fiscal year and the previous fiscal year? These are in the Consolidated Balance Sheet under Current assets."
+
+# The below works for AMAZON FY2017.
+financebench_id_06655:
+  sub-plans:
+    task: "What was the value of Cost of sales in the given fiscal year? This can be found under operating expenses, costs and expenses, or the consolidated income statement."
+    task: "What were the Accounts payable for the given fiscal year and the previous fiscal year? These are in the Consolidated Balance Sheet under Current liabilities."
+    task: "What were the values of Inventories for the given year and the previous year? These are in the Consolidated Balance Sheet under Current assets."
+
+# The below works for CORNING FY2020. 
+financebench_id_10130:
+  sub-plans:
+    task: 'What was the Cost of sales (equivalent to cost of goods sold) in the given year? This can be found under operating expenses, costs and expenses, or the consolidated income statement.'
+    task: 'What were the values of Accounts payable for the given fiscal year and the previous fiscal year? These are in the Consolidated Balance Sheet under Current liabilities.'
+    task: 'What were the values of Inventories for the given year and the previous year? These are in the Consolidated Balance Sheet under Current assets.'
+
+
+
