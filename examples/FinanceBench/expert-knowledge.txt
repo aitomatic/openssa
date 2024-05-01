@@ -149,6 +149,8 @@ Miscellaneous/Other Metric Formulas
 
 `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
 
+`Effective Tax Rate` = `Tax Expense` / `Taxable Income`
+
 
 CAPITAL-INTENSIVENESS EVALUATION
 ================================
