@@ -53,7 +53,7 @@ Turnover Ratio Metric Formulas
   `average Property, Plant & Equipment, a.k.a. PP&E, typically between two consecutive fiscal year-ends`
 )
 
-`Inventory Turnover Ratio` = (
+`Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
   `Cost of Goods Sold, a.k.a. COGS` /
   `average Inventory, typically between two consecutive fiscal year-ends`
 )
