@@ -871,6 +871,7 @@ financebench_id_04660:
     the answer contains a calculated Working Capital Ratio
     decimal value that is approximately in the range from 1.70 to 1.80,
     or, alternatively, a calculated percentage value that is approximately in the range from 170% to 180%
+    (if the answer is a single number, assume that it is that Working Capital Ratio metric value)
 
 
 financebench_id_03838:
