@@ -1421,6 +1421,7 @@ financebench_id_03718:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated CAGR percentage value that is approximately in the range from 0.400% to 0.500%
+    (if the answer is a single number, assume that it is that CAGR percentage value)
 
 
 financebench_id_04171:
