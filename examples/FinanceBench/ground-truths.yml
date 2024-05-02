@@ -1888,6 +1888,7 @@ financebench_id_00601:
   category: 0-RETRIEVE
   correctness: >-
     the answer mentions leverage of marketing expenses and incentive compensation due to higher sales
+  answer-inadequate: true
 
 
 financebench_id_00603:
