@@ -68,7 +68,10 @@ def eval_correctness(fb_id: FbId, answer: Answer) -> str:
                        '\n'
                        f'ANSWER JUDGED TO BE INADEQUATE/INCORRECT:\n{answer}\n'
                        '\n'
-                       f'RUBRIC:\n{rubric}')
+                       f'RUBRIC:\n{rubric}' +
+                       ('\n\n(*** EXPERT ANSWER KNOWN TO BE INDEQUATE ***)'
+                        if GROUND_TRUTHS[fb_id].get('answer-inadequate')
+                        else ''))
 
     return score
 
