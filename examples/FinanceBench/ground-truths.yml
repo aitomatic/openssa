@@ -1336,7 +1336,7 @@ financebench_id_02049:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., VaR decreased
+    the answer affirms that VaR decreased
 
 
 financebench_id_10499:
