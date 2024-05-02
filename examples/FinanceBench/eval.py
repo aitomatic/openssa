@@ -19,7 +19,7 @@ EVAL_PROMPT_TEMPLATE: str = \
 """
 I need you to act as an objective and precise judge of question-answering correctness.
 
-Given the posed PROBLEM below, evaluate whether the ANSWER below is correct
+Given the posed PROBLEM below, evaluate whether the ANSWER below is adequate and correct
 according to the criteria described in the CORRECTNESS EVALUATION RUBRIC below.
 Use no other information.
 
@@ -64,7 +64,7 @@ def eval_correctness(fb_id: FbId, answer: Answer) -> str:
     if score == 'NO':
         logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
                        '\n'
-                       f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
+                       f'ANSWER JUDGED TO BE INADEQUATE/INCORRECT:\n{answer}\n'
                        '\n'
                        f'RUBRIC:\n{rubric}')
 
