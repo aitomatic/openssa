@@ -440,6 +440,7 @@ financebench_id_00684:
   correctness: >-
     the answer contains calculated Gross Margin percentage or decimal values for 2022 and 2023,
     and concludes that such metric decreased
+  answer-inadequate: true
 
 
 financebench_id_01936:
