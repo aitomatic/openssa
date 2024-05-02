@@ -151,7 +151,7 @@ financebench_id_01858:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative and mentions "65 years", "65th year" or something similar
+    the answer affirms that dividends have been stable, and mentions "65 years", "65th year" or something similar
 
 
 financebench_id_02987:
