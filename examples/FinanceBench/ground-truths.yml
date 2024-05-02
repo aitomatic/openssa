@@ -754,7 +754,7 @@ financebench_id_02608:
   correctness: >-
     the answer contains a calculated Average Net Profit Margin
     percentage value that is approximately in the range from 2.50% to 3.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.0250 to 0.0300
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0250 to 0.0300
     (if the answer is a single number, assume that it is that Average Net Profit Margin metric value)
 
 
