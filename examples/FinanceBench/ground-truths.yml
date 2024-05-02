@@ -1617,8 +1617,8 @@ financebench_id_00080:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer is affirmative, i.e., Working Capital was positive
-    proven by a calculated Working Capital metric value that is positive
+    the answer affirms that Working Capital is/was positive,
+    proving by a calculated Working Capital metric value that is positive
 
 
 financebench_id_04980:
