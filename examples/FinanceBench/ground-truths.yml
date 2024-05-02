@@ -1536,6 +1536,7 @@ financebench_id_00552:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains calculated Total Debt values for 2022 and 2023, and concludes that Total Debt decreased
+  answer-inadequate: true
 
 
 financebench_id_04458:
