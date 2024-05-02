@@ -634,8 +634,8 @@ financebench_id_00723:
 
   category: 6-OTHER-ADVANCED
   correctness: >-
-    the answer says that Operating Margin is not a very relevant/useful metric
-    for this business model and/or industry
+    the answer says that Operating Margin is not a very relevant/useful metric for this business model and/or industry,
+    or, alternatively, that performance in this business model and/or industry is usually not judged through Operating Margin
 
 
 financebench_id_00720:
