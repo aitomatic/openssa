@@ -1450,9 +1450,9 @@ financebench_id_03849:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated metric
-    percentage value that is approximately in the range from 7.5% to 8.5%,
-    or, alternatively, a decimal value that is approximately in the range from 0.0750 to 0.0850
+    the answer contains a calculated metric percentage value that is approximately in the range from 7.50% to 8.50%,
+    or, alternatively, a calculated decimal value that is approximately in the range from 0.0750 to 0.0850
+    (if the answer is a single number, assume that it is that metric value)
 
 
 financebench_id_01254:
