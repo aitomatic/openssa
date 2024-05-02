@@ -2030,6 +2030,7 @@ financebench_id_04784:
       and their difference, which is a percentage value less than 0.5% in magnitude; or
     - calculated Operating Income Margin decimal values for 2028 and 2019,
       and their difference, which is a decimal value less than 0.005 in magnitude
+  answer-inadequate: true
 
 
 financebench_id_06741:
