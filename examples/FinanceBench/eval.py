@@ -47,7 +47,7 @@ load_dotenv()
 
 @cache
 def get_llm(model='gpt-4-1106-preview') -> AnLLM:
-    return OpenAILLM(model=model)
+    return OpenAILLM(model=model, temperature=0.1)
 
 
 def eval_correctness(fb_id: FbId, answer: Answer) -> str:
