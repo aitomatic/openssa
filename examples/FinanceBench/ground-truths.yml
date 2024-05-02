@@ -976,7 +976,7 @@ financebench_id_00464:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., cyclicality is present
+    the answer affirms that cyclicality is present
 
 
 financebench_id_00494:
