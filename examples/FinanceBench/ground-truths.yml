@@ -215,6 +215,7 @@ financebench_id_07507:
   category: 2-CALC-CHANGE
   correctness: >-
     the answer contains a calculated Operating Income change percentage value that is approximately 65% or 65.4%
+    (if the answer is a single number, assume that it is that Operating Income change percentage value)
 
 
 financebench_id_03856:
