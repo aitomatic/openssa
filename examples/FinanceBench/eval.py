@@ -21,6 +21,8 @@ I need you to act as an objective and precise judge of question-answering correc
 
 Given the posed PROBLEM below, evaluate whether the ANSWER below is adequate and correct
 according to the criteria described in the CORRECTNESS EVALUATION RUBRIC below.
+The evaluation should regard the ANSWER as responding to the QUESTION,
+and hence the ANSWER does not need to repeat contextual information already in the QUESTION.
 Use no other information.
 
 Output only a single word: YES if you judge the answer to be correct, and NO if incorrect.
