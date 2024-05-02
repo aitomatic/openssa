@@ -1407,6 +1407,7 @@ financebench_id_03031:
     the answer contains a calculated Net Working Capital metric value that is equivalent to or approximately equal to
     5818, 5818 million, 5.818 billion,
     5800, 5800 million or 5.8 billion
+    (if the answer is a single number, assume that it is that Net Working Capital metric value)
 
 
 financebench_id_03718:
