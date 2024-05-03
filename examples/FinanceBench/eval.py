@@ -16,10 +16,9 @@ from data import (FbId, Question, Answer,
 
 
 EVAL_PROMPT_TEMPLATE: str = \
-"""
-I need you to act as an objective and precise judge of question-answering correctness.
+"""You shall act as a judge of question-answering correctness.
 
-Given the posed PROBLEM below, evaluate whether the ANSWER below is adequate and correct
+Given the posed QUESTION below, evaluate whether the ANSWER below is adequate and correct
 according to the criteria described in the CORRECTNESS EVALUATION RUBRIC below.
 The evaluation should regard the ANSWER as responding to the QUESTION,
 and hence the ANSWER does not need to repeat contextual information already in the QUESTION.
