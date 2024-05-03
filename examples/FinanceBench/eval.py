@@ -52,16 +52,20 @@ def get_llm(model='gpt-4-1106-preview') -> AnLLM:
     return OpenAILLM(model=model, temperature=0.1)
 
 
-def eval_correctness(fb_id: FbId, answer: Answer) -> str:
+def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 5) -> str:
     question: Question = GROUND_TRUTHS[fb_id]['question']
     rubric: str = GROUND_TRUTHS[fb_id]['correctness']
 
     llm: AnLLM = get_llm()
 
-    score: str = ''
+    for _ in range(n_times):
+        score: str = ''
 
-    while score not in ('YES', 'NO'):
-        score: str = llm.get_response(prompt=EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric))  # noqa: E501
+        while score not in ('YES', 'NO'):
+            score: str = llm.get_response(prompt=EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric))  # noqa: E501
+
+        if score == 'NO':
+            break
 
     if score == 'NO':
         logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
@@ -80,6 +84,7 @@ if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('answer_col', help='Name of the column containing answers to evaluate')
     arg_parser.add_argument('--id', default='all', help='FinanceBench Case ID')
+    arg_parser.add_argument('--n-times', type=int, default=5, help='Number of times to evaluate')
     args = arg_parser.parse_args()
 
     output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
@@ -87,14 +92,14 @@ if __name__ == '__main__':
     if 'all' in args.id.lower():
         n_yes_scores_by_category: defaultdict = defaultdict(int)
 
-        for fb_id, answer in output_df[args.answer_col].items():
+        for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
             n_yes_scores_by_category[GROUND_TRUTHS[fb_id]['category']] += \
-                (eval_correctness(fb_id=fb_id, answer=answer) == 'YES')
+                (eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times) == 'YES')
 
-        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {(N := len(GROUND_TRUTHS))} = {n / N:.3f}')  # noqa: E501
+        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')  # noqa: E501
 
         pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.3f}'
                 for category, n_for_category in Counter(_['category'] for _ in GROUND_TRUTHS.values()).items()})
 
     else:
-        logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col]))
+        logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col], n_times=args.n_times))  # noqa: E501
