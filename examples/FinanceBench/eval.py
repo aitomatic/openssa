@@ -52,7 +52,7 @@ def get_llm(model='gpt-4-1106-preview') -> AnLLM:
     return OpenAILLM(model=model, temperature=0.1)
 
 
-def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 5) -> str:
+def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9) -> str:
     question: Question = GROUND_TRUTHS[fb_id]['question']
     rubric: str = GROUND_TRUTHS[fb_id]['correctness']
 
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('answer_col', help='Name of the column containing answers to evaluate')
     arg_parser.add_argument('--id', default='all', help='FinanceBench Case ID')
-    arg_parser.add_argument('--n-times', type=int, default=5, help='Number of times to evaluate')
+    arg_parser.add_argument('--n-times', type=int, default=9, help='Number of times to evaluate')
     args = arg_parser.parse_args()
 
     output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
