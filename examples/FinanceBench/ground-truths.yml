@@ -1075,7 +1075,7 @@ financebench_id_10130:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Days Payable Outstanding (DPO) decimal value that is in the range from 60.00 to 70.00
-    (if the answer is a single number, assume that it is that Days Payable Outstanding (DPO) decimal value)
+    (if the answer is a single number, assume that it is that calculated Days Payable Outstanding (DPO) decimal value)
 
 
 financebench_id_02981:
