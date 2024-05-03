@@ -1293,7 +1293,7 @@ financebench_id_10136:
   correctness: >-
     the answer contains a calculated Retention Ratio decimal value that is approximately in the range from 0.50 to 0.55,
     or, alternatively, a calculated percentage value that is approximately in the range from 50% to 55%
-    (if the answer is a single number, assume that it is that Retention Ratio metric value)
+    (if the answer is a single number, assume that it is that calculated Retention Ratio metric value)
 
 
 financebench_id_00299:
