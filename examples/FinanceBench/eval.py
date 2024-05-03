@@ -83,6 +83,8 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9) -> str:
                        ('\n\n(*** EXPERT ANSWER KNOWN TO BE INDEQUATE ***)'
                         if GROUND_TRUTHS[fb_id].get('answer-inadequate')
                         else ''))
+        if debug:
+            logger.debug(f'PROMPT:\n{prompt}')
 
     return score
 
@@ -92,6 +94,7 @@ if __name__ == '__main__':
     arg_parser.add_argument('answer_col', help='Name of the column containing answers to evaluate')
     arg_parser.add_argument('--id', default='all', help='FinanceBench Case ID')
     arg_parser.add_argument('--n-times', type=int, default=9, help='Number of times to evaluate')
+    arg_parser.add_argument('--debug', action='store_true', help='Debug by printing out prompts')
     args = arg_parser.parse_args()
 
     output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
@@ -101,7 +104,7 @@ if __name__ == '__main__':
 
         for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
             n_yes_scores_by_category[GROUND_TRUTHS[fb_id]['category']] += \
-                (eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times) == 'YES')
+                (eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug) == 'YES')
 
         logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')
 
@@ -109,4 +112,5 @@ if __name__ == '__main__':
                 for category, n_for_category in Counter(_['category'] for _ in GROUND_TRUTHS.values()).items()})
 
     else:
-        logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col], n_times=args.n_times))  # noqa: E501
+        logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col],
+                                     n_times=args.n_times, debug=args.debug))
