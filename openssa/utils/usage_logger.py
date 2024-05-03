@@ -16,15 +16,16 @@ class BasicUsageLogger(AbstractUsageLogger):
         user_id = kwargs.get("user", "openssa")
         result = kwargs.get("result", {})
         if isinstance(result, ChatCompletion):
-            model = result.model
-            utc_date_time = datetime.fromtimestamp(result.created, tz=timezone.utc)
-            completion_tokens = result.usage.completion_tokens
-            prompt_tokens = result.usage.prompt_tokens
-            total_tokens = result.usage.total_tokens
-            token_info = f"input tokens: {completion_tokens}, ouput tokens: {prompt_tokens}, total: {total_tokens}"
-            print(
-                f"model: {model}, utc-timestamp: {utc_date_time}, user: {user_id}, {token_info}"
-            )
+            pass
+            # model = result.model
+            # utc_date_time = datetime.fromtimestamp(result.created, tz=timezone.utc)
+            # completion_tokens = result.usage.completion_tokens
+            # prompt_tokens = result.usage.prompt_tokens
+            # total_tokens = result.usage.total_tokens
+            # token_info = f"input tokens: {completion_tokens}, ouput tokens: {prompt_tokens}, total: {total_tokens}"
+            # print(
+            #     f"model: {model}, utc-timestamp: {utc_date_time}, user: {user_id}, {token_info}"
+            # )
         else:
             print(f"user_id: {user_id}, result: {result}")
 
