@@ -58,6 +58,7 @@ def get_llm(model='gpt-4-1106-preview') -> AnLLM:
 def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9) -> str:
     question: Question = GROUND_TRUTHS[fb_id]['question']
     rubric: str = GROUND_TRUTHS[fb_id]['correctness']
+    prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
 
     llm: AnLLM = get_llm()
 
@@ -65,7 +66,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9) -> str:
         score: str = ''
 
         while score not in ('YES', 'NO'):
-            score: str = llm.get_response(prompt=EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric))  # noqa: E501
+            score: str = llm.get_response(prompt=prompt)
 
         if score == 'NO':
             break
