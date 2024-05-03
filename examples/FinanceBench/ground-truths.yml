@@ -1151,7 +1151,7 @@ financebench_id_05915:
   correctness: >-
     the answer constains a calculated Fixed Asset Turnover Ratio
     decimal value that is approximately in the range from 17.00 to 19.00
-    (if the answer is a single number, assume that it is that Fixed Asset Turnover Ratio decimal value)
+    (if the answer is a single number, assume that it is that calculated Fixed Asset Turnover Ratio decimal value)
 
 
 financebench_id_00790:
