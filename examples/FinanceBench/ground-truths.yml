@@ -289,7 +289,7 @@ financebench_id_00540:
     the answer contains a calculated Inventory Turnover Ratio (or Inventory Conversion Ratio) metric value that is either:
     - approximately in the range from 9.0 to 10.0 times (implicitly using ending Inventory as denominator), or
     - approximately 12.0 times (implicitly using average Inventory as denominator)
-    (if the answer is a single number, assume that it is that Inventory Turnover Ratio metric value)
+    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio metric value)
 
 
 financebench_id_10420:
