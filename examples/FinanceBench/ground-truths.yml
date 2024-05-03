@@ -500,8 +500,8 @@ financebench_id_03069:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Depreciation & Amortization (D&A) Margin (using Net Revenue as denominator)
-    percentage value that is approximately in the range from 4.00% to 4.50%,
-    or, alternatively, a calculated decimal value that is approximately in the range from 0.0400 to 0.0450
+    percentage value that is in the range from 4.00% to 4.50%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0400 to 0.0450
     (if the answer is a single number, assume that it is that calculated Depreciation & Amortization (D&A) Margin metric value)
 
 
