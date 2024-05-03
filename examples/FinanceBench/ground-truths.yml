@@ -458,7 +458,7 @@ financebench_id_01936:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions Employee costs/liabilities
+    the answer mentions Employee costs or Employee liabilities
 
 
 financebench_id_01928:
