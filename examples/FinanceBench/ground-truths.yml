@@ -852,9 +852,9 @@ financebench_id_01902:
 
   category: 1-COMPARE
   correctness: |-
-    the answer identifies best-performing product category as either:
-    - Entertainment (highest relative growth); or
-    - Computing and Mobile Phones (highest revenue)
+    the answer either:
+    - identifies Entertainment category/segment as proportionally growing most; or
+    - identifies Computing and Mobile Phones category/segment as having highest revenue
 
 
 financebench_id_04660:
