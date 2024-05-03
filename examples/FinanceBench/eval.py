@@ -31,16 +31,19 @@ Output only a single word, either:
 - NO if you judge the ANSWER to be incorrect.
 
 QUESTION:
+---------
 ```
 {question}
 ```
 
 ANSWER TO EVALUATE:
+-------------------
 ```
 {answer}
 ```
 
 CORRECTNESS EVALUATION RUBRIC:
+------------------------------
 ```
 {rubric}
 ```
