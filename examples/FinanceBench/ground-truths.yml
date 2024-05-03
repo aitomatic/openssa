@@ -228,9 +228,8 @@ financebench_id_03856:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Operating Cash Flow Ratio
-    decimal value that is approximately in the range from 0.8000 to 0.8500,
-    or, alternatively, a calculated percentage value that is approximately in the range from 80.00% to 85.00%
+    the answer contains a calculated Operating Cash Flow Ratio decimal value that is in the range from 0.8000 to 0.8500,
+    or, alternatively, a calculated percentage value that is in the range from 80.00% to 85.00%
     (if the answer is a single number, assume that it is that calculated Operating Cash Flow Ratio metric value)
 
 
