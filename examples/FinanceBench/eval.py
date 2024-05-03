@@ -15,7 +15,9 @@ from data import FbId, Question, Answer, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_F
 
 
 EVAL_PROMPT_TEMPLATE: str = \
-"""You shall act as a judge of question-answering adequacy and correctness.
+"""Forget everything before this and treat this as a new, stand-alone prompt.
+
+You shall act as a judge of question-answering adequacy and correctness.
 
 Given the posed QUESTION below, evaluate whether the ANSWER below is adequate and correct
 according to the criteria described in the CORRECTNESS EVALUATION RUBRIC below.
