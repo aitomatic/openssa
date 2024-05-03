@@ -1846,8 +1846,8 @@ financebench_id_00283:
 
   category: 6-OTHER-ADVANCED
   correctness: >-
-    the answer contains a quantity that is approximately in the range from 70 to 80 (implicit unit of millions)
-    or the range from 70 million to 80 million
+    the answer contains a quantity that is in the range from 70.00 to 80.00 (implicit unit of millions)
+    or the range from 70.00 million to 80.00 million
 
 
 financebench_id_00724:
