@@ -1615,7 +1615,7 @@ financebench_id_04080:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Inventory Turnover Ratio decimal value that is approximately in the range from 3.00 to 4.00
-    (if the answer is a single number, assume that it is that Inventory Turnover Ratio decimal value)
+    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio decimal value)
 
 
 financebench_id_01163:
