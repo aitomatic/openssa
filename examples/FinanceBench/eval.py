@@ -96,7 +96,7 @@ if __name__ == '__main__':
             n_yes_scores_by_category[GROUND_TRUTHS[fb_id]['category']] += \
                 (eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times) == 'YES')
 
-        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')  # noqa: E501
+        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')
 
         pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.3f}'
                 for category, n_for_category in Counter(_['category'] for _ in GROUND_TRUTHS.values()).items()})
