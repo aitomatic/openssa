@@ -21,9 +21,12 @@ Given the posed QUESTION below, evaluate whether the ANSWER below is adequate an
 according to the criteria described in the CORRECTNESS EVALUATION RUBRIC below.
 The evaluation should regard the ANSWER as responding to the QUESTION,
 and hence the ANSWER does not need to repeat contextual information already in the QUESTION.
+
+Financial and technical terminology can be treated as case-insensitive.
+
 Use no other information.
 
-Output only a single word:
+Output only a single word, either:
 - YES if you judge the ANSWER to be correct; or
 - NO if you judge the ANSWER to be incorrect.
 
