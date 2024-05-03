@@ -11,8 +11,7 @@ from tqdm import tqdm
 from openssa.utils.llms import AnLLM, OpenAILLM
 
 # pylint: disable=wrong-import-order
-from data import (FbId, Question, Answer,
-                  FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH)
+from data import FbId, Question, Answer, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
 
 
 EVAL_PROMPT_TEMPLATE: str = \
