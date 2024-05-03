@@ -15,7 +15,7 @@ from data import FbId, Question, Answer, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_F
 
 
 EVAL_PROMPT_TEMPLATE: str = \
-"""You shall act as a judge of question-answering correctness.
+"""You shall act as a judge of question-answering adequacy and correctness.
 
 Given the posed QUESTION below, evaluate whether the ANSWER below is adequate and correct
 according to the criteria described in the CORRECTNESS EVALUATION RUBRIC below.
@@ -27,8 +27,8 @@ Financial and technical terminology can be treated as case-insensitive.
 Use no other information.
 
 Output only a single word, either:
-- YES if you judge the ANSWER to be correct; or
-- NO if you judge the ANSWER to be incorrect.
+- YES: if you judge the ANSWER to be adequate and correct; or
+- NO: if you judge the ANSWER to be inadequate or incorrect.
 
 QUESTION:
 ---------
