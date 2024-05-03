@@ -58,7 +58,7 @@ def get_llm(model='gpt-4-1106-preview') -> AnLLM:
     return OpenAILLM(model=model, temperature=0)
 
 
-def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9) -> str:
+def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool = False) -> str:
     question: Question = GROUND_TRUTHS[fb_id]['question']
     rubric: str = GROUND_TRUTHS[fb_id]['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
