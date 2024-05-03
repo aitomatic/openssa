@@ -1285,8 +1285,8 @@ financebench_id_10136:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Retention Ratio decimal value that is approximately in the range from 0.50 to 0.55,
-    or, alternatively, a calculated percentage value that is approximately in the range from 50% to 55%
+    the answer contains a calculated Retention Ratio decimal value that is in the range from 0.5000 to 0.5500,
+    or, alternatively, a calculated percentage value that is in the range from 50.00% to 55.00%
     (if the answer is a single number, assume that it is that calculated Retention Ratio metric value)
 
 
