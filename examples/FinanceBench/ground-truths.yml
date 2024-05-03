@@ -1730,8 +1730,8 @@ financebench_id_04481:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer contains a calculated EBITDA Margin percentage value that is approximately in the range from 16.00% to 17.00%,
-    or, alternatively, a calculated decimal value that is approximately in the range from 0.1600 to 0.1700
+    the answer contains a calculated EBITDA Margin percentage value that is in the range from 16.00% to 17.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.1600 to 0.1700
     (if the answer is a single number, assume that it is that calculated EBITDA Margin metric value)
 
 
