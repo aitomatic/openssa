@@ -36,7 +36,7 @@ class AnLM(ABC):
         """Call LM API and return response object."""
 
     @abstractmethod
-    def get_response(self, prompt: str, history: LMChatHist | None = None, **kwargs) -> str:
+    def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
         """Call LM API and return response content."""
 
 
@@ -62,7 +62,7 @@ class LlamaLM(AnLM):
                                 'temperature': kwargs.pop('temperature', Config.DEFAULT_TEMPERATURE),
                                 **kwargs})
 
-    def get_response(self, prompt: str, history: LMChatHist | None = None, **kwargs) -> str:
+    def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
         """Call Llama LM API and return response content."""
         messages: LMChatHist = history or []
         messages.append({"role": "user", "content": prompt})
@@ -91,7 +91,7 @@ class OpenAILM(AnLM):
                                                    temperature=kwargs.pop('temperature', Config.DEFAULT_TEMPERATURE),
                                                    **kwargs)
 
-    def get_response(self, prompt: str, history: list | None = None, **kwargs):
+    def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
         """Call OpenAI LM API and return response content."""
         messages: LMChatHist = history or []
         messages.append({"role": "user", "content": prompt})
