@@ -643,6 +643,8 @@ financebench_id_00723:
     the answer argues that Operating Margin is not a very relevant/useful metric for this business model and/or industry,
     or, alternatively, that performance in this business model and/or industry is usually not judged through Operating Margin
 
+  evaluator-unreliable: true
+
 
 financebench_id_00720:
   doc: AMERICANEXPRESS_2022_10K
@@ -656,6 +658,8 @@ financebench_id_00720:
   correctness: >-
     the answer argues that Gross Margin is not a very relevant/useful metric for this business model and/or industry,
     or, alternatively, that performance in this business model and/or industry is usually not judged through Gross Margin
+
+  evaluator-unreliable: true
 
 
 financebench_id_01351:
@@ -681,6 +685,8 @@ financebench_id_01964:
   category: 1-COMPARE
   correctness: >-
     the answer identifies Customer Deposits as largest liability
+
+  evaluator-unreliable: true
 
 
 financebench_id_01981:
@@ -737,6 +743,8 @@ financebench_id_00070:
   correctness: >-
     the answer affirms that Working Capital is/was positive,
     proving so by a calculated Working Capital metric value that is positive
+
+  evaluator-unreliable: true
 
 
 financebench_id_02608:
@@ -852,6 +860,8 @@ financebench_id_01902:
     - identifies Entertainment category/segment as proportionally growing most; or
     - identifies Computing and Mobile Phones category/segment as having highest revenue
 
+  evaluator-unreliable: true
+
 
 financebench_id_04660:
   doc: BLOCK_2016_10K
@@ -882,6 +892,8 @@ financebench_id_03838:
   correctness: >-
     the answer contains a calculated Revenue growth percentage value that is over 100.0%
     (if the answer is a single number, assume that it is that calculated Revenue growth percentage value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_07661:
@@ -931,6 +943,8 @@ financebench_id_00517:
     - Commercial Airplanes;
     - Defense/Defence (or fully written "Defense, Space & Security"); and
     - Services (or fully written "Global Services")
+
+  evaluator-unreliable: true
 
 
 financebench_id_01091:
@@ -1026,6 +1040,8 @@ financebench_id_03473:
     or, alternatively, a calculated decimal value that is in the range from 0.0100 to 0.0200
     (if the answer is a single number, assume that it is that calculated Return on Assets (RoA) metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_09724:
   doc: COCACOLA_2021_10K
@@ -1056,6 +1072,8 @@ financebench_id_06272:
     the answer contains a calculated Dividend Payout Ratio decimal value that is in the range from 0.78 to 0.82,
     or, alternatively, a calculated percentage value that is in the range from 78.00% to 82.00%
     (if the answer is a single number, assume that it is that calculated Dividend Payout Ratio metric value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_10130:
@@ -1147,6 +1165,8 @@ financebench_id_05915:
     the answer constains a calculated Fixed Asset Turnover Ratio decimal value that is in the range from 17.00 to 19.00
     (if the answer is a single number, assume that it is that calculated Fixed Asset Turnover Ratio decimal value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_00790:
   doc: CVSHEALTH_2022_10K
@@ -1218,6 +1238,8 @@ financebench_id_00822:
   category: 1-COMPARE
   correctness: >-
     the answer identifies Johnson as receiving many votes against
+
+  evaluator-unreliable: true
 
 
 financebench_id_04103:
@@ -1312,6 +1334,8 @@ financebench_id_02119:
   correctness: >-
     the answer contains a quantity that is equivalent to or approximately equal to
     66.56 or 67
+
+  evaluator-unreliable: true
 
 
 financebench_id_00206:
@@ -1683,6 +1707,8 @@ financebench_id_00735:
     the answer says that there have NOT been material lawsuits / legal battles,
     or, alternatively, that no such lawsuits / legal battles have been explicitly reported
 
+  evaluator-unreliable: true
+
 
 financebench_id_01328:
   doc: PEPSICO_2022_10K
@@ -1871,6 +1897,8 @@ financebench_id_02419:
   category: 0-RETRIEVE
   correctness: >-
     the answer mentions Upjohn
+
+  evaluator-unreliable: true
 
 
 financebench_id_00746:
