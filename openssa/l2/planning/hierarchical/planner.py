@@ -35,7 +35,7 @@ class AutoHTPlanner(AbstractPlanner):
 
         htp_dict: HTPDict = {}
         while not (isinstance(htp_dict, dict) and htp_dict):
-            htp_dict: HTPDict = self.lm.parse_output(self.lm.get_response(prompt))
+            htp_dict: HTPDict = self.lm.get_response(prompt, json_format=True)
 
         htp: HTP = HTP.from_dict(htp_dict)
 
@@ -56,7 +56,7 @@ class AutoHTPlanner(AbstractPlanner):
 
         updated_htp_dict: HTPDict = {}
         while not (isinstance(updated_htp_dict, dict) and updated_htp_dict):
-            updated_htp_dict: HTPDict = self.lm.parse_output(self.lm.get_response(prompt))
+            updated_htp_dict: HTPDict = self.lm.get_response(prompt, json_format=True)
 
         updated_htp: HTP = HTP.from_dict(updated_htp_dict)
 

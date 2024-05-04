@@ -46,6 +46,7 @@ exclude = [
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = ">=6.29"
+notebook = ">=7.1"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.3"
@@ -59,12 +60,14 @@ pylint = ">=3.1"
 ruff = ">=0.4"
 
 [tool.poetry.group.test.dependencies]
-pytest = ">=8.1"
+pytest = ">=8.2"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
+# Llama interface
+llamaapi = ">=0.1"
 # OpenAI interface
-openai = ">=1.23"
+openai = ">=1.25"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
@@ -96,7 +99,7 @@ llama-index-callbacks-langfuse = {version = ">=0.1", optional = true}
 llama-index-callbacks-openinference = {version = ">=0.1", optional = true}
 llama-index-callbacks-promptlayer = {version = ">=0.1", optional = true}
 llama-index-callbacks-wandb = {version = ">=0.1", optional = true}
-streamlit = {version = ">=1.33", optional = true}
+streamlit = {version = ">=1.34", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
 [tool.poetry.extras]

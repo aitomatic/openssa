@@ -38,3 +38,4 @@ docs/_build/
 tmp/
 examples/data/cache/dense
 examples/data/*.csv
+examples/Expert Plan Development.ipynb
