@@ -1,36 +1,51 @@
 import argparse
+from collections import Counter, defaultdict
+from functools import cache
+from pprint import pprint
 
-from collections import Counter
 from dotenv import load_dotenv
 from loguru import logger
-import pandas as pd
+from pandas import DataFrame, read_csv
 from tqdm import tqdm
 
-from openssa.utils.llms import OpenAILLM
+from openssa.utils.llms import AnLLM, OpenAILLM
 
 # pylint: disable=wrong-import-order
-from data import FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
+from data import FbId, Question, Answer, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
 
 
-EVAL_PROMPT_TEMPLATE = \
-"""
-I need you to act as an objective and precise judge of the correctness of an answer to the QUESTION posed below.
+EVAL_PROMPT_TEMPLATE: str = \
+"""Forget everything before this and treat this as a new, stand-alone prompt.
 
-Evaluate whether the ANSWER below is correct according to the grading criteria described in the EVALUATION RUBRIC.
+You shall act as a judge of question-answering adequacy and correctness.
 
-Output only a single word. Say YES if you judge the answer to be correct, and NO if incorrect.
+Given the posed QUESTION below, evaluate whether the ANSWER below is adequate and correct
+according to the criteria described in the ADEQUACY & CORRECTNESS EVALUATION RUBRIC below.
+The evaluation should regard the ANSWER as responding to the QUESTION,
+and hence the ANSWER does not need to repeat contextual information already in the QUESTION.
+
+Financial and technical terminology can be treated as case-insensitive.
+
+Use no other information.
+
+Output only a single word, either:
+- YES: if you judge the ANSWER to be adequate and correct; or
+- NO: if you judge the ANSWER to be inadequate or incorrect.
 
 QUESTION:
+---------
 ```
 {question}
 ```
 
-ANSWER:
+ANSWER TO EVALUATE:
+-------------------
 ```
 {answer}
 ```
 
-EVALUATION RUBRIC:
+ADEQUACY & CORRECTNESS EVALUATION RUBRIC:
+-----------------------------------------
 ```
 {rubric}
 ```
@@ -40,66 +55,64 @@ EVALUATION RUBRIC:
 load_dotenv()
 
 
-def parse_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("answer_col", type=str, help="Name of the column containing answers")
-    parser.add_argument("--id", type=str, help="FinanceBench Question ID", default="all")
-    return parser.parse_args()
+@cache
+def get_llm(model='gpt-4-1106-preview') -> AnLLM:
+    return OpenAILLM(model=model, temperature=0)
 
 
-def get_eval_prompt(financebench_id, output_df, answer_col):
-    return EVAL_PROMPT_TEMPLATE.format(question=GROUND_TRUTHS[financebench_id]['question'],
-                                       answer=output_df.loc[financebench_id, answer_col],
-                                       rubric=GROUND_TRUTHS[financebench_id]['correctness'])
+def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool = False) -> str:
+    question: Question = GROUND_TRUTHS[fb_id]['question']
+    rubric: str = GROUND_TRUTHS[fb_id]['correctness']
+    prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
+
+    llm: AnLLM = get_llm()
+
+    for _ in range(n_times):
+        score: str = ''
+
+        while score not in ('YES', 'NO'):
+            score: str = llm.get_response(prompt=prompt)
+
+        if score == 'NO':
+            break
+
+    if score == 'NO':
+        logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
+                       '\n'
+                       f'ANSWER JUDGED TO BE INADEQUATE/INCORRECT:\n{answer}\n'
+                       '\n'
+                       f'RUBRIC:\n{rubric}' +
+                       ('\n\n(*** EXPERT ANSWER KNOWN TO BE INDEQUATE ***)'
+                        if GROUND_TRUTHS[fb_id].get('answer-inadequate')
+                        else ''))
+        if debug:
+            logger.debug(f'PROMPT:\n{prompt}')
+
+    return score
 
 
-def get_llm(model="gpt-4-1106-preview"):
-    return OpenAILLM(model=model)
+if __name__ == '__main__':
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('answer_col', help='Name of the column containing answers to evaluate')
+    arg_parser.add_argument('--id', default='all', help='FinanceBench Case ID')
+    arg_parser.add_argument('--n-times', type=int, default=9, help='Number of times to evaluate')
+    arg_parser.add_argument('--debug', action='store_true', help='Debug by printing out prompts')
+    args = arg_parser.parse_args()
 
+    output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
 
-def evaluate_question(financebench_id, output_df, answer_col):
-    prompt = get_eval_prompt(financebench_id, output_df, answer_col)
-    llm = get_llm()
-    return llm.get_response(prompt=prompt)
+    if 'all' in args.id.lower():
+        n_yes_scores_by_category: defaultdict = defaultdict(int)
 
+        for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
+            n_yes_scores_by_category[GROUND_TRUTHS[fb_id]['category']] += \
+                (eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug) == 'YES')
 
-def main():
-    args = parse_arguments()
-    answer_col = args.answer_col
-    financebench_id = args.id
+        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')
 
-    output_df = pd.read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
-
-    if financebench_id == "all":
-        n_yes_scores_by_category = {}
-
-        for fbid in tqdm(output_df.index):
-            score = evaluate_question(fbid, output_df, answer_col)
-
-            if score == 'YES':
-                category = GROUND_TRUTHS[fbid]['category']
-                if category in n_yes_scores_by_category:
-                    n_yes_scores_by_category[category] += 1
-                else:
-                    n_yes_scores_by_category[category] = 1
-
-            else:
-                logger.warning(
-                    f'QUESTION:\n{GROUND_TRUTHS[fbid]['question']}\n'
-                    '\n'
-                    f'ANSWER JUDGED TO BE WRONG:\n{output_df.loc[fbid, answer_col]}\n'
-                    '\n'
-                    f'RUBRIC:\n{GROUND_TRUTHS[fbid]['correctness']}')
-
-        n_questions_by_category = Counter(_['category'] for _ in GROUND_TRUTHS.values())
-        yes_proportions_by_category = {c: n_yes_scores_by_category[c] / n_questions_by_category[c]
-                                       for c in n_questions_by_category}
-        logger.info(yes_proportions_by_category)
+        pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.3f}'
+                for category, n_for_category in Counter(_['category'] for _ in GROUND_TRUTHS.values()).items()})
 
     else:
-        score = evaluate_question(financebench_id, output_df, answer_col)
-        print(score)
-
-
-if __name__ == "__main__":
-    main()
+        logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col],
+                                     n_times=args.n_times, debug=args.debug))

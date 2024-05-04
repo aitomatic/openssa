@@ -63,7 +63,7 @@ financebench_id_01226:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer highlights at least 3 salient changes among those discussed below:
+    the answer mentions some salient changes among those discussed below:
 
     COST OF SALES:
     Cost of sales, measured as a percent of sales, increased in 2022 when compared to the same period last year.
@@ -151,7 +151,7 @@ financebench_id_01858:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative and mentions "65 years", "65th year" or something similar
+    the answer affirms that dividends have been stable, and mentions "65 years", "65th year" or something similar
 
 
 financebench_id_02987:
@@ -167,6 +167,7 @@ financebench_id_02987:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Fixed Asset Turnover Ratio decimal value that is in the range from 23.00 to 25.00
+    (if the answer is a single number, assume that it is that calculated Fixed Asset Turnover Ratio decimal value)
 
 
 financebench_id_07966:
@@ -180,8 +181,9 @@ financebench_id_07966:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated percentage value that is approximately in the range from 1.70% to 2.10%,
-    or, alternatively, a calculated decimal value that is approximately in the range from 0.0170 to 0.0210
+    the answer contains a calculated percentage value that is in the range from 1.70% to 2.10%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0170 to 0.0210
+    (if the answer is a single number, assume that it is that calculated metric value)
 
 
 financebench_id_04735:
@@ -196,9 +198,9 @@ financebench_id_04735:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Operating Cash Flow Ratio
-    decimal value that is approximately in the range from 0.60 to 0.70,
-    or, alternatively, a calculated percentage value that is approximately in the range from 60.00% to 70.00%
+    the answer contains a calculated Operating Cash Flow Ratio decimal value that is in the range from 0.60 to 0.70,
+    or, alternatively, a calculated percentage value that is in the range from 60.00% to 70.00%
+    (if the answer is a single number, assume that it is that calculated Operating Cash Flow Ratio metric value)
 
 
 financebench_id_07507:
@@ -212,6 +214,7 @@ financebench_id_07507:
   category: 2-CALC-CHANGE
   correctness: >-
     the answer contains a calculated Operating Income change percentage value that is approximately 65% or 65.4%
+    (if the answer is a single number, assume that it is that calculated Operating Income change percentage value)
 
 
 financebench_id_03856:
@@ -225,9 +228,9 @@ financebench_id_03856:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Operating Cash Flow Ratio
-    decimal value that is approximately in the range from 0.80 to 0.85,
-    or, alternatively, a calculated percentage value that is approximately in the range from 80.00% to 85.00%
+    the answer contains a calculated Operating Cash Flow Ratio decimal value that is in the range from 0.8000 to 0.8500,
+    or, alternatively, a calculated percentage value that is in the range from 80.00% to 85.00%
+    (if the answer is a single number, assume that it is that calculated Operating Cash Flow Ratio metric value)
 
 
 financebench_id_00438:
@@ -281,9 +284,10 @@ financebench_id_00540:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer contains a calculated Inventory Turnover Ratio metric value that is either:
-    - approximately in the range from 9.0 to 10.0 times (if using ending Inventory as denominator), or
-    - approximately 12.0 times (if using average Inventory as denominator)
+    the answer contains a calculated Inventory Turnover Ratio (or Inventory Conversion Ratio) metric value that is either:
+    - in the range from 9.0 to 10.0 times (implicitly using ending Inventory as denominator), or
+    - approximately 12.0 times (implicitly using average Inventory as denominator)
+    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio metric value)
 
 
 financebench_id_10420:
@@ -298,8 +302,9 @@ financebench_id_10420:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Return on Assets (RoA)
-    percentage value that is NEGATIVE and approximately in the range from -2.00% to -1.40%,
-    or, alternatively, a calculated decimal value that is NEGATIVE and approximately in the range from -0.0200 to -0.0140
+    percentage value that is NEGATIVE and in the range from -2.00% to -1.40%,
+    or, alternatively, a calculated decimal value that is NEGATIVE and in the range from -0.0200 to -0.0140
+    (if the answer is a single number, assume that it is that calculated Return on Assets (RoA) metric value)
 
 
 financebench_id_06655:
@@ -314,8 +319,8 @@ financebench_id_06655:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Days Payable Outstanding (DPO)
-    decimal value that is approximately in the range from 90.00 to 100.00
+    the answer contains a calculated Days Payable Outstanding (DPO) decimal value that is in the range from 90.00 to 100.00
+    (if the answer is a single number, assume that it is that calculated Days Payable Outstanding (DPO) metric value)
 
 
 financebench_id_08135:
@@ -329,6 +334,7 @@ financebench_id_08135:
   category: 2-CALC-CHANGE
   correctness: >-
     the answer contains a calculated Revenue change percentage value that is approximately 30%, 30.7%, 30.8% or 31%
+    (if the answer is a single number, assume that it is that calculated Revenue change percentage value)
 
 
 financebench_id_08286:
@@ -440,6 +446,7 @@ financebench_id_00684:
   correctness: >-
     the answer contains calculated Gross Margin percentage or decimal values for 2022 and 2023,
     and concludes that such metric decreased
+  answer-inadequate: true
 
 
 financebench_id_01936:
@@ -451,9 +458,7 @@ financebench_id_01936:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions Employee costs and, OPTIONALLY, also some of the following:
-    - Russia-Ukraine conflict; and
-    - integration of acquired Bemis operations
+    the answer mentions Employee costs or Employee liabilities
 
 
 financebench_id_01928:
@@ -495,8 +500,9 @@ financebench_id_03069:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Depreciation & Amortization (D&A) Margin (using Net Revenue as denominator)
-    percentage value that is approximately in the range from 4.00% to 4.50%,
-    or, alternatively, a decimal value that is approximately in the range from 0.0400 to 0.0450
+    percentage value that is in the range from 4.00% to 4.50%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0400 to 0.0450
+    (if the answer is a single number, assume that it is that calculated Depreciation & Amortization (D&A) Margin metric value)
 
 
 financebench_id_00222:
@@ -634,8 +640,8 @@ financebench_id_00723:
 
   category: 6-OTHER-ADVANCED
   correctness: >-
-    the answer says that Operating Margin is not a very relevant/useful metric
-    for this business model and/or industry
+    the answer argues that Operating Margin is not a very relevant/useful metric for this business model and/or industry,
+    or, alternatively, that performance in this business model and/or industry is usually not judged through Operating Margin
 
 
 financebench_id_00720:
@@ -648,8 +654,8 @@ financebench_id_00720:
 
   category: 6-OTHER-ADVANCED
   correctness: >-
-    the answer says that Gross Margin is not a very relevant/useful metric
-    for this business model and/or industry
+    the answer argues that Gross Margin is not a very relevant/useful metric for this business model and/or industry,
+    or, alternatively, that performance in this business model and/or industry is usually not judged through Gross Margin
 
 
 financebench_id_01351:
@@ -685,7 +691,7 @@ financebench_id_01981:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., retention was good
+    the answer affirms that retention was good
 
 
 financebench_id_05718:
@@ -729,8 +735,8 @@ financebench_id_00070:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer is affirmative, i.e., Working Capital was positive,
-    proven by a calculated Working Capital metric value that is positive
+    the answer affirms that Working Capital is/was positive,
+    proving so by a calculated Working Capital metric value that is positive
 
 
 financebench_id_02608:
@@ -743,9 +749,9 @@ financebench_id_02608:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated average Net Profit Margin
-    percentage value that is approximately in the range from 2.50% to 3.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.0250 to 0.0300
+    the answer contains a calculated Average Net Profit Margin percentage value that is in the range from 2.50% to 3.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0250 to 0.0300
+    (if the answer is a single number, assume that it is that calculated Average Net Profit Margin metric value)
 
 
 financebench_id_04417:
@@ -775,8 +781,9 @@ financebench_id_00685:
   category: 4-CALC-AND-JUDGE
   correctness: >-
     the answer contains calculated Gross Margin
-    percentage values for 2022 and 2023 and concludes that they are within 2 percentage points of each other,
+    percentage values for 2022 and 2023 that are within 2 percentage points of each other,
     or, alternatively, calculated decimal values that are within 0.02 of each other
+  answer-inadequate: true
 
 
 financebench_id_01077:
@@ -815,7 +822,7 @@ financebench_id_00288:
 
   category: 1-COMPARE
   correctness: >-
-    the answer is affirmative, i.e., Cash & Cash Equivalents decreased
+    the answer affirms that Cash & Cash Equivalents decreased
 
 
 financebench_id_00460:
@@ -841,9 +848,9 @@ financebench_id_01902:
 
   category: 1-COMPARE
   correctness: |-
-    the answer identifies best-performing product category as either:
-    - Entertainment (highest relative growth); or
-    - Computing and Mobile Phones (highest revenue)
+    the answer either:
+    - identifies Entertainment category/segment as proportionally growing most; or
+    - identifies Computing and Mobile Phones category/segment as having highest revenue
 
 
 financebench_id_04660:
@@ -857,9 +864,9 @@ financebench_id_04660:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Working Capital Ratio
-    decimal value that is approximately in the range from 1.70 to 1.80,
-    or, alternatively, a calculated percentage value that is approximately in the range from 170% to 180%
+    the answer contains a calculated Working Capital Ratio decimal value that is in the range from 1.70 to 1.80,
+    or, alternatively, a calculated percentage value that is in the range from 170% to 180%
+    (if the answer is a single number, assume that it is that calculated Working Capital Ratio metric value)
 
 
 financebench_id_03838:
@@ -874,6 +881,7 @@ financebench_id_03838:
   category: 2-CALC-CHANGE
   correctness: >-
     the answer contains a calculated Revenue growth percentage value that is over 100.0%
+    (if the answer is a single number, assume that it is that calculated Revenue growth percentage value)
 
 
 financebench_id_07661:
@@ -921,7 +929,7 @@ financebench_id_00517:
   correctness: |-
     the answer mentions following 3 categories:
     - Commercial Airplanes;
-    - Defense (or fully written "Defense, Space & Security"); and
+    - Defense/Defence (or fully written "Defense, Space & Security"); and
     - Services (or fully written "Global Services")
 
 
@@ -935,7 +943,7 @@ financebench_id_01091:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., there were material lawsuits / legal battles
+    the answer affirms that there have been material lawsuits / legal battles
 
 
 financebench_id_00678:
@@ -976,7 +984,7 @@ financebench_id_00464:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., cyclicality is present
+    the answer affirms that cyclicality is present
 
 
 financebench_id_00494:
@@ -1014,9 +1022,9 @@ financebench_id_03473:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Return on Assets (RoA)
-    percentage value that is in the range from 1.00% to 2.00%,
+    the answer contains a calculated Return on Assets (RoA) percentage value that is in the range from 1.00% to 2.00%,
     or, alternatively, a calculated decimal value that is in the range from 0.0100 to 0.0200
+    (if the answer is a single number, assume that it is that calculated Return on Assets (RoA) metric value)
 
 
 financebench_id_09724:
@@ -1030,7 +1038,8 @@ financebench_id_09724:
   correctness: >-
     the answer contains a calculated Cost of Goods Sold (COGS) Margin
     percentage value that is in the range from 38.00% to 42.00%,
-    or, alternatively, a calculated decimal value that is in the range from 0.38 to 0.42
+    or, alternatively, a calculated decimal value that is in the range from 0.3800 to 0.4200
+    (if the answer is a single number, assume that it is that calculated Cost of Goods Sold (COGS) Margin metric value)
 
 
 financebench_id_06272:
@@ -1044,9 +1053,9 @@ financebench_id_06272:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Dividend Payout Ratio
-    decimal value that is approximately in the range from 0.78 to 0.82,
-    or, alternatively, a calculated percentage value that is approximately in the range from 78.00% to 82.00%
+    the answer contains a calculated Dividend Payout Ratio decimal value that is in the range from 0.78 to 0.82,
+    or, alternatively, a calculated percentage value that is in the range from 78.00% to 82.00%
+    (if the answer is a single number, assume that it is that calculated Dividend Payout Ratio metric value)
 
 
 financebench_id_10130:
@@ -1062,6 +1071,7 @@ financebench_id_10130:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Days Payable Outstanding (DPO) decimal value that is in the range from 60.00 to 70.00
+    (if the answer is a single number, assume that it is that calculated Days Payable Outstanding (DPO) decimal value)
 
 
 financebench_id_02981:
@@ -1074,9 +1084,9 @@ financebench_id_02981:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer constains a calculated Average Operating Income Margin
-    percentage value that is approximately in the range from 9.00% to 11.00%,
-    or, alternatively, a decimal value that is approximately in the range from 0.0900 to 0.1100
+    the answer constains a calculated Average Operating Income Margin percentage value that is in the range from 9.00% to 11.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0900 to 0.1100
+    (if the answer is a single number, assume that it is that calculated Average Operating Income Margin metric value)
 
 
 financebench_id_01346:
@@ -1104,8 +1114,8 @@ financebench_id_00005:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer is affirmative, i.e., Working Capital was positive,
-    proven by a calculated Working Capital metric value that is positive
+    the answer affirms that Working Capital is/was positive,
+    proving so by a calculated Working Capital metric value that is positive
 
 
 financebench_id_04209:
@@ -1134,8 +1144,8 @@ financebench_id_05915:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer constains a calculated Fixed Asset Turnover Ratio
-    decimal value that is approximately in the range from 17.00 to 19.00
+    the answer constains a calculated Fixed Asset Turnover Ratio decimal value that is in the range from 17.00 to 19.00
+    (if the answer is a single number, assume that it is that calculated Fixed Asset Turnover Ratio decimal value)
 
 
 financebench_id_00790:
@@ -1170,7 +1180,7 @@ financebench_id_01107:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., there were material lawsuits / legal battles
+    the answer affirms that there have been material lawsuits / legal battles
 
 
 financebench_id_01244:
@@ -1181,7 +1191,7 @@ financebench_id_01244:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., dividends were paid
+    the answer affirms that dividends have been / were paid
 
 
 financebench_id_00839:
@@ -1195,7 +1205,7 @@ financebench_id_00839:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative and mentions Ulta Beauty
+    the answer affirms that and mentions Ulta Beauty
 
 
 financebench_id_00822:
@@ -1227,6 +1237,7 @@ financebench_id_04103:
   correctness: >-
     the answer contains a calculated Cash Conversion Cycle (CCC) metric value based on supporting calculated
     Days Inventory Oustanding (DIO), Days Sales Outstanding (DSO) and Days Payable Outstanding (DPO) metric values
+  answer-inadequate: true
 
 
 financebench_id_03471:
@@ -1240,9 +1251,9 @@ financebench_id_03471:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Working Capital Ratio
-    decimal value that is in the range from 0.65 to 0.70,
-    or, alternatively, a calculated percentage value that is in the range from 65% to 70%
+    the answer contains a calculated Working Capital Ratio decimal value that is in the range from 0.6500 to 0.7000,
+    or, alternatively, a calculated percentage value that is in the range from 65.00% to 70.00%
+    (if the answer is a single number, assume that it is that calculated Working Capital Ratio metric value)
 
 
 financebench_id_04854:
@@ -1259,6 +1270,7 @@ financebench_id_04854:
     3215.4, 3215.4 million, 3.2154 billion,
     3215, 3215 million, 3.215 billion,
     3200, 3200 million or 3.2 billion
+    (if the answer is a single number, assume that it is that calculated Free Cash Flows (FCF) metric value)
 
 
 financebench_id_10136:
@@ -1273,9 +1285,9 @@ financebench_id_10136:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Retention Ratio
-    decimal value that is approximately in the range from 0.50 to 0.55,
-    or, alternatively, a percentage value that is approximately in the range from 50% to 55%
+    the answer contains a calculated Retention Ratio decimal value that is in the range from 0.5000 to 0.5500,
+    or, alternatively, a calculated percentage value that is in the range from 50.00% to 55.00%
+    (if the answer is a single number, assume that it is that calculated Retention Ratio metric value)
 
 
 financebench_id_00299:
@@ -1312,8 +1324,8 @@ financebench_id_00206:
 
   category: 6-OTHER-ADVANCED
   correctness: >-
-    the answer says that Gross Margin is not a very relevant/useful metric
-    for this business model and/or industry
+    the answer argues that Gross Margin is not a very relevant/useful metric for this business model and/or industry,
+    or, alternatively, that performance in this business model and/or industry is usually not judged through Gross Margin
 
 
 financebench_id_00394:
@@ -1336,7 +1348,7 @@ financebench_id_02049:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., VaR decreased
+    the answer affirms that VaR decreased
 
 
 financebench_id_10499:
@@ -1350,8 +1362,8 @@ financebench_id_10499:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Inventory Turnover Ratio
-    decimal value that is approximately in the range from 6.00 to 6.50
+    the answer contains a calculated Inventory Turnover Ratio decimal value that is in the range from 6.00 to 6.50
+    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio decimal value)
 
 
 financebench_id_04412:
@@ -1366,7 +1378,8 @@ financebench_id_04412:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Asset Turnover Ratio decimal value that is approximately in the range from 1.30 to 1.40
+    the answer contains a calculated Asset Turnover Ratio decimal value that is in the range from 1.30 to 1.40
+    (if the answer is a single number, assume that it is that calculated Asset Turnover Ratio decimal value)
 
 
 financebench_id_03031:
@@ -1383,6 +1396,7 @@ financebench_id_03031:
     the answer contains a calculated Net Working Capital metric value that is equivalent to or approximately equal to
     5818, 5818 million, 5.818 billion,
     5800, 5800 million or 5.8 billion
+    (if the answer is a single number, assume that it is that calculated Net Working Capital metric value)
 
 
 financebench_id_03718:
@@ -1395,7 +1409,8 @@ financebench_id_03718:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated CAGR percentage value that is approximately in the range from 0.400% to 0.500%
+    the answer contains a calculated CAGR percentage value that is in the range from 0.400% to 0.500%
+    (if the answer is a single number, assume that it is that calculated CAGR percentage value)
 
 
 financebench_id_04171:
@@ -1424,9 +1439,9 @@ financebench_id_03849:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated metric
-    percentage value that is approximately in the range from 7.5% to 8.5%,
-    or, alternatively, a decimal value that is approximately in the range from 0.0750 to 0.0850
+    the answer contains a calculated metric percentage value that is in the range from 7.50% to 8.50%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0750 to 0.0850
+    (if the answer is a single number, assume that it is that calculated metric value)
 
 
 financebench_id_01254:
@@ -1437,7 +1452,7 @@ financebench_id_01254:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer is affirmative, i.e., dividends were paid
+    the answer affirms that dividends have been / were paid
 
 
 financebench_id_00382:
@@ -1515,6 +1530,7 @@ financebench_id_00552:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains calculated Total Debt values for 2022 and 2023, and concludes that Total Debt decreased
+  answer-inadequate: true
 
 
 financebench_id_04458:
@@ -1529,10 +1545,10 @@ financebench_id_04458:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated EDITBA Margin
-    percentage value that is approximately in the range from 5.00% to 5.50%,
-    or, alternatively, a calculated decimal value that is approximately in the range from 0.0500 to 0.0550,
+    the answer contains a calculated EBITDA Margin percentage value that is in the range from 5.00% to 5.50%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0500 to 0.0550,
     assuming that EBITDA = "Operating Income" + "Depreciation & Amortization of Property, Equipment & Intangibles"
+    (if the answer is a single number, assume that it is that calculated EBITDA Margin metric value)
 
 
 financebench_id_03282:
@@ -1562,9 +1578,9 @@ financebench_id_04302:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated metric
-    percentage value that is approximately in the range from 50.00% to 60.00%,
-    or, alternatively, a calculated decimal value that is approximately in the range from 0.50 to 0.60
+    the answer contains a calculated metric percentage value that is in the range from 50.00% to 60.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.5000 to 0.6000
+    (if the answer is a single number, assume that it is that calculated metric value)
 
 
 financebench_id_03531:
@@ -1592,7 +1608,8 @@ financebench_id_04080:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Inventory Turnover Ratio decimal value that is approximately in the range from 3.00 to 4.00
+    the answer contains a calculated Inventory Turnover Ratio decimal value that is in the range from 3.00 to 4.00
+    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio decimal value)
 
 
 financebench_id_01163:
@@ -1617,8 +1634,8 @@ financebench_id_00080:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer is affirmative, i.e., Working Capital was positive
-    proven by a calculated Working Capital metric value that is positive
+    the answer affirms that Working Capital is/was positive,
+    proving so by a calculated Working Capital metric value that is positive
 
 
 financebench_id_04980:
@@ -1663,8 +1680,8 @@ financebench_id_00735:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer says that there were NO material lawsuits / legal battles,
-    or, alternatively, that no such lawsuits / legal battles were explicitly reported
+    the answer says that there have NOT been material lawsuits / legal battles,
+    or, alternatively, that no such lawsuits / legal battles have been explicitly reported
 
 
 financebench_id_01328:
@@ -1695,10 +1712,11 @@ financebench_id_03620:
   category: 3-CALC-COMPLEX
   correctness: |-
     the answer contains a calculated metric value that is either:
-    - approximately in the range from 8500 to 9500 (with implicit unit of millions);
-    - approximately in the range from 8500 million to 9500 million;
-    - approximately in the range from 8.5 billion to 9.5 billion; or
+    - in the range from 8500 to 9500;
+    - in the range from 8500 million to 9500 million;
+    - in the range from 8.5 billion to 9.5 billion; or
     - stated as approximately 9000 million or 9 billion
+    (if the answer is a single number, assume that it is that calculated metric value)
 
 
 financebench_id_04481:
@@ -1712,9 +1730,9 @@ financebench_id_04481:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer contains a calculated EBITDA Margin
-    percentage value that is approximately in the range from 16.00% to 17.00%,
-    or, alternatively, a calculated decimal value that is approximately in the range from 0.1600 to 0.1700
+    the answer contains a calculated EBITDA Margin percentage value that is in the range from 16.00% to 17.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.1600 to 0.1700
+    (if the answer is a single number, assume that it is that calculated EBITDA Margin metric value)
 
 
 financebench_id_01482:
@@ -1742,6 +1760,7 @@ financebench_id_00705:
   correctness: >-
     the answer contains a calculated change quantity that is equivalent to or approximately equal to
     400,000,000, 400 million or 0.4 billion
+    (if the answer is a single number, assume that it is that calculated change amount)
 
 
 financebench_id_00882:
@@ -1756,6 +1775,7 @@ financebench_id_00882:
   correctness: >-
     the answer contains a calculated total quantity that is equivalent to or approximately equal to
     8,400,000,000, 8400 million or 8.4 billion
+    (if the answer is a single number, assume that it is that calculated total amount)
 
 
 financebench_id_01474:
@@ -1826,8 +1846,8 @@ financebench_id_00283:
 
   category: 6-OTHER-ADVANCED
   correctness: >-
-    the answer contains a quantity that is approximately in the range from 70 to 80 (implicit unit of millions)
-    or the range from 70 million to 80 million
+    the answer contains a quantity that is in the range from 70.00 to 80.00,
+    or, alternatively, in the range from 70.00 million to 80.00 million
 
 
 financebench_id_00724:
@@ -1890,6 +1910,7 @@ financebench_id_00601:
   category: 0-RETRIEVE
   correctness: >-
     the answer mentions leverage of marketing expenses and incentive compensation due to higher sales
+  answer-inadequate: true
 
 
 financebench_id_00603:
@@ -1916,7 +1937,8 @@ financebench_id_00605:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated percentage value that is approximately in the range from 30% to 40%
+    the answer contains a calculated percentage value that is in the range from 30% to 40%
+    (if the answer is a single number, assume that it is that calculated percentage value)
 
 
 financebench_id_00606:
@@ -1986,8 +2008,7 @@ financebench_id_00215:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer opines that Verizon's business is capital-intensive,
-    and justifies such opinion with a calculated ratio
+    the answer opines that Verizon's business is capital-intensive, and justifies such opinion with a calculated ratio
 
 
 financebench_id_00566:
@@ -2015,6 +2036,7 @@ financebench_id_06247:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated Days Payable Outstanding (DPO) decimal value that is in the range from 35.00 to 50.00
+    (if the answer is a single number, assume that it is that calculated Days Payable Outstanding (DPO) decimal value)
 
 
 financebench_id_04784:
@@ -2032,6 +2054,7 @@ financebench_id_04784:
       and their difference, which is a percentage value less than 0.5% in magnitude; or
     - calculated Operating Income Margin decimal values for 2028 and 2019,
       and their difference, which is a decimal value less than 0.005 in magnitude
+  answer-inadequate: true
 
 
 financebench_id_06741:
@@ -2046,6 +2069,6 @@ financebench_id_06741:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated EDITBA Margin
-    percentage value that is approximately in the range from 5.50% to 6.50%,
-    or, alternatively, a calculated decimal value that is approximately in the range from 0.0550 to 0.0650
+    the answer contains a calculated EBITDA Margin percentage value that is in the range from 5.50% to 6.50%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0550 to 0.0650
+    (if the answer is a single number, assume that it is that calculated EBITDA Margin metric value)
