@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 import base64
 from functools import cache
 from pathlib import Path
-from typing import TypedDict, Required, NotRequired
+from typing import TypedDict, Required, NotRequired, Literal
 
 from dotenv import load_dotenv
 from pandas import DataFrame, read_csv
@@ -56,7 +56,8 @@ type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
                                              'page(s)': Required[str],
                                              'category': Required[str],
                                              'correctness': Required[str],
-                                             'answer-inadequate': NotRequired[bool]})
+                                             'answer-inadequate': NotRequired[Literal[True]],
+                                             'evaluator-unreliable': NotRequired[Literal[True]]})
 with open(file=GROUND_TRUTHS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
