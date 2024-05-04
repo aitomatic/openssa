@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Self, TypeVar
 
-from openssa.l2.llms import AnLLM, OpenAILLM
+from openssa.l2.util.lm import AnLM, OpenAILM
 
 if TYPE_CHECKING:
     from openssa.l2.resource.abstract import AResource
@@ -19,7 +19,7 @@ class AbstractPlanner(ABC):
     """Abstract Planner."""
 
     # language model for generating solution Plans
-    lm: AnLLM = field(default_factory=OpenAILLM.from_defaults)
+    lm: AnLM = field(default_factory=OpenAILM.from_defaults)
 
     # generally applicable parameters for controlling generated Plans' allowed complexity
     max_depth: int = 2
