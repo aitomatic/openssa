@@ -16,7 +16,7 @@ class Config:
     DEFAULT_OPENAI_MODEL = "gpt-4-1106-preview"
 
     LLAMA_API_KEY: str | None = os.environ.get("LLAMA_API_KEY")
-    LLAMA_API_URL: str = os.environ.get("LLAMA_API_URL") or "https://api.llama-api.com"
+    LLAMA_API_URL: str = os.environ.get("LLAMA_API_URL", "https://api.llama-api.com")
 
     OPENAI_API_KEY: str | None = os.environ.get("OPENAI_API_KEY")
-    OPENAI_API_URL: str = os.environ.get("OPENAI_API_URL") or "https://api.openai.com/v1"
+    OPENAI_API_URL: str = os.environ.get("OPENAI_API_URL", "https://api.openai.com/v1")
