@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
+import json
 from typing import Literal, Self, TypedDict
 
 from llamaapi import LlamaAPI
@@ -95,4 +96,10 @@ class OpenAILM(AnLM):
         """Call OpenAI LM API and return response content."""
         messages: LMChatHist = history or []
         messages.append({"role": "user", "content": prompt})
-        return self.call(messages, **kwargs).choices[0].message.content
+
+        if json_format:
+            kwargs['response_format'] = {'type': 'json_object'}
+
+        response_content: str = self.call(messages, **kwargs).choices[0].message.content
+
+        return json.loads(response_content) if json_format else response_content
