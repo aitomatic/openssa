@@ -63,6 +63,8 @@ pytest = ">=8.1"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
+# Llama interface
+llamaapi = ">=0.1"
 # OpenAI interface
 openai = ">=1.23"
 # LlamaIndex & related
@@ -98,7 +100,6 @@ llama-index-callbacks-promptlayer = {version = ">=0.1", optional = true}
 llama-index-callbacks-wandb = {version = ">=0.1", optional = true}
 streamlit = {version = ">=1.33", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
-llamaapi = "^0.1.36"
 
 [tool.poetry.extras]
 contrib = [
