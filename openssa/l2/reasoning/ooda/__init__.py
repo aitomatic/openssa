@@ -53,12 +53,13 @@ class OodaReasoner(AbstractReasoner):
         logger.debug(prompt)
 
         def is_valid(orient_result_dict: OrientResult) -> bool:
-            return (isinstance(orient_result_dict.get('confident'), bool) and
+            return (isinstance(orient_result_dict, dict) and
+                    isinstance(orient_result_dict.get('confident'), bool) and
                     isinstance(orient_result_dict.get('answer'), str))
 
         orient_result_dict: OrientResult = {}
         while not is_valid(orient_result_dict):
-            orient_result_dict: OrientResult = self.lm.parse_output(self.lm.get_response(prompt))
+            orient_result_dict: OrientResult = self.lm.get_response(prompt, json_format=True)
 
         return orient_result_dict
 

@@ -2,12 +2,16 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Literal, Self, TypedDict
+import json
+from typing import Literal, Self, TypedDict, TYPE_CHECKING
 
 from llamaapi import LlamaAPI
 from openai import OpenAI
 
 from openssa.l2.config import Config
+
+if TYPE_CHECKING:
+    from openai.types.chat.chat_completion import ChatCompletion
 
 
 class LMChatMsg(TypedDict):
@@ -80,11 +84,11 @@ class OpenAILM(AnLM):
         self.client: OpenAI = OpenAI(api_key=self.api_key, base_url=self.api_base)
 
     @classmethod
-    def from_defaults(cls):
+    def from_defaults(cls) -> OpenAILM:
         """Get OpenAI LM instance with default parameters."""
         return cls(model=Config.DEFAULT_OPENAI_MODEL, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
-    def call(self, messages: list[LMChatMsg], **kwargs):
+    def call(self, messages: list[LMChatMsg], **kwargs) -> ChatCompletion:
         """Call OpenAI LM API and return response object."""
         return self.client.chat.completions.create(model=self.model,
                                                    messages=messages,
@@ -95,4 +99,10 @@ class OpenAILM(AnLM):
         """Call OpenAI LM API and return response content."""
         messages: LMChatHist = history or []
         messages.append({"role": "user", "content": prompt})
-        return self.call(messages, **kwargs).choices[0].message.content
+
+        if json_format:
+            kwargs['response_format'] = {'type': 'json_object'}
+
+        response_content: str = self.call(messages, **kwargs).choices[0].message.content
+
+        return json.loads(response_content) if json_format else response_content
