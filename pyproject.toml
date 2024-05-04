@@ -46,6 +46,7 @@ exclude = [
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = ">=6.29"
+notebook = ">=7.1"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.3"
