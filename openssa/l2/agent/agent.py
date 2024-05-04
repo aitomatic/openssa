@@ -1,16 +1,16 @@
-"""Abstract Agent with Planning, Reasoning & Informational Resources."""
+"""Agent with Planning, Reasoning & Informational Resources."""
 
 
 from __future__ import annotations
 
-from abc import ABC
 from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
 
 from tqdm import tqdm
 
-from openssa.l2.reasoning.base import BaseReasoner
+from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
+from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
@@ -23,14 +23,16 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class AbstractAgent(ABC):
-    """Abstract Agent with Planning, Reasoning & Informational Resources."""
+class Agent:
+    """Agent with Planning, Reasoning & Informational Resources."""
 
     # Planner for decomposing tasks into executable solution Plans
-    planner: APlanner | None = None
+    # using Automated Hierarchical Task Planner by default
+    planner: APlanner | None = field(default_factory=AutoHTPlanner)
 
     # Reasoner for working through individual Tasks to either conclude or make partial progress on them
-    reasoner: AReasoner = field(default_factory=BaseReasoner)
+    # using OODA by default
+    reasoner: AReasoner = field(default_factory=OodaReasoner)
 
     # set of Informational Resources for answering information-querying questions
     resources: set[AResource] = field(default_factory=set)
