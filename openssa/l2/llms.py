@@ -11,85 +11,88 @@ from openssa.l2.config import Config
 
 
 class LMChatMsg(TypedDict):
-    role: Literal['user', 'assistant']
+    role: Literal['system', 'user', 'assistant', 'tool', 'function']
     content: str
 
 
+type LMChatHist = list[LMChatMsg]
+
+
 @dataclass
-class AnLLM(ABC):
-    """
-    This class provides a consistent API for the different LLM services.
-    """
+class AnLM(ABC):
+    """Abstract base class for consistent API for different LM services."""
+
     model: str
     api_key: str
     api_base: str
 
     @classmethod
     @abstractmethod
-    def from_defaults(cls):
-        """Get an LLM instance with default parameters."""
+    def from_defaults(cls) -> Self:
+        """Get LM instance with default parameters."""
 
     @abstractmethod
-    def call(self, messages: list, **kwargs):
-        """Call the LLM API and return the response object."""
+    def call(self, messages: list[LMChatMsg], **kwargs):
+        """Call LM API and return response object."""
 
     @abstractmethod
-    def get_response(self, prompt: str, messages: list = None, **kwargs):
-        """Call the LLM API and return the response content."""
+    def get_response(self, prompt: str, history: LMChatHist | None = None, **kwargs) -> str:
+        """Call LM API and return response content."""
 
 
 @dataclass
-class LlamaLLM(AnLLM):
-    """Use the Llama client."""
+class LlamaLM(AnLM):
+    """Llama LM."""
+
     client: LlamaAPI = field(init=False)
 
     def __post_init__(self):
-        """Initialize the Llama client."""
-        self.client = LlamaAPI(api_token=self.api_key, hostname=self.api_base)
+        """Initialize Llama LM client."""
+        self.client: LlamaAPI = LlamaAPI(api_token=self.api_key, hostname=self.api_base)
 
     @classmethod
-    def from_defaults(cls) -> LlamaLLM:
-        """Get an LlamaLLM instance with default parameters."""
+    def from_defaults(cls) -> LlamaLM:
+        """Get Llama LM instance with default parameters."""
         return cls(model=Config.DEFAULT_LLAMA_MODEL, api_key=Config.LLAMA_API_KEY, api_base=Config.LLAMA_API_URL)
 
-    def call(self, messages: list, **kwargs):
-        return self.client.run({
-            "model": self.model,
-            "messages": messages,
-            "temperature": Config.DEFAULT_TEMPERATURE,
-            **kwargs,
-        })
+    def call(self, messages: list[LMChatMsg], **kwargs):
+        """Call Llama LM API and return response object."""
+        return self.client.run({'model': self.model,
+                                'messages': messages,
+                                'temperature': kwargs.pop('temperature', Config.DEFAULT_TEMPERATURE),
+                                **kwargs})
 
-    def get_response(self, prompt: str, messages: list = None, **kwargs):
-        messages = messages if messages else []
+    def get_response(self, prompt: str, history: LMChatHist | None = None, **kwargs) -> str:
+        """Call Llama LM API and return response content."""
+        messages: LMChatHist = history or []
         messages.append({"role": "user", "content": prompt})
         return self.call(messages, **kwargs)["choices"][0]["message"]["content"]
 
 
 @dataclass
-class OpenAILLM(AnLLM):
-    """Use the OpenAI client."""
+class OpenAILM(AnLM):
+    """OpenAI LM."""
 
     client: OpenAI = field(init=False)
 
     def __post_init__(self):
-        """Initialize the OpenAI client."""
-        self.client = OpenAI(api_key=self.api_key, base_url=self.api_base)
+        """Initialize OpenAI client."""
+        self.client: OpenAI = OpenAI(api_key=self.api_key, base_url=self.api_base)
 
     @classmethod
     def from_defaults(cls):
-        """Get an OpenAILLM instance with default parameters."""
+        """Get OpenAI LM instance with default parameters."""
         return cls(model=Config.DEFAULT_OPENAI_MODEL, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
-    def call(self, messages: list, **kwargs):
-        return self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-            temperature=Config.DEFAULT_TEMPERATURE,
-            **kwargs,
-        )
+    def call(self, messages: list[LMChatMsg], **kwargs):
+        """Call OpenAI LM API and return response object."""
+        return self.client.chat.completions.create(model=self.model,
+                                                   messages=messages,
+                                                   temperature=kwargs.pop('temperature', Config.DEFAULT_TEMPERATURE),
+                                                   **kwargs)
 
-    def get_response(self, prompt: str, messages: list = None, **kwargs):
-        messages = messages if messages else []
+    def get_response(self, prompt: str, history: list | None = None, **kwargs):
+        """Call OpenAI LM API and return response content."""
+        messages: LMChatHist = history or []
         messages.append({"role": "user", "content": prompt})
         return self.call(messages, **kwargs).choices[0].message.content
