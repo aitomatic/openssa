@@ -105,6 +105,8 @@ asset-turnover-ratio:
     - task:
         In dollars, what were the total assets in the given fiscal year(s)?
         total assets on the balance sheet
+
+dividend-payout-ratio:
   task:
     Calculate the dividend payout ratio of {COMPANY} for {YEAR}. Dividend payout
     ratio = total cash dividends paid / net income attributable to shareholders
