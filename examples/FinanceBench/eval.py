@@ -103,15 +103,20 @@ if __name__ == '__main__':
 
     if 'all' in args.id.lower():
         n_yes_scores_by_category: defaultdict = defaultdict(int)
+        incorrect_answer_fb_ids: list[FbId] = []
 
         for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
-            n_yes_scores_by_category[GROUND_TRUTHS[fb_id]['category']] += \
-                (eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug) == 'YES')
+            if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug) == 'YES':
+                n_yes_scores_by_category[GROUND_TRUTHS[fb_id]['category']] += 1
+            else:
+                incorrect_answer_fb_ids.append(fb_id)
 
         logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')
-
         pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.3f}'
                 for category, n_for_category in Counter(_['category'] for _ in GROUND_TRUTHS.values()).items()})
+
+        logger.warning('INCORRECT:')
+        pprint(incorrect_answer_fb_ids)
 
     else:
         logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col],
