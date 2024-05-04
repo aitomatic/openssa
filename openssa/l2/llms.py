@@ -6,6 +6,7 @@ from llamaapi import LlamaAPI
 from openai import OpenAI
 from openssa.l2.config import Config
 
+
 @dataclass
 class AnLLM(ABC):
     """
@@ -27,6 +28,7 @@ class AnLLM(ABC):
     @abstractmethod
     def get_response(self, prompt: str, messages: list = None, **kwargs):
         """Call the LLM API and return the response content."""
+
 
 @dataclass
 class LlamaLLM(AnLLM):
@@ -54,6 +56,7 @@ class LlamaLLM(AnLLM):
         messages = messages if messages else []
         messages.append({"role": "user", "content": prompt})
         return self.call(messages, **kwargs)["choices"][0]["message"]["content"]
+
 
 @dataclass
 class OpenAILLM(AnLLM):
