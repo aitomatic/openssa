@@ -3,12 +3,15 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 import json
-from typing import Literal, Self, TypedDict
+from typing import Literal, Self, TypedDict, TYPE_CHECKING
 
 from llamaapi import LlamaAPI
 from openai import OpenAI
 
 from openssa.l2.config import Config
+
+if TYPE_CHECKING:
+    from openai.types.chat.chat_completion import ChatCompletion
 
 
 class LMChatMsg(TypedDict):
@@ -81,11 +84,11 @@ class OpenAILM(AnLM):
         self.client: OpenAI = OpenAI(api_key=self.api_key, base_url=self.api_base)
 
     @classmethod
-    def from_defaults(cls):
+    def from_defaults(cls) -> OpenAILM:
         """Get OpenAI LM instance with default parameters."""
         return cls(model=Config.DEFAULT_OPENAI_MODEL, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
-    def call(self, messages: list[LMChatMsg], **kwargs):
+    def call(self, messages: list[LMChatMsg], **kwargs) -> ChatCompletion:
         """Call OpenAI LM API and return response object."""
         return self.client.chat.completions.create(model=self.model,
                                                    messages=messages,
