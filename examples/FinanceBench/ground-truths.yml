@@ -1351,6 +1351,8 @@ financebench_id_00206:
     the answer argues that Gross Margin is not a very relevant/useful metric for this business model and/or industry,
     or, alternatively, that performance in this business model and/or industry is usually not judged through Gross Margin
 
+  evaluator-unreliable: true
+
 
 financebench_id_00394:
   doc: JPMORGAN_2022Q2_10Q
