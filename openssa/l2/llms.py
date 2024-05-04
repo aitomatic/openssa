@@ -1,10 +1,18 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
+from typing import Literal, Self, TypedDict
 
 from llamaapi import LlamaAPI
 from openai import OpenAI
+
 from openssa.l2.config import Config
+
+
+class LMChatMsg(TypedDict):
+    role: Literal['user', 'assistant']
+    content: str
 
 
 @dataclass
