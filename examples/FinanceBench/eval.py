@@ -11,7 +11,7 @@ from tqdm import tqdm
 from openssa.utils.llms import AnLLM, OpenAILLM
 
 # pylint: disable=wrong-import-order
-from data import FbId, Question, Answer, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
+from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -70,7 +70,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool 
     for _ in range(n_times):
         score: str = ''
 
-        while score not in ('YES', 'NO'):
+        while score not in {'YES', 'NO'}:
             score: str = llm.get_response(prompt=prompt)
 
         if score == 'NO':
@@ -103,13 +103,20 @@ if __name__ == '__main__':
 
     if 'all' in args.id.lower():
         n_yes_scores_by_category: defaultdict = defaultdict(int)
-        incorrect_answer_fb_ids: list[FbId] = []
+        incorrect_answer_fb_ids: dict[FbId, str] = {}
 
         for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
+            ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
+
             if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug) == 'YES':
-                n_yes_scores_by_category[GROUND_TRUTHS[fb_id]['category']] += 1
+                n_yes_scores_by_category[ground_truth['category']] += 1
+
             else:
-                incorrect_answer_fb_ids.append(fb_id)
+                incorrect_answer_fb_ids[fb_id] = ('expert answer inadequate'
+                                                  if ground_truth.get('answer-inadequate')
+                                                  else ('evaluator unreliable'
+                                                        if ground_truth.get('evaluator-unreliable')
+                                                        else ''))
 
         logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')
         pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.3f}'
