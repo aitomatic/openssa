@@ -15,22 +15,22 @@ from data import FbId, Question, Answer, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_F
 
 
 EVAL_PROMPT_TEMPLATE: str = \
-"""Forget everything before this and treat this as a new, stand-alone prompt.
+"""You shall act as a judge of question-answering correctness.
 
-You shall act as a judge of question-answering adequacy and correctness.
+Given the posed QUESTION below, evaluate whether the ANSWER below is correct
+according to the criteria specified in the CORRECTNESS EVALUATION RUBRIC below.
 
-Given the posed QUESTION below, evaluate whether the ANSWER below is adequate and correct
-according to the criteria described in the ADEQUACY & CORRECTNESS EVALUATION RUBRIC below.
-The evaluation should regard the ANSWER as responding to the QUESTION,
-and hence the ANSWER does not need to repeat contextual information already in the QUESTION.
+- The evaluation should regard the ANSWER as responding to the QUESTION,
+  and hence the ANSWER does not need to repeat contextual information already in the QUESTION;
 
-Financial and technical terminology can be treated as case-insensitive.
+- The evaluation should follow the RUBRIC strictly,
+  not looking for in the ANSWER more elaboration/explanation than what the RUBRIC explicitly requires;
 
-Use no other information.
+- Financial and technical terminology can be treated as case-insensitive.
 
 Output only a single word, either:
-- YES: if you judge the ANSWER to be adequate and correct; or
-- NO: if you judge the ANSWER to be inadequate or incorrect.
+- YES: if you judge the ANSWER to be correct; or
+- NO: if you judge the ANSWER to be incorrect.
 
 QUESTION:
 ---------
@@ -44,8 +44,8 @@ ANSWER TO EVALUATE:
 {answer}
 ```
 
-ADEQUACY & CORRECTNESS EVALUATION RUBRIC:
------------------------------------------
+CORRECTNESS EVALUATION RUBRIC:
+------------------------------
 ```
 {rubric}
 ```
@@ -79,10 +79,10 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool 
     if score == 'NO':
         logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
                        '\n'
-                       f'ANSWER JUDGED TO BE INADEQUATE/INCORRECT:\n{answer}\n'
+                       f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                        '\n'
                        f'RUBRIC:\n{rubric}' +
-                       ('\n\n(*** EXPERT ANSWER KNOWN TO BE INDEQUATE ***)'
+                       ('\n\n(*** EXPERT ANSWER KNOWN TO BE INADEQUATE ***)'
                         if GROUND_TRUTHS[fb_id].get('answer-inadequate')
                         else ''))
         if debug:
