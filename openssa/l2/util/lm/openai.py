@@ -26,6 +26,7 @@ class OpenAILM(AbstractLM):
     @classmethod
     def from_defaults(cls) -> OpenAILM:
         """Get OpenAI LM instance with default parameters."""
+        # pylint: disable=unexpected-keyword-arg
         return cls(model=Config.DEFAULT_OPENAI_MODEL, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
     def call(self, messages: list[LMChatMsg], **kwargs) -> ChatCompletion:
