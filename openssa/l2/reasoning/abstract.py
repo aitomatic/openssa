@@ -1,12 +1,17 @@
 """Abstract Reasoner."""
 
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import TypeVar
+from typing import TypeVar, TYPE_CHECKING
 
-from openssa.l2.task.abstract import ATask
-from openssa.l2.util.lm import AnLM, OpenAILM
+from openssa.l2.util.lm.openai import OpenAILM
+
+if TYPE_CHECKING:
+    from openssa.l2.task.abstract import ATask
+    from openssa.l2.util.lm.abstract import AnLM
 
 
 @dataclass
