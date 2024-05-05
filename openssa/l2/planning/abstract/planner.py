@@ -7,10 +7,11 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Self, TypeVar
 
-from openssa.l2.util.lm import AnLM, OpenAILM
+from openssa.l2.util.lm.openai import OpenAILM
 
 if TYPE_CHECKING:
     from openssa.l2.resource.abstract import AResource
+    from openssa.l2.util.lm.abstract import AnLM
     from .plan import APlan
 
 
