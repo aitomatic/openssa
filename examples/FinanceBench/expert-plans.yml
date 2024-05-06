@@ -1,3 +1,71 @@
+# LIQUIDITY METRIC EVALUATION
+# ===========================
+
+working-capital:
+  task:
+    Calculate the working capital of {COMPANY} for {YEAR}. Working capital =
+    total current assets - total current liabilities.
+  sub-plans:
+    - task:
+        In dollars, what were the total current assets in the given fiscal year?
+    - task:
+        In dollars, what were the total current liabilities in the given fiscal
+        year?
+
+# working-capital-ratio  # TODO
+
+quick-ratio:
+  task:
+    Calculate the quick ratio of {COMPANY} for {YEAR}. Quick ratio = (Current
+    Assets - Inventory) / Current Liabilities
+  sub-plans:
+    - task:
+        In dollars, what were the total current assets in the given fiscal year?
+    - task:
+        In dollars, what were the total current liabilities in the given fiscal
+        year?
+
+cash-flow-activities:
+  task:
+    Compare the cash flows from operating activities, investing activities, and
+    financing activites for {COMPANY} in {YEAR}.
+  sub-plans:
+    - task:
+        In dollars, what was the cash flows from operating activities in the
+        given fiscal year(s)?
+    - task:
+        In dollars, what was the cash flows from investing activities in the
+        given fiscal year(s)?
+    - task:
+        In dollars, what was the cash flows from financing activities in the
+        given fiscal year(s)?
+
+free-cash-flow:
+  task:
+    Calculate the free cash flow of {COMPANY} for {YEAR}. Free cash flow = cash
+    from operations - capital expenditures
+  sub-plans:
+    - task:
+        In dollars, what was the net cash provided by operating activities in
+        the given fiscal year(s)?
+    - task:
+        In dollars, what was the capital expenditures in the given fiscal
+        year(s)
+
+# free-cash-flow-conversion  # TODO
+
+operating-cash-flow-ratio:
+  task:
+    Calculate the operating cash flow ratio of {COMPANY} for {YEAR}. Operating
+    cash flow ratio = cash from operations / total current liabilities
+  sub-plans:
+    - task:
+        In dollars, what was the cash from operations in the given fiscal year?
+
+    - task:
+        In dollars, what were the total current liabilities in the given fiscal
+        year
+
 dpo:
   task:
     Calculate the days payable outstanding (DPO) for {COMPANY} in {YEAR}. DPO =
@@ -14,27 +82,8 @@ dpo:
         In dollars, what were the inventories in the given fiscal year(s)?
         current assets on the balance sheet.
 
-quick-ratio:
-  task:
-    Calculate the quick ratio of {COMPANY} for {YEAR}. Quick ratio = (Current
-    Assets - Inventory) / Current Liabilities
-  sub-plans:
-    - task:
-        In dollars, what were the total current assets in the given fiscal year?
-    - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year?
+# cash-conversion-cycle  # TODO
 
-working-capital:
-  task:
-    Calculate the working capital of {COMPANY} for {YEAR}. Working capital =
-    total current assets - total current liabilities.
-  sub-plans:
-    - task:
-        In dollars, what were the total current assets in the given fiscal year?
-    - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year?
 
 debt:
   task:
@@ -58,17 +107,6 @@ unadjusted-operating-income:
         In dollars, what was the net sales in the given fiscal year(s)? sales or
         income statement
 
-operating-cash-flow-ratio:
-  task:
-    Calculate the operating cash flow ratio of {COMPANY} for {YEAR}. Operating
-    cash flow ratio = cash from operations / total current liabilities
-  sub-plans:
-    - task:
-        In dollars, what was the cash from operations in the given fiscal year?
-
-    - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year
 
 operating-margin-profile:
   task:
@@ -192,17 +230,6 @@ revenue:
         In dollars, what was the net sales in the given fiscal year(s)? sales or
         income statement
 
-free-cash-flow:
-  task:
-    Calculate the free cash flow of {COMPANY} for {YEAR}. Free cash flow = cash
-    from operations - capital expenditures
-  sub-plans:
-    - task:
-        In dollars, what was the net cash provided by operating activities in
-        the given fiscal year(s)?
-    - task:
-        In dollars, what was the capital expenditures in the given fiscal
-        year(s)
 
 unadjusted-ebitda:
   task:
@@ -239,18 +266,3 @@ effective-tax-rate:
     - task:
         In dollars, what was the income from continuing operations before income
         taxes in the given fiscal year(s)?
-
-cash-flow-activities:
-  task:
-    Compare the cash flows from operating activities, investing activities, and
-    financing activites for {COMPANY} in {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the cash flows from operating activities in the
-        given fiscal year(s)?
-    - task:
-        In dollars, what was the cash flows from investing activities in the
-        given fiscal year(s)?
-    - task:
-        In dollars, what was the cash flows from financing activities in the
-        given fiscal year(s)?
