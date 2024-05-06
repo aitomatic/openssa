@@ -86,6 +86,18 @@ Profitability Margin Metric Formulas
 `Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `Revenue`
 
 
+Profit-Utilization / Capital-Return Metric Formulas
+---------------------------------------------------
+
+`Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
+
+`Effective Tax Rate` = `Tax Expense` / `Taxable Income`
+
+`Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit`
+
+`Retention Ratio` = 1 - `Dividend Payout Ratio`
+
+
 Capital-Intensiveness / Return-on-Capital Metric Formulas
 ---------------------------------------------------------
 
@@ -135,20 +147,7 @@ Liquidity Metric Formulas
 )
 
 
-Capital-Return Metric Formulas
-------------------------------
 
-`Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit`
-
-`Retention Ratio` = 1 - `Dividend Payout Ratio`
-
-
-Miscellaneous/Other Metric Formulas
------------------------------------
-
-`Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
-
-`Effective Tax Rate` = `Tax Expense` / `Taxable Income`
 
 
 CAPITAL-INTENSIVENESS EVALUATION
