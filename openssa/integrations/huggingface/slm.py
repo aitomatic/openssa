@@ -85,7 +85,6 @@ class SLM(BaseSLM):
                            timeout=10)
 
         if response.status_code == 200:
-            # pylint: disable=invalid-name
             response_text = response.text.strip()
             response_dict = json.loads(response_text)
             if isinstance(response_dict, list):

@@ -1,20 +1,26 @@
 get-doc:
 	@poetry run python data.py ${name}
 
+htp-auto-dynamic-oodar-solve:
+	@poetry run python htp-oodar-agent.py ${id}
+
+htp-auto-static-oodar-solve:
+	@poetry run python htp-oodar-agent.py ${id} --static
+
 rag-default-answer:
-	@poetry run python rag_default.py ${id}
+	@poetry run python rag-default.py ${id}
 
 rag-finetuned-embed-answer:
-	@poetry run python rag_finetuned_embed_only.py ${id}
+	@poetry run python rag-finetuned-embed-only.py ${id}
 
 rag-finetuned-lm-answer:
-	@poetry run python rag_finetuned_lm_only.py ${id}
+	@poetry run python rag-finetuned-lm-only.py ${id}
 
 rag-finetuned-both-answer:
-	@poetry run python rag_finetuned_embed_and_lm.py ${id}
+	@poetry run python rag-finetuned-embed-and-lm.py ${id}
 
 rag-gpt4-lm-answer:
-	@poetry run python rag_gpt4_lm.py ${id}
+	@poetry run python rag-gpt4-lm.py ${id}
 
 ooda-solve:
 	@poetry run python ooda.py ${id}

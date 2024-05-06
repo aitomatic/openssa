@@ -1,4 +1,4 @@
-"""File-stored informational resource."""
+"""File-stored Informational Resource."""
 
 
 from collections.abc import Collection
@@ -66,17 +66,21 @@ AnLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=Fa
 @global_register
 @dataclass
 class FileResource(AbstractResource):
-    """File-stored informational resource."""
+    """File-stored Informational Resource."""
 
+    # directory or file path to file-stored Informational Resource
     path: Path | DirOrFileStrPath
 
+    # embedding model for indexing and retrieving information
     embed_model: AnEmbedModel = field(default_factory=OpenAIEmbedding)
+    # whether to re-index information upon initialization
     re_index: InitVar[bool] = False
 
+    # language model for generating answers
     lm: AnLM = field(default_factory=OpenAILM)
 
     def __post_init__(self, re_index: bool):
-        """Post-initialize file-stored informational resource."""
+        """Post-initialize file-stored Informational Resource."""
         if isinstance(self.path, Path):
             self.path: Path = self.path.resolve(strict=True)
             self.str_path: DirOrFileStrPath = str(self.path)
@@ -102,12 +106,12 @@ class FileResource(AbstractResource):
 
     @cached_property
     def unique_name(self) -> str:
-        """Return globally-unique name of file-stored informational resource."""
+        """Return globally-unique name of file-stored Informational Resource."""
         return self.index_dir_str_path
 
     @cached_property
     def name(self) -> str:
-        """Return potentially non-unique, but informationally helpful name of file-stored informational resource."""
+        """Return potentially non-unique, but informationally helpful name of file-stored Informational Resource."""
         return os.path.basename(self.path)
 
     @cached_property
@@ -274,5 +278,5 @@ class FileResource(AbstractResource):
             streaming=False)
 
     def answer(self, question: str, n_words: int = 1000) -> str:
-        """Answer question by RAG from file-stored informational resource."""
+        """Answer question by RAG from file-stored Informational Resource."""
         return self.query_engine.query(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)).response
