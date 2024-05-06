@@ -113,6 +113,38 @@ net-profit-margin:
         income statement
 
 
+# PROFIT UTILIZATION METRIC EVALUATION
+# ====================================
+
+# interest-coverage-ratio  # TODO
+
+effective-tax-rate:
+  task:
+    Calculate the effective tax rate of {COMPANY} for {YEAR}. Effective tax rate
+    = income tax expense / income before tax
+  sub-plans:
+    - task:
+        In dollars, what was the provision for income taxes in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the income from continuing operations before income
+        taxes in the given fiscal year(s)?
+
+dividend-payout-ratio:
+  task:
+    Calculate the dividend payout ratio of {COMPANY} for {YEAR}. Dividend payout
+    ratio = total cash dividends paid / net income attributable to shareholders
+  sub-plans:
+    - task:
+        In dollars, what was the total cash dividends paid in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the net income attributable to shareholders in the
+        given fiscal year(s)
+
+# retention-ratio  # TODO
+
+
 # LIQUIDITY METRIC EVALUATION
 # ===========================
 
@@ -212,19 +244,6 @@ debt:
         long-term liabilities on the balance sheet.
 
 
-
-
-dividend-payout-ratio:
-  task:
-    Calculate the dividend payout ratio of {COMPANY} for {YEAR}. Dividend payout
-    ratio = total cash dividends paid / net income attributable to shareholders
-  sub-plans:
-    - task:
-        In dollars, what was the total cash dividends paid in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the net income attributable to shareholders in the
-        given fiscal year(s)
 # CAPITAL-INTENSIVENESS METRIC EVALUATION
 # =======================================
 
@@ -270,16 +289,3 @@ return-on-assets:
     - task:
         In dollars, what were the total assets in the given fiscal year(s)?
         total assets on the balance sheet.
-
-
-effective-tax-rate:
-  task:
-    Calculate the effective tax rate of {COMPANY} for {YEAR}. Effective tax rate
-    = income tax expense / income before tax
-  sub-plans:
-    - task:
-        In dollars, what was the provision for income taxes in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the income from continuing operations before income
-        taxes in the given fiscal year(s)?
