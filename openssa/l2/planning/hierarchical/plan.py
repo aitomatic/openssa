@@ -49,11 +49,14 @@ class HTP(AbstractPlan):
                 p.task.resources: set[AResource] = self.task.resources
             p.fix_missing_resources()
 
-    def execute(self, reasoner: AReasoner = BaseReasoner(), other_results: list[AskAnsPair] | None = None) -> str:
+    def execute(self, reasoner: AReasoner | None = None, other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account potentially-relevant other results from elsewhere.
         """
+        if reasoner is None:
+            reasoner: AReasoner = BaseReasoner()
+
         reasoning_wo_sub_results: str = reasoner.reason(task=self.task)
 
         if self.sub_plans:
