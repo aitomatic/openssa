@@ -1,5 +1,5 @@
 # REVENUE & TURNOVER METRIC EVALUATION
-# ==================================
+# ====================================
 
 revenue:
   task: Calculate the revenue of {COMPANY} for {YEAR}.
@@ -225,6 +225,8 @@ dividend-payout-ratio:
     - task:
         In dollars, what was the net income attributable to shareholders in the
         given fiscal year(s)
+# CAPITAL-INTENSIVENESS METRIC EVALUATION
+# =======================================
 
 capital-intensiveness:
   task: Is {COMPANY} a capital-intensive business based on {YEAR} data?
@@ -256,7 +258,6 @@ capex-as-percent-of-revenue:
     - task:
         In dollars, what was the revenue (net sales) in the given fiscal
         year(s)?
-
 
 return-on-assets:
   task:
