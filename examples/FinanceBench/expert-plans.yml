@@ -1,3 +1,50 @@
+# REVENUE & TURNOVER METRIC EVALUATION
+# ==================================
+
+revenue:
+  task: Calculate the revenue of {COMPANY} for {YEAR}.
+  sub-plans:
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+asset-turnover-ratio:
+  task:
+    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
+    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
+  sub-plans:
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement.
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet
+
+fixed-asset-turnover-ratio:
+  task:
+    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
+    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
+  sub-plans:
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement.
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet
+
+inventory-turnover-ratio:
+  task:
+    Calculate the inventory turnover ratio of {COMPANY} for {YEAR}. Inventory
+    turnover ratio = COGS / average inventory between {YEAR-1} and {YEAR}
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what were the inventories in the given fiscal year(s)?
+        current assets on the balance sheet
+
+
 # INCOME & PROFITABILITY METRIC EVALUATION
 # ========================================
 
@@ -165,29 +212,7 @@ debt:
         long-term liabilities on the balance sheet.
 
 
-fixed-asset-turnover-ratio:
-  task:
-    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
-    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
-  sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement.
-    - task:
-        In dollars, what were the total assets in the given fiscal year(s)?
-        total assets on the balance sheet
 
-asset-turnover-ratio:
-  task:
-    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
-    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
-  sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement.
-    - task:
-        In dollars, what were the total assets in the given fiscal year(s)?
-        total assets on the balance sheet
 
 dividend-payout-ratio:
   task:
@@ -232,17 +257,6 @@ capex-as-percent-of-revenue:
         In dollars, what was the revenue (net sales) in the given fiscal
         year(s)?
 
-inventory-turnover-ratio:
-  task:
-    Calculate the inventory turnover ratio of {COMPANY} for {YEAR}. Inventory
-    turnover ratio = COGS / average inventory between {YEAR-1} and {YEAR}
-  sub-plans:
-    - task:
-        In dollars, what was the cost of sales in the given fiscal year(s)?
-        operating expenses or income statement.
-    - task:
-        In dollars, what were the inventories in the given fiscal year(s)?
-        current assets on the balance sheet
 
 return-on-assets:
   task:
@@ -256,12 +270,6 @@ return-on-assets:
         In dollars, what were the total assets in the given fiscal year(s)?
         total assets on the balance sheet.
 
-revenue:
-  task: Calculate the revenue of {COMPANY} for {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement
 
 effective-tax-rate:
   task:
