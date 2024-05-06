@@ -1,3 +1,71 @@
+# INCOME & PROFITABILITY METRIC EVALUATION
+# ========================================
+
+# cogs-margin  # TODO
+
+gross-margin-profile:
+  task:
+    Calculate the gross margin of {COMPANY} for {YEAR}. Gross margin = (revenue
+    minus cost of sales) / revenue
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal
+        year(s)
+
+unadjusted-operating-income:
+  task: Calculate the unadjusted operating income of {COMPANY} for {YEAR}.
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+operating-margin-profile:
+  task:
+    Calculate the operating margin of {COMPANY} for {YEAR}. Operating margin =
+    operating income / net sales
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal
+        year(s)
+
+unadjusted-ebitda:
+  task:
+    Calculate the unadjusted EBITDA of {COMPANY} for {YEAR}. Unadjusted EBITDA =
+    unadjusted operating income + depreciation and amortization
+  sub-plans:
+    - task:
+        In dollars, what was the unadjusted operating income in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)
+
+# ebitda-margin  # TODO
+
+# da-margin  # TODO
+
+net-profit-margin:
+  task:
+    Calculate the net profit margin of {COMPANY} for {YEAR}. Net profit margin =
+    net income / net sales
+  sub-plans:
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+
 # LIQUIDITY METRIC EVALUATION
 # ===========================
 
@@ -84,7 +152,6 @@ dpo:
 
 # cash-conversion-cycle  # TODO
 
-
 debt:
   task:
     Calculate the total debt of {COMPANY} for {YEAR}. Add the short-term and
@@ -97,28 +164,6 @@ debt:
         In dollars, what was the long-term debt in the given fiscal year(s)?
         long-term liabilities on the balance sheet.
 
-unadjusted-operating-income:
-  task: Calculate the unadjusted operating income of {COMPANY} for {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the operating income in the given fiscal year(s)?
-
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement
-
-
-operating-margin-profile:
-  task:
-    Calculate the operating margin of {COMPANY} for {YEAR}. Operating margin =
-    operating income / net sales
-  sub-plans:
-    - task:
-        In dollars, what was the operating income in the given fiscal year(s)?
-
-    - task:
-        In dollars, what was the revenue (net sales) in the given fiscal
-        year(s)
 
 fixed-asset-turnover-ratio:
   task:
@@ -199,18 +244,6 @@ inventory-turnover-ratio:
         In dollars, what were the inventories in the given fiscal year(s)?
         current assets on the balance sheet
 
-gross-margin-profile:
-  task:
-    Calculate the gross margin of {COMPANY} for {YEAR}. Gross margin = (revenue
-    minus cost of sales) / revenue
-  sub-plans:
-    - task:
-        In dollars, what was the cost of sales in the given fiscal year(s)?
-        operating expenses or income statement.
-    - task:
-        In dollars, what was the revenue (net sales) in the given fiscal
-        year(s)
-
 return-on-assets:
   task:
     Calculate the return on assets (ROA) of {COMPANY} for {YEAR}. ROA = net
@@ -226,31 +259,6 @@ return-on-assets:
 revenue:
   task: Calculate the revenue of {COMPANY} for {YEAR}.
   sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement
-
-
-unadjusted-ebitda:
-  task:
-    Calculate the unadjusted EBITDA of {COMPANY} for {YEAR}. Unadjusted EBITDA =
-    unadjusted operating income + depreciation and amortization
-  sub-plans:
-    - task:
-        In dollars, what was the unadjusted operating income in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the depreciation and amortization in the given
-        fiscal year(s)
-
-net-profit-margin:
-  task:
-    Calculate the net profit margin of {COMPANY} for {YEAR}. Net profit margin =
-    net income / net sales
-  sub-plans:
-    - task:
-        In dollars, what was the net income in the given fiscal year(s)? income
-        or income statement.
     - task:
         In dollars, what was the net sales in the given fiscal year(s)? sales or
         income statement
