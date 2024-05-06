@@ -16,6 +16,11 @@ __pycache__/
 docs/_build/
 
 
+# ENVIRONMENT VARIABLES
+# =====================
+.env
+
+
 # IDEs
 # ====
 
@@ -31,11 +36,9 @@ docs/_build/
 .DS_Store
 
 
-# DATA FILES
-# ==========
+# DATA & EXAMPLE FILES
+# ====================
 .openssa/
-.env
 tmp/
-examples/data/cache/dense
-examples/data/*.csv
 examples/Expert Plan Development.ipynb
+test*.ipynb
