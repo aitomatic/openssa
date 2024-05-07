@@ -17,7 +17,7 @@ type DocName = str
 type FbId = str
 type Question = str
 type Answer = str
-
+type PlanId = str
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
@@ -67,6 +67,15 @@ with open(file=GROUND_TRUTHS_FILE_PATH,
           opener=None) as f:
     GROUND_TRUTHS: dict[FbId, GroundTruth] = yaml.safe_load(stream=f)
 
+EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
+with open(file=EXPERT_PLANS_MAP_FILE_PATH, encoding='utf-8') as f:
+    EXPERT_PLANS_MAP: dict[FbId, PlanId] = yaml.safe_load(stream=f)
+
+EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
+type Plan = TypedDict('Plan', {'task': Required[str],
+                               'sub-plans': Required[list]})
+with open(file=EXPERT_PLANS_FILE_PATH, encoding='utf-8') as f:
+    EXPERT_PLANS: dict[PlanId, Plan] = yaml.safe_load(stream=f)
 
 def get_doc(doc_name: DocName) -> requests.Response:
     response: requests.Response = requests.get(

@@ -223,6 +223,7 @@ quick-ratio:
     - task:
         In dollars, what were the total current liabilities in the given fiscal
         year?
+    - task: In dollars, what were the inventories in the given fiscal year(s)?
 
 cash-flow-activities:
   task:
@@ -298,39 +299,39 @@ cash-conversion-cycle:
         In dollars, what was the days inventory outstanding (DIO) in the given
         fiscal year(s)? DIO = 365 * (average inventory between {YEAR-1} and
         {YEAR}) / (COGS in {YEAR}).
-        - sub-plans:
-            - task:
-                In dollars, what was the cost of sales (equivalent to cost of
-                goods sold) in the given fiscal year(s)? statement.
-            - task:
-                In dollars, what were the inventories in the given fiscal
-                year(s)? current assets on the balance sheet.
+      sub-plans:
+        - task:
+            In dollars, what was the cost of sales (equivalent to cost of goods
+            sold) in the given fiscal year(s)? statement.
+        - task:
+            In dollars, what were the inventories in the given fiscal year(s)?
+            current assets on the balance sheet.
     - task:
         In dollars, what was the days sales outstanding (DSO) in the given
-        fiscal year(s)? DSO = 365 * (average accounts receivable between {YEAR-1}
-        and {YEAR}) / (net sales in {YEAR}).
-        - sub-plans:
-            - task:
-                In dollars, what was the net sales in the given fiscal year(s)?
-                sales or income statement.
-            - task:
-                In dollars, what were the accounts receivable in the given
-                fiscal year(s)?
+        fiscal year(s)? DSO = 365 * (average accounts receivable between
+        {YEAR-1} and {YEAR}) / (net sales in {YEAR}).
+      sub-plans:
+        - task:
+            In dollars, what was the net sales in the given fiscal year(s)?
+            sales or income statement.
+        - task:
+            In dollars, what were the accounts receivable in the given fiscal
+            year(s)?
     - task:
         In dollars, what was the days payable outstanding (DPO) in the given
         fiscal year(s)? DPO = 365 * (average accounts payable between {YEAR-1}
         and {YEAR}) / (COGS in {YEAR} + change in inventory between {YEAR-1} and
         {YEAR}).
-        - sub-plans:
-            - task:
-                In dollars, what was the cost of sales (equivalent to cost of
-                goods sold) in the given fiscal year(s)? statement.
-            - task:
-                In dollars, what were the accounts payable in the given fiscal
-                year(s)?
-            - task:
-                In dollars, what were the inventories in the given fiscal
-                year(s)? current assets on the balance sheet.
+      sub-plans:
+        - task:
+            In dollars, what was the cost of sales (equivalent to cost of goods
+            sold) in the given fiscal year(s)? statement.
+        - task:
+            In dollars, what were the accounts payable in the given fiscal
+            year(s)?
+        - task:
+            In dollars, what were the inventories in the given fiscal year(s)?
+            current assets on the balance sheet.
 
 debt:
   task:
