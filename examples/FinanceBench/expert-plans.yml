@@ -44,11 +44,20 @@ inventory-turnover-ratio:
         In dollars, what were the inventories in the given fiscal year(s)?
         current assets on the balance sheet
 
-
 # INCOME & PROFITABILITY METRIC EVALUATION
 # ========================================
 
-# cogs-margin  # TODO
+cogs-margin:
+  task:
+    Calculate the cost of goods sold (COGS) % margin of {COMPANY} for {YEAR}.
+    COGS margin = (revenue - cost of sales) / revenue
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal
+        year(s)?
 
 gross-margin-profile:
   task:
@@ -59,15 +68,13 @@ gross-margin-profile:
         In dollars, what was the cost of sales in the given fiscal year(s)?
         operating expenses or income statement.
     - task:
-        In dollars, what was the revenue (net sales) in the given fiscal
-        year(s)
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
 
 unadjusted-operating-income:
   task: Calculate the unadjusted operating income of {COMPANY} for {YEAR}.
   sub-plans:
     - task:
         In dollars, what was the operating income in the given fiscal year(s)?
-
     - task:
         In dollars, what was the net sales in the given fiscal year(s)? sales or
         income statement
@@ -81,8 +88,7 @@ operating-margin-profile:
         In dollars, what was the operating income in the given fiscal year(s)?
 
     - task:
-        In dollars, what was the revenue (net sales) in the given fiscal
-        year(s)
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
 
 unadjusted-ebitda:
   task:
@@ -94,11 +100,32 @@ unadjusted-ebitda:
         year(s)?
     - task:
         In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)?
+
+ebitda-margin:
+  task:
+    Calculate the EBITDA margin of {COMPANY} for {YEAR}. EBITDA margin =
+    (operating income + depreciation and amortization) / revenue.
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the depreciation and amortization in the given
         fiscal year(s)
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
 
-# ebitda-margin  # TODO
-
-# da-margin  # TODO
+da-margin:
+  task:
+    Calculate the depreciation and amortization margin of {COMPANY} for {YEAR}.
+    Depreciation and amortization margin = depreciation and amortization /
+    revenue
+  sub-plans:
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)?
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
 
 net-profit-margin:
   task:
@@ -112,11 +139,18 @@ net-profit-margin:
         In dollars, what was the net sales in the given fiscal year(s)? sales or
         income statement
 
-
 # PROFIT-UTILIZATION / CAPITAL-RETURN METRIC EVALUATION
 # =====================================================
 
-# interest-coverage-ratio  # TODO
+interest-coverage-ratio:
+  task:
+    Calculate the interest coverage ratio of {COMPANY} for {YEAR}. Interest
+    coverage ratio = operating income / interest expense
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the interest expense in the given fiscal year(s)?
 
 effective-tax-rate:
   task:
@@ -142,8 +176,17 @@ dividend-payout-ratio:
         In dollars, what was the net income attributable to shareholders in the
         given fiscal year(s)
 
-# retention-ratio  # TODO
-
+retention-ratio:
+  task:
+    Calculate the retention ratio of {COMPANY} for {YEAR}. Retention ratio =
+    (net income - dividends) / net income
+  sub-plans:
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+    - task:
+        In dollars, what was the total cash dividends paid in the given fiscal
+        year(s)?
 
 # LIQUIDITY METRIC EVALUATION
 # ===========================
@@ -159,7 +202,16 @@ working-capital:
         In dollars, what were the total current liabilities in the given fiscal
         year?
 
-# working-capital-ratio  # TODO
+working-capital-ratio:
+  task:
+    Calculate the working capital ratio of {COMPANY} for {YEAR}. Working capital
+    ratio = working capital / total assets
+  sub-plans:
+    - task:
+        In dollars, what was the working capital in the given fiscal year(s)?
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet.
 
 quick-ratio:
   task:
@@ -199,7 +251,15 @@ free-cash-flow:
         In dollars, what was the capital expenditures in the given fiscal
         year(s)
 
-# free-cash-flow-conversion  # TODO
+free-cash-flow-conversion:
+  task:
+    Calculate the free cash flow conversion of {COMPANY} for {YEAR}. Free cash
+    flow conversion = free cash flow / net income
+  sub-plans:
+    - task: In dollars, what was the free cash flow in the given fiscal year(s)?
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
 
 operating-cash-flow-ratio:
   task:
@@ -229,7 +289,48 @@ dpo:
         In dollars, what were the inventories in the given fiscal year(s)?
         current assets on the balance sheet.
 
-# cash-conversion-cycle  # TODO
+cash-conversion-cycle:
+  task:
+    Calculate the cash conversion cycle of {COMPANY} for {YEAR}. Cash conversion
+    cycle = DIO + DSO - DPO
+  sub-plans:
+    - task:
+        In dollars, what was the days inventory outstanding (DIO) in the given
+        fiscal year(s)? DIO = 365 * (average inventory between {YEAR-1} and
+        {YEAR}) / (COGS in {YEAR}).
+        - sub-plans:
+            - task:
+                In dollars, what was the cost of sales (equivalent to cost of
+                goods sold) in the given fiscal year(s)? statement.
+            - task:
+                In dollars, what were the inventories in the given fiscal
+                year(s)? current assets on the balance sheet.
+    - task:
+        In dollars, what was the days sales outstanding (DSO) in the given
+        fiscal year(s)? DSO = 365 * (average accounts receivable between {YEAR-1}
+        and {YEAR}) / (net sales in {YEAR}).
+        - sub-plans:
+            - task:
+                In dollars, what was the net sales in the given fiscal year(s)?
+                sales or income statement.
+            - task:
+                In dollars, what were the accounts receivable in the given
+                fiscal year(s)?
+    - task:
+        In dollars, what was the days payable outstanding (DPO) in the given
+        fiscal year(s)? DPO = 365 * (average accounts payable between {YEAR-1}
+        and {YEAR}) / (COGS in {YEAR} + change in inventory between {YEAR-1} and
+        {YEAR}).
+        - sub-plans:
+            - task:
+                In dollars, what was the cost of sales (equivalent to cost of
+                goods sold) in the given fiscal year(s)? statement.
+            - task:
+                In dollars, what were the accounts payable in the given fiscal
+                year(s)?
+            - task:
+                In dollars, what were the inventories in the given fiscal
+                year(s)? current assets on the balance sheet.
 
 debt:
   task:
@@ -242,7 +343,6 @@ debt:
     - task:
         In dollars, what was the long-term debt in the given fiscal year(s)?
         long-term liabilities on the balance sheet.
-
 
 # CAPITAL-INTENSIVENESS METRIC EVALUATION
 # =======================================
