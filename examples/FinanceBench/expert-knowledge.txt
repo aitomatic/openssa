@@ -157,7 +157,7 @@ CAPITAL-INTENSIVENESS EVALUATION
 
 Capital-intensive businesses tend to have one or several of the following characteristics:
 - high Fixed Assets as proportion of Total Assets;
-- high Capital Expenditure (CapEx) relative to Revenue; and
+- high Capital Expenditure (CapEx) relative to Revenue; and/or
 - low Return on (Total) Assets (RoA or RoTA)
 
 
