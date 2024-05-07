@@ -9,9 +9,10 @@ FINANCIAL SYNONYMS
 Balance-Sheet Line-Item Synonyms
 --------------------------------
 
-- "(Net) Accounts Receivable", "(Net) AR"
-- "(Net) Fixed Assets", "(Net) FA(s)", "(Net) Property, Plant & Equipment", "(Net) PP&E", "(Net) Property, Equipment & Intangibles"
 - "Total Assets", "TA(s)"
+- "(Net) Fixed Assets", "(Net) FA(s)", "(Net) Property, Plant & Equipment", "(Net) PP&E", "(Net) Property, Equipment & Intangibles"
+- "(Net) Accounts Receivable", "(Net) AR"
+
 - "(Net) Accounts Payable", "(Net) AP"
 
 
@@ -19,7 +20,11 @@ Cash-Flow-Statement Line-Item Synonyms
 --------------------------------------
 
 - "Cash (Flows) from Operations", "Cash (Flows) from Operating Activities", "Operating Cash Flows"
+
+- "Cash (Flows) from Investments", "Cash (Flows) from Investing Activities", "Investing Cash Flows"
 - "Capital Expenditure", "CapEx"
+
+- "Cash (Flows) from Financing", "Cash (Flows) from Financing Activities", "Financing Cash Flows"
 
 
 Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
