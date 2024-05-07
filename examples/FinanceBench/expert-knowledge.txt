@@ -126,7 +126,7 @@ Liquidity Metric Formulas
   / `Current Liabilities`
 )
 
-`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Total Current Liabilities`
+`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Current Liabilities`
 
 `Free Cash Flow, a.k.a. FCF` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`
 
