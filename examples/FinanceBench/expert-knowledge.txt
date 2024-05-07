@@ -157,7 +157,7 @@ CAPITAL-INTENSIVENESS EVALUATION
 
 Capital-intensive businesses tend to have one or several of the following characteristics:
 - high Fixed Assets as proportion of Total Assets;
-- high Capital Expenditure (CapEx) relative to Revenue; and/or
+- high Capital Expenditure (CapEx) relative to (Net) Revenue; and/or
 - low Return on (Total) Assets (RoA or RoTA)
 
 
@@ -167,10 +167,14 @@ FINANCIAL-ANALYSIS LANGUAGE/WORDING
 - When we see the word "average" used before a Balance Sheet line item in financial-analysis contexts,
   it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
 
+- When we see the word "growth" used in the context of product categories/segments or geographies,
+  unless otherwise specified, it often concerns the year-on-year proportional/relative growth rates in (Net) Revenue
+  from such product categories/segments or geographies
+
 - When we see the word "margin" in financial-analysis contexts,
-  we usually need to divide a certain Profit-and-Loss (P&L) line item by the Total Revenue,
+  we usually need to divide a certain Profit-and-Loss (P&L) line item by the (Net) Revenue,
   for the concerned financial reporting period(s)
 
 - When we see the word "turnover ratio" used after a Balance Sheet line item in financial-analysis contexts,
-  we usually need to divide the Total Revenue for the fiscal year by the average of that Balance Sheet line item
+  we usually need to divide the (Net) Revenue for the fiscal year by the average of that Balance Sheet line item
   between the latest fiscal year-end and the immediately-preceeding fiscal year-end
