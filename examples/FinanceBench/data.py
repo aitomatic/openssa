@@ -77,6 +77,7 @@ type Plan = TypedDict('Plan', {'task': Required[str],
 with open(file=EXPERT_PLANS_FILE_PATH, encoding='utf-8') as f:
     EXPERT_PLANS: dict[PlanId, Plan] = yaml.safe_load(stream=f)
 
+
 def get_doc(doc_name: DocName) -> requests.Response:
     response: requests.Response = requests.get(
         url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
