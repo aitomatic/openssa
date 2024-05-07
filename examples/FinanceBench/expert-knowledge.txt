@@ -49,12 +49,12 @@ Turnover Ratio Metric Formulas
 ------------------------------
 
 `(Total) Asset Turnover Ratio` = (
-  `Revenue` /
+  `(Net) Revenue` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
 )
 
 `Fixed Asset Turnover Ratio` = (
-  `Revenue` /
+  `(Net) Revenue` /
   `average Property, Plant & Equipment, a.k.a. PP&E, typically between two consecutive fiscal year-ends`
 )
 
@@ -76,19 +76,19 @@ Adjusted Income Metric Formulas
 Profitability Margin Metric Formulas
 ------------------------------------
 
-`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `Revenue`
+`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `(Net) Revenue`
 
-`Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `Revenue`
+`Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `(Net) Revenue`
 
-`(Unadjusted) Operating (Income or Profit) Margin` = `(Unadjusted) Operating Income, a.k.a. Operating Profit` / `Revenue`
+`(Unadjusted) Operating (Income or Profit) Margin` = `(Unadjusted) Operating Income, a.k.a. Operating Profit` / `(Net) Revenue`
 
-`(Unadjusted) EBITDA Margin` = `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `Revenue`
+`(Unadjusted) EBITDA Margin` = `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `(Net) Revenue`
 
-`Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `Revenue`
+`Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `(Net) Revenue`
 
-`EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Revenue`
+`EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `(Net) Revenue`
 
-`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `Revenue`
+`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `(Net) Revenue`
 
 
 Profit-Utilization / Capital-Return Metric Formulas
@@ -106,7 +106,7 @@ Profit-Utilization / Capital-Return Metric Formulas
 Capital-Intensiveness / Return-on-Capital Metric Formulas
 ---------------------------------------------------------
 
-`Capital Intensity Ratio` = `Total Assets` / `Revenue`
+`Capital Intensity Ratio` = `Total Assets` / `(Net) Revenue`
 
 `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
   `Net Income, a.k.a. Net Profit` /
@@ -144,7 +144,7 @@ Liquidity Metric Formulas
 
 `Days Sales Oustanding, a.k.a. DSO` = (
   365 * `average Accounts Receivable, typically between two consecutive fiscal year-ends`
-  / `Revenue`
+  / `(Net) Revenue`
 )
 
 `Cash Conversion Cycle, a.k.a. CCC` = (
