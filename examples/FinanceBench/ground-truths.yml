@@ -63,7 +63,7 @@ financebench_id_01226:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions at least 1 of salient changes among those discussed below:
+    the answer mentions at least 1 salient change among those discussed below:
 
     COST OF SALES:
     Cost of sales, measured as a percent of sales, increased in 2022 when compared to the same period last year.
