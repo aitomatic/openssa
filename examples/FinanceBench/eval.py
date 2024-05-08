@@ -93,7 +93,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool 
                 logger.debug(f'PROMPT:\n{prompt}')
 
             if human and human_eval_recommended(fb_id=fb_id):
-                return input('*** HUMAN EVAL ***: if answer is correct, type "Y": ').strip().lower().startswith('y')
+                return input('\n*** HUMAN EVAL ***: if answer is correct, type "Y": ').strip().lower().startswith('y')
 
             return False
 
