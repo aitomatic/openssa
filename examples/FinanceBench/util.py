@@ -27,7 +27,7 @@ def enable_batch_qa(qa_func: QAFunc) -> QAFunc:
 
 
 @dataclass
-class log_qa_and_update_output_file:  # noqa: N801
+class log_qa_and_eval_correctness_and_update_output_file:  # noqa: N801
     output_name: str
 
     def __call__(self, qa_func: QAFunc) -> QAFunc:
