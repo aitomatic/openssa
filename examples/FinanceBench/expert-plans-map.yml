@@ -14,8 +14,8 @@ financebench_id_00684: gross-margin-profile
 financebench_id_03069: da-margin
 financebench_id_00222: quick-ratio
 # financebench_id_01279: cash-flow-activities
-financebench_id_00723: fin-svcs-perf
-financebench_id_00720: fin-svcs-perf
+# financebench_id_00723: fin-svcs-perf
+# financebench_id_00720: fin-svcs-perf
 financebench_id_04254: unadjusted-ebitda
 financebench_id_00070: working-capital
 financebench_id_02608: net-profit-margin  # TODO: avg
@@ -36,7 +36,7 @@ financebench_id_04103: cash-conversion-cycle
 financebench_id_03471: working-capital-ratio
 financebench_id_04854: free-cash-flow
 financebench_id_10136: retention-ratio
-financebench_id_00206: fin-svcs-perf
+# financebench_id_00206: fin-svcs-perf
 financebench_id_10499: inventory-turnover-ratio
 financebench_id_04412: asset-turnover-ratio
 financebench_id_03031: working-capital

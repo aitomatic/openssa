@@ -101,7 +101,7 @@ assert len(EXPERT_PLANS_MAP) == (
     + CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
     + CAT_DISTRIB[Category.CALC_AND_JUDGE]
     + 2  # 6-OTHER-ADVANCED: capital-intensiveness
-    + 3  # 6-OTHER-ADVANCED: fin-svcs-perf
+    # + 3  # 6-OTHER-ADVANCED: fin-svcs-perf
 )
 
 
