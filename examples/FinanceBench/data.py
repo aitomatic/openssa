@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from collections import Counter
 import base64
 from functools import cache
 from pathlib import Path
@@ -17,6 +18,7 @@ type DocName = str
 type FbId = str
 type Question = str
 type Answer = str
+type Category = str
 type ExpertPlanId = str
 
 
@@ -56,7 +58,7 @@ type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
                                              'question': Required[Question],
                                              'answer': Required[Answer],
                                              'page(s)': Required[str],
-                                             'category': Required[str],
+                                             'category': Required[Category],
                                              'correctness': Required[str],
                                              'answer-inadequate': NotRequired[Literal[True]],
                                              'evaluator-unreliable': NotRequired[Literal[True]]})
@@ -68,6 +70,8 @@ with open(file=GROUND_TRUTHS_FILE_PATH,
           closefd=True,
           opener=None) as f:
     GROUND_TRUTHS: dict[FbId, GroundTruth] = yaml.safe_load(stream=f)
+
+CATEGORY_DISTRIBUTION: Counter[Category] = Counter(ground_truth['category'] for ground_truth in GROUND_TRUTHS.values())
 
 
 EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
