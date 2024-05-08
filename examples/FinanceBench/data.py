@@ -17,7 +17,8 @@ type DocName = str
 type FbId = str
 type Question = str
 type Answer = str
-type PlanId = str
+type ExpertPlanId = str
+
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
@@ -49,6 +50,7 @@ LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
 LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
 OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
+
 GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
 type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
                                              'question': Required[Question],
@@ -67,15 +69,21 @@ with open(file=GROUND_TRUTHS_FILE_PATH,
           opener=None) as f:
     GROUND_TRUTHS: dict[FbId, GroundTruth] = yaml.safe_load(stream=f)
 
+
 EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
 with open(file=EXPERT_PLANS_MAP_FILE_PATH, encoding='utf-8') as f:
-    EXPERT_PLANS_MAP: dict[FbId, PlanId] = yaml.safe_load(stream=f)
+    EXPERT_PLANS_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
+
+# sanity check Expert Plans Map
+categories_of_fb_ids_with_expert_plans: set[str] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLANS_MAP}
+assert not categories_of_fb_ids_with_expert_plans.intersection({'0-RETRIEVE', '2-CALC-CHANGE', '5-EXPLAIN-FACTORS'})
+
 
 EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
 type Plan = TypedDict('Plan', {'task': Required[str],
                                'sub-plans': Required[list]})
 with open(file=EXPERT_PLANS_FILE_PATH, encoding='utf-8') as f:
-    EXPERT_PLANS: dict[PlanId, Plan] = yaml.safe_load(stream=f)
+    EXPERT_PLANS: dict[ExpertPlanId, Plan] = yaml.safe_load(stream=f)
 
 
 def get_doc(doc_name: DocName) -> requests.Response:
