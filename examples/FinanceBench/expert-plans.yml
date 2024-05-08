@@ -213,7 +213,7 @@ working-capital-ratio:
         In dollars, what were the total assets in the given fiscal year(s)?
         total assets on the balance sheet.
 
-quick-ratio:
+quick-ratio:  # TODO: compare with 1x
   task:
     Calculate the quick ratio of {COMPANY} for {YEAR}. Quick ratio = (Current
     Assets - Inventory) / Current Liabilities
@@ -252,7 +252,7 @@ free-cash-flow:
         In dollars, what was the capital expenditures in the given fiscal
         year(s)
 
-free-cash-flow-conversion:
+free-cash-flow-conversion:  # TODO: check denominator, add yoy comparison
   task:
     Calculate the free cash flow conversion of {COMPANY} for {YEAR}. Free cash
     flow conversion = free cash flow / net income
@@ -348,7 +348,7 @@ debt:
 # CAPITAL-INTENSIVENESS METRIC EVALUATION
 # =======================================
 
-capital-intensiveness:
+capital-intensiveness:  # TODO: check
   task: Is {COMPANY} a capital-intensive business based on {YEAR} data?
   sub-plans:
     - task:
@@ -367,7 +367,7 @@ capital-intensiveness:
         In dollars, what was the net income in the given fiscal year(s)? income
         or income statement
 
-capex-as-percent-of-revenue:
+capex-as-percent-of-revenue:  # TODO: add 2-3-year average
   task:
     Calculate the 3 year average from {YEAR} of capex as a percentage of revenue
     for {COMPANY}.
@@ -390,3 +390,6 @@ return-on-assets:
     - task:
         In dollars, what were the total assets in the given fiscal year(s)?
         total assets on the balance sheet.
+
+
+# fin-svcs-perf: TODO
