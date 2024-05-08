@@ -104,13 +104,13 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
     return True
 
 
-def eval_all():
+def eval_all(output_name: str):
     output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
     incorrect_answer_fb_ids: dict[FbId, str] = {}
 
-    for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=N_CASES):
+    for fb_id, answer in tqdm(output_df[output_name].items(), total=N_CASES):
         ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
         if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, human=args.human_eval, debug=args.debug):
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     args = arg_parser.parse_args()
 
     if 'all' in args.id.lower():
-        eval_all()
+        eval_all(output_name=args.answer_col)
 
     else:
         logger.info(
