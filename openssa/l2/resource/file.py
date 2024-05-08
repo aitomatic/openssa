@@ -25,7 +25,7 @@ from llama_index.core.storage.storage_context import StorageContext
 from llama_index.core.vector_stores.types import VectorStoreQueryMode
 from llama_index.embeddings.openai.base import OpenAIEmbedding
 from llama_index.llms.openai.base import OpenAI as OpenAILM
-
+from llama_index.core.schema import MetadataMode
 from .abstract import AbstractResource
 from ._global import global_register
 from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
@@ -280,3 +280,8 @@ class FileResource(AbstractResource):
     def answer(self, question: str, n_words: int = 1000) -> str:
         """Answer question by RAG from file-stored Informational Resource."""
         return self.query_engine.query(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)).response
+
+    def retrieve(self, question: str) -> list:
+        """Retrieve information from file-stored Informational Resource."""
+        nodes = self.query_engine.retrieve(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=1000, question=question))
+        return [node.get_content(metadata_mode=MetadataMode.LLM) for node in nodes]

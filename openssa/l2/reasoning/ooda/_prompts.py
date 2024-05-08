@@ -28,3 +28,36 @@ Please return ONLY the JSON DICTIONARY and no other text, not even the "```json"
 {observations}
 ```
 """  # noqa: E122
+
+ORIENT_SYSTEM_PROMPT_TEMPLATE: str = """
+Return in the following JSON format:
+{
+  "confident": <true/false>,
+  "answer": "<answer>"
+}
+Provide only the JSON dictionary and no other text, not even the "```json" wrapping.
+"""
+
+
+ALTERNATIVE_ORIENT_PROMPT_TEMPLATE: str = """
+You have the following observations from various informational resources:
+------------------------
+{observations}
+------------------------
+
+Given the above observations, evaluate whether you can confidently answer the posed problem.
+
+If you can answer confidently, return a JSON dictionary with the following structure:
+{
+  "confident": true,
+  "answer": "<confident answer/solution of up to {n_words:,} words, covering reasoning flows and supporting details>"
+}
+
+If you cannot answer confidently, return a JSON dictionary with the following structure:
+{
+  "confident": false,
+  "answer": "<best-effort answer/solution of up to {n_words:,} words, covering potentially useful supporting details>"
+}
+
+Provide only the JSON dictionary and no other text, not even the "```json" wrapping.
+"""

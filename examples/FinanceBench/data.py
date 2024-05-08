@@ -9,6 +9,7 @@ from pandas import DataFrame, read_csv
 import requests
 import yaml
 
+from openssa import HTP
 
 load_dotenv()
 
@@ -143,6 +144,16 @@ def export_ground_truths():
                        version=None,
                        tags=None,
                        sort_keys=False)
+
+
+def get_plan(fb_id: FbId) -> Plan:
+    if fb_id in EXPERT_PLANS_MAP:
+        return HTP.from_dict(EXPERT_PLANS[EXPERT_PLANS_MAP[fb_id]])
+    return None
+
+
+def get_info(fb_id: FbId) -> GroundTruth:
+    return GROUND_TRUTHS[fb_id]
 
 
 if __name__ == '__main__':

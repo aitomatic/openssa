@@ -128,3 +128,10 @@ class Agent:
             task.status: TaskStatus = TaskStatus.DONE
 
         return task.result
+
+    def solve_dynamically_2(self, problem: str, planner: APlanner = None, plan: APlan = None, depth: int = 1):
+        """Alternative implementation of dynamic solving."""
+        # Determine a base plan.
+        if not plan:
+            plan = planner.plan(problem=problem, resources=self.resources)
+        # Execute the plan.

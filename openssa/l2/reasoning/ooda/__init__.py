@@ -49,17 +49,20 @@ class OodaReasoner(AbstractReasoner):
 
     def orient(self, task: ATask, observations: set[Observation], n_words: int = 1000) -> OrientResult:
         """Orient whether observed results are adequate for directly resolving Task."""
-        prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
-        logger.debug(prompt)
-
         def is_valid(orient_result_dict: OrientResult) -> bool:
+            """Internal function to check if Orient result is valid."""
             return (isinstance(orient_result_dict, dict) and
                     isinstance(orient_result_dict.get('confident'), bool) and
                     isinstance(orient_result_dict.get('answer'), str))
 
+        # Construct the prompt using the ORIENT_PROMPT_TEMPLATE
+        prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
+        logger.debug(prompt)  # Log the prompt
+
+        # Initialize an empty orient_result_dict and loop until a valid response is obtained
         orient_result_dict: OrientResult = {}
         while not is_valid(orient_result_dict):
-            orient_result_dict: OrientResult = self.lm.get_response(prompt, json_format=True)
+            orient_result_dict = self.lm.get_response(prompt, json_format=True)
 
         return orient_result_dict
 

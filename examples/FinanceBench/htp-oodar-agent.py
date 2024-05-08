@@ -5,7 +5,7 @@ from functools import cache
 from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource
 
 # pylint: disable=wrong-import-order
-from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path, EXPERT_PLANS_MAP, EXPERT_PLANS
+from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path, get_plan
 from util import enable_batch_qa, log_qa_and_update_output_file
 
 
@@ -29,10 +29,8 @@ def solve_automatically_dynamically(fb_id: FbId) -> Answer:
 @enable_batch_qa
 @log_qa_and_update_output_file(output_name='HTP-auto-static---OODAR')
 def solve_automatically_statically(fb_id: FbId) -> Answer:
-    plan_dict = EXPERT_PLANS[EXPERT_PLANS_MAP[fb_id]]
-    plan = HTP.from_dict(plan_dict)
     return (agent.solve(problem=QS_BY_FB_ID[fb_id],
-                        plan=plan,
+                        plan=get_plan(fb_id),
                         dynamic=False)
             if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]))
             else 'ERROR: doc not found')
