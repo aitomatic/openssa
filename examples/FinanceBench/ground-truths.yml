@@ -1069,7 +1069,7 @@ financebench_id_06272:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Dividend Payout Ratio decimal value that is in the range from 0.78 to 0.82,
+    the answer contains a calculated Dividend Payout Ratio decimal value that is in the range from 0.7800 to 0.8200,
     or, alternatively, a calculated percentage value that is in the range from 78.00% to 82.00%
     (if the answer is a single number, assume that it is that calculated Dividend Payout Ratio metric value)
 
