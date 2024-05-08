@@ -62,7 +62,11 @@ def get_lm(model='gpt-4-1106-preview') -> AnLM:
     return OpenAILM(model=model, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
 
-def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool = False) -> bool:
+def human_eval_recommended(fb_id: FbId) -> bool | None:
+    return (ground_truth := GROUND_TRUTHS[fb_id]).get('answer-inadequate') or ground_truth.get('evaluator-unreliable')
+
+
+def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool = False, human: bool = False) -> bool:
     question: Question = GROUND_TRUTHS[fb_id]['question']
     rubric: str = GROUND_TRUTHS[fb_id]['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
@@ -88,6 +92,9 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool 
             if debug:
                 logger.debug(f'PROMPT:\n{prompt}')
 
+            if human and human_eval_recommended(fb_id=fb_id):
+                return input('*** HUMAN EVAL ***: if answer is correct, type "Y": ').strip().lower().startswith('y')
+
             return False
 
     return True
@@ -99,6 +106,7 @@ if __name__ == '__main__':
     arg_parser.add_argument('--id', default='all', help='FinanceBench Case ID')
     arg_parser.add_argument('--n-times', type=int, default=9, help='Number of times to evaluate')
     arg_parser.add_argument('--debug', action='store_true', help='Debug by printing out prompts')
+    arg_parser.add_argument('--human-eval', action='store_true', help='Human-Evaluate known difficult cases')
     args = arg_parser.parse_args()
 
     output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
@@ -110,7 +118,7 @@ if __name__ == '__main__':
         for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
             ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
-            if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug):
+            if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug, human=args.human_eval):  # noqa: E501
                 n_yes_scores_by_category[ground_truth['category']] += 1
 
             else:
@@ -129,4 +137,4 @@ if __name__ == '__main__':
 
     else:
         logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col],
-                                     n_times=args.n_times, debug=args.debug))
+                                     n_times=args.n_times, debug=args.debug, human=args.human_eval))
