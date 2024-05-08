@@ -8,7 +8,7 @@ financebench_id_00438: operating-margin-profile
 financebench_id_00591: free-cash-flow-conversion
 financebench_id_00540: inventory-turnover-ratio
 financebench_id_10420: return-on-assets
-financebench_id_06655: dpo
+financebench_id_06655: days-payable-outstanding
 financebench_id_00799: quick-ratio
 financebench_id_00684: gross-margin-profile
 financebench_id_03069: da-margin
@@ -23,7 +23,7 @@ financebench_id_00585: effective-tax-rate
 financebench_id_03473: return-on-assets
 financebench_id_09724: cogs-margin
 financebench_id_06272: dividend-payout-ratio
-financebench_id_10130: dpo
+financebench_id_10130: days-payable-outstanding
 financebench_id_02981: operating-margin-profile
 financebench_id_00005: working-capital
 financebench_id_05915: fixed-asset-turnover-ratio
@@ -44,6 +44,6 @@ financebench_id_00080: working-capital
 financebench_id_04481: ebitda-margin
 financebench_id_00216: quick-ratio
 financebench_id_00215: capital-intensiveness
-financebench_id_06247: dpo
+financebench_id_06247: days-payable-outstanding
 financebench_id_04784: operating-margin-profile
 financebench_id_06741: ebitda-margin

@@ -274,7 +274,7 @@ operating-cash-flow-ratio:
         In dollars, what were the total current liabilities in the given fiscal
         year
 
-dpo:
+days-payable-outstanding:
   task:
     Calculate the days payable outstanding (DPO) for {COMPANY} in {YEAR}. DPO =
     365 * (average accounts payable between {YEAR-1} and {YEAR}) / ({YEAR} COGS
