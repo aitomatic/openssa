@@ -89,7 +89,7 @@ Profitability Margin Metric Formulas
 
 `EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `(Net) Revenue`
 
-`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit` / `(Net) Revenue`
+`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` / `(Net) Revenue`
 
 
 Profit-Utilization / Capital-Return Metric Formulas
@@ -99,7 +99,7 @@ Profit-Utilization / Capital-Return Metric Formulas
 
 `Effective Tax Rate` = `Tax Expense` / `Taxable Income`
 
-`Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit`
+`Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
 
 `Retention Ratio` = 1 - `Dividend Payout Ratio`
 
@@ -110,7 +110,7 @@ Capital-Intensiveness / Return-on-Capital Metric Formulas
 `Capital Intensity Ratio` = `Total Assets` / `(Net) Revenue`
 
 `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
-  `Net Income, a.k.a. Net Profit` /
+  `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
 )
 
