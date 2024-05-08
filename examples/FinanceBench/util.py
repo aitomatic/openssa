@@ -13,20 +13,24 @@ from eval import eval_correctness, eval_all
 type QAFunc = Callable[[FbId], Answer]
 
 
-def enable_batch_qa_and_eval(qa_func: QAFunc) -> QAFunc:
-    @wraps(wrapped=qa_func)
-    def decorated_qa_func(fb_id: FbId) -> Answer | None:
-        if 'all' in fb_id.lower():
-            for _fb_id in tqdm(FB_IDS):
-                qa_func(_fb_id)
+@dataclass
+class enable_batch_qa_and_eval:  # noqa: N801
+    output_name: str
 
-            eval_all()
-            return None
+    def __call__(self, qa_func: QAFunc) -> QAFunc:
+        @wraps(wrapped=qa_func)
+        def decorated_qa_func(fb_id: FbId) -> Answer | None:
+            if 'all' in fb_id.lower():
+                for _fb_id in tqdm(FB_IDS):
+                    qa_func(_fb_id)
 
-        eval_correctness(fb_id=fb_id, answer=(answer := qa_func(fb_id)))
-        return answer
+                eval_all(output_name=self.output_name)
+                return None
 
-    return decorated_qa_func
+            eval_correctness(fb_id=fb_id, answer=(answer := qa_func(fb_id)))
+            return answer
+
+        return decorated_qa_func
 
 
 @dataclass

@@ -18,7 +18,7 @@ def get_or_create_ssm(doc_name: DocName) -> LlamaIndexSSM | None:
     return None
 
 
-@enable_batch_qa_and_eval
+@enable_batch_qa_and_eval(output_name='SSM')
 @log_qa_and_update_output_file(output_name='SSM')
 def discuss(fb_id: FbId) -> Answer:
     return (ssm.discuss(QS_BY_FB_ID[fb_id])['content']

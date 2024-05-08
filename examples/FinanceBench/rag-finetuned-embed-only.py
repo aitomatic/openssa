@@ -23,7 +23,7 @@ def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
             else None)
 
 
-@enable_batch_qa_and_eval
+@enable_batch_qa_and_eval(output_name='RAG-FineTuned-Embed-Only')
 @log_qa_and_update_output_file(output_name='RAG-FineTuned-Embed-Only')
 def answer(fb_id: FbId) -> Answer:
     return (file_resource.answer(QS_BY_FB_ID[fb_id])
