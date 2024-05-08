@@ -1877,6 +1877,8 @@ financebench_id_00283:
     the answer contains a quantity that is in the range from 70.00 to 80.00,
     or, alternatively, in the range from 70.00 million to 80.00 million
 
+  evaluator-unreliable: True
+
 
 financebench_id_00724:
   doc: Pfizer_2023Q2_10Q
