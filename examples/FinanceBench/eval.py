@@ -9,7 +9,8 @@ from pandas import DataFrame, read_csv
 from tqdm import tqdm
 
 from openssa.l2.config import Config
-from openssa.l2.util.lm.openai import AnLM, OpenAILM
+from openssa.l2.util.lm.abstract import AnLM
+from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
 from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
