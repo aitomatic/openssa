@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from collections import Counter
 import base64
+from enum import StrEnum
 from functools import cache
 from pathlib import Path
 from typing import TypedDict, Required, NotRequired, Literal
@@ -18,8 +19,17 @@ type DocName = str
 type FbId = str
 type Question = str
 type Answer = str
-type Category = str
 type ExpertPlanId = str
+
+
+class Category(StrEnum):
+    RETRIEVE: str = '0-RETRIEVE'
+    COMPARE: str = '1-COMPARE'
+    CALC_CHANGE: str = '2-CALC-CHANGE'
+    CALC_COMPLEX: str = '3-CALC-COMPLEX'
+    CALC_AND_JUDGE: str = '4-CALC-AND-JUDGE'
+    EXPLAIN_FACTORS: str = '5-EXPLAIN-FACTORS'
+    OTHER_ADVANCED: str = '6-OTHER-ADVANCED'
 
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
@@ -71,7 +81,7 @@ with open(file=GROUND_TRUTHS_FILE_PATH,
           opener=None) as f:
     GROUND_TRUTHS: dict[FbId, GroundTruth] = yaml.safe_load(stream=f)
 
-CATEGORY_DISTRIBUTION: Counter[Category] = Counter(ground_truth['category'] for ground_truth in GROUND_TRUTHS.values())
+CAT_DISTRIB: Counter[Category] = Counter(ground_truth['category'] for ground_truth in GROUND_TRUTHS.values())
 
 
 EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
@@ -79,8 +89,8 @@ with open(file=EXPERT_PLANS_MAP_FILE_PATH, encoding='utf-8') as f:
     EXPERT_PLANS_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
 
 # sanity check Expert Plans Map
-categories_of_fb_ids_with_expert_plans: set[str] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLANS_MAP}
-assert not categories_of_fb_ids_with_expert_plans.intersection({'0-RETRIEVE', '2-CALC-CHANGE', '5-EXPLAIN-FACTORS'})
+cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLANS_MAP}
+assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE, Category.CALC_CHANGE, Category.EXPLAIN_FACTORS}
 
 
 EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
