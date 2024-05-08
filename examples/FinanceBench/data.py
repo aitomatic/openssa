@@ -85,6 +85,17 @@ N_CASES: int = len(GROUND_TRUTHS)
 CAT_DISTRIB: Counter[Category] = Counter(ground_truth['category'] for ground_truth in GROUND_TRUTHS.values())
 
 
+EXPERT_KNOWLEDGE_FILE_PATH: Path = Path(__file__).parent / 'expert-knowledge.txt'
+with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    EXPERT_KNOWLEDGE: str = f.read()
+
+
 EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
 with open(file=EXPERT_PLANS_MAP_FILE_PATH, encoding='utf-8') as f:
     EXPERT_PLANS_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
