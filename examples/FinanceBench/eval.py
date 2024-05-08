@@ -13,7 +13,8 @@ from openssa.l2.util.lm.abstract import AnLM
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB, OUTPUT_FILE_PATH  # noqa: E501
+from data_and_knowledge import (FbId, Question, Answer, GroundTruth,
+                                FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB, OUTPUT_FILE_PATH)
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -104,7 +105,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
     return True
 
 
-def eval_all(output_name: str):
+def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool = False):
     output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
@@ -113,7 +114,7 @@ def eval_all(output_name: str):
     for fb_id, answer in tqdm(output_df[output_name].items(), total=N_CASES):
         ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
-        if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, human=args.human_eval, debug=args.debug):
+        if eval_correctness(fb_id=fb_id, answer=answer, n_times=n_times, human=human, debug=debug):
             n_yes_scores_by_category[ground_truth['category']] += 1
 
         else:
@@ -147,7 +148,7 @@ if __name__ == '__main__':
     args = arg_parser.parse_args()
 
     if 'all' in args.id.lower():
-        eval_all(output_name=args.answer_col)
+        eval_all(output_name=args.answer_col, n_times=args.n_times, human=args.human_eval, debug=args.debug)
 
     else:
         logger.info(

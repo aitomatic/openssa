@@ -6,7 +6,7 @@ from loguru import logger
 from pandas import DataFrame, read_csv
 from tqdm import tqdm
 
-from data import FbId, Answer, FB_ID_COL_NAME, META_DF, FB_IDS, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, OUTPUT_FILE_PATH
+from data_and_knowledge import FbId, Answer, FB_ID_COL_NAME, META_DF, FB_IDS, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, OUTPUT_FILE_PATH  # noqa: E501
 from eval import eval_correctness, eval_all
 
 

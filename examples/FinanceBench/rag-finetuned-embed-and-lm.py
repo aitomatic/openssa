@@ -8,7 +8,7 @@ from llama_index.llms.openai import OpenAI as OpenAILM
 from openssa.l2.resource.file import FileResource
 
 # pylint: disable=wrong-import-order
-from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path
+from data_and_knowledge import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path
 from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 

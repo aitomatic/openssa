@@ -11,6 +11,8 @@ from pandas import DataFrame, read_csv
 import requests
 import yaml
 
+from openssa.l2.planning.hierarchical.plan import HTPDict
+
 
 load_dotenv()
 
@@ -30,6 +32,16 @@ class Category(StrEnum):
     CALC_AND_JUDGE: str = '4-CALC-AND-JUDGE'
     EXPLAIN_FACTORS: str = '5-EXPLAIN-FACTORS'
     OTHER_ADVANCED: str = '6-OTHER-ADVANCED'
+
+
+type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
+                                             'question': Required[Question],
+                                             'answer': Required[Answer],
+                                             'page(s)': Required[str],
+                                             'category': Required[Category],
+                                             'correctness': Required[str],
+                                             'answer-inadequate': NotRequired[Literal[True]],
+                                             'evaluator-unreliable': NotRequired[Literal[True]]})
 
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
@@ -64,14 +76,6 @@ OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 
 GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
-type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
-                                             'question': Required[Question],
-                                             'answer': Required[Answer],
-                                             'page(s)': Required[str],
-                                             'category': Required[Category],
-                                             'correctness': Required[str],
-                                             'answer-inadequate': NotRequired[Literal[True]],
-                                             'evaluator-unreliable': NotRequired[Literal[True]]})
 with open(file=GROUND_TRUTHS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
@@ -85,28 +89,52 @@ N_CASES: int = len(GROUND_TRUTHS)
 CAT_DISTRIB: Counter[Category] = Counter(ground_truth['category'] for ground_truth in GROUND_TRUTHS.values())
 
 
+EXPERT_KNOWLEDGE_FILE_PATH: Path = Path(__file__).parent / 'expert-knowledge.txt'
+with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    EXPERT_KNOWLEDGE: str = f.read()
+
+
 EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
-with open(file=EXPERT_PLANS_MAP_FILE_PATH, encoding='utf-8') as f:
+with open(file=EXPERT_PLANS_MAP_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
     EXPERT_PLANS_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
 
 # sanity check Expert Plans Map
 cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLANS_MAP}
-assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE, Category.CALC_CHANGE, Category.EXPLAIN_FACTORS}
+assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE,
+                                               Category.COMPARE,
+                                               Category.CALC_CHANGE,
+                                               Category.EXPLAIN_FACTORS}
 
 assert len(EXPERT_PLANS_MAP) == (
-    3  # 1-COMPARE: cash-flow-activities
+    # 3  # 1-COMPARE: cash-flow-activities
     + CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
     + CAT_DISTRIB[Category.CALC_AND_JUDGE]
     + 2  # 6-OTHER-ADVANCED: capital-intensiveness
-    + 3  # 6-OTHER-ADVANCED: fin-svcs-perf
+    # + 3  # 6-OTHER-ADVANCED: fin-svcs-perf
 )
 
 
 EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
-type Plan = TypedDict('Plan', {'task': Required[str],
-                               'sub-plans': Required[list]})
-with open(file=EXPERT_PLANS_FILE_PATH, encoding='utf-8') as f:
-    EXPERT_PLANS: dict[ExpertPlanId, Plan] = yaml.safe_load(stream=f)
+with open(file=EXPERT_PLANS_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    EXPERT_PLANS: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
 
 def get_doc(doc_name: DocName) -> requests.Response:

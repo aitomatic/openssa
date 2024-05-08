@@ -1,13 +1,6 @@
 # REVENUE & TURNOVER METRIC EVALUATION
 # ====================================
 
-revenue:
-  task: Calculate the revenue of {COMPANY} for {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement
-
 asset-turnover-ratio:
   task:
     Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
