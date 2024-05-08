@@ -1,5 +1,5 @@
 import argparse
-from collections import Counter, defaultdict
+from collections import defaultdict
 from functools import cache
 from pprint import pprint
 
@@ -13,7 +13,7 @@ from openssa.l2.util.lm.abstract import AnLM
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
+from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, CAT_DISTRIB, OUTPUT_FILE_PATH
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -134,7 +134,7 @@ if __name__ == '__main__':
 
         logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.1%}')
         pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.1%}'
-                for category, n_for_category in Counter(_['category'] for _ in GROUND_TRUTHS.values()).items()})
+                for category, n_for_category in CAT_DISTRIB.items()})
 
         logger.warning('INCORRECT:')
         pprint(incorrect_answer_fb_ids)
