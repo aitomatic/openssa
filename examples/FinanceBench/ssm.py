@@ -5,7 +5,7 @@ from openssa import LlamaIndexSSM
 
 # pylint: disable=wrong-import-order
 from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path
-from util import enable_batch_qa, log_qa_and_update_output_file
+from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
 @cache
@@ -18,7 +18,7 @@ def get_or_create_ssm(doc_name: DocName) -> LlamaIndexSSM | None:
     return None
 
 
-@enable_batch_qa
+@enable_batch_qa_and_eval
 @log_qa_and_update_output_file(output_name='SSM')
 def discuss(fb_id: FbId) -> Answer:
     return (ssm.discuss(QS_BY_FB_ID[fb_id])['content']
