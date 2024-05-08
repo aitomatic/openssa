@@ -1,12 +1,52 @@
-<!-- markdownlint-disable MD013 MD043 -->
+# <!-- markdownlint-disable MD013 MD043 -->
 
 # OpenSSA: Small Specialist Agents
 
 ## Enabling Efficient, Domain-Specific Planning and Reasoning for AI
 
-OpenSSA is an open-source framework for creating efficient, domain-specific AI agents. Build AI assistants for customer support, personalized recommendation engines, or autonomous systems for research. OpenSSA provides the tools to build Small Specialist Agents (SSAs) that solve complex problems in specific domains.
+OpenSSA is an open-source framework for creating efficient, domain-specific Small Specialist AI agents (SSAs) that solve complex problems by incorporating advanced *Planning* and *Reasoning* capabilities.
+
 
 SSAs tackle multi-step problems that require planning and reasoning beyond traditional language models. They apply OODA for deliberative reasoning (OODAR) and iterative, hierarchical task planning (HTP). This "System-2 Intelligence" breaks down complex tasks into manageable steps. SSAs make informed decisions based on domain-specific knowledge. With OpenSSA, create agents that process, generate, and reason about information. This makes them more effective and efficient in solving real-world challenges.
+
+
+## Planning and Reasoning with HTP and OODAR
+SSAs with advanced P&R can be built by configurating `Plan Creation`, `Plan Execution` and `Background Knowledge`
+
+### Plan Creation: Auto vs. Expert-Guided/Specified
+- Auto plans are created by using LLMs
+- Expert-Guided/Specified are created with the guidance from domain-specific experts.
+
+### Plan Execution: Static vs. Dynamic
+- Static plan: each step of the plan is executed sequentially without deviation from the initial setup. The final answer is composed by aggregating the outcomes of these sequential steps. 
+- Dynamic planning: each step is initially executed as in static planning, but the outputs are continually assessed bythe LLM. If a particular outcome is deemed inadequate, the plan triggers a recursive solving mechanism via OODAR to perform an initial pass. 
+
+### Background Knowledge: Generic/None vs. Salient Domain Highlights (“Cheat Sheet”)
+TBD
+
+
+----
+## Hierarchical Task Planning (HTP) 
+### Why HTP? 
+- HTP makes complex task more solvable by breaking it down into sub-plans.
+### How is HTP designed in OpenSSA?
+
+- HTP has 2 main components:
+    - **Plan Creation**: create sub-plans by either going broader (more sub-plans) or deeper (more sub-tasks)
+    - **Plan Execution:**  (i) integrate multiple sub- and side-results into a combined conclusion; and (ii) roll up such conclusion to super/upper-nodes 
+
+
+## OODA-based Reasoning (OODAR)
+The Observe-Orient-Decide-Act (OODA) loop is a well-established iterative reasoning framework emphasizing continuous adaptation and decision-making in complex environments. The OODA loop consists of four main stages:
+
+1. **Observe**: Gather information about the environment and the problem at hand;
+2. **Orient**: Analyze the collected information, update the understanding of the situation, and generate potential solutions or actions;
+3. **Decide**: Evaluate the potential solutions or actions and select the most appropriate one based on the current understanding; and
+4. **Act**: Execute the selected solution or action and monitor its impact on the environment.
+
+The iterative nature of the OODA loop allows for continuous refinement and adaptation based on the feedback received from the environment. By repeatedly cycling through these four stages, an agent can progressively improve its understanding of the problem, generate more relevant solutions, and make better decisions.
+
+TODO: add examples of task broken down into OODA steps
 
 ### Key Features
 
@@ -52,4 +92,3 @@ We welcome contributions from the community!
 - Submit pull requests for bug fixes, enhancements, or new features
 
 For more information, see our [Contribution Guide](CONTRIBUTING.md).
-[test]
