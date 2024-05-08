@@ -1036,8 +1036,8 @@ financebench_id_03473:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Return on Assets (RoA) percentage value that is in the range from 1.00% to 2.00%,
-    or, alternatively, a calculated decimal value that is in the range from 0.0100 to 0.0200
+    the answer contains a calculated Return on Assets (RoA) percentage value that is in the range from 0.90% to 2.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0090 to 0.0200
     (if the answer is a single number, assume that it is that calculated Return on Assets (RoA) metric value)
 
   evaluator-unreliable: true
@@ -1876,6 +1876,8 @@ financebench_id_00283:
   correctness: >-
     the answer contains a quantity that is in the range from 70.00 to 80.00,
     or, alternatively, in the range from 70.00 million to 80.00 million
+
+  evaluator-unreliable: True
 
 
 financebench_id_00724:

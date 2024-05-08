@@ -81,6 +81,7 @@ with open(file=GROUND_TRUTHS_FILE_PATH,
           opener=None) as f:
     GROUND_TRUTHS: dict[FbId, GroundTruth] = yaml.safe_load(stream=f)
 
+N_CASES: int = len(GROUND_TRUTHS)
 CAT_DISTRIB: Counter[Category] = Counter(ground_truth['category'] for ground_truth in GROUND_TRUTHS.values())
 
 
