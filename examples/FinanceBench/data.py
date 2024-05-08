@@ -32,6 +32,16 @@ class Category(StrEnum):
     OTHER_ADVANCED: str = '6-OTHER-ADVANCED'
 
 
+type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
+                                             'question': Required[Question],
+                                             'answer': Required[Answer],
+                                             'page(s)': Required[str],
+                                             'category': Required[Category],
+                                             'correctness': Required[str],
+                                             'answer-inadequate': NotRequired[Literal[True]],
+                                             'evaluator-unreliable': NotRequired[Literal[True]]})
+
+
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
@@ -64,14 +74,6 @@ OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 
 GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
-type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
-                                             'question': Required[Question],
-                                             'answer': Required[Answer],
-                                             'page(s)': Required[str],
-                                             'category': Required[Category],
-                                             'correctness': Required[str],
-                                             'answer-inadequate': NotRequired[Literal[True]],
-                                             'evaluator-unreliable': NotRequired[Literal[True]]})
 with open(file=GROUND_TRUTHS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
