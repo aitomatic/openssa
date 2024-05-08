@@ -11,6 +11,8 @@ from pandas import DataFrame, read_csv
 import requests
 import yaml
 
+from openssa.l2.planning.hierarchical.plan import HTPDict
+
 
 load_dotenv()
 
@@ -99,7 +101,13 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
 
 
 EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
-with open(file=EXPERT_PLANS_MAP_FILE_PATH, encoding='utf-8') as f:
+with open(file=EXPERT_PLANS_MAP_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
     EXPERT_PLANS_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
 
 # sanity check Expert Plans Map
@@ -119,10 +127,14 @@ assert len(EXPERT_PLANS_MAP) == (
 
 
 EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
-type Plan = TypedDict('Plan', {'task': Required[str],
-                               'sub-plans': Required[list]})
-with open(file=EXPERT_PLANS_FILE_PATH, encoding='utf-8') as f:
-    EXPERT_PLANS: dict[ExpertPlanId, Plan] = yaml.safe_load(stream=f)
+with open(file=EXPERT_PLANS_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    EXPERT_PLANS: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
 
 def get_doc(doc_name: DocName) -> requests.Response:
