@@ -62,7 +62,7 @@ def get_lm(model='gpt-4-1106-preview') -> AnLM:
     return OpenAILM(model=model, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
 
-def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool = False) -> str:
+def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool = False) -> bool:
     question: Question = GROUND_TRUTHS[fb_id]['question']
     rubric: str = GROUND_TRUTHS[fb_id]['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
@@ -76,21 +76,21 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool 
             score: str = lm.get_response(prompt=prompt, temperature=0)
 
         if score == 'NO':
-            break
+            logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
+                           '\n'
+                           f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
+                           '\n'
+                           f'RUBRIC:\n{rubric}' +
+                           ('\n\n(*** EXPERT ANSWER KNOWN TO BE INADEQUATE ***)'
+                            if GROUND_TRUTHS[fb_id].get('answer-inadequate')
+                            else ''))
 
-    if score == 'NO':
-        logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
-                       '\n'
-                       f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
-                       '\n'
-                       f'RUBRIC:\n{rubric}' +
-                       ('\n\n(*** EXPERT ANSWER KNOWN TO BE INADEQUATE ***)'
-                        if GROUND_TRUTHS[fb_id].get('answer-inadequate')
-                        else ''))
-        if debug:
-            logger.debug(f'PROMPT:\n{prompt}')
+            if debug:
+                logger.debug(f'PROMPT:\n{prompt}')
 
-    return score
+            return False
+
+    return True
 
 
 if __name__ == '__main__':
@@ -110,7 +110,7 @@ if __name__ == '__main__':
         for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
             ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
-            if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug) == 'YES':
+            if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, debug=args.debug):
                 n_yes_scores_by_category[ground_truth['category']] += 1
 
             else:
