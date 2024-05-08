@@ -114,11 +114,11 @@ if __name__ == '__main__':
                 n_yes_scores_by_category[ground_truth['category']] += 1
 
             else:
-                incorrect_answer_fb_ids[fb_id] = ('expert answer inadequate'
-                                                  if ground_truth.get('answer-inadequate')
-                                                  else ('evaluator unreliable'
-                                                        if ground_truth.get('evaluator-unreliable')
-                                                        else ''))
+                incorrect_answer_fb_ids[fb_id]: str = ('expert answer inadequate'
+                                                       if ground_truth.get('answer-inadequate')
+                                                       else ('evaluator unreliable'
+                                                             if ground_truth.get('evaluator-unreliable')
+                                                             else ''))
 
         logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')
         pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.3f}'
