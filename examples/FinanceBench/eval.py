@@ -132,8 +132,8 @@ if __name__ == '__main__':
                                                              if ground_truth.get('evaluator-unreliable')
                                                              else ''))
 
-        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.3f}')
-        pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.3f}'
+        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.1%}')
+        pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.1%}'
                 for category, n_for_category in Counter(_['category'] for _ in GROUND_TRUTHS.values()).items()})
 
         logger.warning('INCORRECT:')
