@@ -8,7 +8,8 @@ load_dotenv()
 
 LOCAL_CACHE_DOCS_DIR_PATH: Path = Path(__file__).parent / '.data'
 THREE_FIN_STATEMENTS_HEURISTICS: str = (
-    '日本語で回答してください。'
+    'Please answer in Japanese. Pay attention to the total salt content, '
+    'calories, and total vegetables.'
 )
 
 
@@ -30,8 +31,12 @@ def solve(question) -> str:
 
 
 if __name__ == '__main__':
-    question = 'じゅんさい鍋と石狩鍋どちらがおすすめですか。塩分とカロリーを抑えて出来るだけ野菜を摂取したいです。'
-    answer = solve(question)
+    QUESTION = (
+        'Please tell me three dishes you recommend. Please limit the total salt content of the three dishes to less than 12g. '
+        'Also, please make sure that the total amount of vegetables in the three dishes is at least 1000g. '
+        'Choices include じゅんさい鍋, すり身揚げ, たこ飯, and 石狩鍋.'
+    )
+    answer = solve(QUESTION)
 
     print('--------------------------------')
     print(answer)
