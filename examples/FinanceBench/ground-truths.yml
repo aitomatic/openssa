@@ -45,9 +45,9 @@ financebench_id_00499:
   correctness: |-
     the answer opines that 3M is actually managing capital assets efficiently, and justifies such opinion
     by certain calculated financial ratio metric value(s) showing at least one of the following:
-    - Capital Expenditure (CapEx) is not high relative to Revenue;
-    - Fixed Assets is not large as proportion of Total Assets; or
-    - Return on Assets (RoA) is quite good
+    - Fixed Assets is not large as proportion of Total Assets;
+    - Capital Expenditure (CapEx) is not high relative to Revenue; and/or
+    - Return on (Total) Assets (RoA or RoTA) is quite good
 
 
 financebench_id_01226:
@@ -63,7 +63,7 @@ financebench_id_01226:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions some salient changes among those discussed below:
+    the answer mentions at least 1 salient change among those discussed below:
 
     COST OF SALES:
     Cost of sales, measured as a percent of sales, increased in 2022 when compared to the same period last year.
@@ -198,7 +198,7 @@ financebench_id_04735:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Operating Cash Flow Ratio decimal value that is in the range from 0.60 to 0.70,
+    the answer contains a calculated Operating Cash Flow Ratio decimal value that is in the range from 0.6000 to 0.7000,
     or, alternatively, a calculated percentage value that is in the range from 60.00% to 70.00%
     (if the answer is a single number, assume that it is that calculated Operating Cash Flow Ratio metric value)
 
@@ -271,7 +271,7 @@ financebench_id_01319:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer states 0, zero, and/or that restructuring costs are not explicitly found
+    the answer states 0, zero, and/or that restructuring costs are not explicitly reported
 
 
 financebench_id_00540:
@@ -1069,7 +1069,7 @@ financebench_id_06272:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Dividend Payout Ratio decimal value that is in the range from 0.78 to 0.82,
+    the answer contains a calculated Dividend Payout Ratio decimal value that is in the range from 0.7800 to 0.8200,
     or, alternatively, a calculated percentage value that is in the range from 78.00% to 82.00%
     (if the answer is a single number, assume that it is that calculated Dividend Payout Ratio metric value)
 
@@ -1433,7 +1433,7 @@ financebench_id_03718:
   answer: 0.4%
   page(s): '63'
 
-  category: 3-CALC-COMPLEX
+  category: 2-CALC-CHANGE
   correctness: >-
     the answer contains a calculated CAGR percentage value that is in the range from 0.400% to 0.500%
     (if the answer is a single number, assume that it is that calculated CAGR percentage value)
