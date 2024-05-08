@@ -8,7 +8,8 @@ from loguru import logger
 from pandas import DataFrame, read_csv
 from tqdm import tqdm
 
-from openssa.utils.llms import AnLLM, OpenAILLM
+from openssa.l2.config import Config
+from openssa.l2.util.lm.openai import AnLM, OpenAILM
 
 # pylint: disable=wrong-import-order
 from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, OUTPUT_FILE_PATH
@@ -56,8 +57,8 @@ load_dotenv()
 
 
 @cache
-def get_llm(model='gpt-4-1106-preview') -> AnLLM:
-    return OpenAILLM(model=model, temperature=0)
+def get_lm(model='gpt-4-1106-preview') -> AnLM:
+    return OpenAILM(model=model, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
 
 def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool = False) -> str:
@@ -65,13 +66,13 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, debug: bool 
     rubric: str = GROUND_TRUTHS[fb_id]['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
 
-    llm: AnLLM = get_llm()
+    lm: AnLM = get_lm()
 
     for _ in range(n_times):
         score: str = ''
 
         while score not in {'YES', 'NO'}:
-            score: str = llm.get_response(prompt=prompt)
+            score: str = lm.get_response(prompt=prompt, temperature=0)
 
         if score == 'NO':
             break
