@@ -104,6 +104,33 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
     return True
 
 
+def eval_all():
+    output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
+
+    n_yes_scores_by_category: defaultdict = defaultdict(int)
+    incorrect_answer_fb_ids: dict[FbId, str] = {}
+
+    for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
+        ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
+
+        if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, human=args.human_eval, debug=args.debug):
+            n_yes_scores_by_category[ground_truth['category']] += 1
+
+        else:
+            incorrect_answer_fb_ids[fb_id]: str = ('expert answer inadequate'
+                                                    if ground_truth.get('answer-inadequate')
+                                                    else ('evaluator unreliable'
+                                                          if ground_truth.get('evaluator-unreliable')
+                                                          else ''))
+
+    logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.1%}')
+    pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.1%}'
+            for category, n_for_category in CAT_DISTRIB.items()})
+
+    logger.warning('INCORRECT:')
+    pprint(incorrect_answer_fb_ids)
+
+
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
 
@@ -119,32 +146,11 @@ if __name__ == '__main__':
 
     args = arg_parser.parse_args()
 
-    output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
-
     if 'all' in args.id.lower():
-        n_yes_scores_by_category: defaultdict = defaultdict(int)
-        incorrect_answer_fb_ids: dict[FbId, str] = {}
-
-        for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
-            ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
-
-            if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, human=args.human_eval, debug=args.debug):  # noqa: E501
-                n_yes_scores_by_category[ground_truth['category']] += 1
-
-            else:
-                incorrect_answer_fb_ids[fb_id]: str = ('expert answer inadequate'
-                                                       if ground_truth.get('answer-inadequate')
-                                                       else ('evaluator unreliable'
-                                                             if ground_truth.get('evaluator-unreliable')
-                                                             else ''))
-
-        logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.1%}')
-        pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.1%}'
-                for category, n_for_category in CAT_DISTRIB.items()})
-
-        logger.warning('INCORRECT:')
-        pprint(incorrect_answer_fb_ids)
+        eval_all()
 
     else:
-        logger.info(eval_correctness(fb_id=args.id, answer=output_df.loc[args.id, args.answer_col],
-                                     n_times=args.n_times, human=args.human_eval, debug=args.debug))
+        logger.info(
+            eval_correctness(fb_id=args.id,
+                             answer=read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME).loc[args.id, args.answer_col],
+                             n_times=args.n_times, human=args.human_eval, debug=args.debug))
