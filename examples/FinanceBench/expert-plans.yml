@@ -1,4 +1,280 @@
-dpo:
+# REVENUE & TURNOVER METRIC EVALUATION
+# ====================================
+
+revenue:
+  task: Calculate the revenue of {COMPANY} for {YEAR}.
+  sub-plans:
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+asset-turnover-ratio:
+  task:
+    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
+    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
+  sub-plans:
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement.
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet
+
+fixed-asset-turnover-ratio:
+  task:
+    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
+    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
+  sub-plans:
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement.
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet
+
+inventory-turnover-ratio:
+  task:
+    Calculate the inventory turnover ratio of {COMPANY} for {YEAR}. Inventory
+    turnover ratio = COGS / average inventory between {YEAR-1} and {YEAR}
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what were the inventories in the given fiscal year(s)?
+        current assets on the balance sheet
+
+# INCOME & PROFITABILITY METRIC EVALUATION
+# ========================================
+
+cogs-margin:
+  task:
+    Calculate the cost of goods sold (COGS) % margin of {COMPANY} for {YEAR}.
+    COGS margin = (revenue - cost of sales) / revenue
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal
+        year(s)?
+
+gross-margin-profile:
+  task:
+    Calculate the gross margin of {COMPANY} for {YEAR}. Gross margin = (revenue
+    minus cost of sales) / revenue
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+
+unadjusted-operating-income:
+  task: Calculate the unadjusted operating income of {COMPANY} for {YEAR}.
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+operating-margin-profile:
+  task:
+    Calculate the operating margin of {COMPANY} for {YEAR}. Operating margin =
+    operating income / net sales
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+
+unadjusted-ebitda:
+  task:
+    Calculate the unadjusted EBITDA of {COMPANY} for {YEAR}. Unadjusted EBITDA =
+    unadjusted operating income + depreciation and amortization
+  sub-plans:
+    - task:
+        In dollars, what was the unadjusted operating income in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)?
+
+ebitda-margin:
+  task:
+    Calculate the EBITDA margin of {COMPANY} for {YEAR}. EBITDA margin =
+    (operating income + depreciation and amortization) / revenue.
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+
+da-margin:
+  task:
+    Calculate the depreciation and amortization margin of {COMPANY} for {YEAR}.
+    Depreciation and amortization margin = depreciation and amortization /
+    revenue
+  sub-plans:
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)?
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+
+net-profit-margin:
+  task:
+    Calculate the net profit margin of {COMPANY} for {YEAR}. Net profit margin =
+    net income / net sales
+  sub-plans:
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+# PROFIT-UTILIZATION / CAPITAL-RETURN METRIC EVALUATION
+# =====================================================
+
+interest-coverage-ratio:
+  task:
+    Calculate the interest coverage ratio of {COMPANY} for {YEAR}. Interest
+    coverage ratio = operating income / interest expense
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the interest expense in the given fiscal year(s)?
+
+effective-tax-rate:
+  task:
+    Calculate the effective tax rate of {COMPANY} for {YEAR}. Effective tax rate
+    = income tax expense / income before tax
+  sub-plans:
+    - task:
+        In dollars, what was the provision for income taxes in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the income from continuing operations before income
+        taxes in the given fiscal year(s)?
+
+dividend-payout-ratio:
+  task:
+    Calculate the dividend payout ratio of {COMPANY} for {YEAR}. Dividend payout
+    ratio = total cash dividends paid / net income attributable to shareholders
+  sub-plans:
+    - task:
+        In dollars, what was the total cash dividends paid in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the net income attributable to shareholders in the
+        given fiscal year(s)
+
+retention-ratio:
+  task:
+    Calculate the retention ratio of {COMPANY} for {YEAR}. Retention ratio =
+    (net income - dividends) / net income
+  sub-plans:
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+    - task:
+        In dollars, what was the total cash dividends paid in the given fiscal
+        year(s)?
+
+# LIQUIDITY METRIC EVALUATION
+# ===========================
+
+working-capital:
+  task:
+    Calculate the working capital of {COMPANY} for {YEAR}. Working capital =
+    total current assets - total current liabilities.
+  sub-plans:
+    - task:
+        In dollars, what were the total current assets in the given fiscal year?
+    - task:
+        In dollars, what were the total current liabilities in the given fiscal
+        year?
+
+working-capital-ratio:
+  task:
+    Calculate the working capital ratio of {COMPANY} for {YEAR}. Working capital
+    ratio = working capital / total assets
+  sub-plans:
+    - task:
+        In dollars, what was the working capital in the given fiscal year(s)?
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet.
+
+quick-ratio:  # TODO: compare with 1x
+  task:
+    Calculate the quick ratio of {COMPANY} for {YEAR}. Quick ratio = (Current
+    Assets - Inventory) / Current Liabilities
+  sub-plans:
+    - task:
+        In dollars, what were the total current assets in the given fiscal year?
+    - task:
+        In dollars, what were the total current liabilities in the given fiscal
+        year?
+    - task: In dollars, what were the inventories in the given fiscal year(s)?
+
+cash-flow-activities:
+  task:
+    Compare the cash flows from operating activities, investing activities, and
+    financing activites for {COMPANY} in {YEAR}.
+  sub-plans:
+    - task:
+        In dollars, what was the cash flows from operating activities in the
+        given fiscal year(s)?
+    - task:
+        In dollars, what was the cash flows from investing activities in the
+        given fiscal year(s)?
+    - task:
+        In dollars, what was the cash flows from financing activities in the
+        given fiscal year(s)?
+
+free-cash-flow:
+  task:
+    Calculate the free cash flow of {COMPANY} for {YEAR}. Free cash flow = cash
+    from operations - capital expenditures
+  sub-plans:
+    - task:
+        In dollars, what was the net cash provided by operating activities in
+        the given fiscal year(s)?
+    - task:
+        In dollars, what was the capital expenditures in the given fiscal
+        year(s)
+
+free-cash-flow-conversion:  # TODO: check denominator, add yoy comparison
+  task:
+    Calculate the free cash flow conversion of {COMPANY} for {YEAR}. Free cash
+    flow conversion = free cash flow / net income
+  sub-plans:
+    - task: In dollars, what was the free cash flow in the given fiscal year(s)?
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+
+operating-cash-flow-ratio:
+  task:
+    Calculate the operating cash flow ratio of {COMPANY} for {YEAR}. Operating
+    cash flow ratio = cash from operations / total current liabilities
+  sub-plans:
+    - task:
+        In dollars, what was the cash from operations in the given fiscal year?
+
+    - task:
+        In dollars, what were the total current liabilities in the given fiscal
+        year
+
+days-payable-outstanding:
   task:
     Calculate the days payable outstanding (DPO) for {COMPANY} in {YEAR}. DPO =
     365 * (average accounts payable between {YEAR-1} and {YEAR}) / ({YEAR} COGS
@@ -14,27 +290,48 @@ dpo:
         In dollars, what were the inventories in the given fiscal year(s)?
         current assets on the balance sheet.
 
-quick-ratio:
+cash-conversion-cycle:
   task:
-    Calculate the quick ratio of {COMPANY} for {YEAR}. Quick ratio = (Current
-    Assets - Inventory) / Current Liabilities
+    Calculate the cash conversion cycle of {COMPANY} for {YEAR}. Cash conversion
+    cycle = DIO + DSO - DPO
   sub-plans:
     - task:
-        In dollars, what were the total current assets in the given fiscal year?
+        In dollars, what was the days inventory outstanding (DIO) in the given
+        fiscal year(s)? DIO = 365 * (average inventory between {YEAR-1} and
+        {YEAR}) / (COGS in {YEAR}).
+      sub-plans:
+        - task:
+            In dollars, what was the cost of sales (equivalent to cost of goods
+            sold) in the given fiscal year(s)? statement.
+        - task:
+            In dollars, what were the inventories in the given fiscal year(s)?
+            current assets on the balance sheet.
     - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year?
-
-working-capital:
-  task:
-    Calculate the working capital of {COMPANY} for {YEAR}. Working capital =
-    total current assets - total current liabilities.
-  sub-plans:
+        In dollars, what was the days sales outstanding (DSO) in the given
+        fiscal year(s)? DSO = 365 * (average accounts receivable between
+        {YEAR-1} and {YEAR}) / (net sales in {YEAR}).
+      sub-plans:
+        - task:
+            In dollars, what was the net sales in the given fiscal year(s)?
+            sales or income statement.
+        - task:
+            In dollars, what were the accounts receivable in the given fiscal
+            year(s)?
     - task:
-        In dollars, what were the total current assets in the given fiscal year?
-    - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year?
+        In dollars, what was the days payable outstanding (DPO) in the given
+        fiscal year(s)? DPO = 365 * (average accounts payable between {YEAR-1}
+        and {YEAR}) / (COGS in {YEAR} + change in inventory between {YEAR-1} and
+        {YEAR}).
+      sub-plans:
+        - task:
+            In dollars, what was the cost of sales (equivalent to cost of goods
+            sold) in the given fiscal year(s)? statement.
+        - task:
+            In dollars, what were the accounts payable in the given fiscal
+            year(s)?
+        - task:
+            In dollars, what were the inventories in the given fiscal year(s)?
+            current assets on the balance sheet.
 
 debt:
   task:
@@ -48,77 +345,10 @@ debt:
         In dollars, what was the long-term debt in the given fiscal year(s)?
         long-term liabilities on the balance sheet.
 
-unadjusted-operating-income:
-  task: Calculate the unadjusted operating income of {COMPANY} for {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the operating income in the given fiscal year(s)?
+# CAPITAL-INTENSIVENESS METRIC EVALUATION
+# =======================================
 
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement
-
-operating-cash-flow-ratio:
-  task:
-    Calculate the operating cash flow ratio of {COMPANY} for {YEAR}. Operating
-    cash flow ratio = cash from operations / total current liabilities
-  sub-plans:
-    - task:
-        In dollars, what was the cash from operations in the given fiscal year?
-
-    - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year
-
-operating-margin-profile:
-  task:
-    Calculate the operating margin of {COMPANY} for {YEAR}. Operating margin =
-    operating income / net sales
-  sub-plans:
-    - task:
-        In dollars, what was the operating income in the given fiscal year(s)?
-
-    - task:
-        In dollars, what was the revenue (net sales) in the given fiscal
-        year(s)
-
-fixed-asset-turnover-ratio:
-  task:
-    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
-    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
-  sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement.
-    - task:
-        In dollars, what were the total assets in the given fiscal year(s)?
-        total assets on the balance sheet
-
-asset-turnover-ratio:
-  task:
-    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
-    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
-  sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement.
-    - task:
-        In dollars, what were the total assets in the given fiscal year(s)?
-        total assets on the balance sheet
-
-dividend-payout-ratio:
-  task:
-    Calculate the dividend payout ratio of {COMPANY} for {YEAR}. Dividend payout
-    ratio = total cash dividends paid / net income attributable to shareholders
-  sub-plans:
-    - task:
-        In dollars, what was the total cash dividends paid in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the net income attributable to shareholders in the
-        given fiscal year(s)
-
-capital-intensiveness:
+capital-intensiveness:  # TODO: check
   task: Is {COMPANY} a capital-intensive business based on {YEAR} data?
   sub-plans:
     - task:
@@ -137,7 +367,7 @@ capital-intensiveness:
         In dollars, what was the net income in the given fiscal year(s)? income
         or income statement
 
-capex-as-percent-of-revenue:
+capex-as-percent-of-revenue:  # TODO: add 2-3-year average
   task:
     Calculate the 3 year average from {YEAR} of capex as a percentage of revenue
     for {COMPANY}.
@@ -148,30 +378,6 @@ capex-as-percent-of-revenue:
     - task:
         In dollars, what was the revenue (net sales) in the given fiscal
         year(s)?
-
-inventory-turnover-ratio:
-  task:
-    Calculate the inventory turnover ratio of {COMPANY} for {YEAR}. Inventory
-    turnover ratio = COGS / average inventory between {YEAR-1} and {YEAR}
-  sub-plans:
-    - task:
-        In dollars, what was the cost of sales in the given fiscal year(s)?
-        operating expenses or income statement.
-    - task:
-        In dollars, what were the inventories in the given fiscal year(s)?
-        current assets on the balance sheet
-
-gross-margin-profile:
-  task:
-    Calculate the gross margin of {COMPANY} for {YEAR}. Gross margin = (revenue
-    minus cost of sales) / revenue
-  sub-plans:
-    - task:
-        In dollars, what was the cost of sales in the given fiscal year(s)?
-        operating expenses or income statement.
-    - task:
-        In dollars, what was the revenue (net sales) in the given fiscal
-        year(s)
 
 return-on-assets:
   task:
@@ -185,72 +391,5 @@ return-on-assets:
         In dollars, what were the total assets in the given fiscal year(s)?
         total assets on the balance sheet.
 
-revenue:
-  task: Calculate the revenue of {COMPANY} for {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement
 
-free-cash-flow:
-  task:
-    Calculate the free cash flow of {COMPANY} for {YEAR}. Free cash flow = cash
-    from operations - capital expenditures
-  sub-plans:
-    - task:
-        In dollars, what was the net cash provided by operating activities in
-        the given fiscal year(s)?
-    - task:
-        In dollars, what was the capital expenditures in the given fiscal
-        year(s)
-
-unadjusted-ebitda:
-  task:
-    Calculate the unadjusted EBITDA of {COMPANY} for {YEAR}. Unadjusted EBITDA =
-    unadjusted operating income + depreciation and amortization
-  sub-plans:
-    - task:
-        In dollars, what was the unadjusted operating income in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the depreciation and amortization in the given
-        fiscal year(s)
-
-net-profit-margin:
-  task:
-    Calculate the net profit margin of {COMPANY} for {YEAR}. Net profit margin =
-    net income / net sales
-  sub-plans:
-    - task:
-        In dollars, what was the net income in the given fiscal year(s)? income
-        or income statement.
-    - task:
-        In dollars, what was the net sales in the given fiscal year(s)? sales or
-        income statement
-
-effective-tax-rate:
-  task:
-    Calculate the effective tax rate of {COMPANY} for {YEAR}. Effective tax rate
-    = income tax expense / income before tax
-  sub-plans:
-    - task:
-        In dollars, what was the provision for income taxes in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the income from continuing operations before income
-        taxes in the given fiscal year(s)?
-
-cash-flow-activities:
-  task:
-    Compare the cash flows from operating activities, investing activities, and
-    financing activites for {COMPANY} in {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the cash flows from operating activities in the
-        given fiscal year(s)?
-    - task:
-        In dollars, what was the cash flows from investing activities in the
-        given fiscal year(s)?
-    - task:
-        In dollars, what was the cash flows from financing activities in the
-        given fiscal year(s)?
+# fin-svcs-perf: TODO
