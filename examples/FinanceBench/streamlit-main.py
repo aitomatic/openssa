@@ -5,7 +5,7 @@ import base64
 
 import streamlit as st
 
-from data import DOC_NAMES, DOC_LINKS_BY_NAME, QS_BY_FB_ID, FB_IDS_BY_DOC_NAME, cache_file_path
+from data_and_knowledge import DOC_NAMES, DOC_LINKS_BY_NAME, QS_BY_FB_ID, FB_IDS_BY_DOC_NAME, cache_file_path
 from ooda import solve
 
 

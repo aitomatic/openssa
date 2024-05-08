@@ -13,7 +13,8 @@ from openssa.l2.util.lm.abstract import AnLM
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB, OUTPUT_FILE_PATH  # noqa: E501
+from data_and_knowledge import (FbId, Question, Answer, GroundTruth,
+                                FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB, OUTPUT_FILE_PATH)
 
 
 EVAL_PROMPT_TEMPLATE: str = \
