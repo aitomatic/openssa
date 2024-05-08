@@ -13,7 +13,7 @@ from openssa.l2.util.lm.abstract import AnLM
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, CAT_DISTRIB, OUTPUT_FILE_PATH
+from data import FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB, OUTPUT_FILE_PATH  # noqa: E501
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -110,7 +110,7 @@ def eval_all():
     n_yes_scores_by_category: defaultdict = defaultdict(int)
     incorrect_answer_fb_ids: dict[FbId, str] = {}
 
-    for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=(N := len(GROUND_TRUTHS))):
+    for fb_id, answer in tqdm(output_df[args.answer_col].items(), total=N_CASES):
         ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
         if eval_correctness(fb_id=fb_id, answer=answer, n_times=args.n_times, human=args.human_eval, debug=args.debug):
@@ -118,12 +118,12 @@ def eval_all():
 
         else:
             incorrect_answer_fb_ids[fb_id]: str = ('expert answer inadequate'
-                                                    if ground_truth.get('answer-inadequate')
-                                                    else ('evaluator unreliable'
-                                                          if ground_truth.get('evaluator-unreliable')
-                                                          else ''))
+                                                   if ground_truth.get('answer-inadequate')
+                                                   else ('evaluator unreliable'
+                                                         if ground_truth.get('evaluator-unreliable')
+                                                         else ''))
 
-    logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N} = {n / N:.1%}')
+    logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
     pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.1%}'
             for category, n_for_category in CAT_DISTRIB.items()})
 
