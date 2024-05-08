@@ -92,6 +92,14 @@ with open(file=EXPERT_PLANS_MAP_FILE_PATH, encoding='utf-8') as f:
 cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLANS_MAP}
 assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE, Category.CALC_CHANGE, Category.EXPLAIN_FACTORS}
 
+assert len(EXPERT_PLANS_MAP) == (
+    3  # 1-COMPARE: cash-flow-activities
+    + CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
+    + CAT_DISTRIB[Category.CALC_AND_JUDGE]
+    + 2  # 6-OTHER-ADVANCED: capital-intensiveness
+    + 3  # 6-OTHER-ADVANCED: fin-svcs-perf
+)
+
 
 EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
 type Plan = TypedDict('Plan', {'task': Required[str],
