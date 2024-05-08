@@ -7,7 +7,7 @@ from openssa.l2.resource.file import FileResource
 
 # pylint: disable=wrong-import-order
 from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path
-from util import enable_batch_qa, log_qa_and_eval_correctness_and_update_output_file
+from util import enable_batch_qa, log_qa_and_update_output_file
 
 
 LM = OpenAILM(model='ft:gpt-3.5-turbo-0125:aitomatic-inc:finance-bench:93b9h3QZ')
@@ -21,7 +21,7 @@ def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
 
 
 @enable_batch_qa
-@log_qa_and_eval_correctness_and_update_output_file(output_name='RAG-FineTuned-LM-Only')
+@log_qa_and_update_output_file(output_name='RAG-FineTuned-LM-Only')
 def answer(fb_id: FbId) -> Answer:
     return (file_resource.answer(QS_BY_FB_ID[fb_id])
             if (file_resource := get_or_create_file_resource(DOC_NAMES_BY_FB_ID[fb_id]))
