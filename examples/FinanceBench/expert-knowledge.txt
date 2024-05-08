@@ -168,7 +168,8 @@ FINANCIAL-ANALYSIS LANGUAGE/WORDING
 - When we see the word "average" used before a Balance-Sheet line item in financial-analysis contexts,
   it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
 
-- When we see the word "growth" used in the context of product categories/segments or geographies,
+- When we see the word "growth" or the the phrase "top-line performance"
+  used in the context of product categories/segments or geographies,
   unless otherwise specified, it often concerns the year-on-year proportional/relative growth rates in (Net) Revenue
   from such product categories/segments or geographies
 
