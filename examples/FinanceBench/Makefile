@@ -1,11 +1,23 @@
 get-doc:
 	@poetry run python data.py ${name}
 
-htp-auto-dynamic-oodar-solve:
-	@poetry run python htp-oodar-agent.py ${id}
 
 htp-auto-static-oodar-solve:
-	@poetry run python htp-oodar-agent.py ${id} --static
+	@poetry run python htp-oodar-agent.py ${id}
+
+htp-auto-dynamic-oodar-solve:
+	@poetry run python htp-oodar-agent.py ${id} --dynamic-exec
+
+htp-expert-static-oodar-solve:
+	@poetry run python htp-oodar-agent.py ${id} --expert-plan
+
+htp-expert-dynamic-oodar-solve:
+	@poetry run python htp-oodar-agent.py ${id} --expert-plan --dynamic-exec
+
+
+ooda-solve:
+	@poetry run python ooda.py ${id}
+
 
 rag-default-answer:
 	@poetry run python rag-default.py ${id}
@@ -22,8 +34,6 @@ rag-finetuned-both-answer:
 rag-gpt4-lm-answer:
 	@poetry run python rag-gpt4-lm.py ${id}
 
-ooda-solve:
-	@poetry run python ooda.py ${id}
 
 ssm-discuss:
 	@poetry run python ssm.py ${id}
