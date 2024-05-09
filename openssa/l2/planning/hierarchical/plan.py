@@ -81,7 +81,6 @@ class HTP(AbstractPlan):
                                     for i, (ask, result) in enumerate(other_results)))
                        if other_results
                        else '')))
-            logger.debug(prompt)
 
             self.task.result: str = reasoner.lm.get_response(prompt)
 

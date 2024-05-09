@@ -50,7 +50,6 @@ class OodaReasoner(AbstractReasoner):
     def orient(self, task: ATask, observations: set[Observation], n_words: int = 1000) -> OrientResult:
         """Orient whether observed results are adequate for directly resolving Task."""
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
-        logger.debug(prompt)
 
         def is_valid(orient_result_dict: OrientResult) -> bool:
             return (isinstance(orient_result_dict, dict) and
