@@ -65,7 +65,16 @@ class Agent:
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
                 plan: APlan = self.planner.plan(problem=problem, resources=self.resources)
-                pprint(plan)
+
+                pprint(object=plan.quick_repr,
+                       stream=None,
+                       indent=2,
+                       width=80,
+                       depth=None,
+                       compact=False,
+                       sort_dicts=False,
+                       underscore_numbers=False)
+
                 result: str = plan.execute(reasoner=self.reasoner)
 
             # AUTOMATED DYNAMIC PLAN
@@ -87,7 +96,16 @@ class Agent:
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
                 plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
-                pprint(plan)
+
+                pprint(object=plan.quick_repr,
+                       stream=None,
+                       indent=2,
+                       width=80,
+                       depth=None,
+                       compact=False,
+                       sort_dicts=False,
+                       underscore_numbers=False)
+
                 result: str = plan.execute(reasoner=self.reasoner)
 
             # EXPERT-GUIDED DYNAMIC PLAN
