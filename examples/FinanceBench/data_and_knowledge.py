@@ -117,13 +117,10 @@ assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE,
                                                Category.CALC_CHANGE,
                                                Category.EXPLAIN_FACTORS}
 
-assert len(EXPERT_PLANS_MAP) == (
-    # 3  # 1-COMPARE: cash-flow-activities
-    + CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
-    + CAT_DISTRIB[Category.CALC_AND_JUDGE]
-    + 2  # 6-OTHER-ADVANCED: capital-intensiveness
-    # + 3  # 6-OTHER-ADVANCED: fin-svcs-perf
-)
+assert len(EXPERT_PLANS_MAP) == (CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
+                                 + CAT_DISTRIB[Category.CALC_AND_JUDGE]
+                                 + 2  # 6-OTHER-ADVANCED: capital-intensiveness
+                                 )
 
 
 EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
