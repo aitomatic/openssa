@@ -4,10 +4,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from pprint import pprint
+from pprint import pformat
 from typing import TYPE_CHECKING
 from typing import Set, Union
 
+from loguru import logger
 from tqdm import tqdm
 
 from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
@@ -78,7 +79,15 @@ class Agent:
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
                 plan: APlan = self.planner.plan(problem=problem, resources=self.resources)
-                pprint(plan)
+
+                logger.info(f'\n{pformat(object=plan.quick_repr,
+                                         indent=2,
+                                         width=120,
+                                         depth=None,
+                                         compact=False,
+                                         sort_dicts=False,
+                                         underscore_numbers=False)}')
+
                 result: str = plan.execute(reasoner=self.reasoner)
 
             # AUTOMATED DYNAMIC PLAN
@@ -92,6 +101,14 @@ class Agent:
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
+                logger.info(f'\n{pformat(object=plan.quick_repr,
+                                         indent=2,
+                                         width=120,
+                                         depth=None,
+                                         compact=False,
+                                         sort_dicts=False,
+                                         underscore_numbers=False)}')
+
                 result: str = plan.execute(reasoner=self.reasoner)
 
             # EXPERT-SPECIFIED STATIC PLAN, with Resource updating
@@ -100,7 +117,15 @@ class Agent:
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
                 plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
-                pprint(plan)
+
+                logger.info(f'\n{pformat(object=plan.quick_repr,
+                                         indent=2,
+                                         width=120,
+                                         depth=None,
+                                         compact=False,
+                                         sort_dicts=False,
+                                         underscore_numbers=False)}')
+
                 result: str = plan.execute(reasoner=self.reasoner)
 
             # EXPERT-GUIDED DYNAMIC PLAN
