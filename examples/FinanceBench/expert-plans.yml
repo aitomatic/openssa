@@ -210,11 +210,11 @@ working-capital-ratio:
         total assets on the balance sheet.
 
 quick-ratio:
-  task: Assess the liquidity health of {COMPANY} through its Quick Ratio as of {YEAR}.
+  task: Assess the liquidity health of {COMPANY} through its Quick Ratio as of {FISCAL PERIOD END}.
 
   sub-plans:
     - task: |-
-        Calculate Quick Ratio as of concerned fiscal year end, as a decimal value according to formula:
+        Calculate Quick Ratio as of concerned fiscal period end, as a decimal value according to formula:
     
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `Accounts Receivable`)
@@ -224,19 +224,19 @@ quick-ratio:
       sub-plans:
         - task: >-
             Retrieve `Cash & Cash Equivalents` (or its best proxy) in dollars,
-            from Balance Sheet as of concerned fiscal year end
+            from Balance Sheet as of concerned fiscal period end
 
         - task: >-
             Retrieve `Short-Term Investments or Marketable Securities` (or their best proxies) in dollars,
-            from Balance Sheet as of concerned fiscal year end
+            from Balance Sheet as of concerned fiscal period end
 
         - task: >-
             Retrieve `Accounts Receivable` (and its best proxy) in dollars,
-            from Balance Sheet as of concerned fiscal year end
+            from Balance Sheet as of concerned fiscal period end
 
         - task:
             Retrieve `Current Liabilities` (and its best proxy) in dollars,
-            from Balance Sheet as of concerned fiscal year end
+            from Balance Sheet as of concerned fiscal period end
 
     - task: |-
         Compare the calculated Quick Ratio decimal value to 1.00 and make assessment:
