@@ -4,9 +4,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from pprint import pprint
+from pprint import pformat
 from typing import TYPE_CHECKING
 
+from loguru import logger
 from tqdm import tqdm
 
 from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
@@ -66,14 +67,13 @@ class Agent:
                 # then execute such static Plan
                 plan: APlan = self.planner.plan(problem=problem, resources=self.resources)
 
-                pprint(object=plan.quick_repr,
-                       stream=None,
-                       indent=2,
-                       width=120,
-                       depth=None,
-                       compact=False,
-                       sort_dicts=False,
-                       underscore_numbers=False)
+                logger.info(f'\n{pformat(object=plan.quick_repr,
+                                         indent=2,
+                                         width=120,
+                                         depth=None,
+                                         compact=False,
+                                         sort_dicts=False,
+                                         underscore_numbers=False)}')
 
                 result: str = plan.execute(reasoner=self.reasoner)
 
@@ -88,14 +88,13 @@ class Agent:
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
-                pprint(object=plan.quick_repr,
-                       stream=None,
-                       indent=2,
-                       width=120,
-                       depth=None,
-                       compact=False,
-                       sort_dicts=False,
-                       underscore_numbers=False)
+                logger.info(f'\n{pformat(object=plan.quick_repr,
+                                         indent=2,
+                                         width=120,
+                                         depth=None,
+                                         compact=False,
+                                         sort_dicts=False,
+                                         underscore_numbers=False)}')
 
                 result: str = plan.execute(reasoner=self.reasoner)
 
@@ -106,14 +105,13 @@ class Agent:
                 # then execute such updated static Plan
                 plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
 
-                pprint(object=plan.quick_repr,
-                       stream=None,
-                       indent=2,
-                       width=120,
-                       depth=None,
-                       compact=False,
-                       sort_dicts=False,
-                       underscore_numbers=False)
+                logger.info(f'\n{pformat(object=plan.quick_repr,
+                                         indent=2,
+                                         width=120,
+                                         depth=None,
+                                         compact=False,
+                                         sort_dicts=False,
+                                         underscore_numbers=False)}')
 
                 result: str = plan.execute(reasoner=self.reasoner)
 
