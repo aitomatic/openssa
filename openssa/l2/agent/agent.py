@@ -6,6 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
+from typing import Set, Union
 
 from tqdm import tqdm
 
@@ -26,6 +27,9 @@ if TYPE_CHECKING:
 class Agent:
     """Agent with Planning, Reasoning & Informational Resources."""
 
+    # knowledge field added
+    knowledge: Set[str] = field(default_factory=lambda: set())
+
     # Planner for decomposing tasks into executable solution Plans
     # using Automated Hierarchical Task Planner by default
     planner: APlanner | None = field(default_factory=AutoHTPlanner)
@@ -41,6 +45,15 @@ class Agent:
     def resource_overviews(self) -> dict[str, str]:
         """Overview available Informational Resources."""
         return {r.unique_name: r.overview for r in self.resources}
+
+    def add_knowledge(self, new_knowledge: Union[set, set[str]]):
+        """Add new knowledge to the agent"""
+        if isinstance(new_knowledge, str): 
+            self.knowledge.add(new_knowledge)
+        elif isinstance(new_knowledge, set[str]):
+            self.knowledge.update(new_knowledge)
+        else: 
+            raise ValueError("Input must be a string or a set of strings")
 
     def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
         """Solve posed Problem.
