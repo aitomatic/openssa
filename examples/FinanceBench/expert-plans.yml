@@ -218,7 +218,7 @@ quick-ratio:
 
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable`)
-          / `Current Liabilities`
+          / `(Total) Current Liabilities`
         )
 
       sub-plans:
@@ -238,7 +238,7 @@ quick-ratio:
             from Balance Sheet as of concerned fiscal period end?
 
         - task:
-            What is value in dollars of `Current Liabilities`
+            What is value in dollars of `(Total) Current Liabilities`
             (or best available proxy for such item(s))
             from Balance Sheet as of concerned fiscal period end?
 
