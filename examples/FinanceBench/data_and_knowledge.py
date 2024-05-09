@@ -100,38 +100,38 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
     EXPERT_KNOWLEDGE: str = f.read()
 
 
-EXPERT_PLANS_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plans-map.yml'
-with open(file=EXPERT_PLANS_MAP_FILE_PATH,
+EXPERT_PLAN_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plan-map.yml'
+with open(file=EXPERT_PLAN_MAP_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
           errors='strict',
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PLANS_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
+    EXPERT_PLAN_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
 
 # sanity check Expert Plans Map
-cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLANS_MAP}
+cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLAN_MAP}
 assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE,
                                                Category.COMPARE,
                                                Category.CALC_CHANGE,
                                                Category.EXPLAIN_FACTORS}
 
-assert len(EXPERT_PLANS_MAP) == (CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
-                                 + CAT_DISTRIB[Category.CALC_AND_JUDGE]
-                                 + 2  # 6-OTHER-ADVANCED: capital-intensiveness
-                                 )
+assert len(EXPERT_PLAN_MAP) == (CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
+                                + CAT_DISTRIB[Category.CALC_AND_JUDGE]
+                                + 2  # 6-OTHER-ADVANCED: capital-intensiveness
+                                )
 
 
-EXPERT_PLANS_FILE_PATH: Path = Path(__file__).parent / 'expert-plans.yml'
-with open(file=EXPERT_PLANS_FILE_PATH,
+EXPERT_PLAN_TEMPLATES_FILE_PATH: Path = Path(__file__).parent / 'expert-plan-templates.yml'
+with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
           errors='strict',
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PLANS: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
+    EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
 
 def get_doc(doc_name: DocName) -> requests.Response:
