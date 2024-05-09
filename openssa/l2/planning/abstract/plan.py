@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Self, TypeVar, TypedDict, Required, NotRequired, TYPE_CHECKING
+from typing import Any, Self, TypeVar, TypedDict, Required, NotRequired, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
@@ -29,6 +29,12 @@ class AbstractPlan(ABC):
 
     # decomposed Sub-Plans for solving target Task
     sub_plans: list[Self] = field(default_factory=list)
+
+    def concretize_tasks_from_template(self, **kwargs: Any):
+        self.task.ask: str = self.task.ask.format(**kwargs)
+
+        for sub_plan in self.sub_plans:
+            sub_plan.concretize_tasks_from_template(**kwargs)
 
     @property
     def quick_repr(self) -> PlanQuickRepr:
