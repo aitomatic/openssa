@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
 
 type AskAnsPair = tuple[str, str]
+type PlanQuickRepr = tuple[str, list[PlanQuickRepr]]
 
 
 @dataclass
@@ -24,6 +25,10 @@ class AbstractPlan(ABC):
 
     # decomposed Sub-Plans for solving target Task
     sub_plans: list[Self] = field(default_factory=list)
+
+    @property
+    def quick_repr(self) -> PlanQuickRepr:
+        return self.task.ask, [sub_plan.quick_repr for sub_plan in self.sub_plans]
 
     @abstractmethod
     def execute(self, reasoner: AReasoner, other_results: list[AskAnsPair] | None = None) -> str:
