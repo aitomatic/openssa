@@ -48,11 +48,11 @@ class Agent:
 
     def add_knowledge(self, new_knowledge: Union[set, set[str]]):
         """Add new knowledge to the agent"""
-        if isinstance(new_knowledge, str): 
+        if isinstance(new_knowledge, str):
             self.knowledge.add(new_knowledge)
         elif isinstance(new_knowledge, set[str]):
             self.knowledge.update(new_knowledge)
-        else: 
+        else:
             raise ValueError("Input must be a string or a set of strings")
 
     def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
