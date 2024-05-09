@@ -39,17 +39,17 @@ def solve_auto_htp_dynamically(fb_id: FbId) -> Answer:
 @enable_batch_qa_and_eval(output_name='HTP-expert-static---OODAR')
 @log_qa_and_update_output_file(output_name='HTP-expert-static---OODAR')
 def solve_expert_htp_statically(fb_id: FbId) -> Answer:
-    return ((agent.solve(problem=QS_BY_FB_ID[fb_id],
-                         plan=HTP.from_dict(EXPERT_PLANS[expert_htp_id]),
-                         dynamic=False)
+    if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]):
+        problem: str = QS_BY_FB_ID[fb_id]
 
-             if (expert_htp_id := EXPERT_PLANS_MAP.get(fb_id))
+        if expert_htp_id := EXPERT_PLANS_MAP.get(fb_id):
+            htp: HTP = HTP.from_dict(EXPERT_PLANS[expert_htp_id])
+            htp.task.ask: str = problem
+            return agent.solve(problem=problem, plan=htp, dynamic=False)
 
-             else agent.solve(problem=QS_BY_FB_ID[fb_id], plan=None, dynamic=True))
+        return agent.solve(problem=problem, plan=None, dynamic=True)
 
-            if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]))
-
-            else 'ERROR: doc not found')
+    return 'ERROR: doc not found'
 
 
 @enable_batch_qa_and_eval(output_name='HTP-expert-dynamic---OODAR')
