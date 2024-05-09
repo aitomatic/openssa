@@ -69,7 +69,7 @@ class Agent:
                 pprint(object=plan.quick_repr,
                        stream=None,
                        indent=2,
-                       width=80,
+                       width=120,
                        depth=None,
                        compact=False,
                        sort_dicts=False,
@@ -88,6 +88,15 @@ class Agent:
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
+                pprint(object=plan.quick_repr,
+                       stream=None,
+                       indent=2,
+                       width=120,
+                       depth=None,
+                       compact=False,
+                       sort_dicts=False,
+                       underscore_numbers=False)
+
                 result: str = plan.execute(reasoner=self.reasoner)
 
             # EXPERT-SPECIFIED STATIC PLAN, with Resource updating
@@ -100,7 +109,7 @@ class Agent:
                 pprint(object=plan.quick_repr,
                        stream=None,
                        indent=2,
-                       width=80,
+                       width=120,
                        depth=None,
                        compact=False,
                        sort_dicts=False,
