@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Self, TypedDict, TypeVar, TYPE_CHECKING
+from typing import Self, TypeVar, TypedDict, Required, NotRequired, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
@@ -16,8 +16,8 @@ type AskAnsPair = tuple[str, str]
 
 
 class PlanQuickRepr(TypedDict):
-    task: str
-    sub_plans: list[Self]
+    task: Required[str]
+    sub_plans: NotRequired[list[Self]]
 
 
 @dataclass
@@ -32,8 +32,12 @@ class AbstractPlan(ABC):
 
     @property
     def quick_repr(self) -> PlanQuickRepr:
-        return {'task': self.task.ask,
-                'sub-plans': [sub_plan.quick_repr for sub_plan in self.sub_plans]}
+        d: PlanQuickRepr = {'task': self.task.ask}
+
+        if self.sub_plans:
+            d['sub-plans']: list[PlanQuickRepr] = [sub_plan.quick_repr for sub_plan in self.sub_plans]
+
+        return d
 
     @abstractmethod
     def execute(self, reasoner: AReasoner, other_results: list[AskAnsPair] | None = None) -> str:
