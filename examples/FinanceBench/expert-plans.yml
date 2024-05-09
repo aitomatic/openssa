@@ -37,6 +37,7 @@ inventory-turnover-ratio:
         In dollars, what were the inventories in the given fiscal year(s)?
         current assets on the balance sheet
 
+
 # INCOME & PROFITABILITY METRIC EVALUATION
 # ========================================
 
@@ -132,6 +133,7 @@ net-profit-margin:
         In dollars, what was the net sales in the given fiscal year(s)? sales or
         income statement
 
+
 # PROFIT-UTILIZATION / CAPITAL-RETURN METRIC EVALUATION
 # =====================================================
 
@@ -181,6 +183,7 @@ retention-ratio:
         In dollars, what was the total cash dividends paid in the given fiscal
         year(s)?
 
+
 # LIQUIDITY METRIC EVALUATION
 # ===========================
 
@@ -217,21 +220,6 @@ quick-ratio:  # TODO: compare with 1x
         In dollars, what were the total current liabilities in the given fiscal
         year?
     - task: In dollars, what were the inventories in the given fiscal year(s)?
-
-cash-flow-activities:
-  task:
-    Compare the cash flows from operating activities, investing activities, and
-    financing activites for {COMPANY} in {YEAR}.
-  sub-plans:
-    - task:
-        In dollars, what was the cash flows from operating activities in the
-        given fiscal year(s)?
-    - task:
-        In dollars, what was the cash flows from investing activities in the
-        given fiscal year(s)?
-    - task:
-        In dollars, what was the cash flows from financing activities in the
-        given fiscal year(s)?
 
 free-cash-flow:
   task:
@@ -338,6 +326,7 @@ debt:
         In dollars, what was the long-term debt in the given fiscal year(s)?
         long-term liabilities on the balance sheet.
 
+
 # CAPITAL-INTENSIVENESS METRIC EVALUATION
 # =======================================
 
@@ -383,6 +372,3 @@ return-on-assets:
     - task:
         In dollars, what were the total assets in the given fiscal year(s)?
         total assets on the balance sheet.
-
-
-# fin-svcs-perf: TODO
