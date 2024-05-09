@@ -1,7 +1,7 @@
 financebench_id_00499: capital-intensiveness
 financebench_id_00807: quick-ratio
 financebench_id_02987: fixed-asset-turnover-ratio
-financebench_id_07966: capex-as-percent-of-revenue
+financebench_id_07966: capex-as-pct-of-rev
 financebench_id_04735: operating-cash-flow-ratio
 financebench_id_03856: operating-cash-flow-ratio
 financebench_id_00438: operating-margin-profile
@@ -9,22 +9,22 @@ financebench_id_00591: free-cash-flow-conversion
 financebench_id_00540: inventory-turnover-ratio
 financebench_id_10420: return-on-assets
 financebench_id_06655: days-payable-outstanding
-financebench_id_00799: quick-ratio  # TODO: quick-ratio-profile (improvement)
+financebench_id_00799: quick-ratio-comp
 financebench_id_00684: gross-margin-profile
 financebench_id_03069: da-margin
 financebench_id_00222: quick-ratio
 financebench_id_04254: unadjusted-ebitda
 financebench_id_00070: working-capital
-financebench_id_02608: net-profit-margin  # TODO: avg
-financebench_id_00685: gross-margin-profile  # TODO: compare
+financebench_id_02608: net-margin-avg
+financebench_id_00685: gross-margin-comp
 financebench_id_04660: working-capital-ratio
-financebench_id_00678: gross-margin-profile  # TODO: compare
+financebench_id_00678: gross-margin-comp
 financebench_id_00585: effective-tax-rate
 financebench_id_03473: return-on-assets
 financebench_id_09724: cogs-margin
 financebench_id_06272: dividend-payout-ratio
 financebench_id_10130: days-payable-outstanding
-financebench_id_02981: operating-margin-profile  # TODO: avg
+financebench_id_02981: op-margin-avg
 financebench_id_00005: working-capital
 financebench_id_05915: fixed-asset-turnover-ratio
 financebench_id_00790: capital-intensiveness
@@ -35,7 +35,7 @@ financebench_id_10136: retention-ratio
 financebench_id_10499: inventory-turnover-ratio
 financebench_id_04412: asset-turnover-ratio
 financebench_id_03031: working-capital
-financebench_id_03849: capex-as-percent-of-revenue  # TODO: avg
+financebench_id_03849: capex-as-pct-of-rev-avg
 financebench_id_01911: interest-coverage-ratio
 financebench_id_00552: debt
 financebench_id_04458: ebitda-margin
