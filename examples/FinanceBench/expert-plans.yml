@@ -228,8 +228,12 @@ quick-ratio:
             - `Short-Term Investments or Marketable Securities`;
             - `(Net) Accounts Receivable`; and
             - `(Total) Current Liabilities`
-            (or most applicable available proxies for such items)
-            from one same (Consolidated) Balance Sheet of subject {COMPANY} as of subject {FISCAL PERIOD END}?
+            (or most similar-meaning reported line items to those)
+
+            from one same (Consolidated) Balance Sheet of subject {COMPANY}
+            (and NOT Balance Sheets of acquired and/or divested companies)
+
+            as of subject {FISCAL PERIOD END}?
 
     - task: |-
         Compare calculated Quick Ratio decimal value against 1.00 and make assessment:
