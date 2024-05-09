@@ -1,8 +1,9 @@
 from argparse import ArgumentParser
 from collections import Counter
+from dataclasses import dataclass, field
 import base64
 from enum import StrEnum
-from functools import cache
+from functools import cached_property
 from pathlib import Path
 from typing import TypedDict, Required, NotRequired, Literal
 
@@ -134,44 +135,50 @@ with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
     EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
 
-def get_doc(doc_name: DocName) -> requests.Response:
-    response: requests.Response = requests.get(
-        url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
-                      .decode(encoding='utf-8', errors='strict'))
-                     if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[doc_name])
-                     else doc_link)),
-        timeout=60,
-        stream=True)
+@dataclass
+class Doc:
+    name: DocName
+    company: str = field(init=False, repr=False)
+    period: str = field(init=False, repr=False)
+    type: str = field(init=False, repr=False)
 
-    if response.headers.get('Content-Type') != 'application/pdf':
-        response: requests.Response = requests.get(url=url,
-                                                   headers=NON_BOT_REQUEST_HEADERS,
-                                                   timeout=60,
-                                                   stream=True)
+    def __post_init__(self):
+        self.company, self.period, self.type = self.name.split(sep='_', maxsplit=2)
 
-    return response
+    def request(self) -> requests.Response:
+        response: requests.Response = requests.get(
+            url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
+                          .decode(encoding='utf-8', errors='strict'))
+                         if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[self.name])
+                         else doc_link)),
+            timeout=60,
+            stream=True)
 
+        if response.headers.get('Content-Type') != 'application/pdf':
+            response: requests.Response = requests.get(url=url,
+                                                       headers=NON_BOT_REQUEST_HEADERS,
+                                                       timeout=60,
+                                                       stream=True)
 
-@cache
-def cache_dir_path(doc_name: DocName) -> Path | None:
-    dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / doc_name
+        return response
 
-    if not (file_path := dir_path / f'{doc_name}.pdf').is_file():
-        dir_path.mkdir(parents=True, exist_ok=True)
+    @cached_property
+    def dir_path(self) -> Path | None:
+        dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / self.name
 
-        response: requests.Response = get_doc(doc_name)
+        if not (file_path := dir_path / f'{self.name}.pdf').is_file():
+            dir_path.mkdir(parents=True, exist_ok=True)
 
-        with open(file=file_path, mode='wb', buffering=-1, encoding=None, newline=None, closefd=True, opener=None) as f:
-            f.write(response.content)
+            response: requests.Response = self.request()
 
-    return dir_path
+            with open(file=file_path, mode='wb', buffering=-1, encoding=None, newline=None, closefd=True, opener=None) as f:
+                f.write(response.content)
 
+        return dir_path
 
-@cache
-def cache_file_path(doc_name: DocName) -> Path | None:
-    return (dir_path / f'{doc_name}.pdf'
-            if (dir_path := cache_dir_path(doc_name))
-            else None)
+    @cached_property
+    def file_path(self) -> Path | None:
+        return (self.dir_path / f'{self.name}.pdf') if self.dir_path else None
 
 
 def export_ground_truths():
@@ -206,4 +213,4 @@ if __name__ == '__main__':
     arg_parser.add_argument('doc_name')
     args = arg_parser.parse_args()
 
-    get_doc(args.doc_name)
+    Doc(name=args.doc_name).request()
