@@ -4,8 +4,6 @@
 from dataclasses import dataclass
 from typing import TypedDict
 
-from loguru import logger
-
 from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.task.abstract import ATask
 from openssa.l2.task.status import TaskStatus
