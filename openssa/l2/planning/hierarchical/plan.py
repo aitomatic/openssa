@@ -86,13 +86,17 @@ class HTP(AbstractPlan):
 
             self.task.result: str = reasoner.lm.get_response(prompt)
 
-            logger.debug(f'{inputs}\n'
+            logger.debug(f'\n{(ask := self.task.ask.upper())}\n'
+                         '===================================\n'
+                         '\n'
+                         f'{inputs}\n'
                          '|\n'
                          'V\n'
                          '\n'
-                         f'{self.task.ask.upper()}\n'
-                         '----------------\n'
-                         f'{self.task.result}\n')
+                         f'{ask}\n'
+                         '-----------------------------------\n'
+                         f'{self.task.result}\n'
+                         '===================================\n')
 
         else:
             self.task.result: str = reasoning_wo_sub_results
