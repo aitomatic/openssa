@@ -6,7 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
-from typing import Set, Union
+from typing import Union
 
 from tqdm import tqdm
 
@@ -26,10 +26,7 @@ if TYPE_CHECKING:
 @dataclass
 class Agent:
     """Agent with Planning, Reasoning & Informational Resources."""
-
-    # knowledge field added
-    knowledge: Set[str] = field(default_factory=lambda: set())
-
+    
     # Planner for decomposing tasks into executable solution Plans
     # using Automated Hierarchical Task Planner by default
     planner: APlanner | None = field(default_factory=AutoHTPlanner)
@@ -37,6 +34,9 @@ class Agent:
     # Reasoner for working through individual Tasks to either conclude or make partial progress on them
     # using OODA by default
     reasoner: AReasoner = field(default_factory=OodaReasoner)
+
+    # knowledge field added
+    knowledge: set[str] = field(default_factory=set)
 
     # set of Informational Resources for answering information-querying questions
     resources: set[AResource] = field(default_factory=set)
@@ -46,7 +46,7 @@ class Agent:
         """Overview available Informational Resources."""
         return {r.unique_name: r.overview for r in self.resources}
 
-    def add_knowledge(self, new_knowledge: Union[set, set[str]]):
+    def add_knowledge(self, new_knowledge: Union[str, set[str]]):
         """Add new knowledge to the agent"""
         if isinstance(new_knowledge, str):
             self.knowledge.add(new_knowledge)
