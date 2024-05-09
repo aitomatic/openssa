@@ -72,12 +72,25 @@ class FileResource(AbstractResource):
     path: Path | DirOrFileStrPath
 
     # embedding model for indexing and retrieving information
-    embed_model: AnEmbedModel = field(default_factory=OpenAIEmbedding)
+    embed_model: AnEmbedModel = field(default_factory=OpenAIEmbedding,
+                                      init=True,
+                                      repr=False,
+                                      hash=None,
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=True)
+
     # whether to re-index information upon initialization
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: AnLM = field(default_factory=OpenAILM)
+    lm: AnLM = field(default_factory=OpenAILM,
+                     init=True,
+                     repr=False,
+                     hash=None,
+                     compare=True,
+                     metadata=None,
+                     kw_only=True)
 
     def __post_init__(self, re_index: bool):
         """Post-initialize file-stored Informational Resource."""
