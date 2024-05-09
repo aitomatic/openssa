@@ -217,25 +217,29 @@ quick-ratio:
         Calculate Quick Ratio as of concerned fiscal period end, as decimal value according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `Accounts Receivable`)
+          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable`)
           / `Current Liabilities`
         )
 
       sub-plans:
         - task: >-
-            What is value in dollars of `Cash & Cash Equivalents` (or best proxy for such item(s))
+            What is value in dollars of `Cash & Cash Equivalents`
+            (or best available proxy for such item(s))
             from Balance Sheet as of concerned fiscal period end?
 
         - task: >-
-            What is value in dollars of `Short-Term Investments or Marketable Securities` (or best proxy for such item(s))
+            What is value in dollars of `Short-Term Investments or Marketable Securities`
+            (or best available proxy for such item(s))
             from Balance Sheet as of concerned fiscal period end?
 
         - task: >-
-            What is value in dollars of `Accounts Receivable` (or best proxy for such item(s))
+            What is value in dollars of `(Net) Accounts Receivable`
+            (or best available proxy for such item(s))
             from Balance Sheet as of concerned fiscal period end?
 
         - task:
-            What is value in dollars of `Current Liabilities` (or best proxy for such item(s))
+            What is value in dollars of `Current Liabilities`
+            (or best available proxy for such item(s))
             from Balance Sheet as of concerned fiscal period end?
 
     - task: |-
