@@ -214,8 +214,8 @@ quick-ratio:
 
   sub-plans:
     - task: |-
-        Calculate Quick Ratio as of concerned fiscal period end, as a decimal value according to formula:
-    
+        Calculate Quick Ratio as of concerned fiscal period end, as decimal value according to formula:
+
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `Accounts Receivable`)
           / `Current Liabilities`
@@ -223,25 +223,25 @@ quick-ratio:
 
       sub-plans:
         - task: >-
-            Retrieve `Cash & Cash Equivalents` (or its best proxy) in dollars,
-            from Balance Sheet as of concerned fiscal period end
+            What is value in dollars of `Cash & Cash Equivalents` (or best proxy for such item(s))
+            from Balance Sheet as of concerned fiscal period end?
 
         - task: >-
-            Retrieve `Short-Term Investments or Marketable Securities` (or their best proxies) in dollars,
-            from Balance Sheet as of concerned fiscal period end
+            What is value in dollars of `Short-Term Investments or Marketable Securities` (or best proxy for such item(s))
+            from Balance Sheet as of concerned fiscal period end?
 
         - task: >-
-            Retrieve `Accounts Receivable` (and its best proxy) in dollars,
-            from Balance Sheet as of concerned fiscal period end
+            What is value in dollars of `Accounts Receivable` (or best proxy for such item(s))
+            from Balance Sheet as of concerned fiscal period end?
 
         - task:
-            Retrieve `Current Liabilities` (and its best proxy) in dollars,
-            from Balance Sheet as of concerned fiscal period end
+            What is value in dollars of `Current Liabilities` (or best proxy for such item(s))
+            from Balance Sheet as of concerned fiscal period end?
 
     - task: |-
-        Compare the calculated Quick Ratio decimal value to 1.00 and make assessment:
+        Compare calculated Quick Ratio decimal value against 1.00 and make assessment:
         - Quick Ratio >= 1.00: liquidity is healthy; or
-        - Quick Ratio < 1.00: liquidity is not very healthy.
+        - Quick Ratio < 1.00: liquidity is not very healthy
 
 
 free-cash-flow:
