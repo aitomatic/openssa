@@ -124,16 +124,16 @@ Leverage Metric Formulas
 Liquidity Metric Formulas
 -------------------------
 
-`(Net) Working Capital` = `Current Assets` - `Current Liabilities`
+`(Net) Working Capital` = `(Total) Current Assets` - `(Total) Current Liabilities`
 
-`Working Capital Ratio` = `Current Assets` / `Current Liabilities`
+`Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
 
 `Quick Ratio` = (
-  (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `Accounts Receivable`)
-  / `Current Liabilities`
+  (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable`)
+  / `(Total) Current Liabilities`
 )
 
-`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Current Liabilities`
+`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
 
 `Free Cash Flow, a.k.a. FCF` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`
 
