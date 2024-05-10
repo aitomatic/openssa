@@ -231,8 +231,8 @@ quick-ratio:
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
-            from one same (Consolidated) Balance Sheet of {COMPANY}
-            (and NOT Balance Sheets of acquired and/or divested companies)
+            on one same (Consolidated) Balance Sheet of {COMPANY}
+            (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as of {PERIOD} fiscal period end?
 
