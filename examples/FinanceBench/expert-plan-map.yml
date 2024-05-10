@@ -1,6 +1,6 @@
 financebench_id_00499: capital-intensiveness
 financebench_id_00807: quick-ratio  #
-financebench_id_02987: fixed-asset-turnover-ratio
+financebench_id_02987: fa-turnover-ratio
 financebench_id_07966: capex-as-pct-of-rev
 financebench_id_04735: operating-cash-flow-ratio
 financebench_id_03856: operating-cash-flow-ratio
@@ -26,7 +26,7 @@ financebench_id_06272: dividend-payout-ratio
 financebench_id_10130: days-payable-outstanding
 financebench_id_02981: op-margin-avg
 financebench_id_00005: working-capital
-financebench_id_05915: fixed-asset-turnover-ratio
+financebench_id_05915: fa-turnover-ratio
 financebench_id_00790: capital-intensiveness
 financebench_id_04103: cash-conversion-cycle
 financebench_id_03471: working-capital-ratio
