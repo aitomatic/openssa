@@ -257,8 +257,11 @@ quick-ratio-comp:
 
   sub-plans:
     - task: |-
-        Calculate Quick Ratio as of one-year-before previous fiscal period end preceding {PERIOD},
-        as decimal value according to formula:
+        Calculate Quick Ratio as of following two points in time:
+        - one-year-before previous fiscal period end preceding {PERIOD}; and
+        - {PERIOD} fiscal period end
+
+        as decimal values according to formula:
 
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
@@ -278,30 +281,9 @@ quick-ratio-comp:
             on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
-            as of one-year-before previous fiscal period end preceding {PERIOD}?
-
-    - task: |-
-        Calculate Quick Ratio as of current {PERIOD} fiscal period end, as decimal value according to formula:
-
-        `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
-          / `(Total) Current Liabilities`
-        )
-
-      sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
-        - task: |-
-            What are values in dollars of:
-            - `Cash & Cash Equivalents`;
-            - `Short-Term Investments or Marketable Securities`;
-            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
-            - `(Total) Current Liabilities`
-            (or most similar-meaning reported line items to those)
-
-            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
-            (and NOT Balance Sheets of its acquired and/or divested companies)
-
-            as of current {PERIOD} fiscal period end?
+            as of following two points in time:
+            - one-year-before previous fiscal period end preceding {PERIOD}; and
+            - current {PERIOD} fiscal period end?
 
     - task: >-
         Calculate difference between two calculated Quick Ratio decimal values
