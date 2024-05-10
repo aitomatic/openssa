@@ -38,10 +38,22 @@ class Agent:
     # set of Informational Resources for answering information-querying questions
     resources: set[AResource] = field(default_factory=set)
 
+    # knowledge field added
+    knowledge: set[str] = field(default_factory=set)
+
     @property
     def resource_overviews(self) -> dict[str, str]:
         """Overview available Informational Resources."""
         return {r.unique_name: r.overview for r in self.resources}
+    
+    def add_knowledge(self, new_knowledge: str | set[str]):
+        """Add new knowledge to the agent"""
+        if isinstance(new_knowledge, str):
+            self.knowledge.add(new_knowledge)
+        elif isinstance(new_knowledge, set[str]):
+            self.knowledge.update(new_knowledge)
+        else:
+            raise ValueError("Input must be a string or a set of strings")
 
     def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
         """Solve posed Problem.
@@ -58,14 +70,14 @@ class Agent:
             # NO PLAN
             case (None, None, _):
                 # if neither Plan nor Planner is given, directly use Reasoner
-                result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
+                result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources), knowledge=self.knowledge)
 
             # AUTOMATED STATIC PLAN
             case (None, _, False) if self.planner:
                 # if no Plan is given but Planner is, and if solving statically,
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
-                plan: APlan = self.planner.plan(problem=problem, resources=self.resources)
+                plan: APlan = self.planner.plan(problem=problem, resources=self.resources, knowledge=self.knowledge)
 
                 logger.info(f'\n{pformat(object=plan.quick_repr,
                                          indent=2,
@@ -75,7 +87,7 @@ class Agent:
                                          sort_dicts=False,
                                          underscore_numbers=False)}')
 
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
             # AUTOMATED DYNAMIC PLAN
             case (None, _, True) if self.planner:
@@ -96,14 +108,14 @@ class Agent:
                                          sort_dicts=False,
                                          underscore_numbers=False)}')
 
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
             # EXPERT-SPECIFIED STATIC PLAN, with Resource updating
             case (_, _, False) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving statically,
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
-                plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
+                plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources, knowledge=self.knowledge)
 
                 logger.info(f'\n{pformat(object=plan.quick_repr,
                                          indent=2,
@@ -113,7 +125,7 @@ class Agent:
                                          sort_dicts=False,
                                          underscore_numbers=False)}')
 
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
             # EXPERT-GUIDED DYNAMIC PLAN
             case (_, _, True) if (plan and self.planner):
@@ -132,7 +144,7 @@ class Agent:
         When first-pass result from Reasoner is unsatisfactory, decompose Problem and recursively solve decomposed Plan.
         """
         # attempt direct solution with Reasoner
-        self.reasoner.reason(task := Task(ask=problem, resources=self.resources))
+        self.reasoner.reason(task := Task(ask=problem, resources=self.resources), knowledge=self.knowledge)
 
         # if Reasoner's result is unsatisfactory, and if Planner has not run out of allowed depth,
         # decompose Problem into 1-level Plan, and recursively solve such Plan with remaining allowed Planner depth
@@ -149,7 +161,7 @@ class Agent:
                 sub_task.status: TaskStatus = TaskStatus.DONE
                 sub_results.append((sub_task.ask, sub_task.result))
 
-            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, other_results=other_results)
+            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, other_results=other_results, knowledge=self.knowledge)
             task.status: TaskStatus = TaskStatus.DONE
 
         return task.result

@@ -13,6 +13,7 @@ from openssa.l2.planning.abstract.plan import AbstractPlan, AskAnsPair
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
+from openssa.l2.util.lm.abstract import LMChatHist
 
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 
@@ -49,13 +50,13 @@ class HTP(AbstractPlan):
                 p.task.resources: set[AResource] = self.task.resources
             p.fix_missing_resources()
 
-    def execute(self, reasoner: AReasoner | None = None, other_results: list[AskAnsPair] | None = None) -> str:
+    def execute(self, reasoner: AReasoner | None = None, knowledge: set[str] = None, other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account potentially-relevant other results from elsewhere.
         """
         if reasoner is None:
-            reasoner: AReasoner = BaseReasoner()
+            reasoner: AReasoner = BaseReasoner(knowledge=knowledge)
 
         reasoning_wo_sub_results: str = reasoner.reason(task=self.task)
 
@@ -64,7 +65,7 @@ class HTP(AbstractPlan):
             for p in tqdm(self.sub_plans):
                 sub_results.append((p.task.ask, (p.task.result
                                                  if p.task.status == TaskStatus.DONE
-                                                 else p.execute(reasoner, other_results=sub_results))))
+                                                 else p.execute(reasoner, knowledge=knowledge, other_results=sub_results))))
 
             inputs: str = (f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
                            '\n\n' +
@@ -83,6 +84,11 @@ class HTP(AbstractPlan):
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
                 info=inputs)
+            
+            messages: LMChatHist = []
+            if knowledge is not None:
+                messages.append({"role": "system", "content": "\n".join(s for s in knowledge)})
+            self.task.result: str = reasoner.lm.get_response(prompt, history=messages)
 
             self.task.result: str = reasoner.lm.get_response(prompt)
 

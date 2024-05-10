@@ -8,6 +8,7 @@ import json
 from typing import TYPE_CHECKING
 
 from openssa.l2.planning.abstract.planner import AbstractPlanner
+from openssa.l2.util.lm.abstract import LMChatHist
 
 from .plan import HTP, HTPDict
 from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE
@@ -20,7 +21,7 @@ if TYPE_CHECKING:
 class AutoHTPlanner(AbstractPlanner):
     """Automated (Generative) Hierarchical Task Planner."""
 
-    def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
+    def plan(self, problem: str, knowledge: set[str] = None, resources: set[AResource] | None = None) -> HTP:
         """Make HTP for solving posed Problem."""
         prompt: str = (
             HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
@@ -35,7 +36,10 @@ class AutoHTPlanner(AbstractPlanner):
 
         htp_dict: HTPDict = {}
         while not (isinstance(htp_dict, dict) and htp_dict):
-            htp_dict: HTPDict = self.lm.get_response(prompt, json_format=True)
+            messages: LMChatHist = []
+            if knowledge is not None:
+                messages.append({"role": "system", "content": "\n".join(s for s in knowledge)})
+            htp_dict: HTPDict = self.lm.get_response(prompt, history=messages, json_format=True)
 
         htp: HTP = HTP.from_dict(htp_dict)
 
@@ -44,7 +48,7 @@ class AutoHTPlanner(AbstractPlanner):
 
         return htp
 
-    def update_plan_resources(self, plan: HTP, /, problem: str, resources: set[AResource]) -> HTP:
+    def update_plan_resources(self, plan: HTP, /, problem: str, resources: set[AResource], knowledge: set[str] = None) -> HTP:
         """Make updated HTP for solving posed Problem with relevant Informational Resources."""
         assert isinstance(plan, HTP), TypeError(f'*** {plan} NOT OF TYPE {HTP.__name__} ***')
         assert resources, ValueError(f'*** {resources} NOT A NON-EMPTY SET OF INFORMATIONAL RESOURCES ***')
@@ -56,7 +60,9 @@ class AutoHTPlanner(AbstractPlanner):
 
         updated_htp_dict: HTPDict = {}
         while not (isinstance(updated_htp_dict, dict) and updated_htp_dict):
-            updated_htp_dict: HTPDict = self.lm.get_response(prompt, json_format=True)
+            messages: LMChatHist = []
+            messages.append({"role": "system", "content": "\n".join(knowledge)})
+            updated_htp_dict: HTPDict = self.lm.get_response(prompt, history=messages, json_format=True)
 
         updated_htp: HTP = HTP.from_dict(updated_htp_dict)
 

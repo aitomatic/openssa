@@ -46,7 +46,7 @@ class AbstractPlan(ABC):
         return d
 
     @abstractmethod
-    def execute(self, reasoner: AReasoner, other_results: list[AskAnsPair] | None = None) -> str:
+    def execute(self, reasoner: AReasoner, knowledge: set[str] = None, other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account potentially-relevant other results from elsewhere.
