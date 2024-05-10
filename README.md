@@ -34,7 +34,7 @@ TBD
 
 - HTP makes complex task more solvable by breaking it down into sub-plans.
 
-  ### How is HTP designed in OpenSSA?
+### How is HTP designed in OpenSSA?
 
 - HTP has 2 main components:
 
