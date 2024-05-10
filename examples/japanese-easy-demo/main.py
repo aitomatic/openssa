@@ -8,6 +8,7 @@ load_dotenv()
 
 LOCAL_CACHE_DOCS_DIR_PATH: Path = Path(__file__).parent / '.data'
 THREE_FIN_STATEMENTS_HEURISTICS: str = (
+    'Please answer in Japanese.'
     'Pay attention to the total salt content, calories, and total vegetables.'
 )
 
