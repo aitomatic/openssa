@@ -24,7 +24,7 @@ class BaseReasoner(AbstractReasoner):
         """
         messages: LMChatHist = []
         if knowledge is not None:
-                messages.append({"role": "system", "content": "\n".join(s for s in knowledge)})
+            messages.append({"role": "system", "content": "\n".join(s for s in knowledge)})
         task.result: str = ((self.lm.get_response(
                                 prompt=RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(
                                     question=task.ask, n_words=n_words,

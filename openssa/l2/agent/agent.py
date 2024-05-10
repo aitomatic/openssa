@@ -45,7 +45,8 @@ class Agent:
     def resource_overviews(self) -> dict[str, str]:
         """Overview available Informational Resources."""
         return {r.unique_name: r.overview for r in self.resources}
-    
+
+
     def add_knowledge(self, new_knowledge: str | set[str]):
         """Add new knowledge to the agent"""
         if isinstance(new_knowledge, str):

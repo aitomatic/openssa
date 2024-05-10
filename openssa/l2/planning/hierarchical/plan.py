@@ -84,7 +84,7 @@ class HTP(AbstractPlan):
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
                 info=inputs)
-            
+
             messages: LMChatHist = []
             if knowledge is not None:
                 messages.append({"role": "system", "content": "\n".join(s for s in knowledge)})
