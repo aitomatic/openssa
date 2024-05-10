@@ -55,6 +55,7 @@ class Agent:
         else:
             raise ValueError("Input must be a string or a set of strings")
 
+    # need to add knowledge here
     def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
         """Solve posed Problem.
 
@@ -70,16 +71,16 @@ class Agent:
             # NO PLAN
             case (None, None, _):
                 # if neither Plan nor Planner is given, directly use Reasoner
-                result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
+                result: str = self.reasoner.reason(task=Task(ask=problem, knowledge = self.knowledge, resources=self.resources))
 
             # AUTOMATED STATIC PLAN
             case (None, _, False) if self.planner:
                 # if no Plan is given but Planner is, and if solving statically,
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
-                plan: APlan = self.planner.plan(problem=problem, resources=self.resources)
+                plan: APlan = self.planner.plan(problem=problem, knowledge = self.knowledge, resources=self.resources)
                 pprint(plan)
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge = self.knowledge)
 
             # AUTOMATED DYNAMIC PLAN
             case (None, _, True) if self.planner:
@@ -92,16 +93,16 @@ class Agent:
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge = self.knowledge)
 
             # EXPERT-SPECIFIED STATIC PLAN, with Resource updating
             case (_, _, False) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving statically,
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
-                plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
+                plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources, knowledge = self.knowledge)
                 pprint(plan)
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge = self.knowledge)
 
             # EXPERT-GUIDED DYNAMIC PLAN
             case (_, _, True) if (plan and self.planner):
@@ -114,6 +115,7 @@ class Agent:
 
         return result
 
+    # add knowledge
     def solve_dynamically(self, problem: str, planner: APlanner = None, other_results: list[AskAnsPair] | None = None) -> str:
         """Solve posed Problem dynamically.
 
@@ -122,14 +124,14 @@ class Agent:
         # attempt direct solution with Reasoner
         self.reasoner.reason(task := Task(ask=problem, resources=self.resources))
 
-        # if Reasoner's result is unsatisfactory, and if Planner has not run out of allowed depth,
+        # if Reasoner's result is unsatisfactory, and if Planner h, knowledge = self.knowledgeas not run out of allowed depth,
         # decompose Problem into 1-level Plan, and recursively solve such Plan with remaining allowed Planner depth
         if (task.status == TaskStatus.NEEDING_DECOMPOSITION) and (planner := planner or self.planner).max_depth:
             sub_planner: APlanner = planner.one_fewer_level_deep()
 
             sub_results: list[AskAnsPair] = []
             for sub_plan in tqdm((plan_1_level_deep := (planner.one_level_deep()
-                                                        .plan(problem=problem, resources=self.resources))).sub_plans):
+                                                        .plan(problem=problem, knowledge = self.knowledge, resources=self.resources))).sub_plans):
                 sub_task: ATask = sub_plan.task
                 sub_task.result: str = self.solve_dynamically(problem=sub_task.ask,
                                                               planner=sub_planner,
@@ -137,7 +139,7 @@ class Agent:
                 sub_task.status: TaskStatus = TaskStatus.DONE
                 sub_results.append((sub_task.ask, sub_task.result))
 
-            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, other_results=other_results)
+            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, knowledge=self.knowledge, other_results=other_results)
             task.status: TaskStatus = TaskStatus.DONE
 
         return task.result

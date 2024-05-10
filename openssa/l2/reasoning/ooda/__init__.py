@@ -10,6 +10,7 @@ from openssa.l2.task.status import TaskStatus
 
 from ._prompts import ORIENT_PROMPT_TEMPLATE
 
+from openssa.l2.util.lm.abstract import AbstractLM, LMChatMsg, LMChatHist
 
 type Observation = str
 
@@ -45,7 +46,7 @@ class OodaReasoner(AbstractReasoner):
         """Observe results from available Informational Resources."""
         return {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}
 
-    def orient(self, task: ATask, observations: set[Observation], n_words: int = 1000) -> OrientResult:
+    def orient(self, task: ATask, observations: set[Observation], n_words: int = 1000, knowledge: set[str] = None) -> OrientResult:
         """Orient whether observed results are adequate for directly resolving Task."""
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
 
@@ -56,7 +57,10 @@ class OodaReasoner(AbstractReasoner):
 
         orient_result_dict: OrientResult = {}
         while not is_valid(orient_result_dict):
-            orient_result_dict: OrientResult = self.lm.get_response(prompt, json_format=True)
+            messages: LMChatHist = []
+            if knowledge is not None:
+                messages.append({"role": "system", "content": "\n".join(s for s in knowledge)})
+            orient_result_dict: OrientResult = self.lm.get_response(prompt, history=messages, json_format=True)
 
         return orient_result_dict
 
