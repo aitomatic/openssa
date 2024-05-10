@@ -5,8 +5,8 @@ from functools import cache
 from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import (DocName, FbId, Answer, Doc,
-                                FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, EXPERT_PLAN_MAP, EXPERT_PLAN_TEMPLATES)
+from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
+                                EXPERT_PLAN_MAP, EXPERT_PLAN_TEMPLATES, EXPERT_PLAN_COMPANY_KEY, EXPERT_PLAN_PERIOD_KEY)
 from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
@@ -44,6 +44,8 @@ def solve_expert_htp_statically(fb_id: FbId) -> Answer:
         if expert_htp_id := EXPERT_PLAN_MAP.get(fb_id):
             htp: HTP = HTP.from_dict(EXPERT_PLAN_TEMPLATES[expert_htp_id])
             htp.task.ask: str = problem
+            htp.concretize_tasks_from_template(**{EXPERT_PLAN_COMPANY_KEY: (doc := Doc(name=DOC_NAMES_BY_FB_ID[fb_id])).company,  # noqa: E501
+                                                  EXPERT_PLAN_PERIOD_KEY: doc.period})
             return agent.solve(problem=problem, plan=htp, dynamic=False)
 
         return agent.solve(problem=problem, plan=None, dynamic=True)

@@ -134,6 +134,9 @@ with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
           opener=None) as f:
     EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
+EXPERT_PLAN_COMPANY_KEY: str = 'COMPANY'
+EXPERT_PLAN_PERIOD_KEY: str = 'PERIOD'
+
 
 @dataclass
 class Doc:
