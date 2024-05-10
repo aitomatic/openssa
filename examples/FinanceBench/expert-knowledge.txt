@@ -51,12 +51,12 @@ Turnover Ratio Metric Formulas
 ------------------------------
 
 `(Total) Asset Turnover Ratio` = (
-  `(Net) Revenue` /
+  `(Net) Revenue, a.k.a. (Net) Sales` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
 )
 
 `Fixed Asset Turnover Ratio` = (
-  `(Net) Revenue` /
+  `(Net) Revenue, a.k.a. (Net) Sales` /
   `average (Net) Property, Plant & Equipment, a.k.a. (Net) PP&E, typically between two consecutive fiscal year-ends`
 )
 
@@ -78,19 +78,28 @@ Adjusted Income Metric Formulas
 Profitability Margin Metric Formulas
 ------------------------------------
 
-`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `(Net) Revenue`
+`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `(Net) Revenue, a.k.a. (Net) Sales`
 
-`Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `(Net) Revenue`
+`Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `(Net) Revenue, a.k.a. (Net) Sales`
 
-`(Unadjusted) Operating (Income or Profit) Margin` = `(Unadjusted) Operating Income, a.k.a. Operating Profit` / `(Net) Revenue`
+`(Unadjusted) Operating (Income or Profit) Margin` = (
+  `(Unadjusted) Operating Income, a.k.a. Operating Profit` /
+  `(Net) Revenue, a.k.a. (Net) Sales`
+)
 
-`(Unadjusted) EBITDA Margin` = `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `(Net) Revenue`
+`(Unadjusted) EBITDA Margin` = (
+  `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` /
+  `(Net) Revenue, a.k.a. (Net) Sales`
+)
 
-`Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `(Net) Revenue`
+`Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `(Net) Revenue, a.k.a. (Net) Sales`
 
-`EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `(Net) Revenue`
+`EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `(Net) Revenue, a.k.a. (Net) Sales`
 
-`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` / `(Net) Revenue`
+`Net (Income or Profit) Margin` = (
+  `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
+  `(Net) Revenue, a.k.a. (Net) Sales`
+)
 
 
 Profit-Utilization / Capital-Return Metric Formulas
@@ -108,7 +117,7 @@ Profit-Utilization / Capital-Return Metric Formulas
 Capital-Intensiveness / Return-on-Capital Metric Formulas
 ---------------------------------------------------------
 
-`Capital Intensity Ratio` = `Total Assets` / `(Net) Revenue`
+`Capital Intensity Ratio` = `Total Assets` / `(Net) Revenue, a.k.a. (Net) Sales`
 
 `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
   `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
@@ -152,7 +161,7 @@ Liquidity Metric Formulas
 
 `Days Sales Oustanding, a.k.a. DSO` = (
   365 * `average Accounts Receivable, typically between two consecutive fiscal year-ends`
-  / `(Net) Revenue`
+  / `(Net) Revenue, a.k.a. (Net) Sales`
 )
 
 `Cash Conversion Cycle, a.k.a. CCC` = (
