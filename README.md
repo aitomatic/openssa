@@ -63,17 +63,6 @@ TODO: add examples of task broken down into OODA steps
 
 OpenSSA significantly boosts the accuracy of Retrieval-Augmented Generation (RAG) systems. It fine-tunes the embedding or completion model with domain-specific knowledge. It also adds the ability to reason about queries and underlying documents. This powerful combination lifts RAG performance by significant margins, overcoming the limitations of generic language models.
 
-#### Enhance Conversational AI for Improved Customer Support
-
-Build AI assistants that provide accurate, context-aware responses in customer support, healthcare, and other domains. OpenSSA's domain-specific fine-tuning capabilities enable you to create AI agents that understand and respond to user queries with unprecedented accuracy and relevance. This leads to improved customer satisfaction, reduced response times, and increased efficiency in handling customer inquiries.
-
-#### Enable Efficient Planning and Reasoning for Problem Solving
-
-OpenSSA enables you to create AI agents that can effectively plan and reason within specific domains to solve complex problems. By leveraging domain-specific knowledge and fine-tuned models, SSAs break down multi-step problems into manageable tasks. They efficiently and precisely solve these tasks, leading to accurate and timely solutions to real-world challenges.
-
-#### Optimize Industrial Field Service Operations
-
-Create AI agents that can guide field service technicians through complex maintenance and repair procedures. By leveraging domain-specific knowledge and reasoning capabilities, SSAs can provide step-by-step instructions, troubleshoot issues, and optimize resource allocation. This results in reduced downtime, increased first-time fix rates, and improved overall efficiency in industrial field service operations.
 
 ### Getting Started
 
