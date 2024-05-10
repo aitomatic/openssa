@@ -1,0 +1,1444 @@
+,FbId,question,doc,plan_1_3,plan_1_4,plan_1_5,plan_1_6
+FbId,,,,,,,
+FbId,financebench_id_00807,"Does 3M have a reasonably healthy liquidity profile based on its quick ratio for Q2 of FY2023? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",3M_2023Q2_10Q,"['ST1) What is the quick ratio for 3M for the Quarterly Period Ended June 30, '
+ '2023?',
+ 'ST2) What are the industry standards for a healthy quick ratio?',
+ 'ST3) Are there any industry-specific factors or current economic conditions '
+ 'that might affect the relevance of the quick ratio for 3M?']","['ST1) Identify the quick ratio for 3M for the Quarterly Period Ended June 30, '
+ '2023.',
+ ""ST2) Compare 3M's quick ratio to industry benchmarks to determine if it is ""
+ 'within a healthy range.',
+ 'ST3) Analyze the components of the quick ratio to understand the liquidity '
+ ""of 3M's current assets."",
+ 'ST4) Evaluate if there are any industry-specific or company-specific factors '
+ 'that might make the quick ratio an irrelevant measure for 3M.']","['ST1) Identify the quick ratio for 3M for Q2 of FY2023 from the financial '
+ 'statements.',
+ ""ST2) Compare 3M's quick ratio for Q2 of FY2023 to industry benchmarks to ""
+ 'assess liquidity health.',
+ ""ST3) Analyze the trend of 3M's quick ratio over the past two years to ""
+ 'understand liquidity over time.',
+ ""ST4) Evaluate the impact of current liabilities on 3M's liquidity for Q2 of ""
+ 'FY2023.',
+ 'ST5) Determine if there are any significant non-cash or illiquid assets '
+ ""included in 3M's current assets that would affect the quick ratio's ""
+ 'relevance.']","['ST1) Identify the quick ratio for 3M for the Quarterly Period Ended June 30, '
+ '2023.',
+ ""ST2) Compare 3M's quick ratio to industry benchmarks for Q2 of FY2023."",
+ ""ST3) Analyze the trend of 3M's quick ratio over the past two years."",
+ 'ST4) Evaluate the components of the quick ratio for 3M and their quality.',
+ ""ST5) Assess the impact of any recent acquisitions or divestitures on 3M's ""
+ 'liquidity.',
+ 'ST6) Determine if there are any industry-specific factors that make the '
+ ""quick ratio less relevant for assessing 3M's liquidity.""]"
+FbId,financebench_id_02987,What is the FY2019 fixed asset turnover ratio for Activision Blizzard? Fixed asset turnover ratio is defined as: FY2019 revenue / (average PP&E between FY2018 and FY2019). Round your answer to two decimal places. Base your judgments on the information provided primarily in the statement of income and the statement of financial position.,ACTIVISIONBLIZZARD_2019_10K,"['ST1) What is the FY2019 revenue for Activision Blizzard?',
+ 'ST2) What is the FY2018 Property, Plant, and Equipment (PP&E) value for '
+ 'Activision Blizzard?',
+ 'ST3) What is the FY2019 Property, Plant, and Equipment (PP&E) value for '
+ 'Activision Blizzard?']","['ST1) What is the FY2019 revenue for Activision Blizzard?',
+ 'ST2) What is the FY2018 Property, Plant, and Equipment (PP&E) value for '
+ 'Activision Blizzard?',
+ 'ST3) What is the FY2019 Property, Plant, and Equipment (PP&E) value for '
+ 'Activision Blizzard?',
+ 'ST4) Calculate the average PP&E between FY2018 and FY2019 for Activision '
+ 'Blizzard.']","['ST1) Identify the FY2019 revenue for Activision Blizzard.',
+ 'ST2) Determine the property, plant, and equipment (PP&E) value for FY2018.',
+ 'ST3) Determine the property, plant, and equipment (PP&E) value for FY2019.',
+ 'ST4) Calculate the average PP&E between FY2018 and FY2019.',
+ 'ST5) Compute the fixed asset turnover ratio for FY2019 by dividing the '
+ 'revenue by the average PP&E and round to two decimal places.']","['ST1) Identify the FY2019 revenue for Activision Blizzard.',
+ 'ST2) Determine the property, plant, and equipment (PP&E) value for FY2018.',
+ 'ST3) Determine the property, plant, and equipment (PP&E) value for FY2019.',
+ 'ST4) Calculate the average PP&E between FY2018 and FY2019.',
+ 'ST5) Compute the fixed asset turnover ratio using the formula: FY2019 '
+ 'revenue / average PP&E.',
+ 'ST6) Round the fixed asset turnover ratio to two decimal places.']"
+FbId,financebench_id_07966,What is the FY2017 - FY2019 3 year average of capex as a % of revenue for Activision Blizzard? Answer in units of percents and round to one decimal place. Calculate (or extract) the answer from the statement of income and the cash flow statement.,ACTIVISIONBLIZZARD_2019_10K,"['ST1) Identify and compile the capital expenditures (capex) for Activision '
+ 'Blizzard for FY2017, FY2018, and FY2019 from the cash flow statements.',
+ 'ST2) Identify and compile the total revenue for Activision Blizzard for '
+ 'FY2017, FY2018, and FY2019 from the income statements.',
+ 'ST3) Calculate the capex as a percentage of revenue for each year (FY2017, '
+ 'FY2018, FY2019) and then compute the 3-year average, rounding to one decimal '
+ 'place.']","['ST1) Identify the total capital expenditures (capex) for Activision Blizzard '
+ 'for FY2017.',
+ 'ST2) Identify the total capital expenditures (capex) for Activision Blizzard '
+ 'for FY2018.',
+ 'ST3) Identify the total capital expenditures (capex) for Activision Blizzard '
+ 'for FY2019.',
+ 'ST4) Identify the total revenue for Activision Blizzard for FY2017, FY2018, '
+ 'and FY2019.']","['ST1) Identify and collect the statement of income for Activision Blizzard '
+ 'for FY2017, FY2018, and FY2019.',
+ 'ST2) Identify and collect the cash flow statements for Activision Blizzard '
+ 'for FY2017, FY2018, and FY2019.',
+ 'ST3) Extract the total revenue figures from the statement of income for each '
+ 'year.',
+ 'ST4) Extract the capital expenditures (capex) figures from the cash flow '
+ 'statements for each year.',
+ 'ST5) Calculate the capex as a percentage of revenue for each year, then '
+ 'compute the 3-year average, rounding to one decimal place.']","['ST1) Identify the total capital expenditures (capex) for Activision Blizzard '
+ 'for FY2017.',
+ 'ST2) Identify the total capital expenditures (capex) for Activision Blizzard '
+ 'for FY2018.',
+ 'ST3) Identify the total capital expenditures (capex) for Activision Blizzard '
+ 'for FY2019.',
+ 'ST4) Identify the total revenue for Activision Blizzard for FY2017.',
+ 'ST5) Identify the total revenue for Activision Blizzard for FY2018.',
+ 'ST6) Identify the total revenue for Activision Blizzard for FY2019.']"
+FbId,financebench_id_04735,You are an investment banker and your only resource(s) to answer the following question is (are): the statement of financial position and the cash flow statement. Here's the question: what is the FY2015 operating cash flow ratio for Adobe? Operating cash flow ratio is defined as: cash from operations / total current liabilities. Round your answer to two decimal places.,ADOBE_2015_10K,"['ST1) Identify the cash from operations for Adobe in FY2015.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2015.',
+ 'ST3) Calculate the operating cash flow ratio by dividing the cash from '
+ 'operations by the total current liabilities and round the result to two '
+ 'decimal places.']","['ST1) Identify the cash from operations for Adobe in FY2015.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2015.',
+ 'ST3) Calculate the operating cash flow ratio using the formula: cash from '
+ 'operations / total current liabilities.',
+ 'ST4) Round the operating cash flow ratio to two decimal places.']","['ST1) Identify the cash from operations for Adobe in FY2015.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2015.',
+ 'ST3) Calculate the operating cash flow ratio using the formula: cash from '
+ 'operations / total current liabilities.',
+ 'ST4) Round the operating cash flow ratio to two decimal places.',
+ 'ST5) Review the calculated operating cash flow ratio for accuracy and '
+ 'relevance to the fiscal year 2015.']","['ST1) Identify the cash from operations for Adobe in FY2015.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2015.',
+ 'ST3) Calculate the operating cash flow ratio using the formula: cash from '
+ 'operations / total current liabilities.',
+ 'ST4) Round the operating cash flow ratio to two decimal places.']"
+FbId,financebench_id_03856,What is the FY2017 operating cash flow ratio for Adobe? Operating cash flow ratio is defined as: cash from operations / total current liabilities. Round your answer to two decimal places. Please utilize information provided primarily within the balance sheet and the cash flow statement.,ADOBE_2017_10K,"['ST1) Identify the cash from operations for Adobe in FY2017.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2017.',
+ 'ST3) Calculate the operating cash flow ratio by dividing the cash from '
+ 'operations by the total current liabilities for FY2017, and round the result '
+ 'to two decimal places.']","['ST1) Identify the cash from operations for Adobe in FY2017.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2017.',
+ 'ST3) Calculate the operating cash flow ratio using the identified figures.',
+ 'ST4) Round the operating cash flow ratio to two decimal places.']","['ST1) Identify the cash from operations for Adobe in FY2017.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2017.',
+ 'ST3) Calculate the operating cash flow ratio using the identified figures.',
+ 'ST4) Round the calculated operating cash flow ratio to two decimal places.',
+ 'ST5) Verify the accuracy of the extracted financial figures against the '
+ 'original financial statements.']","['ST1) Identify the cash from operations for Adobe in FY2017.',
+ 'ST2) Identify the total current liabilities for Adobe in FY2017.',
+ 'ST3) Calculate the operating cash flow ratio using the identified cash from '
+ 'operations and total current liabilities.',
+ 'ST4) Round the calculated operating cash flow ratio to two decimal places.',
+ 'ST5) Verify the accuracy of the extracted financial figures from the balance '
+ 'sheet and cash flow statement.',
+ 'ST6) Review the definitions and calculations for operating cash flow ratio '
+ 'to ensure proper understanding and application.']"
+FbId,financebench_id_00438,"Does Adobe have an improving operating margin profile as of FY2022? If operating margin is not a useful metric for a company like this, then state that and explain why.",ADOBE_2022_10K,"[""ST1) What is Adobe's operating margin for FY2022?"",
+ ""ST2) How does Adobe's operating margin for FY2022 compare to previous fiscal ""
+ 'years?',
+ 'ST3) Is the operating margin a relevant and useful metric for evaluating '
+ ""Adobe's financial performance?""]","[""ST1) What is Adobe's operating margin for FY2022?"",
+ ""ST2) How does Adobe's operating margin for FY2022 compare to previous fiscal ""
+ 'years?',
+ ""ST3) What factors have influenced Adobe's operating margin in FY2022?"",
+ ""ST4) Is operating margin a useful metric for evaluating Adobe's financial ""
+ 'performance, and why or why not?']","[""ST1) What is Adobe's operating margin for FY2022?"",
+ ""ST2) What was Adobe's operating margin for the previous fiscal years?"",
+ ""ST3) What factors have influenced Adobe's operating margin in FY2022?"",
+ ""ST4) How does Adobe's operating margin compare to industry standards or ""
+ 'competitors?',
+ ""ST5) Is operating margin a useful metric for evaluating Adobe's financial ""
+ 'health, and why or why not?']","[""ST1) What is Adobe's operating margin for FY2022?"",
+ ""ST2) What was Adobe's operating margin for the previous fiscal years?"",
+ ""ST3) What factors have influenced Adobe's operating margin in FY2022?"",
+ ""ST4) How does Adobe's operating margin compare to industry standards and ""
+ 'competitors?',
+ 'ST5) Are there any industry-specific factors that make operating margin a '
+ 'less useful metric for Adobe?',
+ ""ST6) What alternative metrics could be used to assess Adobe's financial ""
+ 'performance if operating margin is not suitable?']"
+FbId,financebench_id_00591,Does Adobe have an improving Free cashflow conversion as of FY2022?,ADOBE_2022_10K,"[""ST1) What is Adobe's Free Cash Flow (FCF) for FY2022?"",
+ ""ST2) What was Adobe's Free Cash Flow (FCF) for the previous fiscal years?"",
+ ""ST3) What factors have influenced Adobe's Free Cash Flow (FCF) in FY2022?""]","[""ST1) What is Adobe's Free Cash Flow for FY2022?"",
+ ""ST2) What was Adobe's Free Cash Flow for the previous fiscal year (FY2021)?"",
+ ""ST3) What are the factors affecting Adobe's Free Cash Flow in FY2022?"",
+ ""ST4) How does Adobe's Free Cash Flow in FY2022 compare to industry ""
+ 'benchmarks?']","[""ST1) What is Adobe's Free Cash Flow (FCF) for FY2022?"",
+ ""ST2) What was Adobe's Free Cash Flow (FCF) for the previous fiscal years?"",
+ ""ST3) What is the trend in Adobe's Free Cash Flow (FCF) over the last five ""
+ 'years?',
+ ""ST4) How does Adobe's Free Cash Flow (FCF) for FY2022 compare to its net ""
+ 'income?',
+ 'ST5) Are there any disclosed factors or events in FY2022 that could have '
+ ""affected Adobe's Free Cash Flow?""]","[""ST1) Identify Adobe's Free Cash Flow (FCF) figures for FY2022"",
+ ""ST2) Identify Adobe's Free Cash Flow (FCF) figures for previous fiscal years"",
+ 'ST3) Calculate the Free Cash Flow conversion rate for FY2022',
+ 'ST4) Calculate the Free Cash Flow conversion rates for previous fiscal years',
+ 'ST5) Compare the Free Cash Flow conversion rates over the years to determine '
+ 'if there is an improvement',
+ 'ST6) Analyze factors that could influence the Free Cash Flow conversion '
+ 'rate, such as changes in revenue, costs, or capital expenditures']"
+FbId,financebench_id_00540,Roughly how many times has AES Corporation sold its inventory in FY2022? Calculate inventory turnover ratio for the FY2022; if conventional inventory management is not meaningful for the company then state that and explain why.,AES_2022_10K,"['ST1) Find the cost of goods sold (COGS) for AES Corporation in FY2022.',
+ 'ST2) Find the beginning and ending inventory values for AES Corporation in '
+ 'FY2022.',
+ 'ST3) Determine if the inventory management approach used by AES Corporation '
+ 'makes the calculation of inventory turnover ratio meaningful.']","['ST1) Find the cost of goods sold (COGS) for AES Corporation in FY2022.',
+ 'ST2) Find the beginning and ending inventory values for AES Corporation in '
+ 'FY2022.',
+ 'ST3) Calculate the average inventory for AES Corporation in FY2022.',
+ 'ST4) Determine if conventional inventory management applies to AES '
+ 'Corporation and explain why it may or may not be meaningful.']","['ST1) Identify the cost of goods sold (COGS) for AES Corporation in FY2022.',
+ 'ST2) Identify the beginning inventory value for AES Corporation in FY2022.',
+ 'ST3) Identify the ending inventory value for AES Corporation in FY2022.',
+ 'ST4) Calculate the average inventory for AES Corporation in FY2022.',
+ 'ST5) Determine if conventional inventory management applies to AES '
+ 'Corporation and explain why it may or may not be meaningful.']","['ST1) Identify the cost of goods sold (COGS) for AES Corporation in FY2022.',
+ 'ST2) Identify the beginning inventory value for AES Corporation at the start '
+ 'of FY2022.',
+ 'ST3) Identify the ending inventory value for AES Corporation at the end of '
+ 'FY2022.',
+ 'ST4) Calculate the average inventory for AES Corporation for FY2022.',
+ 'ST5) Calculate the inventory turnover ratio for AES Corporation for FY2022 '
+ 'using the COGS and average inventory values.',
+ 'ST6) Determine if the inventory turnover ratio is a meaningful metric for '
+ 'AES Corporation and explain why it may or may not be.']"
+FbId,financebench_id_10420,"Based on the information provided primarily in the statement of financial position and the statement of income, what is AES's FY2022 return on assets (ROA)? ROA is defined as: FY2022 net income / (average total assets between FY2021 and FY2022). Round your answer to two decimal places.",AES_2022_10K,"['ST1) What is the FY2022 net income for AES?',
+ 'ST2) What are the total assets for AES at the end of FY2021?',
+ 'ST3) What are the total assets for AES at the end of FY2022?']","[""ST1) Identify AES's FY2022 net income from the statement of income."",
+ ""ST2) Determine AES's total assets at the end of FY2021 from the statement of ""
+ 'financial position.',
+ ""ST3) Determine AES's total assets at the end of FY2022 from the statement of ""
+ 'financial position.',
+ 'ST4) Calculate the average total assets between FY2021 and FY2022.']","[""ST1) Identify AES's FY2022 net income from the statement of income."",
+ ""ST2) Determine AES's total assets at the end of FY2021 from the statement of ""
+ 'financial position.',
+ ""ST3) Determine AES's total assets at the end of FY2022 from the statement of ""
+ 'financial position.',
+ 'ST4) Calculate the average total assets between FY2021 and FY2022.',
+ ""ST5) Compute AES's FY2022 return on assets (ROA) using the formula: FY2022 ""
+ 'net income / average total assets between FY2021 and FY2022.']","[""ST1) Identify AES's FY2022 net income from the statement of income."",
+ ""ST2) Determine AES's total assets at the end of FY2021 from the statement of ""
+ 'financial position.',
+ ""ST3) Determine AES's total assets at the end of FY2022 from the statement of ""
+ 'financial position.',
+ 'ST4) Calculate the average total assets between FY2021 and FY2022.',
+ 'ST5) Compute the ROA using the formula: FY2022 net income / average total '
+ 'assets.',
+ 'ST6) Round the computed ROA to two decimal places.']"
+FbId,financebench_id_06655,What is Amazon's FY2017 days payable outstanding (DPO)? DPO is defined as: 365 * (average accounts payable between FY2016 and FY2017) / (FY2017 COGS + change in inventory between FY2016 and FY2017). Round your answer to two decimal places. Address the question by using the line items and information shown within the balance sheet and the P&L statement.,AMAZON_2017_10K,"['ST1) Calculate the average accounts payable between FY2016 and FY2017.',
+ 'ST2) Determine the FY2017 cost of goods sold (COGS).',
+ 'ST3) Calculate the change in inventory between FY2016 and FY2017.']","['ST1) Calculate the average accounts payable between FY2016 and FY2017.',
+ 'ST2) Determine the FY2017 cost of goods sold (COGS).',
+ 'ST3) Calculate the change in inventory between FY2016 and FY2017.',
+ 'ST4) Compute the DPO using the formula: 365 * (average accounts payable) / '
+ '(FY2017 COGS + change in inventory).']","['ST1) Calculate the average accounts payable between FY2016 and FY2017.',
+ 'ST2) Determine the FY2017 cost of goods sold (COGS).',
+ 'ST3) Calculate the change in inventory between FY2016 and FY2017.',
+ 'ST4) Compute the sum of FY2017 COGS and the change in inventory between '
+ 'FY2016 and FY2017.',
+ 'ST5) Calculate the DPO using the formula: 365 * (average accounts payable) / '
+ '(COGS + change in inventory).']","['ST1) Calculate the average accounts payable between FY2016 and FY2017.',
+ 'ST2) Find the FY2017 cost of goods sold (COGS).',
+ 'ST3) Calculate the change in inventory between FY2016 and FY2017.',
+ 'ST4) Determine the sum of FY2017 COGS and the change in inventory between '
+ 'FY2016 and FY2017.',
+ 'ST5) Calculate 365 times the average accounts payable between FY2016 and '
+ 'FY2017.',
+ 'ST6) Divide the result from the previous step by the sum of FY2017 COGS and '
+ 'the change in inventory between FY2016 and FY2017 to find the DPO, and round '
+ 'to two decimal places.']"
+FbId,financebench_id_00799,"Has AMCOR's quick ratio improved or declined between FY2023 and FY2022? If the quick ratio is not something that a financial analyst would ask about a company like this, then state that and explain why.",AMCOR_2023_10K,"['ST1) Identify the quick ratio for AMCOR for FY2023.',
+ 'ST2) Identify the quick ratio for AMCOR for FY2022.',
+ 'ST3) Determine if the quick ratio is a relevant metric for a company like '
+ 'AMCOR and explain why or why not.']","['ST1) Identify the quick ratio for AMCOR for FY2023',
+ 'ST2) Identify the quick ratio for AMCOR for FY2022',
+ 'ST3) Compare the quick ratios for FY2023 and FY2022 to determine if there '
+ 'has been an improvement or decline',
+ 'ST4) Assess if the quick ratio is a relevant metric for a financial analyst '
+ 'to inquire about for a company like AMCOR']","['ST1) Identify the quick ratio for AMCOR for FY2023',
+ 'ST2) Identify the quick ratio for AMCOR for FY2022',
+ 'ST3) Compare the quick ratios for FY2023 and FY2022 to determine if there '
+ 'has been an improvement or decline',
+ 'ST4) Analyze the factors that could have influenced the change in the quick '
+ 'ratio between FY2023 and FY2022',
+ 'ST5) Determine if the quick ratio is a relevant metric for a company like '
+ 'AMCOR and explain why or why not']","['ST1) Identify the quick ratio for AMCOR for FY2023',
+ 'ST2) Identify the quick ratio for AMCOR for FY2022',
+ 'ST3) Compare the quick ratios for FY2023 and FY2022 to determine if there '
+ 'has been an improvement or decline',
+ ""ST4) Explain the significance of the quick ratio in evaluating a company's ""
+ 'short-term liquidity',
+ 'ST5) Assess if the quick ratio is a relevant metric for a company like AMCOR',
+ 'ST6) If the quick ratio is not relevant, provide alternative metrics '
+ 'suitable for AMCOR and explain why they are more appropriate']"
+FbId,financebench_id_00684,"Does AMCOR have an improving gross margin profile as of FY2023? If gross margin is not a useful metric for a company like this, then state that and explain why.",AMCOR_2023_10K,"['ST1) What is the gross margin for AMCOR in FY2023 and how does it compare to '
+ 'previous fiscal years?',
+ 'ST2) Are there any industry-specific factors that would make gross margin an '
+ 'irrelevant or less useful metric for AMCOR?',
+ 'ST3) What alternative metrics could be more appropriate for assessing '
+ ""AMCOR's financial health if gross margin is not suitable?""]","['ST1) Identify the gross margin figures for AMCOR for the fiscal year 2023.',
+ 'ST2) Compare the gross margin figures of AMCOR for the fiscal year 2023 with '
+ 'those of the previous years.',
+ 'ST3) Analyze the factors that could have influenced the gross margin profile '
+ 'of AMCOR in 2023.',
+ 'ST4) Determine if gross margin is a relevant and useful metric for assessing '
+ ""AMCOR's financial health.""]","['ST1) Identify the gross margin figures for AMCOR for FY2023 and previous '
+ 'fiscal years for comparison.',
+ 'ST2) Analyze the trend in gross margin over the years to determine if there '
+ 'is an improvement.',
+ ""ST3) Assess the impact of raw materials and commercial risks on AMCOR's ""
+ 'gross margin.',
+ 'ST4) Evaluate the relevance of the gross margin metric for AMCOR, '
+ 'considering the nature of its business and industry.',
+ 'ST5) Identify any external factors mentioned in the resource that could have '
+ 'influenced the gross margin, such as interest rates or cyber-attacks.']","['ST1) Identify the gross margin figures for AMCOR for FY2023 and previous '
+ 'fiscal years for comparison.',
+ 'ST2) Analyze the trend in gross margin over the identified fiscal years to '
+ 'determine if there is an improvement.',
+ 'ST3) Examine the factors affecting gross margin, such as changes in raw '
+ 'materials costs, commercial risks, and amortization expenses.',
+ 'ST4) Assess the impact of corporate governance and financial risks on '
+ ""AMCOR's financial performance, including gross margin."",
+ 'ST5) Determine if external factors such as interest rates, cyber-attacks, '
+ ""and IT disruptions have had a significant impact on AMCOR's gross margin."",
+ 'ST6) Evaluate if gross margin is a relevant and useful metric for AMCOR, '
+ 'considering the nature of its business and industry.']"
+FbId,financebench_id_03069,"Answer the following question as if you are an equity research analyst and have lost internet connection so you do not have access to financial metric providers. According to the details clearly outlined within the P&L statement and the statement of cash flows, what is the FY2015 depreciation and amortization (D&A from cash flow statement) % margin for AMD?",AMD_2015_10K,"[""ST1) Identify the depreciation and amortization figures from AMD's FY2015 ""
+ 'cash flow statement.',
+ ""ST2) Determine the total revenue from AMD's FY2015 P&L statement."",
+ 'ST3) Calculate the FY2015 D&A % margin using the depreciation and '
+ 'amortization figures and total revenue.']","['ST1) Identify the total revenue for AMD for the fiscal year ended December '
+ '26, 2015.',
+ 'ST2) Locate the depreciation and amortization expense for AMD for the fiscal '
+ 'year ended December 26, 2015.',
+ 'ST3) Calculate the depreciation and amortization (D&A) percentage of total '
+ 'revenue for AMD for FY2015.',
+ 'ST4) Verify the calculations and ensure the accuracy of the D&A percentage '
+ 'margin for AMD for FY2015.']","['ST1) Identify the total revenue for AMD for the fiscal year ended December '
+ '26, 2015.',
+ 'ST2) Locate the depreciation and amortization figures for AMD for the fiscal '
+ 'year ended December 26, 2015 from the cash flow statement.',
+ 'ST3) Calculate the depreciation and amortization (D&A) percentage of total '
+ 'revenue for AMD for FY2015.',
+ 'ST4) Verify the accuracy of the depreciation and amortization figures by '
+ 'cross-referencing related notes in the financial statements.',
+ 'ST5) Review the accounting policies of AMD to understand the methodology '
+ 'used for calculating depreciation and amortization.']","['ST1) Identify the total revenue for AMD for the fiscal year ended December '
+ '26, 2015.',
+ 'ST2) Locate the depreciation and amortization figures for AMD for the fiscal '
+ 'year ended December 26, 2015 from the cash flow statement.',
+ 'ST3) Calculate the depreciation and amortization (D&A) percentage margin by '
+ 'dividing the D&A amount by the total revenue and multiplying by 100.']"
+FbId,financebench_id_00222,"Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",AMD_2022_10K,"[""ST1) What is AMD's quick ratio for the financial year ended December 31, ""
+ '2022?',
+ 'ST2) What are the industry standards for a healthy quick ratio in the '
+ 'semiconductor sector?',
+ ""ST3) If the quick ratio is not a relevant measure for AMD's liquidity, what ""
+ 'alternative metrics should be considered?']","[""ST1) Identify AMD's current assets excluding inventories for FY22."",
+ ""ST2) Identify AMD's current liabilities for FY22."",
+ ""ST3) Calculate AMD's quick ratio for FY22 using the identified current ""
+ 'assets excluding inventories and current liabilities.',
+ 'ST4) Analyze the calculated quick ratio to determine if it indicates a '
+ 'healthy liquidity profile for AMD.']","['ST1) Identify the quick ratio for AMD for the financial year ended December '
+ '31, 2022.',
+ ""ST2) Compare AMD's quick ratio for FY22 to industry benchmarks to assess ""
+ 'liquidity health.',
+ ""ST3) Analyze the trend of AMD's quick ratio over the past few years to ""
+ 'understand its liquidity trajectory.',
+ 'ST4) Evaluate the components of the quick ratio for AMD to identify any '
+ 'significant contributors or detractors to liquidity.',
+ 'ST5) Determine if there are any industry-specific factors that may make the '
+ 'quick ratio a less relevant liquidity measure for AMD.']","['ST1) Identify the quick ratio for AMD for the financial year ended December '
+ '31, 2022.',
+ ""ST2) Compare AMD's quick ratio for FY22 to industry benchmarks to assess ""
+ 'liquidity health.',
+ ""ST3) Analyze the trend of AMD's quick ratio over the past few years to ""
+ 'understand liquidity over time.',
+ 'ST4) Evaluate the components of the quick ratio for AMD, including cash, '
+ 'marketable securities, and accounts receivable.',
+ ""ST5) Assess the impact of AMD's current liabilities on its liquidity for ""
+ 'FY22.',
+ 'ST6) Determine if there are any industry-specific factors that may affect '
+ 'the relevance of the quick ratio for AMD.']"
+FbId,financebench_id_04254,"Basing your judgments off of the cash flow statement and the income statement, what is American Water Works's FY2021 unadjusted operating income + depreciation and amortization from the cash flow statement (unadjusted EBITDA) in USD millions?",AMERICANWATERWORKS_2021_10K,"['ST1) Identify the operating income from the income statement for FY2021.',
+ 'ST2) Identify the depreciation and amortization expenses from the cash flow '
+ 'statement for FY2021.',
+ 'ST3) Calculate the unadjusted EBITDA by adding the operating income and '
+ 'depreciation and amortization expenses for FY2021.']","['ST1) Identify the operating income from the income statement for FY2021.',
+ 'ST2) Identify the depreciation and amortization expenses from the cash flow '
+ 'statement for FY2021.',
+ 'ST3) Calculate the sum of operating income and depreciation and amortization '
+ 'expenses to find unadjusted EBITDA.',
+ 'ST4) Convert the unadjusted EBITDA figure to USD millions if it is not '
+ 'already presented in that format.']","['ST1) Identify the operating income from the income statement for FY2021.',
+ 'ST2) Identify the depreciation expense from the cash flow statement for '
+ 'FY2021.',
+ 'ST3) Identify the amortization expense from the cash flow statement for '
+ 'FY2021.',
+ 'ST4) Calculate the sum of operating income, depreciation, and amortization '
+ 'to find unadjusted EBITDA.',
+ 'ST5) Convert the unadjusted EBITDA figure to USD millions if it is not '
+ 'already presented in that format.']","['ST1) Identify the section of the resource that contains the income statement '
+ 'for FY2021.',
+ 'ST2) Extract the operating income figure from the FY2021 income statement.',
+ 'ST3) Identify the section of the resource that contains the cash flow '
+ 'statement for FY2021.',
+ 'ST4) Extract the depreciation and amortization figure from the FY2021 cash '
+ 'flow statement.',
+ 'ST5) Calculate the sum of the operating income and depreciation and '
+ 'amortization figures to determine unadjusted EBITDA.',
+ 'ST6) Convert the unadjusted EBITDA figure into USD millions if it is not '
+ 'already presented in that format.']"
+FbId,financebench_id_00070,"Does American Water Works have positive working capital based on FY2022 data? If working capital is not a useful or relevant metric for this company, then please state that and explain why.",AMERICANWATERWORKS_2022_10K,"['ST1) What are the current assets of American Water Works for the fiscal year '
+ '2022?',
+ 'ST2) What are the current liabilities of American Water Works for the fiscal '
+ 'year 2022?',
+ 'ST3) Is working capital a relevant and useful metric for evaluating the '
+ 'financial health of American Water Works? If not, provide reasons.']","['ST1) Identify the current assets of American Water Works for the fiscal year '
+ '2022.',
+ 'ST2) Identify the current liabilities of American Water Works for the fiscal '
+ 'year 2022.',
+ 'ST3) Calculate the working capital by subtracting current liabilities from '
+ 'current assets.',
+ 'ST4) Analyze if working capital is a relevant and useful metric for American '
+ 'Water Works and provide an explanation.']","['ST1) Identify the current assets of American Water Works for the fiscal year '
+ '2022.',
+ 'ST2) Identify the current liabilities of American Water Works for the fiscal '
+ 'year 2022.',
+ 'ST3) Calculate the working capital by subtracting current liabilities from '
+ 'current assets.',
+ 'ST4) Analyze the relevance of working capital as a metric for American Water '
+ 'Works by considering the nature of its operations and industry.',
+ 'ST5) Review any disclosures by American Water Works regarding the use of '
+ 'working capital or alternative financial metrics.']","['ST1) Identify the total current assets of American Water Works for FY2022.',
+ 'ST2) Identify the total current liabilities of American Water Works for '
+ 'FY2022.',
+ 'ST3) Calculate the working capital by subtracting total current liabilities '
+ 'from total current assets.',
+ 'ST4) Analyze the trend of working capital over the past few years to '
+ 'understand its relevance for American Water Works.',
+ 'ST5) Evaluate the liquidity position of American Water Works to determine if '
+ 'working capital is a useful metric.',
+ ""ST6) Assess the nature of American Water Works' operations to understand the ""
+ 'impact of working capital on its financial health.']"
+FbId,financebench_id_02608,"In agreement with the information outlined in the income statement, what is the FY2015 - FY2017 3 year average net profit margin (as a %) for Best Buy? Answer in units of percents and round to one decimal place.",BESTBUY_2017_10K,"['ST1) Identify the net income figures for Best Buy for the fiscal years 2015, '
+ '2016, and 2017.',
+ 'ST2) Identify the revenue figures for Best Buy for the fiscal years 2015, '
+ '2016, and 2017.',
+ 'ST3) Calculate the net profit margin for each year and then compute the 3 '
+ 'year average.']","['ST1) Identify the net income figures for Best Buy for FY2015, FY2016, and '
+ 'FY2017 from the income statements.',
+ 'ST2) Identify the revenue figures for Best Buy for FY2015, FY2016, and '
+ 'FY2017 from the income statements.',
+ 'ST3) Calculate the net profit margin for each year by dividing the net '
+ 'income by the revenue and multiplying by 100 to get a percentage.',
+ 'ST4) Compute the average net profit margin for the three years by adding the '
+ 'annual net profit margins and dividing by three, then round to one decimal '
+ 'place.']","['ST1) Identify the net income figures for Best Buy for FY2015.',
+ 'ST2) Identify the net income figures for Best Buy for FY2016.',
+ 'ST3) Identify the net income figures for Best Buy for FY2017.',
+ 'ST4) Calculate the total revenue for Best Buy for each fiscal year from '
+ 'FY2015 to FY2017.',
+ 'ST5) Compute the net profit margin for each year and then calculate the 3 '
+ 'year average net profit margin for Best Buy.']","[""ST1) Identify the net income for FY2015 from Best Buy's financial ""
+ 'statements.',
+ ""ST2) Identify the net income for FY2016 from Best Buy's financial ""
+ 'statements.',
+ ""ST3) Identify the net income for FY2017 from Best Buy's financial ""
+ 'statements.',
+ ""ST4) Identify the total revenue for FY2015 from Best Buy's financial ""
+ 'statements.',
+ ""ST5) Identify the total revenue for FY2016 from Best Buy's financial ""
+ 'statements.',
+ ""ST6) Identify the total revenue for FY2017 from Best Buy's financial ""
+ 'statements.']"
+FbId,financebench_id_00685,"Are Best Buy's gross margins historically consistent (not fluctuating more than roughly 2% each year)? If gross margins are not a relevant metric for a company like this, then please state that and explain why.",BESTBUY_2023_10K,"['ST1) Identify the historical gross margin data for Best Buy over the past '
+ 'years.',
+ ""ST2) Analyze the year-over-year percentage change in Best Buy's gross ""
+ 'margins to check for fluctuations greater than 2%.',
+ 'ST3) Determine the relevance of gross margin as a metric for a retail '
+ 'company like Best Buy.']","['ST1) Identify the historical gross margin data for Best Buy for the past '
+ 'fiscal years.',
+ 'ST2) Calculate the year-over-year percentage change in gross margins for '
+ 'Best Buy.',
+ 'ST3) Determine if the year-over-year percentage changes in gross margins are '
+ 'within a 2% threshold.',
+ 'ST4) Explain the relevance of gross margin as a metric for a retail company '
+ 'like Best Buy.']","['ST1) Identify the historical gross margin data for Best Buy for the past '
+ 'fiscal years.',
+ 'ST2) Calculate the year-over-year percentage change in gross margins for '
+ 'Best Buy.',
+ 'ST3) Determine if any fluctuations in gross margins are within the 2% '
+ 'threshold.',
+ 'ST4) Analyze the factors that could contribute to any significant changes in '
+ 'gross margins.',
+ 'ST5) Assess whether gross margins are a relevant metric for Best Buy and '
+ 'provide reasoning.']","['ST1) Identify the historical gross margin data for Best Buy for the past '
+ 'fiscal years.',
+ 'ST2) Calculate the year-over-year percentage change in gross margins for '
+ 'Best Buy.',
+ 'ST3) Determine if the percentage change in gross margins exceeds the 2% '
+ 'threshold in any year.',
+ 'ST4) Analyze the factors that could contribute to any significant '
+ 'fluctuations in gross margins.',
+ 'ST5) Assess the relevance of gross margin as a key performance indicator for '
+ 'a retail company like Best Buy.',
+ 'ST6) If gross margin is not a relevant metric, identify alternative metrics '
+ ""that are more suitable for evaluating Best Buy's financial performance.""]"
+FbId,financebench_id_04660,"Considering the data in the balance sheet, what is Block's (formerly known as Square) FY2016 working capital ratio? Define working capital ratio as total current assets divided by total current liabilities. Round your answer to two decimal places.",BLOCK_2016_10K,"[""ST1) Identify the total current assets from Block's FY2016 balance sheet."",
+ ""ST2) Identify the total current liabilities from Block's FY2016 balance ""
+ 'sheet.',
+ 'ST3) Calculate the working capital ratio using the total current assets and '
+ 'total current liabilities.']","[""ST1) Identify the total current assets from Block's FY2016 balance sheet."",
+ ""ST2) Identify the total current liabilities from Block's FY2016 balance ""
+ 'sheet.',
+ 'ST3) Calculate the working capital ratio using the formula: total current '
+ 'assets divided by total current liabilities.',
+ 'ST4) Round the calculated working capital ratio to two decimal places.']","[""ST1) Identify the total current assets from Block's FY2016 balance sheet."",
+ ""ST2) Identify the total current liabilities from Block's FY2016 balance ""
+ 'sheet.',
+ 'ST3) Calculate the working capital ratio using the formula: total current '
+ 'assets divided by total current liabilities.',
+ 'ST4) Round the calculated working capital ratio to two decimal places.',
+ 'ST5) Verify the accuracy of the extracted data for current assets and '
+ 'liabilities to ensure the correct calculation of the working capital ratio.']","['ST1) Identify the section of the resource that contains the balance sheet '
+ 'for FY2016.',
+ 'ST2) Extract the total current assets value from the FY2016 balance sheet.',
+ 'ST3) Extract the total current liabilities value from the FY2016 balance '
+ 'sheet.',
+ 'ST4) Calculate the working capital ratio using the formula: total current '
+ 'assets / total current liabilities.',
+ 'ST5) Round the calculated working capital ratio to two decimal places.',
+ 'ST6) Document the working capital ratio for reporting.']"
+FbId,financebench_id_00517,Are there any product categories / service categories that represent more than 20% of Boeing's revenue for FY2022?,BOEING_2022_10K,"[""ST1) Identify Boeing's total revenue for FY2022"",
+ ""ST2) List all of Boeing's product and service categories for FY2022"",
+ 'ST3) Calculate the percentage of total revenue each product/service category '
+ 'represents for FY2022']","[""ST1) Identify Boeing's total revenue for FY2022"",
+ ""ST2) List all of Boeing's product and service categories for FY2022"",
+ 'ST3) Calculate the revenue percentage for each product and service category',
+ ""ST4) Determine which, if any, categories represent more than 20% of Boeing's ""
+ 'total revenue']","[""ST1) Identify Boeing's total revenue for FY2022"",
+ ""ST2) List all Boeing's product and service categories for FY2022"",
+ 'ST3) Calculate the revenue for each product and service category for FY2022',
+ 'ST4) Determine the percentage of total revenue each product and service '
+ 'category represents for FY2022',
+ 'ST5) Identify any product or service categories that represent more than 20% '
+ ""of Boeing's total revenue for FY2022""]","[""ST1) Identify Boeing's total revenue for FY2022"",
+ ""ST2) List all of Boeing's product and service categories for FY2022"",
+ 'ST3) Calculate the revenue for each product and service category for FY2022',
+ 'ST4) Determine the percentage of total revenue each product and service '
+ 'category represents for FY2022',
+ 'ST5) Identify any product or service category that represents more than 20% '
+ ""of Boeing's total revenue for FY2022"",
+ 'ST6) Verify the accuracy of the financial data used to determine the revenue '
+ 'percentages']"
+FbId,financebench_id_00678,"Does Boeing have an improving gross margin profile as of FY2022? If gross margin is not a useful metric for a company like this, then state that and explain why.",BOEING_2022_10K,"[""ST1) Identify Boeing's gross margin figures for FY2022 and compare them to ""
+ 'previous years to determine if there is an improvement.',
+ ""ST2) Analyze the factors that could influence Boeing's gross margin, such as ""
+ 'changes in cost of goods sold, production efficiency, or sales mix.',
+ 'ST3) Determine if gross margin is a relevant metric for Boeing and discuss '
+ ""alternative metrics that may be more appropriate for assessing the company's ""
+ 'financial health.']","[""ST1) Identify Boeing's gross margin figures for FY2022"",
+ ""ST2) Compare Boeing's FY2022 gross margin figures to previous years"",
+ ""ST3) Analyze factors that could influence Boeing's gross margin, such as ""
+ 'cost of sales or revenue recognition practices',
+ 'ST4) Determine if gross margin is a useful metric for Boeing and provide '
+ 'reasoning']","[""ST1) Identify Boeing's gross margin figures for FY2022"",
+ ""ST2) Compare Boeing's FY2022 gross margin figures with those of previous ""
+ 'years to assess improvement',
+ ""ST3) Analyze the factors that influenced Boeing's gross margin in FY2022"",
+ 'ST4) Determine the relevance of gross margin as a performance metric for '
+ 'Boeing',
+ 'ST5) If gross margin is not a useful metric, identify alternative metrics to '
+ ""assess Boeing's financial health""]","[""ST1) Identify Boeing's gross margin figures for FY2022"",
+ ""ST2) Compare Boeing's FY2022 gross margin figures with those of the previous ""
+ 'years',
+ ""ST3) Analyze trends in Boeing's revenue and cost of goods sold (COGS) over ""
+ 'recent years',
+ ""ST4) Evaluate the impact of Boeing's investment strategies on gross margin"",
+ 'ST5) Assess the relevance of gross margin as a performance metric for Boeing',
+ ""ST6) Determine if there are any industry-specific factors affecting Boeing's ""
+ 'gross margin']"
+FbId,financebench_id_00585,How does Boeing's effective tax rate in FY2022 compare to FY2021?,BOEING_2022_10K,"[""ST1) Identify Boeing's effective tax rate for FY2022"",
+ ""ST2) Identify Boeing's effective tax rate for FY2021"",
+ 'ST3) Compare the effective tax rates for FY2022 and FY2021']","[""ST1) Identify Boeing's effective tax rate for FY2022"",
+ ""ST2) Identify Boeing's effective tax rate for FY2021"",
+ 'ST3) Compare the effective tax rates for the two fiscal years',
+ 'ST4) Analyze factors contributing to any changes in the effective tax rate']","[""ST1) Identify Boeing's effective tax rate for FY2022"",
+ ""ST2) Identify Boeing's effective tax rate for FY2021"",
+ 'ST3) Compare the effective tax rates for FY2022 and FY2021',
+ 'ST4) Analyze factors contributing to any changes in the effective tax rate '
+ 'between FY2021 and FY2022',
+ 'ST5) Review the financial statements notes for any tax-related disclosures '
+ 'that explain the effective tax rate changes']","[""ST1) Identify Boeing's effective tax rate for FY2022"",
+ ""ST2) Identify Boeing's effective tax rate for FY2021"",
+ 'ST3) Compare the effective tax rates for FY2022 and FY2021',
+ 'ST4) Analyze factors contributing to any changes in the effective tax rate '
+ 'between FY2021 and FY2022',
+ ""ST5) Determine the impact of Boeing's tax strategies on the effective tax ""
+ 'rate for FY2022',
+ 'ST6) Review any statements from Boeing regarding tax planning or changes in '
+ 'tax legislation']"
+FbId,financebench_id_03473,What is the FY2017 return on assets (ROA) for Coca Cola? ROA is defined as: FY2017 net income / (average total assets between FY2016 and FY2017). Round your answer to two decimal places. Give a response to the question by relying on the details shown in the balance sheet and the P&L statement.,COCACOLA_2017_10K,"['ST1) What is the FY2017 net income for Coca Cola?',
+ 'ST2) What are the total assets for Coca Cola at the end of FY2016?',
+ 'ST3) What are the total assets for Coca Cola at the end of FY2017?']","['ST1) Identify the net income for Coca Cola in FY2017 from the P&L statement.',
+ 'ST2) Determine the total assets for Coca Cola at the end of FY2016 from the '
+ 'balance sheet.',
+ 'ST3) Determine the total assets for Coca Cola at the end of FY2017 from the '
+ 'balance sheet.',
+ 'ST4) Calculate the average total assets between FY2016 and FY2017.',
+ 'ST5) Compute the ROA for Coca Cola in FY2017 by dividing the net income by '
+ 'the average total assets and rounding to two decimal places.']","['ST1) Find the FY2017 net income for Coca Cola.',
+ 'ST2) Find the total assets for Coca Cola at the end of FY2016.',
+ 'ST3) Find the total assets for Coca Cola at the end of FY2017.',
+ 'ST4) Calculate the average total assets between FY2016 and FY2017 for Coca '
+ 'Cola.',
+ 'ST5) Calculate the FY2017 return on assets (ROA) for Coca Cola by dividing '
+ 'the FY2017 net income by the average total assets between FY2016 and FY2017, '
+ 'and round the result to two decimal places.']","[""ST1) Identify the document containing Coca Cola's financial information for ""
+ 'FY2017.',
+ 'ST2) Extract the net income figure for FY2017 from the P&L statement.',
+ 'ST3) Locate the total assets figure for FY2017 from the balance sheet.',
+ 'ST4) Locate the total assets figure for FY2016 from the balance sheet.',
+ 'ST5) Calculate the average total assets between FY2016 and FY2017.',
+ 'ST6) Compute the FY2017 return on assets (ROA) using the net income and '
+ 'average total assets figures.']"
+FbId,financebench_id_09724,What is Coca Cola's FY2021 COGS % margin? Calculate what was asked by utilizing the line items clearly shown in the income statement.,COCACOLA_2021_10K,"['ST1) Identify the line items in the income statement that are relevant to '
+ 'calculating COGS % margin.',
+ 'ST2) Calculate the Cost of Goods Sold (COGS) for FY2021.',
+ 'ST3) Calculate the total revenue for FY2021 and determine the COGS % margin.']","['ST1) Identify the line items in the income statement that are relevant to '
+ 'calculating COGS % margin.',
+ 'ST2) Extract the numerical values for total revenue and cost of goods sold '
+ '(COGS) from the income statement.',
+ 'ST3) Calculate the COGS % margin using the formula: COGS % margin = (COGS / '
+ 'Total Revenue) * 100.',
+ ""ST4) Interpret the calculated COGS % margin in the context of Coca Cola's ""
+ 'financial performance.']","['ST1) Identify the line items in the income statement that are relevant to '
+ 'calculating COGS % margin.',
+ 'ST2) Extract the total revenue figure from the income statement for FY2021.',
+ 'ST3) Extract the cost of goods sold (COGS) figure from the income statement '
+ 'for FY2021.',
+ 'ST4) Calculate the COGS % margin using the formula: (COGS / Total Revenue) * '
+ '100.',
+ ""ST5) Interpret the calculated COGS % margin to understand Coca Cola's cost ""
+ 'efficiency.']","[""ST1) Identify the income statement within the Coca-Cola's 2021 financial ""
+ 'documents.',
+ 'ST2) Extract the total revenue line item from the income statement for '
+ 'FY2021.',
+ 'ST3) Extract the cost of goods sold (COGS) line item from the income '
+ 'statement for FY2021.',
+ 'ST4) Calculate the COGS percentage by dividing COGS by total revenue.',
+ 'ST5) Convert the COGS percentage into a margin percentage by subtracting it '
+ 'from 100%.',
+ 'ST6) Review the calculation for accuracy and compliance with accounting '
+ 'standards.']"
+FbId,financebench_id_06272,What is Coca Cola's FY2022 dividend payout ratio (using total cash dividends paid and net income attributable to shareholders)? Round answer to two decimal places. Answer the question asked by assuming you only have access to information clearly displayed in the cash flow statement and the income statement.,COCACOLA_2022_10K,"['ST1) What is the total cash dividends paid by Coca Cola in FY2022?',
+ 'ST2) What is the net income attributable to shareholders of Coca Cola for '
+ 'FY2022?',
+ 'ST3) How to calculate the dividend payout ratio using total cash dividends '
+ 'paid and net income attributable to shareholders?']","['ST1) Identify the total cash dividends paid by Coca Cola in FY2022.',
+ 'ST2) Determine the net income attributable to shareholders of Coca Cola for '
+ 'FY2022.',
+ 'ST3) Calculate the dividend payout ratio using the total cash dividends paid '
+ 'and the net income attributable to shareholders.',
+ 'ST4) Round the calculated dividend payout ratio to two decimal places.']","['ST1) Identify the total cash dividends paid by Coca Cola in FY2022.',
+ 'ST2) Determine the net income attributable to shareholders of Coca Cola for '
+ 'FY2022.',
+ 'ST3) Calculate the dividend payout ratio using the formula: Dividend Payout '
+ 'Ratio = Total Dividends Paid / Net Income.',
+ 'ST4) Ensure the information is sourced from the cash flow statement and the '
+ 'income statement.',
+ 'ST5) Round the calculated dividend payout ratio to two decimal places.']","['ST1) Identify the total cash dividends paid by Coca Cola in FY2022.',
+ 'ST2) Identify the net income attributable to shareholders of Coca Cola in '
+ 'FY2022.',
+ 'ST3) Calculate the dividend payout ratio using the total cash dividends paid '
+ 'and the net income attributable to shareholders.',
+ 'ST4) Verify the accuracy of the identified financial figures against the '
+ 'cash flow statement.',
+ 'ST5) Verify the accuracy of the identified financial figures against the '
+ 'income statement.',
+ 'ST6) Round the calculated dividend payout ratio to two decimal places.']"
+FbId,financebench_id_10130,"Based on the information provided primarily in the balance sheet and the statement of income, what is FY2020 days payable outstanding (DPO) for Corning? DPO is defined as: 365 * (average accounts payable between FY2019 and FY2020) / (FY2020 COGS + change in inventory between FY2019 and FY2020). Round your answer to two decimal places.",CORNING_2020_10K,"['ST1) Calculate the average accounts payable between FY2019 and FY2020 for '
+ 'Corning.',
+ 'ST2) Determine the FY2020 COGS for Corning.',
+ 'ST3) Calculate the change in inventory between FY2019 and FY2020 for '
+ 'Corning.']","['ST1) Calculate the average accounts payable between FY2019 and FY2020.',
+ 'ST2) Determine the FY2020 cost of goods sold (COGS).',
+ 'ST3) Calculate the change in inventory between FY2019 and FY2020.',
+ 'ST4) Compute FY2020 days payable outstanding (DPO) using the formula: 365 * '
+ '(average accounts payable) / (FY2020 COGS + change in inventory).']","['ST1) Calculate the average accounts payable between FY2019 and FY2020.',
+ 'ST2) Determine the FY2020 cost of goods sold (COGS).',
+ 'ST3) Calculate the change in inventory between FY2019 and FY2020.',
+ 'ST4) Compute the sum of FY2020 COGS and the change in inventory between '
+ 'FY2019 and FY2020.',
+ 'ST5) Calculate FY2020 days payable outstanding (DPO) using the formula: 365 '
+ '* (average accounts payable between FY2019 and FY2020) / (FY2020 COGS + '
+ 'change in inventory between FY2019 and FY2020). Round the answer to two '
+ 'decimal places.']","['ST1) What is the average accounts payable between FY2019 and FY2020 for '
+ 'Corning?',
+ 'ST2) What is the FY2020 cost of goods sold (COGS) for Corning?',
+ 'ST3) What is the change in inventory between FY2019 and FY2020 for Corning?',
+ 'ST4) Calculate the numerator of the DPO formula: 365 * (average accounts '
+ 'payable between FY2019 and FY2020).',
+ 'ST5) Calculate the denominator of the DPO formula: (FY2020 COGS + change in '
+ 'inventory between FY2019 and FY2020).',
+ 'ST6) Compute the FY2020 DPO for Corning by dividing the numerator by the '
+ 'denominator and round the answer to two decimal places.']"
+FbId,financebench_id_02981,"Taking into account the information outlined in the income statement, what is the FY2019 - FY2021 3 year average unadjusted operating income % margin for Corning? Answer in units of percents and round to one decimal place.",CORNING_2021_10K,"['ST1) Identify the operating income figures for Corning for FY2019.',
+ 'ST2) Identify the operating income figures for Corning for FY2020.',
+ 'ST3) Identify the operating income figures for Corning for FY2021.']","['ST1) Identify the income statements for Corning for the financial years '
+ '2019, 2020, and 2021.',
+ 'ST2) Extract the operating income figures from the income statements for the '
+ 'years 2019, 2020, and 2021.',
+ 'ST3) Calculate the total revenue for each year (2019, 2020, and 2021) from '
+ 'the income statements.',
+ 'ST4) Compute the operating income % margin for each year and then calculate '
+ 'the 3 year average, rounding to one decimal place.']","['ST1) Identify the income statement for Corning for the financial year 2019.',
+ 'ST2) Identify the income statement for Corning for the financial year 2020.',
+ 'ST3) Identify the income statement for Corning for the financial year 2021.',
+ 'ST4) Calculate the operating income % margin for Corning for the financial '
+ 'year 2019.',
+ 'ST5) Calculate the operating income % margin for Corning for the financial '
+ 'year 2020.',
+ 'ST6) Calculate the operating income % margin for Corning for the financial '
+ 'year 2021.',
+ 'ST7) Compute the 3 year average unadjusted operating income % margin for '
+ 'Corning for FY2019 - FY2021.']","['ST1) Identify the income statement for Corning for FY2019.',
+ 'ST2) Identify the income statement for Corning for FY2020.',
+ 'ST3) Identify the income statement for Corning for FY2021.',
+ 'ST4) Calculate the operating income for Corning for FY2019.',
+ 'ST5) Calculate the operating income for Corning for FY2020.',
+ 'ST6) Calculate the operating income for Corning for FY2021.']"
+FbId,financebench_id_00005,"Does Corning have positive working capital based on FY2022 data? If working capital is not a useful or relevant metric for this company, then please state that and explain why.",CORNING_2022_10K,"[""ST1) What are Corning's current assets for the fiscal year 2022?"",
+ ""ST2) What are Corning's current liabilities for the fiscal year 2022?"",
+ ""ST3) Is working capital a relevant and useful metric for assessing Corning's ""
+ 'financial health?']","['ST1) Identify the current assets of Corning Incorporated for the fiscal year '
+ '2022.',
+ 'ST2) Identify the current liabilities of Corning Incorporated for the fiscal '
+ 'year 2022.',
+ 'ST3) Calculate the working capital for Corning Incorporated by subtracting '
+ 'current liabilities from current assets.',
+ 'ST4) Analyze if working capital is a relevant and useful metric for '
+ 'assessing the financial health of Corning Incorporated.']","['ST1) Identify the total current assets of Corning Incorporated for the '
+ 'fiscal year 2022.',
+ 'ST2) Identify the total current liabilities of Corning Incorporated for the '
+ 'fiscal year 2022.',
+ 'ST3) Calculate the working capital by subtracting total current liabilities '
+ 'from total current assets.',
+ 'ST4) Analyze if the working capital is positive and what it indicates about '
+ ""Corning's short-term financial health."",
+ 'ST5) Determine if working capital is a relevant metric for Corning and '
+ 'explain why it may or may not be useful.']","['ST1) Identify the total current assets of Corning Incorporated for the '
+ 'fiscal year 2022.',
+ 'ST2) Identify the total current liabilities of Corning Incorporated for the '
+ 'fiscal year 2022.',
+ 'ST3) Calculate the working capital by subtracting total current liabilities '
+ 'from total current assets.',
+ 'ST4) Determine if the calculated working capital is positive.',
+ 'ST5) Analyze the relevance of working capital as a financial metric for '
+ 'Corning Incorporated.',
+ 'ST6) If working capital is not relevant, provide an explanation based on '
+ ""Corning's business model and industry practices.""]"
+FbId,financebench_id_05915,What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset turnover ratio is defined as: FY2018 revenue / (average PP&E between FY2017 and FY2018). Round your answer to two decimal places. Calculate what was asked by utilizing the line items clearly shown in the P&L statement and the balance sheet.,CVSHEALTH_2018_10K,"['ST1) Find the FY2018 revenue for CVS Health.',
+ 'ST2) Find the FY2017 and FY2018 Property, Plant, and Equipment (PP&E) values '
+ 'for CVS Health.',
+ 'ST3) Calculate the average PP&E between FY2017 and FY2018.']","['ST1) Identify the FY2018 revenue for CVS Health from the P&L statement.',
+ 'ST2) Determine the value of property, plant, and equipment (PP&E) for FY2017 '
+ 'from the balance sheet.',
+ 'ST3) Determine the value of property, plant, and equipment (PP&E) for FY2018 '
+ 'from the balance sheet.',
+ 'ST4) Calculate the average PP&E between FY2017 and FY2018.',
+ 'ST5) Compute the fixed asset turnover ratio for FY2018 by dividing the '
+ 'revenue by the average PP&E and round the result to two decimal places.']","['ST1) Identify the FY2018 revenue for CVS Health from the P&L statement.',
+ 'ST2) Locate the FY2017 year-end PP&E (Property, Plant, and Equipment) value '
+ 'from the balance sheet.',
+ 'ST3) Locate the FY2018 year-end PP&E value from the balance sheet.',
+ 'ST4) Calculate the average PP&E between FY2017 and FY2018.',
+ 'ST5) Compute the fixed asset turnover ratio by dividing the FY2018 revenue '
+ 'by the average PP&E between FY2017 and FY2018, and round the result to two '
+ 'decimal places.']","['ST1) Identify the FY2018 revenue for CVS Health from the P&L statement.',
+ 'ST2) Locate the FY2017 year-end PP&E (Property, Plant, and Equipment) value '
+ 'from the balance sheet.',
+ 'ST3) Locate the FY2018 year-end PP&E value from the balance sheet.',
+ 'ST4) Calculate the average PP&E between FY2017 and FY2018.',
+ 'ST5) Compute the fixed asset turnover ratio using the FY2018 revenue and the '
+ 'average PP&E.',
+ 'ST6) Round the fixed asset turnover ratio to two decimal places.']"
+FbId,financebench_id_04103,What is the FY2019 cash conversion cycle (CCC) for General Mills? CCC is defined as: DIO + DSO - DPO. DIO is defined as: 365 * (average inventory between FY2018 and FY2019) / (FY2019 COGS). DSO is defined as: 365 * (average accounts receivable between FY2018 and FY2019) / (FY2019 Revenue). DPO is defined as: 365 * (average accounts payable between FY2018 and FY2019) / (FY2019 COGS + change in inventory between FY2018 and FY2019). Round your answer to two decimal places. Address the question by using the line items and information shown within the income statement and the balance sheet.,GENERALMILLS_2019_10K,"['ST1) Calculate the Days Inventory Outstanding (DIO) for FY2019.',
+ 'ST2) Calculate the Days Sales Outstanding (DSO) for FY2019.',
+ 'ST3) Calculate the Days Payable Outstanding (DPO) for FY2019.']","['ST1) Calculate the Days Inventory Outstanding (DIO) for FY2019.',
+ 'ST2) Calculate the Days Sales Outstanding (DSO) for FY2019.',
+ 'ST3) Calculate the Days Payable Outstanding (DPO) for FY2019.',
+ 'ST4) Combine DIO, DSO, and DPO to calculate the cash conversion cycle (CCC) '
+ 'for FY2019.']","['ST1) Calculate the Days Inventory Outstanding (DIO) for FY2019.',
+ 'ST2) Calculate the Days Sales Outstanding (DSO) for FY2019.',
+ 'ST3) Calculate the Days Payable Outstanding (DPO) for FY2019.',
+ 'ST4) Find the average inventory between FY2018 and FY2019.',
+ 'ST5) Find the average accounts receivable and payable between FY2018 and '
+ 'FY2019.']","['ST1) Calculate the Days Inventory Outstanding (DIO) for FY2019.',
+ 'ST2) Calculate the Days Sales Outstanding (DSO) for FY2019.',
+ 'ST3) Calculate the Days Payable Outstanding (DPO) for FY2019.',
+ 'ST4) Find the average inventory between FY2018 and FY2019.',
+ 'ST5) Find the average accounts receivable between FY2018 and FY2019.',
+ 'ST6) Find the average accounts payable between FY2018 and FY2019.']"
+FbId,financebench_id_03471,"By drawing conclusions from the information stated only in the statement of financial position, what is General Mills's FY2020 working capital ratio? Define working capital ratio as total current assets divided by total current liabilities. Round your answer to two decimal places.",GENERALMILLS_2020_10K,"['ST1) Identify the total current assets of General Mills for FY2020.',
+ 'ST2) Identify the total current liabilities of General Mills for FY2020.',
+ 'ST3) Calculate the working capital ratio for General Mills for FY2020 by '
+ 'dividing total current assets by total current liabilities and rounding the '
+ 'result to two decimal places.']","['ST1) Identify the total current assets of General Mills for FY2020.',
+ 'ST2) Identify the total current liabilities of General Mills for FY2020.',
+ 'ST3) Calculate the working capital ratio using the formula: total current '
+ 'assets divided by total current liabilities.',
+ 'ST4) Round the calculated working capital ratio to two decimal places.']","['ST1) Identify the total current assets of General Mills for FY2020 from the '
+ 'statement of financial position.',
+ 'ST2) Identify the total current liabilities of General Mills for FY2020 from '
+ 'the statement of financial position.',
+ 'ST3) Calculate the working capital ratio using the formula: total current '
+ 'assets divided by total current liabilities.',
+ 'ST4) Round the calculated working capital ratio to two decimal places.',
+ 'ST5) Interpret the working capital ratio to determine the short-term '
+ 'financial health of General Mills.']","['ST1) Identify the total current assets of General Mills for FY2020.',
+ 'ST2) Identify the total current liabilities of General Mills for FY2020.',
+ 'ST3) Calculate the working capital ratio using the total current assets and '
+ 'total current liabilities for FY2020.',
+ 'ST4) Round the calculated working capital ratio to two decimal places.']"
+FbId,financebench_id_04854,"According to the information provided in the statement of cash flows, what is the FY2020 free cash flow (FCF) for General Mills? FCF here is defined as: (cash from operations - capex). Answer in USD millions.",GENERALMILLS_2020_10K,"['ST1) Identify the cash from operations for General Mills in FY2020.',
+ 'ST2) Identify the capital expenditures (capex) for General Mills in FY2020.',
+ 'ST3) Calculate the free cash flow (FCF) for General Mills in FY2020 using '
+ 'the formula: FCF = cash from operations - capex.']","['ST1) Identify the cash from operations for General Mills in FY2020.',
+ 'ST2) Identify the capital expenditures (capex) for General Mills in FY2020.',
+ 'ST3) Calculate the free cash flow (FCF) for General Mills in FY2020 using '
+ 'the formula: FCF = cash from operations - capex.']","['ST1) Identify the total cash from operations for General Mills in FY2020.',
+ 'ST2) Identify the capital expenditures (capex) for General Mills in FY2020.',
+ 'ST3) Calculate the free cash flow (FCF) for General Mills in FY2020 by '
+ 'subtracting capex from cash from operations.',
+ 'ST4) Convert the free cash flow (FCF) figure into USD millions if it is not '
+ 'already presented in that format.',
+ 'ST5) Verify the accuracy of the calculated FCF against any disclosed FCF '
+ 'figures in the General Mills financial statements for FY2020.']","['ST1) Identify the total cash from operations for General Mills in FY2020.',
+ 'ST2) Identify the capital expenditures (capex) for General Mills in FY2020.',
+ 'ST3) Calculate the free cash flow (FCF) for General Mills in FY2020 by '
+ 'subtracting capex from cash from operations.']"
+FbId,financebench_id_10136,We want to calculate a financial metric. Please help us compute it by basing your answers off of the cash flow statement and the income statement. Here's the question: what is the FY2022 retention ratio (using total cash dividends paid and net income attributable to shareholders) for General Mills? Round answer to two decimal places.,GENERALMILLS_2022_10K,"['ST1) Identify the net income attributable to shareholders for General Mills '
+ 'in FY2022.',
+ 'ST2) Determine the total cash dividends paid by General Mills in FY2022.',
+ 'ST3) Calculate the retention ratio using the formula: Retention Ratio = (Net '
+ 'Income - Dividends Paid) / Net Income.']","['ST1) Identify the net income attributable to shareholders for General Mills '
+ 'in FY2022.',
+ 'ST2) Identify the total cash dividends paid by General Mills in FY2022.',
+ 'ST3) Calculate the retention ratio using the formula: Retention Ratio = (Net '
+ 'Income - Dividends Paid) / Net Income.',
+ 'ST4) Round the calculated retention ratio to two decimal places.']","['ST1) Identify the net income attributable to shareholders for General Mills '
+ 'in FY2022.',
+ 'ST2) Identify the total cash dividends paid by General Mills in FY2022.',
+ 'ST3) Calculate the retention ratio using the formula: Retention Ratio = (Net '
+ 'Income - Dividends) / Net Income.',
+ 'ST4) Round the calculated retention ratio to two decimal places.',
+ 'ST5) Verify the accuracy of the financial data used in the calculation.']","['ST1) Identify the net income attributable to shareholders for General Mills '
+ 'in FY2022.',
+ 'ST2) Identify the total cash dividends paid by General Mills in FY2022.',
+ 'ST3) Calculate the retention ratio using the formula: Retention Ratio = (Net '
+ 'Income - Dividends Paid) / Net Income.',
+ 'ST4) Round the calculated retention ratio to two decimal places.',
+ 'ST5) Verify the accuracy of the financial data used in the calculation.',
+ 'ST6) Document the calculation process and results for future reference.']"
+FbId,financebench_id_10499,What is Kraft Heinz's FY2019 inventory turnover ratio? Inventory turnover ratio is defined as: (FY2019 COGS) / (average inventory between FY2018 and FY2019). Round your answer to two decimal places. Please base your judgments on the information provided primarily in the balance sheet and the P&L statement.,KRAFTHEINZ_2019_10K,"['ST1) What is the Cost of Goods Sold (COGS) for Kraft Heinz for the fiscal '
+ 'year 2019?',
+ 'ST2) What is the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2018?',
+ 'ST3) What is the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2019?']","['ST1) Identify the Cost of Goods Sold (COGS) for Kraft Heinz for the fiscal '
+ 'year 2019.',
+ 'ST2) Determine the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2018.',
+ 'ST3) Determine the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2019.',
+ 'ST4) Calculate the average inventory between FY2018 and FY2019 for Kraft '
+ 'Heinz.']","['ST1) Identify the Cost of Goods Sold (COGS) for Kraft Heinz for the fiscal '
+ 'year 2019.',
+ 'ST2) Determine the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2018.',
+ 'ST3) Determine the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2019.',
+ 'ST4) Calculate the average inventory for Kraft Heinz between the fiscal '
+ 'years 2018 and 2019.',
+ 'ST5) Compute the inventory turnover ratio for Kraft Heinz for the fiscal '
+ 'year 2019 using the COGS and average inventory values.']","['ST1) Identify the Cost of Goods Sold (COGS) for Kraft Heinz for the fiscal '
+ 'year 2019.',
+ 'ST2) Determine the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2018.',
+ 'ST3) Determine the inventory value for Kraft Heinz at the end of the fiscal '
+ 'year 2019.',
+ 'ST4) Calculate the average inventory for Kraft Heinz between the fiscal '
+ 'years 2018 and 2019.',
+ 'ST5) Compute the inventory turnover ratio for Kraft Heinz for the fiscal '
+ 'year 2019 using the identified COGS and average inventory.',
+ 'ST6) Round the calculated inventory turnover ratio to two decimal places.']"
+FbId,financebench_id_04412,"We need to calculate a reasonable approximation (or exact number if possible) of a financial metric. Basing your judgment by information plainly provided in the balance sheet and the P&L statement, what is Lockheed Martin's FY2020 asset turnover ratio? Asset turnover ratio is defined as: FY2020 revenue / (average total assets between FY2019 and FY2020). Round your answer to two decimal places.",LOCKHEEDMARTIN_2020_10K,"[""ST1) Find Lockheed Martin's FY2020 revenue from the P&L statement."",
+ ""ST2) Find Lockheed Martin's total assets for FY2019 and FY2020 from the ""
+ 'balance sheet.',
+ 'ST3) Calculate the average total assets between FY2019 and FY2020.']","['ST1) Identify the FY2020 revenue for Lockheed Martin.',
+ 'ST2) Determine the total assets for Lockheed Martin at the end of FY2019.',
+ 'ST3) Determine the total assets for Lockheed Martin at the end of FY2020.',
+ 'ST4) Calculate the average total assets between FY2019 and FY2020.',
+ 'ST5) Compute the asset turnover ratio by dividing the FY2020 revenue by the '
+ 'average total assets between FY2019 and FY2020, and round the result to two '
+ 'decimal places.']","[""ST1) Identify Lockheed Martin's FY2020 revenue from the P&L statement."",
+ ""ST2) Determine Lockheed Martin's total assets at the end of FY2020 from the ""
+ 'balance sheet.',
+ ""ST3) Determine Lockheed Martin's total assets at the end of FY2019 from the ""
+ 'balance sheet.',
+ 'ST4) Calculate the average total assets between FY2019 and FY2020.',
+ 'ST5) Compute the asset turnover ratio using the FY2020 revenue and the '
+ 'average total assets between FY2019 and FY2020.']","[""ST1) Identify Lockheed Martin's FY2020 revenue from the P&L statement."",
+ ""ST2) Determine Lockheed Martin's total assets at the end of FY2020 from the ""
+ 'balance sheet.',
+ ""ST3) Determine Lockheed Martin's total assets at the end of FY2019 from the ""
+ 'balance sheet.',
+ 'ST4) Calculate the average total assets between FY2019 and FY2020.',
+ 'ST5) Compute the asset turnover ratio using the FY2020 revenue and the '
+ 'average total assets.',
+ 'ST6) Round the computed asset turnover ratio to two decimal places.']"
+FbId,financebench_id_03031,What is Lockheed Martin's FY2021 net working capital? Define net working capital as total current assets less total current liabilities. Answer in USD millions. Respond to the question by assuming the perspective of an investment analyst who can only use the details shown within the balance sheet.,LOCKHEEDMARTIN_2021_10K,"['ST1) Identify the total current assets of Lockheed Martin for the fiscal '
+ 'year ended December 31, 2021.',
+ 'ST2) Identify the total current liabilities of Lockheed Martin for the '
+ 'fiscal year ended December 31, 2021.',
+ ""ST3) Calculate Lockheed Martin's net working capital by subtracting total ""
+ 'current liabilities from total current assets for the fiscal year ended '
+ 'December 31, 2021.']","['ST1) Identify the total current assets of Lockheed Martin for the fiscal '
+ 'year ended December 31, 2021.',
+ 'ST2) Identify the total current liabilities of Lockheed Martin for the '
+ 'fiscal year ended December 31, 2021.',
+ 'ST3) Calculate the net working capital by subtracting total current '
+ 'liabilities from total current assets.',
+ 'ST4) Convert the net working capital figure into USD millions.']","['ST1) Identify the total current assets of Lockheed Martin for the fiscal '
+ 'year ended December 31, 2021.',
+ 'ST2) Identify the total current liabilities of Lockheed Martin for the '
+ 'fiscal year ended December 31, 2021.',
+ 'ST3) Calculate the net working capital by subtracting total current '
+ 'liabilities from total current assets.',
+ 'ST4) Convert the net working capital figure into USD millions.',
+ ""ST5) Prepare a brief report summarizing the findings on Lockheed Martin's ""
+ 'FY2021 net working capital for investment analysis.']","['ST1) Identify the total current assets of Lockheed Martin for FY2021.',
+ 'ST2) Identify the total current liabilities of Lockheed Martin for FY2021.',
+ 'ST3) Calculate the net working capital by subtracting total current '
+ 'liabilities from total current assets.',
+ 'ST4) Convert the net working capital figure to USD millions if it is not '
+ 'already presented in that format.',
+ 'ST5) Review the balance sheet notes for any adjustments or reclassifications '
+ 'that might affect the net working capital calculation.',
+ 'ST6) Ensure the figures used are for the fiscal year ended December 31, '
+ '2021, to maintain the accuracy of the time period of interest.']"
+FbId,financebench_id_03718,What is Lockheed Martin's 2 year total revenue CAGR from FY2020 to FY2022 (in units of percents and round to one decimal place)? Provide a response to the question by primarily using the statement of income.,LOCKHEEDMARTIN_2022_10K,"[""ST1) Identify Lockheed Martin's total revenue for FY2022 from the statement ""
+ 'of income.',
+ ""ST2) Identify Lockheed Martin's total revenue for FY2020 from the statement ""
+ 'of income.',
+ 'ST3) Calculate the 2 year total revenue CAGR for Lockheed Martin from FY2020 '
+ 'to FY2022.']","[""ST1) Identify Lockheed Martin's total revenue for FY2020."",
+ ""ST2) Identify Lockheed Martin's total revenue for FY2022."",
+ ""ST3) Calculate the Compound Annual Growth Rate (CAGR) of Lockheed Martin's ""
+ 'total revenue over the 2 year period from FY2020 to FY2022.',
+ 'ST4) Convert the CAGR to percentage form and round to one decimal place.']","[""ST1) Identify Lockheed Martin's total revenue for FY2022 from the statement ""
+ 'of income.',
+ ""ST2) Identify Lockheed Martin's total revenue for FY2020 from the statement ""
+ 'of income.',
+ ""ST3) Calculate the Compound Annual Growth Rate (CAGR) of Lockheed Martin's ""
+ 'total revenue from FY2020 to FY2022.',
+ 'ST4) Convert the CAGR to a percentage value.',
+ 'ST5) Round the CAGR percentage value to one decimal place.']","[""ST1) Identify Lockheed Martin's total revenue for FY2022 from the statement ""
+ 'of income.',
+ ""ST2) Identify Lockheed Martin's total revenue for FY2021 from the statement ""
+ 'of income.',
+ ""ST3) Identify Lockheed Martin's total revenue for FY2020 from the statement ""
+ 'of income.',
+ ""ST4) Calculate the Compound Annual Growth Rate (CAGR) of Lockheed Martin's ""
+ 'total revenue from FY2020 to FY2022.',
+ 'ST5) Convert the CAGR to a percentage value.',
+ 'ST6) Round the CAGR percentage value to one decimal place.']"
+FbId,financebench_id_03849,What is the FY2018 - FY2020 3 year average of capex as a % of revenue for MGM Resorts? Answer in units of percents and round to one decimal place. Please utilize information provided primarily within the statement of cash flows and the statement of income.,MGMRESORTS_2020_10K,"['ST1) Identify the capital expenditures (capex) for MGM Resorts for each '
+ 'fiscal year from 2018 to 2020.',
+ 'ST2) Identify the total revenue for MGM Resorts for each fiscal year from '
+ '2018 to 2020.',
+ 'ST3) Calculate the capex as a percentage of revenue for each year from 2018 '
+ 'to 2020 and then compute the 3-year average, rounding to one decimal place.']","['ST1) Identify the capital expenditures (capex) for MGM Resorts for FY2018, '
+ 'FY2019, and FY2020 from the statement of cash flows.',
+ 'ST2) Identify the total revenue for MGM Resorts for FY2018, FY2019, and '
+ 'FY2020 from the statement of income.',
+ 'ST3) Calculate the capex as a percentage of revenue for each year (FY2018, '
+ 'FY2019, and FY2020).',
+ 'ST4) Compute the 3-year average of capex as a percentage of revenue for MGM '
+ 'Resorts and round to one decimal place.']","['ST1) Identify the capital expenditures (capex) for MGM Resorts for FY2018, '
+ 'FY2019, and FY2020 from the statement of cash flows.',
+ 'ST2) Identify the total revenue for MGM Resorts for FY2018, FY2019, and '
+ 'FY2020 from the statement of income.',
+ 'ST3) Calculate the capex as a percentage of revenue for each year (FY2018, '
+ 'FY2019, and FY2020).',
+ 'ST4) Compute the average of the capex as a percentage of revenue over the '
+ 'three years.',
+ 'ST5) Round the 3 year average of capex as a percentage of revenue to one '
+ 'decimal place and express it in units of percent.']","['ST1) Identify the capital expenditures (capex) for MGM Resorts for FY2018.',
+ 'ST2) Identify the capital expenditures (capex) for MGM Resorts for FY2019.',
+ 'ST3) Identify the capital expenditures (capex) for MGM Resorts for FY2020.',
+ 'ST4) Calculate the total revenue for MGM Resorts for FY2018.',
+ 'ST5) Calculate the total revenue for MGM Resorts for FY2019.',
+ 'ST6) Calculate the total revenue for MGM Resorts for FY2020.']"
+FbId,financebench_id_01911,What was MGM's interest coverage ratio using FY2022 Adjusted EBIT as the numerator and annual Interest Expense as the denominator?,MGMRESORTS_2022Q4_EARNINGS,"['ST1) Identify the Adjusted EBIT for MGM for the full year of 2022',
+ 'ST2) Determine the annual Interest Expense for MGM for the year 2022',
+ 'ST3) Calculate the interest coverage ratio using the Adjusted EBIT and '
+ 'Interest Expense']","['ST1) Identify the Adjusted EBIT for MGM for the full year of 2022.',
+ 'ST2) Determine the annual Interest Expense for MGM for the year 2022.',
+ 'ST3) Calculate the interest coverage ratio using the Adjusted EBIT and '
+ 'Interest Expense.',
+ 'ST4) Review the financial definitions section to ensure the correct '
+ 'interpretation of Adjusted EBIT and Interest Expense.']","['ST1) Identify the Adjusted EBIT for MGM for the full year of 2022',
+ 'ST2) Find the total Interest Expense for MGM for the full year of 2022',
+ 'ST3) Calculate the interest coverage ratio using the Adjusted EBIT and '
+ 'Interest Expense',
+ 'ST4) Review the definition of Adjusted EBIT to ensure correct interpretation '
+ 'for the calculation',
+ 'ST5) Verify the accuracy of the Interest Expense reported for MGM for the '
+ 'full year of 2022']","[""ST1) Identify MGM's FY2022 Adjusted EBIT."",
+ ""ST2) Calculate MGM's annual Interest Expense for 2022."",
+ 'ST3) Define the formula for the interest coverage ratio.',
+ 'ST4) Gather the necessary financial data to compute the interest coverage '
+ 'ratio.',
+ 'ST5) Perform the calculation of the interest coverage ratio using the '
+ 'identified Adjusted EBIT and Interest Expense.',
+ ""ST6) Interpret the calculated interest coverage ratio to assess MGM's ""
+ 'ability to pay interest expenses.']"
+FbId,financebench_id_00552,Has Microsoft increased its debt on balance sheet between FY2023 and the FY2022 period?,MICROSOFT_2023_10K,"['ST1) Identify the total amount of debt reported by Microsoft for FY2023',
+ 'ST2) Identify the total amount of debt reported by Microsoft for FY2022',
+ 'ST3) Compare the debt figures for FY2023 and FY2022 to determine if there '
+ 'has been an increase']","['ST1) Identify the total amount of debt reported by Microsoft for FY2023.',
+ 'ST2) Identify the total amount of debt reported by Microsoft for FY2022.',
+ 'ST3) Compare the debt figures for FY2023 and FY2022 to determine if there '
+ 'has been an increase.',
+ 'ST4) Analyze the reasons for any change in the debt amount, if applicable.']","['ST1) Identify the total amount of debt reported by Microsoft for FY2023',
+ 'ST2) Identify the total amount of debt reported by Microsoft for FY2022',
+ 'ST3) Compare the total debt figures for FY2023 and FY2022',
+ 'ST4) Analyze the reasons for any change in the debt amount',
+ ""ST5) Determine the impact of any change in debt on Microsoft's financial ""
+ 'health']","['ST1) Identify the total amount of debt reported by Microsoft for the FY2023 '
+ 'period.',
+ 'ST2) Identify the total amount of debt reported by Microsoft for the FY2022 '
+ 'period.',
+ 'ST3) Compare the total debt figures for FY2023 and FY2022 to determine if '
+ 'there has been an increase.',
+ 'ST4) Analyze the reasons for any change in the debt amount between FY2023 '
+ 'and FY2022.',
+ ""ST5) Review Microsoft's financial strategy regarding debt management in ""
+ 'FY2023.',
+ 'ST6) Examine any disclosed future plans by Microsoft that might affect its '
+ 'debt profile.']"
+FbId,financebench_id_04458,We want to calculate a financial metric. Please help us compute it by basing your answers off of the statement of income and the statement of cash flows. Here's the question: what is the FY2015 unadjusted EBITDA % margin for Netflix? Calculate unadjusted EBITDA using unadjusted operating income and D&A (from cash flow statement).,NETFLIX_2015_10K,"['ST1) Identify the unadjusted operating income for Netflix for the fiscal '
+ 'year ended December 31, 2015.',
+ 'ST2) Identify the depreciation and amortization (D&A) expenses for Netflix '
+ 'for the fiscal year ended December 31, 2015 from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for Netflix for the fiscal year ended '
+ 'December 31, 2015 by adding the identified operating income and D&A '
+ 'expenses.']","['ST1) Identify the unadjusted operating income for Netflix for the fiscal '
+ 'year ended December 31, 2015.',
+ 'ST2) Identify the depreciation and amortization (D&A) expenses for Netflix '
+ 'for the fiscal year ended December 31, 2015 from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for Netflix for the fiscal year ended '
+ 'December 31, 2015.',
+ 'ST4) Calculate the unadjusted EBITDA % margin for Netflix for the fiscal '
+ 'year ended December 31, 2015.']","['ST1) Identify the unadjusted operating income for Netflix for the fiscal '
+ 'year ended December 31, 2015.',
+ 'ST2) Identify the depreciation and amortization (D&A) expenses for Netflix '
+ 'for the fiscal year ended December 31, 2015 from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for Netflix for the fiscal year ended '
+ 'December 31, 2015.',
+ 'ST4) Determine the total revenue for Netflix for the fiscal year ended '
+ 'December 31, 2015.',
+ 'ST5) Calculate the unadjusted EBITDA % margin for Netflix for the fiscal '
+ 'year ended December 31, 2015.']","['ST1) Identify the unadjusted operating income for Netflix for the fiscal '
+ 'year ended December 31, 2015.',
+ 'ST2) Identify the depreciation and amortization (D&A) expenses for Netflix '
+ 'for the fiscal year ended December 31, 2015.',
+ 'ST3) Calculate the unadjusted EBITDA for Netflix for the fiscal year ended '
+ 'December 31, 2015 by adding unadjusted operating income and D&A expenses.',
+ 'ST4) Identify the total revenue for Netflix for the fiscal year ended '
+ 'December 31, 2015.',
+ 'ST5) Calculate the EBITDA % margin for Netflix for the fiscal year ended '
+ 'December 31, 2015 by dividing unadjusted EBITDA by total revenue and '
+ 'multiplying by 100.',
+ 'ST6) Review the statement of income and the statement of cash flows to '
+ 'ensure all relevant financial data has been accurately captured and '
+ 'calculated.']"
+FbId,financebench_id_04302,"We need to calculate a reasonable approximation (or exact number if possible) of a financial metric. Basing your judgment by information plainly provided in the statement of income, what is Nike's three year average of cost of goods sold as a % of revenue from FY2016 to FY2018? Answer in units of percents and round to one decimal place.",NIKE_2018_10K,"[""ST1) Identify and compile Nike's annual revenue figures for FY2016, FY2017, ""
+ 'and FY2018.',
+ ""ST2) Identify and compile Nike's annual cost of goods sold figures for ""
+ 'FY2016, FY2017, and FY2018.',
+ 'ST3) Calculate the cost of goods sold as a percentage of revenue for each '
+ 'year and then compute the three-year average, rounding to one decimal place.']","[""ST1) Identify the resource containing Nike's financial statements for ""
+ 'FY2016.',
+ ""ST2) Identify the resource containing Nike's financial statements for ""
+ 'FY2017.',
+ ""ST3) Identify the resource containing Nike's financial statements for ""
+ 'FY2018.',
+ 'ST4) Calculate the average of cost of goods sold as a % of revenue for the '
+ 'three fiscal years.']","[""ST1) Identify the resource containing Nike's financial statements for ""
+ 'FY2016.',
+ ""ST2) Identify the resource containing Nike's financial statements for ""
+ 'FY2017.',
+ ""ST3) Identify the resource containing Nike's financial statements for ""
+ 'FY2018.',
+ 'ST4) Calculate the cost of goods sold as a % of revenue for each identified '
+ 'fiscal year.',
+ 'ST5) Compute the average of the cost of goods sold as a % of revenue over '
+ 'the three fiscal years and round to one decimal place.']","[""ST1) Identify the resource containing Nike's financial statements for ""
+ 'FY2016.',
+ ""ST2) Identify the resource containing Nike's financial statements for ""
+ 'FY2017.',
+ ""ST3) Identify the resource containing Nike's financial statements for ""
+ 'FY2018.',
+ 'ST4) Extract the cost of goods sold for FY2016 from the financial '
+ 'statements.',
+ 'ST5) Extract the cost of goods sold for FY2017 from the financial '
+ 'statements.',
+ 'ST6) Extract the cost of goods sold for FY2018 from the financial '
+ 'statements.',
+ 'ST7) Extract the total revenue for FY2016 from the financial statements.',
+ 'ST8) Extract the total revenue for FY2017 from the financial statements.',
+ 'ST9) Extract the total revenue for FY2018 from the financial statements.',
+ 'ST10) Calculate the cost of goods sold as a % of revenue for FY2016.',
+ 'ST11) Calculate the cost of goods sold as a % of revenue for FY2017.',
+ 'ST12) Calculate the cost of goods sold as a % of revenue for FY2018.',
+ 'ST13) Compute the average of the cost of goods sold as a % of revenue for '
+ 'the three fiscal years.']"
+FbId,financebench_id_04080,"When primarily referencing the income statement and the statement of financial position, what is the FY2021 inventory turnover ratio for Nike? Inventory turnover ratio is defined as: (FY2021 COGS) / (average inventory between FY2020 and FY2021). Round your answer to two decimal places.",NIKE_2021_10K,"['ST1) What is the cost of goods sold (COGS) for Nike in FY2021?',
+ 'ST2) What is the inventory value for Nike at the end of FY2020?',
+ 'ST3) What is the inventory value for Nike at the end of FY2021?']","['ST1) What is the cost of goods sold (COGS) for Nike in FY2021?',
+ 'ST2) What is the inventory value for Nike at the end of FY2021?',
+ 'ST3) What is the inventory value for Nike at the end of FY2020?',
+ 'ST4) Calculate the average inventory between FY2020 and FY2021.']","['ST1) Identify the Cost of Goods Sold (COGS) for Nike in FY2021',
+ 'ST2) Determine the inventory value for Nike at the end of FY2020',
+ 'ST3) Determine the inventory value for Nike at the end of FY2021',
+ 'ST4) Calculate the average inventory between FY2020 and FY2021 for Nike',
+ 'ST5) Compute the inventory turnover ratio for Nike in FY2021 by dividing the '
+ 'COGS by the average inventory']","['ST1) Identify the Cost of Goods Sold (COGS) for Nike in FY2021.',
+ 'ST2) Calculate the average inventory for Nike between FY2020 and FY2021.',
+ 'ST3) Find the inventory value for Nike at the end of FY2020.',
+ 'ST4) Find the inventory value for Nike at the end of FY2021.',
+ 'ST5) Divide the FY2021 COGS by the average inventory to calculate the '
+ 'inventory turnover ratio.',
+ 'ST6) Round the inventory turnover ratio to two decimal places.']"
+FbId,financebench_id_00080,"Does Paypal have positive working capital based on FY2022 data? If working capital is not a useful or relevant metric for this company, then please state that and explain why.",PAYPAL_2022_10K,"['ST1) What are the total current assets of PayPal for the fiscal year ended '
+ 'December 31, 2022?',
+ 'ST2) What are the total current liabilities of PayPal for the fiscal year '
+ 'ended December 31, 2022?',
+ ""ST3) Is working capital a relevant and useful metric for assessing PayPal's ""
+ 'financial health?']","['ST1) Identify the current assets of PayPal for the fiscal year ended '
+ 'December 31, 2022.',
+ 'ST2) Identify the current liabilities of PayPal for the fiscal year ended '
+ 'December 31, 2022.',
+ 'ST3) Calculate the working capital of PayPal by subtracting current '
+ 'liabilities from current assets.',
+ 'ST4) Analyze if working capital is a relevant and useful metric for PayPal, '
+ 'considering its business model and industry practices.']","['ST1) Identify the current assets of PayPal for the fiscal year ended '
+ 'December 31, 2022.',
+ 'ST2) Identify the current liabilities of PayPal for the fiscal year ended '
+ 'December 31, 2022.',
+ 'ST3) Calculate the working capital by subtracting current liabilities from '
+ 'current assets.',
+ 'ST4) Analyze if the working capital is positive or negative based on the '
+ 'calculated value.',
+ 'ST5) Determine if working capital is a relevant metric for PayPal and '
+ 'explain why it may or may not be.']","['ST1) Identify the total current assets of PayPal for the fiscal year ended '
+ 'December 31, 2022.',
+ 'ST2) Identify the total current liabilities of PayPal for the fiscal year '
+ 'ended December 31, 2022.',
+ 'ST3) Calculate the working capital by subtracting total current liabilities '
+ 'from total current assets.',
+ 'ST4) Analyze if the working capital is positive or negative based on the '
+ 'calculated value.',
+ 'ST5) Determine the relevance of working capital as a financial metric for '
+ 'PayPal.',
+ 'ST6) Explain why working capital may or may not be a useful metric for '
+ 'PayPal, considering its business model and industry practices.']"
+FbId,financebench_id_03620,What is the FY2022 unadjusted EBITDA less capex for PepsiCo? Define unadjusted EBITDA as unadjusted operating income + depreciation and amortization [from cash flow statement]. Answer in USD millions. Respond to the question by assuming the perspective of an investment analyst who can only use the details shown within the statement of cash flows and the income statement.,PEPSICO_2022_10K,"['ST1) Identify the unadjusted operating income for PepsiCo for the financial '
+ 'year ended December 31, 2022, from the income statement.',
+ 'ST2) Calculate the total depreciation and amortization for PepsiCo for the '
+ 'financial year ended December 31, 2022, from the cash flow statement.',
+ 'ST3) Determine the capital expenditures (capex) for PepsiCo for the '
+ 'financial year ended December 31, 2022, from the cash flow statement.']","['ST1) Identify the unadjusted operating income for PepsiCo for the financial '
+ 'year ended December 31, 2022.',
+ 'ST2) Identify the total depreciation and amortization for PepsiCo for the '
+ 'financial year ended December 31, 2022, from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for PepsiCo for the financial year '
+ 'ended December 31, 2022, by adding the unadjusted operating income and the '
+ 'total depreciation and amortization.',
+ 'ST4) Identify the capital expenditures (capex) for PepsiCo for the financial '
+ 'year ended December 31, 2022, from the cash flow statement.']","['ST1) Identify the unadjusted operating income for PepsiCo for the financial '
+ 'year ended December 31, 2022, from the income statement.',
+ 'ST2) Identify the total depreciation and amortization for PepsiCo for the '
+ 'financial year ended December 31, 2022, from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for PepsiCo by adding the unadjusted '
+ 'operating income and total depreciation and amortization.',
+ 'ST4) Identify the capital expenditures (capex) for PepsiCo for the financial '
+ 'year ended December 31, 2022, from the cash flow statement.',
+ 'ST5) Subtract the capital expenditures (capex) from the unadjusted EBITDA to '
+ 'determine the FY2022 unadjusted EBITDA less capex for PepsiCo.']","['ST1) Identify the unadjusted operating income for PepsiCo for the financial '
+ 'year ended December 31, 2022.',
+ 'ST2) Identify the total depreciation and amortization for PepsiCo for the '
+ 'financial year ended December 31, 2022, from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for PepsiCo by adding the unadjusted '
+ 'operating income and total depreciation and amortization.',
+ 'ST4) Identify the capital expenditures (capex) for PepsiCo for the financial '
+ 'year ended December 31, 2022, from the cash flow statement.',
+ 'ST5) Subtract the capital expenditures (capex) from the unadjusted EBITDA to '
+ 'find the unadjusted EBITDA less capex for PepsiCo.',
+ 'ST6) Present the final calculation of FY2022 unadjusted EBITDA less capex '
+ 'for PepsiCo in USD millions.']"
+FbId,financebench_id_04481,What is the FY2022 unadjusted EBITDA % margin for PepsiCo? Calculate unadjusted EBITDA using unadjusted operating income and D&A (from cash flow statement). Give a response to the question by relying on the details shown in the statement of cash flows and the P&L statement.,PEPSICO_2022_10K,"['ST1) Identify the unadjusted operating income for PepsiCo for the financial '
+ 'year 2022 from the P&L statement.',
+ 'ST2) Extract the depreciation and amortization (D&A) expenses for FY2022 '
+ 'from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for FY2022 and determine the EBITDA % '
+ 'margin based on the total revenue for the year.']","['ST1) Identify the unadjusted operating income for PepsiCo for the financial '
+ 'year ended December 31, 2022, from the P&L statement.',
+ 'ST2) Identify the depreciation and amortization (D&A) expenses for PepsiCo '
+ 'for the financial year ended December 31, 2022, from the cash flow '
+ 'statement.',
+ 'ST3) Calculate the unadjusted EBITDA for PepsiCo by adding the unadjusted '
+ 'operating income and D&A expenses.',
+ 'ST4) Calculate the unadjusted EBITDA % margin for PepsiCo by dividing the '
+ 'unadjusted EBITDA by total revenue and multiplying by 100.']","['ST1) Identify the unadjusted operating income for PepsiCo for FY2022 from '
+ 'the P&L statement.',
+ 'ST2) Identify the depreciation and amortization (D&A) expenses for PepsiCo '
+ 'for FY2022 from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for PepsiCo for FY2022 by adding the '
+ 'unadjusted operating income and D&A expenses.',
+ 'ST4) Identify the total revenue for PepsiCo for FY2022 from the P&L '
+ 'statement.',
+ 'ST5) Calculate the unadjusted EBITDA % margin for PepsiCo for FY2022 by '
+ 'dividing the unadjusted EBITDA by total revenue and multiplying by 100.']","['ST1) Identify the unadjusted operating income for PepsiCo for the financial '
+ 'year ended December 31, 2022, from the P&L statement.',
+ 'ST2) Identify the depreciation and amortization (D&A) expenses for PepsiCo '
+ 'for the financial year ended December 31, 2022, from the cash flow '
+ 'statement.',
+ 'ST3) Calculate the unadjusted EBITDA by adding the unadjusted operating '
+ 'income and D&A expenses for FY2022.',
+ 'ST4) Identify the total revenue for PepsiCo for the financial year ended '
+ 'December 31, 2022, from the P&L statement.',
+ 'ST5) Calculate the EBITDA % margin by dividing the unadjusted EBITDA by the '
+ 'total revenue and multiplying by 100.',
+ 'ST6) Compile the findings into a report that includes the unadjusted EBITDA '
+ '% margin for PepsiCo for FY2022.']"
+FbId,financebench_id_00882,"As of May 26, 2023, what is the total amount Pepsico may borrow under its unsecured revolving credit agreements?",PEPSICO_2023_8K_dated-2023-05-30,"['ST1) Identify the unsecured revolving credit agreements that Pepsico has '
+ 'entered into as of May 26, 2023.',
+ 'ST2) Determine the borrowing limits specified in the identified credit '
+ 'agreements.',
+ 'ST3) Check for any amendments or special provisions as of May 26, 2023, that '
+ 'could affect the total borrowing amount.']","['ST1) Identify the specific unsecured revolving credit agreements that '
+ 'Pepsico has entered into as of May 26, 2023.',
+ 'ST2) Extract the borrowing limits for each identified unsecured revolving '
+ 'credit agreement.',
+ 'ST3) Determine any conditions or covenants that may affect the total '
+ 'borrowing amount.',
+ 'ST4) Calculate the total amount Pepsico may borrow under its unsecured '
+ 'revolving credit agreements as of May 26, 2023.']","['ST1) Identify the specific unsecured revolving credit agreements that '
+ 'Pepsico has entered into as of May 26, 2023.',
+ 'ST2) Extract the terms and conditions from the identified credit agreements '
+ 'relevant to borrowing limits.',
+ 'ST3) Calculate the total borrowing capacity for Pepsico under these '
+ 'agreements as of the specified date.',
+ 'ST4) Identify any covenants or conditions that may affect the total amount '
+ 'Pepsico can borrow.',
+ 'ST5) Check for any recent amendments to the credit agreements that may have '
+ 'changed the borrowing capacity.']","['ST1) Identify the unsecured revolving credit agreements that Pepsico has '
+ 'entered into as of May 26, 2023.',
+ ""ST2) Determine the maximum borrowing capacity specified in each of Pepsico's ""
+ 'unsecured revolving credit agreements.',
+ 'ST3) Examine any covenants or conditions that may affect the total borrowing '
+ 'amount available to Pepsico.',
+ 'ST4) Check for any recent amendments to the credit agreements that may alter '
+ 'the borrowing capacity.',
+ 'ST5) Identify any outstanding borrowings or commitments that reduce the '
+ 'available credit under the agreements.',
+ 'ST6) Summarize the total amount available for Pepsico to borrow under its '
+ 'unsecured revolving credit agreements as of May 26, 2023.']"
+FbId,financebench_id_00702,Were there any potential events that are not in Pfizer's standard business operations that substantially increased net income in 2019?,PFIZER_2021_10K,"['ST1) Identify any extraordinary financial events reported by Pfizer in 2019 '
+ 'that could have significantly impacted net income.',
+ ""ST2) Examine Pfizer's financial statements for 2019 to determine any unusual ""
+ 'income or one-time gains.',
+ ""ST3) Analyze disclosures of non-recurring events in Pfizer's 2019 regulatory ""
+ 'filings that may have affected net income.']","['ST1) Identify any extraordinary financial events reported by Pfizer in 2019.',
+ ""ST2) Analyze Pfizer's 2019 financial statements for irregular income spikes."",
+ 'ST3) Review any non-recurring transactions or one-time gains in 2019.',
+ 'ST4) Examine disclosures of legal proceedings or settlements that may have '
+ ""impacted Pfizer's net income in 2019.""]","['ST1) Identify any extraordinary financial events reported by Pfizer in 2019.',
+ ""ST2) Examine Pfizer's 2019 financial statements for irregular income ""
+ 'entries.',
+ 'ST3) Analyze any significant asset sales or divestitures by Pfizer in 2019.',
+ 'ST4) Review any legal settlements or resolutions that may have impacted '
+ ""Pfizer's net income in 2019."",
+ ""ST5) Investigate the impact of any changes in tax legislation on Pfizer's ""
+ 'net income in 2019.']","['ST1) Identify any extraordinary financial events reported by Pfizer in 2019.',
+ ""ST2) Examine Pfizer's 2019 financial statements for irregular income ""
+ 'entries.',
+ 'ST3) Analyze any significant asset sales by Pfizer in 2019.',
+ 'ST4) Review any legal settlements or resolutions in 2019 that may have '
+ ""impacted Pfizer's net income."",
+ ""ST5) Investigate the impact of any patent expirations on Pfizer's 2019 ""
+ 'revenue.',
+ 'ST6) Check for any one-time tax benefits or changes in tax legislation '
+ 'affecting Pfizer in 2019.']"
+FbId,financebench_id_00605,What percent of Ulta Beauty's total spend on stock repurchases for FY 2023 occurred in Q4 of FY2023?,ULTABEAUTY_2023Q4_EARNINGS,"['ST1) What was the total spend on stock repurchases by Ulta Beauty in FY '
+ '2023?',
+ 'ST2) What was the spend on stock repurchases by Ulta Beauty in Q4 of FY '
+ '2023?',
+ 'ST3) Calculate the percent of the total FY 2023 stock repurchase spend that '
+ 'occurred in Q4 of FY 2023.']","['ST1) What is the total spend on stock repurchases by Ulta Beauty for FY '
+ '2023?',
+ 'ST2) What is the spend on stock repurchases by Ulta Beauty in Q4 of FY 2023?',
+ 'ST3) Calculate the percent of the total spend on stock repurchases that '
+ 'occurred in Q4 of FY 2023.',
+ 'ST4) Are there any adjustments or considerations that need to be made when '
+ 'calculating the percentage for Q4 spend in relation to the total FY 2023 '
+ 'spend?']","['ST1) What was the total spend on stock repurchases by Ulta Beauty in FY '
+ '2023?',
+ 'ST2) What was the spend on stock repurchases by Ulta Beauty in Q4 of FY '
+ '2023?',
+ 'ST3) Calculate the percent of the total FY 2023 stock repurchase spend that '
+ 'occurred in Q4.']","['ST1) Identify the total spend on stock repurchases by Ulta Beauty for FY '
+ '2023',
+ 'ST2) Identify the spend on stock repurchases by Ulta Beauty in Q4 of FY 2023',
+ 'ST3) Calculate the percentage of the total FY 2023 stock repurchase spend '
+ 'that occurred in Q4']"
+FbId,financebench_id_00216,"Does Verizon have a reasonably healthy liquidity profile based on its quick ratio for FY 2022? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",VERIZON_2022_10K,"['ST1) What is the quick ratio for Verizon Communications Inc. for the fiscal '
+ 'year 2022?',
+ 'ST2) What are the industry standards for a healthy quick ratio to assess '
+ 'liquidity?',
+ ""ST3) If the quick ratio is not a relevant measure for Verizon's liquidity, ""
+ 'what alternative metrics can be used to assess its liquidity profile?']","[""ST1) What is Verizon's quick ratio for the fiscal year 2022?"",
+ 'ST2) What are the components of the quick ratio for Verizon in FY 2022?',
+ ""ST3) How does Verizon's quick ratio for FY 2022 compare to industry ""
+ 'benchmarks?',
+ 'ST4) Are there any factors that might make the quick ratio an irrelevant '
+ ""measure for Verizon's liquidity?""]","['ST1) Identify the quick ratio for Verizon for the fiscal year 2022.',
+ ""ST2) Compare Verizon's quick ratio for FY 2022 to industry benchmarks to ""
+ 'assess liquidity health.',
+ 'ST3) Analyze the components of the quick ratio for Verizon to understand the '
+ 'liquidity position.',
+ ""ST4) Evaluate the trend of Verizon's quick ratio over the past few years to ""
+ 'see if there are any significant changes.',
+ 'ST5) Determine if there are any industry-specific factors that make the '
+ ""quick ratio less relevant for assessing Verizon's liquidity.""]","['ST1) Identify the quick ratio for Verizon for the fiscal year 2022.',
+ ""ST2) Compare Verizon's quick ratio for FY 2022 to industry benchmarks to ""
+ 'assess liquidity health.',
+ ""ST3) Analyze the trend of Verizon's quick ratio over the past few years."",
+ 'ST4) Evaluate the components of the quick ratio for Verizon, such as cash, '
+ 'marketable securities, and accounts receivable.',
+ ""ST5) Assess the impact of Verizon's current liabilities on its liquidity for ""
+ 'FY 2022.',
+ 'ST6) Determine if there are any industry-specific factors that may affect '
+ 'the relevance of the quick ratio for Verizon.']"
+FbId,financebench_id_00215,Is Verizon a capital intensive business based on FY 2022 data?,VERIZON_2022_10K,"['ST1) What are the total capital expenditures of Verizon for the financial '
+ 'year 2022?',
+ ""ST2) What is the nature and amount of Verizon's property, plant, and ""
+ 'equipment investments in 2022?',
+ ""ST3) How does Verizon's capital expenditure compare to its revenue and ""
+ 'operating cash flows for 2022?']","['ST1) What are the total capital expenditures of Verizon for the financial '
+ 'year 2022?',
+ 'ST2) What is the depreciation and amortization expense for Verizon for the '
+ 'financial year 2022?',
+ 'ST3) What is the revenue of Verizon for the financial year 2022?',
+ ""ST4) What are the details of Verizon's property, plant, and equipment ""
+ 'investments for the financial year 2022?']","['ST1) What are the total capital expenditures of Verizon for the financial '
+ 'year 2022?',
+ ""ST2) What is the nature of Verizon's business operations?"",
+ ""ST3) How does Verizon's capital expenditure compare to its revenue for FY ""
+ '2022?',
+ 'ST4) What are the key risk factors and regulatory landscape affecting '
+ ""Verizon's capital expenditure?"",
+ 'ST5) What is the depreciation and amortization expense for Verizon in FY '
+ '2022?']","['ST1) What is the total amount of capital expenditures by Verizon in FY 2022?',
+ 'ST2) What is the depreciation and amortization expense for Verizon in FY '
+ '2022?',
+ ""ST3) What percentage of Verizon's total revenue is represented by capital ""
+ 'expenditures in FY 2022?',
+ ""ST4) How does Verizon's capital expenditure in FY 2022 compare to its ""
+ 'operating cash flow?',
+ 'ST5) What are the major capital projects undertaken by Verizon in FY 2022?',
+ ""ST6) What is the nature of Verizon's assets and how might that indicate ""
+ 'capital intensity?']"
+FbId,financebench_id_06247,What is FY2018 days payable outstanding (DPO) for Walmart? DPO is defined as: 365 * (average accounts payable between FY2017 and FY2018) / (FY2018 COGS + change in inventory between FY2017 and FY2018). Round your answer to two decimal places. Please base your judgments on the information provided primarily in the statement of financial position and the P&L statement.,WALMART_2018_10K,"['ST1) Calculate the average accounts payable between FY2017 and FY2018 for '
+ 'Walmart.',
+ 'ST2) Determine the FY2018 cost of goods sold (COGS) for Walmart.',
+ 'ST3) Calculate the change in inventory between FY2017 and FY2018 for '
+ 'Walmart.']","['ST1) Calculate the average accounts payable between FY2017 and FY2018 for '
+ 'Walmart.',
+ 'ST2) Determine the FY2018 cost of goods sold (COGS) for Walmart.',
+ 'ST3) Calculate the change in inventory between FY2017 and FY2018 for '
+ 'Walmart.',
+ 'ST4) Compute the FY2018 days payable outstanding (DPO) for Walmart using the '
+ 'formula provided.']","['ST1) Calculate the average accounts payable between FY2017 and FY2018 for '
+ 'Walmart.',
+ 'ST2) Determine the cost of goods sold (COGS) for Walmart for FY2018.',
+ 'ST3) Calculate the change in inventory between FY2017 and FY2018 for '
+ 'Walmart.',
+ 'ST4) Compute the sum of FY2018 COGS and the change in inventory between '
+ 'FY2017 and FY2018 for Walmart.',
+ 'ST5) Calculate the FY2018 days payable outstanding (DPO) for Walmart using '
+ 'the formula provided.']","['ST1) What is the amount of accounts payable for Walmart for FY2017?',
+ 'ST2) What is the amount of accounts payable for Walmart for FY2018?',
+ 'ST3) Calculate the average accounts payable between FY2017 and FY2018 for '
+ 'Walmart.',
+ 'ST4) What is the cost of goods sold (COGS) for Walmart for FY2018?',
+ 'ST5) What is the inventory amount for Walmart for FY2017?',
+ 'ST6) What is the inventory amount for Walmart for FY2018?',
+ 'ST7) Calculate the change in inventory between FY2017 and FY2018 for '
+ 'Walmart.',
+ 'ST8) Calculate the FY2018 days payable outstanding (DPO) for Walmart using '
+ 'the formula provided.']"
+FbId,financebench_id_04784,"Based on the information provided primarily in the statement of income, what is the FY2018 - FY2019 change in unadjusted operating income % margin for Walmart? Answer in units of percents and round to one decimal place.",WALMART_2019_10K,"[""ST1) Identify the operating income for FY2018 and FY2019 from Walmart's ""
+ 'financial statements.',
+ 'ST2) Calculate the operating income % margin for FY2018 and FY2019.',
+ 'ST3) Determine the change in operating income % margin from FY2018 to FY2019 '
+ 'and express it in units of percents, rounded to one decimal place.']","['ST1) Identify the operating income for Walmart for FY2018 from the statement '
+ 'of income.',
+ 'ST2) Identify the operating income for Walmart for FY2019 from the statement '
+ 'of income.',
+ 'ST3) Calculate the total revenue for Walmart for FY2018 from the statement '
+ 'of income.',
+ 'ST4) Calculate the total revenue for Walmart for FY2019 from the statement '
+ 'of income.']","['ST1) Identify the operating income for Walmart for FY2018.',
+ 'ST2) Identify the operating income for Walmart for FY2019.',
+ 'ST3) Identify the total revenue for Walmart for FY2018.',
+ 'ST4) Identify the total revenue for Walmart for FY2019.',
+ 'ST5) Calculate the change in unadjusted operating income % margin for '
+ 'Walmart from FY2018 to FY2019.']","[""ST1) Identify the document that contains Walmart's financial statements for ""
+ 'FY2018 and FY2019.',
+ 'ST2) Extract the statement of income for FY2018 and FY2019 from the '
+ 'identified document.',
+ 'ST3) Calculate the operating income for FY2018.',
+ 'ST4) Calculate the operating income for FY2019.',
+ 'ST5) Calculate the revenue for FY2018.',
+ 'ST6) Calculate the revenue for FY2019.']"
+FbId,financebench_id_06741,What is the FY2018 - FY2020 3 year average unadjusted EBITDA % margin for Walmart? Define unadjusted EBITDA as unadjusted operating income + depreciation and amortization from the cash flow statement. Answer in units of percents and round to one decimal place. Calculate what was asked by utilizing the line items clearly shown in the P&L statement and the cash flow statement.,WALMART_2020_10K,"['ST1) Identify the unadjusted operating income for Walmart for FY2018, '
+ 'FY2019, and FY2020.',
+ 'ST2) Identify the depreciation and amortization amounts for Walmart for '
+ 'FY2018, FY2019, and FY2020 from the cash flow statement.',
+ 'ST3) Calculate the 3 year average unadjusted EBITDA % margin for Walmart for '
+ 'FY2018 - FY2020.']","['ST1) Identify the unadjusted operating income for FY2018, FY2019, and FY2020 '
+ 'from the P&L statement.',
+ 'ST2) Identify the depreciation and amortization for FY2018, FY2019, and '
+ 'FY2020 from the cash flow statement.',
+ 'ST3) Calculate the unadjusted EBITDA for each year by adding the unadjusted '
+ 'operating income to depreciation and amortization.',
+ 'ST4) Compute the 3 year average unadjusted EBITDA % margin for FY2018 - '
+ 'FY2020.']","['ST1) Identify the unadjusted operating income for FY2018, FY2019, and FY2020 '
+ ""from Walmart's P&L statements."",
+ 'ST2) Identify the depreciation and amortization for FY2018, FY2019, and '
+ ""FY2020 from Walmart's cash flow statements."",
+ 'ST3) Calculate the unadjusted EBITDA for each year by adding the unadjusted '
+ 'operating income to depreciation and amortization.',
+ 'ST4) Calculate the total revenue for FY2018, FY2019, and FY2020 from '
+ ""Walmart's P&L statements."",
+ 'ST5) Compute the EBITDA % margin for each year by dividing the unadjusted '
+ 'EBITDA by the total revenue and multiplying by 100.',
+ 'ST6) Calculate the 3 year average EBITDA % margin for FY2018 - FY2020 and '
+ 'round to one decimal place.']","[""ST1) Identify the unadjusted operating income for FY2018 from Walmart's P&L ""
+ 'statement.',
+ ""ST2) Identify the unadjusted operating income for FY2019 from Walmart's P&L ""
+ 'statement.',
+ ""ST3) Identify the unadjusted operating income for FY2020 from Walmart's P&L ""
+ 'statement.',
+ ""ST4) Identify the depreciation and amortization for FY2018 from Walmart's ""
+ 'cash flow statement.',
+ ""ST5) Identify the depreciation and amortization for FY2019 from Walmart's ""
+ 'cash flow statement.',
+ ""ST6) Identify the depreciation and amortization for FY2020 from Walmart's ""
+ 'cash flow statement.']"
