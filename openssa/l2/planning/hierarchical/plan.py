@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 
 from loguru import logger
 from tqdm import tqdm
+from pprint import pformat
 
 from openssa.l2.planning.abstract.plan import AbstractPlan, AskAnsPair
 from openssa.l2.reasoning.base import BaseReasoner
@@ -41,6 +42,12 @@ class HTP(AbstractPlan):
         """Return dictionary representation."""
         return {'task': self.task.to_json_dict(),
                 'sub-plans': [p.to_dict() for p in self.sub_plans]}
+
+    # TODO
+    def to_str(self) -> str:
+        """Return string representation."""
+        # only print the task.ask for each task.
+        return pformat(self.to_dict())
 
     def fix_missing_resources(self):
         """Fix missing Informational Resources in HTP."""

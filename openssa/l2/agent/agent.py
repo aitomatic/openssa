@@ -6,12 +6,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pprint import pprint
 from typing import TYPE_CHECKING
+from loguru import logger
 
-from tqdm import tqdm
-
-from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
-from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.task.status import TaskStatus
+from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
+from openssa.l2.planning.hierarchical.planner import PlanFailure
+from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.task.task import Task
 
 if TYPE_CHECKING:
@@ -19,8 +19,7 @@ if TYPE_CHECKING:
     from openssa.l2.planning.abstract.planner import APlanner
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.resource.abstract import AResource
-    from openssa.l2.task.abstract import ATask
-
+    from openssa.l2.planning.hierarchical.plan import HTP
 
 @dataclass
 class Agent:
@@ -57,6 +56,7 @@ class Agent:
             # NO PLAN
             case (None, None, _):
                 # if neither Plan nor Planner is given, directly use Reasoner
+                logger.debug('No Plan or Planner given; directly using Reasoner')
                 result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
 
             # AUTOMATED STATIC PLAN
@@ -64,7 +64,8 @@ class Agent:
                 # if no Plan is given but Planner is, and if solving statically,
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
-                plan: APlan = self.planner.plan(problem=problem, resources=self.resources)
+                logger.debug('No Plan given; using Planner to generate static Plan')
+                plan: HTP = self.planner.plan(problem=problem, resources=self.resources)
                 pprint(plan)
                 result: str = plan.execute(reasoner=self.reasoner)
 
@@ -74,11 +75,13 @@ class Agent:
                 # then first directly use Reasoner,
                 # and if that does not work, then use Planner to decompose 1 level more deeply,
                 # and recurse until reaching confident solution or running out of depth
+                logger.debug('No Plan given; using Planner to generate dynamic Plan')
                 result: str = self.solve_dynamically(problem=problem)
 
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
+                logger.debug('Plan given but no Planner; executing Plan statically')
                 result: str = plan.execute(reasoner=self.reasoner)
 
             # EXPERT-SPECIFIED STATIC PLAN, with Resource updating
@@ -86,6 +89,7 @@ class Agent:
                 # if both Plan and Planner are given, and if solving statically,
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
+                logger.debug('Plan and Planner given; updating Plan resources and executing Plan statically')
                 plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
                 pprint(plan)
                 result: str = plan.execute(reasoner=self.reasoner)
@@ -93,45 +97,69 @@ class Agent:
             # EXPERT-GUIDED DYNAMIC PLAN
             case (_, _, True) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving dynamically,
-                # TODO: dynamic solution
-                raise NotImplementedError('Dynamic execution of given Plan and Planner not yet implemented')
+                logger.debug('Plan and Planner are given, execute expert Plan dynamically')
+                result: str = self.solve_dynamically(problem, self.planner, plan)
 
             case _:
                 raise ValueError('*** Invalid Plan-Planner-Dynamism Combination ***')
 
         return result
 
-    def solve_dynamically(self, problem: str, planner: APlanner = None, other_results: list[AskAnsPair] | None = None) -> str:
+    def solve_dynamically(self, problem: str, planner: APlanner = None, plan: HTP = None, other_results: list[AskAnsPair] | None = None) -> str:
         """Solve posed Problem dynamically.
 
         When first-pass result from Reasoner is unsatisfactory, decompose Problem and recursively solve decomposed Plan.
         """
-        # attempt direct solution with Reasoner
-        self.reasoner.reason(task := Task(ask=problem, resources=self.resources))
+        planner = planner or self.planner
 
-        # if Reasoner's result is unsatisfactory, and if Planner has not run out of allowed depth,
-        # decompose Problem into 1-level Plan, and recursively solve such Plan with remaining allowed Planner depth
-        if (task.status == TaskStatus.NEEDING_DECOMPOSITION) and (planner := planner or self.planner).max_depth:
-            sub_planner: APlanner = planner.one_fewer_level_deep()
+        # Base case: see if the problem is simple enough to be solved directly.
+        task = Task(ask=problem, resources=self.resources, dynamic_decomposer=planner)
+        self.reasoner.reason(task)
+        logger.debug(f'Task: {task.ask}\nstatus: {task.status}')
 
-            sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm((plan_1_level_deep := (planner.one_level_deep()
-                                                        .plan(problem=problem, resources=self.resources))).sub_plans):
-                sub_task: ATask = sub_plan.task
-                sub_task.result: str = self.solve_dynamically(problem=sub_task.ask,
-                                                              planner=sub_planner,
-                                                              other_results=sub_results)
-                sub_task.status: TaskStatus = TaskStatus.DONE
-                sub_results.append((sub_task.ask, sub_task.result))
+        # Base case 2: the task needs decomposition but max depth has been reached.
+        if task.status == TaskStatus.NEEDING_DECOMPOSITION and not planner.max_depth:
+            logger.debug(f'Max depth for decomposition reached for problem: {problem}')
+            task.status = TaskStatus.FAILED
+            return task.result
 
-            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, other_results=other_results)
-            task.status: TaskStatus = TaskStatus.DONE
+        # Otherwise, try to solve the problem by decomposing it.
+        if task.status == TaskStatus.NEEDING_DECOMPOSITION:
 
+            # The planner is allowed certain number of attempts to plan this task.
+            # When a sub-plan fails, we try to re-plan that plan's task.
+            # This means that the lowest level of the hierarchy is re-planned first, then the next level up, and so on.
+            attempts = 2
+            failure = None
+            while attempts > 0:
+                attempts -= 1
+                # Create a single-level plan or take the expert-provided one.
+                if not plan:
+                    plan: HTP = planner.one_level_deep().plan(problem, self.resources, failure)
+
+                # Try solving the sub-plans.
+                sub_results = []
+                for sub_plan in plan.sub_plans:
+                    sub_task: Task = sub_plan.task
+                    sub_planner: AutoHTPlanner = planner.one_fewer_level_deep()
+                    sub_task.result: str = self.solve_dynamically(sub_task.ask, sub_planner, sub_results)
+                    sub_results.append((sub_task.ask, sub_task.result))
+                    if sub_task.status == TaskStatus.FAILED:
+                        # parent task fails?
+                        failure = PlanFailure(failed_plan=plan, failed_task=sub_task.ask, failed_result=sub_task.result)
+                        break
+
+                # If all of the sub-tasks are done, then we can proceed.
+                if all(sub_plan.task.status == TaskStatus.DONE for sub_plan in plan.sub_plans):
+                    logger.debug('All sub-tasks done.')
+                    task.result: str = plan.execute(self.reasoner, other_results)
+                    task.status: TaskStatus = TaskStatus.DONE
+                    break
+
+                # Otherwise, try again.
+                logger.debug('Re-planning, subtask failed.')
+
+            # If we reach this point, we have failed to solve the problem after decomposition and re-planning.
+
+        # Once all the sub-tasks are done or the task itself is done, synthesize the results.
         return task.result
-
-    def solve_dynamically_2(self, problem: str, planner: APlanner = None, plan: APlan = None, depth: int = 1):
-        """Alternative implementation of dynamic solving."""
-        # Determine a base plan.
-        if not plan:
-            plan = planner.plan(problem=problem, resources=self.resources)
-        # Execute the plan.

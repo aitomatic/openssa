@@ -85,8 +85,34 @@ in which each key is a resource's unique name and the corresponding value is tha
 """  # noqa: E122
 
 
+ATTEMPTED_PLAN_PROMPT_SECTION: str = \
+"""You have already attempted the following hierarchical task plan:
+
+```
+{failed_plan}
+```
+
+The plan failed at the following step:
+
+```
+Task: {failed_sub_task}
+Result: {failed_result}
+```
+
+Re-consider the plan and the problem, and try to generate a new plan that can succeed.
+
+"""  # noqa: E122
+
+
 HTP_WITH_RESOURCES_PROMPT_TEMPLATE: str = RESOURCE_OVERVIEW_PROMPT_SECTION + htp_prompt_template(with_resources=True)
 
+HTP_WITH_ATTEMPTED_PLANS_PROMPT_TEMPLATE: str = ATTEMPTED_PLAN_PROMPT_SECTION + htp_prompt_template(with_resources=False)
+
+HTP_WITH_RESOURCES_AND_ATTEMPTED_PLANS_PROMPT_TEMPLATE: str = (
+    RESOURCE_OVERVIEW_PROMPT_SECTION +
+    ATTEMPTED_PLAN_PROMPT_SECTION +
+    htp_prompt_template(with_resources=True)
+)
 
 HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE: str = (
 RESOURCE_OVERVIEW_PROMPT_SECTION +  # noqa: E122

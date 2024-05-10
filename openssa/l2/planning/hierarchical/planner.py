@@ -10,28 +10,61 @@ from typing import TYPE_CHECKING
 from openssa.l2.planning.abstract.planner import AbstractPlanner
 
 from .plan import HTP, HTPDict
-from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE
+from ._prompts import (HTP_PROMPT_TEMPLATE,
+                       HTP_WITH_RESOURCES_PROMPT_TEMPLATE,
+                       HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE,
+                       HTP_WITH_ATTEMPTED_PLANS_PROMPT_TEMPLATE,
+                       HTP_WITH_RESOURCES_AND_ATTEMPTED_PLANS_PROMPT_TEMPLATE)
 
 if TYPE_CHECKING:
     from openssa.l2.resource.abstract import AResource
 
+@dataclass
+class PlanFailure:
+    """Failure in Hierarchical Task Plan."""
+    failed_plan: HTP
+    failed_task: str
+    failed_result: str
 
 @dataclass
 class AutoHTPlanner(AbstractPlanner):
     """Automated (Generative) Hierarchical Task Planner."""
 
-    def plan(self, problem: str, resources: set[AResource] | None = None) -> HTP:
+    def plan(self, problem: str, resources: set[AResource] | None = None, failure: PlanFailure | None = None) -> HTP:
         """Make HTP for solving posed Problem."""
-        prompt: str = (
-            HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
-                                                      resource_overviews={r.unique_name: r.overview for r in resources},
-                                                      max_depth=self.max_depth,
-                                                      max_subtasks_per_decomp=self.max_subtasks_per_decomp)
-            if resources
-            else HTP_PROMPT_TEMPLATE.format(problem=problem,
-                                            max_depth=self.max_depth,
-                                            max_subtasks_per_decomp=self.max_subtasks_per_decomp)
-        )
+        match (resources, failure):
+            case (None, None):
+                prompt: str = HTP_PROMPT_TEMPLATE.format(
+                    problem=problem,
+                    max_depth=self.max_depth,
+                    max_subtasks_per_decomp=self.max_subtasks_per_decomp
+                )
+            case (_, None):
+                prompt: str = HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(
+                    problem=problem,
+                    resource_overviews={r.unique_name: r.overview for r in resources},
+                    max_depth=self.max_depth,
+                    max_subtasks_per_decomp=self.max_subtasks_per_decomp
+                )
+            case (None, _):
+                prompt: str = HTP_WITH_ATTEMPTED_PLANS_PROMPT_TEMPLATE.format(
+                    problem=problem,
+                    failed_plan=failure.failed_plan.to_str(),
+                    failed_sub_task=failure.failed_task,
+                    failed_result=failure.failed_result,
+                    max_depth=self.max_depth,
+                    max_subtasks_per_decomp=self.max_subtasks_per_decomp
+                )
+            case (_, _):
+                prompt: str = HTP_WITH_RESOURCES_AND_ATTEMPTED_PLANS_PROMPT_TEMPLATE.format(
+                    problem=problem,
+                    resource_overviews={r.unique_name: r.overview for r in resources},
+                    failed_plan=failure.failed_plan.to_str(),
+                    failed_sub_task=failure.failed_task,
+                    failed_result=failure.failed_result,
+                    max_depth=self.max_depth,
+                    max_subtasks_per_decomp=self.max_subtasks_per_decomp
+                )
 
         htp_dict: HTPDict = {}
         while not (isinstance(htp_dict, dict) and htp_dict):
