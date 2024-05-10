@@ -218,7 +218,7 @@ quick-ratio:
         Calculate Quick Ratio as of {PERIOD} fiscal period end, as decimal value according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable`)
+          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -228,11 +228,11 @@ quick-ratio:
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
             - `Short-Term Investments or Marketable Securities`;
-            - `(Net) Accounts Receivable`; and
+            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
-            on one same (Consolidated) Balance Sheet of {COMPANY}
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as of {PERIOD} fiscal period end?
@@ -254,7 +254,7 @@ quick-ratio-comp:
         as decimal value according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable`)
+          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -264,11 +264,11 @@ quick-ratio-comp:
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
             - `Short-Term Investments or Marketable Securities`;
-            - `(Net) Accounts Receivable`; and
+            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
-            on one same (Consolidated) Balance Sheet of {COMPANY}
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as of one-year-before previous fiscal period end preceding {PERIOD}?
@@ -277,7 +277,7 @@ quick-ratio-comp:
         Calculate Quick Ratio as of current {PERIOD} fiscal period end, as decimal value according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable`)
+          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -287,11 +287,11 @@ quick-ratio-comp:
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
             - `Short-Term Investments or Marketable Securities`;
-            - `(Net) Accounts Receivable`; and
+            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
-            on one same (Consolidated) Balance Sheet of {COMPANY}
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as of current {PERIOD} fiscal period end?
