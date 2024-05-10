@@ -210,7 +210,7 @@ working-capital-ratio:
         total assets on the balance sheet.
 
 quick-ratio:
-  task: Assess the liquidity health of {COMPANY} through its Quick Ratio as of {PERIOD} fiscal period end fiscal period end.
+  task: Assess the liquidity health of {COMPANY} through its Quick Ratio as of {PERIOD} fiscal period end.
 
   sub-plans:
     - task: |-
