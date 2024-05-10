@@ -394,7 +394,8 @@ financebench_id_00799:
   category: 4-CALC-AND-JUDGE
   correctness: >-
     the answer contains calculated Quick Ratio decimal or percentage values for 2022 and 2023,
-    and concludes that such metric increased
+    both over 0.50 but less than 0.75 (if decimal), or, alternatively, over 50% but less than 75% (if percentage);
+    the answer then concludes that such metric increased
 
 
 financebench_id_01079:
