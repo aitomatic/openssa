@@ -119,8 +119,8 @@ financebench_id_00807:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio decimal value that is slightly less than 1.00,
-    or, alternatively, a calculated percentage value that is slightly less than 100%
+    the answer contains a calculated Quick Ratio decimal value that is over 0.75 but less than 1.00,
+    or, alternatively, a calculated percentage value that is over 75% but less than 100%
 
 
 financebench_id_00941:
