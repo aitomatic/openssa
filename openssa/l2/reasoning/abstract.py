@@ -10,6 +10,7 @@ from typing import TypeVar, TYPE_CHECKING
 from openssa.l2.util.lm.openai import OpenAILM
 
 if TYPE_CHECKING:
+    from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task.abstract import ATask
     from openssa.l2.util.lm.abstract import AnLM
 
@@ -19,10 +20,16 @@ class AbstractReasoner(ABC):
     """Abstract Reasoner."""
 
     # language model for reasoning
-    lm: AnLM = field(default_factory=OpenAILM.from_defaults)
+    lm: AnLM = field(default_factory=OpenAILM.from_defaults,
+                     init=True,
+                     repr=True,
+                     hash=None,
+                     compare=True,
+                     metadata=None,
+                     kw_only=False)
 
     @abstractmethod
-    def reason(self, task: ATask, n_words: int = 1000) -> str:
+    def reason(self, task: ATask, *, knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> str:
         """Work through Task and return conclusion."""
 
 

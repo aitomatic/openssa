@@ -9,6 +9,7 @@ from typing import Any, Self, TypeVar, TypedDict, Required, NotRequired, TYPE_CH
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task.abstract import ATask
 
 
@@ -28,7 +29,13 @@ class AbstractPlan(ABC):
     task: ATask
 
     # decomposed Sub-Plans for solving target Task
-    sub_plans: list[Self] = field(default_factory=list)
+    sub_plans: list[Self] = field(default_factory=list,
+                                  init=True,
+                                  repr=True,
+                                  hash=None,
+                                  compare=True,
+                                  metadata=None,
+                                  kw_only=False)
 
     def concretize_tasks_from_template(self, **kwargs: Any):
         self.task.ask: str = self.task.ask.format(**kwargs)
@@ -46,8 +53,9 @@ class AbstractPlan(ABC):
         return d
 
     @abstractmethod
-    def execute(self, reasoner: AReasoner, other_results: list[AskAnsPair] | None = None) -> str:
-        """Execute and return result, using specified Reasoner to work through involved Task & Sub-Tasks.
+    def execute(self, reasoner: AReasoner, knowledge: set[Knowledge] | None = None,
+                other_results: list[AskAnsPair] | None = None) -> str:
+        """Execute and return result, using specified Reasoner and Knowledge to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account potentially-relevant other results from elsewhere.
         """
