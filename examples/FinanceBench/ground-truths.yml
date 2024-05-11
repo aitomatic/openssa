@@ -119,8 +119,8 @@ financebench_id_00807:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio decimal value that is slightly less than 1.00,
-    or, alternatively, a calculated percentage value that is slightly less than 100%
+    the answer contains a calculated Quick Ratio decimal value that is over 0.75 but less than 1.00,
+    or, alternatively, a calculated percentage value that is over 75% but less than 100%
 
 
 financebench_id_00941:
@@ -168,6 +168,8 @@ financebench_id_02987:
   correctness: >-
     the answer contains a calculated Fixed Asset Turnover Ratio decimal value that is in the range from 23.00 to 25.00
     (if the answer is a single number, assume that it is that calculated Fixed Asset Turnover Ratio decimal value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_07966:
@@ -246,6 +248,8 @@ financebench_id_00438:
   correctness: >-
     the answer contains calculated Operating Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric decreased
+
+  evaluator-unreliable: true
 
 
 financebench_id_00591:
@@ -394,7 +398,8 @@ financebench_id_00799:
   category: 4-CALC-AND-JUDGE
   correctness: >-
     the answer contains calculated Quick Ratio decimal or percentage values for 2022 and 2023,
-    and concludes that such metric increased
+    both over 0.50 but less than 0.75 (if decimal), or, alternatively, over 50% but less than 75% (if percentage);
+    the answer then concludes that such metric increased
 
 
 financebench_id_01079:
@@ -517,8 +522,8 @@ financebench_id_00222:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio decimal value that is greater than 1.00,
-    or, alternatively, a calculated percentage value that is greater than 100%
+    the answer contains a calculated Quick Ratio decimal value that is in the range from 1.40 to 1.70,
+    or, alternatively, a calculated percentage value that is in the range from 140% to 170%
 
 
 financebench_id_00995:
@@ -2026,8 +2031,8 @@ financebench_id_00216:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio decimal value that is less than 1.00,
-    or, alternatively, a calculated percentage value that is less than 100%
+    the answer contains a calculated Quick Ratio decimal value that is in the range from 0.40 to 0.70,
+    or, alternatively, a calculated percentage value that is in the range from 40% to 70%
 
 
 financebench_id_00215:

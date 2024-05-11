@@ -1,18 +1,27 @@
 FINANCIAL SYNONYMS
 ==================
 
-- "(Consolidated) Balance Sheet", "Statement of (Consolidated) Financial Position"
-- "Cash Flow(s) Statement", "Statement of Cash Flows"
-- "(Consolidated) Income Statement", "Statement of (Consolidated) Income", "(Consolidated) Profit-and-Loss Statement", "(Consolidated) P&L (Statement)"
+- "(Consolidated) Balance Sheet(s)", "Statement(s) of (Consolidated) Financial Position"
+
+- "Cash Flow(s) Statement(s)", "Statement(s) of Cash Flows"
+
+- "(Consolidated) (Comprehensive) Income Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Income",
+  "(Consolidated) (Comprehensive) Profit-and-Loss Statement(s)", "(Consolidated) (Comprehensive) P&L (Statement(s))",
+  "(Consolidated) (Comprehensive) Operations Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Operations"
 
 
 Balance-Sheet Line-Item Synonyms
 --------------------------------
 
 - "Total Assets", "TA(s)"
-- "(Net) Fixed Assets", "(Net) FA(s)", "(Net) Property, Plant & Equipment", "(Net) PP&E", "(Net) PPNE", "(Net) Property, Equipment & Intangibles"
+
+- "(Net) Fixed Assets", "(Net) FA(s)",
+  "(Net) Property, Plant & Equipment", "(Net) PP&E", "(Net) PPNE",
+  "(Net) Property & Equipment", "(Net) Plant & Equipment", "(Net) Property, Equipment & Intangibles"
+
 - "(Net) Inventory", "(Net) Inventories", "(Net) Merchandise Inventory", "(Net) Merchandise Inventories"
-- "(Net) Accounts Receivable", "(Net) AR"
+
+- "(Net) Accounts Receivable", "(Net) AR", "(Net) Trade Receivables"
 
 - "(Net) Accounts Payable", "(Net) AP"
 
@@ -23,6 +32,7 @@ Cash-Flow-Statement Line-Item Synonyms
 - "Cash (Flows) from Operations", "Cash (Flows) from Operating Activities", "Operating Cash Flows"
 
 - "Cash (Flows) from Investments", "Cash (Flows) from Investing Activities", "Investing Cash Flows"
+
 - "Capital Expenditure", "CapEx"
 
 - "Cash (Flows) from Financing", "Cash (Flows) from Financing Activities", "Financing Cash Flows"
@@ -31,14 +41,24 @@ Cash-Flow-Statement Line-Item Synonyms
 Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
 -----------------------------------------------------------------------
 
-- "Cost of Goods Sold", "COGS", "Cost of Revenue"
+- "(Total) (Net) Revenue(s)", "(Total) (Net) Sales"
+
+- "Cost of Goods Sold", "COGS", "Cost of Sales", "Cost of Revenue"
+
 - "Gross Income", "Gross Profit"
+
 - "Operating Expenditure", "Operating Expenses", "OpEx"
+
 - "Selling, General & Administrative (Expenses)", "SG&A (Expenses)"
+
 - "(Unadjusted) Operating Income", "(Unadjusted) Operating Profit"
+
 - "Earnings before Interest, Tax, Depreciation & Amortization", "EBITDA"
+
 - "Depreciation & Amortization", "D&A"
+
 - "Earnings before Interest & Tax", "EBIT"
+
 - "Net Income (Attributable to Shareholders)", "Net Profit (Attributable to Shareholders)"
 
 
@@ -50,18 +70,18 @@ Turnover Ratio Metric Formulas
 ------------------------------
 
 `(Total) Asset Turnover Ratio` = (
-  `(Net) Revenue` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
 )
 
 `Fixed Asset Turnover Ratio` = (
-  `(Net) Revenue` /
-  `average (Net) Property, Plant & Equipment, a.k.a. (Net) PP&E, typically between two consecutive fiscal year-ends`
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` /
+  `average (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E), typically between two consecutive fiscal year-ends`
 )
 
 `Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
-  `Cost of Goods Sold, a.k.a. COGS` /
-  `average Inventory, typically between two consecutive fiscal year-ends`
+  `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue` /
+  `average (Net) Inventory, typically between two consecutive fiscal year-ends`
 )
 
 
@@ -77,19 +97,40 @@ Adjusted Income Metric Formulas
 Profitability Margin Metric Formulas
 ------------------------------------
 
-`Cost of Goods Sold (COGS) Margin` = `Cost of Goods Sold, a.k.a. COGS` / `(Net) Revenue`
+`Cost of Goods Sold (COGS) Margin` = (
+  `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
 
-`Gross (Income or Profit) Margin` = `Gross Income, a.k.a. Gross Profit` / `(Net) Revenue`
+`Gross (Income or Profit) Margin` = (
+  `Gross Income, a.k.a. Gross Profit` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
 
-`(Unadjusted) Operating (Income or Profit) Margin` = `(Unadjusted) Operating Income, a.k.a. Operating Profit` / `(Net) Revenue`
+`(Unadjusted) Operating (Income or Profit) Margin` = (
+  `(Unadjusted) Operating Income, a.k.a. Operating Profit` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
 
-`(Unadjusted) EBITDA Margin` = `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` / `(Net) Revenue`
+`(Unadjusted) EBITDA Margin` = (
+  `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
 
-`Depreciation & Amortization (D&A) Margin` = `Depreciation & Amortization, a.k.a. D&A` / `(Net) Revenue`
+`Depreciation & Amortization (D&A) Margin` = (
+  `Depreciation & Amortization, a.k.a. D&A` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
 
-`EBIT Margin` = `Earnings before Interest & Tax, a.k.a. EBIT` / `(Net) Revenue`
+`EBIT Margin` = (
+  `Earnings before Interest & Tax, a.k.a. EBIT` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
 
-`Net (Income or Profit) Margin` = `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` / `(Net) Revenue`
+`Net (Income or Profit) Margin` = (
+  `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
+  `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
 
 
 Profit-Utilization / Capital-Return Metric Formulas
@@ -107,7 +148,7 @@ Profit-Utilization / Capital-Return Metric Formulas
 Capital-Intensiveness / Return-on-Capital Metric Formulas
 ---------------------------------------------------------
 
-`Capital Intensity Ratio` = `Total Assets` / `(Net) Revenue`
+`Capital Intensity Ratio` = `Total Assets` / `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 
 `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
   `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
@@ -124,16 +165,16 @@ Leverage Metric Formulas
 Liquidity Metric Formulas
 -------------------------
 
-`(Net) Working Capital` = `Current Assets` - `Current Liabilities`
+`(Net) Working Capital` = `(Total) Current Assets` - `(Total) Current Liabilities`
 
-`Working Capital Ratio` = `Current Assets` / `Current Liabilities`
+`Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
 
 `Quick Ratio` = (
-  (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `Accounts Receivable`)
-  / `Current Liabilities`
+  (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+  / `(Total) Current Liabilities`
 )
 
-`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `Current Liabilities`
+`Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
 
 `Free Cash Flow, a.k.a. FCF` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`
 
@@ -141,17 +182,17 @@ Liquidity Metric Formulas
 
 `Days Inventory Outstanding, a.k.a. DIO` = (
   365 * `average Inventory, typically between two consecutive fiscal year-ends`
-  / `Cost of Goods Sold, a.k.a. COGS`
+  / `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue`
 )
 
 `Days Payable Outstanding, a.k.a. DPO` = (
   365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
-  / (`Cost of Goods Sold, a.k.a. COGS` + `change in Inventory, typically between two consecutive fiscal year-ends`)
+  / (`Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue` + `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
 )
 
 `Days Sales Oustanding, a.k.a. DSO` = (
   365 * `average Accounts Receivable, typically between two consecutive fiscal year-ends`
-  / `(Net) Revenue`
+  / `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
 `Cash Conversion Cycle, a.k.a. CCC` = (

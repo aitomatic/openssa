@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired, TypeVa
 from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
+from .nature import TaskNature
 from .status import TaskStatus
 
 if TYPE_CHECKING:
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
 class TaskDict(TypedDict, total=False):
     ask: Required[str]
     resources: NotRequired[set[AResource]]
+    nature: NotRequired[TaskNature]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
     dynamic_decomposer: NotRequired[APlanner]
@@ -32,6 +34,7 @@ class AbstractTask(ABC):
 
     ask: str
     resources: set[AResource] = field(default_factory=set)
+    nature: TaskNature | None = None
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
     dynamic_decomposer: APlanner | None = None
@@ -44,6 +47,9 @@ class AbstractTask(ABC):
         if task.resources:
             task.resources: set[AResource] = {(GLOBAL_RESOURCES[r] if isinstance(r, str) else r)
                                               for r in task.resources}
+
+        if task.nature:
+            task.nature: TaskNature = TaskNature(task.nature)
 
         task.status: TaskStatus = TaskStatus(task.status)
 
