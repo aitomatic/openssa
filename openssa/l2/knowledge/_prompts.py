@@ -19,5 +19,7 @@ START OF KNOWLEDGE PIECE >>>
 
 
 def knowledge_injection_lm_chat_msgs(knowledge: set[Knowledge]) -> LMChatHist:
+    assert isinstance(knowledge, set | list | tuple), TypeError('*** KNOWLEDGE MUST BE COLLECTION OF STRINGS ***')
+
     return [{'role': 'system', 'content': KNOWLEDGE_INJECTION_PROMPT_TEMPLATE.format(knowledge=k)}
             for k in knowledge]
