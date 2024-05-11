@@ -39,7 +39,7 @@ Cash-Flow-Statement Line-Item Synonyms
 Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
 -----------------------------------------------------------------------
 
-- "(Net) Revenue", "(Net) Sales"
+- "(Total) (Net) Revenue(s)", "(Total) (Net) Sales"
 - "Cost of Goods Sold", "COGS", "Cost of Revenue"
 - "Gross Income", "Gross Profit"
 - "Operating Expenditure", "Operating Expenses", "OpEx"
