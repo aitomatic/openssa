@@ -2,7 +2,9 @@ FINANCIAL SYNONYMS
 ==================
 
 - "(Consolidated) Balance Sheet(s)", "Statement(s) of (Consolidated) Financial Position"
+
 - "Cash Flow(s) Statement(s)", "Statement(s) of Cash Flows"
+
 - "(Consolidated) (Comprehensive) Income Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Income",
   "(Consolidated) (Comprehensive) Profit-and-Loss Statement(s)", "(Consolidated) (Comprehensive) P&L (Statement(s))",
   "(Consolidated) (Comprehensive) Operations Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Operations"
@@ -40,14 +42,23 @@ Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
 -----------------------------------------------------------------------
 
 - "(Total) (Net) Revenue(s)", "(Total) (Net) Sales"
+
 - "Cost of Goods Sold", "COGS", "Cost of Revenue"
+
 - "Gross Income", "Gross Profit"
+
 - "Operating Expenditure", "Operating Expenses", "OpEx"
+
 - "Selling, General & Administrative (Expenses)", "SG&A (Expenses)"
+
 - "(Unadjusted) Operating Income", "(Unadjusted) Operating Profit"
+
 - "Earnings before Interest, Tax, Depreciation & Amortization", "EBITDA"
+
 - "Depreciation & Amortization", "D&A"
+
 - "Earnings before Interest & Tax", "EBIT"
+
 - "Net Income (Attributable to Shareholders)", "Net Profit (Attributable to Shareholders)"
 
 
