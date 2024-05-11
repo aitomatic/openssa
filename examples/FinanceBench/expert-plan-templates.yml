@@ -312,17 +312,25 @@ free-cash-flow-conversion:  # TODO: check denominator, add yoy comparison
         In dollars, what was the net income in the given fiscal year(s)? income
         or income statement.
 
-operating-cash-flow-ratio:
-  task:
-    Calculate the operating cash flow ratio of {COMPANY} for {YEAR}. Operating
-    cash flow ratio = cash from operations / total current liabilities
-  sub-plans:
-    - task:
-        In dollars, what was the cash from operations in the given fiscal year?
 
-    - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year
+op-cf-ratio:
+  task: |-
+    Calculate Operating Cash Flow Ratio of {COMPANY} for {PERIOD} annual fiscal period,
+    as decimal value according to formula:
+
+    `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
+
+  sub-plans:
+    - task: >-
+        What is value in dollars of `Cash Flows from Operations, a.k.a. Operating Cash Flows` (or most similar-meaning reported line item)
+        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} annual fiscal period?
+
+    - task: >-
+        What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
+        on `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+        as of {PERIOD} annual fiscal period end?
+
 
 days-payable-outstanding:
   task:
