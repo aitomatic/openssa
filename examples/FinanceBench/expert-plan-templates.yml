@@ -538,14 +538,28 @@ capex-as-pct-of-rev-3y-avg:
         and return division result as percentage value
 
 
-return-on-assets:
-  task:
-    Calculate the return on assets (ROA) of {COMPANY} for {YEAR}. ROA = net
-    income / (average total assets between {YEAR-1} and {YEAR})
+roa:
+  task: |-
+    Calculate `Return on (Total) Assets, a.k.a. RoA or RoTA` of {COMPANY} over {PERIOD} annual fiscal period
+    as percentage value according to formula:
+
+    `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
+      `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
+      `average Total Assets, typically between two consecutive fiscal year-ends`
+    )
+
   sub-plans:
-    - task:
-        In dollars, what was the net income in the given fiscal year(s)? income
-        or income statement.
-    - task:
-        In dollars, what were the total assets in the given fiscal year(s)?
-        total assets on the balance sheet.
+    - task: >-
+        What is value in dollars of `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
+        (or most similar-meaning reported line item)
+        on `(Consolidated) (Comprehensive) Income Statement,
+        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+        for {PERIOD} annual fiscal period?
+  
+    - task: |-
+        What is simple arithmetic average value in dollars of `Total Assets` (or most similar-meaning reported line item)
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        as of two following points in time:
+        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - {PERIOD} annual fiscal period end?
