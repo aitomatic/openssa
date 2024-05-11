@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
+from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
 
 from loguru import logger
 from tqdm import tqdm
@@ -65,11 +65,11 @@ class HTP(AbstractPlan):
 
         if self.sub_plans:
             sub_results: list[AskAnsPair] = []
-            for p in tqdm(self.sub_plans):
-                sub_results.append((p.task.ask, (p.task.result
-                                                 if p.task.status == TaskStatus.DONE
-                                                 else p.execute(reasoner=reasoner, knowledge=knowledge,
-                                                                other_results=sub_results))))
+            for sub_plan in tqdm(self.sub_plans):
+                sub_results.append((sub_plan.task.ask, (sub_plan.task.result
+                                                        if sub_plan.task.status == TaskStatus.DONE
+                                                        else sub_plan.execute(reasoner=reasoner, knowledge=knowledge,
+                                                                              other_results=sub_results))))
 
             inputs: str = (f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
                            '\n\n' +
