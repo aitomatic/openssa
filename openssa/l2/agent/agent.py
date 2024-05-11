@@ -69,6 +69,10 @@ class Agent:
         """Add new Knowledge."""
         self.knowledge.update(new_knowledge)
 
+    def add_resources(self, *new_resources: AResource):
+        """Add new Informational Resources."""
+        self.resources.update(new_resources)
+
     @property
     def resource_overviews(self) -> dict[str, str]:
         """Overview available Informational Resources."""
