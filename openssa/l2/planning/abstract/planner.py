@@ -42,12 +42,12 @@ class AbstractPlanner(ABC):
         return type(self)(lm=self.lm, max_depth=self.max_depth - 1, max_subtasks_per_decomp=self.max_subtasks_per_decomp)  # noqa: E501
 
     @abstractmethod
-    def plan(self, problem: str, knowledge: set[Knowledge] | None = None, resources: set[AResource] | None = None) -> APlan:  # noqa: E501
+    def plan(self, problem: str, *, knowledge: set[Knowledge] | None = None, resources: set[AResource] | None = None) -> APlan:  # noqa: E501
         """Make Plan for solving posed Problem using Knowledge & Informational Resources."""
 
     @abstractmethod
     def update_plan_resources(self, plan: APlan, /, problem: str, resources: set[AResource],
-                              knowledge: set[Knowledge] | None = None) -> APlan:
+                              *, knowledge: set[Knowledge] | None = None) -> APlan:
         """Make updated Plan for solving posed Problem using Knowledge & relevant Informational Resources."""
 
 
