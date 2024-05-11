@@ -7,7 +7,7 @@ financebench_id_03856: op-cf-ratio  #
 financebench_id_00438: op-margin-comp  #
 financebench_id_00591: fcf-conv-comp  #
 financebench_id_00540: inv-turnover-ratio
-financebench_id_10420: return-on-assets
+financebench_id_10420: roa  #
 financebench_id_06655: days-payable-outstanding
 financebench_id_00799: quick-ratio-comp  #
 financebench_id_00684: gross-margin-profile
