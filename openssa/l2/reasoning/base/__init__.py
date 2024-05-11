@@ -2,12 +2,14 @@
 
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.task.abstract import ATask
 from openssa.l2.task.status import TaskStatus
 
-from openssa.l2.util.lm.abstract import LMChatHist
+if TYPE_CHECKING:
+    from openssa.l2.util.lm.abstract import LMChatHist
 
 from ._prompts import RESOURCE_QA_CONSO_PROMPT_TEMPLATE
 
@@ -29,7 +31,7 @@ class BaseReasoner(AbstractReasoner):
                                 prompt=RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(
                                     question=task.ask, n_words=n_words,
                                     resources_and_answers='\n\n'.join(r.present_full_answer(question=task.ask, n_words=n_words)  # noqa: E501
-                                                                      for r in task.resources)), \
+                                                                      for r in task.resources)), 
                                 history=messages)
 
                              if len(task.resources) > 1

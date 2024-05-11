@@ -2,13 +2,14 @@
 
 
 from dataclasses import dataclass
-from typing import TypedDict
+from typing import TYPE_CHECKING, TypedDict
 
 from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.task.abstract import ATask
 from openssa.l2.task.status import TaskStatus
 
-from openssa.l2.util.lm.abstract import LMChatHist
+if TYPE_CHECKING:
+    from openssa.l2.util.lm.abstract import LMChatHist
 
 from ._prompts import ORIENT_PROMPT_TEMPLATE
 

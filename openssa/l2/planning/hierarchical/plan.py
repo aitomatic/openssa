@@ -13,9 +13,12 @@ from openssa.l2.planning.abstract.plan import AbstractPlan, AskAnsPair
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
-from openssa.l2.util.lm.abstract import LMChatHist
+
+if TYPE_CHECKING:
+    from openssa.l2.util.lm.abstract import LMChatHist
 
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
+
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner

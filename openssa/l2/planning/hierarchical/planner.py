@@ -8,7 +8,8 @@ import json
 from typing import TYPE_CHECKING
 
 from openssa.l2.planning.abstract.planner import AbstractPlanner
-from openssa.l2.util.lm.abstract import LMChatHist
+if TYPE_CHECKING:
+    from openssa.l2.util.lm.abstract import LMChatHist
 
 from .plan import HTP, HTPDict
 from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE
