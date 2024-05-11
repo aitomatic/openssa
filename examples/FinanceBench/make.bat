@@ -35,19 +35,19 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 :: BATCH INFERENCING
 :: =================
 :htp-auto-static-oodar-solve
-  poetry run python htp-oodar-agent.py %2
+  poetry run python htp_oodar_agent.py %2
   GOTO end
 
 :htp-auto-dynamic-oodar-solve
-  poetry run python htp-oodar-agent.py %2 --dynamic-exec
+  poetry run python htp_oodar_agent.py %2 --dynamic-exec
   GOTO end
 
 :htp-expert-static-oodar-solve
-  poetry run python htp-oodar-agent.py %2 --expert-plan
+  poetry run python htp_oodar_agent.py %2 --expert-plan
   GOTO end
 
 :htp-expert-dynamic-oodar-solve
-  poetry run python htp-oodar-agent.py %2 --expert-plan --dynamic-exec
+  poetry run python htp_oodar_agent.py %2 --expert-plan --dynamic-exec
   GOTO end
 
 
