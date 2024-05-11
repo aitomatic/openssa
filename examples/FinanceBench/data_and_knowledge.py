@@ -42,7 +42,8 @@ type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
                                              'category': Required[Category],
                                              'correctness': Required[str],
                                              'answer-inadequate': NotRequired[Literal[True]],
-                                             'evaluator-unreliable': NotRequired[Literal[True]]})
+                                             'evaluator-unreliable': NotRequired[Literal[True]]},
+                             total=False)
 
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {

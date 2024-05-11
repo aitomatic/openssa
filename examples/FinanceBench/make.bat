@@ -11,6 +11,10 @@ IF "%TARGET%"=="htp-auto-static-oodar-solve" GOTO htp-auto-static-oodar-solve
 IF "%TARGET%"=="htp-auto-dynamic-oodar-solve" GOTO htp-auto-dynamic-oodar-solve
 IF "%TARGET%"=="htp-expert-static-oodar-solve" GOTO htp-expert-static-oodar-solve
 IF "%TARGET%"=="htp-expert-dynamic-oodar-solve" GOTO htp-expert-dynamic-oodar-solve
+IF "%TARGET%"=="htp-auto-static-oodar-w-knowledge-solve" GOTO htp-auto-static-oodar-w-knowledge-solve
+IF "%TARGET%"=="htp-auto-dynamic-oodar-w-knowledge-solve" GOTO htp-auto-dynamic-oodar-w-knowledge-solve
+IF "%TARGET%"=="htp-expert-static-oodar-w-knowledge-solve" GOTO htp-expert-static-oodar-w-knowledge-solve
+IF "%TARGET%"=="htp-expert-dynamic-oodar-w-knowledge-solve" GOTO htp-expert-dynamic-oodar-w-knowledge-solve
 
 IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
 
@@ -48,6 +52,22 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :htp-expert-dynamic-oodar-solve
   poetry run python htp_oodar_agent.py %2 --expert-plan --dynamic-exec
+  GOTO end
+
+:htp-auto-static-oodar-w-knowledge-solve
+  poetry run python htp_oodar_agent.py %2 --knowledge
+  GOTO end
+
+:htp-auto-dynamic-oodar-w-knowledge-solve
+  poetry run python htp_oodar_agent.py %2 --knowledge --dynamic-exec
+  GOTO end
+
+:htp-expert-static-oodar-w-knowledge-solve
+  poetry run python htp_oodar_agent.py %2 --knowledge --expert-plan
+  GOTO end
+
+:htp-expert-dynamic-oodar-w-knowledge-solve
+  poetry run python htp_oodar_agent.py %2 --knowledge --expert-plan --dynamic-exec
   GOTO end
 
 
