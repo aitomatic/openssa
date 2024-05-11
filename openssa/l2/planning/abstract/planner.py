@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Self, TypeVar
+from typing import Self, TypeVar, TYPE_CHECKING
 
 from openssa.l2.util.lm.openai import OpenAILM
 
