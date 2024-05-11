@@ -15,7 +15,13 @@ asset-turnover-ratio:
 
 
 fa-turnover-ratio:
-  task: Calculate Fixed Asset Turnover Ratio of {COMPANY} over {PERIOD} fiscal period
+  task: |-
+    Calculate `Fixed Asset Turnover Ratio` of {COMPANY} over {PERIOD} fiscal period as decimal value according to formula:
+
+    `Fixed Asset Turnover Ratio` = (
+      `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` /
+      `average (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E), typically between two consecutive fiscal year-ends`
+    )
 
   sub-plans:
     - task: >-
