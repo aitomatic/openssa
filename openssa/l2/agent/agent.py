@@ -101,7 +101,7 @@ class Agent:
                 # if no Plan is given but Planner is, and if solving statically,
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
-                plan: APlan = self.planner.plan(problem=problem, resources=self.resources, knowledge=self.knowledge)
+                plan: APlan = self.planner.plan(problem=problem, knowledge=self.knowledge, resources=self.resources)
 
                 logger.info(f'\n{pformat(object=plan.quick_repr,
                                          indent=2,
@@ -139,7 +139,8 @@ class Agent:
                 # if both Plan and Planner are given, and if solving statically,
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
-                plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources, knowledge=self.knowledge)
+                plan: APlan = self.planner.update_plan_resources(plan, problem=problem,
+                                                                 knowledge=self.knowledge, resources=self.resources)
 
                 logger.info(f'\n{pformat(object=plan.quick_repr,
                                          indent=2,
@@ -176,8 +177,9 @@ class Agent:
             sub_planner: APlanner = planner.one_fewer_level_deep()
 
             sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm((plan_1_level_deep := (planner.one_level_deep()
-                                                        .plan(problem=problem, resources=self.resources))).sub_plans):
+            for sub_plan in tqdm((plan_1_level_deep := (planner.one_level_deep().plan(problem=problem,
+                                                                                      knowledge=self.knowledge,
+                                                                                      resources=self.resources))).sub_plans):  # noqa: E501
                 sub_task: ATask = sub_plan.task
                 sub_task.result: str = self.solve_dynamically(problem=sub_task.ask,
                                                               planner=sub_planner,
@@ -185,7 +187,8 @@ class Agent:
                 sub_task.status: TaskStatus = TaskStatus.DONE
                 sub_results.append((sub_task.ask, sub_task.result))
 
-            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, other_results=other_results, knowledge=self.knowledge)
+            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, knowledge=self.knowledge,
+                                                         other_results=other_results)
             task.status: TaskStatus = TaskStatus.DONE
 
         return task.result

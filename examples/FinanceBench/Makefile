@@ -14,6 +14,18 @@ htp-expert-static-oodar-solve:
 htp-expert-dynamic-oodar-solve:
 	@poetry run python htp_oodar_agent.py ${id} --expert-plan --dynamic-exec
 
+htp-auto-static-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge
+
+htp-auto-dynamic-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --dynamic-exec
+
+htp-expert-static-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan
+
+htp-expert-dynamic-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan --dynamic-exec
+
 
 ooda-solve:
 	@poetry run python ooda.py ${id}
