@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 type AskAnsPair = tuple[str, str]
 
 
-class PlanQuickRepr(TypedDict):
+class PlanQuickRepr(TypedDict, total=False):
     task: Required[str]
     sub_plans: NotRequired[list[Self]]
 
