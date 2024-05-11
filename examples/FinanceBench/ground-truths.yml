@@ -249,6 +249,8 @@ financebench_id_00438:
     the answer contains calculated Operating Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric decreased
 
+  evaluator-unreliable: true
+
 
 financebench_id_00591:
   doc: ADOBE_2022_10K
