@@ -40,7 +40,7 @@ financebench_id_01911: interest-coverage-ratio
 financebench_id_00552: debt
 financebench_id_04458: ebitda-margin
 financebench_id_04302: cogs-margin
-financebench_id_04080: inventory-turnover-ratio
+financebench_id_04080: inv-turnover-ratio  #
 financebench_id_00080: working-capital
 financebench_id_03620: unadjusted-ebitda  # TODO: but also less CapEx for question
 financebench_id_04481: ebitda-margin
