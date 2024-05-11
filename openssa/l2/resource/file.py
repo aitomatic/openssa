@@ -86,7 +86,7 @@ class FileResource(AbstractResource):
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: AnLM = field(default=OpenAILM(temperature=Config.DEFAULT_TEMPERATURE),
+    lm: AnLM = field(default_factory=lambda: OpenAILM(temperature=Config.DEFAULT_TEMPERATURE),
                      init=True,
                      repr=False,
                      hash=None,
