@@ -247,11 +247,11 @@ working-capital-ratio:
 
 
 quick-ratio:
-  task: Assess liquidity health of {COMPANY} through its Quick Ratio as of {PERIOD} fiscal period end
+  task: Assess liquidity health of {COMPANY} through its `Quick Ratio` as of {PERIOD} fiscal period end
 
   sub-plans:
     - task: |-
-        Calculate Quick Ratio as of {PERIOD} fiscal period end, as decimal value according to formula:
+        Calculate `Quick Ratio` as of {PERIOD} fiscal period end, as decimal value according to formula:
 
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
@@ -274,19 +274,19 @@ quick-ratio:
             as of {PERIOD} fiscal period end?
 
     - task: |-
-        Compare calculated Quick Ratio decimal value against 1.00 and make assessment:
-        - Quick Ratio >= 1.00: liquidity is healthy; or
-        - Quick Ratio < 1.00: liquidity is not very healthy
+        Compare calculated `Quick Ratio` decimal value against 1.00 and make assessment:
+        - `Quick Ratio` >= 1.00: liquidity is healthy; or
+        - `Quick Ratio` < 1.00: liquidity is not very healthy
 
 
 quick-ratio-comp:
   task: >-
-    Calculate change and assess degradation/improvement in Quick Ratio of {COMPANY}
+    Calculate change and assess degradation/improvement in `Quick Ratio` of {COMPANY}
     from corresponding one-year-preceding previous fiscal period end to current {PERIOD} fiscal period end
 
   sub-plans:
     - task: |-
-        Calculate Quick Ratio as of following two points in time:
+        Calculate `Quick Ratio` as of following two points in time:
         - one-year-before previous fiscal period end preceding {PERIOD}; and
         - {PERIOD} fiscal period end
 
@@ -315,8 +315,8 @@ quick-ratio-comp:
             - current {PERIOD} fiscal period end?
 
     - task: >-
-        Calculate difference between two calculated Quick Ratio decimal values
-        and assess whether Quick Ratio meaningfully degraded or improved
+        Calculate difference between two calculated `Quick Ratio` decimal values
+        and assess whether `Quick Ratio` meaningfully degraded or improved
 
 
 free-cash-flow:
