@@ -31,7 +31,7 @@ class BaseReasoner(AbstractReasoner):
                                 prompt=RESOURCE_QA_CONSO_PROMPT_TEMPLATE.format(
                                     question=task.ask, n_words=n_words,
                                     resources_and_answers='\n\n'.join(r.present_full_answer(question=task.ask, n_words=n_words)  # noqa: E501
-                                                                      for r in task.resources)), 
+                                                                      for r in task.resources)),
                                 history=messages)
 
                              if len(task.resources) > 1
