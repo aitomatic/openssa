@@ -88,7 +88,7 @@ op-margin-comp:
 
   sub-plans:
     - task: |-
-        Calculate Operating Margin for following two fiscal periods:
+        Calculate `(Unadjusted) Operating (Income or Profit) Margin` for following two fiscal periods:
         - one-year-before previous fiscal period preceding {PERIOD}; and
         - {PERIOD} fiscal period
 
