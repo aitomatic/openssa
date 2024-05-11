@@ -20,7 +20,7 @@ financebench_id_00685: gross-margin-comp
 financebench_id_04660: working-capital-ratio
 financebench_id_00678: gross-margin-comp
 financebench_id_00585: effective-tax-rate
-financebench_id_03473: return-on-assets
+financebench_id_03473: roa  #
 financebench_id_09724: cogs-margin
 financebench_id_06272: dividend-payout-ratio
 financebench_id_10130: days-payable-outstanding
