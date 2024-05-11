@@ -1,15 +1,20 @@
 """Base Reasoner."""
 
 
+from __future__ import annotations
+
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from openssa.l2.reasoning.abstract import AbstractReasoner
-from openssa.l2.knowledge.abstract import Knowledge
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.task.abstract import ATask
 from openssa.l2.task.status import TaskStatus
 
 from ._prompts import RESOURCE_QA_CONSO_PROMPT_TEMPLATE
+
+if TYPE_CHECKING:
+    from openssa.l2.knowledge.abstract import Knowledge
+    from openssa.l2.task.abstract import ATask
 
 
 @dataclass
@@ -27,9 +32,7 @@ class BaseReasoner(AbstractReasoner):
                                     question=task.ask, n_words=n_words,
                                     resources_and_answers='\n\n'.join(r.present_full_answer(question=task.ask, n_words=n_words)  # noqa: E501
                                                                       for r in task.resources)),
-                                history=(knowledge_injection_lm_chat_msgs(knowledge=knowledge)
-                                         if knowledge
-                                         else None))
+                                history=knowledge_injection_lm_chat_msgs(knowledge=knowledge) if knowledge else None)
 
                              if len(task.resources) > 1
 
