@@ -216,17 +216,17 @@ FINANCIAL-ANALYSIS LANGUAGE/WORDING
   it often means the simple arithmetic mean of that line item's values at two consecutive fiscal year-ends
 
 - When we see the word "growth" or the the phrase "top-line performance"
-  used in the context of product categories/segments or geographies,
-  unless otherwise specified, it often concerns the year-on-year proportional/relative growth rates in (Net) Revenue
+  used in the context of product categories/segments or geographies, unless otherwise specified,
+  it often concerns the year-on-year proportional/relative growth rates in `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
   from such product categories/segments or geographies
 
 - When we see the word "margin" in financial-analysis contexts,
-  we usually need to divide a certain Profit-and-Loss (P&L) line item by the (Net) Revenue,
+  we usually need to divide a certain Profit-and-Loss (P&L) line item by the `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
   for the concerned financial reporting period(s)
 
 - When we see the word "turnover ratio" used after a Balance-Sheet line item in financial-analysis contexts,
-  we usually need to divide the (Net) Revenue for the fiscal year by the average of that Balance-Sheet line item
-  between the latest fiscal year-end and the immediately-preceeding fiscal year-end
+  we usually need to divide the `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` for the fiscal year
+  by the average of that Balance-Sheet line item between the latest fiscal year-end and the immediately-preceeding fiscal year-end
 
 
 PHYSICAL-PRODUCT COMPANY PERFORMANCE METRICS vs. FINANCIAL-SERVICES COMPANY PERFORMANCE METRICS
