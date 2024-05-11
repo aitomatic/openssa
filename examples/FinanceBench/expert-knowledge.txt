@@ -1,10 +1,11 @@
 FINANCIAL SYNONYMS
 ==================
 
-- "(Consolidated) Balance Sheet", "Statement of (Consolidated) Financial Position"
-- "Cash Flow(s) Statement", "Statement of Cash Flows"
-- "(Consolidated) (Comprehensive) Income Statement", "Statement of (Consolidated) (Comprehensive) Income",
-  "(Consolidated) (Comprehensive) Profit-and-Loss Statement", "(Consolidated) (Comprehensive) P&L (Statement)"
+- "(Consolidated) Balance Sheet(s)", "Statement(s) of (Consolidated) Financial Position"
+- "Cash Flow(s) Statement(s)", "Statement(s) of Cash Flows"
+- "(Consolidated) (Comprehensive) Income Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Income",
+  "(Consolidated) (Comprehensive) Profit-and-Loss Statement(s)", "(Consolidated) (Comprehensive) P&L (Statement(s))",
+  "(Consolidated) (Comprehensive) Operations Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Operations"
 
 
 Balance-Sheet Line-Item Synonyms
