@@ -29,7 +29,13 @@ class AbstractPlan(ABC):
     task: ATask
 
     # decomposed Sub-Plans for solving target Task
-    sub_plans: list[Self] = field(default_factory=list)
+    sub_plans: list[Self] = field(default_factory=list,
+                                  init=True,
+                                  repr=True,
+                                  hash=None,
+                                  compare=True,
+                                  metadata=None,
+                                  kw_only=False)
 
     def concretize_tasks_from_template(self, **kwargs: Any):
         self.task.ask: str = self.task.ask.format(**kwargs)
