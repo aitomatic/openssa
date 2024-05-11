@@ -9,6 +9,7 @@ from typing import Any, Self, TypeVar, TypedDict, Required, NotRequired, TYPE_CH
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task.abstract import ATask
 
 
@@ -46,8 +47,9 @@ class AbstractPlan(ABC):
         return d
 
     @abstractmethod
-    def execute(self, reasoner: AReasoner, knowledge: set[str] = None, other_results: list[AskAnsPair] | None = None) -> str:
-        """Execute and return result, using specified Reasoner to work through involved Task & Sub-Tasks.
+    def execute(self, reasoner: AReasoner, knowledge: set[Knowledge] | None = None,
+                other_results: list[AskAnsPair] | None = None) -> str:
+        """Execute and return result, using specified Reasoner and Knowledge to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account potentially-relevant other results from elsewhere.
         """
