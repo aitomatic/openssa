@@ -29,31 +29,57 @@ class Agent:
 
     # Planner for decomposing tasks into executable solution Plans
     # using Automated Hierarchical Task Planner by default
-    planner: APlanner | None = field(default_factory=AutoHTPlanner)
+    planner: APlanner | None = field(default_factory=AutoHTPlanner,
+                                     init=True,
+                                     repr=True,
+                                     hash=None,
+                                     compare=True,
+                                     metadata=None,
+                                     kw_only=False)
 
     # Reasoner for working through individual Tasks to either conclude or make partial progress on them
     # using OODA by default
-    reasoner: AReasoner = field(default_factory=OodaReasoner)
+    reasoner: AReasoner = field(default_factory=OodaReasoner,
+                                init=True,
+                                repr=True,
+                                hash=None,
+                                compare=True,
+                                metadata=None,
+                                kw_only=False)
+
+    # Knowledge for use in Planning & Reasoning
+    knowledge: set[str] = field(default_factory=set,
+                                init=True,
+                                repr=False,
+                                hash=None,
+                                compare=True,
+                                metadata=None,
+                                kw_only=False)
 
     # set of Informational Resources for answering information-querying questions
-    resources: set[AResource] = field(default_factory=set)
+    resources: set[AResource] = field(default_factory=set,
+                                      init=True,
+                                      repr=True,
+                                      hash=None,
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=False)
 
-    # knowledge field added
-    knowledge: set[str] = field(default_factory=set)
+    def add_knowledge(self, new_knowledge: str | set[str], /):
+        """Add new Knowledge."""
+        if isinstance(new_knowledge, str):
+            self.knowledge.add(new_knowledge)
+
+        elif isinstance(new_knowledge, set | list | tuple):
+            self.knowledge.update(new_knowledge)
+
+        else:
+            raise TypeError('*** KNOWLEDGE MUST BE STRING OR COLLECTION OF STRINGS ***')
 
     @property
     def resource_overviews(self) -> dict[str, str]:
         """Overview available Informational Resources."""
         return {r.unique_name: r.overview for r in self.resources}
-
-    def add_knowledge(self, new_knowledge: str | set[str]):
-        """Add new knowledge to the agent"""
-        if isinstance(new_knowledge, str):
-            self.knowledge.add(new_knowledge)
-        elif isinstance(new_knowledge, set[str]):
-            self.knowledge.update(new_knowledge)
-        else:
-            raise ValueError("Input must be a string or a set of strings")
 
     def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
         """Solve posed Problem.
