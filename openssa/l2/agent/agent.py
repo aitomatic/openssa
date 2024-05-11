@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import APlan, AskAnsPair
     from openssa.l2.planning.abstract.planner import APlanner
     from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.resource.abstract import AResource
     from openssa.l2.task.abstract import ATask
 
@@ -48,13 +49,13 @@ class Agent:
                                 kw_only=False)
 
     # Knowledge for use in Planning & Reasoning
-    knowledge: set[str] = field(default_factory=set,
-                                init=True,
-                                repr=False,
-                                hash=None,
-                                compare=True,
-                                metadata=None,
-                                kw_only=False)
+    knowledge: set[Knowledge] = field(default_factory=set,
+                                      init=True,
+                                      repr=False,
+                                      hash=None,
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=False)
 
     # set of Informational Resources for answering information-querying questions
     resources: set[AResource] = field(default_factory=set,
@@ -65,7 +66,7 @@ class Agent:
                                       metadata=None,
                                       kw_only=False)
 
-    def add_knowledge(self, *new_knowledge: str):
+    def add_knowledge(self, *new_knowledge: Knowledge):
         """Add new Knowledge."""
         self.knowledge.update(new_knowledge)
 
