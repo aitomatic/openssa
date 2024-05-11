@@ -65,16 +65,9 @@ class Agent:
                                       metadata=None,
                                       kw_only=False)
 
-    def add_knowledge(self, new_knowledge: str | set[str], /):
+    def add_knowledge(self, *new_knowledge: str):
         """Add new Knowledge."""
-        if isinstance(new_knowledge, str):
-            self.knowledge.add(new_knowledge)
-
-        elif isinstance(new_knowledge, set | list | tuple):
-            self.knowledge.update(new_knowledge)
-
-        else:
-            raise TypeError('*** KNOWLEDGE MUST BE STRING OR COLLECTION OF STRINGS ***')
+        self.knowledge.update(new_knowledge)
 
     @property
     def resource_overviews(self) -> dict[str, str]:
