@@ -80,8 +80,8 @@ Turnover Ratio Metric Formulas
 )
 
 `Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
-  `Cost of Goods Sold, a.k.a. COGS` /
-  `average Inventory, typically between two consecutive fiscal year-ends`
+  `Cost of Goods Sold, a.k.a. COGS, or Cost of Revenue` /
+  `average (Net) Inventory, typically between two consecutive fiscal year-ends`
 )
 
 
@@ -98,7 +98,7 @@ Profitability Margin Metric Formulas
 ------------------------------------
 
 `Cost of Goods Sold (COGS) Margin` = (
-  `Cost of Goods Sold, a.k.a. COGS` /
+  `Cost of Goods Sold, a.k.a. COGS, or Cost of Revenue` /
   `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
@@ -182,12 +182,12 @@ Liquidity Metric Formulas
 
 `Days Inventory Outstanding, a.k.a. DIO` = (
   365 * `average Inventory, typically between two consecutive fiscal year-ends`
-  / `Cost of Goods Sold, a.k.a. COGS`
+  / `Cost of Goods Sold, a.k.a. COGS, or Cost of Revenue`
 )
 
 `Days Payable Outstanding, a.k.a. DPO` = (
   365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
-  / (`Cost of Goods Sold, a.k.a. COGS` + `change in Inventory, typically between two consecutive fiscal year-ends`)
+  / (`Cost of Goods Sold, a.k.a. COGS, or Cost of Revenue` + `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
 )
 
 `Days Sales Oustanding, a.k.a. DSO` = (
