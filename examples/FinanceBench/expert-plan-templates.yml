@@ -268,18 +268,24 @@ retention-ratio:
 # LIQUIDITY METRIC EVALUATION
 # ===========================
 
-working-capital:
-  task:
-    Calculate the working capital of {COMPANY} for {YEAR}. Working capital =
-    total current assets - total current liabilities.
-  sub-plans:
-    - task:
-        In dollars, what were the total current assets in the given fiscal year?
-    - task:
-        In dollars, what were the total current liabilities in the given fiscal
-        year?
+work-cap:
+  task: |-
+    Calculate `(Net) Working Capital` of {COMPANY} as of {PERIOD} fiscal period end, in dollars according to formula:
+    
+    `(Net) Working Capital` = `(Total) Current Assets` - `(Total) Current Liabilities`
+    
+    and assess whether `(Net) Working Capital` is positive or negative
 
-working-capital-ratio:
+  sub-plans:
+    - task: |-
+        Calculate `(Net) Working Capital` as `(Total) Current Assets` - `(Total) Current Liabilities`,
+        with both `(Total) Current Assets` and  `(Total) Current Liabilities` in dollars
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+        as of {PERIOD} fiscal period end?
+
+
+work-cap-ratio:
   task:
     Calculate the working capital ratio of {COMPANY} for {YEAR}. Working capital
     ratio = working capital / total assets
