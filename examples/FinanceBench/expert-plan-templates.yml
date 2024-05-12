@@ -152,17 +152,43 @@ unadjusted-ebitda:
         fiscal year(s)?
 
 ebitda-margin:
-  task:
-    Calculate the EBITDA margin of {COMPANY} for {YEAR}. EBITDA margin =
-    (operating income + depreciation and amortization) / revenue.
+  task: |-
+    Calculate `(Unadjusted) EBITDA Margin` of {COMPANY} for {PERIOD} fiscal period, as percentage value according to formula:
+    
+    `(Unadjusted) EBITDA Margin` = (
+      (`(Unadjusted) Operating Income, a.k.a. Operating Profit` +
+       `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`)
+      / `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+    )
+
   sub-plans:
-    - task:
-        In dollars, what was the operating income in the given fiscal year(s)?
-    - task:
-        In dollars, what was the depreciation and amortization in the given
-        fiscal year(s)
-    - task:
-        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    - task: |-
+        What are values in dollars of:
+        - `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+        - `(Unadjusted) Operating Income, a.k.a. Operating Profit`
+        (or most similar-meaning reported line items to those)
+
+        on `(Consolidated) (Comprehensive) Income Statement,
+        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+        for {PERIOD} fiscal period?
+      
+    - task: >-
+        What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
+        (or most similar-meaning reported line item)
+        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        Calculate `(Unadjusted) EBITDA Margin` of {COMPANY} for {PERIOD} fiscal period,
+        as percentage value according to formula:
+    
+        `(Unadjusted) EBITDA Margin` = (
+          (`(Unadjusted) Operating Income, a.k.a. Operating Profit` +
+           `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`)
+          / `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
 
 da-margin:
   task:
