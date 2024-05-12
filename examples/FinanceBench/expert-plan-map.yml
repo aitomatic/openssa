@@ -34,7 +34,7 @@ financebench_id_04854: free-cash-flow
 financebench_id_10136: retention-ratio
 financebench_id_10499: inv-turnover-ratio  #
 financebench_id_04412: asset-turnover-ratio
-financebench_id_03031: working-capital
+financebench_id_03031: work-cap  #
 financebench_id_03849: capex-as-pct-of-rev-3y-avg  #
 financebench_id_01911: interest-coverage-ratio
 financebench_id_00552: debt
