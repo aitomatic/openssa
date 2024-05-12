@@ -55,7 +55,8 @@ Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
 
 - "Earnings before Interest, Tax, Depreciation & Amortization", "EBITDA"
 
-- "Depreciation & Amortization", "D&A"
+- "Depreciation & Amortization", "D&A",
+  "Depreciation & Amortization of Fixed Assets", "Depreciation & Amortization of Property, Plant & Equipment (PP&E)"
 
 - "Earnings before Interest & Tax", "EBIT"
 
@@ -90,7 +91,7 @@ Adjusted Income Metric Formulas
 
 `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` = (
   `(Unadjusted) Operating Income, a.k.a. Operating Profit` +
-  `Depreciation & Amortization, a.k.a. D&A`
+  `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
 )
 
 
@@ -118,7 +119,7 @@ Profitability Margin Metric Formulas
 )
 
 `Depreciation & Amortization (D&A) Margin` = (
-  `Depreciation & Amortization, a.k.a. D&A` /
+  `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))` /
   `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
