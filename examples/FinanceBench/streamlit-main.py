@@ -6,7 +6,7 @@ import base64
 import streamlit as st
 from loguru import logger
 
-from data_and_knowledge import DOC_NAMES, DOC_LINKS_BY_NAME, FILTERERED_QS_BY_FB_ID, FILTERERED_FB_IDS_BY_DOC_NAME
+from data_and_knowledge import FILTERERED_DOC_NAMES, FILTERERED_DOC_LINKS_BY_NAME, FILTERERED_QS_BY_FB_ID, FILTERERED_FB_IDS_BY_DOC_NAME
 # , cache_file_path
 from htp_oodar_agent import solve_expert_htp_statically
 
@@ -41,21 +41,21 @@ st.set_page_config(page_title='Analyses of SEC Filings (`FinanceBench` Dataset)'
 st.title('Analyses of SEC Filings (`FinanceBench` Dataset)')
 
 
-# if 'doc_name' not in st.session_state:
-#     st.session_state.doc_name: str = DOC_NAMES[0]
+if 'doc_name' not in st.session_state:
+    st.session_state.doc_name: str = FILTERERED_DOC_NAMES[0]
 
-# st.session_state.doc_name: str = st.selectbox(label='SEC Document',
-#                                               options=DOC_NAMES,
-#                                             #   index=DOC_NAMES.index(st.session_state.doc_name),
-#                                               # format_func=None,
-#                                               key=None,
-#                                               help='SEC Document',
-#                                               on_change=None, args=None, kwargs=None,
-#                                               placeholder='SEC Document',
-#                                               disabled=False,
-#                                               label_visibility='hidden')
+st.session_state.doc_name: str = st.selectbox(label='SEC Document',
+                                              options=FILTERERED_DOC_NAMES,
+                                            #   index=DOC_NAMES.index(st.session_state.doc_name),
+                                              # format_func=None,
+                                              key=None,
+                                              help='SEC Document',
+                                              on_change=None, args=None, kwargs=None,
+                                              placeholder='SEC Document',
+                                              disabled=False,
+                                              label_visibility='hidden')
 
-# st.write(DOC_LINKS_BY_NAME[st.session_state.doc_name])
+st.write(FILTERERED_DOC_LINKS_BY_NAME[st.session_state.doc_name])
 
 # try:
 #     display_pdf(cache_file_path(st.session_state.doc_name))
@@ -64,8 +64,8 @@ st.title('Analyses of SEC Filings (`FinanceBench` Dataset)')
 
 
 question_id: str = st.selectbox(label='Question',
-                                # options=FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
-                                options=FILTERERED_FB_IDS_BY_DOC_NAME['3M_2022_10K'],
+                                # options=FILTERERED_DOC_NAMES[st.session_state.doc_name],
+                                options=FILTERERED_FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
                                 index=0,
                                 format_func=lambda i: FILTERERED_QS_BY_FB_ID[i],
                                 key=None,
@@ -84,6 +84,6 @@ if st.button(label=f'__SOLVE__: _{FILTERERED_QS_BY_FB_ID[question_id]}_',
              disabled=False,
              use_container_width=False):
     with st.spinner('Solving... Please wait'):
-        solution: str = solve_expert_htp_statically('financebench_id_00499')
+        solution: str = solve_expert_htp_statically(question_id)
     st.write(solution)
     # st.text(solution)
