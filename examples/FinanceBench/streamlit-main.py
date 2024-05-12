@@ -5,9 +5,9 @@ import base64
 
 import streamlit as st
 
-from data_and_knowledge import DOC_NAMES, DOC_LINKS_BY_NAME, QS_BY_FB_ID, FB_IDS_BY_DOC_NAME
+from data_and_knowledge import DOC_NAMES, DOC_LINKS_BY_NAME, FILTERERED_QS_BY_FB_ID, FILTERERED_FB_IDS_BY_DOC_NAME
 # , cache_file_path
-from htp_oodar_agent import solve_auto_htp_dynamically
+from htp_oodar_agent import solve_expert_htp_statically
 
 
 def display_pdf(file_path):
@@ -56,9 +56,9 @@ st.title('Analyses of SEC Filings (`FinanceBench` Dataset)')
 
 question_id: str = st.selectbox(label='Question',
                                 # options=FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
-                                options=FB_IDS_BY_DOC_NAME['3M_2022_10K'],
+                                options=FILTERERED_FB_IDS_BY_DOC_NAME['3M_2022_10K'],
                                 index=0,
-                                format_func=lambda i: QS_BY_FB_ID[i],
+                                format_func=lambda i: FILTERERED_QS_BY_FB_ID[i],
                                 key=None,
                                 help='Question',
                                 on_change=None, args=None, kwargs=None,
@@ -66,13 +66,13 @@ question_id: str = st.selectbox(label='Question',
                                 disabled=False,
                                 label_visibility='visible')
 
-if st.button(label=f'__SOLVE__: _{QS_BY_FB_ID[question_id]}_',
+if st.button(label=f'__SOLVE__: _{FILTERERED_QS_BY_FB_ID[question_id]}_',
              key=None,
              on_click=None, args=None, kwargs=None,
              type='primary',
              disabled=False,
              use_container_width=False):
     with st.spinner('Solving... Please wait'):
-        solution: str = solve_auto_htp_dynamically('financebench_id_00499')
+        solution: str = solve_expert_htp_statically('financebench_id_00499')
     st.write(solution)
     # st.text(solution)

@@ -62,19 +62,19 @@ FB_ID_COL_NAME: str = 'financebench_id'
 META_DF: DataFrame = read_csv(METADATA_URL, index_col=FB_ID_COL_NAME)
 META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
-# DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
-# DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(META_DF.doc_name, META_DF.doc_link))
-# DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
+DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
+DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(META_DF.doc_name, META_DF.doc_link))
+DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
 
-# FB_IDS: list[FbId] = META_DF.index.to_list()
-# FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FB_IDS: list[FbId] = META_DF.index.to_list()
+FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
 
-# QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
+QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
 
 
-# LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
-# LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
-# OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
+LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
+LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
+OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 
 
 GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
@@ -117,17 +117,14 @@ with open(file=EXPERT_PLAN_MAP_FILE_PATH,
 IDS_FROM_EXPERT_PLAN_MAP = list(EXPERT_PLAN_MAP.keys())
 FILTERED_META_DF = META_DF.loc[META_DF.index.isin(IDS_FROM_EXPERT_PLAN_MAP)]
 
-DOC_NAMES: list[DocName] = sorted(FILTERED_META_DF.doc_name.unique())
-DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(FILTERED_META_DF.doc_name, FILTERED_META_DF.doc_link))
-DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = FILTERED_META_DF.doc_name.to_dict()
+FILTERERED_DOC_NAMES: list[DocName] = sorted(FILTERED_META_DF.doc_name.unique())
+FILTERERED_DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(FILTERED_META_DF.doc_name, FILTERED_META_DF.doc_link))
+FILTERERED_DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = FILTERED_META_DF.doc_name.to_dict()
 
-FB_IDS: list[FbId] = FILTERED_META_DF.index.to_list()
-FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = FILTERED_META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
-QS_BY_FB_ID: dict[FbId, Question] = FILTERED_META_DF.question.to_dict()
+FILTERERED_FB_IDS: list[FbId] = FILTERED_META_DF.index.to_list()
+FILTERERED_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = FILTERED_META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FILTERERED_QS_BY_FB_ID: dict[FbId, Question] = FILTERED_META_DF.question.to_dict()
 
-LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
-LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
-OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
 ###################################
 
 # sanity check Expert Plans Map
