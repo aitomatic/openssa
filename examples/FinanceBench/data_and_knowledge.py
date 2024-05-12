@@ -112,7 +112,7 @@ with open(file=EXPERT_PLAN_MAP_FILE_PATH,
           opener=None) as f:
     EXPERT_PLAN_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
 
-####### META_DF processing
+# META_DF processing
 # filter META_DF to use top 50 questions from expert-plan-map.yml only
 IDS_FROM_EXPERT_PLAN_MAP = list(EXPERT_PLAN_MAP.keys())
 FILTERED_META_DF = META_DF.loc[META_DF.index.isin(IDS_FROM_EXPERT_PLAN_MAP)]

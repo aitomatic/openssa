@@ -4,6 +4,7 @@
 import base64
 
 import streamlit as st
+from loguru import logger
 
 from data_and_knowledge import DOC_NAMES, DOC_LINKS_BY_NAME, FILTERERED_QS_BY_FB_ID, FILTERERED_FB_IDS_BY_DOC_NAME
 # , cache_file_path
@@ -20,6 +21,14 @@ def display_pdf(file_path):
 
     # Displaying File
     st.markdown(pdf_display, unsafe_allow_html=True)
+
+def redirect_loguru_to_streamlit():
+    def _filter_warning(record):
+        return record["level"].no == logger.level("WARNING").no
+    if 'warning_logger' not in st.session_state:
+        st.session_state['warning_logger'] = logger.add(st.warning, filter=_filter_warning, level='INFO')
+    if 'error_logger' not in st.session_state:
+        st.session_state['error_logger'] = logger.add(st.error, level='ERROR')
 
 
 st.set_page_config(page_title='Analyses of SEC Filings (`FinanceBench` Dataset)',
@@ -65,6 +74,8 @@ question_id: str = st.selectbox(label='Question',
                                 placeholder='Question',
                                 disabled=False,
                                 label_visibility='visible')
+
+# redirect_loguru_to_streamlit() #TODO decide which logs should be shown
 
 if st.button(label=f'__SOLVE__: _{FILTERERED_QS_BY_FB_ID[question_id]}_',
              key=None,
