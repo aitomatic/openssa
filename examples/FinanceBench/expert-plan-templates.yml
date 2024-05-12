@@ -79,16 +79,45 @@ cogs-margin:
         In dollars, what was the revenue (net sales) in the given fiscal
         year(s)?
 
-gross-margin-profile:
-  task:
-    Calculate the gross margin of {COMPANY} for {YEAR}. Gross margin = (revenue
-    minus cost of sales) / revenue
+
+gross-margin-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in `Gross (Income or Profit) Margin` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
+
   sub-plans:
-    - task:
-        In dollars, what was the cost of sales in the given fiscal year(s)?
-        operating expenses or income statement.
-    - task:
-        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+    - task: |-
+        Calculate `Gross (Income or Profit) Margin` as percentage values according to formula:
+
+        `Gross (Income or Profit) Margin` = (
+          `Gross Income, a.k.a. Gross Profit` /
+          `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
+        for following two fiscal periods:
+        - one-year-before previous annual fiscal period preceding {PERIOD}; and
+        - {PERIOD} annual fiscal period
+
+      sub-plans:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        - task: |-
+            What are values in dollars of:
+            - `Gross Income, a.k.a. Gross Profit`; and
+            - `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) (Comprehensive) Income Statement,
+            a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+
+            for following two fiscal periods:
+            - one-year-before previous annual fiscal period preceding {PERIOD}; and
+            - {PERIOD} annual fiscal period?
+
+    - task: >-
+        Calculate difference between two calculated `Gross (Income or Profit) Margin` percentage values
+        and assess whether `Gross (Income or Profit) Margin` meaningfully degraded or improved
+
 
 unadjusted-operating-income:
   task: Calculate the unadjusted operating income of {COMPANY} for {YEAR}.
