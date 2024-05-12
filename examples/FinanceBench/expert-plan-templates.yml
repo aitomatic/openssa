@@ -286,15 +286,19 @@ work-cap:
 
 
 work-cap-ratio:
-  task:
-    Calculate the working capital ratio of {COMPANY} for {YEAR}. Working capital
-    ratio = working capital / total assets
+  task: |-
+    Calculate `Working Capital Ratio` of {COMPANY} as of {PERIOD} fiscal period end, as decimal value according to formula:
+    
+    `Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
+
   sub-plans:
-    - task:
-        In dollars, what was the working capital in the given fiscal year(s)?
-    - task:
-        In dollars, what were the total assets in the given fiscal year(s)?
-        total assets on the balance sheet.
+    - task: |-
+        Calculate `Working Capital Ratio` as decimal value equal to
+        `(Total) Current Assets` divided by `(Total) Current Liabilities`,
+        with both `(Total) Current Assets` and `(Total) Current Liabilities` in dollars
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+        as of {PERIOD} fiscal period end?
 
 
 quick-ratio:
