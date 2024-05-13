@@ -129,8 +129,8 @@ Profitability Margin Metric Formulas
   `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
-`Net (Income or Profit) Margin` = (
-  `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
+`Net (Income or Profit or Earnings) Margin` = (
+  `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
   `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
@@ -140,7 +140,7 @@ Profit-Utilization / Capital-Return Metric Formulas
 
 `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
 
-`Effective Tax Rate` = `Tax Expense` / `Taxable Income`
+`Effective (Income) Tax Rate` = `(Income) Tax Expense` / `Earnings before (Income) Tax(es)`
 
 `Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
 
