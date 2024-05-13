@@ -3,7 +3,7 @@
 
 asset-turnover-ratio:
   task: |-
-    Calculate `(Total) Asset Turnover Ratio` of {COMPANY} over {PERIOD} annual fiscal period
+    Calculate `(Total) Asset Turnover Ratio` of {COMPANY} for {PERIOD} annual fiscal period
     as decimal value according to formula:
 
     `(Total) Asset Turnover Ratio` = (
@@ -28,7 +28,7 @@ asset-turnover-ratio:
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
         (or most similar-meaning statement)
-        
+
         of {COMPANY} as at two following points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
