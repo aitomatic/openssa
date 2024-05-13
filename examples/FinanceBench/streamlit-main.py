@@ -22,6 +22,7 @@ def display_pdf(file_path):
     # Displaying File
     st.markdown(pdf_display, unsafe_allow_html=True)
 
+
 def redirect_loguru_to_streamlit():
     def _filter_warning(record):
         return record["level"].no == logger.level("WARNING").no
@@ -46,8 +47,8 @@ if 'doc_name' not in st.session_state:
 
 st.session_state.doc_name: str = st.selectbox(label='SEC Document',
                                               options=FILTERERED_DOC_NAMES,
-                                            #   index=DOC_NAMES.index(st.session_state.doc_name),
-                                              # format_func=None,
+                                            #   index=DOC_NAMES.index(st.session_state.doc_name), # noqa: E128
+                                            #   format_func=None, # noqa: E128
                                               key=None,
                                               help='SEC Document',
                                               on_change=None, args=None, kwargs=None,
@@ -75,7 +76,7 @@ question_id: str = st.selectbox(label='Question',
                                 disabled=False,
                                 label_visibility='visible')
 
-# redirect_loguru_to_streamlit() #TODO decide which logs should be shown
+# redirect_loguru_to_streamlit() #TODO: decide which logs should be shown
 
 if st.button(label=f'__SOLVE__: _{FILTERERED_QS_BY_FB_ID[question_id]}_',
              key=None,
