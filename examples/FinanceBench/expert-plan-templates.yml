@@ -23,8 +23,7 @@ asset-turnover-ratio:
         of {COMPANY} for {PERIOD} annual fiscal period?
 
     - task: |-
-        What is simple arithmetic average of two values in dollars of `Total Assets`
-        (or most similar-meaning reported line item)
+        What are values in dollars of `Total Assets` (or most similar-meaning reported line item)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
         (or most similar-meaning statement)
