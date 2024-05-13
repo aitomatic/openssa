@@ -104,8 +104,8 @@ Profitability Margin Metric Formulas
   `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
-`Gross (Income or Profit) Margin` = (
-  `Gross Income, a.k.a. Gross Profit` /
+`Gross (Income or Profit or Earnings) Margin` = (
+  `Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))` /
   `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
