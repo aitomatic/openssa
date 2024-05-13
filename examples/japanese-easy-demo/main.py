@@ -7,7 +7,7 @@ load_dotenv()
 
 
 LOCAL_CACHE_DOCS_DIR_PATH: Path = Path(__file__).parent / '.data'
-THREE_FIN_STATEMENTS_HEURISTICS: str = (
+JAPANESE_DEMO_HEURISTICS: str = (
     'Please answer in Japanese.'
     'Pay attention to the total salt content, calories, and total vegetables.'
 )
@@ -15,7 +15,7 @@ THREE_FIN_STATEMENTS_HEURISTICS: str = (
 
 def get_or_create_ooda_ssa() -> OodaSSA:
     ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
-                  highest_priority_heuristic=THREE_FIN_STATEMENTS_HEURISTICS,
+                  highest_priority_heuristic=JAPANESE_DEMO_HEURISTICS,
                   enable_generative=True)
     ssa.activate_resources(LOCAL_CACHE_DOCS_DIR_PATH)
     return ssa
