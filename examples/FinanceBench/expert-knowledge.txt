@@ -7,6 +7,7 @@ FINANCIAL SYNONYMS
 
 - "(Consolidated) (Comprehensive) Income Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Income",
   "(Consolidated) (Comprehensive) Profit-and-Loss Statement(s)", "(Consolidated) (Comprehensive) P&L (Statement(s))",
+  "(Consolidated) (Comprehensive) Earnings Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Earnings",
   "(Consolidated) (Comprehensive) Operations Statement(s)", "Statement(s) of (Consolidated) (Comprehensive) Operations"
 
 
