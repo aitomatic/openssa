@@ -1,8 +1,10 @@
+<!-- markdownlint-disable MD013 MD043 -->
+
 # OpenSSA sample
 
 ## ライブラリインストール(初回のみ)
 
-```
+```bash
 poetry install
 ```
 
@@ -18,6 +20,6 @@ poetry install
 
 ## 実行
 
-```
+```bash
 poetry run python main.py
 ```
