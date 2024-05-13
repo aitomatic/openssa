@@ -1,0 +1,551 @@
+# REVENUE & TURNOVER METRIC EVALUATION
+# ====================================
+
+asset-turnover-ratio:
+  task:
+    Calculate the asset turnover ratio of {COMPANY} for {YEAR}. Asset turnover
+    ratio = net sales / (average total assets between {YEAR-1} and {YEAR})
+  sub-plans:
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement.
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet
+
+
+fa-turnover-ratio:
+  task: |-
+    Calculate `Fixed Asset Turnover Ratio` of {COMPANY} over {PERIOD} fiscal period as decimal value according to formula:
+
+    `Fixed Asset Turnover Ratio` = (
+      `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` /
+      `average (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E), typically between two consecutive fiscal year-ends`
+    )
+
+  sub-plans:
+    - task: >-
+        What is value in dollars of `(Net) Revenue, a.k.a. (Net) Sales` (or most similar-meaning reported line item)
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement`
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    - task: |-
+        What is simple arithmetic average value in dollars of
+        `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` (or most similar-meaning reported line item)
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        as of two following points in time:
+        - one-year-before previous fiscal period end preceding {PERIOD}; and
+        - {PERIOD} fiscal period end?
+
+
+inv-turnover-ratio:
+  task: |-
+    Calculate `Inventory Turnover Ratio` of {COMPANY} over {PERIOD} annual fiscal period as decimal value according to formula:
+
+    `Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
+      `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue` /
+      `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+    )
+
+  sub-plans:
+    - task: >-
+        What is value in dollars of `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue`
+        (or most similar-meaning reported line item)
+        on `(Consolidated) (Comprehensive) Income Statement,
+        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+        for {PERIOD} annual fiscal period?
+
+    - task: |-
+        What is simple arithmetic average value in dollars of `(Net) Inventory` (or most similar-meaning reported line item)
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        as of two following points in time:
+        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - {PERIOD} annual fiscal period end?
+
+
+# INCOME & PROFITABILITY METRIC EVALUATION
+# ========================================
+
+cogs-margin:
+  task:
+    Calculate the cost of goods sold (COGS) % margin of {COMPANY} for {YEAR}.
+    COGS margin = (revenue - cost of sales) / revenue
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal
+        year(s)?
+
+gross-margin-profile:
+  task:
+    Calculate the gross margin of {COMPANY} for {YEAR}. Gross margin = (revenue
+    minus cost of sales) / revenue
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales in the given fiscal year(s)?
+        operating expenses or income statement.
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+
+unadjusted-operating-income:
+  task: Calculate the unadjusted operating income of {COMPANY} for {YEAR}.
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+
+op-margin-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in `(Unadjusted) Operating (Income or Profit) Margin` of {COMPANY}
+    from corresponding one-year-preceding previous fiscal period to current {PERIOD} fiscal period
+
+  sub-plans:
+    - task: |-
+        Calculate `(Unadjusted) Operating (Income or Profit) Margin` for following two fiscal periods:
+        - one-year-before previous fiscal period preceding {PERIOD}; and
+        - {PERIOD} fiscal period
+
+        as percentage values according to formula:
+
+        `(Unadjusted) Operating (Income or Profit) Margin` = (
+          `(Unadjusted) Operating Income, a.k.a. Operating Profit` /
+          `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
+      sub-plans:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        - task: |-
+            What are values in dollars of:
+            - `(Unadjusted) Operating Income, a.k.a. Operating Profit`; and
+            - `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) (Comprehensive) Income Statement,
+            a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+
+            for following two fiscal periods:
+            - one-year-before previous fiscal period preceding {PERIOD}; and
+            - {PERIOD} fiscal period?
+
+    - task: >-
+        Calculate difference between two calculated `(Unadjusted) Operating (Income or Profit) Margin` percentage values
+        and assess whether `(Unadjusted) Operating (Income or Profit) Margin` meaningfully degraded or improved
+
+
+unadjusted-ebitda:
+  task:
+    Calculate the unadjusted EBITDA of {COMPANY} for {YEAR}. Unadjusted EBITDA =
+    unadjusted operating income + depreciation and amortization
+  sub-plans:
+    - task:
+        In dollars, what was the unadjusted operating income in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)?
+
+ebitda-margin:
+  task:
+    Calculate the EBITDA margin of {COMPANY} for {YEAR}. EBITDA margin =
+    (operating income + depreciation and amortization) / revenue.
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+
+da-margin:
+  task:
+    Calculate the depreciation and amortization margin of {COMPANY} for {YEAR}.
+    Depreciation and amortization margin = depreciation and amortization /
+    revenue
+  sub-plans:
+    - task:
+        In dollars, what was the depreciation and amortization in the given
+        fiscal year(s)?
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal year(s)
+
+net-profit-margin:
+  task:
+    Calculate the net profit margin of {COMPANY} for {YEAR}. Net profit margin =
+    net income / net sales
+  sub-plans:
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+    - task:
+        In dollars, what was the net sales in the given fiscal year(s)? sales or
+        income statement
+
+
+# PROFIT-UTILIZATION / CAPITAL-RETURN METRIC EVALUATION
+# =====================================================
+
+interest-coverage-ratio:
+  task:
+    Calculate the interest coverage ratio of {COMPANY} for {YEAR}. Interest
+    coverage ratio = operating income / interest expense
+  sub-plans:
+    - task:
+        In dollars, what was the operating income in the given fiscal year(s)?
+    - task:
+        In dollars, what was the interest expense in the given fiscal year(s)?
+
+effective-tax-rate:
+  task:
+    Calculate the effective tax rate of {COMPANY} for {YEAR}. Effective tax rate
+    = income tax expense / income before tax
+  sub-plans:
+    - task:
+        In dollars, what was the provision for income taxes in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the income from continuing operations before income
+        taxes in the given fiscal year(s)?
+
+dividend-payout-ratio:
+  task:
+    Calculate the dividend payout ratio of {COMPANY} for {YEAR}. Dividend payout
+    ratio = total cash dividends paid / net income attributable to shareholders
+  sub-plans:
+    - task:
+        In dollars, what was the total cash dividends paid in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the net income attributable to shareholders in the
+        given fiscal year(s)
+
+retention-ratio:
+  task:
+    Calculate the retention ratio of {COMPANY} for {YEAR}. Retention ratio =
+    (net income - dividends) / net income
+  sub-plans:
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+    - task:
+        In dollars, what was the total cash dividends paid in the given fiscal
+        year(s)?
+
+
+# LIQUIDITY METRIC EVALUATION
+# ===========================
+
+working-capital:
+  task:
+    Calculate the working capital of {COMPANY} for {YEAR}. Working capital =
+    total current assets - total current liabilities.
+  sub-plans:
+    - task:
+        In dollars, what were the total current assets in the given fiscal year?
+    - task:
+        In dollars, what were the total current liabilities in the given fiscal
+        year?
+
+working-capital-ratio:
+  task:
+    Calculate the working capital ratio of {COMPANY} for {YEAR}. Working capital
+    ratio = working capital / total assets
+  sub-plans:
+    - task:
+        In dollars, what was the working capital in the given fiscal year(s)?
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet.
+
+
+quick-ratio:
+  task: Assess liquidity health of {COMPANY} through its `Quick Ratio` as of {PERIOD} fiscal period end
+
+  sub-plans:
+    - task: |-
+        Calculate `Quick Ratio` as of {PERIOD} fiscal period end, as decimal value according to formula:
+
+        `Quick Ratio` = (
+          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+          / `(Total) Current Liabilities`
+        )
+
+      sub-plans:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        - task: |-
+            What are values in dollars of:
+            - `Cash & Cash Equivalents`;
+            - `Short-Term Investments or Marketable Securities`;
+            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
+            - `(Total) Current Liabilities`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+            (and NOT Balance Sheets of its acquired and/or divested companies)
+
+            as of {PERIOD} fiscal period end?
+
+    - task: |-
+        Compare calculated `Quick Ratio` decimal value against 1.00 and make assessment:
+        - `Quick Ratio` >= 1.00: liquidity is healthy; or
+        - `Quick Ratio` < 1.00: liquidity is not very healthy
+
+
+quick-ratio-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in `Quick Ratio` of {COMPANY}
+    from corresponding one-year-preceding previous fiscal period end to current {PERIOD} fiscal period end
+
+  sub-plans:
+    - task: |-
+        Calculate `Quick Ratio` as of following two points in time:
+        - one-year-before previous fiscal period end preceding {PERIOD}; and
+        - {PERIOD} fiscal period end
+
+        as decimal values according to formula:
+
+        `Quick Ratio` = (
+          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+          / `(Total) Current Liabilities`
+        )
+
+      sub-plans:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        - task: |-
+            What are values in dollars of:
+            - `Cash & Cash Equivalents`;
+            - `Short-Term Investments or Marketable Securities`;
+            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
+            - `(Total) Current Liabilities`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+            (and NOT Balance Sheets of its acquired and/or divested companies)
+
+            as of following two points in time:
+            - one-year-before previous fiscal period end preceding {PERIOD}; and
+            - current {PERIOD} fiscal period end?
+
+    - task: >-
+        Calculate difference between two calculated `Quick Ratio` decimal values
+        and assess whether `Quick Ratio` meaningfully degraded or improved
+
+
+free-cash-flow:
+  task:
+    Calculate the free cash flow of {COMPANY} for {YEAR}. Free cash flow = cash
+    from operations - capital expenditures
+  sub-plans:
+    - task:
+        In dollars, what was the net cash provided by operating activities in
+        the given fiscal year(s)?
+    - task:
+        In dollars, what was the capital expenditures in the given fiscal
+        year(s)
+
+
+fcf-conv-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in `Free Cash Flow Conversion Ratio` of {COMPANY}
+    from corresponding one-year-preceding previous fiscal period to current {PERIOD} fiscal period
+
+  sub-plans:
+    - task: |-
+        Calculate `Free Cash Flow Conversion Ratio` as percentage values according to formula:
+
+        `Free Cash Flow Conversion Ratio` = (
+          (`Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`)
+          / `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
+        )
+
+        for following two fiscal periods:
+        - one-year-before previous fiscal period preceding {PERIOD}; and
+        - {PERIOD} fiscal period
+
+      sub-plans:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        - task: |-
+            What are values in dollars of:
+            - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
+            - `Capital Expenditure, a.k.a. CapEx`
+            (or most similar-meaning reported line items to those)
+
+            on one same `Cash Flow(s) Statement` of {COMPANY}
+
+            for following two fiscal periods:
+            - one-year-before previous fiscal period preceding {PERIOD}; and
+            - {PERIOD} fiscal period
+
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        - task: |-
+            What are values in dollars of `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
+            (or most similar-meaning reported line item)
+
+            on one same `(Consolidated) (Comprehensive) Income Statement,
+            a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+
+            for following two fiscal periods:
+            - one-year-before previous fiscal period preceding {PERIOD}; and
+            - {PERIOD} fiscal period
+
+    - task: >-
+        Calculate difference between two calculated `Free Cash Flow Conversion Ratio` percentage values
+        and assess whether `Free Cash Flow Conversion Ratio` meaningfully degraded or improved
+
+
+op-cf-ratio:
+  task: |-
+    Calculate Operating Cash Flow Ratio of {COMPANY} for {PERIOD} annual fiscal period,
+    as decimal value according to formula:
+
+    `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
+
+  sub-plans:
+    - task: >-
+        What is value in dollars of `Cash Flows from Operations, a.k.a. Operating Cash Flows` (or most similar-meaning reported line item)
+        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} annual fiscal period?
+
+    - task: >-
+        What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
+        on `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+        as of {PERIOD} annual fiscal period end?
+
+
+days-payable-outstanding:
+  task:
+    Calculate the days payable outstanding (DPO) for {COMPANY} in {YEAR}. DPO =
+    365 * (average accounts payable between {YEAR-1} and {YEAR}) / ({YEAR} COGS
+    + change in inventory between {YEAR-1} and {YEAR})
+  sub-plans:
+    - task:
+        In dollars, what was the cost of sales (equivalent to cost of goods
+        sold) in the given fiscal year(s)? statement.
+    - task:
+        In dollars, what were the accounts payable in the given fiscal year(s)?
+
+    - task:
+        In dollars, what were the inventories in the given fiscal year(s)?
+        current assets on the balance sheet.
+
+cash-conversion-cycle:
+  task:
+    Calculate the cash conversion cycle of {COMPANY} for {YEAR}. Cash conversion
+    cycle = DIO + DSO - DPO
+  sub-plans:
+    - task:
+        In dollars, what was the days inventory outstanding (DIO) in the given
+        fiscal year(s)? DIO = 365 * (average inventory between {YEAR-1} and
+        {YEAR}) / (COGS in {YEAR}).
+      sub-plans:
+        - task:
+            In dollars, what was the cost of sales (equivalent to cost of goods
+            sold) in the given fiscal year(s)? statement.
+        - task:
+            In dollars, what were the inventories in the given fiscal year(s)?
+            current assets on the balance sheet.
+    - task:
+        In dollars, what was the days sales outstanding (DSO) in the given
+        fiscal year(s)? DSO = 365 * (average accounts receivable between
+        {YEAR-1} and {YEAR}) / (net sales in {YEAR}).
+      sub-plans:
+        - task:
+            In dollars, what was the net sales in the given fiscal year(s)?
+            sales or income statement.
+        - task:
+            In dollars, what were the accounts receivable in the given fiscal
+            year(s)?
+    - task:
+        In dollars, what was the days payable outstanding (DPO) in the given
+        fiscal year(s)? DPO = 365 * (average accounts payable between {YEAR-1}
+        and {YEAR}) / (COGS in {YEAR} + change in inventory between {YEAR-1} and
+        {YEAR}).
+      sub-plans:
+        - task:
+            In dollars, what was the cost of sales (equivalent to cost of goods
+            sold) in the given fiscal year(s)? statement.
+        - task:
+            In dollars, what were the accounts payable in the given fiscal
+            year(s)?
+        - task:
+            In dollars, what were the inventories in the given fiscal year(s)?
+            current assets on the balance sheet.
+
+debt:
+  task:
+    Calculate the total debt of {COMPANY} for {YEAR}. Add the short-term and
+    long-term debt.
+  sub-plans:
+    - task:
+        In dollars, what was the debt in the given fiscal year(s)? liabilities
+        on the balance sheet.
+    - task:
+        In dollars, what was the long-term debt in the given fiscal year(s)?
+        long-term liabilities on the balance sheet.
+
+
+# CAPITAL-INTENSIVENESS METRIC EVALUATION
+# =======================================
+
+capital-intensiveness:  # TODO: check
+  task: Is {COMPANY} a capital-intensive business based on {YEAR} data?
+  sub-plans:
+    - task:
+        In dollars, what was the capital expenditures in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what was the revenue (net sales) in the given fiscal
+        year(s)?
+    - task:
+        In dollars, what were the current assets in the given fiscal year(s)?
+
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet.
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement
+
+
+capex-as-pct-of-rev-3y-avg:
+  task: >-
+    Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue for {COMPANY},
+    as percentage value
+
+  sub-plans:
+    - task: >-
+        What are values in dollars of `Capital Expenditure, a.k.a. CapEx` (or most similar-meaning reported line item)
+        on `Cash Flow(s) Statement` of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        What are values in dollars of `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` (or most similar-meaning reported line item)
+        on `(Consolidated) (Comprehensive) Income Statement,
+        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) (Comprehensive) Operations Statement`
+        of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue
+        by dividing sum of `Capital Expenditure, a.k.a. CapEx` by sum of `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        and return division result as percentage value
+
+
+return-on-assets:
+  task:
+    Calculate the return on assets (ROA) of {COMPANY} for {YEAR}. ROA = net
+    income / (average total assets between {YEAR-1} and {YEAR})
+  sub-plans:
+    - task:
+        In dollars, what was the net income in the given fiscal year(s)? income
+        or income statement.
+    - task:
+        In dollars, what were the total assets in the given fiscal year(s)?
+        total assets on the balance sheet.

@@ -4,7 +4,7 @@
 
 ## Enabling Efficient, Domain-Specific Planning and Reasoning for AI
 
-OpenSSA is an open-source framework for creating efficient, domain-specific Small Specialist AI agents (SSAs) that solve complex problems by incorporating advanced _Planning_ and _Reasoning_ capabilities.
+OpenSSA is an open-source framework for creating efficient, domain-specific Small Specialist AI agents (SSAs) that solve complex problems by incorporating advanced _Planning_ and _Reasoning_ capabilities. Read more about our [Agentic Framework here ](https://docs.google.com/document/d/1QY6UJjXs4YiSYR4ChRIdlPbeLKOXgneL_n5nB9Zfmiw/edit?usp=sharing)
 
 SSAs tackle multi-step problems that require planning and reasoning beyond traditional language models. They apply OODA for deliberative reasoning (OODAR) and iterative, hierarchical task planning (HTP). This "System-2 Intelligence" breaks down complex tasks into manageable steps. SSAs make informed decisions based on domain-specific knowledge. With OpenSSA, create agents that process, generate, and reason about information. This makes them more effective and efficient in solving real-world challenges.
 
@@ -76,6 +76,13 @@ OpenSSA significantly boosts the accuracy of Retrieval-Augmented Generation (RAG
 3. Start building your own Small Specialist Agents
 
 Detailed tutorials and guides are available in our [Documentation](https://aitomatic.github.io/openssa).
+
+### Roadmap
+- Llama3 being default model
+- Other types of planning beyond HTP being integrated
+- Custom reasoners
+- Facts, rules, heuristics as proper data structures (not just a knowledge text block)
+- Custom resources (web search, sensors, feeds)
 
 ### Contributing
 

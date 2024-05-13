@@ -66,24 +66,35 @@ class HTP(AbstractPlan):
                                                  if p.task.status == TaskStatus.DONE
                                                  else p.execute(reasoner, other_results=sub_results))))
 
+            inputs: str = (f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
+                           '\n\n' +
+                           '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                        '\n'
+                                        f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                       for i, (ask, result) in enumerate(sub_results)) +
+                           (('\n\n' +
+                             '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                          '\n'
+                                          f'OTHER RESULT #{i + 1}:\n{result}\n')
+                                         for i, (ask, result) in enumerate(other_results)))
+                            if other_results
+                            else ''))
+
             prompt: str = HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(
                 ask=self.task.ask,
-                info=(f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
-                      '\n\n' +
-                      '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                   '\n'
-                                   f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                  for i, (ask, result) in enumerate(sub_results)) +
-                      (('\n\n' +
-                        '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                     '\n'
-                                     f'OTHER RESULT #{i + 1}:\n{result}\n')
-                                    for i, (ask, result) in enumerate(other_results)))
-                       if other_results
-                       else '')))
-            logger.debug(prompt)
+                info=inputs)
 
             self.task.result: str = reasoner.lm.get_response(prompt)
+
+            logger.debug(f'\n{self.task.ask.upper()}\n'
+                         '--------------------------\n'
+                         f'{self.task.result}\n'
+                         '\n'
+                         ' ^ \n'
+                         '/|\\\n'
+                         ' | \n'
+                         '\n'
+                         f'{inputs}')
 
         else:
             self.task.result: str = reasoning_wo_sub_results
