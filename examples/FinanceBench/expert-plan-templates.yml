@@ -23,14 +23,15 @@ asset-turnover-ratio:
     - task: |-
         What is simple arithmetic average value in dollars of `Total Assets` (or most similar-meaning reported line item)
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
-        as of two following points in time:
+        as at two following points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
 
 fa-turnover-ratio:
   task: |-
-    Calculate `Fixed Asset Turnover Ratio` of {COMPANY} over {PERIOD} fiscal period as decimal value according to formula:
+    Calculate `Fixed Asset Turnover Ratio` of {COMPANY} over {PERIOD} annual fiscal period
+    as decimal value according to formula:
 
     `Fixed Asset Turnover Ratio` = (
       `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` /
@@ -39,17 +40,20 @@ fa-turnover-ratio:
 
   sub-plans:
     - task: >-
-        What is value in dollars of `(Net) Revenue, a.k.a. (Net) Sales` (or most similar-meaning reported line item)
-        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement`
-        of {COMPANY} for {PERIOD} annual fiscal period?
+        What is value in dollars of `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line item)
+        on `(Consolidated) (Comprehensive) Income Statement,
+        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+        for {PERIOD} annual fiscal period?
 
     - task: |-
         What is simple arithmetic average value in dollars of
         `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` (or most similar-meaning reported line item)
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
-        as of two following points in time:
-        - one-year-before previous fiscal period end preceding {PERIOD}; and
-        - {PERIOD} fiscal period end?
+        as at two following points in time:
+        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - {PERIOD} annual fiscal period end?
 
 
 inv-turnover-ratio:
@@ -73,7 +77,7 @@ inv-turnover-ratio:
     - task: |-
         What is simple arithmetic average value in dollars of `(Net) Inventory` (or most similar-meaning reported line item)
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
-        as of two following points in time:
+        as at two following points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
@@ -325,7 +329,7 @@ retention-ratio:
 
 work-cap:
   task: |-
-    Calculate `(Net) Working Capital` of {COMPANY} as of {PERIOD} fiscal period end, in dollars according to formula:
+    Calculate `(Net) Working Capital` of {COMPANY} as at {PERIOD} fiscal period end, in dollars according to formula:
     
     `(Net) Working Capital` = `(Total) Current Assets` - `(Total) Current Liabilities`
     
@@ -337,12 +341,12 @@ work-cap:
         with both `(Total) Current Assets` and  `(Total) Current Liabilities` in dollars
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
-        as of {PERIOD} fiscal period end?
+        as at {PERIOD} fiscal period end?
 
 
 work-cap-ratio:
   task: |-
-    Calculate `Working Capital Ratio` of {COMPANY} as of {PERIOD} fiscal period end, as decimal value according to formula:
+    Calculate `Working Capital Ratio` of {COMPANY} as at {PERIOD} fiscal period end, as decimal value according to formula:
     
     `Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
 
@@ -353,15 +357,15 @@ work-cap-ratio:
         with both `(Total) Current Assets` and `(Total) Current Liabilities` in dollars
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
-        as of {PERIOD} fiscal period end?
+        as at {PERIOD} fiscal period end?
 
 
 quick-ratio:
-  task: Assess liquidity health of {COMPANY} through its `Quick Ratio` as of {PERIOD} fiscal period end
+  task: Assess liquidity health of {COMPANY} through its `Quick Ratio` as at {PERIOD} fiscal period end
 
   sub-plans:
     - task: |-
-        Calculate `Quick Ratio` as of {PERIOD} fiscal period end, as decimal value according to formula:
+        Calculate `Quick Ratio` as at {PERIOD} fiscal period end, as decimal value according to formula:
 
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
@@ -381,7 +385,7 @@ quick-ratio:
             on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
-            as of {PERIOD} fiscal period end?
+            as at {PERIOD} fiscal period end?
 
     - task: |-
         Compare calculated `Quick Ratio` decimal value against 1.00 and make assessment:
@@ -396,7 +400,7 @@ quick-ratio-comp:
 
   sub-plans:
     - task: |-
-        Calculate `Quick Ratio` as of following two points in time:
+        Calculate `Quick Ratio` as at following two points in time:
         - one-year-before previous fiscal period end preceding {PERIOD}; and
         - {PERIOD} fiscal period end
 
@@ -420,7 +424,7 @@ quick-ratio-comp:
             on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
-            as of following two points in time:
+            as at following two points in time:
             - one-year-before previous fiscal period end preceding {PERIOD}; and
             - current {PERIOD} fiscal period end?
 
@@ -508,7 +512,7 @@ op-cf-ratio:
         What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
         on `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
-        as of {PERIOD} annual fiscal period end?
+        as at {PERIOD} annual fiscal period end?
 
 
 days-payable-outstanding:
@@ -532,7 +536,7 @@ days-payable-outstanding:
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        as of following two points in time:
+        as at following two points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end?
 
@@ -669,6 +673,6 @@ roa:
     - task: |-
         What is simple arithmetic average value in dollars of `Total Assets` (or most similar-meaning reported line item)
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
-        as of two following points in time:
+        as at two following points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
