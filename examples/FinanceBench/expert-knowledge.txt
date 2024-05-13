@@ -39,14 +39,14 @@ Cash-Flow-Statement Line-Item Synonyms
 - "Cash (Flows) from Financing", "Cash (Flows) from Financing Activities", "Financing Cash Flows"
 
 
-Income-Statement / Profit-and-Loss- (P&L-) Statement Line-Item Synonyms
------------------------------------------------------------------------
+Income-Statement / Profit-and-Loss- (P&L-) Statement / Earnings-Statement / Operations-Statement Line-Item Synonyms
+-------------------------------------------------------------------------------------------------------------------
 
 - "(Total) (Net) Revenue(s)", "(Total) (Net) Sales"
 
-- "Cost of Goods Sold", "COGS", "Cost of Sales", "Cost of Revenue"
+- "(Total) Cost of Goods Sold", "(Total) COGS", "(Total) Cost of Sales", "(Total) Cost of Revenue"
 
-- "Gross Income", "Gross Profit"
+- "Gross Income (or Loss)", "Gross Profit (or Loss)", "Gross Earnings (or Loss(es))"
 
 - "Operating Expenditure", "Operating Expenses", "OpEx"
 
