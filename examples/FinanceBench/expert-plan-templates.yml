@@ -110,11 +110,11 @@ inv-turnover-ratio:
 
 cogs-margin:
   task: |-
-    Calculate `Cost of Goods Sold (COGS) Margin` of {COMPANY} for {PERIOD} fiscal period,
+    Calculate `Cost of Goods Sold (COGS) Margin` of {COMPANY} for {PERIOD} fiscal period
     as percentage value according to formula:
 
     `Cost of Goods Sold (COGS) Margin` = (
-      `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue` /
+      `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` /
       `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
     )
 
@@ -122,14 +122,15 @@ cogs-margin:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: |-
         What are values in dollars of:
-        - `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue`; and
+        - `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`; and
         - `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
         (or most similar-meaning reported line items to those)
 
-        on `(Consolidated) (Comprehensive) Income Statement,
-        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
-        or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
-        for {PERIOD} fiscal period?
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
 
 gross-margin-comp:
