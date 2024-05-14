@@ -32,7 +32,7 @@ asset-turnover-ratio:
         (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        as at two following points in time:
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
@@ -58,6 +58,7 @@ fa-turnover-ratio:
 
         of {COMPANY} for {PERIOD} annual fiscal period?
 
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual starting & ending balance values only, without taking simple arithmetic average
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
@@ -68,7 +69,7 @@ fa-turnover-ratio:
         (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        as at two following points in time:
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
@@ -95,6 +96,7 @@ inv-turnover-ratio:
 
         of {COMPANY} for {PERIOD} annual fiscal period?
 
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual starting & ending balance values only, without taking simple arithmetic average
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
@@ -104,7 +106,7 @@ inv-turnover-ratio:
         (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        as at two following points in time:
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
@@ -123,7 +125,9 @@ cogs-margin:
     )
 
   sub-plans:
-    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
         - `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`; and
@@ -156,7 +160,9 @@ gross-margin-comp:
         - {PERIOD} annual fiscal period
 
       sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
             - `Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))`; and
@@ -178,10 +184,12 @@ gross-margin-comp:
 
 op-margin-3y-avg:
   task: >-
-    Calculate 3-year average `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY}
-    as percentage value
+    Calculate 3-year average `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY} as percentage value
 
   sub-plans:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: >-
         What are values in dollars of:
         - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
@@ -222,7 +230,9 @@ op-margin-comp:
         - {PERIOD} annual fiscal period
 
       sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
             - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
@@ -341,6 +351,7 @@ ebitda-margin-3y-avg:
     Calculate 3-year average `(Unadjusted) EBITDA Margin` of {COMPANY} as percentage value
 
   sub-plans:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     - task: >-
         What are values in dollars of:
         - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
@@ -371,6 +382,9 @@ net-margin-3y-avg:
     Calculate 3-year average `Net (Income or Profit or Earnings) Margin` of {COMPANY} as percentage value
 
   sub-plans:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
         - `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`; and
@@ -400,6 +414,9 @@ int-cov-ratio:
     `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
 
   sub-plans:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
         - `Earnings before Interest & Tax, a.k.a. EBIT`; and
@@ -437,7 +454,9 @@ effective-tax-rate-comp:
         - {PERIOD} annual fiscal period
 
       sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
             - `(Income) Tax Expense`; and
@@ -518,8 +537,10 @@ work-cap:
     - task: |-
         Calculate `(Net) Working Capital` as `(Total) Current Assets` - `(Total) Current Liabilities`,
         with both `(Total) Current Assets` and  `(Total) Current Liabilities` in dollars
+
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
+
         as at {PERIOD} fiscal period end?
 
 
@@ -531,7 +552,7 @@ work-cap-ratio:
 
   sub-plans:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
-    # retrieve individual starting & ending balance values only, without taking simple arithmetic average
+    # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
@@ -559,7 +580,9 @@ quick-ratio:
         )
 
       sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
@@ -594,12 +617,14 @@ quick-ratio-comp:
           / `(Total) Current Liabilities`
         )
 
-        as at following two points in time:
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end
 
       sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
@@ -612,7 +637,7 @@ quick-ratio-comp:
             (or most similar-meaning statement) of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
-            as at following two points in time:
+            as at following two annual fiscal period ends:
             - one-year-before previous annual fiscal period end preceding {PERIOD}; and
             - current {PERIOD} annual fiscal period end?
 
@@ -628,7 +653,9 @@ fcf:
     `Free Cash Flow, a.k.a. FCF` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`
 
   sub-plans:
-    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual balance values only, without taking difference
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
         - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
@@ -656,7 +683,9 @@ fcf-conv-comp:
         - {PERIOD} annual fiscal period
 
       sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual balance values only, without taking difference
+        # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
             - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
@@ -719,7 +748,9 @@ days-payable-outstanding:
     )
 
   sub-plans:
-    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking difference or simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
         - `Accounts Payable`; and
@@ -730,7 +761,7 @@ days-payable-outstanding:
         (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        as at following two points in time:
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end?
 
@@ -756,7 +787,9 @@ cash-conv-cyc:
     )
 
   sub-plans:
-    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking difference or simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
         - `(Net) Inventory`;
@@ -768,7 +801,7 @@ cash-conv-cyc:
         (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        as at following two points in time:
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end?
 
@@ -826,12 +859,14 @@ debt-comp:
 
         `Total Debt` = `Long-Term Debt` + `Short-Term Debt, or Current Portion of (Long-Term) Debt`
 
-        as at following two points in time:
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end
 
       sub-plans:
-        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual balance values only, without taking sum
+        # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
             - `Long-Term Debt`; and
@@ -842,7 +877,7 @@ debt-comp:
             (or most similar-meaning statement) of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
-            as at following two points in time:
+            as at following two annual fiscal period ends:
             - one-year-before previous annual fiscal period end preceding {PERIOD}; and
             - current {PERIOD} annual fiscal period end?
 
