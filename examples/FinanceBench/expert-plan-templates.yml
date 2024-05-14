@@ -1,5 +1,5 @@
-# REVENUE & TURNOVER METRIC EVALUATION
-# ====================================
+# TURNOVER METRIC EVALUATION
+# ==========================
 
 asset-turnover-ratio:
   task: |-
@@ -237,17 +237,31 @@ op-margin-comp:
         and assess whether `(Unadjusted) Operating (Income or Profit or Earnings) Margin` meaningfully degraded or improved
 
 
-unadjusted-ebitda:
-  task:
-    Calculate the unadjusted EBITDA of {COMPANY} for {YEAR}. Unadjusted EBITDA =
-    unadjusted operating income + depreciation and amortization
+ebitda:
+  task: >-
+    Calculate `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA`
+    of {COMPANY} for {PERIOD} fiscal period in dollars according to formula:
+
+    `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` = (
+      `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))` +
+      `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
+    )
+
   sub-plans:
+    - task: >-
+        What is value in dollars of `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
     - task:
-        In dollars, what was the unadjusted operating income in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the depreciation and amortization in the given
-        fiscal year(s)?
+        What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
+        (or most similar-meaning reported line item)
+        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
 
 ebitda-margin:
