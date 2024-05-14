@@ -550,7 +550,7 @@ quick-ratio:
 
   sub-plans:
     - task: |-
-        Calculate `Quick Ratio` as at {PERIOD} fiscal period end, as decimal value according to formula:
+        Calculate `Quick Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
 
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
@@ -567,7 +567,8 @@ quick-ratio:
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
-            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+            (or most similar-meaning statement) of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as at {PERIOD} fiscal period end?
