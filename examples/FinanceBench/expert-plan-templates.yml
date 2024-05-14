@@ -582,20 +582,20 @@ quick-ratio:
 quick-ratio-comp:
   task: >-
     Calculate change and assess degradation/improvement in `Quick Ratio` of {COMPANY}
-    from corresponding one-year-preceding previous fiscal period end to current {PERIOD} fiscal period end
+    from corresponding one-year-preceding previous annual fiscal period end to current {PERIOD} annual fiscal period end
 
   sub-plans:
     - task: |-
-        Calculate `Quick Ratio` as at following two points in time:
-        - one-year-before previous fiscal period end preceding {PERIOD}; and
-        - {PERIOD} fiscal period end
-
-        as decimal values according to formula:
+        Calculate `Quick Ratio` as decimal values according to formula:
 
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
+
+        as at following two points in time:
+        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - {PERIOD} annual fiscal period end
 
       sub-plans:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
@@ -607,12 +607,13 @@ quick-ratio-comp:
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
-            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+            (or most similar-meaning statement) of {COMPANY}
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as at following two points in time:
-            - one-year-before previous fiscal period end preceding {PERIOD}; and
-            - current {PERIOD} fiscal period end?
+            - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period end?
 
     - task: >-
         Calculate difference between two calculated `Quick Ratio` decimal values
