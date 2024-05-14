@@ -119,7 +119,7 @@ docs-build-api:
 		--module-first \
 		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)" \
 		*/contrib/streamlit_ssa_prob_solver/main.py */contrib/streamlit_ssa_prob_solver/pages \
-		*/core */integrations */utils
+		*/contrib */core */integrations */utils 
 
 	# get rid of undocumented members
 	# sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR)*.rst
@@ -139,7 +139,7 @@ docs-deploy: docs-build
 	@rm *.html
 	@cp "$(DOCS_BUILD_DIR)"/*.html .
 	@git add --all "*.html"
-	@git rm openssa.l2.config.html
+	@git rm openssa.l2.config.html -f
 	@git reset "$(DOCS_DIR)/*.html"
 
 	@for docs_subdir_to_publish in $(DOCS_SUBDIRS_TO_PUBLISH) ; do \
