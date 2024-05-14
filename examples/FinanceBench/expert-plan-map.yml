@@ -11,7 +11,7 @@ financebench_id_10420: roa  #
 financebench_id_06655: days-payable-outstanding
 financebench_id_00799: quick-ratio-comp  #
 financebench_id_00684: gross-margin-comp  #
-financebench_id_03069: da-margin
+financebench_id_03069: da-margin  #
 financebench_id_00222: quick-ratio  #
 financebench_id_04254: ebitda
 financebench_id_00070: work-cap
