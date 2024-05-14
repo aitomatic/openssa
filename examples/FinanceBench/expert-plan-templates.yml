@@ -746,48 +746,71 @@ days-payable-outstanding:
         of {COMPANY} for {PERIOD} annual fiscal period?
 
 
-cash-conversion-cycle:
-  task:
-    Calculate the cash conversion cycle of {COMPANY} for {YEAR}. Cash conversion
-    cycle = DIO + DSO - DPO
+cash-conv-cyc:
+  task: |-
+    Calculate `Cash Conversion Cycle, a.k.a. CCC` of {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
+    `Cash Conversion Cycle, a.k.a. CCC` = (
+      `Days Inventory Outstanding, a.k.a. DIO` + `Days Sales Oustanding, a.k.a. DSO` - `Days Payable Outstanding, a.k.a. DPO`
+    )
+
   sub-plans:
-    - task:
-        In dollars, what was the days inventory outstanding (DIO) in the given
-        fiscal year(s)? DIO = 365 * (average inventory between {YEAR-1} and
-        {YEAR}) / (COGS in {YEAR}).
-      sub-plans:
-        - task:
-            In dollars, what was the cost of sales (equivalent to cost of goods
-            sold) in the given fiscal year(s)? statement.
-        - task:
-            In dollars, what were the inventories in the given fiscal year(s)?
-            current assets on the balance sheet.
-    - task:
-        In dollars, what was the days sales outstanding (DSO) in the given
-        fiscal year(s)? DSO = 365 * (average accounts receivable between
-        {YEAR-1} and {YEAR}) / (net sales in {YEAR}).
-      sub-plans:
-        - task:
-            In dollars, what was the net sales in the given fiscal year(s)?
-            sales or income statement.
-        - task:
-            In dollars, what were the accounts receivable in the given fiscal
-            year(s)?
-    - task:
-        In dollars, what was the days payable outstanding (DPO) in the given
-        fiscal year(s)? DPO = 365 * (average accounts payable between {YEAR-1}
-        and {YEAR}) / (COGS in {YEAR} + change in inventory between {YEAR-1} and
-        {YEAR}).
-      sub-plans:
-        - task:
-            In dollars, what was the cost of sales (equivalent to cost of goods
-            sold) in the given fiscal year(s)? statement.
-        - task:
-            In dollars, what were the accounts payable in the given fiscal
-            year(s)?
-        - task:
-            In dollars, what were the inventories in the given fiscal year(s)?
-            current assets on the balance sheet.
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    - task: |-
+        What are values in dollars of:
+        - `(Net) Inventory`;
+        - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
+        - `Accounts Payable`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two points in time:
+        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+    - task: >-
+        What is value in dollars of
+        `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    - task: |-
+        Calculate `Days Inventory Outstanding, a.k.a. DIO` for {COMPANY} for {PERIOD} annual fiscal period
+        as decimal value according to formula:
+
+        `Days Inventory Outstanding, a.k.a. DIO` = (
+          365 * `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+          / `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        )
+
+    - task: |-
+        Calculate `Days Sales Oustanding, a.k.a. DSO` for {COMPANY} for {PERIOD} annual fiscal period
+        as decimal value according to formula:
+
+        `Days Sales Oustanding, a.k.a. DSO` = (
+          365 * `average (Net) Accounts Receivable, a.k.a. (Net) Trade Receivables, typically between two consecutive fiscal year-ends`
+          / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
+    - task: |-
+        Calculate `Days Payable Outstanding, a.k.a. DPO` for {COMPANY} for {PERIOD} annual fiscal period
+        as decimal value according to formula:
+
+        `Days Payable Outstanding, a.k.a. DPO` = (
+          365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
+          / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
+            `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
+        )
+
 
 debt:
   task:
