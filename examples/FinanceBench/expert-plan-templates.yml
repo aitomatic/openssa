@@ -474,16 +474,28 @@ div-payout-ratio:
 
 
 retention-ratio:
-  task:
-    Calculate the retention ratio of {COMPANY} for {YEAR}. Retention ratio =
-    (net income - dividends) / net income
+  task: |-
+    Calculate `Retention Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula:
+
+    `Retention Ratio` = 1 - (
+      `Cash Dividends` /
+      `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+    )
+
   sub-plans:
-    - task:
-        In dollars, what was the net income in the given fiscal year(s)? income
-        or income statement.
-    - task:
-        In dollars, what was the total cash dividends paid in the given fiscal
-        year(s)?
+    - task: >-
+        What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
+        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
 
 # LIQUIDITY METRIC EVALUATION
