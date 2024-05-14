@@ -135,16 +135,16 @@ cogs-margin:
 
 gross-margin-comp:
   task: >-
-    Calculate change and assess degradation/improvement in `Gross (Income or Profit) Margin` of {COMPANY}
+    Calculate change and assess degradation/improvement in `Gross (Income or Profit or Earnings) Margin` of {COMPANY}
     from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
 
   sub-plans:
     - task: |-
-        Calculate `Gross (Income or Profit) Margin` as percentage values according to formula:
+        Calculate `Gross (Income or Profit or Earnings) Margin` as percentage values according to formula:
 
-        `Gross (Income or Profit) Margin` = (
-          `Gross Income, a.k.a. Gross Profit` /
-          `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        `Gross (Income or Profit or Earnings) Margin` = (
+          `Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))` /
+          `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
         )
 
         for following two fiscal periods:
@@ -155,21 +155,21 @@ gross-margin-comp:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
         - task: |-
             What are values in dollars of:
-            - `Gross Income, a.k.a. Gross Profit`; and
-            - `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+            - `Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))`; and
+            - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
             (or most similar-meaning reported line items to those)
 
-            on one same `(Consolidated) (Comprehensive) Income Statement,
-            a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
-            or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
+            on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+            (or most similar-meaning statement)
 
-            for following two fiscal periods:
+            of {COMPANY} for following two fiscal periods:
             - one-year-before previous annual fiscal period preceding {PERIOD}; and
             - {PERIOD} annual fiscal period?
 
     - task: >-
-        Calculate difference between two calculated `Gross (Income or Profit) Margin` percentage values
-        and assess whether `Gross (Income or Profit) Margin` meaningfully degraded or improved
+        Calculate difference between two calculated `Gross (Income or Profit or Earnings) Margin` percentage values
+        and assess whether `Gross (Income or Profit or Earnings) Margin` meaningfully degraded or improved
 
 
 unadjusted-operating-income:
