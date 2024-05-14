@@ -939,26 +939,35 @@ capex-as-pct-of-rev-3y-avg:
 
 roa:
   task: |-
-    Calculate `Return on (Total) Assets, a.k.a. RoA or RoTA` of {COMPANY} over {PERIOD} annual fiscal period
+    Calculate `Return on (Total) Assets, a.k.a. RoA or RoTA` of {COMPANY} for {PERIOD} annual fiscal period
     as percentage value according to formula:
 
     `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
-      `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
+      `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
       `average Total Assets, typically between two consecutive fiscal year-ends`
     )
 
   sub-plans:
     - task: >-
-        What is value in dollars of `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
+        What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
         (or most similar-meaning reported line item)
-        on `(Consolidated) (Comprehensive) Income Statement,
-        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
-        or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
-        for {PERIOD} annual fiscal period?
-  
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual balance values only, without taking simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
-        What is simple arithmetic average value in dollars of `Total Assets` (or most similar-meaning reported line item)
-        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
-        as at two following points in time:
+        What are values in dollars of `Total Assets` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
