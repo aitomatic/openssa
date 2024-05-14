@@ -1196,6 +1196,8 @@ financebench_id_00790:
     - mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity); or
     - mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
 
+  evaluator-unreliable: true
+
 
 financebench_id_01107:
   doc: CVSHEALTH_2022_10K
