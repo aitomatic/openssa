@@ -233,8 +233,8 @@ op-margin-comp:
             - {PERIOD} annual fiscal period?
 
     - task: >-
-        Calculate difference between two calculated `(Unadjusted) Operating (Income or Profit) Margin` percentage values
-        and assess whether `(Unadjusted) Operating (Income or Profit) Margin` meaningfully degraded or improved
+        Calculate difference between two calculated `(Unadjusted) Operating (Income or Profit or Earnings) Margin` percentage values
+        and assess whether `(Unadjusted) Operating (Income or Profit or Earnings) Margin` meaningfully degraded or improved
 
 
 unadjusted-ebitda:
