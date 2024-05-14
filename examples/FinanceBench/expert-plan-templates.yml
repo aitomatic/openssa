@@ -709,11 +709,12 @@ op-cf-ratio:
 
 days-payable-outstanding:
   task: |-
-    Calculate `Days Payable Outstanding, a.k.a. DPO` for {COMPANY} for {PERIOD} annual fiscal period. 
-    
+    Calculate `Days Payable Outstanding, a.k.a. DPO` for {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
     `Days Payable Outstanding, a.k.a. DPO` = (
       365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
-      / (`Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue` +
+      / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
          `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
     )
 
@@ -722,10 +723,11 @@ days-payable-outstanding:
     - task: |-
         What are values in dollars of:
         - `Accounts Payable`; and
-        - `(Net) Inventory`;
+        - `(Net) Inventory`
         (or most similar-meaning reported line items to those)
 
-        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two points in time:
@@ -733,12 +735,15 @@ days-payable-outstanding:
         - current {PERIOD} annual fiscal period end?
 
     - task: >-
-        What is value in dollars of `Cost of Goods Sold, a.k.a. COGS, or Cost of Sales, or Cost of Revenue`
+        What is value in dollars of
+        `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
         (or most similar-meaning reported line item)
-        on `(Consolidated) (Comprehensive) Income Statement,
-        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
-        or (Consolidated) (Comprehensive) Operations Statement` of {COMPANY}
-        for {PERIOD} annual fiscal period?
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
 
 
 cash-conversion-cycle:
