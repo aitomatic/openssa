@@ -812,6 +812,9 @@ cash-conv-cyc:
         )
 
 
+# LEVERAGE METRIC EVALUATION
+# ==========================
+
 debt-comp:
   task: >-
     Calculate change and assess increase/decrease in `Total Debt` of {COMPANY}
@@ -873,24 +876,29 @@ capital-intensiveness:  # TODO: check
 
 capex-as-pct-of-rev-3y-avg:
   task: >-
-    Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue for {COMPANY},
-    as percentage value
+    Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue for {COMPANY} as percentage value
 
   sub-plans:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: >-
         What are values in dollars of `Capital Expenditure, a.k.a. CapEx` (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for past 3 fiscal years?
 
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: >-
-        What are values in dollars of `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` (or most similar-meaning reported line item)
-        on `(Consolidated) (Comprehensive) Income Statement,
-        a.k.a. (Consolidated) (Comprehensive) Profit-and-Loss (P&L) Statement,
-        or (Consolidated) (Comprehensive) Operations Statement`
+        What are values in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
         of {COMPANY} for past 3 fiscal years?
 
     - task: >-
         Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue
-        by dividing sum of `Capital Expenditure, a.k.a. CapEx` by sum of `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        by dividing sum of `Capital Expenditure, a.k.a. CapEx`
+        by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
         and return division result as percentage value
 
 
