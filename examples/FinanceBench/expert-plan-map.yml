@@ -14,7 +14,7 @@ financebench_id_00684: gross-margin-comp  #
 financebench_id_03069: da-margin  #
 financebench_id_00222: quick-ratio  #
 financebench_id_04254: ebitda
-financebench_id_00070: work-cap
+financebench_id_00070: net-work-cap
 financebench_id_02608: net-margin-3y-avg
 financebench_id_00685: gross-margin-comp  #
 financebench_id_04660: work-cap-ratio  #
@@ -25,7 +25,7 @@ financebench_id_09724: cogs-margin  #
 financebench_id_06272: div-payout-ratio  #
 financebench_id_10130: days-payable-outstanding
 financebench_id_02981: op-margin-3y-avg  #
-financebench_id_00005: work-cap
+financebench_id_00005: net-work-cap
 financebench_id_05915: fa-turnover-ratio
 financebench_id_00790: cap-intens
 financebench_id_04103: cash-conv-cyc
@@ -34,15 +34,15 @@ financebench_id_04854: fcf  #
 financebench_id_10136: retention-ratio  #
 financebench_id_10499: inv-turnover-ratio  #
 financebench_id_04412: asset-turnover-ratio  #
-financebench_id_03031: work-cap  #
+financebench_id_03031: net-work-cap  #
 financebench_id_03849: capex-as-pct-of-rev-3y-avg  #
 financebench_id_01911: int-cov-ratio
 financebench_id_00552: debt-comp
 financebench_id_04458: ebitda-margin
 financebench_id_04302: cogs-margin
 financebench_id_04080: inv-turnover-ratio  #
-financebench_id_00080: work-cap
-financebench_id_03620: unadjusted-ebitda  # TODO: but also less CapEx for question
+financebench_id_00080: net-work-cap
+financebench_id_03620: ebitda  # TODO: but also less CapEx for question
 financebench_id_04481: ebitda-margin
 financebench_id_00216: quick-ratio  #
 financebench_id_00215: cap-intens

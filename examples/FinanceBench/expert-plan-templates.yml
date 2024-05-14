@@ -525,7 +525,7 @@ retention-ratio:
 # LIQUIDITY METRIC EVALUATION
 # ===========================
 
-work-cap:
+net-work-cap:
   task: |-
     Calculate `(Net) Working Capital` of {COMPANY} as at {PERIOD} fiscal period end, in dollars according to formula:
 
@@ -533,12 +533,17 @@ work-cap:
 
     and assess whether `(Net) Working Capital` is positive or negative
 
+  # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+  # retrieve individual balance values only, without taking difference
+  # because RAG LMs may not be good at calculation & mathematical reasoning
   sub-plans:
     - task: |-
-        Calculate `(Net) Working Capital` as `(Total) Current Assets` - `(Total) Current Liabilities`,
-        with both `(Total) Current Assets` and  `(Total) Current Liabilities` in dollars
+        What are values in dollars of:
+        - `(Total) Current Assets`; and
+        - `(Total) Current Liabilities`
 
-        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at {PERIOD} fiscal period end?
@@ -730,9 +735,11 @@ op-cf-ratio:
 
     - task: >-
         What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
+
         on `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
         (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
+
         as at {PERIOD} annual fiscal period end?
 
 
