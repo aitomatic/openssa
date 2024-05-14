@@ -28,9 +28,10 @@ asset-turnover-ratio:
         What are values in dollars of `Total Assets` (or most similar-meaning reported line item)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
-        (or most similar-meaning statement)
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        of {COMPANY} as at two following points in time:
+        as at two following points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
@@ -63,9 +64,10 @@ fa-turnover-ratio:
         (or most similar-meaning reported line item)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
-        (or most similar-meaning statement)
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        of {COMPANY} as at two following points in time:
+        as at two following points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
@@ -98,9 +100,10 @@ inv-turnover-ratio:
         What are values in dollars of `(Net) Inventory` (or most similar-meaning reported line item)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
-        (or most similar-meaning statement)
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
 
-        of {COMPANY} as at two following points in time:
+        as at two following points in time:
         - one-year-before previous annual fiscal period end preceding {PERIOD}; and
         - {PERIOD} annual fiscal period end?
 
@@ -520,17 +523,21 @@ work-cap:
 
 work-cap-ratio:
   task: |-
-    Calculate `Working Capital Ratio` of {COMPANY} as at {PERIOD} fiscal period end, as decimal value according to formula:
-    
+    Calculate `Working Capital Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
+
     `Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
 
   sub-plans:
     - task: |-
-        Calculate `Working Capital Ratio` as decimal value equal to
-        `(Total) Current Assets` divided by `(Total) Current Liabilities`,
-        with both `(Total) Current Assets` and `(Total) Current Liabilities` in dollars
-        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        What are values in dollars of:
+        - `(Total) Current Assets`; and
+        - `(Total) Current Liabilities`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
+
         as at {PERIOD} fiscal period end?
 
 
