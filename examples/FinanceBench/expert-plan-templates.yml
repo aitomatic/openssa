@@ -689,7 +689,7 @@ fcf-conv-comp:
 
 op-cf-ratio:
   task: |-
-    Calculate Operating Cash Flow Ratio of {COMPANY} for {PERIOD} annual fiscal period,
+    Calculate Operating Cash Flow Ratio of {COMPANY} for {PERIOD} annual fiscal period
     as decimal value according to formula:
 
     `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
@@ -701,7 +701,8 @@ op-cf-ratio:
 
     - task: >-
         What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
-        on `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position` of {COMPANY}
+        on `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
         (and NOT Balance Sheets of its acquired and/or divested companies)
         as at {PERIOD} annual fiscal period end?
 
