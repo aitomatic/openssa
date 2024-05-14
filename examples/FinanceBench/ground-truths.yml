@@ -2057,6 +2057,8 @@ financebench_id_00215:
   correctness: >-
     the answer opines that Verizon's business is capital-intensive, and justifies such opinion with a calculated ratio
 
+  evaluator-unreliable: true
+
 
 financebench_id_00566:
   doc: VERIZON_2022_10K
