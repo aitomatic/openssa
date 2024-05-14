@@ -812,17 +812,25 @@ cash-conv-cyc:
         )
 
 
-debt:
-  task:
-    Calculate the total debt of {COMPANY} for {YEAR}. Add the short-term and
-    long-term debt.
+debt-comp:
+  task: >-
+    Calculate change and assess increase/decrease in `Total Debt` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period end to current {PERIOD} annual fiscal period end
+
   sub-plans:
-    - task:
-        In dollars, what was the debt in the given fiscal year(s)? liabilities
-        on the balance sheet.
-    - task:
-        In dollars, what was the long-term debt in the given fiscal year(s)?
-        long-term liabilities on the balance sheet.
+    - task: |-
+        What are values in dollars of:
+        - `Long-Term Debt`; and
+        - `Short-Term Debt`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two points in time:
+        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
 
 
 # CAPITAL-INTENSIVENESS METRIC EVALUATION
