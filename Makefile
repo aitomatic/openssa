@@ -139,6 +139,7 @@ docs-deploy: docs-build
 	@rm *.html
 	@cp "$(DOCS_BUILD_DIR)"/*.html .
 	@git add --all "*.html"
+	@git rm openssa.l2.config.html
 	@git reset "$(DOCS_DIR)/*.html"
 
 	@for docs_subdir_to_publish in $(DOCS_SUBDIRS_TO_PUBLISH) ; do \
