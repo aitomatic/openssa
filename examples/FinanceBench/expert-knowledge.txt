@@ -141,7 +141,7 @@ Profit-Utilization / Capital-Return Metric Formulas
 
 `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
 
-`Effective (Income) Tax Rate` = `(Income) Tax Expense` / `Earnings before (Income) Tax(es)`
+`Effective (Income) Tax Rate` = `(Income) Tax Expense` / `Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)`
 
 `Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
 
