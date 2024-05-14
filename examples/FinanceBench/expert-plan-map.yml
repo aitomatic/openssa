@@ -24,7 +24,7 @@ financebench_id_03473: roa  #
 financebench_id_09724: cogs-margin  #
 financebench_id_06272: dividend-payout-ratio
 financebench_id_10130: days-payable-outstanding
-financebench_id_02981: op-margin-avg
+financebench_id_02981: op-margin-3y-avg  #
 financebench_id_00005: work-cap
 financebench_id_05915: fa-turnover-ratio
 financebench_id_00790: capital-intensiveness
