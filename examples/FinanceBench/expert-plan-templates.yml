@@ -144,7 +144,7 @@ gross-margin-comp:
 
   sub-plans:
     - task: |-
-        Calculate `Gross (Income or Profit or Earnings) Margin` as percentage values according to formula:
+        Calculate `Gross (Income or Profit or Earnings) Margin` of {COMPANY} as percentage values according to formula:
 
         `Gross (Income or Profit or Earnings) Margin` = (
           `Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))` /
@@ -209,7 +209,8 @@ op-margin-comp:
 
   sub-plans:
     - task: |-
-        Calculate `(Unadjusted) Operating (Income or Profit or Earnings) Margin` as percentage values according to formula:
+        Calculate `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY}
+        as percentage values according to formula:
 
         `(Unadjusted) Operating (Income or Profit or Earnings) Margin` = (
           `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))` /
@@ -586,7 +587,7 @@ quick-ratio-comp:
 
   sub-plans:
     - task: |-
-        Calculate `Quick Ratio` as decimal values according to formula:
+        Calculate `Quick Ratio` of {COMPANY} as decimal values according to formula:
 
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
