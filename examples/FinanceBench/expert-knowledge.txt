@@ -143,7 +143,10 @@ Profit-Utilization / Capital-Return Metric Formulas
 
 `Effective (Income) Tax Rate` = `(Income) Tax Expense` / `Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)`
 
-`Dividend Payout Ratio` = `Cash Dividends` / `Net Income, a.k.a. Net Profit (Attributable to Shareholders)`
+`Dividend Payout Ratio` = (
+  `Cash Dividends` /
+  `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+)
 
 `Retention Ratio` = 1 - `Dividend Payout Ratio`
 
@@ -154,7 +157,7 @@ Capital-Intensiveness / Return-on-Capital Metric Formulas
 `Capital Intensity Ratio` = `Total Assets` / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
 
 `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
-  `Net Income, a.k.a. Net Profit (Attributable to Shareholders)` /
+  `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
   `average Total Assets, typically between two consecutive fiscal year-ends`
 )
 
