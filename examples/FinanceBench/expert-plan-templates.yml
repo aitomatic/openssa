@@ -448,17 +448,30 @@ effective-tax-rate-comp:
             - {PERIOD} annual fiscal period?
 
 
-dividend-payout-ratio:
-  task:
-    Calculate the dividend payout ratio of {COMPANY} for {YEAR}. Dividend payout
-    ratio = total cash dividends paid / net income attributable to shareholders
+div-payout-ratio:
+  task: |-
+    Calculate `Dividend Payout Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula:
+
+    `Dividend Payout Ratio` = (
+      `Cash Dividends` /
+      `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+    )
+
   sub-plans:
-    - task:
-        In dollars, what was the total cash dividends paid in the given fiscal
-        year(s)?
-    - task:
-        In dollars, what was the net income attributable to shareholders in the
-        given fiscal year(s)
+    - task: >-
+        What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
+        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
 
 retention-ratio:
   task:
