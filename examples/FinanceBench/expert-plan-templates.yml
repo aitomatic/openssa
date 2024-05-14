@@ -388,15 +388,33 @@ net-margin-3y-avg:
 # PROFIT-UTILIZATION / CAPITAL-RETURN METRIC EVALUATION
 # =====================================================
 
-interest-coverage-ratio:
-  task:
-    Calculate the interest coverage ratio of {COMPANY} for {YEAR}. Interest
-    coverage ratio = operating income / interest expense
+int-cov-ratio:
+  task: >-
+    Calculate `Interest Coverage Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula
+
+    `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
+
   sub-plans:
-    - task:
-        In dollars, what was the operating income in the given fiscal year(s)?
-    - task:
-        In dollars, what was the interest expense in the given fiscal year(s)?
+    - task: |-
+        What are values in dollars of:
+        - `Earnings before Interest & Tax, a.k.a. EBIT`; and
+        - `Interest Expense`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: >-
+        Calculate `Interest Coverage Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula:
+
+        `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
+
+        (note that if `Earnings before Interest & Tax, a.k.a. EBIT` is negative,
+         it is conventional to say `Interest Coverage Ratio` is zero)
+
 
 effective-tax-rate:
   task:
