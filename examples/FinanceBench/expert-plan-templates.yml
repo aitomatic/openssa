@@ -7,13 +7,13 @@ asset-turnover-ratio:
     as decimal value according to formula:
 
     `(Total) Asset Turnover Ratio` = (
-      `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` /
+      `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales` /
       `average Total Assets, typically between two consecutive fiscal year-ends`
     )
 
   sub-plans:
     - task: >-
-        What is value in dollars of `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
         (or most similar-meaning reported line item)
 
         on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
@@ -41,13 +41,13 @@ fa-turnover-ratio:
     as decimal value according to formula:
 
     `Fixed Asset Turnover Ratio` = (
-      `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales` /
+      `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales` /
       `average (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E), typically between two consecutive fiscal year-ends`
     )
 
   sub-plans:
     - task: >-
-        What is value in dollars of `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
         (or most similar-meaning reported line item)
 
         on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
@@ -115,7 +115,7 @@ cogs-margin:
 
     `Cost of Goods Sold (COGS) Margin` = (
       `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` /
-      `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+      `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
     )
 
   sub-plans:
@@ -123,7 +123,7 @@ cogs-margin:
     - task: |-
         What are values in dollars of:
         - `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`; and
-        - `(Total) (Net) Revenue(s), a.k.a. (Total) (Net) Sales`
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
         (or most similar-meaning reported line items to those)
 
         on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
