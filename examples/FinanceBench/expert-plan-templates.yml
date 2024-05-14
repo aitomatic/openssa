@@ -621,17 +621,20 @@ quick-ratio-comp:
         and assess whether `Quick Ratio` meaningfully degraded or improved
 
 
-free-cash-flow:
-  task:
-    Calculate the free cash flow of {COMPANY} for {YEAR}. Free cash flow = cash
-    from operations - capital expenditures
+fcf:
+  task: |-
+    Calculate `Free Cash Flow, a.k.a. FCF` of {COMPANY} for {PERIOD} fiscal period in dollars according to formula:
+
+    `Free Cash Flow, a.k.a. FCF` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`
+
   sub-plans:
-    - task:
-        In dollars, what was the net cash provided by operating activities in
-        the given fiscal year(s)?
-    - task:
-        In dollars, what was the capital expenditures in the given fiscal
-        year(s)
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    - task: |-
+        What are values in dollars of:
+        - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
+        - `Capital Expenditure, a.k.a. CapEx`
+        (or most similar-meaning reported line items to those)
+        on one same `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
 
 fcf-conv-comp:
