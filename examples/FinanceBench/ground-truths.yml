@@ -49,6 +49,8 @@ financebench_id_00499:
     - Capital Expenditure (CapEx) is not high relative to Revenue; and/or
     - Return on (Total) Assets (RoA or RoTA) is quite good
 
+  evaluator-unreliable: true
+
 
 financebench_id_01226:
   doc: 3M_2022_10K
