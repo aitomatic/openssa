@@ -1031,6 +1031,8 @@ financebench_id_00585:
     the answer contains calculated Effective Tax Rate percentage or decimal values for 2021 and 2022,
     with one value being negative and the other value being positive
 
+  evaluator-unreliable: true
+
 
 financebench_id_03473:
   doc: COCACOLA_2017_10K
