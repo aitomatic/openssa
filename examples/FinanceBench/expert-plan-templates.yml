@@ -998,7 +998,7 @@ cap-intens:
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
-    - task: >-
+    - task: |-
         What are values in dollars of:
         - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
         - `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
