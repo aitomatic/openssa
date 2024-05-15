@@ -27,7 +27,7 @@ ground-truths:
     BS:
       fixed-assets:
         2022: 9,178 million
-        2021: 9,429 million
+        2021: 9,429 million  # unreliable
 
       total-assets:
         2022: 46,455 million
@@ -35,9 +35,9 @@ ground-truths:
 
     CF:
       capex:
-        2022: 1,749 million
-        2021: 1,603 million
-        2020: 1,501 million
+        2022: 1,749 million  # unreliable
+        2021: 1,603 million  # unreliable
+        2020: 1,501 million  # unreliable
 
     P&L:
       rev:
