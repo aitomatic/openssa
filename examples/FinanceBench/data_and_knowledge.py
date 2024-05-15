@@ -135,8 +135,23 @@ with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
           opener=None) as f:
     EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
+assert (s0 := set(EXPERT_PLAN_MAP.values())) == (s1 := set(EXPERT_PLAN_TEMPLATES)), \
+    ValueError('*** Expert Plan IDs not matching between Expert Plan Map & Expert Plan Templates ***\n'
+               f'Candidate Mismatches: {s0 ^ s1}')
+
 EXPERT_PLAN_COMPANY_KEY: str = 'COMPANY'
 EXPERT_PLAN_PERIOD_KEY: str = 'PERIOD'
+
+
+RAG_GROUND_TRUTHS_FILE_PATH: Path = Path(__file__).parent / 'rag-ground-truths.yml'
+with open(file=RAG_GROUND_TRUTHS_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    RAG_GROUND_TRUTHS: dict = yaml.safe_load(stream=f)
 
 
 @dataclass

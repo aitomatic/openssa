@@ -32,7 +32,7 @@ ooda-solve:
 
 
 rag-default-answer:
-	@poetry run python rag-default.py ${id}
+	@poetry run python rag_default.py ${id}
 
 rag-finetuned-embed-answer:
 	@poetry run python rag-finetuned-embed-only.py ${id}

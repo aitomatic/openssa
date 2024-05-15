@@ -1,0 +1,30 @@
+defs:
+  BS: >-
+    `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+    (or most similar-meaning statement)
+
+  curr-assets: >-
+    `(Total) Current Assets`
+
+  curr-liabs: >-
+    `(Total) Current Liabilities`
+
+  CF: >-
+    `Cash Flow(s) Statement` (or most similar-meaning statement)
+
+  P&L: >-
+    `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+    or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+    (or most similar-meaning statement)
+
+
+ground-truths:
+
+  PAYPAL_2022_10K:
+
+    BS:
+      curr-assets:
+        2022: 57,517 million
+
+      curr-liabs:
+        2022: 45,101 million
