@@ -15,8 +15,8 @@ def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
             else None)
 
 
-@enable_batch_qa_and_eval(output_name='RAG-Default')
-@log_qa_and_update_output_file(output_name='RAG-Default')
+@enable_batch_qa_and_eval(output_name='rag_default')
+@log_qa_and_update_output_file(output_name='rag_default')
 def answer(fb_id: FbId) -> Answer:
     return (file_resource.answer(QS_BY_FB_ID[fb_id])
             if (file_resource := get_or_create_file_resource(DOC_NAMES_BY_FB_ID[fb_id]))
