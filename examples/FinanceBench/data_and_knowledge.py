@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from argparse import ArgumentParser
 from collections import Counter
 from dataclasses import dataclass, field
@@ -5,14 +7,15 @@ import base64
 from enum import StrEnum
 from functools import cached_property
 from pathlib import Path
-from typing import TypedDict, Required, NotRequired, Literal
+from typing import TypedDict, Required, NotRequired, Literal, TYPE_CHECKING
 
 from dotenv import load_dotenv
 from pandas import DataFrame, read_csv
 import requests
 import yaml
 
-from openssa.l2.planning.hierarchical.plan import HTPDict
+if TYPE_CHECKING:
+    from openssa.l2.planning.hierarchical.plan import HTPDict
 
 
 load_dotenv()
@@ -44,6 +47,15 @@ type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
                                              'answer-inadequate': NotRequired[Literal[True]],
                                              'evaluator-unreliable': NotRequired[Literal[True]]},
                              total=False)
+
+
+type RAGGroundTruths = TypedDict('RAGGroundTruths', {'defs': Required[dict[str, str]],
+                                                     'ground-truths': Required[dict[str,  # doc
+                                                                                    dict[str,  # statement
+                                                                                         dict[str,  # line item
+                                                                                              dict[int | str,  # period
+                                                                                                   str  # ground truth
+                                                                                                   ]]]]]})
 
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
@@ -112,20 +124,6 @@ with open(file=EXPERT_PLAN_MAP_FILE_PATH,
           opener=None) as f:
     EXPERT_PLAN_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
 
-# META_DF processing
-# filter META_DF to use top 50 questions from expert-plan-map.yml only
-IDS_FROM_EXPERT_PLAN_MAP = list(EXPERT_PLAN_MAP.keys())
-FILTERED_META_DF = META_DF.loc[META_DF.index.isin(IDS_FROM_EXPERT_PLAN_MAP)]
-
-FILTERERED_DOC_NAMES: list[DocName] = sorted(FILTERED_META_DF.doc_name.unique())
-FILTERERED_DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(FILTERED_META_DF.doc_name, FILTERED_META_DF.doc_link))
-FILTERERED_DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = FILTERED_META_DF.doc_name.to_dict()
-
-FILTERERED_FB_IDS: list[FbId] = FILTERED_META_DF.index.unique().to_list()
-FILTERERED_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = FILTERED_META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
-FILTERERED_QS_BY_FB_ID: dict[FbId, Question] = FILTERED_META_DF.question.to_dict()
-
-
 # sanity check Expert Plans Map
 cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLAN_MAP}
 assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE,
@@ -149,6 +147,10 @@ with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
           opener=None) as f:
     EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
+assert (s0 := set(EXPERT_PLAN_MAP.values())) == (s1 := set(EXPERT_PLAN_TEMPLATES)), \
+    ValueError('*** Expert Plan IDs not matching between Expert Plan Map & Expert Plan Templates ***\n'
+               f'Candidate Mismatches: {s0 ^ s1}')
+
 EXPERT_PLAN_COMPANY_KEY: str = 'COMPANY'
 EXPERT_PLAN_PERIOD_KEY: str = 'PERIOD'
 
@@ -161,7 +163,7 @@ with open(file=RAG_GROUND_TRUTHS_FILE_PATH,
           newline=None,
           closefd=True,
           opener=None) as f:
-    RAG_GROUND_TRUTHS: dict = yaml.safe_load(stream=f)
+    RAG_GROUND_TRUTHS: RAGGroundTruths = yaml.safe_load(stream=f)
 
 
 @dataclass
