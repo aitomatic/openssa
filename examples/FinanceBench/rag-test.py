@@ -51,19 +51,20 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                     while score not in {'YES', 'NO'}:
                         score: str = EVAL_LM.get_response(prompt=eval_prompt, temperature=0)
 
-                    if score == 'YES':
-                        logger.info(f'QUESTION re: {doc_name}:\n{question}\n'
-                                    '\n'
-                                    f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
-                                    '\n'
-                                    f'GROUND TRUTH:\n{ground_truth}')
-
-                    else:
+                    if score == 'NO':
                         logger.warning(f'QUESTION re: {doc_name}:\n{question}\n'
                                        '\n'
                                        f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                                        '\n'
                                        f'GROUND TRUTH:\n{ground_truth}')
+                        break
+
+                else:
+                    logger.info(f'QUESTION re: {doc_name}:\n{question}\n'
+                                '\n'
+                                f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
+                                '\n'
+                                f'GROUND TRUTH:\n{ground_truth}')
 
 
 arg_parser = ArgumentParser()
