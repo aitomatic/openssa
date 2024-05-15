@@ -4,10 +4,10 @@ defs:
     (or most similar-meaning statement)
 
   curr-assets: >-
-    `(Total) Current Assets`
+    `(Total) Current Assets` (or most similar-meaning reported line item)
 
   curr-liabs: >-
-    `(Total) Current Liabilities`
+    `(Total) Current Liabilities` (or most similar-meaning reported line item)
 
   CF: >-
     `Cash Flow(s) Statement` (or most similar-meaning statement)
@@ -21,7 +21,6 @@ defs:
 ground-truths:
 
   PAYPAL_2022_10K:
-
     BS:
       curr-assets:
         2022: 57,517 million
