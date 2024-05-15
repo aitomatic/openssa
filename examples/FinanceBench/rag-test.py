@@ -43,7 +43,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                                                                           company=doc.company,
                                                                           fiscal_period=fiscal_period)),
                     answer=(answer := file_resource.answer(question=question)),
-                    rubric=(rubric := EVAL_RUBRIC_TEMPLATE.format(ground_truth=ground_truth)))
+                    rubric=EVAL_RUBRIC_TEMPLATE.format(ground_truth=ground_truth))
 
                 for _ in range(n_repeats_per_eval):
                     score: str = ''
@@ -51,12 +51,19 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                     while score not in {'YES', 'NO'}:
                         score: str = EVAL_LM.get_response(prompt=eval_prompt, temperature=0)
 
-                    if score == 'NO':
+                    if score == 'YES':
+                        logger.info(f'QUESTION re: {doc_name}:\n{question}\n'
+                                    '\n'
+                                    f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
+                                    '\n'
+                                    f'GROUND TRUTH:\n{ground_truth}')
+
+                    else:
                         logger.warning(f'QUESTION re: {doc_name}:\n{question}\n'
                                        '\n'
                                        f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                                        '\n'
-                                       f'RUBRIC:\n{rubric}')
+                                       f'GROUND TRUTH:\n{ground_truth}')
 
 
 arg_parser = ArgumentParser()
