@@ -1015,14 +1015,21 @@ cap-intens:
 
         Capital-intensive businesses tend to have one or several of the following characteristics:
 
-        - high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`;
+        - high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`,
+          e.g., over 30%;
 
-        - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`;
+        - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+          e.g., over 2 times;
 
         - high `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
-          relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and/or
+          relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+          e.g., over 10%;
 
-        - low `Return on (Total) Assets, a.k.a. RoA or RoTA` according to formula:
+          and/or
+
+        - low `Return on (Total) Assets, a.k.a. RoA or RoTA`,
+          e.g., under 10%,
+          according to formula:
 
           `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
             `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
