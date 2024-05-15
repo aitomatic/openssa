@@ -135,7 +135,7 @@ with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
           opener=None) as f:
     EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
-assert (s0 := set(EXPERT_PLAN_TEMPLATES)) == (s1 := set(EXPERT_PLAN_MAP.values())), \
+assert (s0 := set(EXPERT_PLAN_MAP.values())) == (s1 := set(EXPERT_PLAN_TEMPLATES)), \
     ValueError('*** Expert Plan IDs not matching between Expert Plan Map & Expert Plan Templates ***\n'
                f'Candidate Mismatches: {s0 ^ s1}')
 
