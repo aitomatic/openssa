@@ -580,7 +580,9 @@ quick-ratio:
         Calculate `Quick Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+          (`Cash & Cash Equivalents` +
+           `Short-Term Investments or (Current) Marketable Securities` +
+           `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -591,7 +593,7 @@ quick-ratio:
         - task: |-
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
-            - `Short-Term Investments or Marketable Securities`;
+            - `Short-Term Investments or (Current) Marketable Securities`;
             - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
@@ -618,7 +620,9 @@ quick-ratio-comp:
         Calculate `Quick Ratio` of {COMPANY} as decimal values according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+          (`Cash & Cash Equivalents` +
+           `Short-Term Investments or (Current) Marketable Securities` +
+           `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -633,7 +637,7 @@ quick-ratio-comp:
         - task: |-
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
-            - `Short-Term Investments or Marketable Securities`;
+            - `Short-Term Investments or (Current) Marketable Securities`;
             - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
