@@ -46,6 +46,9 @@ rag-finetuned-both-answer:
 rag-gpt4-lm-answer:
 	@poetry run python rag-gpt4-lm.py ${id}
 
+rag-test:
+	@poetry run python rag-test.py ${doc}
+
 
 ssm-discuss:
 	@poetry run python ssm.py ${id}

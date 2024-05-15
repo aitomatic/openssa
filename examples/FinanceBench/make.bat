@@ -23,6 +23,7 @@ IF "%TARGET%"=="rag-finetuned-embed-answer" GOTO rag-finetuned-embed-answer
 IF "%TARGET%"=="rag-finetuned-lm-answer" GOTO rag-finetuned-lm-answer
 IF "%TARGET%"=="rag-finetuned-both-answer" GOTO rag-finetuned-both-answer
 IF "%TARGET%"=="rag-gpt4-lm-answer" GOTO rag-gpt4-lm-answer
+IF "%TARGET%"=="rag-test" GOTO rag-test
 
 IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
 
@@ -94,6 +95,10 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :rag-gpt4-lm-answer
   poetry run python rag-gpt4-lm.py %2
+  GOTO end
+
+:rag-test
+  poetry run python rag-test.py %2
   GOTO end
 
 

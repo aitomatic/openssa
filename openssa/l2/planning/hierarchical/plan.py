@@ -102,5 +102,9 @@ class HTP(AbstractPlan):
         else:
             self.task.result: str = reasoning_wo_sub_results
 
+            logger.debug(f'\n{self.task.ask.upper()}\n'
+                         '--------------------------\n'
+                         f'{self.task.result}\n')
+
         self.task.status: TaskStatus = TaskStatus.DONE
         return self.task.result
