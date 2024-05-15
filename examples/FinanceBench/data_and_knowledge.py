@@ -42,7 +42,8 @@ type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
                                              'category': Required[Category],
                                              'correctness': Required[str],
                                              'answer-inadequate': NotRequired[Literal[True]],
-                                             'evaluator-unreliable': NotRequired[Literal[True]]})
+                                             'evaluator-unreliable': NotRequired[Literal[True]]},
+                             total=False)
 
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
@@ -110,6 +111,20 @@ with open(file=EXPERT_PLAN_MAP_FILE_PATH,
           closefd=True,
           opener=None) as f:
     EXPERT_PLAN_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
+
+# META_DF processing
+# filter META_DF to use top 50 questions from expert-plan-map.yml only
+IDS_FROM_EXPERT_PLAN_MAP = list(EXPERT_PLAN_MAP.keys())
+FILTERED_META_DF = META_DF.loc[META_DF.index.isin(IDS_FROM_EXPERT_PLAN_MAP)]
+
+FILTERERED_DOC_NAMES: list[DocName] = sorted(FILTERED_META_DF.doc_name.unique())
+FILTERERED_DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(FILTERED_META_DF.doc_name, FILTERED_META_DF.doc_link))
+FILTERERED_DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = FILTERED_META_DF.doc_name.to_dict()
+
+FILTERERED_FB_IDS: list[FbId] = FILTERED_META_DF.index.unique().to_list()
+FILTERERED_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = FILTERED_META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FILTERERED_QS_BY_FB_ID: dict[FbId, Question] = FILTERED_META_DF.question.to_dict()
+
 
 # sanity check Expert Plans Map
 cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLAN_MAP}

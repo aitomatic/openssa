@@ -3,16 +3,28 @@ get-doc:
 
 
 htp-auto-static-oodar-solve:
-	@poetry run python htp-oodar-agent.py ${id}
+	@poetry run python htp_oodar_agent.py ${id}
 
 htp-auto-dynamic-oodar-solve:
-	@poetry run python htp-oodar-agent.py ${id} --dynamic-exec
+	@poetry run python htp_oodar_agent.py ${id} --dynamic-exec
 
 htp-expert-static-oodar-solve:
-	@poetry run python htp-oodar-agent.py ${id} --expert-plan
+	@poetry run python htp_oodar_agent.py ${id} --expert-plan
 
 htp-expert-dynamic-oodar-solve:
-	@poetry run python htp-oodar-agent.py ${id} --expert-plan --dynamic-exec
+	@poetry run python htp_oodar_agent.py ${id} --expert-plan --dynamic-exec
+
+htp-auto-static-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge
+
+htp-auto-dynamic-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --dynamic-exec
+
+htp-expert-static-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan
+
+htp-expert-dynamic-oodar-w-knowledge-solve:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan --dynamic-exec
 
 
 ooda-solve:

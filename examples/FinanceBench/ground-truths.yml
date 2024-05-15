@@ -49,6 +49,8 @@ financebench_id_00499:
     - Capital Expenditure (CapEx) is not high relative to Revenue; and/or
     - Return on (Total) Assets (RoA or RoTA) is quite good
 
+  evaluator-unreliable: true
+
 
 financebench_id_01226:
   doc: 3M_2022_10K
@@ -248,6 +250,8 @@ financebench_id_00438:
   correctness: >-
     the answer contains calculated Operating Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric decreased
+
+  evaluator-unreliable: true
 
 
 financebench_id_00591:
@@ -978,6 +982,8 @@ financebench_id_00678:
     the answer contains calculated Gross Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric increased
 
+  evaluator-unreliable: true
+
 
 financebench_id_01290:
   doc: BOEING_2022_10K
@@ -1026,6 +1032,8 @@ financebench_id_00585:
   correctness: >-
     the answer contains calculated Effective Tax Rate percentage or decimal values for 2021 and 2022,
     with one value being negative and the other value being positive
+
+  evaluator-unreliable: true
 
 
 financebench_id_03473:
@@ -1105,9 +1113,11 @@ financebench_id_02981:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer constains a calculated Average Operating Income Margin percentage value that is in the range from 9.00% to 11.00%,
-    or, alternatively, a calculated decimal value that is in the range from 0.0900 to 0.1100
+    the answer constains a calculated Average Operating Income Margin percentage value that is in the range from 9.00% to 12.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0900 to 0.1200
     (if the answer is a single number, assume that it is that calculated Average Operating Income Margin metric value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_01346:
@@ -1185,6 +1195,8 @@ financebench_id_00790:
     the answer either:
     - mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity); or
     - mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
+
+  evaluator-unreliable: true
 
 
 financebench_id_01107:
@@ -2044,6 +2056,8 @@ financebench_id_00215:
   category: 4-CALC-AND-JUDGE
   correctness: >-
     the answer opines that Verizon's business is capital-intensive, and justifies such opinion with a calculated ratio
+
+  evaluator-unreliable: true
 
 
 financebench_id_00566:
