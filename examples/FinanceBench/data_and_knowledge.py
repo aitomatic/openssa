@@ -153,6 +153,17 @@ EXPERT_PLAN_COMPANY_KEY: str = 'COMPANY'
 EXPERT_PLAN_PERIOD_KEY: str = 'PERIOD'
 
 
+RAG_GROUND_TRUTHS_FILE_PATH: Path = Path(__file__).parent / 'rag-ground-truths.yml'
+with open(file=RAG_GROUND_TRUTHS_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    RAG_GROUND_TRUTHS: dict = yaml.safe_load(stream=f)
+
+
 @dataclass
 class Doc:
     name: DocName
