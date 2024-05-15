@@ -17,8 +17,9 @@ if TYPE_CHECKING:
 DEFS: dict[str, str] = RAG_GROUND_TRUTHS['defs']
 
 
-QUESTION_PROMPT_TEMPLATE: str = ('what is value in dollars of {line_item} on {statement} of {company} '
-                                 'as at / for {fiscal_period} fiscal period?')
+QUESTION_PROMPT_TEMPLATE: str = ('what is value in dollars of `{line_item}` (or most similar-meaning reported line item) '
+                                 'on `{statement}` (or most similar-meaning statement) '
+                                 'of {company} as at / for {fiscal_period} fiscal period?')
 
 EVAL_RUBRIC_TEMPLATE: str = 'the answer contains a quantity equivalent to or approximately equal to {ground_truth}'
 
@@ -42,7 +43,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                                                                           company=doc.company,
                                                                           fiscal_period=fiscal_period)),
                     answer=(answer := file_resource.answer(question=question)),
-                    rubric=(rubric := EVAL_RUBRIC_TEMPLATE.format(ground_truth=ground_truth)))
+                    rubric=EVAL_RUBRIC_TEMPLATE.format(ground_truth=ground_truth))
 
                 for _ in range(n_repeats_per_eval):
                     score: str = ''
@@ -55,7 +56,15 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                                        '\n'
                                        f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                                        '\n'
-                                       f'RUBRIC:\n{rubric}')
+                                       f'GROUND TRUTH:\n{ground_truth}')
+                        break
+
+                else:
+                    logger.info(f'QUESTION re: {doc_name}:\n{question}\n'
+                                '\n'
+                                f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
+                                '\n'
+                                f'GROUND TRUTH:\n{ground_truth}')
 
 
 arg_parser = ArgumentParser()

@@ -182,7 +182,10 @@ Liquidity Metric Formulas
 
 `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
 
-`Free Cash Flow, a.k.a. FCF` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`
+`Free Cash Flow, a.k.a. FCF` = (
+  `Cash Flows from Operations, a.k.a. Operating Cash Flows` -
+  `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+)
 
 `Free Cash Flow Conversion Ratio` = `Free Cash Flow, a.k.a. FCF` / `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA`
 
@@ -211,10 +214,21 @@ CAPITAL-INTENSIVENESS EVALUATION
 ================================
 
 Capital-intensive businesses tend to have one or several of the following characteristics:
-- high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`;
-- high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`;
-- high `Capital Expenditure, a.k.a. CapEx` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and/or
-- low `Return on (Total) Assets, a.k.a. RoA or RoTA`
+
+- high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`,
+  e.g., over 30%;
+
+- high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+  e.g., over 2 times;
+
+- high `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+  relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+  e.g., over 10%;
+
+  and/or
+
+- low `Return on (Total) Assets, a.k.a. RoA or RoTA`,
+  e.g., under 10%
 
 
 FINANCIAL-ANALYSIS LANGUAGE/WORDING
