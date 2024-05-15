@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal, Self, TypedDict, TypeVar
 
 
@@ -16,8 +16,14 @@ class AbstractLM(ABC):
     """Abstract base class for consistent API for different LM services."""
 
     model: str
-    api_key: str
     api_base: str
+    api_key: str = field(default_factory=str,
+                         init=True,
+                         repr=False,
+                         hash=None,
+                         compare=True,
+                         metadata=None,
+                         kw_only=False)
 
     @classmethod
     @abstractmethod
