@@ -6,9 +6,20 @@ import base64
 import streamlit as st
 from loguru import logger
 
-from data_and_knowledge import FILTERERED_DOC_NAMES, FILTERERED_DOC_LINKS_BY_NAME, FILTERERED_QS_BY_FB_ID, FILTERERED_FB_IDS_BY_DOC_NAME
-# , cache_file_path
+from data_and_knowledge import DocName, FbId, Question, META_DF, EXPERT_PLAN_MAP
 from htp_oodar_agent import solve_expert_htp_statically
+
+
+IDS_FROM_EXPERT_PLAN_MAP = list(EXPERT_PLAN_MAP.keys())
+FILTERED_META_DF = META_DF.loc[META_DF.index.isin(IDS_FROM_EXPERT_PLAN_MAP)]
+
+FILTERERED_DOC_NAMES: list[DocName] = sorted(FILTERED_META_DF.doc_name.unique())
+FILTERERED_DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(FILTERED_META_DF.doc_name, FILTERED_META_DF.doc_link))
+FILTERERED_DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = FILTERED_META_DF.doc_name.to_dict()
+
+FILTERERED_FB_IDS: list[FbId] = FILTERED_META_DF.index.unique().to_list()
+FILTERERED_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = FILTERED_META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FILTERERED_QS_BY_FB_ID: dict[FbId, Question] = FILTERED_META_DF.question.to_dict()
 
 
 def display_pdf(file_path):
