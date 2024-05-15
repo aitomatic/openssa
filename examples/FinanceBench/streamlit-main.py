@@ -2,12 +2,12 @@
 
 
 import base64
-
 import streamlit as st
-from loguru import logger
-
-from data_and_knowledge import DocName, FbId, Question, META_DF, EXPERT_PLAN_MAP
+from data_and_knowledge import (DocName, Doc, FbId, Question, META_DF,
+                                EXPERT_PLAN_MAP, EXPERT_PLAN_TEMPLATES,
+                                EXPERT_PLAN_COMPANY_KEY, EXPERT_PLAN_PERIOD_KEY)
 from htp_oodar_agent import solve_expert_htp_statically
+from openssa import HTP
 
 
 IDS_FROM_EXPERT_PLAN_MAP = list(EXPERT_PLAN_MAP.keys())
@@ -34,15 +34,6 @@ def display_pdf(file_path):
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 
-def redirect_loguru_to_streamlit():
-    def _filter_warning(record):
-        return record["level"].no == logger.level("WARNING").no
-    if 'warning_logger' not in st.session_state:
-        st.session_state['warning_logger'] = logger.add(st.warning, filter=_filter_warning, level='INFO')
-    if 'error_logger' not in st.session_state:
-        st.session_state['error_logger'] = logger.add(st.error, level='ERROR')
-
-
 st.set_page_config(page_title='Analyses of SEC Filings (`FinanceBench` Dataset)',
                    page_icon=None,
                    layout='centered',
@@ -65,14 +56,14 @@ st.session_state.doc_name: str = st.selectbox(label='SEC Document',
                                               on_change=None, args=None, kwargs=None,
                                               placeholder='SEC Document',
                                               disabled=False,
-                                              label_visibility='hidden')
+                                              label_visibility='visible')
 
 st.write(FILTERERED_DOC_LINKS_BY_NAME[st.session_state.doc_name])
 
-# try:
-#     display_pdf(cache_file_path(st.session_state.doc_name))
-# except:  # noqa: E722
-#     print('document cannot be rendered')
+try:
+    display_pdf(st.session_state.doc_name)
+except:  # noqa: E722
+    print('document cannot be rendered')
 
 
 question_id: str = st.selectbox(label='Question',
@@ -89,12 +80,24 @@ question_id: str = st.selectbox(label='Question',
 
 # redirect_loguru_to_streamlit() #TODO: decide which logs should be shown
 
+expert_htp_id = EXPERT_PLAN_MAP.get(question_id)
+htp = HTP.from_dict(EXPERT_PLAN_TEMPLATES[expert_htp_id])
+htp.concretize_tasks_from_template(**{EXPERT_PLAN_COMPANY_KEY: (doc := Doc(name=FILTERERED_DOC_NAMES_BY_FB_ID[question_id])).company,  # noqa: E501
+                                      EXPERT_PLAN_PERIOD_KEY: doc.period})
+
 if st.button(label=f'__SOLVE__: _{FILTERERED_QS_BY_FB_ID[question_id]}_',
              key=None,
              on_click=None, args=None, kwargs=None,
              type='primary',
              disabled=False,
              use_container_width=False):
+    st.header('Expert\'s Plans:')
+    st.write('To solve the question:')
+    st.write(f'**{FILTERERED_QS_BY_FB_ID[question_id]}**')
+    st.write('Here are the sub-plans guided by experts:')
+    for plan_id, plan in enumerate(htp.sub_plans):
+        st.subheader(f'Sub-plan {plan_id + 1}')
+        st.write(plan.task.ask)
     with st.spinner('Solving... Please wait'):
         solution: str = solve_expert_htp_statically(question_id)
     st.write(solution)
