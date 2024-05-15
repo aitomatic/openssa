@@ -1,24 +1,55 @@
 defs:
-  BS: >-
-    `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
-    (or most similar-meaning statement)
 
-  curr-assets: >-
-    `(Total) Current Assets` (or most similar-meaning reported line item)
+  BS: (Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position
 
-  curr-liabs: >-
-    `(Total) Current Liabilities` (or most similar-meaning reported line item)
+  total-assets: Total Assets
+  fixed-assets: (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)
+  curr-assets: (Total) Current Assets
+  curr-liabs: (Total) Current Liabilities
 
-  CF: >-
-    `Cash Flow(s) Statement` (or most similar-meaning statement)
+
+  CF: Cash Flow(s) Statement
+
+  capex: Capital Expenditure, a.k.a. CapEx
+
 
   P&L: >-
-    `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
-    or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
-    (or most similar-meaning statement)
+    (Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+    or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement
+
+  rev: (Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales
+  net: Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)
 
 
 ground-truths:
+
+  3M_2022_10K:
+    BS:
+      fixed-assets:
+        2022: 9,178 million
+        2021: 9,429 million
+
+      total-assets:
+        2022: 46,455 million
+        2021: 47,072 million
+
+    CF:
+      capex:
+        2022: 1,749 million
+        2021: 1,603 million
+        2020: 1,501 million
+
+    P&L:
+      rev:
+        2022: 34,229 million
+        2021: 35,355 million
+        2020: 32,184 million
+
+      net:
+        2022: 5,777 million
+        2021: 5,921 million
+        2020: 5,449 million
+
 
   PAYPAL_2022_10K:
     BS:
