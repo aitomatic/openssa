@@ -655,7 +655,10 @@ fcf:
   task: |-
     Calculate `Free Cash Flow, a.k.a. FCF` of {COMPANY} for {PERIOD} fiscal period in dollars according to formula:
 
-    `Free Cash Flow, a.k.a. FCF` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`
+    `Free Cash Flow, a.k.a. FCF` = (
+      `Cash Flows from Operations, a.k.a. Operating Cash Flows` -
+      `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+    )
 
   sub-plans:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
@@ -664,7 +667,7 @@ fcf:
     - task: |-
         What are values in dollars of:
         - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
-        - `Capital Expenditure, a.k.a. CapEx`
+        - `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
         (or most similar-meaning reported line items to those)
         on one same `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
@@ -679,7 +682,8 @@ fcf-conv-comp:
         Calculate `Free Cash Flow Conversion Ratio` of {COMPANY} as percentage values according to formula:
 
         `Free Cash Flow Conversion Ratio` = (
-          (`Cash Flows from Operations, a.k.a. Operating Cash Flows` - `Capital Expenditure, a.k.a. CapEx`)
+          (`Cash Flows from Operations, a.k.a. Operating Cash Flows` -
+           `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`)
           / `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
         )
 
@@ -694,7 +698,7 @@ fcf-conv-comp:
         - task: |-
             What are values in dollars of:
             - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
-            - `Capital Expenditure, a.k.a. CapEx`
+            - `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
             (or most similar-meaning reported line items to those)
 
             on one same `Cash Flow(s) Statement` of {COMPANY}
@@ -898,12 +902,17 @@ debt-comp:
 
 capex-as-pct-of-rev-3y-avg:
   task: >-
-    Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue for {COMPANY} as percentage value
+    Calculate 3-year average of
+    `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+    as proportion of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+    for {COMPANY} as percentage value
 
   sub-plans:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: >-
-        What are values in dollars of `Capital Expenditure, a.k.a. CapEx` (or most similar-meaning reported line item)
+        What are values in dollars of
+        `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+        (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for past 3 fiscal years?
 
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
@@ -919,7 +928,7 @@ capex-as-pct-of-rev-3y-avg:
 
     - task: >-
         Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue
-        by dividing sum of `Capital Expenditure, a.k.a. CapEx`
+        by dividing sum of `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
         by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
         and return division result as percentage value
 
@@ -983,7 +992,9 @@ cap-intens:
         - {PERIOD} annual fiscal period end?
 
     - task: >-
-        What is value in dollars of `Capital Expenditure, a.k.a. CapEx` (or most similar-meaning reported line item)
+        What is value in dollars of
+        `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+        (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
@@ -1008,7 +1019,8 @@ cap-intens:
 
         - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`;
 
-        - high `Capital Expenditure, a.k.a. CapEx` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and/or
+        - high `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+          relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and/or
 
         - low `Return on (Total) Assets, a.k.a. RoA or RoTA` according to formula:
 
