@@ -197,6 +197,29 @@ ground-truths:
         2015: 71,651 million  # unreliable
 
 
+  AMCOR_2023_10K:
+    BS:
+      cash-and-equiv:
+        2023: 689 million
+        2022: 775 million  # unreliable
+
+      st-invest:
+        2023: 0 (or not explicitly reported)
+        2022: 0 (or not explicitly reported)
+
+      recvables:
+        2023: 1,875 million
+        2022: 1,935 million
+
+      invent:
+        2023: 992 million + 1,221 million
+        2022: 1,114 million + 1,325 million
+
+      curr-liabs:
+        2023: 4,476 million  # unreliable
+        2022: 5,103 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
