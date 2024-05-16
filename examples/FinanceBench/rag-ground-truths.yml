@@ -247,6 +247,29 @@ ground-truths:
         2013: 5,299 million
 
 
+  AMD_2022_10K:
+    BS:
+      cash-and-equiv:
+        2022: 4,835 million  # unreliable
+        2021: 2,535 million  # unreliable
+
+      st-invest:
+        2022: 1,020 million
+        2021: 1,073 million
+
+      recvables:
+        2022: 4,126 million  # unreliable
+        2021: 2,706 million  # unreliable
+
+      invent:
+        2022: 3,771 million
+        2021: 1,955 million  # unreliable
+
+      curr-liabs:
+        2022: 6,369 million
+        2021: 4,240 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
