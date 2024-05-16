@@ -308,6 +308,19 @@ ground-truths:
         2015: 1,233 million  # unreliable
 
 
+  BESTBUY_2023_10K:
+    P&L:
+      rev:
+        2023: 46,298 million or 46.3 billion
+        2022: 51,761 million or 51.8 billion
+        2021: 47,262 million or 47.3 billion
+
+      gross:
+        2023: 9,912 million or 9.9 billion  # unreliable
+        2022: 11,640 million or 11.6 billion
+        2021: 10,573 million or 10.6 billion
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
