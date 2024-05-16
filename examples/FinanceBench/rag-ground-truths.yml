@@ -21,6 +21,8 @@ defs:
 
   capex: Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending
 
+  div: Cash Dividends
+
 
   P&L: >-
     (Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
@@ -381,6 +383,20 @@ ground-truths:
         2021: 15,357 million
         2020: 13,433 million  # unreliable
         2019: 14,619 million  # unreliable
+
+
+  COCACOLA_2022_10K:
+    CF:
+      div:
+        2022: 7,616 million
+        2021: 7,252 million
+        2020: 7,047 million
+
+    P&L:
+      net:
+        2022: 9,542 million
+        2021: 9,771 million
+        2020: 7,747 million
 
 
   PAYPAL_2022_10K:
