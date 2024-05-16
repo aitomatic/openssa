@@ -399,6 +399,23 @@ ground-truths:
         2020: 7,747 million
 
 
+  CORNING_2020_10K:
+    BS:
+      invent:
+        2020: 2,438 million
+        2019: 2,320 million
+
+      payables:
+        2020: 1,174 million  # unreliable
+        2019: 1,587 million  # unreliable
+
+    P&L:
+      cogs:
+        2020: 7,772 million  # unreliable
+        2019: 7,468 million  # unreliable
+        2018: 6,829 million  # unreliable
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
