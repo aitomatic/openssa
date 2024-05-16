@@ -429,6 +429,17 @@ ground-truths:
         2019: 1,306 million
 
 
+  CORNING_2022_10K:
+    BS:
+      curr-assets:
+        2022: 7,453 million
+        2021: 7,659 million
+
+      curr-liabs:
+        2022: 5,175 million
+        2021: 4,806 million
+  
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
