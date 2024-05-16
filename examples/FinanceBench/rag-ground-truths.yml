@@ -16,7 +16,7 @@ defs:
 
   CF: Cash Flow(s) Statement
 
-  capex: Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending
+  capex: Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending
 
 
   P&L: >-
@@ -85,6 +85,12 @@ ground-truths:
       fixed-assets:
         2019: 253 million
         2018: 282 million
+
+    CF:
+      capex:
+        2019: 116 million
+        2018: 131 million  # unreliable
+        2017: 155 million  # unreliable
 
     P&L:
       rev:
