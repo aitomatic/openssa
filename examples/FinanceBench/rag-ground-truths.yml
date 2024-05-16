@@ -180,6 +180,23 @@ ground-truths:
         2020: 46 million
 
 
+  AMAZON_2017_10K:
+    BS:
+      invent:
+        2017: 16,047 million  # unreliable
+        2016: 11,461 million  # unreliable
+
+      payables:
+        2017: 34,616 million
+        2016: 25,309 million
+
+    P&L:
+      cogs:
+        2017: 111,934 million  # unreliable
+        2016: 88,265 million  # unreliable
+        2015: 71,651 million  # unreliable
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
