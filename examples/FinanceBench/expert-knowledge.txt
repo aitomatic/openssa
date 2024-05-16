@@ -32,13 +32,13 @@ Balance-Sheet Line-Item Synonyms
 Cash-Flow-Statement Line-Item Synonyms
 --------------------------------------
 
-- "Cash (Flows) from Operations", "Cash (Flows) from Operating Activities", "Operating Cash Flows"
+- "(Net) Cash (Flows) from Operations", "(Net) Cash (Flows) from Operating Activities", "(Net) Operating Cash Flows"
 
-- "Cash (Flows) from Investments", "Cash (Flows) from Investing Activities", "Investing Cash Flows"
+- "(Net) Cash (Flows) from Investments", "(Net) Cash (Flows) from Investing Activities", "(Net) Investing Cash Flows"
 
-- "Capital Expenditure(s)", "CapEx"
+- "Capital Expenditure(s)", "CapEx", "Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending"
 
-- "Cash (Flows) from Financing", "Cash (Flows) from Financing Activities", "Financing Cash Flows"
+- "(Net) Cash (Flows) from Financing", "(Net) Cash (Flows) from Financing Activities", "(Net) Financing Cash Flows"
 
 
 Income-Statement / Profit-and-Loss- (P&L-) Statement / Earnings-Statement / Operations-Statement Line-Item Synonyms
