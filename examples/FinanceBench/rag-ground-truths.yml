@@ -16,6 +16,7 @@ defs:
 
   CF: Cash Flow(s) Statement
 
+  d&a: Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))
   op-cf: (Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows
 
   capex: Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending
@@ -230,6 +231,20 @@ ground-truths:
         2023: 2,725 million
         2022: 2,820 million
         2021: 2,732 million
+
+
+  AMD_2015_10K:
+    CF:
+      d&a:
+        2015: 167 million
+        2014: 203 million
+        2013: 236 million
+
+    P&L:
+      rev:
+        2015: 3,991 million
+        2014: 5,506 million
+        2013: 5,299 million
 
 
   PAYPAL_2022_10K:
