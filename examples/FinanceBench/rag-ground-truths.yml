@@ -370,6 +370,19 @@ ground-truths:
         2015: 7,351 million
 
 
+  COCACOLA_2021_10K:
+    P&L:
+      rev:
+        2021: 38,655 million
+        2020: 33,014 million
+        2019: 37,266 million
+
+      cogs:
+        2021: 15,357 million
+        2020: 13,433 million  # unreliable
+        2019: 14,619 million  # unreliable
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
