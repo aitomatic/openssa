@@ -81,7 +81,7 @@ inv-turnover-ratio:
 
     `Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
       `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` /
-      `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+      `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
     )
 
   sub-plans:
@@ -100,7 +100,7 @@ inv-turnover-ratio:
     # retrieve individual starting & ending balance values only, without taking simple arithmetic average
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
-        What are values in dollars of `(Net) Inventory` (or most similar-meaning reported line item)
+        What are values in dollars of `(Total) (Net) Inventory(ies)` (or most similar-meaning reported line item)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
         (or most similar-meaning statement) of {COMPANY}
@@ -580,7 +580,9 @@ quick-ratio:
         Calculate `Quick Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+          (`Cash & Cash Equivalents` +
+           `Short-Term Investments or (Current) Marketable Securities` +
+           `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -591,7 +593,7 @@ quick-ratio:
         - task: |-
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
-            - `Short-Term Investments or Marketable Securities`;
+            - `Short-Term Investments or (Current) Marketable Securities`;
             - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
@@ -618,7 +620,9 @@ quick-ratio-comp:
         Calculate `Quick Ratio` of {COMPANY} as decimal values according to formula:
 
         `Quick Ratio` = (
-          (`Cash & Cash Equivalents` + `Short-Term Investments or Marketable Securities` + `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+          (`Cash & Cash Equivalents` +
+           `Short-Term Investments or (Current) Marketable Securities` +
+           `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -633,7 +637,7 @@ quick-ratio-comp:
         - task: |-
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
-            - `Short-Term Investments or Marketable Securities`;
+            - `Short-Term Investments or (Current) Marketable Securities`;
             - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
@@ -656,8 +660,8 @@ fcf:
     Calculate `Free Cash Flow, a.k.a. FCF` of {COMPANY} for {PERIOD} fiscal period in dollars according to formula:
 
     `Free Cash Flow, a.k.a. FCF` = (
-      `Cash Flows from Operations, a.k.a. Operating Cash Flows` -
-      `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+      `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
+      `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
     )
 
   sub-plans:
@@ -666,8 +670,8 @@ fcf:
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
-        - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
-        - `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+        - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
+        - `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
         (or most similar-meaning reported line items to those)
         on one same `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
@@ -682,8 +686,8 @@ fcf-conv-comp:
         Calculate `Free Cash Flow Conversion Ratio` of {COMPANY} as percentage values according to formula:
 
         `Free Cash Flow Conversion Ratio` = (
-          (`Cash Flows from Operations, a.k.a. Operating Cash Flows` -
-           `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`)
+          (`(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
+           `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`)
           / `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
         )
 
@@ -697,8 +701,8 @@ fcf-conv-comp:
         # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
-            - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
-            - `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+            - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
+            - `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
             (or most similar-meaning reported line items to those)
 
             on one same `Cash Flow(s) Statement` of {COMPANY}
@@ -730,11 +734,15 @@ op-cf-ratio:
     Calculate Operating Cash Flow Ratio of {COMPANY} for {PERIOD} annual fiscal period
     as decimal value according to formula:
 
-    `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
+    `Operating Cash Flow Ratio` = (
+      `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`
+      / `(Total) Current Liabilities`
+    )
 
   sub-plans:
     - task: >-
-        What is value in dollars of `Cash Flows from Operations, a.k.a. Operating Cash Flows` (or most similar-meaning reported line item)
+        What is value in dollars of
+        `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} annual fiscal period?
 
     - task: >-
@@ -755,7 +763,7 @@ days-payable-outstanding:
     `Days Payable Outstanding, a.k.a. DPO` = (
       365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
       / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
-         `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
+         `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
     )
 
   sub-plans:
@@ -765,7 +773,7 @@ days-payable-outstanding:
     - task: |-
         What are values in dollars of:
         - `Accounts Payable`; and
-        - `(Net) Inventory`
+        - `(Total) (Net) Inventory(ies)`
         (or most similar-meaning reported line items to those)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
@@ -803,7 +811,7 @@ cash-conv-cyc:
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
-        - `(Net) Inventory`;
+        - `(Total) (Net) Inventory(ies)`;
         - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
         - `Accounts Payable`
         (or most similar-meaning reported line items to those)
@@ -832,7 +840,7 @@ cash-conv-cyc:
         as decimal value according to formula:
 
         `Days Inventory Outstanding, a.k.a. DIO` = (
-          365 * `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+          365 * `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
           / `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
         )
 
@@ -852,7 +860,7 @@ cash-conv-cyc:
         `Days Payable Outstanding, a.k.a. DPO` = (
           365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
           / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
-            `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
+            `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
         )
 
 
@@ -903,7 +911,7 @@ debt-comp:
 capex-as-pct-of-rev-3y-avg:
   task: >-
     Calculate 3-year average of
-    `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+    `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
     as proportion of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
     for {COMPANY} as percentage value
 
@@ -911,7 +919,7 @@ capex-as-pct-of-rev-3y-avg:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: >-
         What are values in dollars of
-        `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+        `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
         (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for past 3 fiscal years?
 
@@ -927,8 +935,8 @@ capex-as-pct-of-rev-3y-avg:
         of {COMPANY} for past 3 fiscal years?
 
     - task: >-
-        Calculate 3-year average of Capital Expenditure (CapEx) as percentage of Revenue
-        by dividing sum of `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+        Calculate 3-year average of Capital Expenditure(s) (CapEx) as percentage of Revenue
+        by dividing sum of `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
         by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
         and return division result as percentage value
 
@@ -993,7 +1001,7 @@ cap-intens:
 
     - task: >-
         What is value in dollars of
-        `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+        `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
         (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
@@ -1021,7 +1029,7 @@ cap-intens:
         - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
           e.g., over 2 times;
 
-        - high `Capital Expenditure, a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure/Purchase(s)/Spending`
+        - high `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
           relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
           e.g., over 10%;
 
