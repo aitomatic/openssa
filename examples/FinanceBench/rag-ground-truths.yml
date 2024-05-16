@@ -295,6 +295,19 @@ ground-truths:
         2021: 2,141 million
 
 
+  BESTBUY_2017_10K:
+    P&L:
+      rev:
+        2017: 39,403 million
+        2016: 39,528 million  # unreliable
+        2015: 40,339 million  # unreliable
+
+      net:
+        2017: 1,228 million  # unreliable
+        2016: 897 million
+        2015: 1,233 million  # unreliable
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
