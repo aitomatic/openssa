@@ -2,9 +2,15 @@ defs:
 
   BS: (Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position
 
-  total-assets: Total Assets
-  fixed-assets: (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)
+  cash-and-equiv: Cash & Cash Equivalents
+  st-invest: Short-Term Investments or (Current) Marketable Securities
+  recvables: (Net) Accounts Receivable, a.k.a. (Net) Trade Receivables
+  invent: (Total) (Net) Inventory(ies)
   curr-assets: (Total) Current Assets
+  fixed-assets: (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)
+  total-assets: Total Assets
+
+  payables: Accounts Payable
   curr-liabs: (Total) Current Liabilities
 
 
@@ -49,6 +55,29 @@ ground-truths:
         2022: 5,777 million
         2021: 5,921 million
         2020: 5,449 million
+
+
+  3M_2023Q2_10Q:
+    BS:
+      cash-and-equiv:
+        2023Q2: 4,258 million
+        2022: 3,655 million
+
+      st-invest:
+        2023Q2: 56 million
+        2022: 238 million
+
+      recvables:
+        2023Q2: 4,947 million
+        2022: 4,532 million  # unreliable
+
+      invent:
+        2023Q2: 5,280 million
+        2022: 5,372 million
+
+      curr-liabs:
+        2023Q2: 10,936 million
+        2022: 9,523 million
 
 
   PAYPAL_2022_10K:
