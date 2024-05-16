@@ -80,6 +80,19 @@ ground-truths:
         2022: 9,523 million
 
 
+  ACTIVISIONBLIZZARD_2019_10K:
+    BS:
+      fixed-assets:
+        2019: 253 million
+        2018: 282 million
+
+    P&L:
+      rev:
+        2019: 6,489 million
+        2018: 7,500 million  # unreliable
+        2017: 7,017 million  # unreliable
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
