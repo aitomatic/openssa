@@ -117,14 +117,14 @@ ground-truths:
   ADOBE_2017_10K:
     BS:
       curr-liabs:
-        2017: 6,075,687 or 6,075.7 million or 6.0 billion
-        2016: 5,272,411 or 5,272.4 million or 5.3 billion
+        2017: 6,075,687 or 6,075.7 million or 6.0 billion  # unreliable
+        2016: 5,272,411 or 5,272.4 million or 5.3 billion  # unreliable
 
     CF:
       op-cf:
-        2017: 2,912,853 or 2,912.9 million or 2.9 billion
-        2016: 2,199,728 or 2,199.7 million or 2.2 billion
-        2013: 1,469,502 or 1,469.5 million or 1.5 billion
+        2017: 2,912,853 or 2,912.9 million or 2.9 billion  # unreliable
+        2016: 2,199,728 or 2,199.7 million or 2.2 billion  # unreliable
+        2013: 1,469,502 or 1,469.5 million or 1.5 billion  # unreliable
 
 
   PAYPAL_2022_10K:
