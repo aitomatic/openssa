@@ -321,6 +321,17 @@ ground-truths:
         2021: 10,573 million or 10.6 billion
 
 
+  BLOCK_2016_10K:
+    BS:
+      curr-assets:
+        2016: 1,001,425 or 1,001.4 million or 1.0 billion
+        2015: 705,563 or 705.6 million or 0.7 billion
+
+      curr-liabs:
+        2016: 577,464 or 577.5 million or 0.6 billion  # unreliable
+        2015: 334,202 or 334.2 million or 0.3 billion  # unreliable
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
