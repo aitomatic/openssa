@@ -21,7 +21,8 @@ Balance-Sheet Line-Item Synonyms
   "(Net) Property, Plant & Equipment", "(Net) PP&E", "(Net) PPNE",
   "(Net) Property & Equipment", "(Net) Plant & Equipment", "(Net) Property, Equipment & Intangibles"
 
-- "(Net) Inventory", "(Net) Inventories", "(Net) Merchandise Inventory", "(Net) Merchandise Inventories"
+- "(Total) (Net) Inventory", "(Total) (Net) Inventories",
+  "(Total) (Net) Merchandise Inventory", "(Total) (Net) Merchandise Inventories"
 
 - "(Net) Accounts Receivable", "(Net) AR", "(Net) Trade Receivables"
 
@@ -84,7 +85,7 @@ Turnover Ratio Metric Formulas
 
 `Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
   `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` /
-  `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+  `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
 )
 
 
@@ -192,14 +193,14 @@ Liquidity Metric Formulas
 `Free Cash Flow Conversion Ratio` = `Free Cash Flow, a.k.a. FCF` / `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA`
 
 `Days Inventory Outstanding, a.k.a. DIO` = (
-  365 * `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+  365 * `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
   / `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
 )
 
 `Days Payable Outstanding, a.k.a. DPO` = (
   365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
   / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
-     `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
+     `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
 )
 
 `Days Sales Oustanding, a.k.a. DSO` = (

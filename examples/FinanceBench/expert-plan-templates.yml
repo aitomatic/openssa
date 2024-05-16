@@ -81,7 +81,7 @@ inv-turnover-ratio:
 
     `Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
       `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` /
-      `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+      `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
     )
 
   sub-plans:
@@ -100,7 +100,7 @@ inv-turnover-ratio:
     # retrieve individual starting & ending balance values only, without taking simple arithmetic average
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
-        What are values in dollars of `(Net) Inventory` (or most similar-meaning reported line item)
+        What are values in dollars of `(Total) (Net) Inventory(ies)` (or most similar-meaning reported line item)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
         (or most similar-meaning statement) of {COMPANY}
@@ -759,7 +759,7 @@ days-payable-outstanding:
     `Days Payable Outstanding, a.k.a. DPO` = (
       365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
       / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
-         `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
+         `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
     )
 
   sub-plans:
@@ -769,7 +769,7 @@ days-payable-outstanding:
     - task: |-
         What are values in dollars of:
         - `Accounts Payable`; and
-        - `(Net) Inventory`
+        - `(Total) (Net) Inventory(ies)`
         (or most similar-meaning reported line items to those)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
@@ -807,7 +807,7 @@ cash-conv-cyc:
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
-        - `(Net) Inventory`;
+        - `(Total) (Net) Inventory(ies)`;
         - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
         - `Accounts Payable`
         (or most similar-meaning reported line items to those)
@@ -836,7 +836,7 @@ cash-conv-cyc:
         as decimal value according to formula:
 
         `Days Inventory Outstanding, a.k.a. DIO` = (
-          365 * `average (Net) Inventory, typically between two consecutive fiscal year-ends`
+          365 * `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
           / `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
         )
 
@@ -856,7 +856,7 @@ cash-conv-cyc:
         `Days Payable Outstanding, a.k.a. DPO` = (
           365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
           / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
-            `change in (Net) Inventory, typically between two consecutive fiscal year-ends`)
+            `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
         )
 
 
