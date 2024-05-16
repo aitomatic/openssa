@@ -30,6 +30,8 @@ defs:
   cogs: (Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue
   gross: Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))
   op: (Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))
+  ebt: Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)
+  inc-tax: (Income) Tax Expense
   net: Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)
 
 
@@ -343,6 +345,16 @@ ground-truths:
         2022: 3,502 million  # unreliable because of missing line-time label
         2021: 3,017 million  # unreliable because of missing line-time label
         2020: negative (loss) 5,685 million  # unreliable because of missing line-time label
+
+      ebt:
+        2022: negative (loss) 5,022 million
+        2021: negative (loss) 5,033 million
+        2020: negative (loss) 14,476 million
+
+      inc-tax:
+        2022: tax of 31 million
+        2021: tax benefit of 743 million
+        2020: tax benefit of 2,535 million
 
 
   PAYPAL_2022_10K:
