@@ -266,6 +266,8 @@ financebench_id_00591:
     the answer contains calculated Free Cash Flow Conversion Ratio percentage or decimal values for 2021 and 2022,
     and concludes that such metric increased
 
+  evaluator-unreliable: true
+
 
 financebench_id_01319:
   doc: AES_2022_10K
