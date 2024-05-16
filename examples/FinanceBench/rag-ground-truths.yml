@@ -332,6 +332,19 @@ ground-truths:
         2015: 334,202 or 334.2 million or 0.3 billion  # unreliable
 
 
+  BOEING_2022_10K:
+    P&L:
+      rev:
+        2022: 66,608 million
+        2021: 62,286 million
+        2020: 58,158 million
+
+      gross:
+        2022: 3,502 million  # unreliable because of missing line-time label
+        2021: 3,017 million  # unreliable because of missing line-time label
+        2020: negative (loss) 5,685 million  # unreliable because of missing line-time label
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
