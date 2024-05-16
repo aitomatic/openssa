@@ -27,6 +27,7 @@ defs:
 
   rev: (Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales
   cogs: (Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue
+  gross: Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))
   op: (Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))
   net: Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)
 
@@ -200,7 +201,7 @@ ground-truths:
   AMCOR_2023_10K:
     BS:
       cash-and-equiv:
-        2023: 689 million
+        2023: 689 million  # unreliable
         2022: 775 million  # unreliable
 
       st-invest:
@@ -218,6 +219,17 @@ ground-truths:
       curr-liabs:
         2023: 4,476 million  # unreliable
         2022: 5,103 million
+
+    P&L:
+      rev:
+        2023: 14,694 million
+        2022: 14,544 million  # unreliable
+        2021: 12,861 million  # unreliable
+
+      gross:
+        2023: 2,725 million
+        2022: 2,820 million
+        2021: 2,732 million
 
 
   PAYPAL_2022_10K:
