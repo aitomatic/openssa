@@ -56,7 +56,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                                        '\n'
                                        f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                                        '\n'
-                                       f'GROUND TRUTH:\n{ground_truth}')
+                                       f'GROUND TRUTH:\n{ground_truth}\n')
                         break
 
                 else:
@@ -64,7 +64,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                                 '\n'
                                 f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
                                 '\n'
-                                f'GROUND TRUTH:\n{ground_truth}')
+                                f'GROUND TRUTH:\n{ground_truth}\n')
 
 
 arg_parser = ArgumentParser()
