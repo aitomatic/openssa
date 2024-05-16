@@ -660,7 +660,7 @@ fcf:
     Calculate `Free Cash Flow, a.k.a. FCF` of {COMPANY} for {PERIOD} fiscal period in dollars according to formula:
 
     `Free Cash Flow, a.k.a. FCF` = (
-      `Cash Flows from Operations, a.k.a. Operating Cash Flows` -
+      `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
       `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
     )
 
@@ -670,7 +670,7 @@ fcf:
     # because RAG LMs may not be good at calculation & mathematical reasoning
     - task: |-
         What are values in dollars of:
-        - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
+        - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
         - `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
         (or most similar-meaning reported line items to those)
         on one same `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
@@ -686,7 +686,7 @@ fcf-conv-comp:
         Calculate `Free Cash Flow Conversion Ratio` of {COMPANY} as percentage values according to formula:
 
         `Free Cash Flow Conversion Ratio` = (
-          (`Cash Flows from Operations, a.k.a. Operating Cash Flows` -
+          (`(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
            `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`)
           / `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
         )
@@ -701,7 +701,7 @@ fcf-conv-comp:
         # because RAG LMs may not be good at calculation & mathematical reasoning
         - task: |-
             What are values in dollars of:
-            - `Cash Flows from Operations, a.k.a. Operating Cash Flows`; and
+            - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
             - `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
             (or most similar-meaning reported line items to those)
 
@@ -734,11 +734,15 @@ op-cf-ratio:
     Calculate Operating Cash Flow Ratio of {COMPANY} for {PERIOD} annual fiscal period
     as decimal value according to formula:
 
-    `Operating Cash Flow Ratio` = `Cash Flows from Operations, a.k.a. Operating Cash Flows` / `(Total) Current Liabilities`
+    `Operating Cash Flow Ratio` = (
+      `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`
+      / `(Total) Current Liabilities`
+    )
 
   sub-plans:
     - task: >-
-        What is value in dollars of `Cash Flows from Operations, a.k.a. Operating Cash Flows` (or most similar-meaning reported line item)
+        What is value in dollars of
+        `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} annual fiscal period?
 
     - task: >-
