@@ -46,7 +46,7 @@ exclude = [
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = ">=6.29"
-notebook = ">=7.1"
+notebook = ">=7.2"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=7.3"
@@ -56,7 +56,7 @@ myst-parser = ">=3.0"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=7.0"
-pylint = ">=3.1"
+pylint = ">=3.2"
 ruff = ">=0.4"
 
 [tool.poetry.group.test.dependencies]
@@ -67,7 +67,7 @@ python = ">=3.12,<3.13"
 # Llama interface
 llamaapi = ">=0.1"
 # OpenAI interface
-openai = ">=1.25"
+openai = ">=1.30"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
@@ -77,13 +77,13 @@ docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=4.2"  # for reading .pdf files
 pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = ">=2024.3"  # base/local file system
+fsspec = ">=2024.5"  # base/local file system
 adlfs = ">=2024.4"  # Azure Data Lake
-gcsfs = ">=2024.3"  # Google Cloud Storage
-s3fs = ">=2024.3"  # S3
+gcsfs = ">=2024.5"  # Google Cloud Storage
+s3fs = ">=2024.5"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.127"
+google-api-python-client = ">=2.129"
 httpx = ">=0.27"
 loguru = ">=0.7"
 pydantic = ">=2.7"
