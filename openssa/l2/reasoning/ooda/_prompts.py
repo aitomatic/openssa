@@ -28,8 +28,4 @@ Please return ONLY the JSON DICTIONARY and no other text, not even the "```json"
 ```
 {observations}
 ```
-
-```
-{other_results}
-```
 """  # noqa: E122
