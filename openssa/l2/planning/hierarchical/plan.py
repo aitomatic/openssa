@@ -62,7 +62,7 @@ class HTP(AbstractPlan):
         if reasoner is None:
             reasoner: AReasoner = BaseReasoner()
 
-        reasoning_wo_sub_results: str = reasoner.reason(task=self.task, knowledge=knowledge, other_results=None)
+        reasoning_wo_sub_results: str = reasoner.reason(task=self.task, knowledge=knowledge, other_results=other_results)
 
         if self.sub_plans:
             sub_results: list[AskAnsPair] = []
