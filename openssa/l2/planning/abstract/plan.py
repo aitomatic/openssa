@@ -11,9 +11,7 @@ if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task.abstract import ATask
-
-
-type AskAnsPair = tuple[str, str]
+    from openssa.l2.util.misc import AskAnsPair
 
 
 class PlanQuickRepr(TypedDict, total=False):

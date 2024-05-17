@@ -1,11 +1,3 @@
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from openssa.l2.reasoning.abstract import AskAnsPair
-
-
 RESOURCE_QA_CONSO_PROMPT_TEMPLATE: str = \
 """Assuming that the following question/problem/task is posed
 
@@ -59,20 +51,3 @@ please consolidate within {n_words:,} words a final answer/solution that you bel
 {other_results}
 ```
 """  # noqa: E122
-
-
-def format_other_result(other_result: AskAnsPair) -> str:
-    question, answer = other_result
-    return (f'======================\n'
-            'ADDITIONAL INFORMATION:\n'
-            '\n'
-            'QUESTION:\n'
-            '-----------------------\n'
-            f'{question}\n'
-            '-----------------------\n'
-            '\n'
-            'ANSWER:\n'
-            '-----------------------\n'
-            f'{answer}\n'
-            '-----------------------\n'
-            '=======================\n')
