@@ -543,6 +543,19 @@ ground-truths:
         2020: 2,181.2 million  # unreliable
 
 
+  KRAFTHEINZ_2019_10K:
+    BS:
+      invent:
+        2019: 2,721 million
+        2018: 2,667 million
+
+    P&L:
+      cogs:
+        2019: 16,830 million
+        2018: 17,347 million  # unreliable
+        2017: 17,043 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
