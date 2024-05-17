@@ -19,7 +19,8 @@ DEFS: dict[str, str] = RAG_GROUND_TRUTHS['defs']
 
 QUESTION_PROMPT_TEMPLATE: str = ('what is value in dollars of `{line_item}` (or most similar-meaning reported line item) '
                                  'on `{statement}` (or most similar-meaning statement) '
-                                 'of {company} as at / for {fiscal_period} fiscal period?')
+                                 'of {company} (and NOT such statement(s) of its acquired and/or divested companies) '
+                                 'as at / for {fiscal_period} fiscal period?')
 
 EVAL_RUBRIC_TEMPLATE: str = 'the answer contains a quantity equivalent to or approximately equal to {ground_truth}'
 
@@ -56,7 +57,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                                        '\n'
                                        f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                                        '\n'
-                                       f'GROUND TRUTH:\n{ground_truth}')
+                                       f'GROUND TRUTH:\n{ground_truth}\n')
                         break
 
                 else:
@@ -64,7 +65,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                                 '\n'
                                 f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
                                 '\n'
-                                f'GROUND TRUTH:\n{ground_truth}')
+                                f'GROUND TRUTH:\n{ground_truth}\n')
 
 
 arg_parser = ArgumentParser()

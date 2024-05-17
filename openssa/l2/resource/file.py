@@ -294,4 +294,12 @@ class FileResource(AbstractResource):
 
     def answer(self, question: str, n_words: int = 1000) -> str:
         """Answer question by RAG from file-stored Informational Resource."""
-        return self.query_engine.query(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)).response
+        prompt: str = RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)
+
+        for _ in range(3):
+            answer: str = self.query_engine.query(prompt).response
+
+            if not answer.strip().lower().startswith('repeat'):
+                break
+
+        return answer
