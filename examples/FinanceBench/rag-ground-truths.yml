@@ -634,6 +634,19 @@ ground-truths:
         2013: 228.347 million or 228 million
 
 
+  NIKE_2018_10K:
+    P&L:
+      rev:
+        2018: 36,397 million
+        2017: 34,350 million
+        2016: 32,376 million
+
+      cogs:
+        2018: 20,441 million
+        2017: 19,038 million
+        2016: 17,405 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
