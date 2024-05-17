@@ -771,3 +771,22 @@ ground-truths:
         2019: 21,957 million
         2018: 20,437 million
         2017: 22,764 million  # unreliable
+
+
+  WALMART_2020_10K:
+    CF:
+      d&a:
+        2020: 10,987 million
+        2019: 10,678 million
+        2018: 10,529 million
+
+    P&L:
+      rev:
+        2020: 523,964 million  # unreliable
+        2019: 514,405 million  # unreliable
+        2018: 500,343 million
+
+      op:
+        2020: 20,568 million
+        2019: 21,957 million
+        2018: 20,437 million
