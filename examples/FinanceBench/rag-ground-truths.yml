@@ -604,6 +604,14 @@ ground-truths:
       # int:
 
 
+  MICROSOFT_2016_10K:
+    P&L:
+      cogs:
+        2016: 32,780 million  # unreliable
+        2015: 33,038 million  # unreliable
+        2014: 27,078 million  # unreliable
+
+
   MICROSOFT_2023_10K:
     BS:
       st-debt:
