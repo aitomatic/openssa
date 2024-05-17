@@ -3,13 +3,11 @@
 
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import TypeVar, TYPE_CHECKING
+from typing import TypeVar
 
 
 from ._prompts import RESOURCE_OVERVIEW_PROMPT_TEMPLATE
 
-if TYPE_CHECKING:
-    from openssa.l2.planning.abstract.plan import AskAnsPair
 
 class AbstractResource(ABC):
     """Abstract Informational Resource."""
