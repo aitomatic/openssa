@@ -54,8 +54,7 @@ class OodaReasoner(AbstractReasoner):
 
     def observe(self, task: ATask, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[Observation]:
         """Observe results from available Informational Resources."""
-        observations: set[Observation] = {r.present_full_answer(question=task.ask, n_words=n_words)
-                                          for r in task.resources}
+        observations: set[Observation] = {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}  # noqa: E501
 
         if other_results:
             observations |= {format_other_result(other_result) for other_result in other_results}
