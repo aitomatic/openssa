@@ -556,6 +556,19 @@ ground-truths:
         2017: 17,043 million
 
 
+  LOCKHEEDMARTIN_2020_10K:
+    BS:
+      total-assets:
+        2020: 50,710 million
+        2019: 47,528 million
+
+    P&L:
+      rev:
+        2020: 65,398 million
+        2019: 59,812 million  # unreliable
+        2018: 53,762 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
