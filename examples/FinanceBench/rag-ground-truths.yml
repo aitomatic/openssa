@@ -615,6 +615,25 @@ ground-truths:
         2022: 47,032 million
 
 
+  NETFLIX_2015_10K:
+    CF:
+      d&a:
+        2015: 62.283 million or 62 million  # unreliable
+        2014: 54.028 million or 54 million  # unreliable
+        2013: 48.374 million or 48 million  # unreliable
+
+    P&L:
+      rev:
+        2015: 6,779.511 million or 6,780 million
+        2014: 5,504.656 million or 5,505 million
+        2013: 4,374.562 million or 4,375 million
+
+      op:
+        2015: 305.826 million or 306 million
+        2014: 402.648 million or 403 million
+        2013: 228.347 million or 228 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
