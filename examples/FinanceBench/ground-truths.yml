@@ -750,8 +750,8 @@ financebench_id_00070:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer affirms that Working Capital is/was positive,
-    proving so by a calculated Working Capital metric value that is positive
+    the answer contains a calculated (Net) Working Capital metric value in dollars
+  answer-inadequate: true
 
   evaluator-unreliable: true
 
@@ -1518,8 +1518,8 @@ financebench_id_01911:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Interest Coverage Ratio metric value that is negative,
-    or, alternatively, says that such metric is zero because of negative EBIT
+    the answer contains a calculated Interest Coverage Ratio metric value
+  answer-inadequate: true
 
 
 financebench_id_01912:

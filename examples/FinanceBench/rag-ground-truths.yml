@@ -11,14 +11,19 @@ defs:
   total-assets: Total Assets
 
   payables: Accounts Payable
+  st-debt: Short-Term Debt, or Current Portion of (Long-Term) Debt
   curr-liabs: (Total) Current Liabilities
+  lt-debt: Long-Term Debt
 
 
   CF: Cash Flow(s) Statement
 
+  d&a: Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))
   op-cf: (Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows
 
   capex: Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending
+
+  div: Cash Dividends
 
 
   P&L: >-
@@ -27,7 +32,12 @@ defs:
 
   rev: (Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales
   cogs: (Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue
+  gross: Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))
   op: (Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))
+  ebit: Earnings before Interest & Tax, a.k.a. EBIT
+  int: Interest Expense
+  ebt: Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)
+  inc-tax: (Income) Tax Expense
   net: Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)
 
 
@@ -200,7 +210,7 @@ ground-truths:
   AMCOR_2023_10K:
     BS:
       cash-and-equiv:
-        2023: 689 million
+        2023: 689 million  # unreliable
         2022: 775 million  # unreliable
 
       st-invest:
@@ -218,6 +228,410 @@ ground-truths:
       curr-liabs:
         2023: 4,476 million  # unreliable
         2022: 5,103 million
+
+    P&L:
+      rev:
+        2023: 14,694 million
+        2022: 14,544 million  # unreliable
+        2021: 12,861 million  # unreliable
+
+      gross:
+        2023: 2,725 million
+        2022: 2,820 million
+        2021: 2,732 million
+
+
+  AMD_2015_10K:
+    CF:
+      d&a:
+        2015: 167 million
+        2014: 203 million
+        2013: 236 million
+
+    P&L:
+      rev:
+        2015: 3,991 million
+        2014: 5,506 million
+        2013: 5,299 million
+
+
+  AMD_2022_10K:
+    BS:
+      cash-and-equiv:
+        2022: 4,835 million  # unreliable
+        2021: 2,535 million  # unreliable
+
+      st-invest:
+        2022: 1,020 million
+        2021: 1,073 million
+
+      recvables:
+        2022: 4,126 million  # unreliable
+        2021: 2,706 million  # unreliable
+
+      invent:
+        2022: 3,771 million
+        2021: 1,955 million  # unreliable
+
+      curr-liabs:
+        2022: 6,369 million
+        2021: 4,240 million
+
+
+  AMERICANWATERWORKS_2021_10K:
+    CF:
+      d&a:
+        2021: 636 million  # unreliable
+        2020: 604 million  # unreliable
+        2019: 582 million  # unreliable
+
+    P&L:
+      op:
+        2021: 1,196 million
+        2020: 1,248 million
+        2019: 1,214 million
+
+
+  AMERICANWATERWORKS_2022_10K:
+    BS:
+      curr-assets:
+        2022: 1,250 million
+        2021: 1,554 million
+
+      curr-liabs:
+        2022: 2,811 million
+        2021: 2,141 million
+
+
+  BESTBUY_2017_10K:
+    P&L:
+      rev:
+        2017: 39,403 million
+        2016: 39,528 million  # unreliable
+        2015: 40,339 million  # unreliable
+
+      net:
+        2017: 1,228 million  # unreliable
+        2016: 897 million
+        2015: 1,233 million  # unreliable
+
+
+  BESTBUY_2023_10K:
+    P&L:
+      rev:
+        2023: 46,298 million or 46.3 billion
+        2022: 51,761 million or 51.8 billion
+        2021: 47,262 million or 47.3 billion
+
+      gross:
+        2023: 9,912 million or 9.9 billion  # unreliable
+        2022: 11,640 million or 11.6 billion
+        2021: 10,573 million or 10.6 billion
+
+
+  BLOCK_2016_10K:
+    BS:
+      curr-assets:
+        2016: 1,001,425 or 1,001.4 million or 1.0 billion
+        2015: 705,563 or 705.6 million or 0.7 billion
+
+      curr-liabs:
+        2016: 577,464 or 577.5 million or 0.6 billion  # unreliable
+        2015: 334,202 or 334.2 million or 0.3 billion  # unreliable
+
+
+  BOEING_2022_10K:
+    P&L:
+      rev:
+        2022: 66,608 million
+        2021: 62,286 million
+        2020: 58,158 million
+
+      gross:
+        2022: 3,502 million  # unreliable because of missing line-time label
+        2021: 3,017 million  # unreliable because of missing line-time label
+        2020: negative (loss) 5,685 million  # unreliable because of missing line-time label
+
+      ebt:
+        2022: negative (loss) 5,022 million
+        2021: negative (loss) 5,033 million
+        2020: negative (loss) 14,476 million
+
+      inc-tax:
+        2022: tax of 31 million
+        2021: tax benefit of 743 million
+        2020: tax benefit of 2,535 million
+
+
+  COCACOLA_2017_10K:
+    BS:
+      total-assets:
+        2017: 36,545 million  # unreliable
+        2016: 34,010 million  # unreliable
+
+    P&L:
+      net:
+        2017: 1,248 million
+        2016: 6,527 million
+        2015: 7,351 million
+
+
+  COCACOLA_2021_10K:
+    P&L:
+      rev:
+        2021: 38,655 million
+        2020: 33,014 million
+        2019: 37,266 million
+
+      cogs:
+        2021: 15,357 million
+        2020: 13,433 million  # unreliable
+        2019: 14,619 million  # unreliable
+
+
+  COCACOLA_2022_10K:
+    CF:
+      div:
+        2022: 7,616 million
+        2021: 7,252 million
+        2020: 7,047 million
+
+    P&L:
+      net:
+        2022: 9,542 million
+        2021: 9,771 million
+        2020: 7,747 million
+
+
+  CORNING_2020_10K:
+    BS:
+      invent:
+        2020: 2,438 million
+        2019: 2,320 million
+
+      payables:
+        2020: 1,174 million  # unreliable
+        2019: 1,587 million  # unreliable
+
+    P&L:
+      cogs:
+        2020: 7,772 million  # unreliable
+        2019: 7,468 million  # unreliable
+        2018: 6,829 million  # unreliable
+
+
+  CORNING_2021_10K:
+    P&L:
+      rev:
+        2021: 14,082 million  # unreliable
+        2020: 11,303 million
+        2019: 11,503 million
+
+      op:
+        2021: 2,112 million
+        2020: 509 million
+        2019: 1,306 million
+
+
+  CORNING_2022_10K:
+    BS:
+      curr-assets:
+        2022: 7,453 million
+        2021: 7,659 million
+
+      curr-liabs:
+        2022: 5,175 million
+        2021: 4,806 million
+
+
+  CVSHEALTH_2018_10K:
+    BS:
+      fixed-assets:
+        2018: 11,349 million  # unreliable
+        2017: 10,292 million  # unreliable
+
+    P&L:
+      rev:
+        2018: 194,579 million  # unreliable
+        2017: 184,786 million  # unreliable
+        2016: 177,546 million  # unreliable
+
+
+  CVSHEALTH_2022_10K:
+    BS:
+      fixed-assets:
+        2022: 12,873 million  # unreliable
+        2021: 12,896 million
+
+      total-assets:
+        2022: 228,275 million
+        2021: 232,999 million
+
+    CF:
+      capex:
+        2022: 2,727 million or 2.7 billion
+        2021: 2,520 million or 2.5 billion
+        2020: 2,437 million or 2.4 billion
+
+    P&L:
+      rev:
+        2022: 322,467 million
+        2021: 292,111 million
+        2020: 268,706 million
+
+      net:
+        2022: 4,149 million
+        2021: 7,910 million  # unreliable
+        2020: 7,179 million  # unreliable
+
+
+  GENERALMILLS_2019_10K:
+    BS:
+      recvables:
+        2019: 1,679.7 million
+        2018: 1,684.2 million  # unreliable
+
+      invent:
+        2019: 1,559.3 million
+        2018: 1,642.2 million  # unreliable
+
+      payables:
+        2019: 2,854.1 million
+        2018: 2,746.2 million  # unreliable
+
+    P&L:
+      rev:
+        2019: 16,865.2 million
+        2018: 15,740.4 million
+        2017: 15,619.8 million
+
+      cogs:
+        2019: 11,108.4 million
+        2018: 10,304.8 million
+        2017: 10,052.0 million
+
+
+  GENERALMILLS_2020_10K:
+    BS:
+      curr-assets:
+        2020: 5,121.3 million
+        2019: 4,186.5 million
+
+      curr-liabs:
+        2020: 7,491.5 million
+        2019: 7,087.1 million
+
+    CF:
+      op-cf:
+        2020: 3,676.2 million
+        2019: 2,807.0 million
+        2018: 2,841.0 million
+
+      capex:
+        2020: 460.8 million
+        2019: 537.6 million
+        2018: 622.7 million
+
+
+  GENERALMILLS_2022_10K:
+    CF:
+      div:
+        2022: 1,244.5 million
+        2021: 1,246.4 million
+        2020: 1,195.8 million
+
+    P&L:
+      net:
+        2022: 2,707.3 million  # unreliable
+        2021: 2,339.8 million  # unreliable
+        2020: 2,181.2 million  # unreliable
+
+
+  KRAFTHEINZ_2019_10K:
+    BS:
+      invent:
+        2019: 2,721 million
+        2018: 2,667 million
+
+    P&L:
+      cogs:
+        2019: 16,830 million
+        2018: 17,347 million  # unreliable
+        2017: 17,043 million
+
+
+  LOCKHEEDMARTIN_2020_10K:
+    BS:
+      total-assets:
+        2020: 50,710 million
+        2019: 47,528 million
+
+    P&L:
+      rev:
+        2020: 65,398 million
+        2019: 59,812 million  # unreliable
+        2018: 53,762 million
+
+
+  LOCKHEEDMARTIN_2021_10K:
+    BS:
+      curr-assets:
+        2021: 19,815 million
+        2020: 19,378 million
+
+      curr-liabs:
+        2021: 13,997 million
+        2020: 13,933 million
+
+
+  MGMRESORTS_2020_10K:
+    CF:
+      capex:
+        2020: 270.579 million or 271 million
+        2019: 739.006 million or 739 million  # unreliable
+        2018: 1,486.843 million or 1,487 million  # unreliable
+
+    P&L:
+      rev:
+        2020: 5,162.082 million or 5,162 million
+        2019: 12,899.672 million or 12,900 million  # unreliable
+        2018: 11,763.096 million or 11,763 million
+
+
+  # MGMRESORTS_2022Q4_EARNINGS:
+    # P&L:
+      # ebit:
+      # int:
+
+
+  MICROSOFT_2023_10K:
+    BS:
+      st-debt:
+        2023: 5,247 million
+        2022: 2,749 million
+
+      lt-debt:
+        2023: 41,990 million
+        2022: 47,032 million
+
+
+  NETFLIX_2015_10K:
+    CF:
+      d&a:
+        2015: 62.283 million or 62 million  # unreliable
+        2014: 54.028 million or 54 million  # unreliable
+        2013: 48.374 million or 48 million  # unreliable
+
+    P&L:
+      rev:
+        2015: 6,779.511 million or 6,780 million
+        2014: 5,504.656 million or 5,505 million
+        2013: 4,374.562 million or 4,375 million
+
+      op:
+        2015: 305.826 million or 306 million
+        2014: 402.648 million or 403 million
+        2013: 228.347 million or 228 million
 
 
   PAYPAL_2022_10K:

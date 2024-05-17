@@ -533,14 +533,18 @@ net-work-cap:
 
     and assess whether `(Net) Working Capital` is positive or negative
 
-  # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
-  # retrieve individual balance values only, without taking difference
-  # because RAG LMs may not be good at calculation & mathematical reasoning
   sub-plans:
     - task: |-
-        What are values in dollars of:
-        - `(Total) Current Assets`; and
-        - `(Total) Current Liabilities`
+        What is value in dollars of `(Total) Current Assets` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at {PERIOD} fiscal period end?
+
+    - task: |-
+        What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
 
         on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
         (or most similar-meaning statement) of {COMPANY}
@@ -825,9 +829,10 @@ cash-conv-cyc:
         - current {PERIOD} annual fiscal period end?
 
     - task: >-
-        What is value in dollars of
-        `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
-        (or most similar-meaning reported line item)
+        What are values in dollars of:
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+        - `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        (or most similar-meaning reported line items to those)
 
         on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
         or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
