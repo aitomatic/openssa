@@ -32,6 +32,8 @@ defs:
   cogs: (Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue
   gross: Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))
   op: (Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))
+  ebit: Earnings before Interest & Tax, a.k.a. EBIT
+  int: Interest Expense
   ebt: Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)
   inc-tax: (Income) Tax Expense
   net: Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)
@@ -592,6 +594,12 @@ ground-truths:
         2020: 5,162.082 million or 5,162 million
         2019: 12,899.672 million or 12,900 million  # unreliable
         2018: 11,763.096 million or 11,763 million
+
+
+  # MGMRESORTS_2022Q4_EARNINGS:
+    # P&L:
+      # ebit:
+      # int:
 
 
   PAYPAL_2022_10K:
