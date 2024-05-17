@@ -300,9 +300,13 @@ ebitda:
 
         of {COMPANY} for {PERIOD} fiscal period?
 
-    - task:
-        What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
-        (or most similar-meaning reported line item)
+    # retrieving CapEx as extra, as it is asked for sometimes
+    - task: |-
+        What are values in dollars of:
+        - `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`; and
+        - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        (or most similar-meaning reported line items to those)
+
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
 
