@@ -30,7 +30,7 @@ class OrientResult(TypedDict):
 class OodaReasoner(AbstractReasoner):
     """OODA Reasoner."""
 
-    def reason(self, task: ATask, *, knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> str:
+    def reason(self, task: ATask, *, knowledge: set[Knowledge], other_results: list | None = None, n_words: int = 1000) -> str:
         """Work through Task and return conclusion.
 
         Use OODA loop to:
@@ -38,7 +38,7 @@ class OodaReasoner(AbstractReasoner):
         - Orient & Decide whether such results are adequate for confident answer/solution
         - Act to update Task's status and result
         """
-        observations: set[Observation] = self.observe(task=task, n_words=n_words)
+        observations: set[Observation] = self.observe(task=task, n_words=n_words, other_results=other_results)
 
         # note: Orient & Decide steps are practically combined to economize LM calls
         orient_result: OrientResult = self.orient(task=task, observations=observations,
@@ -49,9 +49,9 @@ class OodaReasoner(AbstractReasoner):
 
         return task.result
 
-    def observe(self, task: ATask, n_words: int = 1000) -> set[Observation]:
+    def observe(self, task: ATask, n_words: int = 1000, other_results: list) -> set[Observation]:
         """Observe results from available Informational Resources."""
-        return {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}
+        return {r.present_full_answer(question=task.ask, n_words=n_words, other_results = other_results) for r in task.resources}
 
     def orient(self, task: ATask, observations: set[Observation],
                knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> OrientResult:

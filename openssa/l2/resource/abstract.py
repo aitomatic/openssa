@@ -3,10 +3,13 @@
 
 from abc import ABC, abstractmethod
 from functools import cached_property
-from typing import TypeVar
+from typing import TypeVar, TYPE_CHECKING
+
 
 from ._prompts import RESOURCE_OVERVIEW_PROMPT_TEMPLATE
 
+if TYPE_CHECKING:
+    from openssa.l2.planning.abstract.plan import AskAnsPair
 
 class AbstractResource(ABC):
     """Abstract Informational Resource."""
@@ -35,13 +38,17 @@ class AbstractResource(ABC):
         """Return overview of Informational Resource."""
         return self.answer(question=RESOURCE_OVERVIEW_PROMPT_TEMPLATE.format(name=self.name))
 
-    def present_full_answer(self, question: str, n_words: int = 1000) -> str:
+    def present_full_answer(self, question: str, n_words: int = 1000, other_results: list = None) -> str:
         """Present answer to posed question together with full name & overview of Informational Resource."""
         return ('======================================\n'
                 f'{self.full_name}\n'
                 'has the following overview:\n'
                 '---------------------------\n'
                 f'{self.overview}\n'
+                '---------------------------\n'
+                'and the following other results that support the question:\n'
+                '---------------------------\n'
+                f'{self.other_results}\n'
                 '---------------------------\n'
                 '\n'
                 f'{self.full_name}\n'

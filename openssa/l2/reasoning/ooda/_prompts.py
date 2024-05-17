@@ -7,6 +7,7 @@ ORIENT_PROMPT_TEMPLATE: str = \
 ```
 
 and you have observed various answers/solutions from different informational resources as detailed below,
+you are also provided other results from other sub-tasks that are helpful to answer this quesion,
 please evaluate whether you can answer/solve the posed question/problem/task confidently with concrete results.
 If the question/problem/task mentions any RIGOROUS BASES/CRITERIA/DEFINITIONS for judgement,
 the concrete results MUST RESPOND TO SUCH BASES/CRITERIA/DEFINITIONS for the answer/solution to be considered confident.
@@ -26,5 +27,9 @@ Please return ONLY the JSON DICTIONARY and no other text, not even the "```json"
 
 ```
 {observations}
+```
+
+```
+{other_results}
 ```
 """  # noqa: E122
