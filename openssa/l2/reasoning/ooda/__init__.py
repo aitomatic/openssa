@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, TypedDict
 from openssa.l2.reasoning.abstract import AbstractReasoner
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.l2.task.status import TaskStatus
+from openssa.l2.util.misc import format_other_result
 
 from ._prompts import ORIENT_PROMPT_TEMPLATE
 
@@ -16,6 +17,7 @@ if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task.abstract import ATask
     from openssa.l2.util.lm.abstract import LMChatHist
+    from openssa.l2.util.misc import AskAnsPair
 
 
 type Observation = str
@@ -30,7 +32,8 @@ class OrientResult(TypedDict):
 class OodaReasoner(AbstractReasoner):
     """OODA Reasoner."""
 
-    def reason(self, task: ATask, *, knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> str:
+    def reason(self, task: ATask, *,
+               knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:
         """Work through Task and return conclusion.
 
         Use OODA loop to:
@@ -38,7 +41,7 @@ class OodaReasoner(AbstractReasoner):
         - Orient & Decide whether such results are adequate for confident answer/solution
         - Act to update Task's status and result
         """
-        observations: set[Observation] = self.observe(task=task, n_words=n_words)
+        observations: set[Observation] = self.observe(task=task, other_results=other_results, n_words=n_words)
 
         # note: Orient & Decide steps are practically combined to economize LM calls
         orient_result: OrientResult = self.orient(task=task, observations=observations,
@@ -49,9 +52,15 @@ class OodaReasoner(AbstractReasoner):
 
         return task.result
 
-    def observe(self, task: ATask, n_words: int = 1000) -> set[Observation]:
+    def observe(self, task: ATask, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[Observation]:
         """Observe results from available Informational Resources."""
-        return {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}
+        observations: set[Observation] = {r.present_full_answer(question=task.ask, n_words=n_words)
+                                          for r in task.resources}
+
+        if other_results:
+            observations |= {format_other_result(other_result) for other_result in other_results}
+
+        return observations
 
     def orient(self, task: ATask, observations: set[Observation],
                knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> OrientResult:

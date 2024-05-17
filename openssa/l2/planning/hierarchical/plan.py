@@ -9,7 +9,7 @@ from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
 from loguru import logger
 from tqdm import tqdm
 
-from openssa.l2.planning.abstract.plan import AbstractPlan, AskAnsPair
+from openssa.l2.planning.abstract.plan import AbstractPlan
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.l2.task.status import TaskStatus
@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task.abstract import TaskDict
     from openssa.l2.util.lm.abstract import LMChatHist
+    from openssa.l2.util.misc import AskAnsPair
 
 
 class HTPDict(TypedDict, total=False):
@@ -61,7 +62,7 @@ class HTP(AbstractPlan):
         if reasoner is None:
             reasoner: AReasoner = BaseReasoner()
 
-        reasoning_wo_sub_results: str = reasoner.reason(task=self.task, knowledge=knowledge)
+        reasoning_wo_sub_results: str = reasoner.reason(task=self.task, knowledge=knowledge, other_results=other_results)
 
         if self.sub_plans:
             sub_results: list[AskAnsPair] = []
