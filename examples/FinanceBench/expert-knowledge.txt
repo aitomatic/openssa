@@ -36,7 +36,7 @@ Cash-Flow-Statement Line-Item Synonyms
 
 - "(Net) Cash (Flows) from Investments", "(Net) Cash (Flows) from Investing Activities", "(Net) Investing Cash Flows"
 
-- "Capital Expenditure(s)", "CapEx", "Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending"
+- "Capital Expenditure(s)", "CapEx", "Capital Spending", "Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)"
 
 - "(Net) Cash (Flows) from Financing", "(Net) Cash (Flows) from Financing Activities", "(Net) Financing Cash Flows"
 
@@ -190,7 +190,7 @@ Liquidity Metric Formulas
 
 `Free Cash Flow, a.k.a. FCF` = (
   `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
-  `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+  `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
 )
 
 `Free Cash Flow Conversion Ratio` = `Free Cash Flow, a.k.a. FCF` / `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA`
@@ -227,7 +227,7 @@ Capital-intensive businesses tend to have one or several of the following charac
 - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
   e.g., over 2 times;
 
-- high `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+- high `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
   relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
   e.g., over 10%;
 
