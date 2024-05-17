@@ -7,6 +7,8 @@ SET TARGET=%1
 
 IF "%TARGET%"=="get-doc" GOTO get-doc
 
+IF "%TARGET%"=="eval-test" GOTO eval-test
+
 IF "%TARGET%"=="htp-auto-static-oodar-solve" GOTO htp-auto-static-oodar-solve
 IF "%TARGET%"=="htp-auto-dynamic-oodar-solve" GOTO htp-auto-dynamic-oodar-solve
 IF "%TARGET%"=="htp-expert-static-oodar-solve" GOTO htp-expert-static-oodar-solve
@@ -34,6 +36,10 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 :: ===============
 :get-doc
   poetry run python data.py %2
+  GOTO end
+
+:eval-test
+  poetry run python eval.py answer --no-human-eval
   GOTO end
 
 
