@@ -300,9 +300,13 @@ ebitda:
 
         of {COMPANY} for {PERIOD} fiscal period?
 
-    - task:
-        What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
-        (or most similar-meaning reported line item)
+    # retrieving CapEx as extra, as it is asked for sometimes
+    - task: |-
+        What are values in dollars of:
+        - `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`; and
+        - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        (or most similar-meaning reported line items to those)
+
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
 
@@ -352,7 +356,7 @@ ebitda-margin-3y-avg:
 
   sub-plans:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
-    - task: >-
+    - task: |-
         What are values in dollars of:
         - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
         - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
@@ -665,7 +669,7 @@ fcf:
 
     `Free Cash Flow, a.k.a. FCF` = (
       `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
-      `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+      `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
     )
 
   sub-plans:
@@ -675,7 +679,7 @@ fcf:
     - task: |-
         What are values in dollars of:
         - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
-        - `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+        - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         (or most similar-meaning reported line items to those)
         on one same `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
@@ -691,7 +695,7 @@ fcf-conv-comp:
 
         `Free Cash Flow Conversion Ratio` = (
           (`(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
-           `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`)
+           `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`)
           / `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
         )
 
@@ -706,7 +710,7 @@ fcf-conv-comp:
         - task: |-
             What are values in dollars of:
             - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
-            - `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+            - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
             (or most similar-meaning reported line items to those)
 
             on one same `Cash Flow(s) Statement` of {COMPANY}
@@ -916,7 +920,7 @@ debt-comp:
 capex-as-pct-of-rev-3y-avg:
   task: >-
     Calculate 3-year average of
-    `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+    `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
     as proportion of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
     for {COMPANY} as percentage value
 
@@ -924,7 +928,7 @@ capex-as-pct-of-rev-3y-avg:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: >-
         What are values in dollars of
-        `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+        `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for past 3 fiscal years?
 
@@ -941,7 +945,7 @@ capex-as-pct-of-rev-3y-avg:
 
     - task: >-
         Calculate 3-year average of Capital Expenditure(s) (CapEx) as percentage of Revenue
-        by dividing sum of `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+        by dividing sum of `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
         and return division result as percentage value
 
@@ -1006,7 +1010,7 @@ cap-intens:
 
     - task: >-
         What is value in dollars of
-        `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+        `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         (or most similar-meaning reported line item)
         on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
 
@@ -1029,12 +1033,12 @@ cap-intens:
         Capital-intensive businesses tend to have one or several of the following characteristics:
 
         - high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`,
-          e.g., over 30%;
+          e.g., over 25%;
 
         - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
           e.g., over 2 times;
 
-        - high `Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending`
+        - high `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
           relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
           e.g., over 10%;
 

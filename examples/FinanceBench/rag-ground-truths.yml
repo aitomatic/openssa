@@ -21,7 +21,7 @@ defs:
   d&a: Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))
   op-cf: (Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows
 
-  capex: Capital Expenditure(s), a.k.a. CapEx, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)/Spending
+  capex: Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)
 
   div: Cash Dividends
 
@@ -634,10 +634,159 @@ ground-truths:
         2013: 228.347 million or 228 million
 
 
+  NIKE_2018_10K:
+    P&L:
+      rev:
+        2018: 36,397 million
+        2017: 34,350 million
+        2016: 32,376 million
+
+      cogs:
+        2018: 20,441 million
+        2017: 19,038 million
+        2016: 17,405 million
+
+
+  NIKE_2021_10K:
+    BS:
+      invent:
+        2021: 6,854 million
+        2020: 7,367 million
+
+    P&L:
+      cogs:
+        2021: 24,576 million
+        2020: 21,162 million  # unreliable
+        2019: 21,643 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
         2022: 57,517 million
+        2021: 52,574 million
 
       curr-liabs:
         2022: 45,101 million
+        2021: 43,029 million
+
+
+  PEPSICO_2022_10K:
+    CF:
+      d&a:
+        2022: 2,763 million  # unreliable
+        2021: 2,710 million  # unreliable
+        2020: 2,548 million
+
+      capex:
+        2022: 5,207 million
+        2021: 4,625 million
+        2020: 4,240 million
+
+    P&L:
+      rev:
+        2022: 86,392 million  # unreliable
+        2021: 79,474 million  # unreliable
+        2020: 70,372 million  # unreliable
+
+      op:
+        2022: 11,512 million
+        2021: 11,162 million
+        2020: 10,080 million
+
+
+  VERIZON_2022_10K:
+    BS:
+      cash-and-equiv:
+        2022: 2,605 million
+        2021: 2,921 million
+
+      st-invest:
+        2022: 0 (or not explicitly reported)
+        2021: 0 (or not explicitly reported)
+
+      recvables:
+        2022: 24,506 million  # unreliable
+        2021: 23,846 million  # unreliable
+
+      invent:
+        2022: 2,388 million
+        2021: 3,055 million
+
+      fixed-assets:
+        2022: 107,434 million
+        2021: 99,696 million
+
+      total-assets:
+        2022: 379,680 million
+        2021: 366,596 million
+
+      curr-liabs:
+        2022: 50,171 million
+        2021: 47,160 million
+
+    CF:
+      capex:
+        2022: 23,087 million  # unreliable
+        2021: 20,286 million  # unreliable
+        2020: 18,192 million  # unreliable
+
+    P&L:
+      rev:
+        2022: 136,835 million
+        2021: 133,613 million
+        2020: 128,292 million
+
+      net:
+        2022: 21,256 million  # unreliable
+        2021: 22,065 million
+        2020: 17,801 million
+
+
+  WALMART_2018_10K:
+    BS:
+      invent:
+        2018: 43,783 million
+        2017: 43,046 million
+
+      payables:
+        2018: 46,092 million
+        2017: 41,433 million
+
+    P&L:
+      cogs:
+        2018: 373,396 million  # unreliable
+        2017: 361,256 million  # unreliable
+        2016: 360,984 million  # unreliable
+
+
+  WALMART_2019_10K:
+    P&L:
+      rev:
+        2019: 514,405 million  # unreliable
+        2018: 500,343 million  # unreliable
+        2017: 485,873 million
+
+      op:
+        2019: 21,957 million
+        2018: 20,437 million
+        2017: 22,764 million  # unreliable
+
+
+  WALMART_2020_10K:
+    CF:
+      d&a:
+        2020: 10,987 million
+        2019: 10,678 million
+        2018: 10,529 million
+
+    P&L:
+      rev:
+        2020: 523,964 million  # unreliable
+        2019: 514,405 million  # unreliable
+        2018: 500,343 million
+
+      op:
+        2020: 20,568 million
+        2019: 21,957 million
+        2018: 20,437 million
