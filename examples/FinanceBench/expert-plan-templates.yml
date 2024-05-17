@@ -356,7 +356,7 @@ ebitda-margin-3y-avg:
 
   sub-plans:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
-    - task: >-
+    - task: |-
         What are values in dollars of:
         - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
         - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
