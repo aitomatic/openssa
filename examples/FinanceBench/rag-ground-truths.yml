@@ -529,6 +529,20 @@ ground-truths:
         2018: 622.7 million
 
 
+  GENERALMILLS_2022_10K:
+    CF:
+      div:
+        2022: 1,244.5 million
+        2021: 1,246.4 million
+        2020: 1,195.8 million
+
+    P&L:
+      net:
+        2022: 2,707.3 million  # unreliable
+        2021: 2,339.8 million  # unreliable
+        2020: 2,181.2 million  # unreliable
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
