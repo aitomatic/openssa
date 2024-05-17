@@ -481,6 +481,32 @@ ground-truths:
         2020: 7,179 million  # unreliable
 
 
+  GENERALMILLS_2019_10K:
+    BS:
+      recvables:
+        2019: 1,679.7 million
+        2018: 1,684.2 million  # unreliable
+
+      invent:
+        2019: 1,559.3 million
+        2018: 1,642.2 million  # unreliable
+
+      payables:
+        2019: 2,854.1 million
+        2018: 2,746.2 million  # unreliable
+
+    P&L:
+      rev:
+        2019: 16,865.2 million
+        2018: 15,740.4 million
+        2017: 15,619.8 million
+
+      cogs:
+        2019: 11,108.4 million
+        2018: 10,304.8 million
+        2017: 10,052.0 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
