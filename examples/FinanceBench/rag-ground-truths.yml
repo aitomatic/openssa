@@ -507,6 +507,28 @@ ground-truths:
         2017: 10,052.0 million
 
 
+  GENERALMILLS_2020_10K:
+    BS:
+      curr-assets:
+        2020: 5,121.3 million
+        2019: 4,186.5 million
+
+      curr-liabs:
+        2020: 7,491.5 million
+        2019: 7,087.1 million
+
+    CF:
+      op-cf:
+        2020: 3,676.2 million
+        2019: 2,807.0 million
+        2018: 2,841.0 million
+
+      capex:
+        2020: 460.8 million
+        2019: 537.6 million
+        2018: 622.7 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
