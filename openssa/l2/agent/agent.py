@@ -94,9 +94,9 @@ class Agent:
             # NO PLAN
             case (None, None, _):
                 # if neither Plan nor Planner is given, directly use Reasoner
-                result: str = self.reasoner.reason(task=Task(ask=problem, 
-                                                   resources=self.resources), 
-                                                   knowledge=self.knowledge, 
+                result: str = self.reasoner.reason(task=Task(ask=problem,
+                                                   resources=self.resources),
+                                                   knowledge=self.knowledge,
                                                    other_results=None)
 
             # AUTOMATED STATIC PLAN
