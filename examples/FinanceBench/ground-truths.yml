@@ -1518,8 +1518,8 @@ financebench_id_01911:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Interest Coverage Ratio metric value that is negative,
-    or, alternatively, says that such metric is zero because of negative EBIT
+    the answer contains a calculated Interest Coverage Ratio metric value
+  answer-inadequate: true
 
 
 financebench_id_01912:
