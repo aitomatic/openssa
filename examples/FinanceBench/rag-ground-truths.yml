@@ -438,7 +438,20 @@ ground-truths:
       curr-liabs:
         2022: 5,175 million
         2021: 4,806 million
-  
+
+
+  CVSHEALTH_2018_10K:
+    BS:
+      fixed-assets:
+        2018: 11,349 million  # unreliable
+        2017: 10,292 million  # unreliable
+
+    P&L:
+      rev:
+        2018: 194,579 million  # unreliable
+        2017: 184,786 million  # unreliable
+        2016: 177,546 million  # unreliable
+
 
   PAYPAL_2022_10K:
     BS:
