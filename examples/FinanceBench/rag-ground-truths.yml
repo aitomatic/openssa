@@ -741,3 +741,20 @@ ground-truths:
         2022: 21,256 million  # unreliable
         2021: 22,065 million
         2020: 17,801 million
+
+
+  WALMART_2018_10K:
+    BS:
+      invent:
+        2018: 43,783 million
+        2017: 43,046 million
+
+      payables:
+        2018: 46,092 million
+        2017: 41,433 million
+
+    P&L:
+      cogs:
+        2018: 373,396 million  # unreliable
+        2017: 361,256 million  # unreliable
+        2016: 360,984 million  # unreliable
