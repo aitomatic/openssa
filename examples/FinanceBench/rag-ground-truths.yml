@@ -693,3 +693,26 @@ ground-truths:
         2022: 11,512 million
         2021: 11,162 million
         2020: 10,080 million
+
+
+  VERIZON_2022_10K:
+    BS:
+      cash-and-equiv:
+        2022: 2,605 million
+        2021: 2,921 million
+
+      st-invest:
+        2022: 0 (or not explicitly reported)
+        2021: 0 (or not explicitly reported)
+
+      recvables:
+        2022: 24,506 million  # unreliable
+        2021: 23,846 million  # unreliable
+
+      invent:
+        2022: 2,388 million
+        2021: 3,055 million
+
+      curr-liabs:
+        2022: 50,171 million
+        2021: 47,160 million
