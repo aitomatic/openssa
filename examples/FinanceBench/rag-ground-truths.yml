@@ -580,6 +580,20 @@ ground-truths:
         2020: 13,933 million
 
 
+  MGMRESORTS_2020_10K:
+    CF:
+      capex:
+        2020: 270.579 million or 271 million
+        2019: 739.006 million or 739 million  # unreliable
+        2018: 1,486.843 million or 1,487 million  # unreliable
+
+    P&L:
+      rev:
+        2020: 5,162.082 million or 5,162 million
+        2019: 12,899.672 million or 12,900 million  # unreliable
+        2018: 11,763.096 million or 11,763 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
