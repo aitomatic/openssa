@@ -684,6 +684,11 @@ ground-truths:
         2020: 4,240 million
 
     P&L:
+      rev:
+        2022: 86,392 million  # unreliable
+        2021: 79,474 million  # unreliable
+        2020: 70,372 million  # unreliable
+
       op:
         2022: 11,512 million
         2021: 11,162 million
