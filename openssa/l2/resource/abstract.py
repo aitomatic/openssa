@@ -5,7 +5,6 @@ from abc import ABC, abstractmethod
 from functools import cached_property
 from typing import TypeVar
 
-
 from ._prompts import RESOURCE_OVERVIEW_PROMPT_TEMPLATE
 
 
