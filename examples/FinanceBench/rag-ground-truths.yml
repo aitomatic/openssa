@@ -316,6 +316,13 @@ ground-truths:
         2015: 1,233 million  # unreliable
 
 
+  BESTBUY_2019_10K:
+    BS:
+      invent:
+        2019: 5,409 million
+        2018: 5,209 million
+
+
   BESTBUY_2023_10K:
     P&L:
       rev:
