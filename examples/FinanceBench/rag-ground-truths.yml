@@ -134,8 +134,8 @@ ground-truths:
 
     CF:
       op-cf:
-        2017: 2,912.853 million or 2,912.9 million or 2.9 billion  # unreliable
-        2016: 2,199.728 million or 2,199.7 million or 2.2 billion  # unreliable
+        2017: 2,912.853 million or 2,912.9 million or 2.9 billion
+        2016: 2,199.728 million or 2,199.7 million or 2.2 billion
         2013: 1,469.502 million or 1,469.5 million or 1.5 billion  # unreliable
 
 
