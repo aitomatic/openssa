@@ -86,9 +86,9 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
                            f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                            '\n'
                            f'RUBRIC:\n{rubric}' +
-                           ('\n\n(*** EXPERT ANSWER KNOWN TO BE INADEQUATE ***)'
+                           ('\n\n(*** EXPERT ANSWER KNOWN TO BE INADEQUATE ***)\n'
                             if GROUND_TRUTHS[fb_id].get('answer-inadequate')
-                            else ''))
+                            else '\n'))
 
             if debug:
                 logger.debug(f'PROMPT:\n{prompt}')
