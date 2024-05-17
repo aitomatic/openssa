@@ -647,6 +647,19 @@ ground-truths:
         2016: 17,405 million
 
 
+  NIKE_2021_10K:
+    BS:
+      invent:
+        2021: 6,854 million
+        2020: 7,367 million
+
+    P&L:
+      cogs:
+        2021: 24,576 million
+        2020: 21,162 million  # unreliable
+        2019: 21,643 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
