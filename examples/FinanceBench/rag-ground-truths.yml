@@ -758,3 +758,16 @@ ground-truths:
         2018: 373,396 million  # unreliable
         2017: 361,256 million  # unreliable
         2016: 360,984 million  # unreliable
+
+
+  WALMART_2019_10K:
+    P&L:
+      rev:
+        2019: 514,405 million  # unreliable
+        2018: 500,343 million  # unreliable
+        2017: 485,873 million
+
+      op:
+        2019: 21,957 million
+        2018: 20,437 million
+        2017: 22,764 million  # unreliable
