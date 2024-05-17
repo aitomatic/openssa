@@ -669,3 +669,22 @@ ground-truths:
       curr-liabs:
         2022: 45,101 million
         2021: 43,029 million
+
+
+  PEPSICO_2022_10K:
+    CF:
+      d&a:
+        2022: 2,763 million  # unreliable
+        2021: 2,710 million  # unreliable
+        2020: 2,548 million
+
+      capex:
+        2022: 5,207 million
+        2021: 4,625 million
+        2020: 4,240 million
+
+    P&L:
+      op:
+        2022: 11,512 million
+        2021: 11,162 million
+        2020: 10,080 million
