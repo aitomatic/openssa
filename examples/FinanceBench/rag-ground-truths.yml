@@ -569,6 +569,17 @@ ground-truths:
         2018: 53,762 million
 
 
+  LOCKHEEDMARTIN_2021_10K:
+    BS:
+      curr-assets:
+        2021: 19,815 million
+        2020: 19,378 million
+
+      curr-liabs:
+        2021: 13,997 million
+        2020: 13,933 million
+
+
   PAYPAL_2022_10K:
     BS:
       curr-assets:
