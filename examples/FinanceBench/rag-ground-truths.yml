@@ -216,6 +216,11 @@ ground-truths:
         2016: 25,309 million
 
     P&L:
+      rev:
+        2017: 177,866 million
+        2016: 135,987 million
+        2015: 107,006 million
+
       cogs:
         2017: 111,934 million  # unreliable
         2016: 88,265 million  # unreliable
