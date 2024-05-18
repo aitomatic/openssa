@@ -296,7 +296,7 @@ class FileResource(AbstractResource):
         """Answer question by RAG from file-stored Informational Resource."""
         prompt: str = RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)
 
-        for _ in range(3):
+        for _ in range(9):
             answer: str = self.query_engine.query(prompt).response
 
             if not answer.strip().lower().startswith('repeat'):
