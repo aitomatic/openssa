@@ -34,6 +34,7 @@ defs:
   cogs: (Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue
   gross: Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))
   op: (Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))
+  ebitda: (Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA
   ebit: Earnings before Interest & Tax, a.k.a. EBIT
   int: Interest Expense
   ebt: Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)
@@ -266,6 +267,13 @@ ground-truths:
         2023: 2,725 million
         2022: 2,820 million
         2021: 2,732 million
+
+
+  AMCOR_2023Q4_EARNINGS:
+    P&L:
+      ebitda:
+        2023Q4: 540 million  # unreliable
+        2023FY: 2,018 million  # unreliable
 
 
   AMD_2015_10K:
