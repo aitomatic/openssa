@@ -133,6 +133,14 @@ ground-truths:
         2013: 1,151.686 million or 1,151.6 million or 1.15 billion or 1.2 billion
 
 
+  ADOBE_2016_10K:
+    P&L:
+      op:
+        2016: 1,493.602 million or 1,493.6 million or 1.49 billion or 1.5 billion  # unreliable
+        2015: 903.095 million or 903.1 million or 0.9 billion  # unreliable
+        2014: 412.685 million or 412.7 million or 0.41 billion or 0.4 billion  # unreliable
+
+
   ADOBE_2017_10K:
     BS:
       curr-liabs:
