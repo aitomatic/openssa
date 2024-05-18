@@ -544,7 +544,7 @@ financebench_id_00995:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions at least CPUs, GPUs and FPGAs
+    the answer mentions at least graphics (i.e., GPU) and FPGA products
 
 
 financebench_id_01198:
