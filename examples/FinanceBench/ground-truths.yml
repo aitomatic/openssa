@@ -371,6 +371,7 @@ financebench_id_03882:
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
+    1615.9, 1615.9 million,
     1616, 1616 million, 1.616 billion,
     1600, 1600 million or 1.6 billion
 
