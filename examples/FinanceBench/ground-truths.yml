@@ -548,6 +548,8 @@ financebench_id_00995:
   correctness: >-
     the answer mentions at least graphics (i.e., GPU) and FPGA products
 
+  evaluator-unreliable: true
+
 
 financebench_id_01198:
   doc: AMD_2022_10K
