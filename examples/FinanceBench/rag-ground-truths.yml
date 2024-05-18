@@ -227,6 +227,13 @@ ground-truths:
         2015: 71,651 million  # unreliable
 
 
+  AMCOR_2020_10K:
+    BS:
+      recvables:
+        2020: 1,615.9 million
+        2019: 1,864.3 million  # unreliable
+
+
   AMCOR_2023_10K:
     BS:
       cash-and-equiv:
