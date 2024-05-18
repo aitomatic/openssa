@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 DEFS: dict[str, str] = RAG_GROUND_TRUTHS['defs']
 
 
-QUESTION_PROMPT_TEMPLATE: str = ('what is value in dollars of `{line_item}` (or most similar-meaning reported line item) '
+QUESTION_PROMPT_TEMPLATE: str = ('What is value in dollars of `{line_item}` (or most similar-meaning reported line item) '
                                  'on `{statement}` (or most similar-meaning statement) '
                                  'of {company} (and NOT such statement(s) of its acquired and/or divested companies) '
                                  'as at / for {fiscal_period} fiscal period?')
@@ -53,7 +53,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                         score: str = EVAL_LM.get_response(prompt=eval_prompt, temperature=0)
 
                     if score == 'NO':
-                        logger.warning(f'QUESTION re: {doc_name}:\n{question}\n'
+                        logger.warning(f'\nQUESTION re: {doc_name}:\n{question}\n'
                                        '\n'
                                        f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                                        '\n'
@@ -61,7 +61,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                         break
 
                 else:
-                    logger.info(f'QUESTION re: {doc_name}:\n{question}\n'
+                    logger.info(f'\nQUESTION re: {doc_name}:\n{question}\n'
                                 '\n'
                                 f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
                                 '\n'
