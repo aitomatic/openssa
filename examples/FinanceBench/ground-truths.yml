@@ -155,6 +155,8 @@ financebench_id_01858:
   correctness: >-
     the answer affirms that dividends have been stable, and/or mentions "65 years", "65th year" or something similar
 
+  evaluator-unreliable: true
+
 
 financebench_id_02987:
   doc: ACTIVISIONBLIZZARD_2019_10K
