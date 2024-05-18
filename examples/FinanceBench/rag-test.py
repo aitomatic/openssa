@@ -53,7 +53,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                         score: str = EVAL_LM.get_response(prompt=eval_prompt, temperature=0)
 
                     if score == 'NO':
-                        logger.warning(f'\nQUESTION re: {doc_name}:\n{question}\n'
+                        logger.warning(f'\n{doc_name}:\n{question}\n'
                                        '\n'
                                        f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                                        '\n'
@@ -61,7 +61,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
                         break
 
                 else:
-                    logger.info(f'\nQUESTION re: {doc_name}:\n{question}\n'
+                    logger.info(f'\n{doc_name}:\n{question}\n'
                                 '\n'
                                 f'ANSWER JUDGED TO BE CORRECT:\n{answer}\n'
                                 '\n'
