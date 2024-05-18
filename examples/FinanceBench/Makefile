@@ -1,9 +1,6 @@
 get-doc:
 	@poetry run python data.py ${name}
 
-eval-test:
-	@poetry run python eval.py answer --no-human-eval
-
 
 htp-auto-static-oodar-solve:
 	@poetry run python htp_oodar_agent.py ${id}
@@ -55,6 +52,13 @@ rag-test:
 
 ssm-discuss:
 	@poetry run python ssm.py ${id}
+
+
+eval:
+	@poetry run python eval.py ${output}
+
+eval-test:
+	@poetry run python eval.py answer --no-human-eval
 
 
 streamlit-run:

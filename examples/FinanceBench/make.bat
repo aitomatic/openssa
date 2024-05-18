@@ -7,8 +7,6 @@ SET TARGET=%1
 
 IF "%TARGET%"=="get-doc" GOTO get-doc
 
-IF "%TARGET%"=="eval-test" GOTO eval-test
-
 IF "%TARGET%"=="htp-auto-static-oodar-solve" GOTO htp-auto-static-oodar-solve
 IF "%TARGET%"=="htp-auto-dynamic-oodar-solve" GOTO htp-auto-dynamic-oodar-solve
 IF "%TARGET%"=="htp-expert-static-oodar-solve" GOTO htp-expert-static-oodar-solve
@@ -29,6 +27,9 @@ IF "%TARGET%"=="rag-test" GOTO rag-test
 
 IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
 
+IF "%TARGET%"=="eval" GOTO eval
+IF "%TARGET%"=="eval-test" GOTO eval-test
+
 IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 
@@ -36,10 +37,6 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 :: ===============
 :get-doc
   poetry run python data.py %2
-  GOTO end
-
-:eval-test
-  poetry run python eval.py answer --no-human-eval
   GOTO end
 
 
@@ -110,6 +107,17 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :ssm-discuss
   poetry run python ssm.py %2
+  GOTO end
+
+
+:: BATCH EVALUATION
+:: ================
+:eval
+  poetry run python eval.py %2
+  GOTO end
+
+:eval-test
+  poetry run python eval.py answer --no-human-eval
   GOTO end
 
 
