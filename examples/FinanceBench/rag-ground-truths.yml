@@ -748,6 +748,14 @@ ground-truths:
         2021: 43,029 million
 
 
+  PEPSICO_2021_10K:
+    CF:
+      capex:
+        2021: 4,625 million
+        2020: 4,240 million
+        2019: 4,232 million
+
+
   PEPSICO_2022_10K:
     CF:
       d&a:
