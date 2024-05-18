@@ -387,6 +387,12 @@ ground-truths:
         2016: 577,464 or 577.5 million or 0.6 billion  # unreliable
         2015: 334,202 or 334.2 million or 0.3 billion  # unreliable
 
+  BOEING_2018_10K:
+    BS:
+      fixed-assets:
+        2018: 12,645 million
+        2017: 12,672 million  # unreliable
+
 
   BOEING_2022_10K:
     P&L:
