@@ -590,7 +590,7 @@ quick-ratio:
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` +
            `Short-Term Investments or (Current) Marketable Securities` +
-           `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+           `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -602,7 +602,7 @@ quick-ratio:
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
             - `Short-Term Investments or (Current) Marketable Securities`;
-            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
+            - `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
@@ -630,7 +630,7 @@ quick-ratio-comp:
         `Quick Ratio` = (
           (`Cash & Cash Equivalents` +
            `Short-Term Investments or (Current) Marketable Securities` +
-           `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+           `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`)
           / `(Total) Current Liabilities`
         )
 
@@ -646,7 +646,7 @@ quick-ratio-comp:
             What are values in dollars of:
             - `Cash & Cash Equivalents`;
             - `Short-Term Investments or (Current) Marketable Securities`;
-            - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
+            - `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`; and
             - `(Total) Current Liabilities`
             (or most similar-meaning reported line items to those)
 
@@ -820,7 +820,7 @@ cash-conv-cyc:
     - task: |-
         What are values in dollars of:
         - `(Total) (Net) Inventory(ies)`;
-        - `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`; and
+        - `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`; and
         - `Accounts Payable`
         (or most similar-meaning reported line items to those)
 
@@ -858,7 +858,7 @@ cash-conv-cyc:
         as decimal value according to formula:
 
         `Days Sales Oustanding, a.k.a. DSO` = (
-          365 * `average (Net) Accounts Receivable, a.k.a. (Net) Trade Receivables, typically between two consecutive fiscal year-ends`
+          365 * `average (Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables, typically between two consecutive fiscal year-ends`
           / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
         )
 

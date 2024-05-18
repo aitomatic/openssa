@@ -24,7 +24,7 @@ Balance-Sheet Line-Item Synonyms
 - "(Total) (Net) Inventory", "(Total) (Net) Inventories",
   "(Total) (Net) Merchandise Inventory", "(Total) (Net) Merchandise Inventories"
 
-- "(Net) Accounts Receivable", "(Net) AR", "(Net) Trade Receivables"
+- "(Net) Accounts Receivable", "(Net) AR", "(Net) (Trade) Receivables"
 
 - "(Net) Accounts Payable", "(Net) AP"
 
@@ -179,7 +179,7 @@ Liquidity Metric Formulas
 `Quick Ratio` = (
   (`Cash & Cash Equivalents` +
    `Short-Term Investments or (Current) Marketable Securities` +
-   `(Net) Accounts Receivable, a.k.a. (Net) Trade Receivables`)
+   `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`)
   / `(Total) Current Liabilities`
 )
 
@@ -207,7 +207,7 @@ Liquidity Metric Formulas
 )
 
 `Days Sales Oustanding, a.k.a. DSO` = (
-  365 * `average (Net) Accounts Receivable, a.k.a. (Net) Trade Receivables, typically between two consecutive fiscal year-ends`
+  365 * `average (Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables, typically between two consecutive fiscal year-ends`
   / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
 )
 
