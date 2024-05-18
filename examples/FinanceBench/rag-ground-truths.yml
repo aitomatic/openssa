@@ -649,8 +649,8 @@ ground-truths:
   MGMRESORTS_2018_10K:
     BS:
       payables:
-        2018: 302.578 million or 302.6 million or 0.3 billion  # unreliable
-        2017: 255.028 million or 255 million or 0.26 billion or 0.3 billion  # unreliable
+        2018: 302.578 million or 302.6 million or 0.3 billion
+        2017: 255.028 million or 255 million or 0.26 billion or 0.3 billion
 
 
   MGMRESORTS_2020_10K:
