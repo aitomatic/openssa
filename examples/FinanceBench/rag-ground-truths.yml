@@ -43,6 +43,13 @@ defs:
 
 ground-truths:
 
+  3M_2018_10K:
+    BS:
+      fixed-assets:
+        2018: 8,738 million or 8.7 billion
+        2017: 8,866 million or 8.9 billion  # unreliable
+
+
   3M_2022_10K:
     BS:
       fixed-assets:
