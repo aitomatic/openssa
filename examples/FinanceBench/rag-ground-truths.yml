@@ -271,6 +271,12 @@ ground-truths:
 
   AMCOR_2023Q4_EARNINGS:
     P&L:
+      rev:
+        2023Q4: 3,673 million
+        2023FY: 14,694 million
+        2022Q4: 3,909 million
+        2022FY: 14,544 million
+
       ebitda:
         2023Q4: 540 million  # unreliable
         2023FY: 2,018 million  # unreliable
