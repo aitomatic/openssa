@@ -4,7 +4,7 @@ defs:
 
   cash-and-equiv: Cash & Cash Equivalents
   st-invest: Short-Term Investments or (Current) Marketable Securities
-  recvables: (Net) Accounts Receivable, a.k.a. (Net) Trade Receivables
+  recvables: (Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables
   invent: (Total) (Net) Inventory(ies)
   curr-assets: (Total) Current Assets
   fixed-assets: (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)
@@ -34,6 +34,7 @@ defs:
   cogs: (Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue
   gross: Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))
   op: (Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))
+  ebitda: (Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA
   ebit: Earnings before Interest & Tax, a.k.a. EBIT
   int: Interest Expense
   ebt: Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)
@@ -42,6 +43,13 @@ defs:
 
 
 ground-truths:
+
+  3M_2018_10K:
+    BS:
+      fixed-assets:
+        2018: 8,738 million or 8.7 billion
+        2017: 8,866 million or 8.9 billion  # unreliable
+
 
   3M_2022_10K:
     BS:
@@ -116,27 +124,35 @@ ground-truths:
   ADOBE_2015_10K:
     BS:
       curr-liabs:
-        2015: 2,213,556 or 2,213.6 million or 2.2 billion
-        2014: 2,494,435 or 2,494.4 million or 2.5 billion
+        2015: 2,213.556 million or 2,213.6 million or 2.21 billion or 2.2 billion
+        2014: 2,494.435 million or 2,494.4 million or 2.49 billion or 2.5 billion
 
     CF:
       op-cf:
-        2015: 1,469,502 or 1,469.5 million or 1.5 billion
-        2014: 1,287,482 or 1,287.5 million or 1.3 billion
-        2013: 1,151,686 or 1,151.6 million or 1.2 billion
+        2015: 1,469.502 million or 1,469.5 million or 1.47 billion or 1.5 billion
+        2014: 1,287.482 million or 1,287.5 million or 1.29 billion or 1.3 billion
+        2013: 1,151.686 million or 1,151.6 million or 1.15 billion or 1.2 billion
+
+
+  ADOBE_2016_10K:
+    P&L:
+      op:
+        2016: 1,493.602 million or 1,493.6 million or 1.49 billion or 1.5 billion  # unreliable
+        2015: 903.095 million or 903.1 million or 0.9 billion  # unreliable
+        2014: 412.685 million or 412.7 million or 0.41 billion or 0.4 billion  # unreliable
 
 
   ADOBE_2017_10K:
     BS:
       curr-liabs:
-        2017: 6,075,687 or 6,075.7 million or 6.0 billion  # unreliable
-        2016: 5,272,411 or 5,272.4 million or 5.3 billion  # unreliable
+        2017: 6,075.687 million or 6,075.7 million or 6.08 billion or 6.0 billion  # unreliable
+        2016: 5,272.411 million or 5,272.4 million or 5.27 billion or 5.3 billion  # unreliable
 
     CF:
       op-cf:
-        2017: 2,912,853 or 2,912.9 million or 2.9 billion  # unreliable
-        2016: 2,199,728 or 2,199.7 million or 2.2 billion  # unreliable
-        2013: 1,469,502 or 1,469.5 million or 1.5 billion  # unreliable
+        2017: 2,912.853 million or 2,912.9 million or 2.91 billion or 2.9 billion
+        2016: 2,199.728 million or 2,199.7 million or 2.2 billion  # unreliable
+        2013: 1,469.502 million or 1,469.5 million or 1.47 billion or 1.5 billion  # unreliable
 
 
   ADOBE_2022_10K:
@@ -201,10 +217,22 @@ ground-truths:
         2016: 25,309 million
 
     P&L:
+      rev:
+        2017: 177,866 million
+        2016: 135,987 million
+        2015: 107,006 million
+
       cogs:
         2017: 111,934 million  # unreliable
         2016: 88,265 million  # unreliable
         2015: 71,651 million  # unreliable
+
+
+  AMCOR_2020_10K:
+    BS:
+      recvables:
+        2020: 1,615.9 million
+        2019: 1,864.3 million  # unreliable
 
 
   AMCOR_2023_10K:
@@ -239,6 +267,19 @@ ground-truths:
         2023: 2,725 million
         2022: 2,820 million
         2021: 2,732 million
+
+
+  AMCOR_2023Q4_EARNINGS:
+    P&L:
+      rev:
+        2023Q4: 3,673 million
+        2023FY: 14,694 million
+        2022Q4: 3,909 million
+        2022FY: 14,544 million
+
+      ebitda:
+        2023Q4: 540 million  # unreliable
+        2023FY: 2,018 million  # unreliable
 
 
   AMD_2015_10K:
@@ -316,6 +357,13 @@ ground-truths:
         2015: 1,233 million  # unreliable
 
 
+  BESTBUY_2019_10K:
+    BS:
+      invent:
+        2019: 5,409 million
+        2018: 5,209 million
+
+
   BESTBUY_2023_10K:
     P&L:
       rev:
@@ -338,6 +386,12 @@ ground-truths:
       curr-liabs:
         2016: 577,464 or 577.5 million or 0.6 billion  # unreliable
         2015: 334,202 or 334.2 million or 0.3 billion  # unreliable
+
+  BOEING_2018_10K:
+    BS:
+      fixed-assets:
+        2018: 12,645 million
+        2017: 12,672 million  # unreliable
 
 
   BOEING_2022_10K:
@@ -584,6 +638,21 @@ ground-truths:
         2020: 13,933 million
 
 
+  LOCKHEEDMARTIN_2022_10K:
+    P&L:
+      rev:
+        2022: 65,984 million
+        2021: 67,044 million
+        2020: 65,398 million
+
+
+  MGMRESORTS_2018_10K:
+    BS:
+      payables:
+        2018: 302.578 million or 302.6 million or 0.3 billion
+        2017: 255.028 million or 255 million or 0.26 billion or 0.3 billion
+
+
   MGMRESORTS_2020_10K:
     CF:
       capex:
@@ -602,6 +671,14 @@ ground-truths:
     # P&L:
       # ebit:
       # int:
+
+
+  MICROSOFT_2016_10K:
+    P&L:
+      cogs:
+        2016: 32,780 million  # unreliable
+        2015: 33,038 million  # unreliable
+        2014: 27,078 million  # unreliable
 
 
   MICROSOFT_2023_10K:
@@ -671,6 +748,14 @@ ground-truths:
         2021: 43,029 million
 
 
+  PEPSICO_2021_10K:
+    CF:
+      capex:
+        2021: 4,625 million
+        2020: 4,240 million
+        2019: 4,232 million
+
+
   PEPSICO_2022_10K:
     CF:
       d&a:
@@ -693,6 +778,13 @@ ground-truths:
         2022: 11,512 million
         2021: 11,162 million
         2020: 10,080 million
+
+
+  PFIZER_2021_10K:
+    BS:
+      fixed-assets:
+        2021: 14,882 million  # unreliable
+        2020: 13,745 million  # unreliable
 
 
   VERIZON_2022_10K:

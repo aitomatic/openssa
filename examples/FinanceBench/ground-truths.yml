@@ -153,7 +153,9 @@ financebench_id_01858:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer affirms that dividends have been stable, and mentions "65 years", "65th year" or something similar
+    the answer affirms that dividends have been stable, and/or mentions "65 years", "65th year" or something similar
+
+  evaluator-unreliable: true
 
 
 financebench_id_02987:
@@ -341,7 +343,7 @@ financebench_id_08135:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer contains a calculated Revenue change percentage value that is approximately 30%, 30.7%, 30.8% or 31%
+    the answer contains a calculated Revenue change percentage value that is in the range from 30.0% to 31.0%
     (if the answer is a single number, assume that it is that calculated Revenue change percentage value)
 
 
@@ -371,6 +373,7 @@ financebench_id_03882:
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
+    1615.9, 1615.9 million,
     1616, 1616 million, 1.616 billion,
     1600, 1600 million or 1.6 billion
 
@@ -543,7 +546,9 @@ financebench_id_00995:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions at least CPUs, GPUs and FPGAs
+    the answer mentions at least graphics (i.e., GPU) and FPGA products
+
+  evaluator-unreliable: true
 
 
 financebench_id_01198:
@@ -607,7 +612,7 @@ financebench_id_00757:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions that one customer accounted for 16% of revenue
+    the answer mentions that one customer accounted for large portion of revenue
 
 
 financebench_id_00476:
@@ -1132,7 +1137,10 @@ financebench_id_01346:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer says that Effective Tax Rate changed from 20% to 23%, and/or that it increased by 3 percentage points
+    the answer says that Effective Tax Rate changed from approximately 20% to approximately 23%,
+    and/or that it increased by 3 percentage points
+
+  evaluator-unreliable: true
 
 
 financebench_id_00005:

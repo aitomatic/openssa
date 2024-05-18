@@ -53,5 +53,13 @@ rag-test:
 ssm-discuss:
 	@poetry run python ssm.py ${id}
 
+
+eval:
+	@poetry run python eval.py ${output}
+
+eval-test:
+	@poetry run python eval.py answer --no-human-eval
+
+
 streamlit-run:
 	@poetry run streamlit run streamlit-main.py --server.allowRunOnSave=true --server.runOnSave=true

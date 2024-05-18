@@ -27,6 +27,9 @@ IF "%TARGET%"=="rag-test" GOTO rag-test
 
 IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
 
+IF "%TARGET%"=="eval" GOTO eval
+IF "%TARGET%"=="eval-test" GOTO eval-test
+
 IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 
@@ -104,6 +107,17 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :ssm-discuss
   poetry run python ssm.py %2
+  GOTO end
+
+
+:: BATCH EVALUATION
+:: ================
+:eval
+  poetry run python eval.py %2
+  GOTO end
+
+:eval-test
+  poetry run python eval.py answer --no-human-eval
   GOTO end
 
 
