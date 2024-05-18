@@ -4,7 +4,7 @@ defs:
 
   cash-and-equiv: Cash & Cash Equivalents
   st-invest: Short-Term Investments or (Current) Marketable Securities
-  recvables: (Net) Accounts Receivable, a.k.a. (Net) Trade Receivables
+  recvables: (Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables
   invent: (Total) (Net) Inventory(ies)
   curr-assets: (Total) Current Assets
   fixed-assets: (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)
