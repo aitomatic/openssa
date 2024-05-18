@@ -68,8 +68,8 @@ def human_eval_recommended(fb_id: FbId) -> bool | None:
 
 
 def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool = True, debug: bool = False) -> bool:
-    question: Question = GROUND_TRUTHS[fb_id]['question']
-    rubric: str = GROUND_TRUTHS[fb_id]['correctness']
+    question: Question = (ground_truth := GROUND_TRUTHS[fb_id])['question']
+    rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
 
     lm: AnLM = get_lm()
@@ -81,7 +81,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
             score: str = lm.get_response(prompt=prompt, temperature=0)
 
         if score == 'NO':
-            logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
+            logger.warning(f'\n{fb_id}\n{ground_truth['doc']}:\n{question}\n'
                            '\n'
                            f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                            '\n'

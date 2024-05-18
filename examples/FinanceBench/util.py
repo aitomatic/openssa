@@ -22,7 +22,7 @@ class enable_batch_qa_and_eval:  # noqa: N801
         def decorated_qa_func(fb_id: FbId) -> Answer | None:
             if 'all' in fb_id.lower():
                 for _fb_id in tqdm(FB_IDS):
-                    qa_func(_fb_id)
+                    eval_correctness(fb_id=_fb_id, answer=qa_func(_fb_id), human=False)
 
                 eval_all(output_name=self.output_name)
                 return None
