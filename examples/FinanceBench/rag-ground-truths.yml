@@ -646,6 +646,13 @@ ground-truths:
         2020: 65,398 million
 
 
+  MGMRESORTS_2018_10K:
+    BS:
+      payables:
+        2018: 302,578 million  # unreliable
+        2017: 255,028 million  # unreliable
+
+
   MGMRESORTS_2020_10K:
     CF:
       capex:
