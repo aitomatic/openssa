@@ -638,6 +638,14 @@ ground-truths:
         2020: 13,933 million
 
 
+  LOCKHEEDMARTIN_2022_10K:
+    P&L:
+      rev:
+        2022: 65,984 million
+        2021: 67,044 million
+        2020: 65,398 million
+
+
   MGMRESORTS_2020_10K:
     CF:
       capex:
