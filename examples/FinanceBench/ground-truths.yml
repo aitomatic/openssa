@@ -341,7 +341,7 @@ financebench_id_08135:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer contains a calculated Revenue change percentage value that is approximately 30%, 30.7%, 30.8% or 31%
+    the answer contains a calculated Revenue change percentage value that is in the range from 30.0% to 31.0%
     (if the answer is a single number, assume that it is that calculated Revenue change percentage value)
 
 
