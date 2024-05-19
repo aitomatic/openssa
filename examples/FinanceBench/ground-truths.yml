@@ -316,6 +316,8 @@ financebench_id_10420:
     or, alternatively, a calculated decimal value that is NEGATIVE and in the range from -0.0200 to -0.0140
     (if the answer is a single number, assume that it is that calculated Return on Assets (RoA) metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_06655:
   doc: AMAZON_2017_10K
