@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from pprint import pformat
 from typing import TYPE_CHECKING
 
 from loguru import logger
@@ -105,13 +104,7 @@ class Agent:
                 # then execute such static Plan
                 plan: APlan = self.planner.plan(problem=problem, knowledge=self.knowledge, resources=self.resources)
 
-                logger.info(f'\n{pformat(object=plan.quick_repr,
-                                         indent=2,
-                                         width=120,
-                                         depth=None,
-                                         compact=False,
-                                         sort_dicts=False,
-                                         underscore_numbers=False)}')
+                logger.info(f'\n{plan.pformat}')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
@@ -126,13 +119,7 @@ class Agent:
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
-                logger.info(f'\n{pformat(object=plan.quick_repr,
-                                         indent=2,
-                                         width=120,
-                                         depth=None,
-                                         compact=False,
-                                         sort_dicts=False,
-                                         underscore_numbers=False)}')
+                logger.info(f'\n{plan.pformat}')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
@@ -144,13 +131,7 @@ class Agent:
                 plan: APlan = self.planner.update_plan_resources(plan, problem=problem,
                                                                  knowledge=self.knowledge, resources=self.resources)
 
-                logger.info(f'\n{pformat(object=plan.quick_repr,
-                                         indent=2,
-                                         width=120,
-                                         depth=None,
-                                         compact=False,
-                                         sort_dicts=False,
-                                         underscore_numbers=False)}')
+                logger.info(f'\n{plan.pformat}')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
