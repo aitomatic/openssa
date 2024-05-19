@@ -1890,7 +1890,7 @@ financebench_id_02416:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions Trillium, Array and Therachon
+    the answer mentions at least two out of Trillium, Array and Therachon
 
 
 financebench_id_00283:
