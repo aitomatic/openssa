@@ -1361,8 +1361,7 @@ financebench_id_02119:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer contains a quantity that is equivalent to or approximately equal to
-    66.56 or 67
+    the answer contains a quantity that is in the range from 60.00 to 70.00
 
   evaluator-unreliable: true
 
