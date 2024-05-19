@@ -2084,6 +2084,8 @@ financebench_id_00566:
   correctness: >-
     the answer concludes that debt decreased
 
+  evaluator-unreliable: true
+
 
 financebench_id_06247:
   doc: WALMART_2018_10K
