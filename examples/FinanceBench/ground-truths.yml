@@ -1004,6 +1004,8 @@ financebench_id_01290:
   correctness: >-
     the answer mentions commercial airlines and US government
 
+  evaluator-unreliable: true
+
 
 financebench_id_00464:
   doc: BOEING_2022_10K
