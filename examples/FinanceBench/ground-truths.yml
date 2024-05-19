@@ -1254,6 +1254,8 @@ financebench_id_00839:
   correctness: >-
     the answer affirms that and mentions Ulta Beauty
 
+  evaluator-unreliable: true
+
 
 financebench_id_00822:
   doc: FOOTLOCKER_2022_8K_dated-2022-05-20
