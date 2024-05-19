@@ -6,7 +6,6 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from pprint import pformat
-import re
 from types import SimpleNamespace
 from typing import Any, Self, TypeVar, TYPE_CHECKING
 
