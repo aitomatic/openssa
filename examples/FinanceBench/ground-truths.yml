@@ -1782,6 +1782,8 @@ financebench_id_03620:
     - stated as approximately 9000 million or 9 billion
     (if the answer is a single number, assume that it is that calculated metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_04481:
   doc: PEPSICO_2022_10K
