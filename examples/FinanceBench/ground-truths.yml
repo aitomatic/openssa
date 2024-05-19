@@ -863,6 +863,8 @@ financebench_id_00460:
   correctness: >-
     the answer mentions that number of stores decreased
 
+  evaluator-unreliable: true
+
 
 financebench_id_01902:
   doc: BESTBUY_2024Q2_10Q
