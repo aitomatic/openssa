@@ -5,7 +5,9 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Self, TypeVar, TypedDict, Required, NotRequired, TYPE_CHECKING
+from pprint import pformat
+from types import SimpleNamespace
+from typing import Any, Self, TypeVar, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
@@ -14,9 +16,8 @@ if TYPE_CHECKING:
     from openssa.l2.util.misc import AskAnsPair
 
 
-class PlanQuickRepr(TypedDict, total=False):
-    task: Required[str]
-    sub_plans: NotRequired[list[Self]]
+class PLAN(SimpleNamespace):
+    """Plan Repr."""
 
 
 @dataclass
@@ -42,13 +43,23 @@ class AbstractPlan(ABC):
             sub_plan.concretize_tasks_from_template(**kwargs)
 
     @property
-    def quick_repr(self) -> PlanQuickRepr:
-        d: PlanQuickRepr = {'task': self.task.ask}
+    def quick_repr(self) -> PLAN:
+        namespace: PLAN = PLAN(task=self.task.ask)
 
         if self.sub_plans:
-            d['sub-plans']: list[PlanQuickRepr] = [sub_plan.quick_repr for sub_plan in self.sub_plans]
+            namespace.subs: list[PLAN] = [sub_plan.quick_repr for sub_plan in self.sub_plans]
 
-        return d
+        return namespace
+
+    @property
+    def pformat(self) -> str:
+        return pformat(object=self.quick_repr,
+                       indent=2,
+                       width=120,
+                       depth=None,
+                       compact=False,
+                       sort_dicts=False,
+                       underscore_numbers=False).replace("'", '').replace('\\n', '')
 
     @abstractmethod
     def execute(self, reasoner: AReasoner, knowledge: set[Knowledge] | None = None,
