@@ -500,6 +500,8 @@ financebench_id_01930:
     the answer concludes that the percentage change was approximately 1%,
     or, alternatively, concludes that the growth was flat / small
 
+  evaluator-unreliable: true
+
 
 financebench_id_03069:
   doc: AMD_2015_10K
