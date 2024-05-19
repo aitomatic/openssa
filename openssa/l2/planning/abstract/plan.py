@@ -5,6 +5,8 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
+from pprint import pformat
+import re
 from types import SimpleNamespace
 from typing import Any, Self, TypeVar, TYPE_CHECKING
 
@@ -49,6 +51,16 @@ class AbstractPlan(ABC):
             namespace.subs: list[PLAN] = [sub_plan.quick_repr for sub_plan in self.sub_plans]
 
         return namespace
+
+    @property
+    def pformat(self) -> str:
+        return pformat(object=self.quick_repr,
+                       indent=2,
+                       width=120,
+                       depth=None,
+                       compact=False,
+                       sort_dicts=False,
+                       underscore_numbers=False).replace("'", '').replace('\\n', '')
 
     @abstractmethod
     def execute(self, reasoner: AReasoner, knowledge: set[Knowledge] | None = None,
