@@ -1514,6 +1514,8 @@ financebench_id_01254:
   correctness: >-
     the answer affirms that dividends have been / were paid
 
+  evaluator-unreliable: true
+
 
 financebench_id_00382:
   doc: MGMRESORTS_2022Q4_EARNINGS
