@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 from openai import OpenAI  # pylint: disable=import-self
 
 from openssa.l2.config import Config
-from .abstract import AbstractLM, LMChatMsg, LMChatHist
+from .abstract import AbstractLM, LMChatHist
 
 if TYPE_CHECKING:
     from openai.types.chat.chat_completion import ChatCompletion
@@ -29,7 +29,7 @@ class OpenAILM(AbstractLM):
         # pylint: disable=unexpected-keyword-arg
         return cls(model=Config.DEFAULT_OPENAI_MODEL, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
 
-    def call(self, messages: list[LMChatMsg], **kwargs) -> ChatCompletion:
+    def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
         """Call OpenAI LM API and return response object."""
         return self.client.chat.completions.create(model=self.model,
                                                    messages=messages,
@@ -39,7 +39,7 @@ class OpenAILM(AbstractLM):
     def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
         """Call OpenAI LM API and return response content."""
         messages: LMChatHist = history or []
-        messages.append({"role": "user", "content": prompt})
+        messages.append({'role': 'user', 'content': prompt})
 
         if json_format:
             kwargs['response_format'] = {'type': 'json_object'}
