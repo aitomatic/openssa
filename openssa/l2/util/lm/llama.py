@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from llamaapi import LlamaAPI
 
 from openssa.l2.config import Config
-from .abstract import AbstractLM, LMChatMsg, LMChatHist
+from .abstract import AbstractLM, LMChatHist
 
 
 @dataclass
@@ -24,7 +24,7 @@ class LlamaLM(AbstractLM):
         # pylint: disable=unexpected-keyword-arg
         return cls(model=Config.DEFAULT_LLAMA_MODEL, api_key=Config.LLAMA_API_KEY, api_base=Config.LLAMA_API_URL)
 
-    def call(self, messages: list[LMChatMsg], **kwargs):
+    def call(self, messages: LMChatHist, **kwargs):
         """Call Llama LM API and return response object."""
         return self.client.run({'model': self.model,
                                 'messages': messages,
@@ -35,5 +35,5 @@ class LlamaLM(AbstractLM):
         # pylint: disable=unused-argument
         """Call Llama LM API and return response content."""
         messages: LMChatHist = history or []
-        messages.append({"role": "user", "content": prompt})
-        return self.call(messages, **kwargs)["choices"][0]["message"]["content"]
+        messages.append({'role': 'user', 'content': prompt})
+        return self.call(messages, **kwargs)['choices'][0]['message']['content']
