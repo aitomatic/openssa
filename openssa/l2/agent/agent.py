@@ -171,7 +171,8 @@ class Agent:
                 sub_task.status: TaskStatus = TaskStatus.DONE
                 sub_results.append((sub_task.ask, sub_task.result))
 
-            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, knowledge=self.knowledge,
+            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner,
+                                                         knowledge=self.knowledge,
                                                          other_results=other_results)
             task.status: TaskStatus = TaskStatus.DONE
 
