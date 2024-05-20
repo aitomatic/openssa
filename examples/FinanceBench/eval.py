@@ -1,7 +1,10 @@
+from __future__ import annotations
+
 import argparse
 from collections import defaultdict
 from functools import cache
 from pprint import pprint
+from typing import TYPE_CHECKING
 
 from dotenv import load_dotenv
 from loguru import logger
@@ -9,12 +12,14 @@ from pandas import DataFrame, read_csv
 from tqdm import tqdm
 
 from openssa.l2.config import Config
-from openssa.l2.util.lm.abstract import AnLM
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import (FbId, Question, Answer, GroundTruth,
-                                FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB, OUTPUT_FILE_PATH)
+from data_and_knowledge import (FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,  # noqa: E501
+                                OUTPUT_FILE_PATH, get_or_create_output_df)
+
+if TYPE_CHECKING:
+    from openssa.l2.util.lm.abstract import AnLM
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -67,7 +72,8 @@ def human_eval_recommended(fb_id: FbId) -> bool | None:
     return (ground_truth := GROUND_TRUTHS[fb_id]).get('answer-inadequate') or ground_truth.get('evaluator-unreliable')
 
 
-def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool = True, debug: bool = False) -> bool:
+def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None, n_times: int = 9, human: bool = True,
+                     debug: bool = False) -> bool:  # pylint: disable=too-many-arguments
     question: Question = (ground_truth := GROUND_TRUTHS[fb_id])['question']
     rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
@@ -98,15 +104,26 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
                 while not human_eval_str:
                     human_eval_str: str = input('\n*** HUMAN EVALUATION ***: if answer is correct, type "Y": ').strip()
 
-                return human_eval_str.lower().startswith('y')
+                correct: bool = human_eval_str.lower().startswith('y')
 
-            return False
+            else:
+                correct: bool = False
 
-    return True
+            break
+
+    else:
+        correct: bool = True
+
+    if output_name:
+        output_df: DataFrame = get_or_create_output_df()
+        output_df.loc[fb_id, f'{output_name}---CORRECTNESS']: bool = correct
+        output_df.to_csv(OUTPUT_FILE_PATH, index=True)
+
+    return correct
 
 
 def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool = False):
-    output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
+    output_df: DataFrame = get_or_create_output_df()
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
     incorrect_answer_fb_ids: dict[FbId, str] = {}
@@ -114,7 +131,7 @@ def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool
     for fb_id, answer in tqdm(output_df[output_name].items(), total=N_CASES):
         ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
-        if eval_correctness(fb_id=fb_id, answer=answer, n_times=n_times, human=human, debug=debug):
+        if eval_correctness(fb_id=fb_id, answer=answer, output_name=output_name, n_times=n_times, human=human, debug=debug):  # noqa: E501
             n_yes_scores_by_category[ground_truth['category']] += 1
 
         else:
@@ -154,4 +171,5 @@ if __name__ == '__main__':
         logger.info(
             eval_correctness(fb_id=args.id,
                              answer=read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME).loc[args.id, args.answer_col],
+                             output_name=args.answer_col,
                              n_times=args.n_times, human=args.human_eval, debug=args.debug))
