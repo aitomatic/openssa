@@ -2,6 +2,9 @@
 
 
 import streamlit as st
+import loguru
+from loguru import logger
+from streamlit_extras.capture import logcapture
 
 from data_and_knowledge import (DocName, FbId,
                                 DOC_LINKS_BY_NAME, DOC_NAMES_BY_FB_ID, FB_IDS_BY_DOC_NAME, QS_BY_FB_ID,
@@ -63,10 +66,9 @@ if st.button(label=f'__SOLVE__: _{QS_BY_FB_ID[problem_id]}_',
              type='primary',
              disabled=False,
              use_container_width=False):
-    st.text(body=expert_plan_from_fb_id(problem_id).pformat, help=None)
 
-    with st.spinner('_SOLVING..._'):
+    logger.level("DEBUG")
+    with st.spinner('_SOLVING..._'), logcapture(st.empty().code, from_logger=loguru.logger):
         solution: str = (get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
                          .solve(problem=QS_BY_FB_ID[problem_id], plan=expert_plan_from_fb_id(problem_id), dynamic=False))
-
     st.write(solution)
