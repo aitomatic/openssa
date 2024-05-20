@@ -90,7 +90,8 @@ class HTP(AbstractPlan):
                 prompt=HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(ask=self.task.ask, info=inputs),
                 history=knowledge_injection_lm_chat_msgs(knowledge=knowledge) if knowledge else None)
 
-            logger.debug(f'\n{self.task.ask.upper()}\n'
+            logger.debug(f'\n{self.pformat}\n'
+                         f'\n{self.task.ask.upper()}\n'
                          '--------------------------\n'
                          f'{self.task.result}\n'
                          '\n'
