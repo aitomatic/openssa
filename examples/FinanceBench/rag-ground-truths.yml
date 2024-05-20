@@ -13,7 +13,7 @@ defs:
   payables: Accounts Payable
   st-debt: Short-Term Debt, or Current Portion of (Long-Term) Debt
   curr-liabs: (Total) Current Liabilities
-  lt-debt: Long-Term Debt
+  lt-debt: Long-Term Debt (EXCLUDING any current/short-term portion)
 
 
   CF: Cash Flow(s) Statement
