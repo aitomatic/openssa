@@ -1294,7 +1294,8 @@ financebench_id_04103:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Cash Conversion Cycle (CCC) metric value based on supporting calculated
+    the answer contains a calculated Cash Conversion Cycle (CCC) metric value
+    that is NEGATIVE and in the range from -5.00 to -2.00, based on supporting calculated
     Days Inventory Oustanding (DIO), Days Sales Outstanding (DSO) and Days Payable Outstanding (DPO) metric values
   answer-inadequate: true
 
