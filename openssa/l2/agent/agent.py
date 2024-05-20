@@ -103,7 +103,6 @@ class Agent:
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
                 plan: APlan = self.planner.plan(problem=problem, knowledge=self.knowledge, resources=self.resources)
-
                 logger.info(f'\n{plan.pformat}')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
@@ -130,7 +129,6 @@ class Agent:
                 # then execute such updated static Plan
                 plan: APlan = self.planner.update_plan_resources(plan, problem=problem,
                                                                  knowledge=self.knowledge, resources=self.resources)
-
                 logger.info(f'\n{plan.pformat}')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
@@ -159,10 +157,13 @@ class Agent:
         if (task.status == TaskStatus.NEEDING_DECOMPOSITION) and (planner := planner or self.planner).max_depth:
             sub_planner: APlanner = planner.one_fewer_level_deep()
 
+            plan_1_level_deep: APlan = planner.one_level_deep().plan(problem=problem,
+                                                                     knowledge=self.knowledge,
+                                                                     resources=self.resources)
+            logger.info(f'\n{plan_1_level_deep.pformat}')
+
             sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm((plan_1_level_deep := (planner.one_level_deep().plan(problem=problem,
-                                                                                      knowledge=self.knowledge,
-                                                                                      resources=self.resources))).sub_plans):  # noqa: E501
+            for sub_plan in tqdm(plan_1_level_deep.sub_plans):
                 sub_task: ATask = sub_plan.task
                 sub_task.result: str = self.solve_dynamically(problem=sub_task.ask,
                                                               planner=sub_planner,
