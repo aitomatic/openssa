@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
+from typing import Self, TypedDict, Required, NotRequired, TYPE_CHECKING
 
 from loguru import logger
 from tqdm import tqdm
@@ -26,9 +26,9 @@ if TYPE_CHECKING:
     from openssa.l2.util.misc import AskAnsPair
 
 
-class HTPDict(TypedDict, total=False):
-    task: Required[TaskDict | str]
-    sub_plans: NotRequired[list[HTPDict]]
+type HTPDict = TypedDict('HTPDict', {'task': Required[TaskDict | str],
+                                     'sub-plans': NotRequired[list[Self]]},
+                         total=False)
 
 
 @dataclass
