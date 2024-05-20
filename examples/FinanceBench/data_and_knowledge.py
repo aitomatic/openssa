@@ -79,7 +79,7 @@ DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(META_DF.doc_name, META_DF.doc_l
 DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
 
 FB_IDS: list[FbId] = META_DF.index.to_list()
-FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FB_IDS_BY_DOC_NAME: dict[DocName, list[FbId]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
 
 QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
 
