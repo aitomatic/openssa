@@ -239,6 +239,12 @@ def export_ground_truths():
                        sort_keys=False)
 
 
+def get_or_create_output_df() -> DataFrame:
+    return (read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
+            if OUTPUT_FILE_PATH.is_file()
+            else META_DF[['doc_name', 'question', 'evidence_text', 'page_number', 'answer']])
+
+
 if __name__ == '__main__':
     arg_parser = ArgumentParser()
     arg_parser.add_argument('doc_name')
