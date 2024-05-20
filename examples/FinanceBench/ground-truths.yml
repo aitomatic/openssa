@@ -191,6 +191,8 @@ financebench_id_07966:
     or, alternatively, a calculated decimal value that is in the range from 0.0170 to 0.0210
     (if the answer is a single number, assume that it is that calculated metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_04735:
   doc: ADOBE_2015_10K
