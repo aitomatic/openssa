@@ -13,7 +13,7 @@ from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 @cache
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False) -> Agent | None:
-    return (Agent(planner=AutoHTPlanner(max_depth=3, max_subtasks_per_decomp=4),
+    return (Agent(planner=AutoHTPlanner(max_depth=2, max_subtasks_per_decomp=4),
                   reasoner=OodaReasoner(),
                   knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
                   resources={FileResource(path=dir_path)})
