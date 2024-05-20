@@ -719,6 +719,8 @@ financebench_id_01981:
   correctness: >-
     the answer affirms that retention was good
 
+  evaluator-unreliable: true
+
 
 financebench_id_05718:
   doc: AMERICANWATERWORKS_2020_10K
