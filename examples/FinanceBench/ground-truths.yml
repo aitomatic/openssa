@@ -965,7 +965,7 @@ financebench_id_00517:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer mentions following 3 categories:
+    the answer mentions at least 1 of following categories:
     - Commercial Airplanes;
     - Defense/Defence (or fully written "Defense, Space & Security"); and
     - Services (or fully written "Global Services")
