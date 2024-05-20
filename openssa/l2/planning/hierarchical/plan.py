@@ -12,6 +12,7 @@ from tqdm import tqdm
 from openssa.l2.planning.abstract.plan import AbstractPlan
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.l2.task.abstract import TaskDict
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
@@ -21,7 +22,6 @@ if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.resource.abstract import AResource
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.abstract import TaskDict
     from openssa.l2.util.lm.abstract import LMChatHist
     from openssa.l2.util.misc import AskAnsPair
 
