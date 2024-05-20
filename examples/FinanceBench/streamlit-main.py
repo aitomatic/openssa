@@ -17,20 +17,19 @@ REPRESENTATIVE_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = {doc_name: (set(F
 
 TITLE: str = 'Analysing SEC Filings (`FinanceBench` Dataset) with Planning & Reasoning'
 
-
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
                    layout='wide',
                    initial_sidebar_state='auto',
                    menu_items=None)
 
-
-st.title(TITLE)
+st.title(body=TITLE, anchor=None, help=None)
 
 
 if 'doc_name' not in st.session_state:
     st.session_state.doc_name: str = DOC_NAMES[0]
 
+st.write('__SEC FILING__')
 st.session_state.doc_name: str = st.selectbox(label='SEC Filing',
                                               options=DOC_NAMES,
                                               index=DOC_NAMES.index(st.session_state.doc_name),
@@ -40,11 +39,12 @@ st.session_state.doc_name: str = st.selectbox(label='SEC Filing',
                                               on_change=None, args=None, kwargs=None,
                                               placeholder='SEC Filing',
                                               disabled=False,
-                                              label_visibility='visible')
+                                              label_visibility='collapsed')
 
 st.write(DOC_LINKS_BY_NAME[st.session_state.doc_name])
 
 
+st.write('__PROBLEM__')
 problem_id: str = st.selectbox(label='Problem',
                                options=REPRESENTATIVE_FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
                                index=0,
@@ -54,7 +54,7 @@ problem_id: str = st.selectbox(label='Problem',
                                on_change=None, args=None, kwargs=None,
                                placeholder='Problem',
                                disabled=False,
-                               label_visibility='visible')
+                               label_visibility='collapsed')
 
 
 if st.button(label=f'__SOLVE__: _{QS_BY_FB_ID[problem_id]}_',
@@ -63,10 +63,10 @@ if st.button(label=f'__SOLVE__: _{QS_BY_FB_ID[problem_id]}_',
              type='primary',
              disabled=False,
              use_container_width=False):
-    st.text(expert_plan_from_fb_id(problem_id).pformat)
+    st.text(body=expert_plan_from_fb_id(problem_id).pformat, help=None)
 
-    with st.spinner('Solving...'):
+    with st.spinner('_SOLVING..._'):
         solution: str = (get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
                          .solve(problem=QS_BY_FB_ID[problem_id], plan=expert_plan_from_fb_id(problem_id), dynamic=False))
 
-    st.markdown(solution)
+    st.write(solution)
