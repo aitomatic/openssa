@@ -72,8 +72,8 @@ def human_eval_recommended(fb_id: FbId) -> bool | None:
     return (ground_truth := GROUND_TRUTHS[fb_id]).get('answer-inadequate') or ground_truth.get('evaluator-unreliable')
 
 
-def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None, n_times: int = 9, human: bool = True,
-                     debug: bool = False) -> bool:  # pylint: disable=too-many-arguments
+def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None,  # pylint: disable=too-many-arguments
+                     n_times: int = 9, human: bool = True, debug: bool = False) -> bool:
     question: Question = (ground_truth := GROUND_TRUTHS[fb_id])['question']
     rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
