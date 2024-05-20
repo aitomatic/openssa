@@ -145,13 +145,13 @@ ground-truths:
   ADOBE_2017_10K:
     BS:
       curr-liabs:
-        2017: 6,075.687 million or 6,075.7 million or 6.08 billion or 6.0 billion  # unreliable
-        2016: 5,272.411 million or 5,272.4 million or 5.27 billion or 5.3 billion  # unreliable
+        2017: 3,527.457 million or 3,527.5 million or 3.53 billion or 3.5 billion
+        2016: 2,811.635 million or 2,811.6 million or 2.81 billion or 2.8 billion
 
     CF:
       op-cf:
         2017: 2,912.853 million or 2,912.9 million or 2.91 billion or 2.9 billion
-        2016: 2,199.728 million or 2,199.7 million or 2.2 billion  # unreliable
+        2016: 2,199.728 million or 2,199.7 million or 2.2 billion
         2013: 1,469.502 million or 1,469.5 million or 1.47 billion or 1.5 billion  # unreliable
 
 
