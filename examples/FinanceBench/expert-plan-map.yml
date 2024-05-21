@@ -37,7 +37,7 @@ financebench_id_04412: asset-turnover-ratio  #
 financebench_id_03031: net-work-cap  #
 financebench_id_03849: capex-as-pct-of-rev-3y-avg  #
 financebench_id_01911: int-cov-ratio  #
-financebench_id_00552: debt-comp
+financebench_id_00552: debt-comp  #
 financebench_id_04458: ebitda-margin
 financebench_id_04302: cogs-margin-3y-avg  #
 financebench_id_04080: inv-turnover-ratio  #
