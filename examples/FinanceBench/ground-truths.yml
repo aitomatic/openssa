@@ -1014,7 +1014,7 @@ financebench_id_01290:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions commercial airlines and US government
+    the answer mentions airlines and government(s)
 
   evaluator-unreliable: true
 
