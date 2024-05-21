@@ -263,5 +263,15 @@ FINANCIAL-ANALYSIS LANGUAGE/WORDING
 PHYSICAL-PRODUCT COMPANY PERFORMANCE METRICS vs. FINANCIAL-SERVICES COMPANY PERFORMANCE METRICS
 ===============================================================================================
 
-- Margin metrics are generally relevant/useful performance indicators for evaluating companies making physical products,
-  but generally irrelevant / not useful for evaluating companies delivering financial services
+Margin metrics are generally relevant/useful performance indicators for evaluating companies making physical products,
+but generally irrelevant / not useful for evaluating companies delivering financial services
+
+
+PULICLY LISTED & TRADED DEBT SECURITIES
+=======================================
+
+If there are debt securities registered to trade on a national securities exchange under a company's name,
+then such debt securities are enumerated on SEC filings' 1st page, alongside the company's public equity shares/stock.
+
+If only equity shares/stock are enumerated on SEC filings' 1st page,
+then there are no debt securities registered to trade on a national securities exchange under a company's name.

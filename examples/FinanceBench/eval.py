@@ -144,11 +144,28 @@ def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bo
                                                          else ''))
 
     logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
-    pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.1%}'
-            for category, n_for_category in CAT_DISTRIB.items()})
+    pprint(correctness_by_category := {category: (f'{(n := n_yes_scores_by_category[category])} / {n_for_category} '
+                                                  f'= {n / n_for_category:.1%}')
+                                       for category, n_for_category in CAT_DISTRIB.items()})
 
     logger.warning('INCORRECT:')
     pprint(incorrect_answer_fb_ids)
+
+    return correctness_by_category
+
+
+def compare_eval(output_name: str, baseline_output_name: str = 'RAG-Default'):
+    output_df: DataFrame = get_or_create_output_df()
+
+    baseline_correctness_by_category: dict[str, str] = eval_all(output_name=baseline_output_name, refresh=False)
+    correctness_by_category: dict[str, str] = eval_all(output_name=output_name, refresh=False)
+    pprint({category: {output_name: correctness_summary, baseline_output_name: baseline_correctness_by_category[category]}
+            for category, correctness_summary in correctness_by_category.items()})
+
+    output_df.loc[:, baseline_output_name] = output_df[f'{baseline_output_name}---CORRECTNESS']
+    output_df.loc[:, output_name] = output_df[f'{output_name}---CORRECTNESS']
+    return output_df.loc[output_df[output_name] != output_df[baseline_output_name],
+                         ['doc_name', 'category', baseline_output_name, output_name]]
 
 
 if __name__ == '__main__':

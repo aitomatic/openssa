@@ -209,8 +209,8 @@ ground-truths:
   AMAZON_2017_10K:
     BS:
       invent:
-        2017: 16,047 million  # unreliable
-        2016: 11,461 million  # unreliable
+        2017: 16,047 million
+        2016: 11,461 million
 
       payables:
         2017: 34,616 million
@@ -223,9 +223,9 @@ ground-truths:
         2015: 107,006 million
 
       cogs:
-        2017: 111,934 million  # unreliable
-        2016: 88,265 million  # unreliable
-        2015: 71,651 million  # unreliable
+        2017: 111,934 million  # unreliable: often mistaken with Total Operating Expenses $173,760 million
+        2016: 88,265 million  # unreliable: often mistaken with Total Operating Expenses $131,801 million
+        2015: 71,651 million  # unreliable: often failing to be retrieved at all
 
 
   AMCOR_2020_10K:
@@ -348,13 +348,13 @@ ground-truths:
     P&L:
       rev:
         2017: 39,403 million
-        2016: 39,528 million  # unreliable
-        2015: 40,339 million  # unreliable
+        2016: 39,528 million
+        2015: 40,339 million
 
       net:
-        2017: 1,228 million  # unreliable
-        2016: 897 million
-        2015: 1,233 million  # unreliable
+        2017: 1,228 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $1,207m
+        2016: 897 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $807m
+        2015: 1,233 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $1,246m
 
 
   BESTBUY_2019_10K:
@@ -387,11 +387,12 @@ ground-truths:
         2016: 577,464 or 577.5 million or 0.6 billion  # unreliable
         2015: 334,202 or 334.2 million or 0.3 billion  # unreliable
 
+
   BOEING_2018_10K:
     BS:
       fixed-assets:
-        2018: 12,645 million
-        2017: 12,672 million  # unreliable
+        2018: 12,645 million  # unreliable: 2018 & 2017 numbers often mixed up
+        2017: 12,672 million  # unreliable: 2018 & 2017 numbers often mixed up
 
 
   BOEING_2022_10K:
@@ -464,14 +465,14 @@ ground-truths:
         2019: 2,320 million
 
       payables:
-        2020: 1,174 million  # unreliable
-        2019: 1,587 million  # unreliable
+        2020: 1,174 million  # unreliable: often mistaken with Other Accrued Liabilities #2,437m
+        2019: 1,587 million  # unreliable: often mistaken with Other Accrued Liabilities $1,923m
 
     P&L:
       cogs:
-        2020: 7,772 million  # unreliable
-        2019: 7,468 million  # unreliable
-        2018: 6,829 million  # unreliable
+        2020: 7,772 million  # unreliable: often failing to be retrieved at all
+        2019: 7,468 million  # unreliable: often failing to be retrieved at all
+        2018: 6,829 million  # unreliable: often failing to be retrieved at all
 
 
   CORNING_2021_10K:
@@ -501,14 +502,14 @@ ground-truths:
   CVSHEALTH_2018_10K:
     BS:
       fixed-assets:
-        2018: 11,349 million  # unreliable
-        2017: 10,292 million  # unreliable
+        2018: 11,349 million  # unreliable: often failing to be retrieved at all
+        2017: 10,292 million  # unreliable: often failing to be retrieved at all
 
     P&L:
       rev:
-        2018: 194,579 million  # unreliable
-        2017: 184,786 million  # unreliable
-        2016: 177,546 million  # unreliable
+        2018: 194,579 million  # unreliable: often mistaken with Pharmacy Services 2018 revenue $134,128m or Retail/LTC 2018 revenue $83,989m
+        2017: 184,786 million  # unreliable: often mistaken with Pharmacy Services 2017 revenue $130,601m
+        2016: 177,546 million
 
 
   CVSHEALTH_2022_10K:
@@ -695,9 +696,9 @@ ground-truths:
   NETFLIX_2015_10K:
     CF:
       d&a:
-        2015: 62.283 million or 62 million  # unreliable
-        2014: 54.028 million or 54 million  # unreliable
-        2013: 48.374 million or 48 million  # unreliable
+        2015: 62.283 million or 62 million  # unreliable: often failing to be retrieved at all
+        2014: 54.028 million or 54 million  # unreliable: often failing to be retrieved at all
+        2013: 48.374 million or 48 million  # unreliable: often failing to be retrieved at all
 
     P&L:
       rev:

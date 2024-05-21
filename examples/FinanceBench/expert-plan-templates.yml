@@ -33,8 +33,8 @@ asset-turnover-ratio:
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period end?
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
 
 
 fa-turnover-ratio:
@@ -70,8 +70,8 @@ fa-turnover-ratio:
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period end?
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
 
 
 inv-turnover-ratio:
@@ -107,8 +107,8 @@ inv-turnover-ratio:
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period end?
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
 
 
 # INCOME & PROFITABILITY METRIC EVALUATION
@@ -183,8 +183,8 @@ gross-margin-comp:
         )
 
         for following two annual fiscal periods:
-        - one-year-before previous annual fiscal period preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
 
       sub-plans:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
@@ -201,8 +201,8 @@ gross-margin-comp:
             (or most similar-meaning statement)
 
             of {COMPANY} for following two annual fiscal periods:
-            - one-year-before previous annual fiscal period preceding {PERIOD}; and
-            - {PERIOD} annual fiscal period?
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
 
     - task: >-
         Calculate difference between two calculated `Gross (Income or Profit or Earnings) Margin` percentage values
@@ -253,8 +253,8 @@ op-margin-comp:
         )
 
         for following two annual fiscal periods:
-        - one-year-before previous annual fiscal period preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
 
       sub-plans:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
@@ -271,8 +271,8 @@ op-margin-comp:
             (or most similar-meaning statement)
 
             of {COMPANY} for following two annual fiscal periods:
-            - one-year-before previous annual fiscal period preceding {PERIOD}; and
-            - {PERIOD} annual fiscal period?
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
 
     - task: >-
         Calculate difference between two calculated `(Unadjusted) Operating (Income or Profit or Earnings) Margin` percentage values
@@ -481,8 +481,8 @@ effective-tax-rate-comp:
         `Effective (Income) Tax Rate` = `(Income) Tax Expense` / `Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)`
 
         for following two annual fiscal periods:
-        - one-year-before previous annual fiscal period preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
 
       sub-plans:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
@@ -499,8 +499,8 @@ effective-tax-rate-comp:
             (or most similar-meaning statement)
 
             of {COMPANY} for following two annual fiscal periods:
-            - one-year-before previous annual fiscal period preceding {PERIOD}; and
-            - {PERIOD} annual fiscal period?
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
 
 
 div-payout-ratio:
@@ -662,8 +662,8 @@ quick-ratio-comp:
         )
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period end
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end
 
       sub-plans:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
@@ -682,7 +682,7 @@ quick-ratio-comp:
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as at following two annual fiscal period ends:
-            - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+            - previous annual fiscal period end immediately preceding {PERIOD}; and
             - current {PERIOD} annual fiscal period end?
 
     - task: >-
@@ -727,8 +727,8 @@ fcf-conv-comp:
         )
 
         for following two annual fiscal periods:
-        - one-year-before previous annual fiscal period preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
 
       sub-plans:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
@@ -743,8 +743,8 @@ fcf-conv-comp:
             on one same `Cash Flow(s) Statement` of {COMPANY}
 
             for following two annual fiscal periods:
-            - one-year-before previous annual fiscal period preceding {PERIOD}; and
-            - {PERIOD} annual fiscal period?
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
 
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
         - task: |-
@@ -756,8 +756,8 @@ fcf-conv-comp:
             (or most similar-meaning statement)
 
             of {COMPANY} for following two annual fiscal periods:
-            - one-year-before previous annual fiscal period preceding {PERIOD}; and
-            - {PERIOD} annual fiscal period?
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
 
     - task: >-
         Calculate difference between two calculated `Free Cash Flow Conversion Ratio` percentage values
@@ -816,7 +816,19 @@ days-payable-outstanding:
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+    # TODO: remove/simplify: back-up task in case above fails
+    - task: |-
+        What are values in dollars of `Accounts Payable` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end?
 
     - task: >-
@@ -856,7 +868,7 @@ cash-conv-cyc:
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end?
 
     - task: >-
@@ -918,7 +930,7 @@ debt-comp:
         )
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end
 
       sub-plans:
@@ -936,7 +948,7 @@ debt-comp:
             (and NOT Balance Sheets of its acquired and/or divested companies)
 
             as at following two annual fiscal period ends:
-            - one-year-before previous annual fiscal period end preceding {PERIOD}; and
+            - previous annual fiscal period end immediately preceding {PERIOD}; and
             - current {PERIOD} annual fiscal period end?
 
     - task: >-
@@ -1012,8 +1024,8 @@ roa:
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period end?
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
 
 
 cap-intens:
@@ -1035,8 +1047,8 @@ cap-intens:
         (and NOT Balance Sheets of its acquired and/or divested companies)
 
         as at following two annual fiscal period ends:
-        - one-year-before previous annual fiscal period end preceding {PERIOD}; and
-        - {PERIOD} annual fiscal period end?
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
 
     - task: >-
         What is value in dollars of
