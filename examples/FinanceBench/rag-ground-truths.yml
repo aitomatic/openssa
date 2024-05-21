@@ -695,9 +695,9 @@ ground-truths:
   NETFLIX_2015_10K:
     CF:
       d&a:
-        2015: 62.283 million or 62 million  # unreliable
-        2014: 54.028 million or 54 million  # unreliable
-        2013: 48.374 million or 48 million  # unreliable
+        2015: 62.283 million or 62 million  # unreliable: often failing to be retrieved at all
+        2014: 54.028 million or 54 million  # unreliable: often failing to be retrieved at all
+        2013: 48.374 million or 48 million  # unreliable: often failing to be retrieved at all
 
     P&L:
       rev:
