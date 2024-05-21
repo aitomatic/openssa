@@ -26,6 +26,8 @@ from llama_index.core.vector_stores.types import VectorStoreQueryMode
 from llama_index.embeddings.openai.base import OpenAIEmbedding
 from llama_index.llms.openai.base import OpenAI as OpenAILM
 
+from openssa.l2.config import Config
+
 from .abstract import AbstractResource
 from ._global import global_register
 from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
@@ -84,7 +86,7 @@ class FileResource(AbstractResource):
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: AnLM = field(default_factory=OpenAILM,
+    lm: AnLM = field(default_factory=lambda: OpenAILM(temperature=Config.DEFAULT_TEMPERATURE),
                      init=True,
                      repr=False,
                      hash=None,
@@ -292,4 +294,12 @@ class FileResource(AbstractResource):
 
     def answer(self, question: str, n_words: int = 1000) -> str:
         """Answer question by RAG from file-stored Informational Resource."""
-        return self.query_engine.query(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)).response
+        prompt: str = RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)
+
+        for _ in range(9):
+            answer: str = self.query_engine.query(prompt).response
+
+            if not answer.strip().lower().startswith('repeat'):
+                break
+
+        return answer

@@ -13,7 +13,7 @@ financebench_id_03029:
     1600, 1600 million or 1.6 billion
 
 
-financebench_id_04672:
+financebench_id_04672:  # TODO: (Net) PP&E often mistaken with Total Equity $9,848m (!)
   doc: 3M_2018_10K
   question: 'Assume that you are a public equities analyst. Answer the following question
     by primarily using information that is shown in the balance sheet: what is the
@@ -48,6 +48,8 @@ financebench_id_00499:
     - Fixed Assets is not large as proportion of Total Assets;
     - Capital Expenditure (CapEx) is not high relative to Revenue; and/or
     - Return on (Total) Assets (RoA or RoTA) is quite good
+
+  evaluator-unreliable: true
 
 
 financebench_id_01226:
@@ -151,7 +153,9 @@ financebench_id_01858:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer affirms that dividends have been stable, and mentions "65 years", "65th year" or something similar
+    the answer affirms that dividends have been stable, and/or mentions "65 years", "65th year" or something similar
+
+  evaluator-unreliable: true
 
 
 financebench_id_02987:
@@ -187,6 +191,8 @@ financebench_id_07966:
     or, alternatively, a calculated decimal value that is in the range from 0.0170 to 0.0210
     (if the answer is a single number, assume that it is that calculated metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_04735:
   doc: ADOBE_2015_10K
@@ -215,7 +221,7 @@ financebench_id_07507:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer contains a calculated Operating Income change percentage value that is approximately 65% or 65.4%
+    the answer contains a calculated Operating Income change percentage value that is in the range from 60.0% or 70.0%
     (if the answer is a single number, assume that it is that calculated Operating Income change percentage value)
 
 
@@ -264,6 +270,8 @@ financebench_id_00591:
     the answer contains calculated Free Cash Flow Conversion Ratio percentage or decimal values for 2021 and 2022,
     and concludes that such metric increased
 
+  evaluator-unreliable: true
+
 
 financebench_id_01319:
   doc: AES_2022_10K
@@ -310,8 +318,10 @@ financebench_id_10420:
     or, alternatively, a calculated decimal value that is NEGATIVE and in the range from -0.0200 to -0.0140
     (if the answer is a single number, assume that it is that calculated Return on Assets (RoA) metric value)
 
+  evaluator-unreliable: true
 
-financebench_id_06655:
+
+financebench_id_06655:  # TODO: retrieve COGS $111,934m - often mistaken with Total Operating Expenses $173,760m, or $141.7b (?)
   doc: AMAZON_2017_10K
   question: 'What is Amazon''s FY2017 days payable outstanding (DPO)? DPO is defined
     as: 365 * (average accounts payable between FY2016 and FY2017) / (FY2017 COGS
@@ -337,7 +347,7 @@ financebench_id_08135:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer contains a calculated Revenue change percentage value that is approximately 30%, 30.7%, 30.8% or 31%
+    the answer contains a calculated Revenue change percentage value that is in the range from 30.0% to 31.0%
     (if the answer is a single number, assume that it is that calculated Revenue change percentage value)
 
 
@@ -367,6 +377,7 @@ financebench_id_03882:
   category: 0-RETRIEVE
   correctness: >-
     the answer contains a quantity equivalent to or approximately equal to
+    1615.9, 1615.9 million,
     1616, 1616 million, 1.616 billion,
     1600, 1600 million or 1.6 billion
 
@@ -466,7 +477,7 @@ financebench_id_01936:
     the answer mentions Employee costs or Employee liabilities
 
 
-financebench_id_01928:
+financebench_id_01928:  # TODO: FY number often mistaken with Quarterly number
   doc: AMCOR_2023Q4_EARNINGS
   question: What Was AMCOR's Adjusted Non GAAP EBITDA for FY 2023
   answer: AMCOR's Adj. EBITDA was $2,018mn in FY 2023
@@ -490,6 +501,8 @@ financebench_id_01930:
   correctness: >-
     the answer concludes that the percentage change was approximately 1%,
     or, alternatively, concludes that the growth was flat / small
+
+  evaluator-unreliable: true
 
 
 financebench_id_03069:
@@ -539,7 +552,9 @@ financebench_id_00995:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions at least CPUs, GPUs and FPGAs
+    the answer mentions at least graphics (i.e., GPU) and FPGA products
+
+  evaluator-unreliable: true
 
 
 financebench_id_01198:
@@ -603,7 +618,9 @@ financebench_id_00757:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions that one customer accounted for 16% of revenue
+    the answer mentions that one customer accounted for large portion of revenue
+
+  evaluator-unreliable: true
 
 
 financebench_id_00476:
@@ -704,6 +721,8 @@ financebench_id_01981:
   correctness: >-
     the answer affirms that retention was good
 
+  evaluator-unreliable: true
+
 
 financebench_id_05718:
   doc: AMERICANWATERWORKS_2020_10K
@@ -746,13 +765,13 @@ financebench_id_00070:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer affirms that Working Capital is/was positive,
-    proving so by a calculated Working Capital metric value that is positive
+    the answer contains a calculated (Net) Working Capital metric value in dollars
+  answer-inadequate: true
 
   evaluator-unreliable: true
 
 
-financebench_id_02608:
+financebench_id_02608:  # TODO: retrieve Revenue, and retrieve Net Income currently often mistaken with Net Earnings (Loss) from Continuing Operations
   doc: BESTBUY_2017_10K
   question: In agreement with the information outlined in the income statement, what
     is the FY2015 - FY2017 3 year average net profit margin (as a %) for Best Buy?
@@ -799,7 +818,7 @@ financebench_id_00685:
   answer-inadequate: true
 
 
-financebench_id_01077:
+financebench_id_01077:  # TODO: Acquisitions ought to be retrievable fromn Notes to Consolidated Financial Statements
   doc: BESTBUY_2023_10K
   question: What are major acquisitions that Best Buy has done in FY2023, FY2022 and
     FY2021?
@@ -849,6 +868,8 @@ financebench_id_00460:
   category: 1-COMPARE
   correctness: >-
     the answer mentions that number of stores decreased
+
+  evaluator-unreliable: true
 
 
 financebench_id_01902:
@@ -944,7 +965,7 @@ financebench_id_00517:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer mentions following 3 categories:
+    the answer mentions at least 1 of following categories:
     - Commercial Airplanes;
     - Defense/Defence (or fully written "Defense, Space & Security"); and
     - Services (or fully written "Global Services")
@@ -965,7 +986,7 @@ financebench_id_01091:
     the answer affirms that there have been material lawsuits / legal battles
 
 
-financebench_id_00678:
+financebench_id_00678:  # tricky because Gross Income label is implicit/missing (!) on Income Statement
   doc: BOEING_2022_10K
   question: Does Boeing have an improving gross margin profile as of FY2022? If gross
     margin is not a useful metric for a company like this, then state that and explain
@@ -980,6 +1001,8 @@ financebench_id_00678:
     the answer contains calculated Gross Margin percentage or decimal values for 2021 and 2022,
     and concludes that such metric increased
 
+  evaluator-unreliable: true
+
 
 financebench_id_01290:
   doc: BOEING_2022_10K
@@ -991,7 +1014,9 @@ financebench_id_01290:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions commercial airlines and US government
+    the answer mentions airlines and government(s)
+
+  evaluator-unreliable: true
 
 
 financebench_id_00464:
@@ -1028,6 +1053,8 @@ financebench_id_00585:
   correctness: >-
     the answer contains calculated Effective Tax Rate percentage or decimal values for 2021 and 2022,
     with one value being negative and the other value being positive
+
+  evaluator-unreliable: true
 
 
 financebench_id_03473:
@@ -1081,7 +1108,7 @@ financebench_id_06272:
   evaluator-unreliable: true
 
 
-financebench_id_10130:
+financebench_id_10130:  # TODO: retrieve Payables (often mistaken with Other Accrued Liabilities) & COGS
   doc: CORNING_2020_10K
   question: 'Based on the information provided primarily in the balance sheet and
     the statement of income, what is FY2020 days payable outstanding (DPO) for Corning?
@@ -1107,9 +1134,11 @@ financebench_id_02981:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer constains a calculated Average Operating Income Margin percentage value that is in the range from 9.00% to 11.00%,
-    or, alternatively, a calculated decimal value that is in the range from 0.0900 to 0.1100
+    the answer constains a calculated Average Operating Income Margin percentage value that is in the range from 9.00% to 12.00%,
+    or, alternatively, a calculated decimal value that is in the range from 0.0900 to 0.1200
     (if the answer is a single number, assume that it is that calculated Average Operating Income Margin metric value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_01346:
@@ -1122,7 +1151,10 @@ financebench_id_01346:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer says that Effective Tax Rate changed from 20% to 23%, and/or that it increased by 3 percentage points
+    the answer says that Effective Tax Rate changed from approximately 20% to approximately 23%,
+    and/or that it increased by 3 percentage points
+
+  evaluator-unreliable: true
 
 
 financebench_id_00005:
@@ -1156,7 +1188,7 @@ financebench_id_04209:
     59000, 59000 million or 59 billion
 
 
-financebench_id_05915:
+financebench_id_05915:  # TODO: retrieve Revenue $194,579m - often mistaken for Pharmacy Services revenue $134,128m or Retail/LTC revenue $83,989m
   doc: CVSHEALTH_2018_10K
   question: 'What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset
     turnover ratio is defined as: FY2018 revenue / (average PP&E between FY2017 and
@@ -1187,6 +1219,8 @@ financebench_id_00790:
     the answer either:
     - mentions that a calculated Return on Assets (RoA) metric value is quite low (which suggests capital intensity); or
     - mentions that Fixed Assets form only a small proportion of Total Assets (which suggests the reverse)
+
+  evaluator-unreliable: true
 
 
 financebench_id_01107:
@@ -1232,6 +1266,8 @@ financebench_id_00839:
   correctness: >-
     the answer affirms that and mentions Ulta Beauty
 
+  evaluator-unreliable: true
+
 
 financebench_id_00822:
   doc: FOOTLOCKER_2022_8K_dated-2022-05-20
@@ -1262,7 +1298,8 @@ financebench_id_04103:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Cash Conversion Cycle (CCC) metric value based on supporting calculated
+    the answer contains a calculated Cash Conversion Cycle (CCC) metric value
+    that is NEGATIVE and in the range from -5.00 to -2.00, based on supporting calculated
     Days Inventory Oustanding (DIO), Days Sales Outstanding (DSO) and Days Payable Outstanding (DPO) metric values
   answer-inadequate: true
 
@@ -1317,7 +1354,7 @@ financebench_id_10136:
     (if the answer is a single number, assume that it is that calculated Retention Ratio metric value)
 
 
-financebench_id_00299:
+financebench_id_00299:  # TODO: there seems to be confusion b/w Corporate & Investment Bank vs. CORPORATE segments
   doc: JPMORGAN_2021Q1_10Q
   question: Which of JPM's business segments had the lowest net revenue in 2021 Q1?
   answer: Corporate. Its net revenue was -$473 million.
@@ -1337,8 +1374,7 @@ financebench_id_02119:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer contains a quantity that is equivalent to or approximately equal to
-    66.56 or 67
+    the answer contains a quantity that is in the range from 60.00 to 70.00
 
   evaluator-unreliable: true
 
@@ -1443,8 +1479,10 @@ financebench_id_03718:
     the answer contains a calculated CAGR percentage value that is in the range from 0.400% to 0.500%
     (if the answer is a single number, assume that it is that calculated CAGR percentage value)
 
+  evaluator-unreliable: true
 
-financebench_id_04171:
+
+financebench_id_04171:  # TODO: Balance Sheet often mistaken with that of CityCenter Holdings, which has AP of $25.758m
   doc: MGMRESORTS_2018_10K
   question: Basing your judgments off of the balance sheet, what is the year end FY2018
     amount of accounts payable for MGM Resorts? Answer in USD millions.
@@ -1485,6 +1523,8 @@ financebench_id_01254:
   correctness: >-
     the answer affirms that dividends have been / were paid
 
+  evaluator-unreliable: true
+
 
 financebench_id_00382:
   doc: MGMRESORTS_2022Q4_EARNINGS
@@ -1506,8 +1546,8 @@ financebench_id_01911:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Interest Coverage Ratio metric value that is negative,
-    or, alternatively, says that such metric is zero because of negative EBIT
+    the answer contains a calculated Interest Coverage Ratio metric value
+  answer-inadequate: true
 
 
 financebench_id_01912:
@@ -1536,7 +1576,7 @@ financebench_id_00407:
     the answer identifies corporate bonds as having received largest short-term investment
 
 
-financebench_id_04700:
+financebench_id_04700:  # TODO: this case known for complicated RAG failure
   doc: MICROSOFT_2016_10K
   question: What is the FY2016 COGS for Microsoft? Please state answer in USD millions.
     Provide a response to the question by primarily using the statement of income.
@@ -1564,7 +1604,7 @@ financebench_id_00552:
   answer-inadequate: true
 
 
-financebench_id_04458:
+financebench_id_04458:  # TODO: retrieve Depreciation & Amortization of Property, Equipment and Intangibles
   doc: NETFLIX_2015_10K
   question: 'We want to calculate a financial metric. Please help us compute it by
     basing your answers off of the statement of income and the statement of cash flows.
@@ -1727,9 +1767,8 @@ financebench_id_01328:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer contains a quantity that is equivalent to or approximately equal to
-    411 million, 0.411 billion,
-    400 million or 0.4 billion
+    the answer states 0, zero, and/or that restructuring costs are not explicitly reported
+  answer-inadequate: true
 
 
 financebench_id_03620:
@@ -1750,6 +1789,8 @@ financebench_id_03620:
     - in the range from 8.5 billion to 9.5 billion; or
     - stated as approximately 9000 million or 9 billion
     (if the answer is a single number, assume that it is that calculated metric value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_04481:
@@ -1782,7 +1823,7 @@ financebench_id_01482:
     the answer says proposal related to Net-Zero Emissions was defeated / not successful
 
 
-financebench_id_00705:
+financebench_id_00705:  # TODO: reasoning about terminated and newly-issued debt
   doc: PEPSICO_2023_8K_dated-2023-05-30
   question: By how much did Pepsico increase its unsecured five year revolving credit
     agreement on May 26, 2023?
@@ -1806,7 +1847,7 @@ financebench_id_00882:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated total quantity that is equivalent to or approximately equal to
+    the answer contains a calculated total quantity that is greater than or equal to
     8,400,000,000, 8400 million or 8.4 billion
     (if the answer is a single number, assume that it is that calculated total amount)
 
@@ -1870,7 +1911,7 @@ financebench_id_02416:
     the answer mentions Trillium, Array and Therachon
 
 
-financebench_id_00283:
+financebench_id_00283:  # tricky
   doc: Pfizer_2023Q2_10Q
   question: How much does Pfizer expect to pay to spin off Upjohn in the future in
     USD million?
@@ -1897,7 +1938,7 @@ financebench_id_00724:
     the answer identifies Developed Rest of World as having worst percentage/relative decline
 
 
-financebench_id_02419:
+financebench_id_02419:  # TODO: there seems to be confusion because Upjohn spin-off started in 2020 but would complete in 2023
   doc: Pfizer_2023Q2_10Q
   question: As of Q2'2023, is Pfizer spinning off any large business segments?
   answer: Yes, it's spinning off Upjohn.
@@ -1946,7 +1987,7 @@ financebench_id_00601:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions leverage of marketing expenses and incentive compensation due to higher sales
+    the answer mentions marketing expenses and incentive compensation
   answer-inadequate: true
 
 
@@ -1978,7 +2019,7 @@ financebench_id_00605:
     (if the answer is a single number, assume that it is that calculated percentage value)
 
 
-financebench_id_00606:
+financebench_id_00606:  # tricky
   doc: ULTABEAUTY_2023Q4_EARNINGS
   question: Did Ulta Beauty's wages expense as a percent of net sales increase or
     decrease in FY2023?
@@ -2005,7 +2046,7 @@ financebench_id_00859:
     the answer identifies Cross Currency Swaps as having highest notional value
 
 
-financebench_id_02024:
+financebench_id_02024:  # TODO: numbers for different years often mixed up
   doc: VERIZON_2021_10K
   question: As of FY 2021, how much did Verizon expect to pay for its retirees in
     2024?
@@ -2015,9 +2056,10 @@ financebench_id_02024:
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions both "Pension (Benefits)" and "Health Care & Life (Insurance)", and:
-    - mentions amounts of 1,097 million and 862 million or approximately equivalent amounts; or
-    - mentions total amount of 1,959 million or an approximately equivalent amount
+    the answer mentions at least 1 of following:
+    - amount of 1,097 million, or 1.1 billion, or approximately equivalent amount (explicitly or implicitly for "Pension (Benefits)");
+    - amount of 862 million, or approximately equivalent amount (explicitly or implicitly for "Health Care & Life (Insurance)"; or
+    - total amount of 1,959 million, or 1.96 billion, or 2.0 billion, or an approximately equivalent amount
 
 
 financebench_id_00216:
@@ -2047,6 +2089,8 @@ financebench_id_00215:
   correctness: >-
     the answer opines that Verizon's business is capital-intensive, and justifies such opinion with a calculated ratio
 
+  evaluator-unreliable: true
+
 
 financebench_id_00566:
   doc: VERIZON_2022_10K
@@ -2058,6 +2102,8 @@ financebench_id_00566:
   category: 1-COMPARE
   correctness: >-
     the answer concludes that debt decreased
+
+  evaluator-unreliable: true
 
 
 financebench_id_06247:

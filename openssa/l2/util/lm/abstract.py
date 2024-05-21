@@ -1,14 +1,16 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import Literal, Self, TypedDict, TypeVar
+from dataclasses import dataclass, field
+from typing import Self, TypeVar
+
+from openai.types.chat.chat_completion_message_param import ChatCompletionMessageParam
+# - github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion_system_message_param.py
+# - github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion_user_message_param.py
+# - github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion_assistant_message_param.py
+# - github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion_tool_message_param.py
+# - github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion_function_message_param.py
 
 
-class LMChatMsg(TypedDict):
-    role: Literal['system', 'user', 'assistant', 'tool', 'function']
-    content: str
-
-
-type LMChatHist = list[LMChatMsg]
+type LMChatHist = list[ChatCompletionMessageParam]
 
 
 @dataclass
@@ -16,8 +18,14 @@ class AbstractLM(ABC):
     """Abstract base class for consistent API for different LM services."""
 
     model: str
-    api_key: str
     api_base: str
+    api_key: str = field(default_factory=str,
+                         init=True,
+                         repr=False,
+                         hash=None,
+                         compare=True,
+                         metadata=None,
+                         kw_only=False)
 
     @classmethod
     @abstractmethod
@@ -25,7 +33,7 @@ class AbstractLM(ABC):
         """Get LM instance with default parameters."""
 
     @abstractmethod
-    def call(self, messages: list[LMChatMsg], **kwargs):
+    def call(self, messages: list[ChatCompletionMessageParam], **kwargs):
         """Call LM API and return response object."""
 
     @abstractmethod

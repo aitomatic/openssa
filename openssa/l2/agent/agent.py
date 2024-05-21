@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from pprint import pformat
 from typing import TYPE_CHECKING
 
 from loguru import logger
@@ -19,6 +18,7 @@ if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import APlan, AskAnsPair
     from openssa.l2.planning.abstract.planner import APlanner
     from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.resource.abstract import AResource
     from openssa.l2.task.abstract import ATask
 
@@ -29,14 +29,49 @@ class Agent:
 
     # Planner for decomposing tasks into executable solution Plans
     # using Automated Hierarchical Task Planner by default
-    planner: APlanner | None = field(default_factory=AutoHTPlanner)
+    planner: APlanner | None = field(default_factory=AutoHTPlanner,
+                                     init=True,
+                                     repr=True,
+                                     hash=None,
+                                     compare=True,
+                                     metadata=None,
+                                     kw_only=False)
 
     # Reasoner for working through individual Tasks to either conclude or make partial progress on them
     # using OODA by default
-    reasoner: AReasoner = field(default_factory=OodaReasoner)
+    reasoner: AReasoner = field(default_factory=OodaReasoner,
+                                init=True,
+                                repr=True,
+                                hash=None,
+                                compare=True,
+                                metadata=None,
+                                kw_only=False)
+
+    # Knowledge for use in Planning & Reasoning
+    knowledge: set[Knowledge] = field(default_factory=set,
+                                      init=True,
+                                      repr=False,
+                                      hash=None,
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=False)
 
     # set of Informational Resources for answering information-querying questions
-    resources: set[AResource] = field(default_factory=set)
+    resources: set[AResource] = field(default_factory=set,
+                                      init=True,
+                                      repr=True,
+                                      hash=None,
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=False)
+
+    def add_knowledge(self, *new_knowledge: Knowledge):
+        """Add new Knowledge."""
+        self.knowledge.update(new_knowledge)
+
+    def add_resources(self, *new_resources: AResource):
+        """Add new Informational Resources."""
+        self.resources.update(new_resources)
 
     @property
     def resource_overviews(self) -> dict[str, str]:
@@ -58,24 +93,22 @@ class Agent:
             # NO PLAN
             case (None, None, _):
                 # if neither Plan nor Planner is given, directly use Reasoner
-                result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources))
+                result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources),
+                                                   knowledge=self.knowledge,
+                                                   other_results=None)
 
             # AUTOMATED STATIC PLAN
             case (None, _, False) if self.planner:
                 # if no Plan is given but Planner is, and if solving statically,
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
-                plan: APlan = self.planner.plan(problem=problem, resources=self.resources)
+                plan: APlan = self.planner.plan(problem=problem, knowledge=self.knowledge, resources=self.resources)
+                logger.info('\n'
+                            'GLOBAL TASK PLANNING\n'
+                            '====================\n'
+                            f'\n{plan.pformat}\n')
 
-                logger.info(f'\n{pformat(object=plan.quick_repr,
-                                         indent=2,
-                                         width=120,
-                                         depth=None,
-                                         compact=False,
-                                         sort_dicts=False,
-                                         underscore_numbers=False)}')
-
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
             # AUTOMATED DYNAMIC PLAN
             case (None, _, True) if self.planner:
@@ -88,32 +121,26 @@ class Agent:
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
-                logger.info(f'\n{pformat(object=plan.quick_repr,
-                                         indent=2,
-                                         width=120,
-                                         depth=None,
-                                         compact=False,
-                                         sort_dicts=False,
-                                         underscore_numbers=False)}')
+                logger.info('\n'
+                            'GLOBAL TASK PLANNING\n'
+                            '====================\n'
+                            f'\n{plan.pformat}\n')
 
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
             # EXPERT-SPECIFIED STATIC PLAN, with Resource updating
             case (_, _, False) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving statically,
                 # then use Planner to update Plan's resources,
                 # then execute such updated static Plan
-                plan: APlan = self.planner.update_plan_resources(plan, problem=problem, resources=self.resources)
+                plan: APlan = self.planner.update_plan_resources(plan, problem=problem,
+                                                                 knowledge=self.knowledge, resources=self.resources)
+                logger.info('\n'
+                            'GLOBAL TASK PLANNING\n'
+                            '====================\n'
+                            f'\n{plan.pformat}\n')
 
-                logger.info(f'\n{pformat(object=plan.quick_repr,
-                                         indent=2,
-                                         width=120,
-                                         depth=None,
-                                         compact=False,
-                                         sort_dicts=False,
-                                         underscore_numbers=False)}')
-
-                result: str = plan.execute(reasoner=self.reasoner)
+                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
             # EXPERT-GUIDED DYNAMIC PLAN
             case (_, _, True) if (plan and self.planner):
@@ -132,16 +159,23 @@ class Agent:
         When first-pass result from Reasoner is unsatisfactory, decompose Problem and recursively solve decomposed Plan.
         """
         # attempt direct solution with Reasoner
-        self.reasoner.reason(task := Task(ask=problem, resources=self.resources))
+        self.reasoner.reason(task := Task(ask=problem, resources=self.resources), knowledge=self.knowledge)
 
         # if Reasoner's result is unsatisfactory, and if Planner has not run out of allowed depth,
         # decompose Problem into 1-level Plan, and recursively solve such Plan with remaining allowed Planner depth
         if (task.status == TaskStatus.NEEDING_DECOMPOSITION) and (planner := planner or self.planner).max_depth:
             sub_planner: APlanner = planner.one_fewer_level_deep()
 
+            plan_1_level_deep: APlan = planner.one_level_deep().plan(problem=problem,
+                                                                     knowledge=self.knowledge,
+                                                                     resources=self.resources)
+            logger.info('\n'
+                        'TASK-DECOMPOSITION PLANNING\n'
+                        '===========================\n'
+                        f'\n{plan_1_level_deep.pformat}\n')
+
             sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm((plan_1_level_deep := (planner.one_level_deep()
-                                                        .plan(problem=problem, resources=self.resources))).sub_plans):
+            for sub_plan in tqdm(plan_1_level_deep.sub_plans):
                 sub_task: ATask = sub_plan.task
                 sub_task.result: str = self.solve_dynamically(problem=sub_task.ask,
                                                               planner=sub_planner,
@@ -149,7 +183,9 @@ class Agent:
                 sub_task.status: TaskStatus = TaskStatus.DONE
                 sub_results.append((sub_task.ask, sub_task.result))
 
-            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner, other_results=other_results)
+            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner,
+                                                         knowledge=self.knowledge,
+                                                         other_results=other_results)
             task.status: TaskStatus = TaskStatus.DONE
 
         return task.result

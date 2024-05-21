@@ -1,20 +1,25 @@
+from __future__ import annotations
+
 import argparse
 from collections import defaultdict
 from functools import cache
 from pprint import pprint
+from typing import TYPE_CHECKING
 
 from dotenv import load_dotenv
 from loguru import logger
-from pandas import DataFrame, read_csv
+from pandas import DataFrame, notna, read_csv
 from tqdm import tqdm
 
 from openssa.l2.config import Config
-from openssa.l2.util.lm.abstract import AnLM
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import (FbId, Question, Answer, GroundTruth,
-                                FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB, OUTPUT_FILE_PATH)
+from data_and_knowledge import (FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,  # noqa: E501
+                                OUTPUT_FILE_PATH, get_or_create_output_df)
+
+if TYPE_CHECKING:
+    from openssa.l2.util.lm.abstract import AnLM
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -67,9 +72,10 @@ def human_eval_recommended(fb_id: FbId) -> bool | None:
     return (ground_truth := GROUND_TRUTHS[fb_id]).get('answer-inadequate') or ground_truth.get('evaluator-unreliable')
 
 
-def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool = True, debug: bool = False) -> bool:
-    question: Question = GROUND_TRUTHS[fb_id]['question']
-    rubric: str = GROUND_TRUTHS[fb_id]['correctness']
+def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None,  # pylint: disable=too-many-arguments
+                     n_times: int = 9, human: bool = True, debug: bool = False) -> bool:
+    question: Question = (ground_truth := GROUND_TRUTHS[fb_id])['question']
+    rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
 
     lm: AnLM = get_lm()
@@ -81,14 +87,14 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
             score: str = lm.get_response(prompt=prompt, temperature=0)
 
         if score == 'NO':
-            logger.warning(f'QUESTION #{fb_id}:\n{question}\n'
+            logger.warning(f'\n{fb_id}\n{ground_truth['doc']}:\n{question}\n'
                            '\n'
                            f'ANSWER JUDGED TO BE INCORRECT:\n{answer}\n'
                            '\n'
                            f'RUBRIC:\n{rubric}' +
-                           ('\n\n(*** EXPERT ANSWER KNOWN TO BE INADEQUATE ***)'
+                           ('\n\n(*** EXPERT ANSWER KNOWN TO BE INADEQUATE ***)\n'
                             if GROUND_TRUTHS[fb_id].get('answer-inadequate')
-                            else ''))
+                            else '\n'))
 
             if debug:
                 logger.debug(f'PROMPT:\n{prompt}')
@@ -98,15 +104,26 @@ def eval_correctness(fb_id: FbId, answer: Answer, n_times: int = 9, human: bool 
                 while not human_eval_str:
                     human_eval_str: str = input('\n*** HUMAN EVALUATION ***: if answer is correct, type "Y": ').strip()
 
-                return human_eval_str.lower().startswith('y')
+                correct: bool = human_eval_str.lower().startswith('y')
 
-            return False
+            else:
+                correct: bool = False
 
-    return True
+            break
+
+    else:
+        correct: bool = True
+
+    if output_name:
+        output_df: DataFrame = get_or_create_output_df()
+        output_df.loc[fb_id, f'{output_name}---CORRECTNESS']: bool = correct
+        output_df.to_csv(OUTPUT_FILE_PATH, index=True)
+
+    return correct
 
 
-def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool = False):
-    output_df: DataFrame = read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
+def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bool = True, debug: bool = False):
+    output_df: DataFrame = get_or_create_output_df()
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
     incorrect_answer_fb_ids: dict[FbId, str] = {}
@@ -114,7 +131,9 @@ def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool
     for fb_id, answer in tqdm(output_df[output_name].items(), total=N_CASES):
         ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
-        if eval_correctness(fb_id=fb_id, answer=answer, n_times=n_times, human=human, debug=debug):
+        if (eval_correctness(fb_id=fb_id, answer=answer, output_name=output_name, n_times=n_times, human=human, debug=debug)  # noqa: E501
+                if refresh
+                else (notna(correctness := output_df.loc[fb_id, f'{output_name}---CORRECTNESS']) and correctness)):
             n_yes_scores_by_category[ground_truth['category']] += 1
 
         else:
@@ -125,11 +144,28 @@ def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool
                                                          else ''))
 
     logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
-    pprint({category: f'{(n := n_yes_scores_by_category[category])} / {n_for_category} = {n / n_for_category:.1%}'
-            for category, n_for_category in CAT_DISTRIB.items()})
+    pprint(correctness_by_category := {category: (f'{(n := n_yes_scores_by_category[category])} / {n_for_category} '
+                                                  f'= {n / n_for_category:.1%}')
+                                       for category, n_for_category in CAT_DISTRIB.items()})
 
     logger.warning('INCORRECT:')
     pprint(incorrect_answer_fb_ids)
+
+    return correctness_by_category
+
+
+def compare_eval(output_name: str, baseline_output_name: str = 'RAG-Default'):
+    output_df: DataFrame = get_or_create_output_df()
+
+    baseline_correctness_by_category: dict[str, str] = eval_all(output_name=baseline_output_name, refresh=False)
+    correctness_by_category: dict[str, str] = eval_all(output_name=output_name, refresh=False)
+    pprint({category: {output_name: correctness_summary, baseline_output_name: baseline_correctness_by_category[category]}
+            for category, correctness_summary in correctness_by_category.items()})
+
+    output_df.loc[:, baseline_output_name] = output_df[f'{baseline_output_name}---CORRECTNESS']
+    output_df.loc[:, output_name] = output_df[f'{output_name}---CORRECTNESS']
+    return output_df.loc[output_df[output_name] != output_df[baseline_output_name],
+                         ['doc_name', 'category', baseline_output_name, output_name]]
 
 
 if __name__ == '__main__':
@@ -143,15 +179,20 @@ if __name__ == '__main__':
     arg_parser.add_argument('--no-human-eval', dest='human_eval', action='store_false', help='Human Evaluation OFF')
     arg_parser.set_defaults(human_eval=True)
 
+    arg_parser.add_argument('--refresh', dest='refresh', action='store_true', help='Evaluation Refreshing ON')
+    arg_parser.add_argument('--no-refresh', dest='refresh', action='store_false', help='Evaluation Refreshing OFF')
+    arg_parser.set_defaults(refresh=True)
+
     arg_parser.add_argument('--debug', action='store_true', help='Debug by printing out prompts')
 
     args = arg_parser.parse_args()
 
     if 'all' in args.id.lower():
-        eval_all(output_name=args.answer_col, n_times=args.n_times, human=args.human_eval, debug=args.debug)
+        eval_all(output_name=args.answer_col, refresh=args.refresh, n_times=args.n_times, human=args.human_eval, debug=args.debug)  # noqa: E501
 
     else:
         logger.info(
             eval_correctness(fb_id=args.id,
                              answer=read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME).loc[args.id, args.answer_col],
+                             output_name=args.answer_col,
                              n_times=args.n_times, human=args.human_eval, debug=args.debug))

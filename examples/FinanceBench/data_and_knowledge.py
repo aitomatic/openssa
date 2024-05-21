@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from argparse import ArgumentParser
 from collections import Counter
 from dataclasses import dataclass, field
@@ -5,14 +7,15 @@ import base64
 from enum import StrEnum
 from functools import cached_property
 from pathlib import Path
-from typing import TypedDict, Required, NotRequired, Literal
+from typing import TypedDict, Required, NotRequired, Literal, TYPE_CHECKING
 
 from dotenv import load_dotenv
 from pandas import DataFrame, read_csv
 import requests
 import yaml
 
-from openssa.l2.planning.hierarchical.plan import HTPDict
+if TYPE_CHECKING:
+    from openssa.l2.planning.hierarchical.plan import HTPDict
 
 
 load_dotenv()
@@ -42,7 +45,17 @@ type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
                                              'category': Required[Category],
                                              'correctness': Required[str],
                                              'answer-inadequate': NotRequired[Literal[True]],
-                                             'evaluator-unreliable': NotRequired[Literal[True]]})
+                                             'evaluator-unreliable': NotRequired[Literal[True]]},
+                             total=False)
+
+
+type RAGGroundTruths = TypedDict('RAGGroundTruths', {'defs': Required[dict[str, str]],
+                                                     'ground-truths': Required[dict[str,  # doc
+                                                                                    dict[str,  # statement
+                                                                                         dict[str,  # line item
+                                                                                              dict[int | str,  # period
+                                                                                                   str  # ground truth
+                                                                                                   ]]]]]})
 
 
 NON_BOT_REQUEST_HEADERS: dict[str, str] = {
@@ -66,7 +79,7 @@ DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(META_DF.doc_name, META_DF.doc_l
 DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
 
 FB_IDS: list[FbId] = META_DF.index.to_list()
-FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FB_IDS_BY_DOC_NAME: dict[DocName, list[FbId]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
 
 QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
 
@@ -134,8 +147,23 @@ with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
           opener=None) as f:
     EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
+assert (s0 := set(EXPERT_PLAN_MAP.values())) == (s1 := set(EXPERT_PLAN_TEMPLATES)), \
+    ValueError('*** Expert Plan IDs not matching between Expert Plan Map & Expert Plan Templates ***\n'
+               f'Candidate Mismatches: {s0 ^ s1}')
+
 EXPERT_PLAN_COMPANY_KEY: str = 'COMPANY'
 EXPERT_PLAN_PERIOD_KEY: str = 'PERIOD'
+
+
+RAG_GROUND_TRUTHS_FILE_PATH: Path = Path(__file__).parent / 'rag-ground-truths.yml'
+with open(file=RAG_GROUND_TRUTHS_FILE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    RAG_GROUND_TRUTHS: RAGGroundTruths = yaml.safe_load(stream=f)
 
 
 @dataclass
@@ -209,6 +237,16 @@ def export_ground_truths():
                        version=None,
                        tags=None,
                        sort_keys=False)
+
+
+def get_or_create_output_df() -> DataFrame:
+    output_df: DataFrame = (read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
+                            if OUTPUT_FILE_PATH.is_file()
+                            else META_DF[['doc_name', 'question', 'evidence_text', 'page_number', 'answer']])
+
+    output_df.loc[:, 'category'] = [GROUND_TRUTHS[fb_id]['category'] for fb_id in output_df.index]
+
+    return output_df
 
 
 if __name__ == '__main__':
