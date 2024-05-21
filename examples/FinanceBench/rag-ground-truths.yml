@@ -348,13 +348,13 @@ ground-truths:
     P&L:
       rev:
         2017: 39,403 million
-        2016: 39,528 million  # unreliable
-        2015: 40,339 million  # unreliable
+        2016: 39,528 million
+        2015: 40,339 million
 
       net:
-        2017: 1,228 million  # unreliable
-        2016: 897 million
-        2015: 1,233 million  # unreliable
+        2017: 1,228 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $1,207m
+        2016: 897 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $807m
+        2015: 1,233 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $1,246m
 
 
   BESTBUY_2019_10K:
