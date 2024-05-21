@@ -1767,9 +1767,8 @@ financebench_id_01328:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer contains a quantity that is equivalent to or approximately equal to
-    411 million, 0.411 billion,
-    400 million or 0.4 billion
+    the answer states 0, zero, and/or that restructuring costs are not explicitly reported
+  answer-inadequate: true
 
 
 financebench_id_03620:
