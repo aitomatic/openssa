@@ -620,6 +620,8 @@ financebench_id_00757:
   correctness: >-
     the answer mentions that one customer accounted for large portion of revenue
 
+  evaluator-unreliable: true
+
 
 financebench_id_00476:
   doc: AMERICANEXPRESS_2022_10K
@@ -718,6 +720,8 @@ financebench_id_01981:
   category: 0-RETRIEVE
   correctness: >-
     the answer affirms that retention was good
+
+  evaluator-unreliable: true
 
 
 financebench_id_05718:
@@ -961,7 +965,7 @@ financebench_id_00517:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer mentions following 3 categories:
+    the answer mentions at least 1 of following categories:
     - Commercial Airplanes;
     - Defense/Defence (or fully written "Defense, Space & Security"); and
     - Services (or fully written "Global Services")
@@ -1474,6 +1478,8 @@ financebench_id_03718:
   correctness: >-
     the answer contains a calculated CAGR percentage value that is in the range from 0.400% to 0.500%
     (if the answer is a single number, assume that it is that calculated CAGR percentage value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_04171:

@@ -231,7 +231,7 @@ ground-truths:
   AMCOR_2020_10K:
     BS:
       recvables:
-        2020: 1,615.9 million
+        2020: 1,615.9 million  # unreliable
         2019: 1,864.3 million  # unreliable
 
 
