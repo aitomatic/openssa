@@ -1482,7 +1482,7 @@ financebench_id_03718:
   evaluator-unreliable: true
 
 
-financebench_id_04171:
+financebench_id_04171:  # TODO: Balance Sheet often mistaken with that of CityCenter Holdings, which has AP of $25.758m
   doc: MGMRESORTS_2018_10K
   question: Basing your judgments off of the balance sheet, what is the year end FY2018
     amount of accounts payable for MGM Resorts? Answer in USD millions.
