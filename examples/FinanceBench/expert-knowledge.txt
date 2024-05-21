@@ -40,8 +40,6 @@ Cash-Flow-Statement Line-Item Synonyms
 
 - "(Net) Cash (Flows) from Financing", "(Net) Cash (Flows) from Financing Activities", "(Net) Financing Cash Flows"
 
-- "Cash (Flows) from Financing", "Cash (Flows) from Financing Activities", "Financing Cash Flows"
-
 
 Income-Statement / Profit-and-Loss- (P&L-) Statement / Earnings-Statement / Operations-Statement Line-Item Synonyms
 -------------------------------------------------------------------------------------------------------------------
