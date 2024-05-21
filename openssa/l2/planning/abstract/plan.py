@@ -20,11 +20,6 @@ class PLAN(SimpleNamespace):
     """Plan Repr."""
 
 
-class PlanQuickRepr(TypedDict):
-    task: Required[str]
-    sub_plans: NotRequired[list[Self]]
-
-
 @dataclass
 class AbstractPlan(ABC):
     """Abstract Plan."""
@@ -65,21 +60,6 @@ class AbstractPlan(ABC):
                        compact=False,
                        sort_dicts=False,
                        underscore_numbers=False).replace("'", '').replace('\\n', '')
-
-    def concretize_tasks_from_template(self, **kwargs: Any):
-        self.task.ask: str = self.task.ask.format(**kwargs)
-
-        for sub_plan in self.sub_plans:
-            sub_plan.concretize_tasks_from_template(**kwargs)
-
-    @property
-    def quick_repr(self) -> PlanQuickRepr:
-        d: PlanQuickRepr = {'task': self.task.ask}
-
-        if self.sub_plans:
-            d['sub-plans']: list[PlanQuickRepr] = [sub_plan.quick_repr for sub_plan in self.sub_plans]
-
-        return d
 
     @abstractmethod
     def execute(self, reasoner: AReasoner, knowledge: set[Knowledge] | None = None,
