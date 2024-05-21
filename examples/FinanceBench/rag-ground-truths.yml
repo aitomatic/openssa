@@ -209,8 +209,8 @@ ground-truths:
   AMAZON_2017_10K:
     BS:
       invent:
-        2017: 16,047 million  # unreliable
-        2016: 11,461 million  # unreliable
+        2017: 16,047 million
+        2016: 11,461 million
 
       payables:
         2017: 34,616 million
@@ -223,9 +223,9 @@ ground-truths:
         2015: 107,006 million
 
       cogs:
-        2017: 111,934 million  # unreliable
-        2016: 88,265 million  # unreliable
-        2015: 71,651 million  # unreliable
+        2017: 111,934 million  # unreliable: often mistaken with Total Operating Expenses $173,760 million
+        2016: 88,265 million  # unreliable: often mistaken with Total Operating Expenses $131,801 million
+        2015: 71,651 million  # unreliable: often failing to be retrieved at all
 
 
   AMCOR_2020_10K:
