@@ -69,4 +69,4 @@ if st.button(label=f'__SOLVE__: _{QS_BY_FB_ID[problem_id]}_',
     with st.spinner(text='_THINKING..._'), logcapture(st.empty().code, from_logger=logger):
         solution: str = (get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
                          .solve(problem=QS_BY_FB_ID[problem_id], plan=expert_plan_from_fb_id(problem_id), dynamic=False))
-    st.write(solution)
+    st.latex(body=solution)
