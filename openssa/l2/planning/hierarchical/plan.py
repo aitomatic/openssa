@@ -72,7 +72,9 @@ class HTP(AbstractPlan):
                                                         else sub_plan.execute(reasoner=reasoner, knowledge=knowledge,
                                                                               other_results=sub_results))))
 
-            inputs: str = (f'REASONING WITHOUT FURTHER SUPPORTING RESULTS:\n{reasoning_wo_sub_results}\n'
+            inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
+                           '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
+                           f'{reasoning_wo_sub_results}\n'
                            '\n\n' +
                            '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
                                         '\n'
