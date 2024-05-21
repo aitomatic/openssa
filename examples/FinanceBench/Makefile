@@ -57,6 +57,9 @@ ssm-discuss:
 eval:
 	@poetry run python eval.py ${output}
 
+eval-no-refresh:
+	@poetry run python eval.py ${output} --no-refresh
+
 eval-test:
 	@poetry run python eval.py answer --no-human-eval
 

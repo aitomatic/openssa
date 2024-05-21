@@ -191,6 +191,8 @@ financebench_id_07966:
     or, alternatively, a calculated decimal value that is in the range from 0.0170 to 0.0210
     (if the answer is a single number, assume that it is that calculated metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_04735:
   doc: ADOBE_2015_10K
@@ -219,7 +221,7 @@ financebench_id_07507:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer contains a calculated Operating Income change percentage value that is approximately 65% or 65.4%
+    the answer contains a calculated Operating Income change percentage value that is in the range from 60.0% or 70.0%
     (if the answer is a single number, assume that it is that calculated Operating Income change percentage value)
 
 
@@ -315,6 +317,8 @@ financebench_id_10420:
     percentage value that is NEGATIVE and in the range from -2.00% to -1.40%,
     or, alternatively, a calculated decimal value that is NEGATIVE and in the range from -0.0200 to -0.0140
     (if the answer is a single number, assume that it is that calculated Return on Assets (RoA) metric value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_06655:
@@ -498,6 +502,8 @@ financebench_id_01930:
     the answer concludes that the percentage change was approximately 1%,
     or, alternatively, concludes that the growth was flat / small
 
+  evaluator-unreliable: true
+
 
 financebench_id_03069:
   doc: AMD_2015_10K
@@ -614,6 +620,8 @@ financebench_id_00757:
   correctness: >-
     the answer mentions that one customer accounted for large portion of revenue
 
+  evaluator-unreliable: true
+
 
 financebench_id_00476:
   doc: AMERICANEXPRESS_2022_10K
@@ -712,6 +720,8 @@ financebench_id_01981:
   category: 0-RETRIEVE
   correctness: >-
     the answer affirms that retention was good
+
+  evaluator-unreliable: true
 
 
 financebench_id_05718:
@@ -859,6 +869,8 @@ financebench_id_00460:
   correctness: >-
     the answer mentions that number of stores decreased
 
+  evaluator-unreliable: true
+
 
 financebench_id_01902:
   doc: BESTBUY_2024Q2_10Q
@@ -953,7 +965,7 @@ financebench_id_00517:
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer mentions following 3 categories:
+    the answer mentions at least 1 of following categories:
     - Commercial Airplanes;
     - Defense/Defence (or fully written "Defense, Space & Security"); and
     - Services (or fully written "Global Services")
@@ -1002,7 +1014,9 @@ financebench_id_01290:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions commercial airlines and US government
+    the answer mentions airlines and government(s)
+
+  evaluator-unreliable: true
 
 
 financebench_id_00464:
@@ -1252,6 +1266,8 @@ financebench_id_00839:
   correctness: >-
     the answer affirms that and mentions Ulta Beauty
 
+  evaluator-unreliable: true
+
 
 financebench_id_00822:
   doc: FOOTLOCKER_2022_8K_dated-2022-05-20
@@ -1282,7 +1298,8 @@ financebench_id_04103:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Cash Conversion Cycle (CCC) metric value based on supporting calculated
+    the answer contains a calculated Cash Conversion Cycle (CCC) metric value
+    that is NEGATIVE and in the range from -5.00 to -2.00, based on supporting calculated
     Days Inventory Oustanding (DIO), Days Sales Outstanding (DSO) and Days Payable Outstanding (DPO) metric values
   answer-inadequate: true
 
@@ -1357,8 +1374,7 @@ financebench_id_02119:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer contains a quantity that is equivalent to or approximately equal to
-    66.56 or 67
+    the answer contains a quantity that is in the range from 60.00 to 70.00
 
   evaluator-unreliable: true
 
@@ -1463,6 +1479,8 @@ financebench_id_03718:
     the answer contains a calculated CAGR percentage value that is in the range from 0.400% to 0.500%
     (if the answer is a single number, assume that it is that calculated CAGR percentage value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_04171:
   doc: MGMRESORTS_2018_10K
@@ -1504,6 +1522,8 @@ financebench_id_01254:
   category: 0-RETRIEVE
   correctness: >-
     the answer affirms that dividends have been / were paid
+
+  evaluator-unreliable: true
 
 
 financebench_id_00382:
@@ -1771,6 +1791,8 @@ financebench_id_03620:
     - stated as approximately 9000 million or 9 billion
     (if the answer is a single number, assume that it is that calculated metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_04481:
   doc: PEPSICO_2022_10K
@@ -1826,7 +1848,7 @@ financebench_id_00882:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated total quantity that is equivalent to or approximately equal to
+    the answer contains a calculated total quantity that is greater than or equal to
     8,400,000,000, 8400 million or 8.4 billion
     (if the answer is a single number, assume that it is that calculated total amount)
 
@@ -1890,7 +1912,7 @@ financebench_id_02416:
     the answer mentions Trillium, Array and Therachon
 
 
-financebench_id_00283:
+financebench_id_00283:  # tricky
   doc: Pfizer_2023Q2_10Q
   question: How much does Pfizer expect to pay to spin off Upjohn in the future in
     USD million?
@@ -1998,7 +2020,7 @@ financebench_id_00605:
     (if the answer is a single number, assume that it is that calculated percentage value)
 
 
-financebench_id_00606:
+financebench_id_00606:  # tricky
   doc: ULTABEAUTY_2023Q4_EARNINGS
   question: Did Ulta Beauty's wages expense as a percent of net sales increase or
     decrease in FY2023?
@@ -2080,6 +2102,8 @@ financebench_id_00566:
   category: 1-COMPARE
   correctness: >-
     the answer concludes that debt decreased
+
+  evaluator-unreliable: true
 
 
 financebench_id_06247:

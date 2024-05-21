@@ -166,7 +166,10 @@ Capital-Intensiveness / Return-on-Capital Metric Formulas
 Leverage Metric Formulas
 ------------------------
 
-`Total Debt` = `Long-Term Debt` + `Short-Term Debt, or Current Portion of (Long-Term) Debt`
+`Total Debt` = (
+  `Long-Term Debt (EXCLUDING any current/short-term portion)` +
+  `Short-Term Debt, or Current Portion of (Long-Term) Debt`
+)
 
 
 Liquidity Metric Formulas

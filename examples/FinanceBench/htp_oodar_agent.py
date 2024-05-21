@@ -13,12 +13,24 @@ from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 @cache
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False) -> Agent | None:
-    return (Agent(planner=AutoHTPlanner(max_depth=2, max_subtasks_per_decomp=3),
+    return (Agent(planner=AutoHTPlanner(max_depth=2, max_subtasks_per_decomp=4),
                   reasoner=OodaReasoner(),
                   knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
                   resources={FileResource(path=dir_path)})
             if (dir_path := Doc(name=doc_name).dir_path)
             else None)
+
+
+@cache
+def expert_plan_from_fb_id(fb_id: FbId) -> HTP:
+    htp: HTP = HTP.from_dict(EXPERT_PLAN_TEMPLATES[EXPERT_PLAN_MAP[fb_id]])
+
+    htp.task.ask: str = QS_BY_FB_ID[fb_id]
+
+    htp.concretize_tasks_from_template(**{EXPERT_PLAN_COMPANY_KEY: (doc := Doc(name=DOC_NAMES_BY_FB_ID[fb_id])).company,
+                                          EXPERT_PLAN_PERIOD_KEY: doc.period})
+
+    return htp
 
 
 @enable_batch_qa_and_eval(output_name='HTP-auto-static---OODAR')
@@ -43,12 +55,8 @@ def solve_expert_htp_statically(fb_id: FbId) -> Answer:
     if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]):
         problem: str = QS_BY_FB_ID[fb_id]
 
-        if expert_htp_id := EXPERT_PLAN_MAP.get(fb_id):
-            htp: HTP = HTP.from_dict(EXPERT_PLAN_TEMPLATES[expert_htp_id])
-            htp.task.ask: str = problem
-            htp.concretize_tasks_from_template(**{EXPERT_PLAN_COMPANY_KEY: (doc := Doc(name=DOC_NAMES_BY_FB_ID[fb_id])).company,  # noqa: E501
-                                                  EXPERT_PLAN_PERIOD_KEY: doc.period})
-            return agent.solve(problem=problem, plan=htp, dynamic=False)
+        if fb_id in EXPERT_PLAN_MAP:
+            return agent.solve(problem=problem, plan=expert_plan_from_fb_id(fb_id), dynamic=False)
 
         return agent.solve(problem=problem, plan=None, dynamic=True)
 
@@ -83,12 +91,8 @@ def solve_expert_htp_statically_with_knowledge(fb_id: FbId) -> Answer:
     if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True):
         problem: str = QS_BY_FB_ID[fb_id]
 
-        if expert_htp_id := EXPERT_PLAN_MAP.get(fb_id):
-            htp: HTP = HTP.from_dict(EXPERT_PLAN_TEMPLATES[expert_htp_id])
-            htp.task.ask: str = problem
-            htp.concretize_tasks_from_template(**{EXPERT_PLAN_COMPANY_KEY: (doc := Doc(name=DOC_NAMES_BY_FB_ID[fb_id])).company,  # noqa: E501
-                                                  EXPERT_PLAN_PERIOD_KEY: doc.period})
-            return agent.solve(problem=problem, plan=htp, dynamic=False)
+        if fb_id in EXPERT_PLAN_MAP:
+            return agent.solve(problem=problem, plan=expert_plan_from_fb_id(fb_id), dynamic=False)
 
         return agent.solve(problem=problem, plan=None, dynamic=True)
 
