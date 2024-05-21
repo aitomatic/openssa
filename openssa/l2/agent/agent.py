@@ -103,7 +103,10 @@ class Agent:
                 # then use Planner to generate static Plan,
                 # then execute such static Plan
                 plan: APlan = self.planner.plan(problem=problem, knowledge=self.knowledge, resources=self.resources)
-                logger.info(f'\n{plan.pformat}\n')
+                logger.info('\n'
+                            'GLOBAL TASK PLANNING\n'
+                            '====================\n'
+                            f'\n{plan.pformat}\n')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
@@ -118,7 +121,10 @@ class Agent:
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
                 # if Plan is given but no Planner is, then execute Plan statically
-                logger.info(f'\n{plan.pformat}\n')
+                logger.info('\n'
+                            'GLOBAL TASK PLANNING\n'
+                            '====================\n'
+                            f'\n{plan.pformat}\n')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
@@ -129,7 +135,10 @@ class Agent:
                 # then execute such updated static Plan
                 plan: APlan = self.planner.update_plan_resources(plan, problem=problem,
                                                                  knowledge=self.knowledge, resources=self.resources)
-                logger.info(f'\n{plan.pformat}\n')
+                logger.info('\n'
+                            'GLOBAL TASK PLANNING\n'
+                            '====================\n'
+                            f'\n{plan.pformat}\n')
 
                 result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
 
@@ -160,7 +169,10 @@ class Agent:
             plan_1_level_deep: APlan = planner.one_level_deep().plan(problem=problem,
                                                                      knowledge=self.knowledge,
                                                                      resources=self.resources)
-            logger.info(f'\n{plan_1_level_deep.pformat}\n')
+            logger.info('\n'
+                        'TASK-DECOMPOSITION PLANNING\n'
+                        '===========================\n'
+                        f'\n{plan_1_level_deep.pformat}\n')
 
             sub_results: list[AskAnsPair] = []
             for sub_plan in tqdm(plan_1_level_deep.sub_plans):
