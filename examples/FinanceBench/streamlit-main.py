@@ -1,9 +1,8 @@
 # pylint: disable=bare-except,no-name-in-module,wrong-import-order,wrong-import-position
 
 
-import streamlit as st
-import loguru
 from loguru import logger
+import streamlit as st
 from streamlit_extras.capture import logcapture
 
 from data_and_knowledge import (DocName, FbId,
@@ -18,7 +17,7 @@ REPRESENTATIVE_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = {doc_name: (set(F
                                                                 for doc_name in DOC_NAMES}
 
 
-TITLE: str = 'Analysing SEC Filings (`FinanceBench` Dataset) with Planning & Reasoning'
+TITLE: str = 'OpenSSA: Analysing SEC Filings with Planning & Reasoning'
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
@@ -66,9 +65,8 @@ if st.button(label=f'__SOLVE__: _{QS_BY_FB_ID[problem_id]}_',
              type='primary',
              disabled=False,
              use_container_width=False):
-
-    logger.level("DEBUG")
-    with st.spinner('_SOLVING..._'), logcapture(st.empty().code, from_logger=loguru.logger):
+    logger.level('DEBUG')
+    with st.spinner(text='_SOLVING..._'), logcapture(st.empty().code, from_logger=logger):
         solution: str = (get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
                          .solve(problem=QS_BY_FB_ID[problem_id], plan=expert_plan_from_fb_id(problem_id), dynamic=False))
     st.write(solution)
