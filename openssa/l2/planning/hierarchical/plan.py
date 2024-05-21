@@ -106,16 +106,6 @@ class HTP(AbstractPlan):
                          '\n'
                          f'{inputs}')
 
-            logger.debug(f'\n{self.task.ask.upper()}\n'
-                         '--------------------------\n'
-                         f'{self.task.result}\n'
-                         '\n'
-                         ' ^ \n'
-                         '/|\\\n'
-                         ' | \n'
-                         '\n'
-                         f'{inputs}')
-
         else:
             self.task.result: str = reasoning_wo_sub_results
 
