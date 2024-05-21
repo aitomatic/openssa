@@ -223,8 +223,8 @@ ground-truths:
         2015: 107,006 million
 
       cogs:
-        2017: 111,934 million  # unreliable: often mistaken with Total Operating Expenses $173,760 million
-        2016: 88,265 million  # unreliable: often mistaken with Total Operating Expenses $131,801 million
+        2017: 111,934 million  # unreliable: often mistaken for Total Operating Expenses $173,760 million
+        2016: 88,265 million  # unreliable: often mistaken for Total Operating Expenses $131,801 million
         2015: 71,651 million  # unreliable: often failing to be retrieved at all
 
 
@@ -278,8 +278,8 @@ ground-truths:
         2022FY: 14,544 million
 
       ebitda:
-        2023Q4: 540 million  # unreliable
-        2023FY: 2,018 million  # unreliable
+        2023Q4: 540 million  # unreliable: FY & Quarter numbers often mistaken for each other
+        2023FY: 2,018 million  # unreliable: FY & Quarter numbers often mistaken for each other
 
 
   AMD_2015_10K:
@@ -352,9 +352,9 @@ ground-truths:
         2015: 40,339 million
 
       net:
-        2017: 1,228 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $1,207m
-        2016: 897 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $807m
-        2015: 1,233 million  # unreliable: often mistaken with Net Earnings (Loss) from Continuing Operations $1,246m
+        2017: 1,228 million  # unreliable: often mistaken for Net Earnings (Loss) from Continuing Operations $1,207m
+        2016: 897 million  # unreliable: often mistaken for Net Earnings (Loss) from Continuing Operations $807m
+        2015: 1,233 million  # unreliable: often mistaken for Net Earnings (Loss) from Continuing Operations $1,246m
 
 
   BESTBUY_2019_10K:
@@ -465,8 +465,8 @@ ground-truths:
         2019: 2,320 million
 
       payables:
-        2020: 1,174 million  # unreliable: often mistaken with Other Accrued Liabilities #2,437m
-        2019: 1,587 million  # unreliable: often mistaken with Other Accrued Liabilities $1,923m
+        2020: 1,174 million  # unreliable: often mistaken for Other Accrued Liabilities #2,437m
+        2019: 1,587 million  # unreliable: often mistaken for Other Accrued Liabilities $1,923m
 
     P&L:
       cogs:
@@ -507,8 +507,8 @@ ground-truths:
 
     P&L:
       rev:
-        2018: 194,579 million  # unreliable: often mistaken with Pharmacy Services 2018 revenue $134,128m or Retail/LTC 2018 revenue $83,989m
-        2017: 184,786 million  # unreliable: often mistaken with Pharmacy Services 2017 revenue $130,601m
+        2018: 194,579 million  # unreliable: often mistaken for Pharmacy Services 2018 revenue $134,128m or Retail/LTC 2018 revenue $83,989m
+        2017: 184,786 million  # unreliable: often mistaken for Pharmacy Services 2017 revenue $130,601m
         2016: 177,546 million
 
 
