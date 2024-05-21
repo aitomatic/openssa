@@ -1912,7 +1912,7 @@ financebench_id_02416:
     the answer mentions at least two out of Trillium, Array and Therachon
 
 
-financebench_id_00283:
+financebench_id_00283:  # tricky
   doc: Pfizer_2023Q2_10Q
   question: How much does Pfizer expect to pay to spin off Upjohn in the future in
     USD million?
@@ -2020,7 +2020,7 @@ financebench_id_00605:
     (if the answer is a single number, assume that it is that calculated percentage value)
 
 
-financebench_id_00606:
+financebench_id_00606:  # tricky
   doc: ULTABEAUTY_2023Q4_EARNINGS
   question: Did Ulta Beauty's wages expense as a percent of net sales increase or
     decrease in FY2023?
