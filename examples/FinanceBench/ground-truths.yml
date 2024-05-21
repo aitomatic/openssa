@@ -1188,7 +1188,7 @@ financebench_id_04209:
     59000, 59000 million or 59 billion
 
 
-financebench_id_05915:
+financebench_id_05915:  # TODO: retrieve Revenue $194,579m - often mistaken for Pharmacy Services revenue $134,128m or Retail/LTC revenue $83,989m
   doc: CVSHEALTH_2018_10K
   question: 'What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset
     turnover ratio is defined as: FY2018 revenue / (average PP&E between FY2017 and
