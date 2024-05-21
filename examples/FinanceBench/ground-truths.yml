@@ -818,7 +818,7 @@ financebench_id_00685:
   answer-inadequate: true
 
 
-financebench_id_01077:  # TODO: Acquistions should be retrievable fromn Notes to Consolidated Financial Statements
+financebench_id_01077:  # TODO: Acquisitions ought to be retrievable fromn Notes to Consolidated Financial Statements
   doc: BESTBUY_2023_10K
   question: What are major acquisitions that Best Buy has done in FY2023, FY2022 and
     FY2021?
