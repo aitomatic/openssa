@@ -1823,7 +1823,7 @@ financebench_id_01482:
     the answer says proposal related to Net-Zero Emissions was defeated / not successful
 
 
-financebench_id_00705:
+financebench_id_00705:  # TODO: reasoning about terminated and newly-issued debt
   doc: PEPSICO_2023_8K_dated-2023-05-30
   question: By how much did Pepsico increase its unsecured five year revolving credit
     agreement on May 26, 2023?
