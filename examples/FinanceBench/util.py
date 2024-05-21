@@ -29,7 +29,7 @@ class enable_batch_qa_and_eval:  # noqa: N801
                 for _fb_id in tqdm(FB_IDS):
                     qa_func(_fb_id)
 
-                eval_all(output_name=self.output_name)
+                eval_all(output_name=self.output_name, refresh=True)
                 return None
 
             eval_correctness(fb_id=fb_id, answer=(answer := qa_func(fb_id)), output_name=self.output_name)

@@ -28,6 +28,7 @@ IF "%TARGET%"=="rag-test" GOTO rag-test
 IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
 
 IF "%TARGET%"=="eval" GOTO eval
+IF "%TARGET%"=="eval-no-refresh" GOTO eval-no-refresh
 IF "%TARGET%"=="eval-test" GOTO eval-test
 
 IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
@@ -114,6 +115,10 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 :: ================
 :eval
   poetry run python eval.py %2
+  GOTO end
+
+:eval-no-refresh
+  poetry run python eval.py %2 --no-refresh
   GOTO end
 
 :eval-test

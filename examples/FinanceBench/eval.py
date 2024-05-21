@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 
 from dotenv import load_dotenv
 from loguru import logger
-from pandas import DataFrame, read_csv
+from pandas import DataFrame, notna, read_csv
 from tqdm import tqdm
 
 from openssa.l2.config import Config
@@ -122,7 +122,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None
     return correct
 
 
-def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool = False):
+def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bool = True, debug: bool = False):
     output_df: DataFrame = get_or_create_output_df()
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
@@ -131,7 +131,9 @@ def eval_all(output_name: str, n_times: int = 9, human: bool = True, debug: bool
     for fb_id, answer in tqdm(output_df[output_name].items(), total=N_CASES):
         ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
-        if eval_correctness(fb_id=fb_id, answer=answer, output_name=output_name, n_times=n_times, human=human, debug=debug):  # noqa: E501
+        if (eval_correctness(fb_id=fb_id, answer=answer, output_name=output_name, n_times=n_times, human=human, debug=debug)  # noqa: E501
+                if refresh
+                else (notna(correctness := output_df.loc[fb_id, f'{output_name}---CORRECTNESS']) and correctness)):
             n_yes_scores_by_category[ground_truth['category']] += 1
 
         else:
@@ -160,12 +162,16 @@ if __name__ == '__main__':
     arg_parser.add_argument('--no-human-eval', dest='human_eval', action='store_false', help='Human Evaluation OFF')
     arg_parser.set_defaults(human_eval=True)
 
+    arg_parser.add_argument('--refresh', dest='refresh', action='store_true', help='Evaluation Refreshing ON')
+    arg_parser.add_argument('--no-refresh', dest='refresh', action='store_false', help='Evaluation Refreshing OFF')
+    arg_parser.set_defaults(refresh=True)
+
     arg_parser.add_argument('--debug', action='store_true', help='Debug by printing out prompts')
 
     args = arg_parser.parse_args()
 
     if 'all' in args.id.lower():
-        eval_all(output_name=args.answer_col, n_times=args.n_times, human=args.human_eval, debug=args.debug)
+        eval_all(output_name=args.answer_col, refresh=args.refresh, n_times=args.n_times, human=args.human_eval, debug=args.debug)  # noqa: E501
 
     else:
         logger.info(
