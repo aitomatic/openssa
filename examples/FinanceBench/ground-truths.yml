@@ -986,7 +986,7 @@ financebench_id_01091:
     the answer affirms that there have been material lawsuits / legal battles
 
 
-financebench_id_00678:
+financebench_id_00678:  # tricky because Gross Income label is implicit/missing (!) on Income Statement
   doc: BOEING_2022_10K
   question: Does Boeing have an improving gross margin profile as of FY2022? If gross
     margin is not a useful metric for a company like this, then state that and explain
