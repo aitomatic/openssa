@@ -464,14 +464,14 @@ ground-truths:
         2019: 2,320 million
 
       payables:
-        2020: 1,174 million  # unreliable
-        2019: 1,587 million  # unreliable
+        2020: 1,174 million  # unreliable: often mistaken with Other Accrued Liabilities #2,437m
+        2019: 1,587 million  # unreliable: often mistaken with Other Accrued Liabilities $1,923m
 
     P&L:
       cogs:
-        2020: 7,772 million  # unreliable
-        2019: 7,468 million  # unreliable
-        2018: 6,829 million  # unreliable
+        2020: 7,772 million  # unreliable: often failing to be retrieved at all
+        2019: 7,468 million  # unreliable: often failing to be retrieved at all
+        2018: 6,829 million  # unreliable: often failing to be retrieved at all
 
 
   CORNING_2021_10K:
