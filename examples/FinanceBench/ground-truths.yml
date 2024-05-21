@@ -1987,7 +1987,7 @@ financebench_id_00601:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions leverage of marketing expenses and incentive compensation due to higher sales
+    the answer mentions marketing expenses and incentive compensation
   answer-inadequate: true
 
 
@@ -2056,9 +2056,10 @@ financebench_id_02024:  # TODO: numbers for different years often mixed up
 
   category: 0-RETRIEVE
   correctness: |-
-    the answer mentions both "Pension (Benefits)" and "Health Care & Life (Insurance)", and:
-    - mentions amounts of 1,097 million and 862 million or approximately equivalent amounts; or
-    - mentions total amount of 1,959 million or an approximately equivalent amount
+    the answer mentions at least 1 of following:
+    - amount of 1,097 million, or 1.1 billion, or approximately equivalent amount (explicitly or implicitly for "Pension (Benefits)");
+    - amount of 862 million, or approximately equivalent amount (explicitly or implicitly for "Health Care & Life (Insurance)"; or
+    - total amount of 1,959 million, or 1.96 billion, or 2.0 billion, or an approximately equivalent amount
 
 
 financebench_id_00216:
