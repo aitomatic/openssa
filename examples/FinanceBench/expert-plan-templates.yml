@@ -819,6 +819,18 @@ days-payable-outstanding:
         - previous annual fiscal period end immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end?
 
+    # TODO: remove/simplify: back-up task in case above fails
+    - task: |-
+        What are values in dollars of `Accounts Payable` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
     - task: >-
         What is value in dollars of
         `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
