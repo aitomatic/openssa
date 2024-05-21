@@ -13,7 +13,7 @@ financebench_id_03029:
     1600, 1600 million or 1.6 billion
 
 
-financebench_id_04672:
+financebench_id_04672:  # TODO: (Net) PP&E often mistaken with Total Equity $9,848m (!)
   doc: 3M_2018_10K
   question: 'Assume that you are a public equities analyst. Answer the following question
     by primarily using information that is shown in the balance sheet: what is the
