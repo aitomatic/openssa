@@ -501,14 +501,14 @@ ground-truths:
   CVSHEALTH_2018_10K:
     BS:
       fixed-assets:
-        2018: 11,349 million  # unreliable
-        2017: 10,292 million  # unreliable
+        2018: 11,349 million  # unreliable: often failing to be retrieved at all
+        2017: 10,292 million  # unreliable: often failing to be retrieved at all
 
     P&L:
       rev:
-        2018: 194,579 million  # unreliable
-        2017: 184,786 million  # unreliable
-        2016: 177,546 million  # unreliable
+        2018: 194,579 million  # unreliable: often mistaken with Pharmacy Services 2017 revenue $134,128m or Retail/LTC 2018 revenue $83,989m
+        2017: 184,786 million  # unreliable: often mistaken with Pharmacy Services 2017 revenue $130,601m
+        2016: 177,546 million
 
 
   CVSHEALTH_2022_10K:
