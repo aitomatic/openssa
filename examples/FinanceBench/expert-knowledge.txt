@@ -260,6 +260,13 @@ FINANCIAL-ANALYSIS LANGUAGE/WORDING
   by the average of that Balance-Sheet line item between the latest fiscal year-end and the immediately-preceeding fiscal year-end
 
 
+PHYSICAL-PRODUCT COMPANY PERFORMANCE METRICS vs. FINANCIAL-SERVICES COMPANY PERFORMANCE METRICS
+===============================================================================================
+
+Margin metrics are generally relevant/useful performance indicators for evaluating companies making physical products,
+but generally irrelevant / not useful for evaluating companies delivering financial services
+
+
 PULICLY LISTED & TRADED DEBT SECURITIES
 =======================================
 
@@ -268,10 +275,3 @@ then such debt securities are enumerated on SEC filings' 1st page, alongside the
 
 If only equity shares/stock are enumerated on SEC filings' 1st page,
 then there are no debt securities registered to trade on a national securities exchange under a company's name.
-
-
-PHYSICAL-PRODUCT COMPANY PERFORMANCE METRICS vs. FINANCIAL-SERVICES COMPANY PERFORMANCE METRICS
-===============================================================================================
-
-Margin metrics are generally relevant/useful performance indicators for evaluating companies making physical products,
-but generally irrelevant / not useful for evaluating companies delivering financial services
