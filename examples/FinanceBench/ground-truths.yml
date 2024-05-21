@@ -1939,7 +1939,7 @@ financebench_id_00724:
     the answer identifies Developed Rest of World as having worst percentage/relative decline
 
 
-financebench_id_02419:
+financebench_id_02419:  # TODO: there seems to be confusion because Upjohn spin-off started in 2020 but would complete in 2023
   doc: Pfizer_2023Q2_10Q
   question: As of Q2'2023, is Pfizer spinning off any large business segments?
   answer: Yes, it's spinning off Upjohn.
