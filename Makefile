@@ -1,13 +1,13 @@
 # DIRECTORY NAMES & PATHS
 # =======================
-LIB_DIR=openssa/
+LIB_DIR=openssa
 
 EXAMPLES_DIR=examples
 
 TESTS_DIR=tests
 
 DOCS_DIR=docs
-DOCS_BUILD_DIR=$(DOCS_DIR)/_build/
+DOCS_BUILD_DIR=$(DOCS_DIR)/_build
 DOCS_SUBDIRS_TO_PUBLISH := _images _static
 
 
@@ -105,7 +105,7 @@ docs: docs-build-clean docs-build-api
 docs-build-clean:
 	@rm -f "$(DOCS_DIR)"/*.rst
 	@rm -rf "$(DOCS_BUILD_DIR)"
-	
+
 docs-build-api:
 	# generate .rst files from module code & docstrings
 	# any pathnames given at the end are paths to be excluded ignored during generation.
@@ -118,8 +118,7 @@ docs-build-api:
 		--implicit-namespaces \
 		--module-first \
 		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)" \
-		*/contrib/streamlit_ssa_prob_solver/main.py */contrib/streamlit_ssa_prob_solver/pages \
-		*/contrib */core */integrations */utils 
+		*/contrib */core */integrations */utils
 
 	# get rid of undocumented members
 	# sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR)*.rst
