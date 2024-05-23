@@ -989,6 +989,8 @@ financebench_id_01091:
   correctness: >-
     the answer affirms that there have been material lawsuits / legal battles
 
+  evaluator-unreliable: true
+
 
 financebench_id_00678:  # tricky because Gross Income label is implicit/missing (!) on Income Statement
   doc: BOEING_2022_10K
