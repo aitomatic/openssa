@@ -1849,9 +1849,13 @@ financebench_id_00882:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated total quantity that is greater than or equal to
-    8,400,000,000, 8400 million or 8.4 billion
-    (if the answer is a single number, assume that it is that calculated total amount)
+    the answer either (or both):
+    - mentions two separate quantities each equal to 4,200,000,000, 4200 million or 4.2 billion; and/or
+    - contains a calculated total quantity that is greater than or equal to
+      8,400,000,000, 8400 million or 8.4 billion
+    (if the answer is a single number, assume that it is that latter calculated total amount)
+
+  evaluator-unreliable: true
 
 
 financebench_id_01474:
