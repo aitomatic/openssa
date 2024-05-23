@@ -381,6 +381,8 @@ financebench_id_03882:
     1616, 1616 million, 1.616 billion,
     1600, 1600 million or 1.6 billion
 
+  evaluator-unreliable: true
+
 
 financebench_id_01935:
   doc: AMCOR_2022_8K_dated-2022-07-01
