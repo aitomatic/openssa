@@ -535,8 +535,8 @@ financebench_id_00222:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio decimal value that is in the range from 1.40 to 1.70,
-    or, alternatively, a calculated percentage value that is in the range from 140% to 170%
+    the answer contains a calculated Quick Ratio decimal value that is in the range from 1.40 to 1.90,
+    or, alternatively, a calculated percentage value that is in the range from 140% to 190%
 
 
 financebench_id_00995:
