@@ -257,6 +257,10 @@ ground-truths:
         2023: 992 million + 1,221 million
         2022: 1,114 million + 1,325 million
 
+      curr-assets:
+        2023: 5,308 million
+        2022: 5,853 million
+
       curr-liabs:
         2023: 4,476 million  # unreliable
         2022: 5,103 million
