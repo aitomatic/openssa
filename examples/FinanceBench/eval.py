@@ -124,6 +124,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None
 
 
 def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bool = True, debug: bool = False):
+    # pylint: disable=too-many-locals
     output_df: DataFrame = get_or_create_output_df()
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
