@@ -1768,7 +1768,7 @@ financebench_id_01328:
   page(s): '78'
 
   category: 0-RETRIEVE
-  correctness: >-
+  correctness: |-
     the answer either:
     - mentions a quantity that is equivalent to or approximately equal to 411 million; or
     - states 0, zero, and/or that restructuring costs are not explicitly reported
@@ -1850,7 +1850,7 @@ financebench_id_00882:
   page(s): '2'
 
   category: 3-CALC-COMPLEX
-  correctness: >-
+  correctness: |-
     the answer either (or both):
     - mentions two separate quantities each equal to 4,200,000,000, 4200 million or 4.2 billion; and/or
     - contains a calculated total quantity that is greater than or equal to
