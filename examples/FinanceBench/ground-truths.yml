@@ -954,6 +954,8 @@ financebench_id_10285:
     12645, 12645 million, 12.645 billion,
     12600, 12600 million or 12.6 billion
 
+  evaluator-unreliable: true
+
 
 financebench_id_00517:
   doc: BOEING_2022_10K
