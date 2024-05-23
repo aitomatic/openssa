@@ -1767,7 +1767,9 @@ financebench_id_01328:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer states 0, zero, and/or that restructuring costs are not explicitly reported
+    the answer either:
+    - mentions a quantity that is equivalent to or approximately equal to 411 million; or
+    - states 0, zero, and/or that restructuring costs are not explicitly reported
   answer-inadequate: true
 
 
