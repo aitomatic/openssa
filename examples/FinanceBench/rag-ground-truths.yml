@@ -86,16 +86,20 @@ ground-truths:
         2022: 3,655 million
 
       st-invest:
-        2023Q2: 56 million
+        2023Q2: 56 million  # unreliable
         2022: 238 million
 
       recvables:
-        2023Q2: 4,947 million
+        2023Q2: 4,947 million  # unreliable
         2022: 4,532 million  # unreliable
 
       invent:
         2023Q2: 5,280 million
         2022: 5,372 million
+
+      curr-assets:
+        2023Q2: 15,754 million
+        2022: 14,688 million
 
       curr-liabs:
         2023Q2: 10,936 million
