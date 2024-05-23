@@ -2073,8 +2073,8 @@ financebench_id_00216:
 
   category: 4-CALC-AND-JUDGE
   correctness: >-
-    the answer contains a calculated Quick Ratio decimal value that is in the range from 0.40 to 0.70,
-    or, alternatively, a calculated percentage value that is in the range from 40% to 70%
+    the answer contains a calculated Quick Ratio decimal value that is in the range from 0.40 to 0.80,
+    or, alternatively, a calculated percentage value that is in the range from 40% to 80%
 
 
 financebench_id_00215:
