@@ -818,6 +818,10 @@ ground-truths:
         2022: 2,388 million
         2021: 3,055 million
 
+      curr-assets:
+        2022: 37,857 million
+        2021: 36,728 million
+
       fixed-assets:
         2022: 107,434 million
         2021: 99,696 million
