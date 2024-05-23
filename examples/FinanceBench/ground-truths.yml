@@ -1892,6 +1892,8 @@ financebench_id_00302:
   correctness: >-
     the answer concludes that Property, Plant & Equipment (PP&E or PPNE) increased
 
+  evaluator-unreliable: true
+
 
 financebench_id_00702:
   doc: PFIZER_2021_10K
