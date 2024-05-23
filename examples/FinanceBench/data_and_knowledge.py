@@ -69,7 +69,8 @@ BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
 }
 
 
-METADATA_URL: str = 'https://raw.githubusercontent.com/patronus-ai/financebench/main/financebench_sample_150.csv'
+METADATA_URL: str = ('https://raw.githubusercontent.com/patronus-ai/financebench/'
+                     '641ae9ece2cae93c671cf59c2d53742b51c7f1aa/financebench_sample_150.csv')
 FB_ID_COL_NAME: str = 'financebench_id'
 META_DF: DataFrame = read_csv(METADATA_URL, index_col=FB_ID_COL_NAME)
 META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
