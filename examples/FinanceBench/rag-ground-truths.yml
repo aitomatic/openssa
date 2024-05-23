@@ -322,6 +322,10 @@ ground-truths:
         2022: 3,771 million
         2021: 1,955 million  # unreliable
 
+      curr-assets:
+        2022: 15,019 million
+        2021: 8,583 million
+
       curr-liabs:
         2022: 6,369 million
         2021: 4,240 million
