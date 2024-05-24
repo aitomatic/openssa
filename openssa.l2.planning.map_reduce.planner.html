@@ -91,45 +91,6 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.planning.map_reduce.planner.</span></span><span class="sig-name descname"><span class="pre">AutoMRTPlanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lm:</span> <span class="pre">AnLM</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_subtasks_per_decomp:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="openssa.l2.planning.abstract.planner.html#openssa.l2.planning.abstract.planner.AbstractPlanner" title="openssa.l2.planning.abstract.planner.AbstractPlanner"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractPlanner</span></code></a></p>
 <p>Automated Map-Reduce Task Planner.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.max_depth">
-<span class="sig-name descname"><span class="pre">max_depth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.max_depth" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.max_subtasks_per_decomp">
-<span class="sig-name descname"><span class="pre">max_subtasks_per_decomp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.max_subtasks_per_decomp" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.one_fewer_level_deep">
-<span class="sig-name descname"><span class="pre">one_fewer_level_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.one_fewer_level_deep" title="Link to this definition">¶</a></dt>
-<dd><p>Get 1-fewer-level-deep Planner.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.one_level_deep">
-<span class="sig-name descname"><span class="pre">one_level_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.one_level_deep" title="Link to this definition">¶</a></dt>
-<dd><p>Get 1-level-deep Planner.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.plan">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">AResource</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">APlan</span></span></span><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.plan" title="Link to this definition">¶</a></dt>
-<dd><p>Make Plan for solving posed Problem using Knowledge &amp; Informational Resources.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.update_plan_resources">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_plan_resources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">APlan</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">AResource</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">APlan</span></span></span><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.update_plan_resources" title="Link to this definition">¶</a></dt>
-<dd><p>Make updated Plan for solving posed Problem using Knowledge &amp; relevant Informational Resources.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.lm">
-<span class="sig-name descname"><span class="pre">lm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AnLM</span></em><a class="headerlink" href="#openssa.l2.planning.map_reduce.planner.AutoMRTPlanner.lm" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 
