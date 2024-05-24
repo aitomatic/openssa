@@ -4,7 +4,7 @@ FINANCIAL SYNONYMS
 - "(Consolidated) Balance Sheet(s)",
   "Statement(s) of (Consolidated) Financial Position", "(Consolidated) Statement(s) of Financial Position"
 
-- "Cash Flow(s) Statement(s)", "Statement(s) of Cash Flows"
+- "(Consolidated) Cash Flow(s) Statement(s)", "(Consolidated) Statement(s) of Cash Flows"
 
 - "(Consolidated) Income Statement(s)", "Statement(s) of (Consolidated) Income", "(Consolidated) Statement(s) of Income",
   "(Consolidated) Profit-and-Loss Statement(s)", "(Consolidated) P&L (Statement(s))",

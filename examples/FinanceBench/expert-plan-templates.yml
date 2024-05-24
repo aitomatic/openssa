@@ -293,7 +293,11 @@ da-margin:
     - task: >-
         What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
         (or most similar-meaning reported line item)
-        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
     - task: |-
         What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
@@ -334,7 +338,10 @@ ebitda:
         - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         (or most similar-meaning reported line items to those)
 
-        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
 
 ebitda-margin:
@@ -364,7 +371,11 @@ ebitda-margin:
     - task: >-
         What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
         (or most similar-meaning reported line item)
-        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
     - task: |-
         Calculate `(Unadjusted) EBITDA Margin` of {COMPANY} for {PERIOD} fiscal period
@@ -398,7 +409,11 @@ ebitda-margin-3y-avg:
     - task: >-
         What are values in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
         (or most similar-meaning reported line item)
-        on one same `Cash Flow(s) Statement` of {COMPANY} for past 3 fiscal years?
+
+        on one same `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
 
     - task: >-
         Calculate 3-year average `(Unadjusted) EBITDA Margin`
@@ -515,7 +530,11 @@ div-payout-ratio:
   sub-plans:
     - task: >-
         What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
-        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
     - task: |-
         What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
@@ -540,7 +559,11 @@ retention-ratio:
   sub-plans:
     - task: >-
         What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
-        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
     - task: |-
         What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
@@ -708,7 +731,11 @@ fcf:
         - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
         - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         (or most similar-meaning reported line items to those)
-        on one same `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+        on one same `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
 
 fcf-conv-comp:
@@ -740,9 +767,10 @@ fcf-conv-comp:
             - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
             (or most similar-meaning reported line items to those)
 
-            on one same `Cash Flow(s) Statement` of {COMPANY}
+            on one same `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+            (or most similar-meaning statement)
 
-            for following two annual fiscal periods:
+            of {COMPANY} for following two annual fiscal periods:
             - previous annual fiscal period immediately preceding {PERIOD}; and
             - current {PERIOD} annual fiscal period?
 
@@ -776,9 +804,13 @@ op-cf-ratio:
 
   sub-plans:
     - task: >-
-        What is value in dollars of
-        `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` (or most similar-meaning reported line item)
-        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} annual fiscal period?
+        What is value in dollars of `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
 
     - task: >-
         What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
@@ -972,7 +1004,11 @@ capex-as-pct-of-rev-3y-avg:
         What are values in dollars of
         `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         (or most similar-meaning reported line item)
-        on `Cash Flow(s) Statement` of {COMPANY} for past 3 fiscal years?
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
 
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: >-
@@ -1054,7 +1090,11 @@ cap-intens:
         What is value in dollars of
         `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
         (or most similar-meaning reported line item)
-        on `Cash Flow(s) Statement` of {COMPANY} for {PERIOD} fiscal period?
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
 
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: |-
