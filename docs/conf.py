@@ -61,7 +61,7 @@ autodoc_default_options: dict[str, str] = {
     'undoc-members': False,
     'private-members': False,
     'special-members': False,
-    'inherited-members': False,
+    'inherited-members': True,
     'show-inheritance': True,
     'ignore-module-all': True,
     'imported-members': False,
