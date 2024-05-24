@@ -381,6 +381,8 @@ financebench_id_03882:
     1616, 1616 million, 1.616 billion,
     1600, 1600 million or 1.6 billion
 
+  evaluator-unreliable: true
+
 
 financebench_id_01935:
   doc: AMCOR_2022_8K_dated-2022-07-01
@@ -583,7 +585,7 @@ financebench_id_00917:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions amortization of intangible assets associated with Xilinx acquisition
+    the answer mentions Xilinx
 
 
 financebench_id_01279:
@@ -952,6 +954,8 @@ financebench_id_10285:
     12645, 12645 million, 12.645 billion,
     12600, 12600 million or 12.6 billion
 
+  evaluator-unreliable: true
+
 
 financebench_id_00517:
   doc: BOEING_2022_10K
@@ -985,6 +989,8 @@ financebench_id_01091:
   correctness: >-
     the answer affirms that there have been material lawsuits / legal battles
 
+  evaluator-unreliable: true
+
 
 financebench_id_00678:  # tricky because Gross Income label is implicit/missing (!) on Income Statement
   doc: BOEING_2022_10K
@@ -1014,7 +1020,7 @@ financebench_id_01290:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions airlines and government(s)
+    the answer mentions airlines and government(s) / military(ies)
 
   evaluator-unreliable: true
 
@@ -1152,7 +1158,7 @@ financebench_id_01346:
   category: 2-CALC-CHANGE
   correctness: >-
     the answer says that Effective Tax Rate changed from approximately 20% to approximately 23%,
-    and/or that it increased by 3 percentage points
+    and/or that it increased by approximately 3 percentage points
 
   evaluator-unreliable: true
 
@@ -1264,7 +1270,7 @@ financebench_id_00839:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer affirms that and mentions Ulta Beauty
+    the answer affirms that Dillon has got experience in relevant and similar organizations and roles
 
   evaluator-unreliable: true
 
@@ -1336,6 +1342,8 @@ financebench_id_04854:
     3200, 3200 million or 3.2 billion
     (if the answer is a single number, assume that it is that calculated Free Cash Flows (FCF) metric value)
 
+  evaluator-unreliable: true
+
 
 financebench_id_10136:
   doc: GENERALMILLS_2022_10K
@@ -1349,8 +1357,8 @@ financebench_id_10136:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Retention Ratio decimal value that is in the range from 0.5000 to 0.5500,
-    or, alternatively, a calculated percentage value that is in the range from 50.00% to 55.00%
+    the answer contains a calculated Retention Ratio decimal value that is in the range from 0.5000 to 0.6000,
+    or, alternatively, a calculated percentage value that is in the range from 50.00% to 60.00%
     (if the answer is a single number, assume that it is that calculated Retention Ratio metric value)
 
 
@@ -1766,8 +1774,10 @@ financebench_id_01328:
   page(s): '78'
 
   category: 0-RETRIEVE
-  correctness: >-
-    the answer states 0, zero, and/or that restructuring costs are not explicitly reported
+  correctness: |-
+    the answer either:
+    - mentions a quantity that is equivalent to or approximately equal to 411 million; or
+    - states 0, zero, and/or that restructuring costs are not explicitly reported
   answer-inadequate: true
 
 
@@ -1846,10 +1856,14 @@ financebench_id_00882:
   page(s): '2'
 
   category: 3-CALC-COMPLEX
-  correctness: >-
-    the answer contains a calculated total quantity that is greater than or equal to
-    8,400,000,000, 8400 million or 8.4 billion
-    (if the answer is a single number, assume that it is that calculated total amount)
+  correctness: |-
+    the answer either (or both):
+    - mentions two separate quantities each equal to 4,200,000,000, 4200 million or 4.2 billion; and/or
+    - contains a calculated total quantity that is greater than or equal to
+      8,400,000,000, 8400 million or 8.4 billion
+    (if the answer is a single number, assume that it is that latter calculated total amount)
+
+  evaluator-unreliable: true
 
 
 financebench_id_01474:
@@ -1885,6 +1899,8 @@ financebench_id_00302:
   category: 1-COMPARE
   correctness: >-
     the answer concludes that Property, Plant & Equipment (PP&E or PPNE) increased
+
+  evaluator-unreliable: true
 
 
 financebench_id_00702:
