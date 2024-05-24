@@ -49,3 +49,23 @@ html_static_path: Sequence[str] = ['_static']
 # --------------------------------------------
 
 source_suffix: dict[str, str] = {'.md': 'markdown', '.rst': 'restructuredtext'}
+
+
+# AudoDoc
+# sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
+# --------------------------------------------------------------------
+
+autodoc_default_options: dict[str, str] = {
+    # 'members': ...,
+    'member-order': 'bysource',
+    'undoc-members': False,
+    'private-members': False,
+    'special-members': False,
+    'inherited-members': True,
+    'show-inheritance': True,
+    'ignore-module-all': True,
+    # 'imported-members': False,
+    # 'exclude-members': ...
+    'class-doc-from': 'both',
+    # 'no-value': ...
+}

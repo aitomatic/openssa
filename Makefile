@@ -113,16 +113,13 @@ docs-build-api:
 	@poetry run sphinx-apidoc \
 		--force \
 		--follow-links \
+		--no-headings \
 		--maxdepth 9 \
 		--separate \
 		--implicit-namespaces \
 		--module-first \
 		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)" \
-		*/contrib/streamlit_ssa_prob_solver/main.py */contrib/streamlit_ssa_prob_solver/pages
-
-	# get rid of undocumented members
-	# sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR)*.rst
-	# rm "$(DOCS_DIR)"/*.orig
+		*/contrib */core */integrations */utils
 
 docs-build: docs-build-clean docs-build-api
 	@poetry run sphinx-build "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
@@ -131,6 +128,7 @@ docs-deploy: docs-build
 	@git fetch --all
 
 	@git checkout gh-pages --
+	@git pull
 
 	@git config user.email "TheVinhLuong@gmail.com"
 	@git config user.name "The Vinh LUONG (LƯƠNG Thế Vinh)"
