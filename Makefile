@@ -113,6 +113,7 @@ docs-build-api:
 	@poetry run sphinx-apidoc \
 		--force \
 		--follow-links \
+		--no-headings \
 		--maxdepth 9 \
 		--separate \
 		--implicit-namespaces \
