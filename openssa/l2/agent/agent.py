@@ -1,4 +1,7 @@
-"""__PROBLEM-SOLVING AGENT with Planning, Reasoning, Knowledge & Informational Resources__
+"""
+===================================================================================
+PROBLEM-SOLVING AGENT with Planning, Reasoning, Knowledge & Informational Resources
+===================================================================================
 
 This module contains `OpenSSA`'s main `Agent` class,
 which brings together agentic Planning and Reasoning capabilities,
