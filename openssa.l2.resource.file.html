@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>openssa.l2.resource.file module</title>
+      <title>&lt;no title&gt;</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>openssa.l2.resource.file module</li>
+    <li>&lt;no title&gt;</li>
   </ul>
   
 
@@ -85,30 +85,72 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="module-openssa.l2.resource.file">
-<span id="openssa-l2-resource-file-module"></span><h1>openssa.l2.resource.file module<a class="headerlink" href="#module-openssa.l2.resource.file" title="Link to this heading">¶</a></h1>
-<p>File-stored Informational Resource.</p>
+  <p id="module-openssa.l2.resource.file">File-stored Informational Resource.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.resource.file.</span></span><span class="sig-name descname"><span class="pre">FileResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.resource.file.FileResource" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="openssa.l2.resource.abstract.html#openssa.l2.resource.abstract.AbstractResource" title="openssa.l2.resource.abstract.AbstractResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractResource</span></code></a></p>
 <p>File-stored Informational Resource.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.answer">
-<span class="sig-name descname"><span class="pre">answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.resource.file.FileResource.answer" title="Link to this definition">¶</a></dt>
-<dd><p>Answer question by RAG from file-stored Informational Resource.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.path">
+<span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DirOrFileStrPath</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.embed_model">
+<span class="sig-name descname"><span class="pre">embed_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AnEmbedModel</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.embed_model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.re_index">
+<span class="sig-name descname"><span class="pre">re_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dataclasses.InitVar</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.re_index" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.lm">
+<span class="sig-name descname"><span class="pre">lm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AnLM</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.lm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.unique_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unique_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.unique_name" title="Link to this definition">¶</a></dt>
+<dd><p>Return globally-unique name of file-stored Informational Resource.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.file_paths">
-<span class="sig-name descname"><span class="pre">file_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffixes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('.txt',</span> <span class="pre">'.pdf',</span> <span class="pre">'.docx',</span> <span class="pre">'.pptx',</span> <span class="pre">'.csv',</span> <span class="pre">'.md')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">FileStrPathSet</span></span></span><a class="headerlink" href="#openssa.l2.resource.file.FileResource.file_paths" title="Link to this definition">¶</a></dt>
-<dd><p>Get file paths with relevant suffixes from provided path.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.name" title="Link to this definition">¶</a></dt>
+<dd><p>Return potentially non-unique, but informationally helpful name of file-stored Informational Resource.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.on_gcs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_gcs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.on_gcs" title="Link to this definition">¶</a></dt>
+<dd><p>Check if source is on GCS.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.on_s3">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_s3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.on_s3" title="Link to this definition">¶</a></dt>
+<dd><p>Check if source is on S3.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.on_remote">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_remote</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.on_remote" title="Link to this definition">¶</a></dt>
+<dd><p>Check if source is on remote file service.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.fs">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AFileSystem</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.fs" title="Link to this definition">¶</a></dt>
 <dd><p>Get applicable file system.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.native_str_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">native_str_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DirOrFileStrPath</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.native_str_path" title="Link to this definition">¶</a></dt>
+<dd><p>Get path without protocol prefix (e.g., “gcs://”, “s3://”).</p>
 </dd></dl>
 
 <dl class="py property">
@@ -123,34 +165,10 @@
 <dd><p>Check if source is single file.</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.name" title="Link to this definition">¶</a></dt>
-<dd><p>Return potentially non-unique, but informationally helpful name of file-stored Informational Resource.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.native_str_path">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">native_str_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DirOrFileStrPath</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.native_str_path" title="Link to this definition">¶</a></dt>
-<dd><p>Get path without protocol prefix (e.g., “gcs://”, “s3://”).</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.on_gcs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_gcs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.on_gcs" title="Link to this definition">¶</a></dt>
-<dd><p>Check if source is on GCS.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.on_remote">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_remote</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.on_remote" title="Link to this definition">¶</a></dt>
-<dd><p>Check if source is on remote file service.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.on_s3">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_s3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.on_s3" title="Link to this definition">¶</a></dt>
-<dd><p>Check if source is on S3.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.file_paths">
+<span class="sig-name descname"><span class="pre">file_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffixes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('.txt',</span> <span class="pre">'.pdf',</span> <span class="pre">'.docx',</span> <span class="pre">'.pptx',</span> <span class="pre">'.csv',</span> <span class="pre">'.md')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">FileStrPathSet</span></span></span><a class="headerlink" href="#openssa.l2.resource.file.FileResource.file_paths" title="Link to this definition">¶</a></dt>
+<dd><p>Get file paths with relevant suffixes from provided path.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -159,15 +177,32 @@
 <dd><p>Return RAG query engine.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.answer">
+<span class="sig-name descname"><span class="pre">answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.resource.file.FileResource.answer" title="Link to this definition">¶</a></dt>
+<dd><p>Answer question by RAG from file-stored Informational Resource.</p>
+</dd></dl>
+
 <dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.unique_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unique_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.unique_name" title="Link to this definition">¶</a></dt>
-<dd><p>Return globally-unique name of file-stored Informational Resource.</p>
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.full_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">full_name</span></span><a class="headerlink" href="#openssa.l2.resource.file.FileResource.full_name" title="Link to this definition">¶</a></dt>
+<dd><p>Return full name for presenting Informational Resource clearly, especially in large prompts.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.overview">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">overview</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.overview" title="Link to this definition">¶</a></dt>
+<dd><p>Return overview of Informational Resource.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.present_full_answer">
+<span class="sig-name descname"><span class="pre">present_full_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.resource.file.FileResource.present_full_answer" title="Link to this definition">¶</a></dt>
+<dd><p>Present answer to posed question together with full name &amp; overview of Informational Resource.</p>
 </dd></dl>
 
 </dd></dl>
 
-</section>
 
 
           </div>

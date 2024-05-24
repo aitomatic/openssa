@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>openssa.l2.resource.abstract module</title>
+      <title>&lt;no title&gt;</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>openssa.l2.resource.abstract module</li>
+    <li>&lt;no title&gt;</li>
   </ul>
   
 
@@ -85,18 +85,22 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="module-openssa.l2.resource.abstract">
-<span id="openssa-l2-resource-abstract-module"></span><h1>openssa.l2.resource.abstract module<a class="headerlink" href="#module-openssa.l2.resource.abstract" title="Link to this heading">¶</a></h1>
-<p>Abstract Informational Resource.</p>
+  <p id="module-openssa.l2.resource.abstract">Abstract Informational Resource.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.resource.abstract.AbstractResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.resource.abstract.</span></span><span class="sig-name descname"><span class="pre">AbstractResource</span></span><a class="headerlink" href="#openssa.l2.resource.abstract.AbstractResource" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Abstract Informational Resource.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.resource.abstract.AbstractResource.answer">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.resource.abstract.AbstractResource.answer" title="Link to this definition">¶</a></dt>
-<dd><p>Answer question from Informational Resource.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.abstract.AbstractResource.unique_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unique_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.abstract.AbstractResource.unique_name" title="Link to this definition">¶</a></dt>
+<dd><p>Return globally-unique name of Informational Resource.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.resource.abstract.AbstractResource.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.abstract.AbstractResource.name" title="Link to this definition">¶</a></dt>
+<dd><p>Return potentially non-unique, but informationally helpful name of Informational Resource.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -105,10 +109,10 @@
 <dd><p>Return full name for presenting Informational Resource clearly, especially in large prompts.</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.abstract.AbstractResource.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.abstract.AbstractResource.name" title="Link to this definition">¶</a></dt>
-<dd><p>Return potentially non-unique, but informationally helpful name of Informational Resource.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.resource.abstract.AbstractResource.answer">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.resource.abstract.AbstractResource.answer" title="Link to this definition">¶</a></dt>
+<dd><p>Answer question from Informational Resource.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -123,15 +127,8 @@
 <dd><p>Present answer to posed question together with full name &amp; overview of Informational Resource.</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="openssa.l2.resource.abstract.AbstractResource.unique_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unique_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.resource.abstract.AbstractResource.unique_name" title="Link to this definition">¶</a></dt>
-<dd><p>Return globally-unique name of Informational Resource.</p>
 </dd></dl>
 
-</dd></dl>
-
-</section>
 
 
           </div>

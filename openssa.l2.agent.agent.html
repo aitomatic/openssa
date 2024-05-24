@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>openssa.l2.agent.agent module</title>
+      <title>PROBLEM-SOLVING AGENT with Planning, Reasoning, Knowledge &amp; Informational Resources</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>openssa.l2.agent.agent module</li>
+    <li>PROBLEM-SOLVING AGENT with Planning, Reasoning, Knowledge &amp; Informational Resources</li>
   </ul>
   
 
@@ -85,9 +85,8 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="module-openssa.l2.agent.agent">
-<span id="openssa-l2-agent-agent-module"></span><h1>openssa.l2.agent.agent module<a class="headerlink" href="#module-openssa.l2.agent.agent" title="Link to this heading">¶</a></h1>
-<p>Agent with Planning, Reasoning, Knowledge &amp; Informational Resources.</p>
+  <section id="problem-solving-agent-with-planning-reasoning-knowledge-informational-resources">
+<span id="module-openssa.l2.agent.agent"></span><h1>PROBLEM-SOLVING AGENT with Planning, Reasoning, Knowledge &amp; Informational Resources<a class="headerlink" href="#problem-solving-agent-with-planning-reasoning-knowledge-informational-resources" title="Link to this heading">¶</a></h1>
 <p>This module contains <cite>OpenSSA</cite>’s main <cite>Agent</cite> class,
 which brings together agentic Planning and Reasoning capabilities,
 domain-specific Knowledge and Informational Resources
@@ -95,25 +94,47 @@ to solve complex problems.</p>
 <p>An agent’s problem-solving process involves a Plan
 that can be created by either LM-automated generation or expert guidance,
 and the execution by the agent’s Reasoner of that Plan,
-either dynamic (i.e., with as-needed further decomposition) or static (i.e., as-is).</p>
+either dynamic (i.e., with as-needed further decomposition)
+or static (i.e., literally per the Plan as-is).</p>
 <p>Users should pick the combination of plan creation and plan execution
 that is most appropriate for the availability of expert knowledge
 and structured expert plans in the concerned domain.</p>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.agent.agent.</span></span><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">planner:</span> <span class="pre">APlanner</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reasoner:</span> <span class="pre">AReasoner</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge:</span> <span class="pre">set[Knowledge]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources:</span> <span class="pre">set[AResource]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.agent.agent.Agent" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Agent with Planning, Reasoning, Knowledge &amp; Informational Resources.</p>
+<p>Problem-Solving Agent with Planning, Reasoning, Knowledge &amp; Informational Resources.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.planner">
+<span class="sig-name descname"><span class="pre">planner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">APlanner</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#openssa.l2.agent.agent.Agent.planner" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.reasoner">
+<span class="sig-name descname"><span class="pre">reasoner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AReasoner</span></em><a class="headerlink" href="#openssa.l2.agent.agent.Agent.reasoner" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.knowledge">
+<span class="sig-name descname"><span class="pre">knowledge</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.agent.agent.Agent.knowledge" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">AResource</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.agent.agent.Agent.resources" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.add_knowledge">
 <span class="sig-name descname"><span class="pre">add_knowledge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">new_knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Knowledge</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.agent.agent.Agent.add_knowledge" title="Link to this definition">¶</a></dt>
-<dd><p>Add new Knowledge pieces stored in strings.</p>
+<dd><p>Add new Knowledge piece(s) stored in string(s).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.add_resources">
 <span class="sig-name descname"><span class="pre">add_resources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">new_resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AResource</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.agent.agent.Agent.add_resources" title="Link to this definition">¶</a></dt>
-<dd><p>Add new Informational Resources.</p>
+<dd><p>Add new Informational Resource(s).</p>
 </dd></dl>
 
 <dl class="py property">
@@ -126,23 +147,15 @@ and structured expert plans in the concerned domain.</p>
 <dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.solve">
 <span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">APlan</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.agent.agent.Agent.solve" title="Link to this definition">¶</a></dt>
 <dd><p>Solve posed Problem.</p>
-<p>Solution Plan can optionally be explicitly provided,
+<p>Solution Plan can optionally be explicitly provided (by knowledgeable expert(s)),
 or would be automatically generated by default if Planner is given.</p>
 <p>Solution Plan, whether explicitly provided or automatically generated,
 can be executed Dynamically (i.e., with as-needed further decomposition)
-or Statically (i.e., literally per the Plan).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.agent.agent.Agent.solve_dynamically">
-<span class="sig-name descname"><span class="pre">solve_dynamically</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">planner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">APlanner</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">AskAnsPair</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.agent.agent.Agent.solve_dynamically" title="Link to this definition">¶</a></dt>
-<dd><p>Solve posed Problem dynamically.</p>
-<p>When first-pass result from Reasoner is unsatisfactory, decompose Problem and recursively solve decomposed Plan.</p>
+or Statically (i.e., literally per the Plan as-is).</p>
 </dd></dl>
 
 </dd></dl>
 
-</section>
 
 
           </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>openssa.l2.planning.abstract.planner module</title>
+      <title>&lt;no title&gt;</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>openssa.l2.planning.abstract.planner module</li>
+    <li>&lt;no title&gt;</li>
   </ul>
   
 
@@ -85,24 +85,37 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="module-openssa.l2.planning.abstract.planner">
-<span id="openssa-l2-planning-abstract-planner-module"></span><h1>openssa.l2.planning.abstract.planner module<a class="headerlink" href="#module-openssa.l2.planning.abstract.planner" title="Link to this heading">¶</a></h1>
-<p>Abstract Planner.</p>
+  <p id="module-openssa.l2.planning.abstract.planner">Abstract Planner.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.planning.abstract.planner.</span></span><span class="sig-name descname"><span class="pre">AbstractPlanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lm:</span> <span class="pre">AnLM</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_subtasks_per_decomp:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Abstract Planner.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.one_fewer_level_deep">
-<span class="sig-name descname"><span class="pre">one_fewer_level_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.one_fewer_level_deep" title="Link to this definition">¶</a></dt>
-<dd><p>Get 1-fewer-level-deep Planner.</p>
-</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.lm">
+<span class="sig-name descname"><span class="pre">lm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AnLM</span></em><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.lm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.max_depth">
+<span class="sig-name descname"><span class="pre">max_depth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.max_depth" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.max_subtasks_per_decomp">
+<span class="sig-name descname"><span class="pre">max_subtasks_per_decomp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.max_subtasks_per_decomp" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.one_level_deep">
 <span class="sig-name descname"><span class="pre">one_level_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.one_level_deep" title="Link to this definition">¶</a></dt>
 <dd><p>Get 1-level-deep Planner.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.one_fewer_level_deep">
+<span class="sig-name descname"><span class="pre">one_fewer_level_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.one_fewer_level_deep" title="Link to this definition">¶</a></dt>
+<dd><p>Get 1-fewer-level-deep Planner.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -119,7 +132,6 @@
 
 </dd></dl>
 
-</section>
 
 
           </div>

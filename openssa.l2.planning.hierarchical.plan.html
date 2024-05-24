@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>openssa.l2.planning.hierarchical.plan module</title>
+      <title>&lt;no title&gt;</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>openssa.l2.planning.hierarchical.plan module</li>
+    <li>&lt;no title&gt;</li>
   </ul>
   
 
@@ -85,27 +85,12 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="module-openssa.l2.planning.hierarchical.plan">
-<span id="openssa-l2-planning-hierarchical-plan-module"></span><h1>openssa.l2.planning.hierarchical.plan module<a class="headerlink" href="#module-openssa.l2.planning.hierarchical.plan" title="Link to this heading">¶</a></h1>
-<p>Hierarchical Task Plan (HTP).</p>
+  <p id="module-openssa.l2.planning.hierarchical.plan">Hierarchical Task Plan (HTP).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.planning.hierarchical.plan.</span></span><span class="sig-name descname"><span class="pre">HTP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task:</span> <span class="pre">ATask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_plans:</span> <span class="pre">list[Self]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="openssa.l2.planning.abstract.plan.html#openssa.l2.planning.abstract.plan.AbstractPlan" title="openssa.l2.planning.abstract.plan.AbstractPlan"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractPlan</span></code></a></p>
 <p>Hierarchical Task Plan (HTP).</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.execute">
-<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reasoner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AReasoner</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">AskAnsPair</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.execute" title="Link to this definition">¶</a></dt>
-<dd><p>Execute and return result, using specified Reasoner to work through involved Task &amp; Sub-Tasks.</p>
-<p>Execution also optionally takes into account potentially-relevant other results from elsewhere.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.fix_missing_resources">
-<span class="sig-name descname"><span class="pre">fix_missing_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.fix_missing_resources" title="Link to this definition">¶</a></dt>
-<dd><p>Fix missing Informational Resources in HTP.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.from_dict">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">htp_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HTPDict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openssa.l2.planning.hierarchical.plan.HTP" title="openssa.l2.planning.hierarchical.plan.HTP"><span class="pre">HTP</span></a></span></span><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.from_dict" title="Link to this definition">¶</a></dt>
@@ -118,9 +103,46 @@
 <dd><p>Return dictionary representation.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.fix_missing_resources">
+<span class="sig-name descname"><span class="pre">fix_missing_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.fix_missing_resources" title="Link to this definition">¶</a></dt>
+<dd><p>Fix missing Informational Resources in HTP.</p>
 </dd></dl>
 
-</section>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reasoner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AReasoner</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">AskAnsPair</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.execute" title="Link to this definition">¶</a></dt>
+<dd><p>Execute and return result, using specified Reasoner to work through involved Task &amp; Sub-Tasks.</p>
+<p>Execution also optionally takes into account potentially-relevant other results from elsewhere.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.concretize_tasks_from_template">
+<span class="sig-name descname"><span class="pre">concretize_tasks_from_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.concretize_tasks_from_template" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.pformat">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pformat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.pformat" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.quick_repr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quick_repr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="openssa.l2.planning.abstract.plan.html#openssa.l2.planning.abstract.plan.PLAN" title="openssa.l2.planning.abstract.plan.PLAN"><span class="pre">PLAN</span></a></em><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.quick_repr" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.task">
+<span class="sig-name descname"><span class="pre">task</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ATask</span></em><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.task" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.planning.hierarchical.plan.HTP.sub_plans">
+<span class="sig-name descname"><span class="pre">sub_plans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Self</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.planning.hierarchical.plan.HTP.sub_plans" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 
 
           </div>

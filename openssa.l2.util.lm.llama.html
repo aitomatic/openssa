@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>openssa.l2.util.lm.llama module</title>
+      <title>&lt;no title&gt;</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>openssa.l2.util.lm.llama module</li>
+    <li>&lt;no title&gt;</li>
   </ul>
   
 
@@ -85,18 +85,15 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section id="module-openssa.l2.util.lm.llama">
-<span id="openssa-l2-util-lm-llama-module"></span><h1>openssa.l2.util.lm.llama module<a class="headerlink" href="#module-openssa.l2.util.lm.llama" title="Link to this heading">¶</a></h1>
-<dl class="py class">
+  <dl class="py class" id="module-openssa.l2.util.lm.llama">
 <dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.util.lm.llama.</span></span><span class="sig-name descname"><span class="pre">LlamaLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_base:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="openssa.l2.util.lm.abstract.html#openssa.l2.util.lm.abstract.AbstractLM" title="openssa.l2.util.lm.abstract.AbstractLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractLM</span></code></a></p>
 <p>Llama LM.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.call">
-<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LMChatHist</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM.call" title="Link to this definition">¶</a></dt>
-<dd><p>Call Llama LM API and return response object.</p>
-</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.client">
+<span class="sig-name descname"><span class="pre">client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LlamaAPI</span></em><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM.client" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.from_defaults">
@@ -105,14 +102,34 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LMChatHist</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM.call" title="Link to this definition">¶</a></dt>
+<dd><p>Call Llama LM API and return response object.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.get_response">
 <span class="sig-name descname"><span class="pre">get_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LMChatHist</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM.get_response" title="Link to this definition">¶</a></dt>
 <dd><p>Call Llama LM API and return response content.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM.model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.api_base">
+<span class="sig-name descname"><span class="pre">api_base</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM.api_base" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.util.lm.llama.LlamaLM.api_key">
+<span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.util.lm.llama.LlamaLM.api_key" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
-</section>
 
 
           </div>
