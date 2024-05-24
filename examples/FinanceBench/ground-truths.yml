@@ -1020,7 +1020,7 @@ financebench_id_01290:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions airlines and government(s)
+    the answer mentions airlines and government(s) / military(ies)
 
   evaluator-unreliable: true
 
