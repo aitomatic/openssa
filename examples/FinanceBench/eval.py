@@ -15,7 +15,8 @@ from openssa.l2.config import Config
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import (FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,  # noqa: E501
+from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
+                                FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,
                                 OUTPUT_FILE_PATH, get_or_create_output_df)
 
 if TYPE_CHECKING:
@@ -123,6 +124,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None
 
 
 def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bool = True, debug: bool = False):
+    # pylint: disable=too-many-locals
     output_df: DataFrame = get_or_create_output_df()
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
@@ -144,9 +146,26 @@ def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bo
                                                          else ''))
 
     logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
+
     pprint(correctness_by_category := {category: (f'{(n := n_yes_scores_by_category[category])} / {n_for_category} '
                                                   f'= {n / n_for_category:.1%}')
                                        for category, n_for_category in CAT_DISTRIB.items()})
+
+    pprint({
+        'EASY': (f'{(e := sum(n_yes_scores_by_category[easy_cat]
+                              for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} / '
+                 f'{(se := sum(CAT_DISTRIB[easy_cat]
+                               for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} '
+                 f'= {e / se:.1%}'),
+
+        'HARD': (f'{(h := sum(n_yes_scores_by_category[hard_cat]
+                              for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                               Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} / '
+                 f'{(sh := sum(CAT_DISTRIB[hard_cat]
+                               for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                                Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} '
+                 f'= {h / sh:.1%}')
+    })
 
     logger.warning('INCORRECT:')
     pprint(incorrect_answer_fb_ids)

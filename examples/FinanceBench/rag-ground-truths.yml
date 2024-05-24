@@ -16,7 +16,7 @@ defs:
   lt-debt: Long-Term Debt (EXCLUDING any current/short-term portion)
 
 
-  CF: Cash Flow(s) Statement
+  CF: (Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows
 
   d&a: Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))
   op-cf: (Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows
@@ -86,16 +86,20 @@ ground-truths:
         2022: 3,655 million
 
       st-invest:
-        2023Q2: 56 million
+        2023Q2: 56 million  # unreliable
         2022: 238 million
 
       recvables:
-        2023Q2: 4,947 million
+        2023Q2: 4,947 million  # unreliable
         2022: 4,532 million  # unreliable
 
       invent:
         2023Q2: 5,280 million
         2022: 5,372 million
+
+      curr-assets:
+        2023Q2: 15,754 million
+        2022: 14,688 million
 
       curr-liabs:
         2023Q2: 10,936 million
@@ -253,6 +257,10 @@ ground-truths:
         2023: 992 million + 1,221 million
         2022: 1,114 million + 1,325 million
 
+      curr-assets:
+        2023: 5,308 million
+        2022: 5,853 million
+
       curr-liabs:
         2023: 4,476 million  # unreliable
         2022: 5,103 million
@@ -313,6 +321,10 @@ ground-truths:
       invent:
         2022: 3,771 million
         2021: 1,955 million  # unreliable
+
+      curr-assets:
+        2022: 15,019 million
+        2021: 8,583 million
 
       curr-liabs:
         2022: 6,369 million
@@ -805,6 +817,10 @@ ground-truths:
       invent:
         2022: 2,388 million
         2021: 3,055 million
+
+      curr-assets:
+        2022: 37,857 million
+        2021: 36,728 million
 
       fixed-assets:
         2022: 107,434 million
