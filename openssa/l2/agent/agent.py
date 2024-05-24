@@ -137,7 +137,7 @@ class Agent:
                 # then first directly use Reasoner,
                 # and if that does not work, then use Planner to decompose 1 level more deeply,
                 # and recurse until reaching confident solution or running out of depth
-                result: str = self.solve_dynamically(problem=problem)
+                result: str = self._solve_dynamically(problem=problem)
 
             # EXPERT-SPECIFIED STATIC PLAN
             case (_, None, _) if plan:
@@ -174,7 +174,7 @@ class Agent:
 
         return result
 
-    def solve_dynamically(self, problem: str, planner: APlanner = None, other_results: list[AskAnsPair] | None = None) -> str:
+    def _solve_dynamically(self, problem: str, planner: APlanner = None, other_results: list[AskAnsPair] | None = None) -> str:
         """Solve posed Problem dynamically.
 
         When first-pass result from Reasoner is unsatisfactory, decompose Problem and recursively solve decomposed Plan.
@@ -198,9 +198,9 @@ class Agent:
             sub_results: list[AskAnsPair] = []
             for sub_plan in tqdm(plan_1_level_deep.sub_plans):
                 sub_task: ATask = sub_plan.task
-                sub_task.result: str = self.solve_dynamically(problem=sub_task.ask,
-                                                              planner=sub_planner,
-                                                              other_results=sub_results)
+                sub_task.result: str = self._solve_dynamically(problem=sub_task.ask,
+                                                               planner=sub_planner,
+                                                               other_results=sub_results)
                 sub_task.status: TaskStatus = TaskStatus.DONE
                 sub_results.append((sub_task.ask, sub_task.result))
 
