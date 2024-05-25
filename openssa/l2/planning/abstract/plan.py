@@ -1,4 +1,16 @@
-"""Abstract Plan."""
+"""
+============================
+ABSTRACT TASK PLAN INTERFACE
+============================
+
+`AbstractPlan` is `OpenSSA`'s abstract base class for task plans for solving problems.
+
+A plan has a target `task` to solve, and can contain decomposed `sub_plans` for solving that `task`.
+
+A plan can be executed through its own `.execute(...)` method,
+by a specified Reasoner that optionally takes into account some given domain-specific Knowledge and/or other results.
+The plan execution returns a string result.
+"""
 
 
 from __future__ import annotations
@@ -44,6 +56,7 @@ class AbstractPlan(ABC):
 
     @property
     def quick_repr(self) -> PLAN:
+        """Quick, pretty-formattable/printable namespace representation."""
         namespace: PLAN = PLAN(task=self.task.ask)
 
         if self.sub_plans:
@@ -53,6 +66,7 @@ class AbstractPlan(ABC):
 
     @property
     def pformat(self) -> str:
+        """Pretty-formatted string representation."""
         return pformat(object=self.quick_repr,
                        indent=2,
                        width=120,
@@ -64,9 +78,9 @@ class AbstractPlan(ABC):
     @abstractmethod
     def execute(self, reasoner: AReasoner, knowledge: set[Knowledge] | None = None,
                 other_results: list[AskAnsPair] | None = None) -> str:
-        """Execute and return result, using specified Reasoner and Knowledge to work through involved Task & Sub-Tasks.
+        """Execute and return string result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
-        Execution also optionally takes into account potentially-relevant other results from elsewhere.
+        Execution also optionally takes into account domain-specific Knowledge and/or potentially elevant other results.
         """
 
 
