@@ -23,10 +23,8 @@ from llama_index.core.readers.file.base import SimpleDirectoryReader
 from llama_index.core.response_synthesizers.type import ResponseMode
 from llama_index.core.storage.storage_context import StorageContext
 from llama_index.core.vector_stores.types import VectorStoreQueryMode
-from llama_index.embeddings.openai.base import OpenAIEmbedding
-from llama_index.llms.openai.base import OpenAI as OpenAILM
 
-from openssa.l2.util.lm.config import LMConfig
+from openssa.l2.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
 
 from .abstract import AbstractResource
 from ._global import global_register
@@ -74,7 +72,7 @@ class FileResource(AbstractResource):
     path: Path | DirOrFileStrPath
 
     # embedding model for indexing and retrieving information
-    embed_model: AnEmbedModel = field(default_factory=OpenAIEmbedding,
+    embed_model: AnEmbedModel = field(default_factory=default_llama_index_openai_embed_model,
                                       init=True,
                                       repr=False,
                                       hash=None,
@@ -86,7 +84,7 @@ class FileResource(AbstractResource):
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: AnLM = field(default_factory=lambda: OpenAILM(temperature=LMConfig.DEFAULT_TEMPERATURE),
+    lm: AnLM = field(default_factory=default_llama_index_openai_lm,
                      init=True,
                      repr=False,
                      hash=None,
