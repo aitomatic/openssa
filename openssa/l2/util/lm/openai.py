@@ -6,8 +6,8 @@ from typing import TYPE_CHECKING
 
 from openai import OpenAI  # pylint: disable=import-self
 
-from openssa.l2.config import Config
 from .abstract import AbstractLM, LMChatHist
+from .config import LMConfig
 
 if TYPE_CHECKING:
     from openai.types.chat.chat_completion import ChatCompletion
@@ -27,13 +27,14 @@ class OpenAILM(AbstractLM):
     def from_defaults(cls) -> OpenAILM:
         """Get OpenAI LM instance with default parameters."""
         # pylint: disable=unexpected-keyword-arg
-        return cls(model=Config.DEFAULT_OPENAI_MODEL, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
+        return cls(model=LMConfig.DEFAULT_OPENAI_MODEL, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
         """Call OpenAI LM API and return response object."""
         return self.client.chat.completions.create(model=self.model,
                                                    messages=messages,
-                                                   temperature=kwargs.pop('temperature', Config.DEFAULT_TEMPERATURE),
+                                                   seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
+                                                   temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
                                                    **kwargs)
 
     def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
