@@ -11,7 +11,7 @@ from loguru import logger
 from pandas import DataFrame, notna, read_csv
 from tqdm import tqdm
 
-from openssa.l2.config import Config
+from openssa.l2.util.lm.config import LMConfig
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
@@ -66,7 +66,7 @@ load_dotenv()
 
 @cache
 def get_lm(model='gpt-4-1106-preview') -> AnLM:
-    return OpenAILM(model=model, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
+    return OpenAILM(model=model, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
 
 def human_eval_recommended(fb_id: FbId) -> bool | None:
