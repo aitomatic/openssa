@@ -285,7 +285,9 @@ financebench_id_01319:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer states 0, zero, and/or that restructuring costs are not explicitly reported
+    the answer states 0, zero, and/or that restructuring costs are not explicitly mentioned/reported
+
+  evaluator-unreliable: true
 
 
 financebench_id_00540:
