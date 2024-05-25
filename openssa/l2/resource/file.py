@@ -26,7 +26,7 @@ from llama_index.core.vector_stores.types import VectorStoreQueryMode
 from llama_index.embeddings.openai.base import OpenAIEmbedding
 from llama_index.llms.openai.base import OpenAI as OpenAILM
 
-from openssa.l2.config import Config
+from openssa.l2.util.lm.config import LMConfig
 
 from .abstract import AbstractResource
 from ._global import global_register
@@ -86,7 +86,7 @@ class FileResource(AbstractResource):
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: AnLM = field(default_factory=lambda: OpenAILM(temperature=Config.DEFAULT_TEMPERATURE),
+    lm: AnLM = field(default_factory=lambda: OpenAILM(temperature=LMConfig.DEFAULT_TEMPERATURE),
                      init=True,
                      repr=False,
                      hash=None,
