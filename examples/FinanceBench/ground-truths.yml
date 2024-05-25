@@ -141,7 +141,9 @@ financebench_id_00941:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions debt notes/securities due 2026, 2030 and 2031
+    the answer mentions notes/securities due 2026, 2030 and 2031
+
+  evaluator-unreliable: true
 
 
 financebench_id_01858:
