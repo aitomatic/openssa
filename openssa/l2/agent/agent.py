@@ -167,7 +167,7 @@ class Agent:
             case (_, _, True) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving dynamically,
                 # TODO: dynamic solution
-                raise NotImplementedError('Dynamic execution of given Plan and Planner not yet implemented')
+                result: str = self.solve(problem=problem, plan=plan, dynamic=False)
 
             case _:
                 raise ValueError('*** Invalid Plan-Planner-Dynamism Combination ***')
