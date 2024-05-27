@@ -4,6 +4,9 @@ AUTOMATED (GENERATIVE) HIERARCHICAL TASK PLANNER
 ================================================
 
 `AutoHTPlanner` is `OpenSSA`'s default Planner to create and update problem-solving HTPs.
+
+Such a planner has an LM for generating new or updated task HTPs,
+the complexity of which is controlled by 2 key parameters `max_depth` and `max_subtasks_per_decomp`.
 """
 
 
