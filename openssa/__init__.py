@@ -39,6 +39,8 @@ from .l2.resource.file import FileResource
 
 from .l2.task.task import Task
 
+from .l2.util.lm.config import LMConfig
+
 
 try:
     __version__: str = version(distribution_name='OpenSSA')
