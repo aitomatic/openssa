@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>OpenSSA: Small Specialist Agents</title>
+      <title>OpenSSA: Small Specialist Agents for Problem-Solving</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="#">Docs</a> &raquo;</li>
     
-    <li>OpenSSA: Small Specialist Agents</li>
+    <li>OpenSSA: Small Specialist Agents for Problem-Solving</li>
   </ul>
   
 
@@ -86,114 +86,50 @@
           <div class="content" role="main" v-pre>
             
   <!-- markdownlint-disable MD013 MD043 -->
-<section id="openssa-small-specialist-agents">
-<h1>OpenSSA: Small Specialist Agents<a class="headerlink" href="#openssa-small-specialist-agents" title="Link to this heading">¶</a></h1>
-<section id="enabling-efficient-domain-specific-planning-and-reasoning-for-ai">
-<h2>Enabling Efficient, Domain-Specific Planning and Reasoning for AI<a class="headerlink" href="#enabling-efficient-domain-specific-planning-and-reasoning-for-ai" title="Link to this heading">¶</a></h2>
-<p>OpenSSA is an open-source framework for creating efficient, domain-specific agents (SSAs) that solve complex problems by incorporating advanced <em>Planning</em> and <em>Reasoning</em> capabilities. Read more about our <a class="reference external" href="https://arxiv.org/abs/2404.11792">study here</a></p>
-<p>SSAs tackle multi-step problems that require planning and reasoning beyond traditional language models. They apply OODA for deliberative reasoning (OODAR) and iterative, hierarchical task planning (HTP). This “System-2 Intelligence” breaks down complex tasks into manageable steps. SSAs make informed decisions based on domain-specific knowledge. With OpenSSA, create agents that process, generate, and reason about information. This makes them more effective and efficient in solving real-world challenges.</p>
+<section id="openssa-small-specialist-agents-for-problem-solving">
+<h1>OpenSSA: Small Specialist Agents for Problem-Solving<a class="headerlink" href="#openssa-small-specialist-agents-for-problem-solving" title="Link to this heading">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">OpenSSA</span></code> is an agentic AI framework for solving complex problems in real-world industry domains,
+overcoming the limitations of LLMs and RAG in such settings.</p>
+<section id="level-2-intelligence-with-planning-reasoning-domain-specific-knowledge-and-diverse-informational-resources">
+<h2>Level-2 Intelligence with Planning, Reasoning, domain-specific Knowledge and diverse Informational Resources<a class="headerlink" href="#level-2-intelligence-with-planning-reasoning-domain-specific-knowledge-and-diverse-informational-resources" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">OpenSSA</span></code> agents, built with powerful Hierarchical Task Planning (HTP) and Observe-Orient-Decide-Act Reasoning (OODAR),
+go far beyond the Level-1 pattern-matching intelligence performed by LLMs and RAG, and achieve superior outcomes
+in complex multi-faceted, multi-step tasks. See our <a class="reference external" href="https://arxiv.org/abs/2404.11792">comparative study</a>.</p>
+<p>Agents can also be armed with domain-specific Knowledge, connected to diverse Informational Resources
+(files, databases, web sources, etc.), and/or be guided by specialized industry experts
+to maximize the accuracy and comprehensiveness in their planning, reasoning and deliberative/iterative problem-solving.</p>
 </section>
-<section id="planning-and-reasoning-with-htp-and-oodar">
-<h2>Planning and Reasoning with HTP and OODAR<a class="headerlink" href="#planning-and-reasoning-with-htp-and-oodar" title="Link to this heading">¶</a></h2>
-<p>SSAs with advanced P&amp;R can be built by configurating <code class="docutils literal notranslate"><span class="pre">Plan</span> <span class="pre">Creation</span></code>, <code class="docutils literal notranslate"><span class="pre">Plan</span> <span class="pre">Execution</span></code> and <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Knowledge</span></code></p>
-<section id="plan-creation-auto-vs-expert-guided-specified">
-<h3>Plan Creation: Auto vs. Expert-Guided/Specified<a class="headerlink" href="#plan-creation-auto-vs-expert-guided-specified" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Auto plans are created by using LLMs</p></li>
-<li><p>Expert-Guided/Specified are created with the guidance from domain-specific experts.</p></li>
-</ul>
+<section id="open-and-extensible-architecture">
+<h2>Open and Extensible Architecture<a class="headerlink" href="#open-and-extensible-architecture" title="Link to this heading">¶</a></h2>
+<p>We are committed to promoting and supporting open development in generative AI,
+and hence <code class="docutils literal notranslate"><span class="pre">OpenSSA</span></code> would strive to integrate with a diverse array of LLM backends, especially open-source LLMs.
+If you would like a certain LLM to be supported, please suggest through a GitHub issue, or, even better, submit a PR.</p>
+<p>Additionally, <code class="docutils literal notranslate"><span class="pre">OpenSSA</span></code>’s key Planning, Reasoning, Knowledge and Resource interfaces
+are designed with customizability and extensibility as first-class concerns,
+in order to enable developers to effectively solve problems in their specific industries and specialized domains.</p>
 </section>
-<section id="plan-execution-static-vs-dynamic">
-<h3>Plan Execution: Static vs. Dynamic<a class="headerlink" href="#plan-execution-static-vs-dynamic" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Static plan: each step of the plan is executed sequentially without deviation from the initial setup. The final answer is composed by aggregating the outcomes of these sequential steps.</p></li>
-<li><p>Dynamic planning: each step is initially executed as in static planning, but the outputs are continually assessed bythe LLM. If a particular outcome is deemed inadequate, the plan triggers a recursive solving mechanism via OODAR to perform an initial pass.</p></li>
-</ul>
-</section>
-<section id="background-knowledge-generic-none-vs-salient-domain-highlights-cheat-sheet">
-<h3>Background Knowledge: Generic/None vs. Salient Domain Highlights (“Cheat Sheet”)<a class="headerlink" href="#background-knowledge-generic-none-vs-salient-domain-highlights-cheat-sheet" title="Link to this heading">¶</a></h3>
-<p>TBD</p>
-</section>
-</section>
-<hr class="docutils" />
-<section id="hierarchical-task-planning-htp">
-<h2>Hierarchical Task Planning (HTP)<a class="headerlink" href="#hierarchical-task-planning-htp" title="Link to this heading">¶</a></h2>
-<section id="why-htp">
-<h3>Why HTP?<a class="headerlink" href="#why-htp" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>HTP makes complex task more solvable by breaking it down into sub-plans.</p></li>
-</ul>
-</section>
-<section id="how-is-htp-designed-in-openssa">
-<h3>How is HTP designed in OpenSSA?<a class="headerlink" href="#how-is-htp-designed-in-openssa" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>HTP has 2 main components:</p>
-<ul>
-<li><p><strong>Plan Creation</strong>: create sub-plans by either going broader (more sub-plans) or deeper (more sub-tasks)</p></li>
-<li><p><strong>Plan Execution:</strong> (i) integrate multiple sub- and side-results into a combined conclusion; and (ii) roll up such conclusion to super/upper-nodes</p></li>
-</ul>
-</li>
-</ul>
-</section>
-</section>
-<section id="ooda-based-reasoning-oodar">
-<h2>OODA-based Reasoning (OODAR)<a class="headerlink" href="#ooda-based-reasoning-oodar" title="Link to this heading">¶</a></h2>
-<p>The Observe-Orient-Decide-Act (OODA) loop is a well-established iterative reasoning framework emphasizing continuous adaptation and decision-making in complex environments. The OODA loop consists of four main stages:</p>
-<ol class="arabic simple">
-<li><p><strong>Observe</strong>: Gather information about the environment and the problem at hand;</p></li>
-<li><p><strong>Orient</strong>: Analyze the collected information, update the understanding of the situation, and generate potential solutions or actions;</p></li>
-<li><p><strong>Decide</strong>: Evaluate the potential solutions or actions and select the most appropriate one based on the current understanding; and</p></li>
-<li><p><strong>Act</strong>: Execute the selected solution or action and monitor its impact on the environment.</p></li>
-</ol>
-<p>The iterative nature of the OODA loop allows for continuous refinement and adaptation based on the feedback received from the environment. By repeatedly cycling through these four stages, an agent can progressively improve its understanding of the problem, generate more relevant solutions, and make better decisions.</p>
-<p>TODO: add examples of task broken down into OODA steps</p>
-<section id="key-features">
-<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Small</strong>: Create lightweight, resource-efficient AI agents through model compression techniques</p></li>
-<li><p><strong>Specialist</strong>: Enhance agent performance with domain-specific facts, rules, heuristics, and fine-tuning for deterministic, accurate results</p></li>
-<li><p><strong>Agents</strong>: Enable goal-oriented, multi-step problem-solving for complex tasks via systematic HTP planning and OODAR reasoning</p></li>
-<li><p><strong>Integration-Ready</strong>: Works seamlessly with popular AI frameworks and tools for easy adoption</p></li>
-<li><p><strong>Extensible Architecture</strong>: Easily integrate new models and domains to expand capabilities</p></li>
-<li><p><strong>Versatile Applications</strong>: Build AI agents for industrial field service, customer support, recommendations, research, and more</p></li>
-</ul>
-</section>
-<section id="example-use-cases">
-<h3>Example Use Cases<a class="headerlink" href="#example-use-cases" title="Link to this heading">¶</a></h3>
-<section id="boost-rag-performance-with-reasoning">
-<h4>Boost RAG Performance with Reasoning<a class="headerlink" href="#boost-rag-performance-with-reasoning" title="Link to this heading">¶</a></h4>
-<p>OpenSSA significantly boosts the accuracy of Retrieval-Augmented Generation (RAG) systems. It fine-tunes the embedding or completion model with domain-specific knowledge. It also adds the ability to reason about queries and underlying documents. This powerful combination lifts RAG performance by significant margins, overcoming the limitations of generic language models.</p>
-</section>
+<section id="small-and-resource-efficient-agents-for-practical-real-world-deployment">
+<h2>Small and Resource-Efficient Agents for Practical Real-World Deployment<a class="headerlink" href="#small-and-resource-efficient-agents-for-practical-real-world-deployment" title="Link to this heading">¶</a></h2>
+<p>Specialized, Level-2 intelligence allows <code class="docutils literal notranslate"><span class="pre">OpenSSA</span></code> agents to work well in many applications
+with significantly smaller component models, thereby greatly economizing computing resources.</p>
 </section>
 <section id="getting-started">
-<h3>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h3>
-<ol class="arabic simple">
-<li><p>Install OpenSSA: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">openssa</span></code> (Python 3.12)</p></li>
-<li><p>Explore the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory</p></li>
-<li><p>Start building your own Small Specialist Agents</p></li>
-</ol>
-<p>Detailed tutorials and guides are available in our <a class="reference external" href="https://aitomatic.github.io/openssa">Documentation</a>.</p>
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h2>
+<p>Installation: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">openssa</span></code> (Python 3.12 only).
+For bleeding-edge latest capabilities: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/aitomatic/openssa/archive/main.zip</span></code>.</p>
+<p>Explore the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory and developer guides and tutorials on our <a class="reference external" href="https://aitomatic.github.io/openssa">documentation site</a>.</p>
 </section>
-<section id="roadmap">
-<h3>Roadmap<a class="headerlink" href="#roadmap" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Llama3 being default model</p></li>
-<li><p>Other types of planning beyond HTP being integrated</p></li>
-<li><p>Custom reasoners</p></li>
-<li><p>Facts, rules, heuristics as proper data structures (not just a knowledge text block)</p></li>
-<li><p>Custom resources (web search, sensors, feeds)</p></li>
-</ul>
+<section id="api-documentation">
+<h2><a class="reference internal" href="modules.html"><span class="doc std std-doc">API Documentation</span></a><a class="headerlink" href="#api-documentation" title="Link to this heading">¶</a></h2>
 </section>
 <section id="contributing">
-<h3>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h3>
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h2>
 <p>We welcome contributions from the community!</p>
 <ul class="simple">
 <li><p>Join the discussion on our <a class="reference external" href="https://github.com/aitomatic/openssa/discussions">Community Forum</a></p></li>
-<li><p>Explore the <code class="docutils literal notranslate"><span class="pre">contrib/</span></code> directory for ongoing work and open issues</p></li>
 <li><p>Submit pull requests for bug fixes, enhancements, or new features</p></li>
 </ul>
 <p>For more information, see our <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst">Contribution Guide</span></a>.</p>
-</section>
 </section>
 </section>
 
