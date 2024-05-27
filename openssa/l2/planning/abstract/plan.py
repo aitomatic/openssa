@@ -3,7 +3,7 @@
 ABSTRACT TASK PLAN INTERFACE
 ============================
 
-`AbstractPlan` is `OpenSSA`'s abstract base class for task plans for solving problems.
+`AbstractPlan` is `OpenSSA`'s abstract base class for problem-solving task plans.
 
 A plan has a target `task` to solve, and can contain decomposed `sub_plans` for solving that `task`.
 

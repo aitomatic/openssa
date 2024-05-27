@@ -3,7 +3,7 @@
 ABSTRACT TASK PLANNER INTERFACE
 ===============================
 
-`AbstractPlanner` is `OpenSSA`'s abstract base class for using LMs to create or update task plans for solving problems.
+`AbstractPlanner` is `OpenSSA`'s abstract base class for using LMs to create or update problem-solving task plans.
 
 A planner has an LM for generating new or updated task plans,
 the complexity of which is controlled by at least 2 key parameters `max_depth` and `max_subtasks_per_decomp`.
