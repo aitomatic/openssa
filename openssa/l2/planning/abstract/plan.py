@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 
 
 class PLAN(SimpleNamespace):
-    """Plan Repr."""
+    """Namespace class just for pretty-printing."""
 
 
 @dataclass
