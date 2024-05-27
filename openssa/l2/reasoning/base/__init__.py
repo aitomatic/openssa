@@ -1,4 +1,12 @@
-"""Base Reasoner."""
+"""
+=============
+BASE REASONER
+=============
+
+`BaseReasoner` is `OpenSSA`'s basic reasoning implementation,
+which simply forwards posed problems/questions/tasks to available informational resources,
+and aggregates answers from such resources without much further analysis.
+"""
 
 
 from __future__ import annotations
@@ -26,10 +34,12 @@ class BaseReasoner(AbstractReasoner):
 
     def reason(self, task: ATask, *,
                knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:
-        """Work through Task and return conclusion.
+        """Work through Task and return conclusion in string.
 
-        Simply forward the question/problem to Task's available Information Resources,
+        Simply forward question/problem to Task's available Information Resources,
         and then consolidate results from them.
+
+        Optionally take into account given Knowledge and/or other results.
         """
         if task.resources:
             if len(task.resources) > 1:
