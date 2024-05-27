@@ -1,4 +1,8 @@
-"""Web Informational Resources."""
+"""
+=========================================
+[future work] Web Informational Resources
+=========================================
+"""
 
 
 from .abstract import AbstractResource

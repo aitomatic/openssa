@@ -1,4 +1,8 @@
-"""Sensor Informational Resource."""
+"""
+===========================================
+[future work] Sensor Informational Resource
+===========================================
+"""
 
 
 from .abstract import AbstractResource

@@ -1,4 +1,8 @@
-"""Database Informational Resource."""
+"""
+=============================================
+[future work] Database Informational Resource
+=============================================
+"""
 
 
 from .abstract import AbstractResource
