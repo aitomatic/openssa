@@ -1,7 +1,11 @@
 """
-==============================================
-`OpenSSA` PROBLEM-SOLVING AGENTIC AI FRAMEWORK
-==============================================
+======================================================
+`OpenSSA`: SMALL SPECIALIST AGENTS FOR PROBLEM-SOLVING
+======================================================
+
+`OpenSSA` is an agentic AI framework
+incorporating Planning, Reasoning, domain-specific Knowledge, and diverse Informational Resources
+to solve complex problems in real-world industry applications.
 """
 
 
