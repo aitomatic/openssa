@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>&lt;no title&gt;</title>
+      <title>FILE-STORED INFORMATIONAL RESOURCE</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>&lt;no title&gt;</li>
+    <li>FILE-STORED INFORMATIONAL RESOURCE</li>
   </ul>
   
 
@@ -85,7 +85,15 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <p id="module-openssa.l2.resource.file">File-stored Informational Resource.</p>
+  <section id="file-stored-informational-resource">
+<span id="module-openssa.l2.resource.file"></span><h1>FILE-STORED INFORMATIONAL RESOURCE<a class="headerlink" href="#file-stored-informational-resource" title="Link to this heading">¶</a></h1>
+<p><cite>FileResource</cite> enables querying information from directories or files
+stored either locally or on remote cloud file storage services.</p>
+<p>This implementation employs <cite>LlamaIndex</cite>-based Retrieval-Augmented Generation (RAG)
+to index such file-stored content into vector indices, and to respond to information queries.</p>
+<p>A file resource needs to be specified with a local or remote cloud directory/file path,
+a <cite>LlamaIndex</cite>-compliant embedding model and a <cite>LlamaIndex</cite>-compliant LM.</p>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.resource.file.</span></span><span class="sig-name descname"><span class="pre">FileResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.resource.file.FileResource" title="Link to this definition">¶</a></dt>
@@ -98,7 +106,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.embed_model">
-<span class="sig-name descname"><span class="pre">embed_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AnEmbedModel</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.embed_model" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">embed_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BaseEmbedding</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.embed_model" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -108,7 +116,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="openssa.l2.resource.file.FileResource.lm">
-<span class="sig-name descname"><span class="pre">lm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AnLM</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.lm" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">lm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BaseLLM</span></em><a class="headerlink" href="#openssa.l2.resource.file.FileResource.lm" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">

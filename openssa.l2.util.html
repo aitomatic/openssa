@@ -93,7 +93,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="openssa.l2.util.lm.html">openssa.l2.util.lm namespace</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openssa.l2.util.lm.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.abstract.html"><code class="docutils literal notranslate"><span class="pre">AbstractLM</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.abstract.html">Abstract Language Model (LM) Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.abstract.html#openssa.l2.util.lm.abstract.AbstractLM"><code class="docutils literal notranslate"><span class="pre">AbstractLM</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.abstract.html#openssa.l2.util.lm.abstract.AbstractLM.model"><code class="docutils literal notranslate"><span class="pre">AbstractLM.model</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.abstract.html#openssa.l2.util.lm.abstract.AbstractLM.api_base"><code class="docutils literal notranslate"><span class="pre">AbstractLM.api_base</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.abstract.html#openssa.l2.util.lm.abstract.AbstractLM.api_key"><code class="docutils literal notranslate"><span class="pre">AbstractLM.api_key</span></code></a></li>
@@ -102,20 +103,36 @@
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.abstract.html#openssa.l2.util.lm.abstract.AbstractLM.get_response"><code class="docutils literal notranslate"><span class="pre">AbstractLM.get_response()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.llama.html"><code class="docutils literal notranslate"><span class="pre">LlamaLM</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.config.html">Language Model (LM) Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig"><code class="docutils literal notranslate"><span class="pre">LMConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.LLAMA_API_KEY"><code class="docutils literal notranslate"><span class="pre">LMConfig.LLAMA_API_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.LLAMA_API_URL"><code class="docutils literal notranslate"><span class="pre">LMConfig.LLAMA_API_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.DEFAULT_LLAMA_MODEL"><code class="docutils literal notranslate"><span class="pre">LMConfig.DEFAULT_LLAMA_MODEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.OPENAI_API_KEY"><code class="docutils literal notranslate"><span class="pre">LMConfig.OPENAI_API_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.OPENAI_API_URL"><code class="docutils literal notranslate"><span class="pre">LMConfig.OPENAI_API_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.DEFAULT_OPENAI_MODEL"><code class="docutils literal notranslate"><span class="pre">LMConfig.DEFAULT_OPENAI_MODEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.DEFAULT_SEED"><code class="docutils literal notranslate"><span class="pre">LMConfig.DEFAULT_SEED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.config.html#openssa.l2.util.lm.config.LMConfig.DEFAULT_TEMPERATURE"><code class="docutils literal notranslate"><span class="pre">LMConfig.DEFAULT_TEMPERATURE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.llama.html">Meta Llama LMs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.llama.html#openssa.l2.util.lm.llama.LlamaLM"><code class="docutils literal notranslate"><span class="pre">LlamaLM</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.llama.html#openssa.l2.util.lm.llama.LlamaLM.client"><code class="docutils literal notranslate"><span class="pre">LlamaLM.client</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.llama.html#openssa.l2.util.lm.llama.LlamaLM.from_defaults"><code class="docutils literal notranslate"><span class="pre">LlamaLM.from_defaults()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.llama.html#openssa.l2.util.lm.llama.LlamaLM.call"><code class="docutils literal notranslate"><span class="pre">LlamaLM.call()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.llama.html#openssa.l2.util.lm.llama.LlamaLM.get_response"><code class="docutils literal notranslate"><span class="pre">LlamaLM.get_response()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.openai.html"><code class="docutils literal notranslate"><span class="pre">OpenAILM</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.openai.html">OpenAI LMs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.openai.html#openssa.l2.util.lm.openai.OpenAILM"><code class="docutils literal notranslate"><span class="pre">OpenAILM</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.openai.html#openssa.l2.util.lm.openai.OpenAILM.client"><code class="docutils literal notranslate"><span class="pre">OpenAILM.client</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.openai.html#openssa.l2.util.lm.openai.OpenAILM.from_defaults"><code class="docutils literal notranslate"><span class="pre">OpenAILM.from_defaults()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.openai.html#openssa.l2.util.lm.openai.OpenAILM.call"><code class="docutils literal notranslate"><span class="pre">OpenAILM.call()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="openssa.l2.util.lm.openai.html#openssa.l2.util.lm.openai.OpenAILM.get_response"><code class="docutils literal notranslate"><span class="pre">OpenAILM.get_response()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.openai.html#openssa.l2.util.lm.openai.default_llama_index_openai_embed_model"><code class="docutils literal notranslate"><span class="pre">default_llama_index_openai_embed_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="openssa.l2.util.lm.openai.html#openssa.l2.util.lm.openai.default_llama_index_openai_lm"><code class="docutils literal notranslate"><span class="pre">default_llama_index_openai_lm()</span></code></a></li>
 </ul>
 </li>
 </ul>

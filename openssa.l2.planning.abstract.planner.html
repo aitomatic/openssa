@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>&lt;no title&gt;</title>
+      <title>ABSTRACT TASK PLANNER INTERFACE</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>&lt;no title&gt;</li>
+    <li>ABSTRACT TASK PLANNER INTERFACE</li>
   </ul>
   
 
@@ -85,7 +85,12 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <p id="module-openssa.l2.planning.abstract.planner">Abstract Planner.</p>
+  <section id="abstract-task-planner-interface">
+<span id="module-openssa.l2.planning.abstract.planner"></span><h1>ABSTRACT TASK PLANNER INTERFACE<a class="headerlink" href="#abstract-task-planner-interface" title="Link to this heading">¶</a></h1>
+<p><cite>AbstractPlanner</cite> is <cite>OpenSSA</cite>’s abstract base class for using LMs to create or update problem-solving task plans.</p>
+<p>A planner has an LM for generating new or updated task plans,
+the complexity of which is controlled by at least 2 key parameters <cite>max_depth</cite> and <cite>max_subtasks_per_decomp</cite>.</p>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.planning.abstract.planner.</span></span><span class="sig-name descname"><span class="pre">AbstractPlanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lm:</span> <span class="pre">AnLM</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_subtasks_per_decomp:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner" title="Link to this definition">¶</a></dt>
@@ -109,25 +114,25 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.one_level_deep">
 <span class="sig-name descname"><span class="pre">one_level_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.one_level_deep" title="Link to this definition">¶</a></dt>
-<dd><p>Get 1-level-deep Planner.</p>
+<dd><p>Get 1-level-deep Planner with same other parameters.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.one_fewer_level_deep">
 <span class="sig-name descname"><span class="pre">one_fewer_level_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.one_fewer_level_deep" title="Link to this definition">¶</a></dt>
-<dd><p>Get 1-fewer-level-deep Planner.</p>
+<dd><p>Get 1-fewer-level-deep Planner with same other parameters.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.plan">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">AResource</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">APlan</span></span></span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.plan" title="Link to this definition">¶</a></dt>
-<dd><p>Make Plan for solving posed Problem using Knowledge &amp; Informational Resources.</p>
+<dd><p>Make Plan for solving posed Problem using given Knowledge &amp; Informational Resources.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.planning.abstract.planner.AbstractPlanner.update_plan_resources">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_plan_resources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">APlan</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">AResource</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">APlan</span></span></span><a class="headerlink" href="#openssa.l2.planning.abstract.planner.AbstractPlanner.update_plan_resources" title="Link to this definition">¶</a></dt>
-<dd><p>Make updated Plan for solving posed Problem using Knowledge &amp; relevant Informational Resources.</p>
+<dd><p>Make updated Plan for solving posed Problem using given Knowledge &amp; relevant Informational Resources.</p>
 </dd></dl>
 
 </dd></dl>

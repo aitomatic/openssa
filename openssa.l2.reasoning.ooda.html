@@ -87,23 +87,18 @@
             
   <section id="module-openssa.l2.reasoning.ooda">
 <span id="openssa-l2-reasoning-ooda-package"></span><h1>openssa.l2.reasoning.ooda package<a class="headerlink" href="#module-openssa.l2.reasoning.ooda" title="Link to this heading">¶</a></h1>
-<p>OODA Reasoner.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OrientResult">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.reasoning.ooda.</span></span><span class="sig-name descname"><span class="pre">OrientResult</span></span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OrientResult" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OrientResult.confident">
-<span class="sig-name descname"><span class="pre">confident</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#openssa.l2.reasoning.ooda.OrientResult.confident" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OrientResult.answer">
-<span class="sig-name descname"><span class="pre">answer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.reasoning.ooda.OrientResult.answer" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="observe-orient-decide-act-ooda-reasoner">
+<h2>OBSERVE-ORIENT-DECIDE-ACT (OODA) REASONER<a class="headerlink" href="#observe-orient-decide-act-ooda-reasoner" title="Link to this heading">¶</a></h2>
+<p><cite>OodaReasoner</cite> is <cite>OpenSSA</cite>’s default reasoning mechanism,
+following John Boyd’s well-known Observe-Orient-Decide-Act (OODA) loop paradigm (wikipedia.org/en/OODA_loop).</p>
+<p>In the <cite>Observe</cite> step, the OODA reasoner gathers relevant available information from the task’s resources,
+as well as other results (if given).</p>
+<p>In the <cite>Orient</cite> &amp; <cite>Decide</cite> steps, practically combined for efficiency in this implementation,
+the OODA reasoner evaluates whether a confident conclusion can be produced for the problem/question the task poses,
+as well as what the best possible answer can be;
+the OODA reasoner then decides to mark the task as either <cite>DONE</cite> or <cite>NEEDING_DECOMPOSITION</cite>.</p>
+<p>In the <cite>Act</cite> step, the OODA reasoner updates the status of the task, per the previous step’s decision.</p>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OodaReasoner">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.reasoning.ooda.</span></span><span class="sig-name descname"><span class="pre">OodaReasoner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lm:</span> <span class="pre">AnLM</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OodaReasoner" title="Link to this definition">¶</a></dt>
@@ -111,36 +106,14 @@
 <p>OODA Reasoner.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OodaReasoner.reason">
-<span class="sig-name descname"><span class="pre">reason</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ATask</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">AskAnsPair</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OodaReasoner.reason" title="Link to this definition">¶</a></dt>
-<dd><p>Work through Task and return conclusion.</p>
-<p>Use OODA loop to:
-- Observe results from available Informational Resources
-- Orient &amp; Decide whether such results are adequate for confident answer/solution
-- Act to update Task’s status and result</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OodaReasoner.observe">
-<span class="sig-name descname"><span class="pre">observe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ATask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">AskAnsPair</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Observation</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OodaReasoner.observe" title="Link to this definition">¶</a></dt>
-<dd><p>Observe results from available Informational Resources.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OodaReasoner.orient">
-<span class="sig-name descname"><span class="pre">orient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ATask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Observation</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openssa.l2.reasoning.ooda.OrientResult" title="openssa.l2.reasoning.ooda.OrientResult"><span class="pre">OrientResult</span></a></span></span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OodaReasoner.orient" title="Link to this definition">¶</a></dt>
-<dd><p>Orient whether observed results are adequate for directly resolving Task.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OodaReasoner.decide">
-<span class="sig-name descname"><span class="pre">decide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orient_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#openssa.l2.reasoning.ooda.OrientResult" title="openssa.l2.reasoning.ooda.OrientResult"><span class="pre">OrientResult</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OodaReasoner.decide" title="Link to this definition">¶</a></dt>
-<dd><p>Decide whether to directly resolve Task.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openssa.l2.reasoning.ooda.OodaReasoner.act">
-<span class="sig-name descname"><span class="pre">act</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ATask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#openssa.l2.reasoning.ooda.OrientResult" title="openssa.l2.reasoning.ooda.OrientResult"><span class="pre">OrientResult</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OodaReasoner.act" title="Link to this definition">¶</a></dt>
-<dd><p>Update Task’s status and result.</p>
+<span class="sig-name descname"><span class="pre">reason</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task" title="openssa.l2.task.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">knowledge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">Knowledge</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">AskAnsPair</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.l2.reasoning.ooda.OodaReasoner.reason" title="Link to this definition">¶</a></dt>
+<dd><p>Work through Task and return conclusion in string.</p>
+<p>Use OODA loop to:</p>
+<ul class="simple">
+<li><p>Observe results from available Informational Resources as well as other results (if given)</p></li>
+<li><p>Orient &amp; Decide whether such results are adequate for confident answer/conclusion/solution</p></li>
+<li><p>Act to update Task’s status and result</p></li>
+</ul>
 </dd></dl>
 
 </dd></dl>
