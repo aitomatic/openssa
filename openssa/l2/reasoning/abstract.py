@@ -1,4 +1,14 @@
-"""Abstract Reasoner."""
+"""
+===========================
+ABSTRACT REASONER INTERFACE
+===========================
+
+`AbstractReasoner` is `OpenSSA`'s abstract base class for reasoning.
+
+A reasoner has an LM and can `.reason(...)` through a given task (which can come with assigned informational resources),
+optionally leveraging some given domain-specific knowledge and/or some other results from elsewhere,
+and return a conclusion in string.
+"""
 
 
 from __future__ import annotations
@@ -11,7 +21,7 @@ from openssa.l2.util.lm.openai import OpenAILM
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.abstract import ATask
+    from openssa.l2.task.task import Task
     from openssa.l2.util.lm.abstract import AnLM
     from openssa.l2.util.misc import AskAnsPair
 
@@ -30,9 +40,9 @@ class AbstractReasoner(ABC):
                      kw_only=False)
 
     @abstractmethod
-    def reason(self, task: ATask, *,
+    def reason(self, task: Task, *,
                knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:
-        """Work through Task and return conclusion."""
+        """Work through Task and return conclusion in string."""
 
 
 AReasoner: TypeVar = TypeVar('AReasoner', bound=AbstractReasoner, covariant=False, contravariant=False)

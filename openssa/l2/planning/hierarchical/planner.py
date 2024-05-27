@@ -1,4 +1,13 @@
-"""Automated (Generative) Hierarchical Task Planner."""
+"""
+================================================
+AUTOMATED (GENERATIVE) HIERARCHICAL TASK PLANNER
+================================================
+
+`AutoHTPlanner` is `OpenSSA`'s default Planner to create and update problem-solving HTPs.
+
+Such a planner has an LM for generating new or updated task HTPs,
+the complexity of which is controlled by 2 key parameters `max_depth` and `max_subtasks_per_decomp`.
+"""
 
 
 from __future__ import annotations
@@ -24,7 +33,7 @@ class AutoHTPlanner(AbstractPlanner):
     """Automated (Generative) Hierarchical Task Planner."""
 
     def plan(self, problem: str, *, knowledge: set[Knowledge] | None = None, resources: set[AResource] | None = None) -> HTP:
-        """Make HTP for solving posed Problem."""
+        """Make HTP for solving posed Problem with given Knowledge and Informational Resources."""
         prompt: str = (
             HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
                                                       resource_overviews={r.unique_name: r.overview for r in resources},
@@ -52,7 +61,7 @@ class AutoHTPlanner(AbstractPlanner):
 
     def update_plan_resources(self, plan: HTP, /, problem: str, resources: set[AResource],
                               *, knowledge: set[Knowledge] | None = None) -> HTP:
-        """Make updated HTP for solving posed Problem with relevant Informational Resources."""
+        """Make updated HTP for solving posed Problem with given Knowledge and Informational Resources."""
         assert isinstance(plan, HTP), TypeError(f'*** {plan} NOT OF TYPE {HTP.__name__} ***')
         assert resources, ValueError(f'*** {resources} NOT A NON-EMPTY SET OF INFORMATIONAL RESOURCES ***')
 

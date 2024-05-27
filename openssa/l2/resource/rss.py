@@ -1,4 +1,8 @@
-"""RSS Informational Resource."""
+"""
+========================================
+[future work] RSS Informational Resource
+========================================
+"""
 
 
 from .abstract import AbstractResource

@@ -1,4 +1,19 @@
-"""Hierarchical Task Plan (HTP)."""
+"""
+============================
+HIERARCHICAL TASK PLAN (HTP)
+============================
+
+`HTP` is `OpenSSA`'s default problem-solving task plan structure.
+
+A HTP instance is a tree, in which each node can be decomposed into a number of supporting sub-HTPs,
+each targeting to solve a supporting sub-task.
+
+HTP execution involves using a specified Reasoner
+to work through sub-tasks from the lowest levels and roll up results up to the top level.
+
+There is also a horizontal results-sharing mechanism
+to enable the execution of a subsequent HTP node to benefit from results from earlier nodes at the same depth level.
+"""
 
 
 from __future__ import annotations
@@ -12,7 +27,7 @@ from tqdm import tqdm
 from openssa.l2.planning.abstract.plan import AbstractPlan
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.task.abstract import TaskDict
+from openssa.l2.task.task import TaskDict
 from openssa.l2.task.status import TaskStatus
 from openssa.l2.task.task import Task
 
@@ -55,9 +70,9 @@ class HTP(AbstractPlan):
 
     def execute(self, reasoner: AReasoner | None = None, knowledge: set[Knowledge] | None = None,
                 other_results: list[AskAnsPair] | None = None) -> str:
-        """Execute and return result, using specified Reasoner to work through involved Task & Sub-Tasks.
+        """Execute and return string result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
-        Execution also optionally takes into account potentially-relevant other results from elsewhere.
+        Execution also optionally takes into account domain-specific Knowledge and/or potentially elevant other results.
         """
         if reasoner is None:
             reasoner: AReasoner = BaseReasoner()

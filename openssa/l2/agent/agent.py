@@ -39,7 +39,6 @@ if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.resource.abstract import AResource
-    from openssa.l2.task.abstract import ATask
 
 
 @dataclass
@@ -197,7 +196,7 @@ class Agent:
 
             sub_results: list[AskAnsPair] = []
             for sub_plan in tqdm(plan_1_level_deep.sub_plans):
-                sub_task: ATask = sub_plan.task
+                sub_task: Task = sub_plan.task
                 sub_task.result: str = self._solve_dynamically(problem=sub_task.ask,
                                                                planner=sub_planner,
                                                                other_results=sub_results)
