@@ -27,8 +27,8 @@ from fsspec.implementations.local import LocalFileSystem
 from gcsfs.core import GCSFileSystem
 from s3fs.core import S3FileSystem
 
-from llama_index.core.base.embeddings.base import BaseEmbedding
-from llama_index.core.base.llms.base import BaseLLM
+from llama_index.core.base.embeddings.base import BaseEmbedding as LlamaIndexEmbedModel
+from llama_index.core.base.llms.base import BaseLLM as LlamaIndexLM
 from llama_index.core.indices.loading import load_index_from_storage
 from llama_index.core.indices.vector_store.base import VectorStoreIndex
 from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
@@ -72,9 +72,6 @@ _S3_PROTOCOL_PREFIX: str = 's3://'
 type DirOrFileStrPath = str
 type FileStrPathSet = frozenset[DirOrFileStrPath]
 
-ALlamaIndexEmbedModel: TypeVar = TypeVar('ALlamaIndexEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)  # noqa: E501
-ALlamaIndexLM: TypeVar = TypeVar('ALlamaIndexLM', bound=BaseLLM, covariant=False, contravariant=False)
-
 
 @global_register
 @dataclass
@@ -85,25 +82,25 @@ class FileResource(AbstractResource):
     path: Path | DirOrFileStrPath
 
     # embedding model for indexing and retrieving information
-    embed_model: ALlamaIndexEmbedModel = field(default_factory=default_llama_index_openai_embed_model,
-                                               init=True,
-                                               repr=False,
-                                               hash=None,
-                                               compare=True,
-                                               metadata=None,
-                                               kw_only=True)
+    embed_model: LlamaIndexEmbedModel = field(default_factory=default_llama_index_openai_embed_model,
+                                              init=True,
+                                              repr=False,
+                                              hash=None,
+                                              compare=True,
+                                              metadata=None,
+                                              kw_only=True)
 
     # whether to re-index information upon initialization
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: ALlamaIndexLM = field(default_factory=default_llama_index_openai_lm,
-                              init=True,
-                              repr=False,
-                              hash=None,
-                              compare=True,
-                              metadata=None,
-                              kw_only=True)
+    lm: LlamaIndexLM = field(default_factory=default_llama_index_openai_lm,
+                             init=True,
+                             repr=False,
+                             hash=None,
+                             compare=True,
+                             metadata=None,
+                             kw_only=True)
 
     def __post_init__(self, re_index: bool):
         """Post-initialize file-stored Informational Resource."""
