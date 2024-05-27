@@ -32,7 +32,7 @@ from ._prompts import ORIENT_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.task import Task
+    from openssa.l2.task import Task
     from openssa.l2.util.lm.abstract import LMChatHist
     from openssa.l2.util.misc import AskAnsPair
 

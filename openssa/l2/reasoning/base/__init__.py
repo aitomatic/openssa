@@ -25,7 +25,7 @@ from ._prompts import (RESOURCE_QA_CONSO_PROMPT_TEMPLATE, RESOURCE_QA_AND_OTHER_
 if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import AskAnsPair
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.task import Task
+    from openssa.l2.task import Task
 
 
 @dataclass

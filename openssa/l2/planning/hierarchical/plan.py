@@ -27,9 +27,9 @@ from tqdm import tqdm
 from openssa.l2.planning.abstract.plan import AbstractPlan
 from openssa.l2.reasoning.base import BaseReasoner
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.task.task import TaskDict
+from openssa.l2.task import TaskDict
 from openssa.l2.task.status import TaskStatus
-from openssa.l2.task.task import Task
+from openssa.l2.task import Task
 
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 

@@ -1,10 +1,10 @@
 """
-====
-TASK
-====
+===================
+TASK DATA STRUCTURE
+===================
 
 `OpenSSA`'s `Task` data structure keeps track of
-what is `ask`ed, what informational resources are available, the nature, the status and the result of a task.
+what is asked, what informational resources are available, the nature, the status and the result of a task.
 """
 
 

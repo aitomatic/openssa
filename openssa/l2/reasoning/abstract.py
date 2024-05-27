@@ -21,7 +21,7 @@ from openssa.l2.util.lm.openai import OpenAILM
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.task import Task
+    from openssa.l2.task import Task
     from openssa.l2.util.lm.abstract import AnLM
     from openssa.l2.util.misc import AskAnsPair
 
