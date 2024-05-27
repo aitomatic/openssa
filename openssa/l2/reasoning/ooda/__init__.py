@@ -32,7 +32,7 @@ from ._prompts import ORIENT_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.abstract import ATask
+    from openssa.l2.task.task import Task
     from openssa.l2.util.lm.abstract import LMChatHist
     from openssa.l2.util.misc import AskAnsPair
 
@@ -49,7 +49,7 @@ class _OrientResult(TypedDict):
 class OodaReasoner(AbstractReasoner):
     """OODA Reasoner."""
 
-    def reason(self, task: ATask, *,
+    def reason(self, task: Task, *,
                knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:
         """Work through Task and return conclusion in string.
 
@@ -69,7 +69,7 @@ class OodaReasoner(AbstractReasoner):
 
         return task.result
 
-    def _observe(self, task: ATask, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[_Observation]:  # noqa: E501
+    def _observe(self, task: Task, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[_Observation]:  # noqa: E501
         """Observe results from available Informational Resources as well as other results (if given)."""
         observations: set[_Observation] = {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}  # noqa: E501
 
@@ -78,7 +78,7 @@ class OodaReasoner(AbstractReasoner):
 
         return observations
 
-    def _orient(self, task: ATask, observations: set[_Observation],
+    def _orient(self, task: Task, observations: set[_Observation],
                 knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> _OrientResult:
         """Orient whether observed results are adequate for directly resolving Task."""
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
@@ -101,7 +101,7 @@ class OodaReasoner(AbstractReasoner):
         """Decide whether to directly resolve Task."""
         return orient_result['confident']
 
-    def _act(self, task: ATask, orient_result: _OrientResult, decision: bool) -> None:
+    def _act(self, task: Task, orient_result: _OrientResult, decision: bool) -> None:
         """Update Task's status and result."""
         task.status: TaskStatus = TaskStatus.DONE if decision else TaskStatus.NEEDING_DECOMPOSITION
         task.result: str = orient_result['answer']

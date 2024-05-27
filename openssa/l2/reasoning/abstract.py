@@ -21,7 +21,7 @@ from openssa.l2.util.lm.openai import OpenAILM
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.abstract import ATask
+    from openssa.l2.task.task import Task
     from openssa.l2.util.lm.abstract import AnLM
     from openssa.l2.util.misc import AskAnsPair
 
@@ -40,7 +40,7 @@ class AbstractReasoner(ABC):
                      kw_only=False)
 
     @abstractmethod
-    def reason(self, task: ATask, *,
+    def reason(self, task: Task, *,
                knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:
         """Work through Task and return conclusion in string."""
 

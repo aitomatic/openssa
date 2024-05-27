@@ -24,7 +24,7 @@ from typing import Any, Self, TypeVar, TYPE_CHECKING
 if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.abstract import ATask
+    from openssa.l2.task.task import Task
     from openssa.l2.util.misc import AskAnsPair
 
 
@@ -37,7 +37,7 @@ class AbstractPlan(ABC):
     """Abstract Plan."""
 
     # target Task to solve
-    task: ATask
+    task: Task
 
     # decomposed Sub-Plans for solving target Task
     sub_plans: list[Self] = field(default_factory=list,

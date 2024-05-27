@@ -37,7 +37,6 @@ from .l2.reasoning.ooda import OodaReasoner
 from .l2.resource.abstract import AbstractResource
 from .l2.resource.file import FileResource
 
-from .l2.task.abstract import AbstractTask
 from .l2.task.task import Task
 
 

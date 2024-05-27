@@ -1,4 +1,11 @@
-"""Abstract task."""
+"""
+====
+TASK
+====
+
+`OpenSSA`'s `Task` data structure keeps track of
+what is `ask`ed, what informational resources are available, the nature, the status and the result of a task.
+"""
 
 
 from __future__ import annotations
@@ -29,8 +36,8 @@ class TaskDict(TypedDict, total=False):
 
 
 @dataclass
-class AbstractTask(ABC):
-    """Abstract task."""
+class Task(ABC):
+    """Task."""
 
     ask: str
     resources: set[AResource] = field(default_factory=set)
@@ -82,6 +89,3 @@ class AbstractTask(ABC):
             TypeError('*** Dynamic Decomposer must be Planner instance ***')
 
         return self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)
-
-
-ATask: TypeVar = TypeVar('ATask', bound=AbstractTask, covariant=False, contravariant=False)

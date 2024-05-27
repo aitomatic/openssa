@@ -25,14 +25,14 @@ from ._prompts import (RESOURCE_QA_CONSO_PROMPT_TEMPLATE, RESOURCE_QA_AND_OTHER_
 if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import AskAnsPair
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task.abstract import ATask
+    from openssa.l2.task.task import Task
 
 
 @dataclass
 class BaseReasoner(AbstractReasoner):
     """Base Reasoner."""
 
-    def reason(self, task: ATask, *,
+    def reason(self, task: Task, *,
                knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:
         """Work through Task and return conclusion in string.
 
