@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013 MD043 -->
 
-# OpenSSA: Small Specialist Agents for Problem-Solving
+# `OpenSSA`: Small Specialist Agents for Problem-Solving
 
 `OpenSSA` is an agentic AI framework for solving complex problems in real-world industry domains,
 overcoming the limitations of LLMs and RAG in such settings.
@@ -37,7 +37,7 @@ For bleeding-edge latest capabilities: `pip install https://github.com/aitomatic
 
 Explore the `examples/` directory and developer guides and tutorials on our [documentation site](https://aitomatic.github.io/openssa).
 
-## [API Documentation](modules)
+## [API Documentation](https://aitomatic.github.io/openssa/modules)
 
 ## Contributing
 
