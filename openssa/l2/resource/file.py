@@ -69,8 +69,8 @@ _S3_PROTOCOL_PREFIX: str = 's3://'
 type DirOrFileStrPath = str
 type FileStrPathSet = frozenset[DirOrFileStrPath]
 
-AnEmbedModel: TypeVar = TypeVar('AnEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)
-AnLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=False)
+ALlamaIndexEmbedModel: TypeVar = TypeVar('AnEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)
+ALlamaIndexLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=False)
 
 
 @global_register
@@ -82,25 +82,25 @@ class FileResource(AbstractResource):
     path: Path | DirOrFileStrPath
 
     # embedding model for indexing and retrieving information
-    embed_model: AnEmbedModel = field(default_factory=default_llama_index_openai_embed_model,
-                                      init=True,
-                                      repr=False,
-                                      hash=None,
-                                      compare=True,
-                                      metadata=None,
-                                      kw_only=True)
+    embed_model: ALlamaIndexEmbedModel = field(default_factory=default_llama_index_openai_embed_model,
+                                               init=True,
+                                               repr=False,
+                                               hash=None,
+                                               compare=True,
+                                               metadata=None,
+                                               kw_only=True)
 
     # whether to re-index information upon initialization
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: AnLM = field(default_factory=default_llama_index_openai_lm,
-                     init=True,
-                     repr=False,
-                     hash=None,
-                     compare=True,
-                     metadata=None,
-                     kw_only=True)
+    lm: ALlamaIndexLM = field(default_factory=default_llama_index_openai_lm,
+                              init=True,
+                              repr=False,
+                              hash=None,
+                              compare=True,
+                              metadata=None,
+                              kw_only=True)
 
     def __post_init__(self, re_index: bool):
         """Post-initialize file-stored Informational Resource."""
