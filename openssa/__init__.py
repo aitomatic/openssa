@@ -1,3 +1,10 @@
+"""
+==============================================
+`OpenSSA` PROBLEM-SOLVING AGENTIC AI FRAMEWORK
+==============================================
+"""
+
+
 from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
 import tomllib
