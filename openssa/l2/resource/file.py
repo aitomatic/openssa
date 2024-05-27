@@ -73,7 +73,7 @@ type DirOrFileStrPath = str
 type FileStrPathSet = frozenset[DirOrFileStrPath]
 
 ALlamaIndexEmbedModel: TypeVar = TypeVar('ALlamaIndexEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)  # noqa: E501
-ALlamaIndexLM: TypeVar = TypeVar('ALlamaIndexEmbedModel', bound=BaseLLM, covariant=False, contravariant=False)
+ALlamaIndexLM: TypeVar = TypeVar('ALlamaIndexLM', bound=BaseLLM, covariant=False, contravariant=False)
 
 
 @global_register
