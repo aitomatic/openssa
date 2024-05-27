@@ -4,8 +4,8 @@ from functools import cache
 from openssa import OodaSSA, TaskDecompositionHeuristic
 
 # pylint: disable=wrong-import-order
-from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path
-from util import enable_batch_qa, log_qa_and_update_output_file
+from data_and_knowledge import DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID
+from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
 THREE_FIN_STATEMENTS_HEURISTICS: str = (
@@ -16,7 +16,7 @@ THREE_FIN_STATEMENTS_HEURISTICS: str = (
 @cache
 def get_or_create_ooda_ssa(doc_name: DocName,
                            guiding_heuristics: str = THREE_FIN_STATEMENTS_HEURISTICS) -> OodaSSA | None:
-    if (dir_path := cache_dir_path(doc_name)):
+    if (dir_path := Doc(name=doc_name).dir_path):
         ssa = OodaSSA(task_heuristics=TaskDecompositionHeuristic({}),
                       highest_priority_heuristic=guiding_heuristics,
                       enable_generative=True)
@@ -28,7 +28,7 @@ def get_or_create_ooda_ssa(doc_name: DocName,
     return None
 
 
-@enable_batch_qa
+@enable_batch_qa_and_eval(output_name='OODA')
 @log_qa_and_update_output_file(output_name='OODA')
 def solve(fb_id: FbId) -> Answer:
     if ooda_ssa := get_or_create_ooda_ssa(DOC_NAMES_BY_FB_ID[fb_id]):

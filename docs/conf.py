@@ -10,9 +10,6 @@ from pathlib import Path
 import tomllib
 
 
-# pylint: disable=invalid-name
-
-
 # Project information
 # sphinx-doc.org/en/master/usage/configuration.html#project-information
 # ---------------------------------------------------------------------
@@ -52,3 +49,23 @@ html_static_path: Sequence[str] = ['_static']
 # --------------------------------------------
 
 source_suffix: dict[str, str] = {'.md': 'markdown', '.rst': 'restructuredtext'}
+
+
+# AudoDoc
+# sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
+# --------------------------------------------------------------------
+
+autodoc_default_options: dict[str, str] = {
+    # 'members': ...,
+    'member-order': 'bysource',
+    'undoc-members': False,
+    'private-members': False,
+    'special-members': False,
+    'inherited-members': False,
+    'show-inheritance': True,
+    'ignore-module-all': True,
+    # 'imported-members': False,
+    # 'exclude-members': ...
+    'class-doc-from': 'both',
+    # 'no-value': ...
+}

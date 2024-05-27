@@ -1,8 +1,8 @@
-"""Abstract inference rule."""
+"""Abstract Inference Rule."""
 
 
 from abc import ABC
 
 
 class AbstractInferenceRule(ABC):  # noqa: B024
-    """Abstract inference rule."""
+    """Abstract Inference Rule."""

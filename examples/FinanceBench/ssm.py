@@ -4,13 +4,13 @@ from functools import cache
 from openssa import LlamaIndexSSM
 
 # pylint: disable=wrong-import-order
-from data import DocName, FbId, Answer, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, cache_dir_path
-from util import enable_batch_qa, log_qa_and_update_output_file
+from data_and_knowledge import DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID
+from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
 @cache
 def get_or_create_ssm(doc_name: DocName) -> LlamaIndexSSM | None:
-    if dir_path := cache_dir_path(doc_name):
+    if dir_path := Doc(name=doc_name).dir_path:
         ssm = LlamaIndexSSM()
         ssm.read_directory(storage_dir=dir_path, re_index=False)
         return ssm
@@ -18,7 +18,7 @@ def get_or_create_ssm(doc_name: DocName) -> LlamaIndexSSM | None:
     return None
 
 
-@enable_batch_qa
+@enable_batch_qa_and_eval(output_name='SSM')
 @log_qa_and_update_output_file(output_name='SSM')
 def discuss(fb_id: FbId) -> Answer:
     return (ssm.discuss(QS_BY_FB_ID[fb_id])['content']

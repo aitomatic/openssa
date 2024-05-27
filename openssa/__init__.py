@@ -27,7 +27,8 @@ from .l2.agent.agent import Agent
 
 from .l2.planning.abstract.plan import AbstractPlan
 from .l2.planning.abstract.planner import AbstractPlanner
-from .l2.planning.hierarchical import HTP, AutoHTPlanner
+from .l2.planning.hierarchical.plan import HTP
+from .l2.planning.hierarchical.planner import AutoHTPlanner
 
 from .l2.reasoning.abstract import AbstractReasoner
 from .l2.reasoning.base import BaseReasoner
@@ -36,8 +37,9 @@ from .l2.reasoning.ooda import OodaReasoner
 from .l2.resource.abstract import AbstractResource
 from .l2.resource.file import FileResource
 
-from .l2.task.abstract import AbstractTask
 from .l2.task.task import Task
+
+from .l2.util.lm.config import LMConfig
 
 
 try:

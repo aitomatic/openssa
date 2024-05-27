@@ -1,4 +1,8 @@
-"""Database informational resource."""
+"""
+=============================================
+[future work] Database Informational Resource
+=============================================
+"""
 
 
 from .abstract import AbstractResource
@@ -7,4 +11,4 @@ from ._global import global_register
 
 @global_register
 class DbResource(AbstractResource):
-    """Database informational resource."""
+    """Database Informational Resource."""

@@ -1,4 +1,17 @@
-"""File-stored informational resource."""
+"""
+==================================
+FILE-STORED INFORMATIONAL RESOURCE
+==================================
+
+`FileResource` enables querying information from directories or files
+stored either locally or on remote cloud file storage services.
+
+This implementation employs `LlamaIndex`-based Retrieval-Augmented Generation (RAG)
+to index such file-stored content into vector indices, and to respond to information queries.
+
+A file resource needs to be specified with a local or remote cloud directory/file path,
+a `LlamaIndex`-compliant embedding model and a `LlamaIndex`-compliant LM.
+"""
 
 
 from collections.abc import Collection
@@ -14,8 +27,8 @@ from fsspec.implementations.local import LocalFileSystem
 from gcsfs.core import GCSFileSystem
 from s3fs.core import S3FileSystem
 
-from llama_index.core.base.embeddings.base import BaseEmbedding
-from llama_index.core.base.llms.base import BaseLLM
+from llama_index.core.base.embeddings.base import BaseEmbedding as LlamaIndexEmbedModel
+from llama_index.core.base.llms.base import BaseLLM as LlamaIndexLM
 from llama_index.core.indices.loading import load_index_from_storage
 from llama_index.core.indices.vector_store.base import VectorStoreIndex
 from llama_index.core.query_engine.retriever_query_engine import RetrieverQueryEngine
@@ -23,8 +36,8 @@ from llama_index.core.readers.file.base import SimpleDirectoryReader
 from llama_index.core.response_synthesizers.type import ResponseMode
 from llama_index.core.storage.storage_context import StorageContext
 from llama_index.core.vector_stores.types import VectorStoreQueryMode
-from llama_index.embeddings.openai.base import OpenAIEmbedding
-from llama_index.llms.openai.base import OpenAI as OpenAILM
+
+from openssa.l2.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
 
 from .abstract import AbstractResource
 from ._global import global_register
@@ -59,24 +72,38 @@ _S3_PROTOCOL_PREFIX: str = 's3://'
 type DirOrFileStrPath = str
 type FileStrPathSet = frozenset[DirOrFileStrPath]
 
-AnEmbedModel: TypeVar = TypeVar('AnEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)
-AnLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=False)
-
 
 @global_register
 @dataclass
 class FileResource(AbstractResource):
-    """File-stored informational resource."""
+    """File-stored Informational Resource."""
 
+    # directory or file path to file-stored Informational Resource
     path: Path | DirOrFileStrPath
 
-    embed_model: AnEmbedModel = field(default_factory=OpenAIEmbedding)
+    # embedding model for indexing and retrieving information
+    embed_model: LlamaIndexEmbedModel = field(default_factory=default_llama_index_openai_embed_model,
+                                              init=True,
+                                              repr=False,
+                                              hash=None,
+                                              compare=True,
+                                              metadata=None,
+                                              kw_only=True)
+
+    # whether to re-index information upon initialization
     re_index: InitVar[bool] = False
 
-    lm: AnLM = field(default_factory=OpenAILM)
+    # language model for generating answers
+    lm: LlamaIndexLM = field(default_factory=default_llama_index_openai_lm,
+                             init=True,
+                             repr=False,
+                             hash=None,
+                             compare=True,
+                             metadata=None,
+                             kw_only=True)
 
     def __post_init__(self, re_index: bool):
-        """Post-initialize file-stored informational resource."""
+        """Post-initialize file-stored Informational Resource."""
         if isinstance(self.path, Path):
             self.path: Path = self.path.resolve(strict=True)
             self.str_path: DirOrFileStrPath = str(self.path)
@@ -102,12 +129,12 @@ class FileResource(AbstractResource):
 
     @cached_property
     def unique_name(self) -> str:
-        """Return globally-unique name of file-stored informational resource."""
+        """Return globally-unique name of file-stored Informational Resource."""
         return self.index_dir_str_path
 
     @cached_property
     def name(self) -> str:
-        """Return potentially non-unique, but informationally helpful name of file-stored informational resource."""
+        """Return potentially non-unique, but informationally helpful name of file-stored Informational Resource."""
         return os.path.basename(self.path)
 
     @cached_property
@@ -274,5 +301,13 @@ class FileResource(AbstractResource):
             streaming=False)
 
     def answer(self, question: str, n_words: int = 1000) -> str:
-        """Answer question by RAG from file-stored informational resource."""
-        return self.query_engine.query(RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)).response
+        """Answer question by RAG from file-stored Informational Resource."""
+        prompt: str = RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)
+
+        for _ in range(9):
+            answer: str = self.query_engine.query(prompt).response
+
+            if not answer.strip().lower().startswith('repeat'):
+                break
+
+        return answer

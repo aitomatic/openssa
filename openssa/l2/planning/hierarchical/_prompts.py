@@ -90,10 +90,17 @@ HTP_WITH_RESOURCES_PROMPT_TEMPLATE: str = RESOURCE_OVERVIEW_PROMPT_SECTION + htp
 
 HTP_UPDATE_RESOURCES_PROMPT_TEMPLATE: str = (
 RESOURCE_OVERVIEW_PROMPT_SECTION +  # noqa: E122
-"""please return an updated version of the following JSON hierarchical task plan
+"""and consider that you are trying to solve the following top-level question/problem/task:
+
+```
+{problem}
+```
+
+please return an updated version of the following JSON hierarchical task plan
 by appropriately replacing `"resources": null` or `"resources": []`
 with `"resources": [(... unique names of most relevant informational resources ...)]`
-for any case in which such relevant informational resource(s) can be identified for the corresponding question/problem/task:
+for any case in which such relevant informational resource(s) can be identified
+for the corresponding sub-question/problem/task:
 
 ```json
 {htp_json}
@@ -116,5 +123,10 @@ given the following collection of reasoning and results:
 ```
 {info}
 ```
+
+Please present important reasoning flows and supporting details, but
+please DO NOT USE GENERIC NAMES/NUMBERS TO REFER TO SUPPORTING DETAILS
+(e.g., "Supporting Question/Task #3", "Supporting Result #4", etc.)
+because such generic referencing names could get very confusing when presented in larger conversations.
 """  # noqa: E122
 )

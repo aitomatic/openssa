@@ -26,7 +26,7 @@ jobs:
         run: make install
 
       - name: Publish Documentation
-        if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'docs'
+        if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'docs')
         run: make docs-deploy
         env:
           LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}

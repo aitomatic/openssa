@@ -46,6 +46,7 @@ ignore = [
   "D102",  # missing docstring in public method
   "D103",  # missing docstring in public function
   "D104",  # missing docstring in public package
+  "D105",  # missing docstring in magic method
   "D107",  # missing docstring in `__init__`
   "D200",  # one-line docstring should fit on one line
   "D202",  # no blank lines allowed after function docstring
