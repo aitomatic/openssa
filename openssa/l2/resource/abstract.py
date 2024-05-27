@@ -1,4 +1,14 @@
-"""Abstract Informational Resource."""
+"""
+=========================================
+ABSTRACT INFORMATIONAL RESOURCE INTERFACE
+=========================================
+
+`AbstractResource` is `OpenSSA`'s abstract base class for informational resources that problem-solving agents access.
+
+An informational resource is simply something that has a globally-unique name (within the running program),
+has a potentially non-unique but informationally helpful name,
+and can `.answer(...)` given questions with string responses.
+"""
 
 
 from abc import ABC, abstractmethod
@@ -22,7 +32,7 @@ class AbstractResource(ABC):
         """Return potentially non-unique, but informationally helpful name of Informational Resource."""
 
     @cached_property
-    def full_name(self):
+    def full_name(self) -> str:
         """Return full name for presenting Informational Resource clearly, especially in large prompts."""
         return f'INFORMATIONAL RESOURCE NAMED "{self.name}" (UNIQUELY NAMED "{self.unique_name}")'
 
