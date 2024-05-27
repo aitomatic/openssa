@@ -3,11 +3,14 @@
 FILE-STORED INFORMATIONAL RESOURCE
 ==================================
 
-`FileResource` enables querying information from files and directories
-either stored locally or on remote cloud file storage services.
+`FileResource` enables querying information from directories or files
+stored either locally or on remote cloud file storage services.
 
 This implementation employs `LlamaIndex`-based Retrieval-Augmented Generation (RAG)
 to index such file-stored content into vector indices, and to respond to information queries.
+
+A file resource needs to be specified with a local or remote cloud directory/file path,
+a `LlamaIndex`-compliant embedding model and a `LlamaIndex`-compliant LM.
 """
 
 
@@ -69,8 +72,8 @@ _S3_PROTOCOL_PREFIX: str = 's3://'
 type DirOrFileStrPath = str
 type FileStrPathSet = frozenset[DirOrFileStrPath]
 
-ALlamaIndexEmbedModel: TypeVar = TypeVar('AnEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)
-ALlamaIndexLM: TypeVar = TypeVar('AnLM', bound=BaseLLM, covariant=False, contravariant=False)
+ALlamaIndexEmbedModel: TypeVar = TypeVar('ALlamaIndexEmbedModel', bound=BaseEmbedding, covariant=False, contravariant=False)  # noqa: E501
+ALlamaIndexLM: TypeVar = TypeVar('ALlamaIndexEmbedModel', bound=BaseLLM, covariant=False, contravariant=False)
 
 
 @global_register
