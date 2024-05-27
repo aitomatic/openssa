@@ -5,7 +5,7 @@ HIERARCHICAL TASK PLAN (HTP)
 
 `HTP` is `OpenSSA`'s default problem-solving task plan structure.
 
-Each HTP instance is a tree, in which each node can be decomposed into a number of supporting sub-HTPs,
+A HTP instance is a tree, in which each node can be decomposed into a number of supporting sub-HTPs,
 each targeting to solve a supporting sub-task.
 
 HTP execution involves using a specified Reasoner
