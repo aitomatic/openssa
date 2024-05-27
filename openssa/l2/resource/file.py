@@ -1,4 +1,14 @@
-"""File-stored Informational Resource."""
+"""
+==================================
+FILE-STORED INFORMATIONAL RESOURCE
+==================================
+
+`FileResource` enables querying information from files and directories
+either stored locally or on remote cloud file storage services.
+
+This implementation employs `LlamaIndex`-based Retrieval-Augmented Generation (RAG)
+to index such file-stored content into vector indices, and to respond to information queries.
+"""
 
 
 from collections.abc import Collection
