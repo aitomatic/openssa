@@ -129,6 +129,10 @@ docs-build-api:
 		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)" \
 		*/contrib */core */integrations */utils
 
+	# get rid of undocumented members
+	sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR)*.rst
+	rm "$(DOCS_DIR)"/*.orig
+
 docs-build: docs-build-clean docs-build-api
 	# sphinx-doc.org/en/master/man/sphinx-build.html
 	@poetry run sphinx-build \
