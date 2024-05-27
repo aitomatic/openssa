@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>openssa.l2.task namespace</title>
+      <title>openssa.l2.task package</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
@@ -74,7 +74,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>openssa.l2.task namespace</li>
+    <li>openssa.l2.task package</li>
   </ul>
   
 
@@ -86,7 +86,114 @@
           <div class="content" role="main" v-pre>
             
   <section id="module-openssa.l2.task">
-<span id="openssa-l2-task-namespace"></span><h1>openssa.l2.task namespace<a class="headerlink" href="#module-openssa.l2.task" title="Link to this heading">¶</a></h1>
+<span id="openssa-l2-task-package"></span><h1>openssa.l2.task package<a class="headerlink" href="#module-openssa.l2.task" title="Link to this heading">¶</a></h1>
+<section id="task-data-structure">
+<h2>TASK DATA STRUCTURE<a class="headerlink" href="#task-data-structure" title="Link to this heading">¶</a></h2>
+<p><cite>OpenSSA</cite>’s <cite>Task</cite> data structure keeps track of
+what is asked, what informational resources are available, the nature, the status and the result of a task.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.l2.task.TaskDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.task.</span></span><span class="sig-name descname"><span class="pre">TaskDict</span></span><a class="headerlink" href="#openssa.l2.task.TaskDict" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.TaskDict.ask">
+<span class="sig-name descname"><span class="pre">ask</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Required</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.task.TaskDict.ask" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.TaskDict.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NotRequired</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">AResource</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.task.TaskDict.resources" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.TaskDict.nature">
+<span class="sig-name descname"><span class="pre">nature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NotRequired</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="openssa.l2.task.nature.html#openssa.l2.task.nature.TaskNature" title="openssa.l2.task.nature.TaskNature"><span class="pre">TaskNature</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.task.TaskDict.nature" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.TaskDict.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NotRequired</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="openssa.l2.task.status.html#openssa.l2.task.status.TaskStatus" title="openssa.l2.task.status.TaskStatus"><span class="pre">TaskStatus</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.task.TaskDict.status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.TaskDict.result">
+<span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NotRequired</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.task.TaskDict.result" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.TaskDict.dynamic_decomposer">
+<span class="sig-name descname"><span class="pre">dynamic_decomposer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NotRequired</span><span class="p"><span class="pre">[</span></span><span class="pre">APlanner</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.task.TaskDict.dynamic_decomposer" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.l2.task.Task">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.l2.task.</span></span><span class="sig-name descname"><span class="pre">Task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ask:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources:</span> <span class="pre">set[AResource]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nature:</span> <span class="pre">TaskNature</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status:</span> <span class="pre">TaskStatus</span> <span class="pre">=</span> <span class="pre">TaskStatus.PENDING</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_decomposer:</span> <span class="pre">APlanner</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.l2.task.Task" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Task.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.ask">
+<span class="sig-name descname"><span class="pre">ask</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#openssa.l2.task.Task.ask" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">AResource</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openssa.l2.task.Task.resources" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.nature">
+<span class="sig-name descname"><span class="pre">nature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="openssa.l2.task.nature.html#openssa.l2.task.nature.TaskNature" title="openssa.l2.task.nature.TaskNature"><span class="pre">TaskNature</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#openssa.l2.task.Task.nature" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="openssa.l2.task.status.html#openssa.l2.task.status.TaskStatus" title="openssa.l2.task.status.TaskStatus"><span class="pre">TaskStatus</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pending'</span></em><a class="headerlink" href="#openssa.l2.task.Task.status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.result">
+<span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#openssa.l2.task.Task.result" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.dynamic_decomposer">
+<span class="sig-name descname"><span class="pre">dynamic_decomposer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">APlanner</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#openssa.l2.task.Task.dynamic_decomposer" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#openssa.l2.task.TaskDict" title="openssa.l2.task.TaskDict"><span class="pre">TaskDict</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.task.Task.from_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Create task from dictionary representation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.to_json_dict">
+<span class="sig-name descname"><span class="pre">to_json_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#openssa.l2.task.Task.to_json_dict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.from_str">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.task.Task.from_str" title="Link to this definition">¶</a></dt>
+<dd><p>Create task from string representation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.from_dict_or_str">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict_or_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_or_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#openssa.l2.task.TaskDict" title="openssa.l2.task.TaskDict"><span class="pre">TaskDict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#openssa.l2.task.Task.from_dict_or_str" title="Link to this definition">¶</a></dt>
+<dd><p>Create task from dictionary or string representation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.l2.task.Task.decompose">
+<span class="sig-name descname"><span class="pre">decompose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">APlan</span></span></span><a class="headerlink" href="#openssa.l2.task.Task.decompose" title="Link to this definition">¶</a></dt>
+<dd><p>Decompose task into modular plan.</p>
+</dd></dl>
+
+</dd></dl>
+
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -102,30 +209,6 @@
 <li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.status.html#openssa.l2.task.status.TaskStatus.NEEDING_DECOMPOSITION"><code class="docutils literal notranslate"><span class="pre">TaskStatus.NEEDING_DECOMPOSITION</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.status.html#openssa.l2.task.status.TaskStatus.DECOMPOSED"><code class="docutils literal notranslate"><span class="pre">TaskStatus.DECOMPOSED</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.status.html#openssa.l2.task.status.TaskStatus.DONE"><code class="docutils literal notranslate"><span class="pre">TaskStatus.DONE</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="openssa.l2.task.task.html">TASK</a></li>
-<li class="toctree-l1"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.TaskDict"><code class="docutils literal notranslate"><span class="pre">TaskDict</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.TaskDict.ask"><code class="docutils literal notranslate"><span class="pre">TaskDict.ask</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.TaskDict.resources"><code class="docutils literal notranslate"><span class="pre">TaskDict.resources</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.TaskDict.nature"><code class="docutils literal notranslate"><span class="pre">TaskDict.nature</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.TaskDict.status"><code class="docutils literal notranslate"><span class="pre">TaskDict.status</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.TaskDict.result"><code class="docutils literal notranslate"><span class="pre">TaskDict.result</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.TaskDict.dynamic_decomposer"><code class="docutils literal notranslate"><span class="pre">TaskDict.dynamic_decomposer</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.ask"><code class="docutils literal notranslate"><span class="pre">Task.ask</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.resources"><code class="docutils literal notranslate"><span class="pre">Task.resources</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.nature"><code class="docutils literal notranslate"><span class="pre">Task.nature</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.status"><code class="docutils literal notranslate"><span class="pre">Task.status</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.result"><code class="docutils literal notranslate"><span class="pre">Task.result</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.dynamic_decomposer"><code class="docutils literal notranslate"><span class="pre">Task.dynamic_decomposer</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.from_dict"><code class="docutils literal notranslate"><span class="pre">Task.from_dict()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.to_json_dict"><code class="docutils literal notranslate"><span class="pre">Task.to_json_dict()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.from_str"><code class="docutils literal notranslate"><span class="pre">Task.from_str()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.from_dict_or_str"><code class="docutils literal notranslate"><span class="pre">Task.from_dict_or_str()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="openssa.l2.task.task.html#openssa.l2.task.task.Task.decompose"><code class="docutils literal notranslate"><span class="pre">Task.decompose()</span></code></a></li>
 </ul>
 </li>
 </ul>
