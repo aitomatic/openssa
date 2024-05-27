@@ -1,6 +1,6 @@
 """
 ==================================
-Language Model (LM) Configurations
+LANGUAGE MODEL (LM) CONFIGURATIONS
 ==================================
 """
 

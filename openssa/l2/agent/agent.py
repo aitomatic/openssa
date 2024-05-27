@@ -31,7 +31,7 @@ from tqdm import tqdm
 from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
 from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.task.status import TaskStatus
-from openssa.l2.task.task import Task
+from openssa.l2.task import Task
 
 if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import APlan, AskAnsPair
