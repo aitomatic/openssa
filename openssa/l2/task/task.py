@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from abc import ABC
 from dataclasses import dataclass, asdict, field
-from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired, TypeVar
+from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired
 
 from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.resource._global import GLOBAL_RESOURCES
