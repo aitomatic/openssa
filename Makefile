@@ -127,7 +127,7 @@ docs-build-api:
 		--implicit-namespaces \
 		--module-first \
 		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)" \
-		**/abstract* */contrib */core */integrations */utils
+		*/contrib */core */integrations */utils
 
 docs-build: docs-build-clean docs-build-api
 	# sphinx-doc.org/en/master/man/sphinx-build.html
