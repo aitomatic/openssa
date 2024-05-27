@@ -31,7 +31,7 @@ from tqdm import tqdm
 from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
 from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.task.status import TaskStatus
-from openssa.l2.task.task import Task
+from openssa.l2.task import Task
 
 if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import APlan, AskAnsPair
@@ -39,7 +39,6 @@ if TYPE_CHECKING:
     from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.resource.abstract import AResource
-    from openssa.l2.task.abstract import ATask
 
 
 @dataclass
@@ -167,7 +166,7 @@ class Agent:
             case (_, _, True) if (plan and self.planner):
                 # if both Plan and Planner are given, and if solving dynamically,
                 # TODO: dynamic solution
-                raise NotImplementedError('Dynamic execution of given Plan and Planner not yet implemented')
+                result: str = self.solve(problem=problem, plan=plan, dynamic=False)
 
             case _:
                 raise ValueError('*** Invalid Plan-Planner-Dynamism Combination ***')
@@ -197,7 +196,7 @@ class Agent:
 
             sub_results: list[AskAnsPair] = []
             for sub_plan in tqdm(plan_1_level_deep.sub_plans):
-                sub_task: ATask = sub_plan.task
+                sub_task: Task = sub_plan.task
                 sub_task.result: str = self._solve_dynamically(problem=sub_task.ask,
                                                                planner=sub_planner,
                                                                other_results=sub_results)

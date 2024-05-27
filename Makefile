@@ -100,7 +100,15 @@ release: build
 # DOCUMENTATION
 # =============
 docs: docs-build-clean docs-build-api
-	@poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
+	@poetry run sphinx-autobuild \
+		--builder html \
+		--jobs auto \
+		--doctree-dir "$(DOCS_BUILD_DIR)/.doctrees" \
+		--conf-dir "$(DOCS_DIR)" \
+		--nitpicky \
+		--color \
+		--open-browser \
+		"$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-build-clean:
 	@rm -f "$(DOCS_DIR)"/*.rst
@@ -108,7 +116,7 @@ docs-build-clean:
 
 docs-build-api:
 	# generate .rst files from module code & docstrings
-	# any pathnames given at the end are paths to be excluded ignored during generation.
+	# path names/patterns at the end are those to exclude/ignore
 	# sphinx-doc.org/en/master/man/sphinx-apidoc.html
 	@poetry run sphinx-apidoc \
 		--force \
@@ -122,7 +130,15 @@ docs-build-api:
 		*/contrib */core */integrations */utils
 
 docs-build: docs-build-clean docs-build-api
-	@poetry run sphinx-build "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
+	# sphinx-doc.org/en/master/man/sphinx-build.html
+	@poetry run sphinx-build \
+		--builder html \
+		--jobs auto \
+		--doctree-dir "$(DOCS_BUILD_DIR)/.doctrees" \
+		--conf-dir "$(DOCS_DIR)" \
+		--nitpicky \
+		--color \
+		"$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-deploy: docs-build
 	@git fetch --all

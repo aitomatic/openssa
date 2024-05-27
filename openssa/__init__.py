@@ -1,3 +1,14 @@
+"""
+======================================================
+`OpenSSA`: SMALL SPECIALIST AGENTS FOR PROBLEM-SOLVING
+======================================================
+
+`OpenSSA` is an agentic AI framework
+incorporating Planning, Reasoning, domain-specific Knowledge, and diverse Informational Resources
+to solve complex problems in real-world industry applications.
+"""
+
+
 from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
 import tomllib
@@ -37,8 +48,9 @@ from .l2.reasoning.ooda import OodaReasoner
 from .l2.resource.abstract import AbstractResource
 from .l2.resource.file import FileResource
 
-from .l2.task.abstract import AbstractTask
-from .l2.task.task import Task
+from .l2.task import Task
+
+from .l2.util.lm.config import LMConfig
 
 
 try:
