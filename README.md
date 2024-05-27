@@ -32,9 +32,9 @@ using significantly smaller component models, thereby greatly economizing comput
 
 ## Getting Started
 
-Install by `pip install openssa` (on Python 3.12 only).
+Install by __`pip install openssa`__ on Python __3.12__.
 
-- for bleeding-edge latest capabilities: `pip install https://github.com/aitomatic/openssa/archive/main.zip`
+- For bleeding-edge latest capabilities: __`pip install https://github.com/aitomatic/openssa/archive/main.zip`__.
 
 Explore the `examples/` directory and developer guides and tutorials on our [documentation site](https://aitomatic.github.io/openssa).
 
