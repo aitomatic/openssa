@@ -79,7 +79,7 @@ class OodaReasoner(AbstractReasoner):
         return observations
 
     def _orient(self, task: ATask, observations: set[Observation],
-               knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> OrientResult:
+                knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> OrientResult:
         """Orient whether observed results are adequate for directly resolving Task."""
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
 
