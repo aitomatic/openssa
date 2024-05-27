@@ -37,7 +37,7 @@ For bleeding-edge latest capabilities: `pip install https://github.com/aitomatic
 
 Explore the `examples/` directory and developer guides and tutorials on our [documentation site](https://aitomatic.github.io/openssa).
 
-## [API Documentation](modules)
+## [API Documentation](https://aitomatic.github.io/openssa/modules)
 
 ## Contributing
 
