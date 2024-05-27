@@ -1,6 +1,6 @@
 """
 ======================================
-Abstract Language Model (LM) Interface
+ABSTRACT LANGUAGE MODEL (LM) INTERFACE
 ======================================
 """
 
