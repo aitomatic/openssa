@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013 MD043 -->
 
-# OpenSSA: Small Specialist Agents for Problem-Solving
+# `OpenSSA`: Small Specialist Agents for Problem-Solving
 
 `OpenSSA` is an agentic AI framework for solving complex problems in real-world industry domains,
 overcoming the limitations of LLMs and RAG in such settings.
