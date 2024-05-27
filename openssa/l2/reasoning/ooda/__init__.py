@@ -37,10 +37,10 @@ if TYPE_CHECKING:
     from openssa.l2.util.misc import AskAnsPair
 
 
-type Observation = str
+type _Observation = str
 
 
-class OrientResult(TypedDict):
+class _OrientResult(TypedDict):
     confident: bool
     answer: str
 
@@ -59,49 +59,49 @@ class OodaReasoner(AbstractReasoner):
         - Orient & Decide whether such results are adequate for confident answer/conclusion/solution
         - Act to update Task's status and result
         """
-        observations: set[Observation] = self._observe(task=task, other_results=other_results, n_words=n_words)
+        observations: set[_Observation] = self._observe(task=task, other_results=other_results, n_words=n_words)
 
         # note: Orient & Decide steps are practically combined to economize LM calls
-        orient_result: OrientResult = self._orient(task=task, observations=observations, knowledge=knowledge, n_words=n_words)  # noqa: E501
+        orient_result: _OrientResult = self._orient(task=task, observations=observations, knowledge=knowledge, n_words=n_words)  # noqa: E501
         decision: bool = self._decide(orient_result=orient_result)
 
         self._act(task=task, orient_result=orient_result, decision=decision)
 
         return task.result
 
-    def _observe(self, task: ATask, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[Observation]:  # noqa: E501
+    def _observe(self, task: ATask, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[_Observation]:  # noqa: E501
         """Observe results from available Informational Resources as well as other results (if given)."""
-        observations: set[Observation] = {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}  # noqa: E501
+        observations: set[_Observation] = {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}  # noqa: E501
 
         if other_results:
             observations |= {format_other_result(other_result) for other_result in other_results}
 
         return observations
 
-    def _orient(self, task: ATask, observations: set[Observation],
-                knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> OrientResult:
+    def _orient(self, task: ATask, observations: set[_Observation],
+                knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> _OrientResult:
         """Orient whether observed results are adequate for directly resolving Task."""
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
 
-        def is_valid(orient_result_dict: OrientResult) -> bool:
+        def is_valid(orient_result_dict: _OrientResult) -> bool:
             return (isinstance(orient_result_dict, dict) and
                     isinstance(orient_result_dict.get('confident'), bool) and
                     isinstance(orient_result_dict.get('answer'), str))
 
-        orient_result_dict: OrientResult = {}
+        orient_result_dict: _OrientResult = {}
         knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
                                                 if knowledge
                                                 else None)
         while not is_valid(orient_result_dict):
-            orient_result_dict: OrientResult = self.lm.get_response(prompt, history=knowledge_lm_hist, json_format=True)
+            orient_result_dict: _OrientResult = self.lm.get_response(prompt, history=knowledge_lm_hist, json_format=True)
 
         return orient_result_dict
 
-    def _decide(self, orient_result: OrientResult) -> bool:
+    def _decide(self, orient_result: _OrientResult) -> bool:
         """Decide whether to directly resolve Task."""
         return orient_result['confident']
 
-    def _act(self, task: ATask, orient_result: OrientResult, decision: bool) -> str:
+    def _act(self, task: ATask, orient_result: _OrientResult, decision: bool) -> None:
         """Update Task's status and result."""
         task.status: TaskStatus = TaskStatus.DONE if decision else TaskStatus.NEEDING_DECOMPOSITION
         task.result: str = orient_result['answer']
