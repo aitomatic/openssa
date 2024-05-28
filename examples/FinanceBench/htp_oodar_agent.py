@@ -1,7 +1,6 @@
 from argparse import ArgumentParser
 from functools import cache
 
-# pylint: disable=unused-import
 from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource
 
 # pylint: disable=wrong-import-order
@@ -65,8 +64,16 @@ def solve_expert_htp_statically(fb_id: FbId) -> Answer:
 
 @enable_batch_qa_and_eval(output_name='HTP-expert-dynamic---OODAR')
 @log_qa_and_update_output_file(output_name='HTP-expert-dynamic---OODAR')
-def solve_expert_htp_dynamically(fb_id: FbId) -> Answer:  # noqa: ARG001
-    raise NotImplementedError('Dynamic execution of given Plan and Planner not yet implemented')
+def solve_expert_htp_dynamically(fb_id: FbId) -> Answer:
+    if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]):
+        problem: str = QS_BY_FB_ID[fb_id]
+
+        if fb_id in EXPERT_PLAN_MAP:
+            return agent.solve(problem=problem, plan=expert_plan_from_fb_id(fb_id), dynamic=True)
+
+        return agent.solve(problem=problem, plan=None, dynamic=True)
+
+    return 'ERROR: doc not found'
 
 
 @enable_batch_qa_and_eval(output_name='HTP-auto-static---OODAR---Knowledge')
@@ -101,8 +108,16 @@ def solve_expert_htp_statically_with_knowledge(fb_id: FbId) -> Answer:
 
 @enable_batch_qa_and_eval(output_name='HTP-expert-dynamic---OODAR---Knowledge')
 @log_qa_and_update_output_file(output_name='HTP-expert-dynamic---OODAR---Knowledge')
-def solve_expert_htp_dynamically_with_knowledge(fb_id: FbId) -> Answer:  # noqa: ARG001
-    raise NotImplementedError('Dynamic execution of given Plan and Planner not yet implemented')
+def solve_expert_htp_dynamically_with_knowledge(fb_id: FbId) -> Answer:
+    if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True):
+        problem: str = QS_BY_FB_ID[fb_id]
+
+        if fb_id in EXPERT_PLAN_MAP:
+            return agent.solve(problem=problem, plan=expert_plan_from_fb_id(fb_id), dynamic=True)
+
+        return agent.solve(problem=problem, plan=None, dynamic=True)
+
+    return 'ERROR: doc not found'
 
 
 if __name__ == '__main__':

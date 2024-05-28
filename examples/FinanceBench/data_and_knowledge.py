@@ -243,7 +243,7 @@ def export_ground_truths():
 def get_or_create_output_df() -> DataFrame:
     output_df: DataFrame = (read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
                             if OUTPUT_FILE_PATH.is_file()
-                            else META_DF[['doc_name', 'question', 'evidence_text', 'page_number', 'answer']])
+                            else META_DF[['doc_name', 'question', 'page_number', 'answer']])
 
     output_df.loc[:, 'category'] = [GROUND_TRUTHS[fb_id]['category'] for fb_id in output_df.index]
 
