@@ -49,9 +49,9 @@ class log_qa_and_update_output_file:  # noqa: N801
     def __call__(self, qa_func: QAFunc) -> QAFunc:
         @wraps(wrapped=qa_func)
         def decorated_qa_func(fb_id: FbId) -> Answer:
-            switch_log_file(f'{(doc_name := DOC_NAMES_BY_FB_ID[fb_id])} | {fb_id[16:]} | {self.output_name}')
+            switch_log_file(fb_id=fb_id, output_name=self.output_name)
 
-            logger.info((question := f'\n{fb_id}\n{doc_name}:\n{QS_BY_FB_ID[fb_id]}\n') +
+            logger.info((question := f'\n{fb_id}\n{DOC_NAMES_BY_FB_ID[fb_id]}:\n{QS_BY_FB_ID[fb_id]}\n') +
                         '\n... solving process starting ...\n',
                         depth=1)
 
