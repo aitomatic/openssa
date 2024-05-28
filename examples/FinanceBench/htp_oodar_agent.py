@@ -1,7 +1,6 @@
 from argparse import ArgumentParser
 from functools import cache
 
-# pylint: disable=unused-import
 from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource
 
 # pylint: disable=wrong-import-order
@@ -65,7 +64,7 @@ def solve_expert_htp_statically(fb_id: FbId) -> Answer:
 
 @enable_batch_qa_and_eval(output_name='HTP-expert-dynamic---OODAR')
 @log_qa_and_update_output_file(output_name='HTP-expert-dynamic---OODAR')
-def solve_expert_htp_dynamically(fb_id: FbId) -> Answer:  # noqa: ARG001
+def solve_expert_htp_dynamically(fb_id: FbId) -> Answer:
     if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]):
         problem: str = QS_BY_FB_ID[fb_id]
 
@@ -109,7 +108,7 @@ def solve_expert_htp_statically_with_knowledge(fb_id: FbId) -> Answer:
 
 @enable_batch_qa_and_eval(output_name='HTP-expert-dynamic---OODAR---Knowledge')
 @log_qa_and_update_output_file(output_name='HTP-expert-dynamic---OODAR---Knowledge')
-def solve_expert_htp_dynamically_with_knowledge(fb_id: FbId) -> Answer:  # noqa: ARG001
+def solve_expert_htp_dynamically_with_knowledge(fb_id: FbId) -> Answer:
     if agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True):
         problem: str = QS_BY_FB_ID[fb_id]
 
