@@ -100,6 +100,7 @@ ignore = [
   "PLR2004",  # magic value used in comparison, consider replacing with a constant variable
   "PLR6104",  # use `+=` to perform an augmented assignment directly
   "PLR6301",  # method could be a function, class method, or static method
+  "PLW0603",  # using the global statement to update is discouraged
   "PT009",  # use a regular `assert` instead of unittest-style `assertIsInstance`
   "PT018",  # assertion should be broken down into multiple parts
   "PT027",  # use `pytest.raises` instead of unittest-style `assertRaises`

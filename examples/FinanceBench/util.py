@@ -10,6 +10,7 @@ from tqdm import tqdm
 
 from data_and_knowledge import FbId, Answer, FB_IDS, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID, OUTPUT_FILE_PATH, get_or_create_output_df  # noqa: E501
 from eval import eval_correctness, eval_all
+from log import switch_log_file
 
 if TYPE_CHECKING:
     from pandas import DataFrame
@@ -48,7 +49,9 @@ class log_qa_and_update_output_file:  # noqa: N801
     def __call__(self, qa_func: QAFunc) -> QAFunc:
         @wraps(wrapped=qa_func)
         def decorated_qa_func(fb_id: FbId) -> Answer:
-            logger.info((question := f'\n{fb_id}\n{DOC_NAMES_BY_FB_ID[fb_id]}:\n{QS_BY_FB_ID[fb_id]}\n') +
+            switch_log_file(f'{(doc_name := DOC_NAMES_BY_FB_ID[fb_id])} | {fb_id} | {self.output_name}')
+
+            logger.info((question := f'\n{fb_id}\n{doc_name}:\n{QS_BY_FB_ID[fb_id]}\n') +
                         '\n... solving process starting ...\n',
                         depth=1)
 
