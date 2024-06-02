@@ -42,3 +42,9 @@ docs/_build/
 tmp/
 examples/Expert Plan Development.ipynb
 test*.ipynb
+*.pdf
+examples/semiconductor/data/.text-embedding-3-large/default__vector_store.json
+examples/semiconductor/data/.text-embedding-3-large/docstore.json
+examples/semiconductor/data/.text-embedding-3-large/graph_store.json
+examples/semiconductor/data/.text-embedding-3-large/image__vector_store.json
+examples/semiconductor/data/.text-embedding-3-large/index_store.json

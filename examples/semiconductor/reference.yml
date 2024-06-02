@@ -1,0 +1,86 @@
+questions:
+  - At wave vectors near but not exactly at the zone center, the LO phonon
+    frequency in GaAs and other zinc-blende crystals is higher than that of the
+    TO phonons. Why is this?
+  - What is the typical thickness of the gate oxide layer in a 5nm FinFET
+    transistor?
+  - What is the thermal conductivity of silicon carbide (SiC) at 300 K?
+  - What is the expected subthreshold swing of a 3nm gate-length InGaAs quantum
+    well FET at room temperature?
+  - What is the effect of donor and acceptor impurities on the Fermi level?
+  - A MOSFET transistor has a threshold voltage of 0.5V and a drain-source
+    current of 100mA. If the gate-source voltage is increased by 1V, and the
+    drain-source voltage is increased by 2V, what will be the new drain-source
+    current? Assume a mobility of 400 cm^2/Vs and a gate oxide thickness of 2nm.
+  - A CMOS inverter circuit has a pull-up resistance of 1kohm and a pull-down
+    resistance of 2kohm. If the input voltage is 2.5V and the output voltage is
+    0.5V, what will be the power dissipation in the circuit? Assume a supply
+    voltage of 5V and a switching frequency of 100MHz.
+
+docs:
+  - https://sites.ifi.unicamp.br/brum/files/2014/01/Semiconductors-Yu-Cardona.pdf
+  - https://www.semi.org/sites/semi.org/files/2023-07/Introduction%20to%20Semiconductor%20Processing.pdf
+  - https://www.asml.com/en/news/stories/2021/semiconductor-manufacturing-process-steps
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/process.html
+  - https://www2.mvcc.edu/users/faculty/jfiore/Linear/SemiconductorDevices.pdf
+  - https://user.eng.umd.edu/~neil/enee704/Goldsman_Darmody_Intro_QM_Dev_Phys.pdf
+  - https://www.waferworld.com/post/silicon-wafer-manufacturing-ultimate-guide
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-1-what-is-a-wafer
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-2-oxidation-to-protect-the-wafer
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-3-the-integrated-circuit-a-revolution-in-electronics
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-4-photolithography-laying-the-blueprint
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-5-etching-a-circuit-pattern
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-6-deposition-and-ion-implantation-for-the-electrical-properties
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-7-metal-interconnects-electrical-highways
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-8-eds-electrical-die-sorting-for-the-perfect-chips
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/eight-essential-semiconductor-fabrication-processes-part-9-packaging-to-protect-the-chips-from-external-elements
+  - https://semiconductor.samsung.com/us/support/tools-resources/fabrication-process/a-lego-model-of-the-worlds-largest-semiconductor-production-line-fab-on-the-block
+  - https://semiconductor.samsung.com/emea/news-events/tech-blog/a-short-introduction-to-semiconductor-fabrication
+  - https://www.azom.com/article.aspx?ArticleID=21745
+  - https://hackaday.com/2021/11/15/mining-and-refining-pure-silicon-and-the-incredible-effort-it-takes-to-get-there
+  - https://ncert.nic.in/ncerts/l/leph206.pdf
+  - http://emdp.ustc.edu.cn/_upload/article/files/fb/6c/a0bfd9044ce69fc42c0666266d77/16231cdf-5c2b-41c1-8730-48568ee69d30.pdf
+  - https://www.ee.ucla.edu/wp-content/uploads/ee/Book-2_Basic-Semiconductor-Devices-for-Electrical-Engineers.pdf
+  - https://www.optima.ufam.edu.br/SemPhys/Downloads/Neamen.pdf
+  - http://emdp.ustc.edu.cn/_upload/article/files/fb/6c/a0bfd9044ce69fc42c0666266d77/bd59c07e-9071-4347-bf0a-5849e228d552.pdf
+  - https://pd-zdh.xaut.edu.cn/__local/A/F0/D3/EA002AB461DFDFC92BCFAD35BC4_C62E9AA9_1335DE9.pdf
+  - https://sgp.fas.org/crs/misc/R47508.pdf
+  - https://www.optima.ufam.edu.br/SemPhys/Downloads/Dieter.pdf
+  - https://www.st.com/resource/en/application_note/cd00003986-introduction-to-semiconductor-technology-stmicroelectronics.pdf
+  - https://gordianknot.stanford.edu/sites/g/files/sbiybj22971/files/media/file/The%20Semiconductor%20Ecosystem.pdf
+  - https://www.gacbe.ac.in/images/E%20books/Fundamentals%20of%20Semiconductor%20Manufacturing%20and%20Process%20Control%20G.%20May%20C.%20Spanos.pdf
+  - https://www.ele.uva.es/~ivasan/DO/%5BBook%20-%20Opto%5D%20Semiconductor%20Laser%20Engineering%20-%20Wiley.pdf
+  - https://www.semiconductors.org/wp-content/uploads/2020/10/Overview-Of-The-Semi-Industry-And-Its-Approach-To-Chem-Mgmt-and-EHS.pdf
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/inspection.html
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/process.html
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/metrology-inspection.html
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/accuracy-precision.html
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/cd-sem.html
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/etch.html
+  - https://www.hitachi-hightech.com/global/en/knowledge/semiconductor/room/manufacturing/review-sem.html
+  - https://www.ttelectronics.com/TTElectronics/media/ProductFiles/Brochure/A-Short-Guide-to-Quality-and-Reliability-Issues-in-Semiconductors-for-High-Rel-Applications.pdf
+  - https://measurlabs.com/blog/semiconductor-failure-analysis
+  - https://www.semitracks.com/newsletters/may/2021-may-newsletter.pdf
+  - https://www.globalspec.com/learnmore/semiconductors/communication_ic/packet_switching_chips#:~:text=Packet%20switching%20chips%20are%20communication,rout%20packets%20between%20network%20nodes.
+  - https://www.techinsights.com/technology-guides/guide-ethernet-switch-phy-chips
+  - https://www.cisco.com/c/en/us/products/switches/what-is-an-ethernet-switch.html
+  - https://semiengineering.com/knowledge_centers/communications-io/communications-systems/data-processing/switches
+  - https://en.wikipedia.org/wiki/Application-specific_integrated_circuit
+  - https://www.baesystems.com/en-us/definition/what-are-asics
+  - https://en.wikipedia.org/wiki/Network_on_a_chip
+  - https://www.sciencedirect.com/topics/computer-science/chip-architecture#:~:text=An%20NoC%20architecture%20uses%20layered,core%20%5B1%2C2%5D.
+  - https://en.wikipedia.org/wiki/Network_processor
+  - https://www.sciencedirect.com/topics/computer-science/network-processing-unit
+  - https://www.cxtec.com/blog/7-ways-configure-network-switches-optimal-performance
+  - https://en.wikipedia.org/wiki/Optical_network_on_chip
+  - https://en.wikipedia.org/wiki/Optical_interconnect
+  - https://en.wikipedia.org/wiki/Passive_optical_network
+  - https://en.wikipedia.org/wiki/Ethernet
+  - https://en.wikipedia.org/wiki/10G-PON
+  - https://en.wikipedia.org/wiki/Ethernet_physical_layer
+  - https://en.wikipedia.org/wiki/Gigabit_Ethernet
+  - https://en.wikipedia.org/wiki/Network_interface_device
+  - https://en.wikipedia.org/wiki/Double_data_rate
+  - https://en.wikipedia.org/wiki/Gate_oxide
+  - https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_5nm
+  - https://en.wikipedia.org/wiki/5_nm_process
