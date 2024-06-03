@@ -42,3 +42,4 @@ docs/_build/
 tmp/
 examples/Expert Plan Development.ipynb
 test*.ipynb
+*.json
