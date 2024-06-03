@@ -82,16 +82,16 @@ ground-truths:
   3M_2023Q2_10Q:
     BS:
       cash-and-equiv:
-        2023Q2: 4,258 million
+        2023Q2: 4,258 million  # unreliable
         2022: 3,655 million
 
       st-invest:
-        2023Q2: 56 million  # unreliable
+        2023Q2: 56 million
         2022: 238 million
 
       recvables:
-        2023Q2: 4,947 million  # unreliable
-        2022: 4,532 million  # unreliable
+        2023Q2: 4,947 million
+        2022: 4,532 million
 
       invent:
         2023Q2: 5,280 million
