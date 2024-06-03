@@ -115,14 +115,14 @@ ground-truths:
     CF:
       capex:
         2019: 116 million
-        2018: 131 million  # unreliable
+        2018: 131 million
         2017: 155 million  # unreliable
 
     P&L:
       rev:
         2019: 6,489 million
-        2018: 7,500 million  # unreliable
-        2017: 7,017 million  # unreliable
+        2018: 7,500 million
+        2017: 7,017 million
 
 
   ADOBE_2015_10K:
