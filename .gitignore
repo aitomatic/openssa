@@ -38,8 +38,7 @@ docs/_build/
 
 # DATA & EXAMPLE FILES
 # ====================
+examples/**/*.json
 .openssa/
-tmp/
-examples/Expert Plan Development.ipynb
 test*.ipynb
-*.json
+tmp/
