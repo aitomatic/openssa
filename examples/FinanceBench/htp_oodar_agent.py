@@ -17,7 +17,7 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False) -> Ag
                   reasoner=OodaReasoner(),
                   knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
                   resources={FileResource(path=dir_path,
-                                          lm=LlamaIndexOpenAILM(model='gpt-4-1106-preview',
+                                          lm=LlamaIndexOpenAILM(model='gpt-4-1106-preview',  # alt: gpt-3.5-turbo
                                                                 temperature=LMConfig.DEFAULT_TEMPERATURE,
                                                                 max_tokens=None,
                                                                 additional_kwargs={'seed': LMConfig.DEFAULT_SEED},

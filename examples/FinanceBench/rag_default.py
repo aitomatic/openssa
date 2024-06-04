@@ -1,7 +1,10 @@
 from argparse import ArgumentParser
 from functools import cache
 
-from openssa.l2.resource.file import FileResource
+from llama_index.llms.openai.base import DEFAULT_OPENAI_MODEL
+
+from openssa import FileResource, LMConfig
+from openssa.l2.util.lm.openai import LlamaIndexOpenAILM
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID
@@ -9,8 +12,19 @@ from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
 @cache
-def get_or_create_file_resource(doc_name: DocName) -> FileResource | None:
-    return (FileResource(path=dir_path)
+def get_or_create_file_resource(doc_name: DocName, openai_lm_name: str = DEFAULT_OPENAI_MODEL) -> FileResource | None:
+    return (FileResource(path=dir_path,
+                         lm=LlamaIndexOpenAILM(model=openai_lm_name,
+                                               temperature=LMConfig.DEFAULT_TEMPERATURE,
+                                               max_tokens=None,
+                                               additional_kwargs={'seed': LMConfig.DEFAULT_SEED},
+                                               max_retries=3, timeout=60, reuse_client=True,
+                                               api_key=None, api_base=None, api_version=None,
+                                               callback_manager=None, default_headers=None,
+                                               http_client=None, async_http_client=None,
+                                               system_prompt=None, messages_to_prompt=None, completion_to_prompt=None,
+                                               # pydantic_program_mode=...,
+                                               output_parser=None))
             if (dir_path := Doc(name=doc_name).dir_path)
             else None)
 
