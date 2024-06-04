@@ -214,7 +214,7 @@ ground-truths:
     BS:
       invent:
         2017: 16,047 million
-        2016: 11,461 million
+        2016: 11,461 million  # unreliable
 
       payables:
         2017: 34,616 million
@@ -229,7 +229,7 @@ ground-truths:
       cogs:
         2017: 111,934 million  # unreliable: often mistaken for Total Operating Expenses $173,760 million
         2016: 88,265 million  # unreliable: often mistaken for Total Operating Expenses $131,801 million
-        2015: 71,651 million  # unreliable: often failing to be retrieved at all
+        2015: 71,651 million
 
 
   AMCOR_2020_10K:
