@@ -1,7 +1,8 @@
 from argparse import ArgumentParser
 from functools import cache
 
-from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource
+from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource, LMConfig
+from openssa.l2.util.lm.openai import LlamaIndexOpenAILM
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
@@ -15,7 +16,18 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False) -> Ag
     return (Agent(planner=AutoHTPlanner(max_depth=2, max_subtasks_per_decomp=4),
                   reasoner=OodaReasoner(),
                   knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
-                  resources={FileResource(path=dir_path)})
+                  resources={FileResource(path=dir_path,
+                                          lm=LlamaIndexOpenAILM(model='gpt-4-1106-preview',
+                                                                temperature=LMConfig.DEFAULT_TEMPERATURE,
+                                                                max_tokens=None,
+                                                                additional_kwargs={'seed': LMConfig.DEFAULT_SEED},
+                                                                max_retries=3, timeout=60, reuse_client=True,
+                                                                api_key=None, api_base=None, api_version=None,
+                                                                callback_manager=None, default_headers=None,
+                                                                http_client=None, async_http_client=None,
+                                                                system_prompt=None, messages_to_prompt=None, completion_to_prompt=None,
+                                                                # pydantic_program_mode=...,
+                                                                output_parser=None))})
             if (dir_path := Doc(name=doc_name).dir_path)
             else None)
 
