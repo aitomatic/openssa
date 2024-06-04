@@ -290,7 +290,7 @@ financebench_id_01319:
   evaluator-unreliable: true
 
 
-financebench_id_00540:
+financebench_id_00540:  # TODO: retrieve COGS
   doc: AES_2022_10K
   question: Roughly how many times has AES Corporation sold its inventory in FY2022?
     Calculate inventory turnover ratio for the FY2022; if conventional inventory management
