@@ -1,5 +1,5 @@
 from pathlib import Path
-import sys
+# import sys
 
 from loguru import logger
 
@@ -11,14 +11,14 @@ CURRENT_LOG_HANDLER_ID: int | None = None
 
 
 # loguru.readthedocs.io/en/stable/api/logger.html#loguru._logger.Logger.add
-logger.add(sink=sys.stdout, level='DEBUG',
-           # format=...,
-           filter=None,
-           colorize=True,
-           serialize=False,
-           backtrace=True, diagnose=True,
-           enqueue=False, context=None,
-           catch=True)
+# logger.add(sink=sys.stdout, level='DEBUG',
+#            # format=...,
+#            filter=None,
+#            colorize=True,
+#            serialize=False,
+#            backtrace=True, diagnose=True,
+#            enqueue=False, context=None,
+#            catch=True)
 
 
 def switch_log_file(fb_id: FbId, output_name: str):
