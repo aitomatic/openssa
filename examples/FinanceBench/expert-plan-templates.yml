@@ -217,7 +217,7 @@ op-margin-3y-avg:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
-    - task: >-
+    - task: |-
         What are values in dollars of:
         - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
         - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
