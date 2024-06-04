@@ -242,34 +242,34 @@ ground-truths:
   AMCOR_2023_10K:
     BS:
       cash-and-equiv:
-        2023: 689 million  # unreliable
-        2022: 775 million  # unreliable
+        2023: 689 million
+        2022: 775 million
 
       st-invest:
         2023: 0 (or not explicitly reported)
         2022: 0 (or not explicitly reported)
 
       recvables:
-        2023: 1,875 million
+        2023: 1,875 million  # unreliable
         2022: 1,935 million
 
       invent:
-        2023: 992 million + 1,221 million
-        2022: 1,114 million + 1,325 million
+        2023: 992 million + 1,221 million, or 2,213 million
+        2022: 1,114 million + 1,325 million, or 2,439 million
 
       curr-assets:
         2023: 5,308 million
         2022: 5,853 million
 
       curr-liabs:
-        2023: 4,476 million  # unreliable
+        2023: 4,476 million
         2022: 5,103 million
 
     P&L:
       rev:
         2023: 14,694 million
-        2022: 14,544 million  # unreliable
-        2021: 12,861 million  # unreliable
+        2022: 14,544 million
+        2021: 12,861 million
 
       gross:
         2023: 2,725 million
