@@ -192,7 +192,7 @@ ground-truths:
     BS:
       invent:
         2022: 1,055 million
-        2021: 604 million  # unreliable
+        2021: 604 million
 
       total-assets:
         2022: 38,363 million
@@ -206,7 +206,7 @@ ground-truths:
 
       net:
         2022: negative (loss) 546 million
-        2021: negative (loss) 409 million
+        2021: negative (loss) 409 million  # unreliable
         2020: 46 million
 
 
