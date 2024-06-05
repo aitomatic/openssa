@@ -82,6 +82,7 @@ ignore = [
   "N811",  # constant `SSM` imported as non-constant `LlamaIndexSSM`
   "PERF401",  # use a list comprehension to create a transformed list
   "PGH003",  # use specific rule codes when ignoring type issues
+  "PGH004",  # use specific rule codes when using `ruff: noqa`
   "PIE790",  # unnecessary `pass` statement
   "PLC2701",  # private name import from external module
   "PTH100",  # `os.path.abspath()` should be replaced by `Path.resolve()`
