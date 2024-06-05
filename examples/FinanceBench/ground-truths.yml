@@ -1055,7 +1055,7 @@ financebench_id_00494:
     the answer mentions increase(s) in production rate(s)
 
 
-financebench_id_00585:  # TODO: correct number signs
+financebench_id_00585:  # note: correct number signs
   doc: BOEING_2022_10K
   question: How does Boeing's effective tax rate in FY2022 compare to FY2021?
   answer: Effective tax rate in FY2022 was 0.62%, compared to  -14.76% in FY2021.
