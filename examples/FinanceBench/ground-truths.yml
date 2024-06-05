@@ -325,7 +325,7 @@ financebench_id_10420:
   evaluator-unreliable: true
 
 
-financebench_id_06655:  # TODO: retrieve COGS $111,934m - often mistaken with Total Operating Expenses $173,760m, or $141.7b (?)
+financebench_id_06655:
   doc: AMAZON_2017_10K
   question: 'What is Amazon''s FY2017 days payable outstanding (DPO)? DPO is defined
     as: 365 * (average accounts payable between FY2016 and FY2017) / (FY2017 COGS
