@@ -19,6 +19,12 @@ class LlamaLM(AbstractLM):
             api_token="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", model=model
         )
 
+    @classmethod
+    def from_defaults(cls) -> LlamaLM:
+        """Get Llama LM instance with default parameters."""
+        # pylint: disable=unexpected-keyword-arg
+        return cls(model=LMConfig.DEFAULT_HF_LLAMA_MODEL, api_key=LMConfig.HF_API_KEY, api_base=LMConfig.HF_API_URL)
+
     def get_response(
         self,
         prompt: str,

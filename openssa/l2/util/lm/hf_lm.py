@@ -5,6 +5,7 @@ import nest_asyncio
 
 class HFLlamaLM:
     """
+    Wrapper class to run Huggingface's Serverless Inference API for Llama3
     """
     def __init__(self, api_token, model='meta-llama/Meta-Llama-3-8B-Instruct'):
         """
@@ -17,10 +18,10 @@ class HFLlamaLM:
         self.domain_path = f'/models/{model}'
         self.api_token = api_token
         self.headers = {'Authorization': f'Bearer {self.api_token}'}
-        
+
         # Apply nest_asyncio to enable nested usage of asyncio's event loop
         nest_asyncio.apply()
-        
+
         # Add an asyncio queue for streaming responses
         self.queue = asyncio.Queue()
 

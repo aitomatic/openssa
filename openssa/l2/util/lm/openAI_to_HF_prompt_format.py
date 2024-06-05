@@ -7,9 +7,11 @@ from typing import Literal
 # from easyllm.schema.base import ChatMessage
 from pydantic import BaseModel
 
+
 class ChatMessage(BaseModel):
     role: Literal["user", "assistant", "function", "system"]
     content: str
+
 
 def build_llama3_prompt(messages: Union[List[Dict[str, str]], str]) -> str:
     """
