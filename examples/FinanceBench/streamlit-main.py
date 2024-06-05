@@ -11,7 +11,7 @@ from data_and_knowledge import (DocName, FbId,
                                 DOC_LINKS_BY_NAME, DOC_NAMES_BY_FB_ID, FB_IDS_BY_DOC_NAME, QS_BY_FB_ID,
                                 EXPERT_PLAN_MAP, LOCAL_CACHE_DIR_PATH)
 from htp_oodar_agent import get_or_create_agent, expert_plan_from_fb_id
-from llama_index.core import StorageContext, load_index_from_storage # noqa: E402
+from llama_index.core import StorageContext, load_index_from_storage  # noqa: E402
 
 
 DOC_NAMES: list[DocName] = sorted({DOC_NAMES_BY_FB_ID[fb_id] for fb_id in EXPERT_PLAN_MAP})
@@ -32,6 +32,7 @@ def get_answer_simple(problem: str, problem_id: str) -> str:
     ssa = get_or_create_simple_rag_ssa(problem_id)
     solution = ssa.query(problem).response
     return solution
+
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
@@ -91,19 +92,18 @@ if st.session_state.question_answered:
     st.write(st.session_state.current_answer)
 
 if st.button(label='ANSWER WITH PLANNING AND REASONING',
-            key=None,
-            on_click=None, args=None, kwargs=None,
-            type='primary',
-            disabled=False,
-            use_container_width=False):
+             key=None,
+             on_click=None, args=None, kwargs=None,
+             type='primary',
+             disabled=False,
+             use_container_width=False):
     logger.level('DEBUG')
     with st.spinner(text='_THINKING..._'), logcapture(st.empty().code, from_logger=logger):
         solution: str = (get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
-                        .solve(problem=QS_BY_FB_ID[problem_id], plan=expert_plan_from_fb_id(problem_id), dynamic=False))
+                         .solve(problem=QS_BY_FB_ID[problem_id], plan=expert_plan_from_fb_id(problem_id), dynamic=False))
 
     if st.session_state.question_answered:
         st.session_state.all_answers.append(st.session_state.current_answer)
         st.session_state.question_answered = False
         st.session_state.current_answer = ""
     st.latex(body=solution)
-
