@@ -63,29 +63,12 @@ NON_BOT_REQUEST_HEADERS: dict[str, str] = {
 }
 
 
-BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
-    'JOHNSON&JOHNSON_2022_10K', 'JOHNSON&JOHNSON_2022Q4_EARNINGS',
-    'JOHNSON&JOHNSON_2023_8K_dated-2023-08-30', 'JOHNSON&JOHNSON_2023Q2_EARNINGS',
-}
-
-
 REPO_RAW_CONTENT_URL_PREFIX: str = 'https://raw.githubusercontent.com/patronus-ai/financebench'
 DOC_INFO_URL: str = f'{REPO_RAW_CONTENT_URL_PREFIX}/main/data/financebench_document_information.jsonl'
 METADATA_JSONL_URL: str = f'{REPO_RAW_CONTENT_URL_PREFIX}/main/data/financebench_open_source.jsonl'
 METADATA_CSV_URL: str = f'{REPO_RAW_CONTENT_URL_PREFIX}/641ae9ece2cae93c671cf59c2d53742b51c7f1aa/financebench_sample_150.csv'
 
 FB_ID_COL_NAME: str = 'financebench_id'
-
-DOC_INFO_DF: DataFrame = read_json(DOC_INFO_URL,
-                                   orient='records', typ='frame',
-                                   dtype=True, convert_axes=True,
-                                   convert_dates=True, keep_default_dates=True,
-                                   precise_float=False, date_unit=None,
-                                   encoding='utf-8', encoding_errors='strict',
-                                   lines=True, chunksize=None,
-                                   compression=None, nrows=None,
-                                   storage_options=None,
-                                   dtype_backend='numpy_nullable', engine='ujson')
 
 META_DF: DataFrame = (read_json(METADATA_JSONL_URL,
                                 orient='records', typ='frame',
@@ -96,11 +79,17 @@ META_DF: DataFrame = (read_json(METADATA_JSONL_URL,
                                 lines=True, chunksize=None,
                                 compression=None, nrows=None,
                                 storage_options=None,
-                                dtype_backend='numpy_nullable', engine='ujson').set_index(keys=FB_ID_COL_NAME,
-                                                                                          drop=True, append=False,
-                                                                                          inplace=False,
-                                                                                          verify_integrity=True)
-                      .merge(right=DOC_INFO_DF,
+                                dtype_backend='pyarrow', engine='ujson')
+                      .merge(right=read_json(DOC_INFO_URL,
+                                             orient='records', typ='frame',
+                                             dtype=True, convert_axes=True,
+                                             convert_dates=True, keep_default_dates=True,
+                                             precise_float=False, date_unit=None,
+                                             encoding='utf-8', encoding_errors='strict',
+                                             lines=True, chunksize=None,
+                                             compression=None, nrows=None,
+                                             storage_options=None,
+                                             dtype_backend='pyarrow', engine='ujson'),
                              how='left', on='doc_name',  # left_on='doc_name', right_on='doc_name',
                              left_index=False, right_index=False,
                              sort=False,
@@ -108,7 +97,11 @@ META_DF: DataFrame = (read_json(METADATA_JSONL_URL,
                              copy=False,
                              indicator=False,
                              validate=None  # TODO: 'many_to_one' after Patronus AI fixes FOOTLOCKER_2022_annualreport
-                             ))
+                             )
+                      .set_index(keys=FB_ID_COL_NAME,
+                                 drop=True, append=False,
+                                 inplace=False,
+                                 verify_integrity=True))
 
 LEGACY_META_DF: DataFrame = read_csv(METADATA_CSV_URL,
                                      sep=',',  # delimiter=',',
@@ -131,7 +124,13 @@ LEGACY_META_DF: DataFrame = read_csv(METADATA_CSV_URL,
                                      storage_options=None,
                                      dtype_backend='pyarrow')
 
-LEGACY_META_DF: DataFrame = LEGACY_META_DF.loc[~LEGACY_META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
+assert (META_DF.index == LEGACY_META_DF.index).all()
+# assert (META_DF.doc_name == LEGACY_META_DF.doc_name).all()  # J&J docs have been fixed
+assert (META_DF.doc_period == LEGACY_META_DF.doc_period).all()
+assert (META_DF.doc_link == LEGACY_META_DF.doc_link).all()
+assert (META_DF.question_type == LEGACY_META_DF.question_type).all()
+assert (META_DF.question == LEGACY_META_DF.question).all()
+# assert (META_DF.answer == LEGACY_META_DF.answer).all()  # 01107 answer has been fixed
 
 DOC_NAMES: list[DocName] = sorted(LEGACY_META_DF.doc_name.unique())
 DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(LEGACY_META_DF.doc_name, LEGACY_META_DF.doc_link))
