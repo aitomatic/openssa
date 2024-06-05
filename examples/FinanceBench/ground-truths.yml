@@ -1590,7 +1590,7 @@ financebench_id_00407:
     the answer identifies corporate bonds as having received largest short-term investment
 
 
-financebench_id_04700:  # TODO: this case known for complicated RAG failure
+financebench_id_04700:
   doc: MICROSOFT_2016_10K
   question: What is the FY2016 COGS for Microsoft? Please state answer in USD millions.
     Provide a response to the question by primarily using the statement of income.
