@@ -1496,7 +1496,7 @@ financebench_id_03718:
   evaluator-unreliable: true
 
 
-financebench_id_04171:  # TODO: Balance Sheet often mistaken with those of associates/subsidiaries
+financebench_id_04171:  # TODO: retrieve Accounts Payable
   doc: MGMRESORTS_2018_10K
   question: Basing your judgments off of the balance sheet, what is the year end FY2018
     amount of accounts payable for MGM Resorts? Answer in USD millions.
