@@ -13,7 +13,7 @@ financebench_id_03029:
     1600, 1600 million or 1.6 billion
 
 
-financebench_id_04672:  # TODO: (Net) PP&E often mistaken with Total Equity $9,848m (!)
+financebench_id_04672:
   doc: 3M_2018_10K
   question: 'Assume that you are a public equities analyst. Answer the following question
     by primarily using information that is shown in the balance sheet: what is the
@@ -98,7 +98,7 @@ financebench_id_01226:
     (within the Transportation and Electronics business).
 
 
-financebench_id_01865:
+financebench_id_01865:  # TODO: identify Consumer segment reliably
   doc: 3M_2022_10K
   question: If we exclude the impact of M&A, which segment has dragged down 3M's overall
     growth in 2022?
@@ -325,7 +325,7 @@ financebench_id_10420:
   evaluator-unreliable: true
 
 
-financebench_id_06655:  # TODO: retrieve COGS $111,934m - often mistaken with Total Operating Expenses $173,760m, or $141.7b (?)
+financebench_id_06655:
   doc: AMAZON_2017_10K
   question: 'What is Amazon''s FY2017 days payable outstanding (DPO)? DPO is defined
     as: 365 * (average accounts payable between FY2016 and FY2017) / (FY2017 COGS
@@ -483,7 +483,7 @@ financebench_id_01936:
     the answer mentions Employee costs or Employee liabilities
 
 
-financebench_id_01928:  # TODO: FY number often mistaken with Quarterly number
+financebench_id_01928:
   doc: AMCOR_2023Q4_EARNINGS
   question: What Was AMCOR's Adjusted Non GAAP EBITDA for FY 2023
   answer: AMCOR's Adj. EBITDA was $2,018mn in FY 2023
@@ -779,7 +779,7 @@ financebench_id_00070:
   evaluator-unreliable: true
 
 
-financebench_id_02608:  # TODO: retrieve Revenue, and retrieve Net Income currently often mistaken with Net Earnings (Loss) from Continuing Operations
+financebench_id_02608:
   doc: BESTBUY_2017_10K
   question: In agreement with the information outlined in the income statement, what
     is the FY2015 - FY2017 3 year average net profit margin (as a %) for Best Buy?
@@ -826,7 +826,7 @@ financebench_id_00685:
   answer-inadequate: true
 
 
-financebench_id_01077:  # TODO: Acquisitions ought to be retrievable fromn Notes to Consolidated Financial Statements
+financebench_id_01077:
   doc: BESTBUY_2023_10K
   question: What are major acquisitions that Best Buy has done in FY2023, FY2022 and
     FY2021?
@@ -1055,7 +1055,7 @@ financebench_id_00494:
     the answer mentions increase(s) in production rate(s)
 
 
-financebench_id_00585:  # TODO: correct number signs
+financebench_id_00585:  # note: correct number signs
   doc: BOEING_2022_10K
   question: How does Boeing's effective tax rate in FY2022 compare to FY2021?
   answer: Effective tax rate in FY2022 was 0.62%, compared to  -14.76% in FY2021.
@@ -1120,7 +1120,7 @@ financebench_id_06272:
   evaluator-unreliable: true
 
 
-financebench_id_10130:  # TODO: retrieve Payables (often mistaken with Other Accrued Liabilities) & COGS
+financebench_id_10130:
   doc: CORNING_2020_10K
   question: 'Based on the information provided primarily in the balance sheet and
     the statement of income, what is FY2020 days payable outstanding (DPO) for Corning?
@@ -1200,7 +1200,7 @@ financebench_id_04209:
     59000, 59000 million or 59 billion
 
 
-financebench_id_05915:  # TODO: retrieve Revenue $194,579m - often mistaken for Pharmacy Services revenue $134,128m or Retail/LTC revenue $83,989m
+financebench_id_05915:
   doc: CVSHEALTH_2018_10K
   question: 'What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset
     turnover ratio is defined as: FY2018 revenue / (average PP&E between FY2017 and
@@ -1368,7 +1368,7 @@ financebench_id_10136:
     (if the answer is a single number, assume that it is that calculated Retention Ratio metric value)
 
 
-financebench_id_00299:  # TODO: there seems to be confusion b/w Corporate & Investment Bank vs. CORPORATE segments
+financebench_id_00299:
   doc: JPMORGAN_2021Q1_10Q
   question: Which of JPM's business segments had the lowest net revenue in 2021 Q1?
   answer: Corporate. Its net revenue was -$473 million.
@@ -1496,7 +1496,7 @@ financebench_id_03718:
   evaluator-unreliable: true
 
 
-financebench_id_04171:  # TODO: Balance Sheet often mistaken with that of CityCenter Holdings, which has AP of $25.758m
+financebench_id_04171:  # TODO: Balance Sheet often mistaken with those of associates/subsidiaries
   doc: MGMRESORTS_2018_10K
   question: Basing your judgments off of the balance sheet, what is the year end FY2018
     amount of accounts payable for MGM Resorts? Answer in USD millions.
@@ -1590,7 +1590,7 @@ financebench_id_00407:
     the answer identifies corporate bonds as having received largest short-term investment
 
 
-financebench_id_04700:  # TODO: this case known for complicated RAG failure
+financebench_id_04700:
   doc: MICROSOFT_2016_10K
   question: What is the FY2016 COGS for Microsoft? Please state answer in USD millions.
     Provide a response to the question by primarily using the statement of income.
@@ -1618,7 +1618,7 @@ financebench_id_00552:
   answer-inadequate: true
 
 
-financebench_id_04458:  # TODO: retrieve Depreciation & Amortization of Property, Equipment and Intangibles
+financebench_id_04458:
   doc: NETFLIX_2015_10K
   question: 'We want to calculate a financial metric. Please help us compute it by
     basing your answers off of the statement of income and the statement of cash flows.
@@ -1636,7 +1636,7 @@ financebench_id_04458:  # TODO: retrieve Depreciation & Amortization of Property
     (if the answer is a single number, assume that it is that calculated EBITDA Margin metric value)
 
 
-financebench_id_03282:
+financebench_id_03282:  # TODO: retrieve Total Current Liabilities
   doc: NETFLIX_2017_10K
   question: What is Netflix's year end FY2017 total current liabilities (in USD millions)?
     Base your judgments on the information provided primarily in the balance sheet.
@@ -1839,7 +1839,7 @@ financebench_id_01482:
     the answer says proposal related to Net-Zero Emissions was defeated / not successful
 
 
-financebench_id_00705:  # TODO: reasoning about terminated and newly-issued debt
+financebench_id_00705:
   doc: PEPSICO_2023_8K_dated-2023-05-30
   question: By how much did Pepsico increase its unsecured five year revolving credit
     agreement on May 26, 2023?
@@ -1921,7 +1921,7 @@ financebench_id_00702:
     the answer mentions Consumer Healthcare JV transaction
 
 
-financebench_id_02416:
+financebench_id_02416:  # TODO: retrieve correct 3 companies
   doc: PFIZER_2021_10K
   question: What are three main companies acquired by Pfizer mentioned in this 10K
     report?
@@ -1960,7 +1960,7 @@ financebench_id_00724:
     the answer identifies Developed Rest of World as having worst percentage/relative decline
 
 
-financebench_id_02419:  # TODO: there seems to be confusion because Upjohn spin-off started in 2020 but would complete in 2023
+financebench_id_02419:  # tricky: Upjohn spin-off started in 2020 but would complete in 2023
   doc: Pfizer_2023Q2_10Q
   question: As of Q2'2023, is Pfizer spinning off any large business segments?
   answer: Yes, it's spinning off Upjohn.
@@ -2068,7 +2068,7 @@ financebench_id_00859:
     the answer identifies Cross Currency Swaps as having highest notional value
 
 
-financebench_id_02024:  # TODO: numbers for different years often mixed up
+financebench_id_02024:
   doc: VERIZON_2021_10K
   question: As of FY 2021, how much did Verizon expect to pay for its retirees in
     2024?
