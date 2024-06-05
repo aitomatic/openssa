@@ -59,6 +59,9 @@ rag-gpt4-lm-answer:
 rag-test:
 	@poetry run python rag-test.py ${doc}
 
+rag-test-gpt4:
+	@poetry run python rag-test.py ${doc} --gpt4
+
 
 ssm-discuss:
 	@poetry run python ssm.py ${id}

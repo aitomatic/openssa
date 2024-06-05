@@ -8,8 +8,8 @@ financebench_id_00438: op-margin-comp
 financebench_id_00591: fcf-conv-comp
 financebench_id_00540: inv-turnover-ratio  #
 financebench_id_10420: roa
-financebench_id_06655: days-payable-outstanding  #
-financebench_id_00799: quick-ratio-comp  #
+financebench_id_06655: days-payable-outstanding
+financebench_id_00799: quick-ratio-comp
 financebench_id_00684: gross-margin-comp
 financebench_id_03069: da-margin
 financebench_id_00222: quick-ratio
@@ -19,11 +19,11 @@ financebench_id_02608: net-margin-3y-avg
 financebench_id_00685: gross-margin-comp
 financebench_id_04660: work-cap-ratio
 financebench_id_00678: gross-margin-comp  #
-financebench_id_00585: effective-tax-rate-comp  #
+financebench_id_00585: effective-tax-rate-comp
 financebench_id_03473: roa
 financebench_id_09724: cogs-margin
 financebench_id_06272: div-payout-ratio
-financebench_id_10130: days-payable-outstanding  #
+financebench_id_10130: days-payable-outstanding
 financebench_id_02981: op-margin-3y-avg
 financebench_id_00005: net-work-cap
 financebench_id_05915: fa-turnover-ratio
