@@ -577,6 +577,8 @@ financebench_id_01198:
     - Gaming; and
     - inclusion of Xilinx
 
+  evaluator-unreliable: true
+
 
 financebench_id_00917:
   doc: AMD_2022_10K
