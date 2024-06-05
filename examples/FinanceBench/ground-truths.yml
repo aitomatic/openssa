@@ -98,7 +98,7 @@ financebench_id_01226:
     (within the Transportation and Electronics business).
 
 
-financebench_id_01865:
+financebench_id_01865:  # TODO: identify Consumer segment reliably
   doc: 3M_2022_10K
   question: If we exclude the impact of M&A, which segment has dragged down 3M's overall
     growth in 2022?
