@@ -1933,7 +1933,7 @@ financebench_id_02416:  # TODO: retrieve correct 3 companies
     the answer mentions Trillium, Array and Therachon
 
 
-financebench_id_00283:  # tricky
+financebench_id_00283:  # tricky: total cost and proportion incurred to-date are in separate sections
   doc: Pfizer_2023Q2_10Q
   question: How much does Pfizer expect to pay to spin off Upjohn in the future in
     USD million?
