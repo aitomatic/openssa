@@ -1921,7 +1921,7 @@ financebench_id_00702:
     the answer mentions Consumer Healthcare JV transaction
 
 
-financebench_id_02416:  # TODO: retrieve correct 3 companies
+financebench_id_02416:  # note: Therachon is mentioned on separate following page
   doc: PFIZER_2021_10K
   question: What are three main companies acquired by Pfizer mentioned in this 10K
     report?
@@ -1930,7 +1930,7 @@ financebench_id_02416:  # TODO: retrieve correct 3 companies
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions Trillium, Array and Therachon
+    the answer mentions Arena and Trillium
 
 
 financebench_id_00283:  # tricky: total cost and proportion incurred to-date are in separate sections
