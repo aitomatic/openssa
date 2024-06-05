@@ -2041,7 +2041,7 @@ financebench_id_00605:
     (if the answer is a single number, assume that it is that calculated percentage value)
 
 
-financebench_id_00606:  # tricky
+financebench_id_00606:  # tricky: highly implicit wordings
   doc: ULTABEAUTY_2023Q4_EARNINGS
   question: Did Ulta Beauty's wages expense as a percent of net sales increase or
     decrease in FY2023?
