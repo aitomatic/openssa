@@ -79,17 +79,17 @@ FB_ID_COL_NAME: str = 'financebench_id'
 DOC_INFO_DF: DataFrame = read_json(DOC_INFO_URL, lines=True)
 META_NEW_DF: DataFrame = read_json(METADATA_JSONL_URL, lines=True)
 
-META_DF: DataFrame = read_csv(METADATA_CSV_URL, index_col=FB_ID_COL_NAME)
-META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
+LEGACY_META_DF: DataFrame = read_csv(METADATA_CSV_URL, index_col=FB_ID_COL_NAME)
+LEGACY_META_DF: DataFrame = LEGACY_META_DF.loc[~LEGACY_META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
-DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
-DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(META_DF.doc_name, META_DF.doc_link))
-DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
+DOC_NAMES: list[DocName] = sorted(LEGACY_META_DF.doc_name.unique())
+DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(LEGACY_META_DF.doc_name, LEGACY_META_DF.doc_link))
+DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = LEGACY_META_DF.doc_name.to_dict()
 
-FB_IDS: list[FbId] = META_DF.index.to_list()
-FB_IDS_BY_DOC_NAME: dict[DocName, list[FbId]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FB_IDS: list[FbId] = LEGACY_META_DF.index.to_list()
+FB_IDS_BY_DOC_NAME: dict[DocName, list[FbId]] = LEGACY_META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
 
-QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
+QS_BY_FB_ID: dict[FbId, Question] = LEGACY_META_DF.question.to_dict()
 
 
 LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
@@ -230,7 +230,7 @@ def export_ground_truths():
               closefd=True,
               opener=None) as f:
         yaml.safe_dump(data={fb_id: {'doc': row.doc_name, 'question': row.question, 'answer': row.answer, 'page(s)': row.page_number}  # noqa: E501
-                             for fb_id, row in META_DF.iterrows()},
+                             for fb_id, row in LEGACY_META_DF.iterrows()},
                        stream=f,
                        default_style=None,
                        default_flow_style=False,
@@ -250,7 +250,7 @@ def export_ground_truths():
 def get_or_create_output_df() -> DataFrame:
     output_df: DataFrame = (read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
                             if OUTPUT_FILE_PATH.is_file()
-                            else META_DF[['doc_name', 'question', 'page_number', 'answer']])
+                            else LEGACY_META_DF[['doc_name', 'question', 'page_number', 'answer']])
 
     output_df.loc[:, 'category'] = [GROUND_TRUTHS[fb_id]['category'] for fb_id in output_df.index]
 
