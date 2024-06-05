@@ -76,10 +76,52 @@ METADATA_CSV_URL: str = f'{REPO_RAW_CONTENT_URL_PREFIX}/641ae9ece2cae93c671cf59c
 
 FB_ID_COL_NAME: str = 'financebench_id'
 
-DOC_INFO_DF: DataFrame = read_json(DOC_INFO_URL, lines=True)
-META_NEW_DF: DataFrame = read_json(METADATA_JSONL_URL, lines=True)
+DOC_INFO_DF: DataFrame = read_json(DOC_INFO_URL,
+                                   orient='records', typ='frame',
+                                   dtype=True, convert_axes=True,
+                                   convert_dates=True, keep_default_dates=True,
+                                   precise_float=False, date_unit=None,
+                                   encoding='utf-8', encoding_errors='strict',
+                                   lines=True, chunksize=None,
+                                   compression=None, nrows=None,
+                                   storage_options=None,
+                                   dtype_backend='numpy_nullable', engine='ujson')
 
-LEGACY_META_DF: DataFrame = read_csv(METADATA_CSV_URL, index_col=FB_ID_COL_NAME)
+META_DF: DataFrame = read_json(METADATA_JSONL_URL,
+                               orient='records', typ='frame',
+                               dtype=True, convert_axes=True,
+                               convert_dates=True, keep_default_dates=True,
+                               precise_float=False, date_unit=None,
+                               encoding='utf-8', encoding_errors='strict',
+                               lines=True, chunksize=None,
+                               compression=None, nrows=None,
+                               storage_options=None,
+                               dtype_backend='numpy_nullable', engine='ujson').set_index(keys=FB_ID_COL_NAME,
+                                                                                         drop=True, append=False,
+                                                                                         inplace=False,
+                                                                                         verify_integrity=True)
+
+LEGACY_META_DF: DataFrame = read_csv(METADATA_CSV_URL,
+                                     sep=',',  # delimiter=',',
+                                     header='infer', names=None, index_col=FB_ID_COL_NAME, usecols=None,
+                                     dtype=None, engine='pyarrow', converters=None, true_values=None, false_values=None,
+                                     skipinitialspace=False, skiprows=None, skipfooter=0, nrows=None,
+                                     na_values=None, na_filter=None, keep_default_na=True,
+                                     skip_blank_lines=True,
+                                     parse_dates=False, date_format=None, dayfirst=False, cache_dates=True,
+                                     iterator=False, chunksize=None, compression=None,
+                                     thousands=None, decimal='.',
+                                     lineterminator=None,
+                                     quotechar=None, quoting=0, doublequote=True,
+                                     escapechar=None, comment=None,
+                                     encoding='utf-8', encoding_errors='strict',
+                                     dialect=None,
+                                     on_bad_lines='error',
+                                     low_memory=True, memory_map=False,
+                                     float_precision=None,
+                                     storage_options=None,
+                                     dtype_backend='pyarrow')
+
 LEGACY_META_DF: DataFrame = LEGACY_META_DF.loc[~LEGACY_META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
 DOC_NAMES: list[DocName] = sorted(LEGACY_META_DF.doc_name.unique())
