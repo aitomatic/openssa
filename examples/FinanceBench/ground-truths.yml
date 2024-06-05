@@ -1120,7 +1120,7 @@ financebench_id_06272:
   evaluator-unreliable: true
 
 
-financebench_id_10130:  # TODO: retrieve Payables (often mistaken with Other Accrued Liabilities) & COGS
+financebench_id_10130:
   doc: CORNING_2020_10K
   question: 'Based on the information provided primarily in the balance sheet and
     the statement of income, what is FY2020 days payable outstanding (DPO) for Corning?
