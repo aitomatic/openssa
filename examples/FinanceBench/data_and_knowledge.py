@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import TypedDict, Required, NotRequired, Literal, TYPE_CHECKING
 
 from dotenv import load_dotenv
-from pandas import DataFrame, read_csv
+from pandas import DataFrame, read_json, read_csv
 import requests
 import yaml
 
@@ -69,10 +69,17 @@ BROKEN_OR_CORRUPT_DOC_NAMES: set[DocName] = {
 }
 
 
-METADATA_URL: str = ('https://raw.githubusercontent.com/patronus-ai/financebench/'
-                     '641ae9ece2cae93c671cf59c2d53742b51c7f1aa/financebench_sample_150.csv')
+REPO_RAW_CONTENT_URL_PREFIX: str = 'https://raw.githubusercontent.com/patronus-ai/financebench'
+DOC_INFO_URL: str = f'{REPO_RAW_CONTENT_URL_PREFIX}/main/data/financebench_document_information.jsonl'
+METADATA_JSONL_URL: str = f'{REPO_RAW_CONTENT_URL_PREFIX}/main/data/financebench_open_source.jsonl'
+METADATA_CSV_URL: str = f'{REPO_RAW_CONTENT_URL_PREFIX}/641ae9ece2cae93c671cf59c2d53742b51c7f1aa/financebench_sample_150.csv'
+
 FB_ID_COL_NAME: str = 'financebench_id'
-META_DF: DataFrame = read_csv(METADATA_URL, index_col=FB_ID_COL_NAME)
+
+DOC_INFO_DF: DataFrame = read_json(DOC_INFO_URL, lines=True)
+META_NEW_DF: DataFrame = read_json(METADATA_JSONL_URL, lines=True)
+
+META_DF: DataFrame = read_csv(METADATA_CSV_URL, index_col=FB_ID_COL_NAME)
 META_DF: DataFrame = META_DF.loc[~META_DF.doc_name.isin(BROKEN_OR_CORRUPT_DOC_NAMES)]
 
 DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
