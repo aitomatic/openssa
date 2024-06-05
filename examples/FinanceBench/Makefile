@@ -1,5 +1,5 @@
 get-doc:
-	@poetry run python data.py ${name}
+	@poetry run python data_and_knowledge.py ${name}
 
 
 htp-auto-static-oodar-solve:

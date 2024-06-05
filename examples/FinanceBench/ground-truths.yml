@@ -98,7 +98,7 @@ financebench_id_01226:
     (within the Transportation and Electronics business).
 
 
-financebench_id_01865:  # TODO: identify Consumer segment reliably
+financebench_id_01865:  # tricky: Total Sales Change contains zero Acquisitions but non-zero Divestitures
   doc: 3M_2022_10K
   question: If we exclude the impact of M&A, which segment has dragged down 3M's overall
     growth in 2022?
@@ -998,7 +998,7 @@ financebench_id_01091:
   evaluator-unreliable: true
 
 
-financebench_id_00678:  # tricky because Gross Income label is implicit/missing (!) on Income Statement
+financebench_id_00678:  # tricky: Gross Income is implicit, with missing label
   doc: BOEING_2022_10K
   question: Does Boeing have an improving gross margin profile as of FY2022? If gross
     margin is not a useful metric for a company like this, then state that and explain
@@ -1496,7 +1496,7 @@ financebench_id_03718:
   evaluator-unreliable: true
 
 
-financebench_id_04171:  # TODO: Balance Sheet often mistaken with those of associates/subsidiaries
+financebench_id_04171:  # TODO: retrieve Accounts Payable
   doc: MGMRESORTS_2018_10K
   question: Basing your judgments off of the balance sheet, what is the year end FY2018
     amount of accounts payable for MGM Resorts? Answer in USD millions.
@@ -1921,7 +1921,7 @@ financebench_id_00702:
     the answer mentions Consumer Healthcare JV transaction
 
 
-financebench_id_02416:  # TODO: retrieve correct 3 companies
+financebench_id_02416:  # note: Therachon is mentioned on separate following page
   doc: PFIZER_2021_10K
   question: What are three main companies acquired by Pfizer mentioned in this 10K
     report?
@@ -1930,10 +1930,10 @@ financebench_id_02416:  # TODO: retrieve correct 3 companies
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions Trillium, Array and Therachon
+    the answer mentions Arena and Trillium
 
 
-financebench_id_00283:  # tricky
+financebench_id_00283:
   doc: Pfizer_2023Q2_10Q
   question: How much does Pfizer expect to pay to spin off Upjohn in the future in
     USD million?
@@ -1942,10 +1942,9 @@ financebench_id_00283:  # tricky
 
   category: 6-OTHER-ADVANCED
   correctness: >-
-    the answer contains a quantity that is in the range from 70.00 to 80.00,
-    or, alternatively, in the range from 70.00 million to 80.00 million
+    the answer mentions 700 million and 90%
 
-  evaluator-unreliable: True
+  evaluator-unreliable: true
 
 
 financebench_id_00724:
@@ -2041,7 +2040,7 @@ financebench_id_00605:
     (if the answer is a single number, assume that it is that calculated percentage value)
 
 
-financebench_id_00606:  # tricky
+financebench_id_00606:  # tricky: highly implicit wordings
   doc: ULTABEAUTY_2023Q4_EARNINGS
   question: Did Ulta Beauty's wages expense as a percent of net sales increase or
     decrease in FY2023?
