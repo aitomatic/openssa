@@ -80,16 +80,17 @@ META_DF: DataFrame = (read_json(METADATA_JSONL_URL,
                                 compression=None, nrows=None,
                                 storage_options=None,
                                 dtype_backend='pyarrow', engine='ujson')
-                      .merge(right=read_json(DOC_INFO_URL,
-                                             orient='records', typ='frame',
-                                             dtype=True, convert_axes=True,
-                                             convert_dates=True, keep_default_dates=True,
-                                             precise_float=False, date_unit=None,
-                                             encoding='utf-8', encoding_errors='strict',
-                                             lines=True, chunksize=None,
-                                             compression=None, nrows=None,
-                                             storage_options=None,
-                                             dtype_backend='pyarrow', engine='ujson'),
+                      .merge(right=read_json(
+                                DOC_INFO_URL,
+                                orient='records', typ='frame',
+                                dtype=True, convert_axes=True,
+                                convert_dates=True, keep_default_dates=True,
+                                precise_float=False, date_unit=None,
+                                encoding='utf-8', encoding_errors='strict',
+                                lines=True, chunksize=None,
+                                compression=None, nrows=None,
+                                storage_options=None,
+                                dtype_backend='pyarrow', engine='ujson'),
                              how='left', on='doc_name',  # left_on='doc_name', right_on='doc_name',
                              left_index=False, right_index=False,
                              sort=False,
@@ -132,14 +133,14 @@ assert (META_DF.question_type == LEGACY_META_DF.question_type).all()
 assert (META_DF.question == LEGACY_META_DF.question).all()
 # assert (META_DF.answer == LEGACY_META_DF.answer).all()  # 01107 answer has been fixed
 
-DOC_NAMES: list[DocName] = sorted(LEGACY_META_DF.doc_name.unique())
-DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(LEGACY_META_DF.doc_name, LEGACY_META_DF.doc_link))
-DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = LEGACY_META_DF.doc_name.to_dict()
+DOC_NAMES: list[DocName] = sorted(META_DF.doc_name.unique())
+DOC_LINKS_BY_NAME: dict[DocName, str] = dict(zip(META_DF.doc_name, META_DF.doc_link))
+DOC_NAMES_BY_FB_ID: dict[FbId, DocName] = META_DF.doc_name.to_dict()
 
-FB_IDS: list[FbId] = LEGACY_META_DF.index.to_list()
-FB_IDS_BY_DOC_NAME: dict[DocName, list[FbId]] = LEGACY_META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
+FB_IDS: list[FbId] = META_DF.index.to_list()
+FB_IDS_BY_DOC_NAME: dict[DocName, list[FbId]] = META_DF.groupby('doc_name').apply(lambda _: _.index.to_list())
 
-QS_BY_FB_ID: dict[FbId, Question] = LEGACY_META_DF.question.to_dict()
+QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
 
 
 LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
@@ -280,7 +281,7 @@ def export_ground_truths():
               closefd=True,
               opener=None) as f:
         yaml.safe_dump(data={fb_id: {'doc': row.doc_name, 'question': row.question, 'answer': row.answer, 'page(s)': row.page_number}  # noqa: E501
-                             for fb_id, row in LEGACY_META_DF.iterrows()},
+                             for fb_id, row in META_DF.iterrows()},
                        stream=f,
                        default_style=None,
                        default_flow_style=False,
@@ -300,7 +301,7 @@ def export_ground_truths():
 def get_or_create_output_df() -> DataFrame:
     output_df: DataFrame = (read_csv(OUTPUT_FILE_PATH, index_col=FB_ID_COL_NAME)
                             if OUTPUT_FILE_PATH.is_file()
-                            else LEGACY_META_DF[['doc_name', 'question', 'page_number', 'answer']])
+                            else META_DF[['doc_name', 'question', 'page_number', 'answer']])
 
     output_df.loc[:, 'category'] = [GROUND_TRUTHS[fb_id]['category'] for fb_id in output_df.index]
 
