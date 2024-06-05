@@ -1933,7 +1933,7 @@ financebench_id_02416:  # note: Therachon is mentioned on separate following pag
     the answer mentions Arena and Trillium
 
 
-financebench_id_00283:  # tricky: total cost and proportion incurred to-date are in separate sections
+financebench_id_00283:  # tricky: total cost and proportion incurred to-date are in a single easy-to-miss mention
   doc: Pfizer_2023Q2_10Q
   question: How much does Pfizer expect to pay to spin off Upjohn in the future in
     USD million?
@@ -1945,7 +1945,7 @@ financebench_id_00283:  # tricky: total cost and proportion incurred to-date are
     the answer contains a quantity that is in the range from 70.00 to 80.00,
     or, alternatively, in the range from 70.00 million to 80.00 million
 
-  evaluator-unreliable: True
+  evaluator-unreliable: true
 
 
 financebench_id_00724:
