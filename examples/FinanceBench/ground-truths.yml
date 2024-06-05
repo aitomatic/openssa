@@ -483,7 +483,7 @@ financebench_id_01936:
     the answer mentions Employee costs or Employee liabilities
 
 
-financebench_id_01928:  # TODO: FY number often mistaken with Quarterly number
+financebench_id_01928:
   doc: AMCOR_2023Q4_EARNINGS
   question: What Was AMCOR's Adjusted Non GAAP EBITDA for FY 2023
   answer: AMCOR's Adj. EBITDA was $2,018mn in FY 2023
