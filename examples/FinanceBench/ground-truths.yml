@@ -779,7 +779,7 @@ financebench_id_00070:
   evaluator-unreliable: true
 
 
-financebench_id_02608:  # TODO: retrieve Revenue, and retrieve Net Income currently often mistaken with Net Earnings (Loss) from Continuing Operations
+financebench_id_02608:
   doc: BESTBUY_2017_10K
   question: In agreement with the information outlined in the income statement, what
     is the FY2015 - FY2017 3 year average net profit margin (as a %) for Best Buy?
