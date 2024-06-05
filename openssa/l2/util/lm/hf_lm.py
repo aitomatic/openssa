@@ -32,10 +32,14 @@ class HFLlamaLM:
         :param api_request_json: The JSON request payload for the API.
         :return: The JSON response from the API.
         """
-        response = requests.post(f"{self.hostname}{self.domain_path}", headers=self.headers, json=api_request_json)
+        # pylint: disable=W3101:missing-timeout
+        response = requests.post(f"{self.hostname}{self.domain_path}", headers=self.headers, json=api_request_json)  # noqa: S113
+        # pylint: enable
         print(f"error code = {response.status_code}")
         if response.status_code != 200:
-            raise Exception(f"POST {response.status_code} {response.json().get('error', response.text)}")
+            # pylint: disable=W0719:broad-exception-raised
+            raise Exception(f"POST {response.status_code} {response.json().get('error', response.text)}")  # noqa: TRY002
+            # pylint: enable
         return response.json()
 
     def run(self, api_request_json):
