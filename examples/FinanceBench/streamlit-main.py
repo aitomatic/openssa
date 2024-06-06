@@ -13,7 +13,9 @@ from htp_oodar_agent import get_or_create_agent, expert_plan_from_fb_id
 from rag_default import get_or_create_file_resource
 
 
-DOC_NAMES: list[DocName] = sorted({DOC_NAMES_BY_FB_ID[fb_id] for fb_id in EXPERT_PLAN_MAP})
+DOC_NAMES: list[DocName] = sorted({DOC_NAMES_BY_FB_ID[fb_id] for fb_id in EXPERT_PLAN_MAP}
+                                  .difference(('BOEING_2022_10K',
+                                               'AES_2022_10K', 'MGMRESORTS_2018_10K', 'NETFLIX_2017_10K')))
 REPRESENTATIVE_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = {doc_name: (set(FB_IDS_BY_DOC_NAME[doc_name])
                                                                            .intersection(EXPERT_PLAN_MAP))
                                                                 for doc_name in DOC_NAMES}
