@@ -569,10 +569,10 @@ financebench_id_00540:  # TODO: retrieve COGS
 
   category: 3-CALC-COMPLEX
   correctness: |-
-    the answer contains a calculated Inventory Turnover Ratio (or Inventory Conversion Ratio) metric value that is either:
+    the answer contains a calculated Inventory Turnover Ratio (or Inventory Conversion Ratio) decimal value that is either:
     - in the range from 9.0 to 10.0 times (implicitly using ending Inventory as denominator), or
     - approximately 12.0 times (implicitly using average Inventory as denominator)
-    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio metric value)
+    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio decimal value)
 
 
 financebench_id_10420:
