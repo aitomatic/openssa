@@ -2734,6 +2734,16 @@ financebench_id_00669:
     sold as a percent to sales.
   page(s)-0based: 33
 
+  category: 5-EXPLAIN-FACTORS
+  correctness: |-
+    the answer mentions at least 2 of following:
+    - one-time COVID-19 vaccine manufacturing exit related costs;
+    - currency impacts in the Pharmaceutical segment;
+    - commodity inflation in the MedTech and Consumer Health segments; and/or
+    - supply chain benefits in the Consumer Health segment
+
+  evaluator-unreliable: true
+
 
 financebench_id_00711:
   sector: Health Care
