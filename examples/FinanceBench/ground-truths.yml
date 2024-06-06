@@ -2765,6 +2765,13 @@ financebench_id_00711:
     = 31,089/((12,483+10,387)/2) = 2.7
   page(s)-0based: 45
 
+  category: 3-CALC-COMPLEX
+  correctness: >-
+    the answer contains a calculated Inventory Turnover Ratio decimal value that is in the range from 2.00 to 3.00
+    (if the answer is a single number, assume that it is that calculated Inventory Turnover Ratio decimal value)
+
+  evaluator-unreliable: true
+
 
 financebench_id_00651:
   sector: Health Care
