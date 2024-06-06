@@ -614,6 +614,19 @@ ground-truths:
         2020: 2,181.2 million  # unreliable
 
 
+  JOHNSON_JOHNSON_2022_10K:
+    BS:
+      invent:
+        2022: 12,483 million
+        2021: 10,387 million
+
+    P&L:
+      cogs:
+        2022: 31,089 million
+        2021: 29,855 million
+        2020: 28,427 million
+
+
   KRAFTHEINZ_2019_10K:
     BS:
       invent:
