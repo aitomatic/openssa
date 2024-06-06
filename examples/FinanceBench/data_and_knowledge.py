@@ -285,7 +285,7 @@ def create_or_update_ground_truths() -> dict[FbId, GroundTruth]:
                                                       'domain-question-num': row.domain_question_num,
                                                       'question': row.question,
                                                       'answer': row.answer, 'justification': row.justification,
-                                                      'page(s)': row.evidence[0]['evidence_page_num']}
+                                                      'page(s)-0based': row.evidence[0]['evidence_page_num']}
                                               for fb_id, row in META_DF.iterrows()}
 
     if GROUND_TRUTHS_FILE_PATH.is_file():
