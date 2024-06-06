@@ -2870,6 +2870,10 @@ financebench_id_01490:
   justification: ''
   page(s)-0based: 3
 
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions 20 billion
+
 
 financebench_id_01491:
   sector: Health Care
