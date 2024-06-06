@@ -3,7 +3,6 @@
 
 from loguru import logger
 import streamlit as st
-
 from streamlit_extras.capture import logcapture
 
 from data_and_knowledge import (DocName, FbId,
@@ -22,7 +21,6 @@ REPRESENTATIVE_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = {doc_name: (set(F
 
 
 TITLE: str = 'OpenSSA: Analysing SEC Filings with Planning & Reasoning'
-
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
@@ -101,4 +99,4 @@ if st.button(label=f'__SOLVE WITH PLANNING & REASONING__: _{QS_BY_FB_ID[problem_
         st.session_state.question_answered: bool = False
         st.session_state.current_answer: str = ''
 
-    st.latex(body=solution)
+    st.markdown(body=solution.replace('{', '{{').replace('}', '}}'))
