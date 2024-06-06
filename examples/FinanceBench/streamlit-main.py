@@ -99,4 +99,4 @@ if st.button(label=f'__SOLVE WITH PLANNING & REASONING__: _{QS_BY_FB_ID[problem_
         st.session_state.question_answered: bool = False
         st.session_state.current_answer: str = ''
 
-    st.markdown(body=solution.replace('{', '{{').replace('}', '}}'))
+    st.markdown(body=solution.replace('$', r'\$'))
