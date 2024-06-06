@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from functools import cache
 
-from llama_index.llms.openai.base import DEFAULT_OPENAI_MODEL
+from llama_index.llms.openai.base import DEFAULT_OPENAI_MODEL as DEFAULT_LLAMAINDEX_OPENAI_LM
 
 from openssa import FileResource, LMConfig
 from openssa.l2.util.lm.openai import LlamaIndexOpenAILM
@@ -12,9 +12,10 @@ from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
 @cache
-def get_or_create_file_resource(doc_name: DocName, openai_lm_name: str = DEFAULT_OPENAI_MODEL) -> FileResource | None:
+def get_or_create_file_resource(doc_name: DocName,
+                                llama_index_openai_lm_name: str = DEFAULT_LLAMAINDEX_OPENAI_LM) -> FileResource | None:
     return (FileResource(path=dir_path,
-                         lm=LlamaIndexOpenAILM(model=openai_lm_name,
+                         lm=LlamaIndexOpenAILM(model=llama_index_openai_lm_name,
                                                temperature=LMConfig.DEFAULT_TEMPERATURE,
                                                max_tokens=None,
                                                additional_kwargs={'seed': LMConfig.DEFAULT_SEED},
@@ -33,7 +34,7 @@ def get_or_create_file_resource(doc_name: DocName, openai_lm_name: str = DEFAULT
 @log_qa_and_update_output_file(output_name='RAG-Default')
 def answer(fb_id: FbId) -> Answer:
     return (file_resource.answer(QS_BY_FB_ID[fb_id])
-            if (file_resource := get_or_create_file_resource(DOC_NAMES_BY_FB_ID[fb_id]))
+            if (file_resource := get_or_create_file_resource(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
             else 'ERROR: doc not found')
 
 
