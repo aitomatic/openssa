@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from argparse import ArgumentParser
 from collections import Counter
 from dataclasses import dataclass, field
 import base64
@@ -254,13 +253,20 @@ class Doc:
         self.company, self.period, self.type = self.name.split(sep='_', maxsplit=2)
 
     def request(self) -> requests.Response:
-        response: requests.Response = requests.get(
-            url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
-                          .decode(encoding='utf-8', errors='strict'))
-                         if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[self.name])
-                         else doc_link)),
-            timeout=60,
-            stream=True)
+        try:
+            response: requests.Response = requests.get(
+                url=(url := ((base64.b64decode(doc_link.split(sep=q, maxsplit=-1)[-1], altchars=None)
+                              .decode(encoding='utf-8', errors='strict'))
+                             if (q := '?pdfTarget=') in (doc_link := DOC_LINKS_BY_NAME[self.name])
+                             else doc_link)),
+                timeout=60,
+                stream=True)
+
+        except requests.exceptions.ConnectionError:
+            response: requests.Response = requests.get(
+                url=(url := f'{REPO_RAW_CONTENT_URL_PREFIX}/main/pdfs/{self.name}.pdf'),
+                timeout=60,
+                stream=True)
 
         if response.headers.get('Content-Type') != 'application/pdf':
             response: requests.Response = requests.get(url=url,
