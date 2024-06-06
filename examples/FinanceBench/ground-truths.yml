@@ -2846,6 +2846,10 @@ financebench_id_01488:
   justification: ''
   page(s)-0based: 3
 
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer identifies Consumer Health as discontinued
+
 
 financebench_id_01490:
   sector: Health Care
