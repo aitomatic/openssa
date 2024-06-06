@@ -351,11 +351,3 @@ def get_or_create_output_df() -> DataFrame:
     output_df.loc[:, 'category'] = [GROUND_TRUTHS[fb_id]['category'] for fb_id in output_df.index]
 
     return output_df
-
-
-if __name__ == '__main__':
-    arg_parser = ArgumentParser()
-    arg_parser.add_argument('doc_name')
-    args = arg_parser.parse_args()
-
-    Doc(name=args.doc_name).request()
