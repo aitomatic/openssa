@@ -2775,6 +2775,10 @@ financebench_id_00651:
     adjusted EPS growth of 3.6%.
   page(s)-0based: 0
 
+  category: 1-COMPARE
+  correctness: >-
+    the answer mentions 3.5% and 3.6%
+
 
 financebench_id_01484:
   sector: Health Care
