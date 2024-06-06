@@ -80,6 +80,7 @@ META_DF: DataFrame = (read_json(METADATA_JSONL_URL,
                                 compression=None, nrows=None,
                                 storage_options=None,
                                 dtype_backend='pyarrow', engine='ujson')
+
                       .merge(right=read_json(
                                 DOC_INFO_URL,
                                 orient='records', typ='frame',
@@ -91,6 +92,7 @@ META_DF: DataFrame = (read_json(METADATA_JSONL_URL,
                                 compression=None, nrows=None,
                                 storage_options=None,
                                 dtype_backend='pyarrow', engine='ujson'),
+
                              how='left', on='doc_name',  # left_on='doc_name', right_on='doc_name',
                              left_index=False, right_index=False,
                              sort=False,
@@ -99,10 +101,13 @@ META_DF: DataFrame = (read_json(METADATA_JSONL_URL,
                              indicator=False,
                              validate=None  # TODO: 'many_to_one' after Patronus AI fixes FOOTLOCKER_2022_annualreport
                              )
+
                       .set_index(keys=FB_ID_COL_NAME,
                                  drop=True, append=False,
                                  inplace=False,
                                  verify_integrity=True))
+
+META_DF.fillna(value='', method=None, axis=None, inplace=True, limit=None)  # replace PyArrow NAs
 
 LEGACY_META_DF: DataFrame = read_csv(METADATA_CSV_URL,
                                      sep=',',  # delimiter=',',
@@ -271,7 +276,33 @@ class Doc:
         return (self.dir_path / f'{self.name}.pdf') if self.dir_path else None
 
 
-def export_ground_truths():
+def create_or_update_ground_truths() -> dict[FbId, GroundTruth]:
+    ground_truths: dict[FbId, GroundTruth] = {fb_id: {'sector': row.gics_sector,
+                                                      'company': row.company, 'period': row.doc_period, 'doc-type': row.doc_type,
+                                                      'doc': row.doc_name,
+                                                      'question-type': row.question_type,
+                                                      'question-reasoning': row.question_reasoning,
+                                                      'domain-question-num': row.domain_question_num,
+                                                      'question': row.question,
+                                                      'answer': row.answer, 'justification': row.justification,
+                                                      'page(s)': row.evidence[0]['evidence_page_num']}
+                                              for fb_id, row in META_DF.iterrows()}
+
+    if GROUND_TRUTHS_FILE_PATH.is_file():
+        with open(file=GROUND_TRUTHS_FILE_PATH,
+                  buffering=-1,
+                  encoding='utf-8',
+                  errors='strict',
+                  newline=None,
+                  closefd=True,
+                  opener=None) as f:
+            existing_ground_truths: dict[FbId, GroundTruth] = yaml.safe_load(stream=f)
+
+        for fb_id, ground_truth in ground_truths.items():
+            if (existing_ground_truth := existing_ground_truths.get(fb_id)):
+                for existing_key in set(existing_ground_truth).difference(ground_truth):
+                    ground_truth[existing_key] = existing_ground_truth[existing_key]
+
     with open(file=GROUND_TRUTHS_FILE_PATH,
               mode='w',
               buffering=-1,
@@ -280,8 +311,7 @@ def export_ground_truths():
               newline=None,
               closefd=True,
               opener=None) as f:
-        yaml.safe_dump(data={fb_id: {'doc': row.doc_name, 'question': row.question, 'answer': row.answer, 'page(s)': row.page_number}  # noqa: E501
-                             for fb_id, row in META_DF.iterrows()},
+        yaml.safe_dump(data=ground_truths,
                        stream=f,
                        default_style=None,
                        default_flow_style=False,
@@ -296,6 +326,8 @@ def export_ground_truths():
                        version=None,
                        tags=None,
                        sort_keys=False)
+
+    return ground_truths
 
 
 def get_or_create_output_df() -> DataFrame:
