@@ -2905,6 +2905,10 @@ financebench_id_01487:
   justification: ''
   page(s)-0based: 9
 
+  category: 1-COMPARE
+  correctness: >-
+    the answer mentions 20.0% (or 20%) and 20.1%, or, alternatively, mentions a slight increase
+
 
 financebench_id_00299:
   sector: Financials
