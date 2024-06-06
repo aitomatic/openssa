@@ -2709,6 +2709,10 @@ financebench_id_00956:
   justification: ''
   page(s)-0based: 27
 
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions low/slow Sales Revenue growth
+
 
 financebench_id_00669:
   sector: Health Care
