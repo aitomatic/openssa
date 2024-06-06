@@ -2893,6 +2893,10 @@ financebench_id_01491:
   justification: ''
   page(s)-0based: 3
 
+  category: 0-RETRIEVE
+  correctness: >-
+    the answer mentions 13.2 billion, or, alternatively, approximately 13 billion
+
 
 financebench_id_01487:
   sector: Health Care
