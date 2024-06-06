@@ -2777,7 +2777,10 @@ financebench_id_00651:
 
   category: 1-COMPARE
   correctness: >-
-    the answer mentions 3.5% and 3.6%
+    the answer mentions 3.5% and 3.6%,
+    or, alternatively, concludes that growth is NOT expected to accelerate
+
+  evaluator-unreliable: true
 
 
 financebench_id_01484:
