@@ -6,6 +6,7 @@ load_dotenv()
 
 LOCAL_CACHE_DOCS_DIR_PATH: Path = Path(__file__).parent / '.data'
 
+
 def get_or_create_agent() -> Agent:
     return Agent(
         resources={FileResource(path=LOCAL_CACHE_DOCS_DIR_PATH)}
