@@ -38,10 +38,23 @@ class Category(StrEnum):
     OTHER_ADVANCED: str = '6-OTHER-ADVANCED'
 
 
-type GroundTruth = TypedDict('GroundTruth', {'doc': Required[DocName],
+type GroundTruth = TypedDict('GroundTruth', {'sector': Required[str],
+
+                                             'company': Required[str],
+                                             'period': Required[int],
+                                             'doc-type': Required[str],
+                                             'doc': Required[DocName],
+
+                                             'question-type': Required[str],
+                                             'question-reasoning': Required[str],
+                                             'domain-question-num': Required[str | None],
                                              'question': Required[Question],
+
                                              'answer': Required[Answer],
+                                             'justification': Required[str],
+                                             'page(s)-0based': Required[int],
                                              'page(s)': Required[str],
+
                                              'category': Required[Category],
                                              'correctness': Required[str],
                                              'answer-inadequate': NotRequired[Literal[True]],
