@@ -1,18 +1,15 @@
 # pylint: disable=bare-except,no-name-in-module,wrong-import-order,wrong-import-position
 
 
+from loguru import logger
 import streamlit as st
 from pathlib import Path
 
-from loguru import logger
-
 from streamlit_extras.capture import logcapture
 
-from data_and_knowledge import (
-    DocName, FbId,
-    DOC_LINKS_BY_NAME, DOC_NAMES_BY_FB_ID, FB_IDS_BY_DOC_NAME, QS_BY_FB_ID,
-    EXPERT_PLAN_MAP, LOCAL_CACHE_DIR_PATH
-)
+from data_and_knowledge import (DocName, FbId,
+                                DOC_LINKS_BY_NAME, DOC_NAMES_BY_FB_ID, FB_IDS_BY_DOC_NAME, QS_BY_FB_ID,
+                                EXPERT_PLAN_MAP, LOCAL_CACHE_DIR_PATH)
 from htp_oodar_agent import get_or_create_agent, expert_plan_from_fb_id
 from llama_index.core import StorageContext, load_index_from_storage  # noqa: E402
 
