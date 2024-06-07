@@ -1,9 +1,12 @@
 # pylint: disable=bare-except,no-name-in-module,wrong-import-order,wrong-import-position
 
 
+from __future__ import annotations
+
+from collections import defaultdict
+
 from loguru import logger
 import streamlit as st
-from streamlit_extras.capture import logcapture
 
 from data_and_knowledge import (DocName, FbId,
                                 DOC_LINKS_BY_NAME, DOC_NAMES_BY_FB_ID, FB_IDS_BY_DOC_NAME, QS_BY_FB_ID,
@@ -31,10 +34,11 @@ st.set_page_config(page_title=TITLE,
 st.title(body=TITLE, anchor=None, help=None)
 
 
+st.write('__SEC FILING__')
+
 if 'doc_name' not in st.session_state:
     st.session_state.doc_name: str = DOC_NAMES[0]
 
-st.write('__SEC FILING__')
 st.session_state.doc_name: str = st.selectbox(label='SEC Filing',
                                               options=DOC_NAMES,
                                               index=DOC_NAMES.index(st.session_state.doc_name),
@@ -50,53 +54,62 @@ st.write(DOC_LINKS_BY_NAME[st.session_state.doc_name])
 
 
 st.write('__PROBLEM__')
-problem_id: str = st.selectbox(label='Problem',
-                               options=REPRESENTATIVE_FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
-                               index=0,
-                               format_func=lambda i: QS_BY_FB_ID[i],
-                               key=None,
-                               help='Problem',
-                               on_change=None, args=None, kwargs=None,
-                               placeholder='Problem',
-                               disabled=False,
-                               label_visibility='collapsed')
+
+problem_id: FbId = st.selectbox(label='Problem',
+                                options=REPRESENTATIVE_FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
+                                index=0,
+                                format_func=lambda i: QS_BY_FB_ID[i],
+                                key=None,
+                                help='Problem',
+                                on_change=None, args=None, kwargs=None,
+                                placeholder='Problem',
+                                disabled=False,
+                                label_visibility='collapsed')
+
+problem: str = QS_BY_FB_ID[problem_id]
 
 
-if 'question_answered' not in st.session_state:
-    st.session_state.question_answered: bool = False
-
-if 'current_answer' not in st.session_state:
-    st.session_state.current_answer: str = ''
+rag, agent = st.columns(spec=2, gap='large')
 
 
-if st.button(label=f'__ANSWER WITH 1-PASS RAG__: _{QS_BY_FB_ID[problem_id]}_',
-             # key=None,
-             on_click=None, args=None, kwargs=None,
-             type='secondary',
-             disabled=False,
-             use_container_width=False):
-    with st.spinner(text='_ATTEMPTING TO RETRIEVE ANSWER..._'):
-        solution: str = get_or_create_file_resource(doc_name=st.session_state.doc_name).answer(question=QS_BY_FB_ID[problem_id])
-        st.session_state.current_answer: str = solution
-        st.session_state.question_answered: bool = True
+if 'rag_answers' not in st.session_state:
+    st.session_state.rag_answers: defaultdict[FbId, str] = defaultdict(str)
 
-if st.session_state.question_answered:
-    st.markdown(body=st.session_state.current_answer)
+with rag:
+    st.subheader('Retrieval-Augmented Generation (RAG)')
+    st.subheader('_with standard settings_')
+
+    if st.button(label='Answer',
+                 on_click=None, args=None, kwargs=None,
+                 type='secondary',
+                 disabled=False,
+                 use_container_width=False):
+        with st.spinner(text='_RETRIEVING INFO..._'):
+            st.session_state.rag_answers[problem_id]: str = (
+                get_or_create_file_resource(doc_name=st.session_state.doc_name).answer(question=problem))
+
+    if (answer := st.session_state.rag_answers[problem_id]):
+        st.markdown(body=answer.replace('$', r'\$'))
 
 
-if st.button(label=f'__SOLVE WITH PLANNING & REASONING__: _{QS_BY_FB_ID[problem_id]}_',
-             # key=None,
-             on_click=None, args=None, kwargs=None,
-             type='primary',
-             disabled=False,
-             use_container_width=False):
-    logger.level('DEBUG')
-    with st.spinner(text='_THINKING..._'), logcapture(st.empty().code, from_logger=logger):
-        solution: str = (get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
-                         .solve(problem=QS_BY_FB_ID[problem_id], plan=expert_plan_from_fb_id(problem_id), dynamic=False))
+if 'agent_solutions' not in st.session_state:
+    st.session_state.agent_solutions: defaultdict[FbId, str] = defaultdict(str)
 
-    if st.session_state.question_answered:
-        st.session_state.question_answered: bool = False
-        st.session_state.current_answer: str = ''
+with agent:
+    st.subheader('FINANCIAL ANALYST AGENT')
+    st.subheader('_with Planning & Reasoning_')
 
-    st.markdown(body=solution.replace('$', r'\$'))
+    if st.button(label='SOLVE',
+                 on_click=None, args=None, kwargs=None,
+                 type='primary',
+                 disabled=False,
+                 use_container_width=False):
+        with st.spinner(text='_SOLVING..._'):
+            logger.level('DEBUG')
+
+            st.session_state.agent_solutions[problem_id]: str = (
+                get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
+                .solve(problem=problem, plan=expert_plan_from_fb_id(problem_id), dynamic=False))
+
+    if (solution := st.session_state.agent_solutions[problem_id]):
+        st.markdown(body=solution.replace('$', r'\$'))
