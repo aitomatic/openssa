@@ -161,7 +161,8 @@ class FileResource(AbstractResource):
         if self.on_s3:
             return S3FileSystem(key=os.environ.get('AWS_ACCESS_KEY_ID'), secret=os.environ.get('AWS_SECRET_ACCESS_KEY'))
 
-        return LocalFileSystem(auto_mkdir=True, use_listings_cache=False, listings_expiry_time=None, max_paths=None)
+        return LocalFileSystem(auto_mkdir=False,  # note: important for being recognized as default FS on Windows
+                               use_listings_cache=False, listings_expiry_time=None, max_paths=None)
 
     @cached_property
     def native_str_path(self) -> DirOrFileStrPath:
@@ -234,7 +235,7 @@ class FileResource(AbstractResource):
                 # docs.llamaindex.ai/en/latest/api_reference/indices.html#llama_index.core.indices.base.BaseIndex.from_documents
                 documents=SimpleDirectoryReader(
                     # docs.llamaindex.ai/en/latest/examples/data_connectors/simple_directory_reader.html#full-configuration
-                    input_dir=self.native_str_path,
+                    input_dir=self.native_str_path if self.on_remote else self.str_path,
                     input_files=None,
                     exclude=[
                         '.DS_Store',  # MacOS
