@@ -28,7 +28,7 @@ def switch_log_file(fb_id: FbId, output_name: str):
         logger.remove(handler_id=CURRENT_LOG_HANDLER_ID)
 
     CURRENT_LOG_HANDLER_ID = logger.add(sink=(Path(LOG_DIR_PATH) /
-                                              f'{(DOC_NAMES_BY_FB_ID[fb_id])} | {fb_id[16:]} | {output_name}.log'),
+                                              DOC_NAMES_BY_FB_ID[fb_id] / fb_id[16:] / f'{output_name}.log'),
                                         level='DEBUG',
                                         # format=...,
                                         filter=None,

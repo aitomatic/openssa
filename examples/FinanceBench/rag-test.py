@@ -30,10 +30,10 @@ EVAL_RUBRIC_TEMPLATE: str = 'the answer contains a quantity equivalent to or app
 EVAL_LM: AnLM = get_lm()
 
 
-def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9, openai_lm_name: str = DEFAULT_OPENAI_MODEL):
+def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9, llama_index_openai_lm_name: str = DEFAULT_OPENAI_MODEL):
     # pylint: disable=too-many-locals
     doc: Doc = Doc(name=doc_name)
-    file_resource: FileResource = get_or_create_file_resource(doc_name=doc_name, openai_lm_name=openai_lm_name)
+    file_resource: FileResource = get_or_create_file_resource(doc_name=doc_name, llama_index_openai_lm_name=llama_index_openai_lm_name)
 
     for statement_id, line_item_details in RAG_GROUND_TRUTHS['ground-truths'][doc_name].items():
         statement: str = DEFS[statement_id]
@@ -77,4 +77,4 @@ arg_parser.add_argument('doc_name')
 arg_parser.add_argument('--gpt4', action='store_true', default=False)
 args = arg_parser.parse_args()
 
-test_rag(doc_name=args.doc_name, openai_lm_name='gpt-4-1106-preview' if args.gpt4 else DEFAULT_OPENAI_MODEL)
+test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4-1106-preview' if args.gpt4 else DEFAULT_OPENAI_MODEL)
