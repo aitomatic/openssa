@@ -1,11 +1,18 @@
+"""
+================================
+META LLAMA LANGUAGE MODELS (LMs)
+================================
+"""
+
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
 from llamaapi import LlamaAPI
 
-from openssa.l2.config import Config
 from .abstract import AbstractLM, LMChatHist
+from .config import LMConfig
 
 
 @dataclass
@@ -22,13 +29,13 @@ class LlamaLM(AbstractLM):
     def from_defaults(cls) -> LlamaLM:
         """Get Llama LM instance with default parameters."""
         # pylint: disable=unexpected-keyword-arg
-        return cls(model=Config.DEFAULT_LLAMA_MODEL, api_key=Config.LLAMA_API_KEY, api_base=Config.LLAMA_API_URL)
+        return cls(model=LMConfig.DEFAULT_LLAMA_MODEL, api_key=LMConfig.LLAMA_API_KEY, api_base=LMConfig.LLAMA_API_URL)
 
     def call(self, messages: LMChatHist, **kwargs):
         """Call Llama LM API and return response object."""
         return self.client.run({'model': self.model,
                                 'messages': messages,
-                                'temperature': kwargs.pop('temperature', Config.DEFAULT_TEMPERATURE),
+                                'temperature': kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
                                 **kwargs})
 
     def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:

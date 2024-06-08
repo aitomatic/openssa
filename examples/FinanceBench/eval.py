@@ -11,12 +11,14 @@ from loguru import logger
 from pandas import DataFrame, notna, read_csv
 from tqdm import tqdm
 
-from openssa.l2.config import Config
+from openssa.l2.util.lm.config import LMConfig
 from openssa.l2.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import (FbId, Question, Answer, GroundTruth, FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,  # noqa: E501
+from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
+                                FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,
                                 OUTPUT_FILE_PATH, get_or_create_output_df)
+from log import switch_log_file
 
 if TYPE_CHECKING:
     from openssa.l2.util.lm.abstract import AnLM
@@ -65,7 +67,7 @@ load_dotenv()
 
 @cache
 def get_lm(model='gpt-4-1106-preview') -> AnLM:
-    return OpenAILM(model=model, api_key=Config.OPENAI_API_KEY, api_base=Config.OPENAI_API_URL)
+    return OpenAILM(model=model, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
 
 def human_eval_recommended(fb_id: FbId) -> bool | None:
@@ -74,6 +76,9 @@ def human_eval_recommended(fb_id: FbId) -> bool | None:
 
 def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None,  # pylint: disable=too-many-arguments
                      n_times: int = 9, human: bool = True, debug: bool = False) -> bool:
+    if output_name:
+        switch_log_file(fb_id=fb_id, output_name=output_name)
+
     question: Question = (ground_truth := GROUND_TRUTHS[fb_id])['question']
     rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
@@ -123,6 +128,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None
 
 
 def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bool = True, debug: bool = False):
+    # pylint: disable=too-many-locals
     output_df: DataFrame = get_or_create_output_df()
 
     n_yes_scores_by_category: defaultdict = defaultdict(int)
@@ -144,9 +150,26 @@ def eval_all(output_name: str, refresh: bool = True, n_times: int = 9, human: bo
                                                          else ''))
 
     logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
+
     pprint(correctness_by_category := {category: (f'{(n := n_yes_scores_by_category[category])} / {n_for_category} '
                                                   f'= {n / n_for_category:.1%}')
                                        for category, n_for_category in CAT_DISTRIB.items()})
+
+    pprint({
+        'EASY': (f'{(e := sum(n_yes_scores_by_category[easy_cat]
+                              for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} / '
+                 f'{(se := sum(CAT_DISTRIB[easy_cat]
+                               for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} '
+                 f'= {e / se:.1%}'),
+
+        'HARD': (f'{(h := sum(n_yes_scores_by_category[hard_cat]
+                              for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                               Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} / '
+                 f'{(sh := sum(CAT_DISTRIB[hard_cat]
+                               for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                                Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} '
+                 f'= {h / sh:.1%}')
+    })
 
     logger.warning('INCORRECT:')
     pprint(incorrect_answer_fb_ids)
