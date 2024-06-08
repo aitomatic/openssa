@@ -13,9 +13,8 @@ maintainers = [
   "Vinh Luong <vinh@aitomatic.com>",
   "Sang Dinh <sang@aitomatic.com>",
   "Quynh Le <quynh@aitomatic.com>",
-  "Zooey Nguyen <zooey@aitomatic.com>",
   "Shruti Raghavan <shruti@aitomatic.com>",
-  "Chanh Le <chanh@aitomatic.com>",
+  "Zooey Nguyen <zooey@aitomatic.com>",
 ]
 
 license = "Apache-2.0"
