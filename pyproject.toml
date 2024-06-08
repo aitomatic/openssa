@@ -67,7 +67,7 @@ python = ">=3.12,<3.13"
 # Llama interface
 llamaapi = ">=0.1"
 # OpenAI interface
-openai = ">=1.31"
+openai = ">=1.33"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
