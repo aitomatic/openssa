@@ -65,7 +65,7 @@ ruff = ">=0.4"
 pytest = ">=8.2"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
+python = ">=3.12,<3.14"
 # Llama interface
 llamaapi = ">=0.1"
 # OpenAI interface
