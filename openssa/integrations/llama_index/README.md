@@ -16,7 +16,7 @@ As such, there are two major integration patterns:
 
 When integrated, both bring unique benefits that greatly enhance their collective capabilities. SSAs can leverage LlamaIndex to access specific, contextually relevant data, enhancing their specialist capabilities. Conversely, SSAs, as data sources for LlamaIndex, contribute their nuanced domain knowledge to a broader data ecosystem.
 
-Additionally, this integration promotes efficiency and customization, thanks to LlamaIndex’s flexibility in handling different data formats and SSAs’ computational advantages (e.g., from domain-specific, fine-tuned, distilled language models). The relationship between SSAs and LlamaIndex enriches the the LlamaIndex ecosystem and while helping to improve the robustness and reliability of SSAs.
+Additionally, this integration promotes efficiency and customization, thanks to LlamaIndex’s flexibility in handling different data formats and SSAs’ computational advantages (e.g., from domain-specific, fine-tuned, distilled language models). The relationship between SSAs and LlamaIndex enriches the LlamaIndex ecosystem and while helping to improve the robustness and reliability of SSAs.
 
 ## Integration Examples
 
