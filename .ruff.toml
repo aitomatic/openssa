@@ -122,6 +122,7 @@ ignore = [
   "S101",  # use of `assert` detected
   "S106",  # possible hardcoded password assigned to argument
   "S110",  # `try`-`except`-`pass` detected, consider logging the exception
+  "S113",  # probable use of `httpx` call without timeout
   "S605",  # starting a process with a shell, possible injection detected
   "S607",  # starting a process with a partial executable path
   "SIM102",  # use a single `if` statement instead of nested `if` statements
