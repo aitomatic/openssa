@@ -16,7 +16,8 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Self, TypeVar, TYPE_CHECKING
 
-from openssa.l2.util.lm.openai import OpenAILM
+# from openssa.l2.util.lm.openai import OpenAILM
+from openssa.l2.util.lm.huggingface_lm import HuggingFaceLM
 
 if TYPE_CHECKING:
     from openssa.l2.resource.abstract import AResource
@@ -30,7 +31,14 @@ class AbstractPlanner(ABC):
     """Abstract Planner."""
 
     # language model for generating solution Plans
-    lm: AnLM = field(default_factory=OpenAILM.from_defaults,
+    # lm: AnLM = field(default_factory=OpenAILM.from_defaults,
+    #                  init=True,
+    #                  repr=True,
+    #                  hash=None,
+    #                  compare=True,
+    #                  metadata=None,
+    #                  kw_only=False)
+    lm: AnLM = field(default_factory=HuggingFaceLM.from_defaults,
                      init=True,
                      repr=True,
                      hash=None,
