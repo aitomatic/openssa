@@ -14,8 +14,6 @@ from typing import TYPE_CHECKING
 
 # from openai import OpenAI  # pylint: disable=import-self
 from huggingface_hub.inference._client import InferenceClient
-from llama_index.embeddings.openai.base import OpenAIEmbedding, OpenAIEmbeddingMode, OpenAIEmbeddingModelType
-from llama_index.llms.openai.base import OpenAI as LlamaIndexOpenAILM, DEFAULT_OPENAI_MODEL
 
 from .abstract import AbstractLM, LMChatHist
 from .config import LMConfig
@@ -76,25 +74,3 @@ class HuggingFaceLM(AbstractLM):
 
         # return json.loads(response_content) if json_format else response_content
         return response_content
-
-
-def default_llama_index_openai_embed_model() -> OpenAIEmbedding:
-    return OpenAIEmbedding(mode=OpenAIEmbeddingMode.SIMILARITY_MODE, model=OpenAIEmbeddingModelType.TEXT_EMBED_3_LARGE,
-                           embed_batch_size=100, dimensions=3072, additional_kwargs=None,
-                           api_key=None, api_base=None, api_version=None,
-                           max_retries=10, timeout=60,
-                           reuse_client=True, callback_manager=None, default_headers=None, http_client=None,
-                           num_workers=cpu_count())
-
-
-def default_llama_index_openai_lm() -> LlamaIndexOpenAILM:
-    return LlamaIndexOpenAILM(model=DEFAULT_OPENAI_MODEL,
-                              temperature=LMConfig.DEFAULT_TEMPERATURE,
-                              max_tokens=None,
-                              additional_kwargs={'seed': LMConfig.DEFAULT_SEED},
-                              max_retries=3, timeout=60, reuse_client=True,
-                              api_key=None, api_base=None, api_version=None,
-                              callback_manager=None, default_headers=None, http_client=None, async_http_client=None,
-                              system_prompt=None, messages_to_prompt=None, completion_to_prompt=None,
-                              # pydantic_program_mode=...,
-                              output_parser=None)
