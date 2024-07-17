@@ -59,7 +59,7 @@ class HuggingFaceLM(AbstractLM):
             messages=messages,
             seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
             temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
-            max_tokens=4096,
+            max_tokens=6000,
             **kwargs)
 
     def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
@@ -67,11 +67,7 @@ class HuggingFaceLM(AbstractLM):
         messages: LMChatHist = history or []
         messages.append({'role': 'user', 'content': prompt})
 
-        # if json_format:
-        #     kwargs['response_format'] = {'type': 'json_object'}
-
         response_content: str = self.call(messages, **kwargs).choices[0].message.content
         print(f"HF response_content = {response_content}")
 
-        # return json.loads(response_content) if json_format else response_content
-        return response_content
+        return json.loads(response_content) if json_format else response_content
