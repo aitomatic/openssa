@@ -53,12 +53,13 @@ class HuggingFaceLM(AbstractLM):
         #                                            seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
         #                                            temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
         #                                            **kwargs)
-        print("HF LM Call performed!")
+        print(f"HF LM Call performed!: {messages}")
         return self.client.chat_completion(
             model=self.model,
             messages=messages,
             seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
             temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
+            max_tokens=4096,
             **kwargs)
 
     def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
