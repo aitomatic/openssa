@@ -3,20 +3,26 @@ from functools import cache
 
 from openssa import Agent, HTP, AutoHTPlanner, OodaReasoner, FileResource, LMConfig
 from openssa.l2.util.lm.openai import LlamaIndexOpenAILM
+from openssa.l2.util.lm.huggingface_lm import HuggingFaceLM
+from openssa.l2.util.lm.config import LMConfig
 
-# pylint: disable=wrong-import-order
+# pylint: disable=wrong-import-order,wrong-import-position
 from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
                                 EXPERT_KNOWLEDGE, EXPERT_PLAN_MAP,
                                 EXPERT_PLAN_TEMPLATES, EXPERT_PLAN_COMPANY_KEY, EXPERT_PLAN_PERIOD_KEY)
 from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
+LLAMA3_LM = HuggingFaceLM(model=LMConfig.DEFAULT_HF_LLAMA_MODEL, api_base=LMConfig.LLAMA_API_URL)
+
+
 @cache
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False,
                         max_depth=2, max_subtasks_per_decomp=4,
                         llama_index_openai_lm_name: str = 'gpt-4-1106-preview') -> Agent | None:
-    return (Agent(planner=AutoHTPlanner(max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-                  reasoner=OodaReasoner(),
+    return (Agent(planner=AutoHTPlanner(max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp,
+                                        lm=LLAMA3_LM),
+                  reasoner=OodaReasoner(lm=LLAMA3_LM),
                   knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
                   resources={FileResource(path=dir_path,
                                           lm=LlamaIndexOpenAILM(model=llama_index_openai_lm_name,
