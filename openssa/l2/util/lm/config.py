@@ -27,7 +27,7 @@ class LMConfig:
     # OpenAI LMs
     OPENAI_API_KEY: str | None = os.environ.get("OPENAI_API_KEY")
     OPENAI_API_URL: str = os.environ.get("OPENAI_API_URL", "https://api.openai.com/v1")
-    DEFAULT_OPENAI_MODEL: str = "gpt-4-1106-preview"
+    DEFAULT_OPENAI_MODEL: str = "gpt-4o"
 
     # LM parameters
     DEFAULT_SEED: int = 7 * 17 * 14717
