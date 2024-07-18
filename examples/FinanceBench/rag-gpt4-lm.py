@@ -11,7 +11,7 @@ from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 def answer(fb_id: FbId) -> Answer:
     return (file_resource.answer(QS_BY_FB_ID[fb_id])
             if (file_resource := get_or_create_file_resource(doc_name=DOC_NAMES_BY_FB_ID[fb_id],
-                                                             llama_index_openai_lm_name='gpt-4-1106-preview'))
+                                                             llama_index_openai_lm_name='gpt-4o'))
             else 'ERROR: doc not found')
 
 
