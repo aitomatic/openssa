@@ -3,7 +3,6 @@ from __future__ import annotations
 from argparse import ArgumentParser
 from typing import TYPE_CHECKING
 
-from llama_index.llms.openai.base import DEFAULT_OPENAI_MODEL
 from loguru import logger
 
 from data_and_knowledge import DocName, Doc, RAG_GROUND_TRUTHS
@@ -30,7 +29,7 @@ EVAL_RUBRIC_TEMPLATE: str = 'the answer contains a quantity equivalent to or app
 EVAL_LM: AnLM = get_lm()
 
 
-def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9, llama_index_openai_lm_name: str = DEFAULT_OPENAI_MODEL):
+def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9, llama_index_openai_lm_name: str = 'gpt-4o-mini'):
     # pylint: disable=too-many-locals
     doc: Doc = Doc(name=doc_name)
     file_resource: FileResource = get_or_create_file_resource(doc_name=doc_name, llama_index_openai_lm_name=llama_index_openai_lm_name)
@@ -77,4 +76,4 @@ arg_parser.add_argument('doc_name')
 arg_parser.add_argument('--gpt4', action='store_true', default=False)
 args = arg_parser.parse_args()
 
-test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4-1106-preview' if args.gpt4 else DEFAULT_OPENAI_MODEL)
+test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4o' if args.gpt4 else 'gpt-4o-mini')
