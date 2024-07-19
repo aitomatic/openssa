@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING
 
 from openai import OpenAI  # pylint: disable=import-self
 from llama_index.embeddings.openai.base import OpenAIEmbedding, OpenAIEmbeddingMode, OpenAIEmbeddingModelType
-from llama_index.llms.openai.base import OpenAI as LlamaIndexOpenAILM, DEFAULT_OPENAI_MODEL
+from llama_index.llms.openai.base import OpenAI as LlamaIndexOpenAILM
 
 from .abstract import AbstractLM, LMChatHist
 from .config import LMConfig
@@ -61,6 +61,7 @@ class OpenAILM(AbstractLM):
 
 
 def default_llama_index_openai_embed_model() -> OpenAIEmbedding:
+    # platform.openai.com/docs/models/embeddings
     return OpenAIEmbedding(mode=OpenAIEmbeddingMode.SIMILARITY_MODE, model=OpenAIEmbeddingModelType.TEXT_EMBED_3_LARGE,
                            embed_batch_size=100, dimensions=3072, additional_kwargs=None,
                            api_key=None, api_base=None, api_version=None,
@@ -70,7 +71,7 @@ def default_llama_index_openai_embed_model() -> OpenAIEmbedding:
 
 
 def default_llama_index_openai_lm() -> LlamaIndexOpenAILM:
-    return LlamaIndexOpenAILM(model=DEFAULT_OPENAI_MODEL,
+    return LlamaIndexOpenAILM(model=LMConfig.DEFAULT_SMALL_OPENAI_MODEL,
                               temperature=LMConfig.DEFAULT_TEMPERATURE,
                               max_tokens=None,
                               additional_kwargs={'seed': LMConfig.DEFAULT_SEED},
