@@ -77,4 +77,4 @@ arg_parser.add_argument('doc_name')
 arg_parser.add_argument('--gpt4', action='store_true', default=False)
 args = arg_parser.parse_args()
 
-test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4-1106-preview' if args.gpt4 else DEFAULT_OPENAI_MODEL)
+test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4o' if args.gpt4 else DEFAULT_OPENAI_MODEL)
