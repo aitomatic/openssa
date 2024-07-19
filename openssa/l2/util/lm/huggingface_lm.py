@@ -68,6 +68,7 @@ class HuggingFaceLM(AbstractLM):
         messages.append({'role': 'user', 'content': prompt})
 
         response_content: str = self.call(messages, **kwargs).choices[0].message.content
+        response_content = response_content.replace("\n", " ")
         print(f"HF response_content = {response_content}")
 
         return json.loads(response_content) if json_format else response_content
