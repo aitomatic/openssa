@@ -67,7 +67,7 @@ load_dotenv()
 
 
 @cache
-def get_lm(model='gpt-4-1106-preview') -> AnLM:
+def get_lm(model='gpt-4o') -> AnLM:
     return OpenAILM(model=model, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
 

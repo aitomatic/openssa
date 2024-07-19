@@ -19,7 +19,7 @@ LLAMA3_LM = HuggingFaceLM(model=LMConfig.DEFAULT_HF_LLAMA_MODEL, api_base=LMConf
 @cache
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False,
                         max_depth=2, max_subtasks_per_decomp=4,
-                        llama_index_openai_lm_name: str = 'gpt-4-1106-preview') -> Agent | None:
+                        llama_index_openai_lm_name: str = 'gpt-4o-mini') -> Agent | None:
     return (Agent(planner=AutoHTPlanner(max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp,
                                         lm=LLAMA3_LM),
                   reasoner=OodaReasoner(lm=LLAMA3_LM),
