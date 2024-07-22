@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from openssa.neurosym.program.program_space import ProgramSpace
 
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa import AbstractResource, OodaReasoner
+    from openssa import AbstractResource
 
 
 @dataclass
