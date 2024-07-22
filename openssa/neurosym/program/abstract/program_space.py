@@ -11,3 +11,7 @@ class AbstractProgramSpace(ABC):
     @abstractmethod
     def add_program(self, name: str, desc: str, program: AbstractProgram):
         """Add program to library with unique identifying name & informative description."""
+
+    @abstractmethod
+    def find_program(self, problem: str) -> AbstractProgram:
+        """Find program for problem."""
