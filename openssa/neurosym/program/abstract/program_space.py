@@ -4,10 +4,10 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from openssa.neurosym.algo.abstract.algo import AbstractAlgo
+    from openssa.neurosym.program.abstract.program import AbstractProgram
 
 
-class AbstractAlgoLib(ABC):
+class AbstractProgramSpace(ABC):
     @abstractmethod
-    def add_algo(self, name: str, desc: str, algo: AbstractAlgo):
-        """Add algorithm to library with unique identifying name & informative description."""
+    def add_program(self, name: str, desc: str, program: AbstractProgram):
+        """Add program to library with unique identifying name & informative description."""
