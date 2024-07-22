@@ -3,10 +3,10 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
-type AlgoIO = dict | list | str
+type ProgramIO = dict | list | str
 
 
-class AbstractAlgo(ABC):
+class AbstractProgram(ABC):
     @abstractmethod
-    def execute(self, inputs: AlgoIO) -> AlgoIO:
+    def execute(self, inputs: ProgramIO) -> ProgramIO:
         """Execute on given inputs and return outputs."""
