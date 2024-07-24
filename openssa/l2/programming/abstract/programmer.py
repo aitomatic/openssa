@@ -1,11 +1,11 @@
 """
-===============================
-ABSTRACT TASK PLANNER INTERFACE
-===============================
+=============================
+ABSTRACT PROGRAMMER INTERFACE
+=============================
 
-`AbstractPlanner` is `OpenSSA`'s abstract base class for using LMs to create or update problem-solving task plans.
+`AbstractProgrammer` is `OpenSSA`'s abstract base class for using LMs to create or update problem-solving task plans.
 
-A planner has an LM for generating new or updated task plans,
+A programmer has an LM for generating new or updated task plans,
 the complexity of which is controlled by at least 2 key parameters `max_depth` and `max_subtasks_per_decomp`.
 """
 
@@ -26,8 +26,8 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class AbstractPlanner(ABC):
-    """Abstract Planner."""
+class AbstractProgrammer(ABC):
+    """Abstract Programmer."""
 
     # language model for generating solution Plans
     lm: AnLM = field(default_factory=OpenAILM.from_defaults,
@@ -60,4 +60,4 @@ class AbstractPlanner(ABC):
         """Make updated Plan for solving posed Problem using given Knowledge & relevant Informational Resources."""
 
 
-APlanner: TypeVar = TypeVar('APlanner', bound=AbstractPlanner, covariant=False, contravariant=False)
+AProgrammer: TypeVar = TypeVar('AProgrammer', bound=AbstractProgrammer, covariant=False, contravariant=False)

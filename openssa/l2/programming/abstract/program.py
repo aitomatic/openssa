@@ -1,15 +1,15 @@
 """
-============================
-ABSTRACT TASK PLAN INTERFACE
-============================
+==========================
+ABSTRACT PROGRAM INTERFACE
+==========================
 
-`AbstractPlan` is `OpenSSA`'s abstract base class for problem-solving task plans.
+`AbstractProgram` is `OpenSSA`'s abstract base class for problem-solving programs.
 
-A plan has a target `task` to solve, and can contain decomposed `sub_plans` for solving that `task`.
+A program has a target `task` to solve, and can contain decomposed `sub_programs` for solving that `task`.
 
-A plan can be executed through its own `.execute(...)` method,
+A program can be executed through its own `.execute(...)` method,
 by a specified Reasoner that optionally takes into account some given domain-specific Knowledge and/or other results.
-The plan execution returns a string result.
+The program execution returns a string result.
 """
 
 
@@ -33,34 +33,34 @@ class PLAN(SimpleNamespace):
 
 
 @dataclass
-class AbstractPlan(ABC):
-    """Abstract Plan."""
+class AbstractProgram(ABC):
+    """Abstract Program."""
 
     # target Task to solve
     task: Task
 
     # decomposed Sub-Plans for solving target Task
-    sub_plans: list[Self] = field(default_factory=list,
-                                  init=True,
-                                  repr=True,
-                                  hash=None,
-                                  compare=True,
-                                  metadata=None,
-                                  kw_only=False)
+    sub_programs: list[Self] = field(default_factory=list,
+                                     init=True,
+                                     repr=True,
+                                     hash=None,
+                                     compare=True,
+                                     metadata=None,
+                                     kw_only=False)
 
     def concretize_tasks_from_template(self, **kwargs: Any):
         self.task.ask: str = self.task.ask.format(**kwargs)
 
-        for sub_plan in self.sub_plans:
-            sub_plan.concretize_tasks_from_template(**kwargs)
+        for sub_program in self.sub_programs:
+            sub_program.concretize_tasks_from_template(**kwargs)
 
     @property
     def quick_repr(self) -> PLAN:
         """Quick, pretty-formattable/printable namespace representation."""
         namespace: PLAN = PLAN(task=self.task.ask)
 
-        if self.sub_plans:
-            namespace.subs: list[PLAN] = [sub_plan.quick_repr for sub_plan in self.sub_plans]
+        if self.sub_programs:
+            namespace.subs: list[PLAN] = [sub_program.quick_repr for sub_program in self.sub_programs]
 
         return namespace
 
@@ -84,4 +84,4 @@ class AbstractPlan(ABC):
         """
 
 
-APlan: TypeVar = TypeVar('APlan', bound=AbstractPlan, covariant=False, contravariant=False)
+AProgram: TypeVar = TypeVar('AProgram', bound=AbstractProgram, covariant=False, contravariant=False)
