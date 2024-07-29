@@ -10,11 +10,9 @@ what is asked, what informational resources are available, the nature, the statu
 
 from __future__ import annotations
 
-from abc import ABC
 from dataclasses import dataclass, asdict, field
 from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired
 
-from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .nature import TaskNature
@@ -32,11 +30,10 @@ class TaskDict(TypedDict, total=False):
     nature: NotRequired[TaskNature]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
-    dynamic_decomposer: NotRequired[APlanner]
 
 
 @dataclass
-class Task(ABC):
+class Task:
     """Task."""
 
     ask: str
@@ -44,7 +41,6 @@ class Task(ABC):
     nature: TaskNature | None = None
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
-    dynamic_decomposer: APlanner | None = None
 
     @classmethod
     def from_dict(cls, d: TaskDict, /) -> Self:
@@ -82,10 +78,3 @@ class Task(ABC):
             return cls.from_str(dict_or_str)
 
         raise TypeError(f'*** {dict_or_str} IS NEITHER A DICTIONARY NOR A STRING ***')
-
-    def decompose(self) -> APlan:
-        """Decompose task into modular plan."""
-        assert isinstance(self.dynamic_decomposer, AbstractPlanner), \
-            TypeError('*** Dynamic Decomposer must be Planner instance ***')
-
-        return self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)
