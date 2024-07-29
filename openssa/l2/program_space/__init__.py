@@ -65,8 +65,8 @@ class ProgramSpace:
 
         matching_program_name: str = self.lm.get_response(
             prompt=PROGRAM_SEARCH_PROMPT_TEMPLATE.format(problem=problem,
-                                                         resource_overviews={r.unique_name: r.overview
-                                                                             for r in resources},
+                                                         resource_overviews={resource.unique_name: resource.overview
+                                                                             for resource in resources},
                                                          program_descriptions=self.descriptions),
             history=knowledge_lm_hist)
 
