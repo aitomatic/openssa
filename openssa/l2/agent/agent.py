@@ -107,4 +107,6 @@ class Agent:
                                                                knowledge=self.knowledge,
                                                                resources=self.resources))
 
-        return program.execute(task=Task(ask=problem, resources=self.resources), knowledge=self.knowledge, **kwargs)
+        program.task: Task = Task(ask=problem, resources=self.resources)
+
+        return program.execute(knowledge=self.knowledge, **kwargs)
