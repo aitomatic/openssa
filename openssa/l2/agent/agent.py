@@ -91,7 +91,7 @@ class Agent:
         """Overview available Informational Resources."""
         return {r.unique_name: r.overview for r in self.resources}
 
-    def solve(self, problem: str, **kwargs: Any) -> str:
+    def solve(self, problem: str, **prog_exec_kwargs: Any) -> str:
         """Solve the posed Problem.
 
         First either find from the Program Space a solution Program suitable for the Problem,
@@ -109,4 +109,4 @@ class Agent:
 
         program.task: Task = Task(ask=problem, resources=self.resources)
 
-        return program.execute(knowledge=self.knowledge, **kwargs)
+        return program.execute(knowledge=self.knowledge, **prog_exec_kwargs)
