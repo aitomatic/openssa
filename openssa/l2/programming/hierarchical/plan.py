@@ -124,11 +124,12 @@ class HTP(AbstractProgram):
 
         if self.sub_htps:
             sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm(self.sub_htps):
-                sub_results.append((sub_plan.task.ask, (sub_plan.task.result
-                                                        if sub_plan.task.status == TaskStatus.DONE
-                                                        else sub_plan.execute(reasoner=reasoner, knowledge=knowledge,
-                                                                              other_results=sub_results))))
+            for sub_htp in tqdm(self.sub_htps):
+                sub_results.append((sub_htp.task.ask, (sub_htp.task.result
+                                                       if sub_htp.task.status == TaskStatus.DONE
+                                                       else sub_htp.execute(knowledge=knowledge,
+                                                                            reasoner=reasoner,
+                                                                            other_results=sub_results))))
 
             inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
                            '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
