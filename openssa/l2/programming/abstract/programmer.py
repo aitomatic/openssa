@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class AbstractProgrammer(ABC):
     """Abstract Programmer."""
 
-    # language model for generating solution Programs
+    # language model for generating problem-solving Programs
     lm: AnLM = field(default_factory=OpenAILM.from_defaults,
                      init=True,
                      repr=True,
