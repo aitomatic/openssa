@@ -17,13 +17,14 @@ from typing import Self, TYPE_CHECKING
 from openssa.l2.programming.abstract.programmer import AbstractProgrammer
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
 
-from .plan import HTP, HTPDict
+from .plan import HTP
 from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.resource.abstract import AResource
     from openssa.l2.util.lm.abstract import LMChatHist
+    from .plan import HTPDict
 
 
 @dataclass
@@ -34,11 +35,11 @@ class HTPlanner(AbstractProgrammer):
     max_depth: int = 2
     max_subtasks_per_decomp: int = 3
 
-    def one_level_deep(self) -> Self:
+    def _one_level_deep(self) -> Self:
         """Get 1-level-deep Planner with same other parameters."""
         return type(self)(lm=self.lm, max_depth=1, max_subtasks_per_decomp=self.max_subtasks_per_decomp)
 
-    def one_fewer_level_deep(self) -> Self:
+    def _one_fewer_level_deep(self) -> Self:
         """Get 1-fewer-level-deep Planner with same other parameters."""
         return type(self)(lm=self.lm, max_depth=self.max_depth - 1, max_subtasks_per_decomp=self.max_subtasks_per_decomp)  # noqa: E501
 
