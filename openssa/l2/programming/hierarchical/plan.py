@@ -18,14 +18,16 @@ to enable the execution of a subsequent HTP node to benefit from results from ea
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Self, TypedDict, Required, NotRequired, TYPE_CHECKING
+from dataclasses import dataclass, field
+from pprint import pformat
+from types import SimpleNamespace
+from typing import Any, Self, TypedDict, Required, NotRequired, TYPE_CHECKING
 
 from loguru import logger
 from tqdm import tqdm
 
-from openssa.l2.planning.abstract.plan import AbstractPlan
-from openssa.l2.reasoning.base import BaseReasoner
+from openssa.l2.programming.abstract.program import AbstractProgram
+from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.l2.task import TaskDict
 from openssa.l2.task.status import TaskStatus
@@ -42,46 +44,87 @@ if TYPE_CHECKING:
 
 
 type HTPDict = TypedDict('HTPDict', {'task': Required[TaskDict | str],
-                                     'sub-plans': NotRequired[list[Self]]},
+                                     'sub-htps': NotRequired[list[Self]]},
                          total=False)
 
 
+class PLAN(SimpleNamespace):
+    pass  # namespace class just for pretty-printing
+
+
 @dataclass
-class HTP(AbstractPlan):
+class HTP(AbstractProgram):
     """Hierarchical Task Plan (HTP)."""
+
+    # decomposed sub-HTPs for solving target Task
+    sub_htps: list[Self] = field(default_factory=list,
+                                 init=True,
+                                 repr=True,
+                                 hash=None,
+                                 compare=True,
+                                 metadata=None,
+                                 kw_only=False)
+
+    @property
+    def quick_repr(self) -> PLAN:
+        """Quick, pretty-formattable/printable namespace representation."""
+        namespace: PLAN = PLAN(task=self.task.ask)
+
+        if self.sub_htps:
+            namespace.subs: list[PLAN] = [sub_htp.quick_repr for sub_htp in self.sub_htps]
+
+        return namespace
+
+    @property
+    def pformat(self) -> str:
+        """Pretty-formatted string representation."""
+        return pformat(object=self.quick_repr,
+                       indent=2,
+                       width=120,
+                       depth=None,
+                       compact=False,
+                       sort_dicts=False,
+                       underscore_numbers=False).replace("'", '').replace('\\n', '')
 
     @classmethod
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
         """Create HTP from dictionary representation."""
         return HTP(task=Task.from_dict_or_str(htp_dict['task']),  # pylint: disable=unexpected-keyword-arg
-                   sub_plans=[HTP.from_dict(d) for d in htp_dict.get('sub-plans', [])])
+                   sub_htps=[HTP.from_dict(d) for d in htp_dict.get('sub-htps', [])])
 
     def to_dict(self) -> HTPDict:
         """Return dictionary representation."""
         return {'task': self.task.to_json_dict(),
-                'sub-plans': [p.to_dict() for p in self.sub_plans]}
+                'sub-htps': [p.to_dict() for p in self.sub_htps]}
+
+    def concretize_tasks_from_template(self, **kwargs: Any):
+        self.task.ask: str = self.task.ask.format(**kwargs)
+
+        for sub_htp in self.sub_htps:
+            sub_htp.concretize_tasks_from_template(**kwargs)
 
     def fix_missing_resources(self):
-        """Fix missing Informational Resources in HTP."""
-        for p in self.sub_plans:
-            if not p.task.resources:
-                p.task.resources: set[AResource] = self.task.resources
-            p.fix_missing_resources()
+        """Fix missing Resources in HTP."""
+        for sub_htp in self.sub_htps:
+            if not sub_htp.task.resources:
+                sub_htp.task.resources: set[AResource] = self.task.resources
+            sub_htp.fix_missing_resources()
 
-    def execute(self, reasoner: AReasoner | None = None, knowledge: set[Knowledge] | None = None,
+    def execute(self, knowledge: set[Knowledge] | None = None,  # pylint: disable=arguments-differ
+                reasoner: AReasoner | None = None,
                 other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return string result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account domain-specific Knowledge and/or potentially elevant other results.
         """
         if reasoner is None:
-            reasoner: AReasoner = BaseReasoner()
+            reasoner: AReasoner = OodaReasoner()
 
         reasoning_wo_sub_results: str = reasoner.reason(task=self.task, knowledge=knowledge, other_results=other_results)
 
-        if self.sub_plans:
+        if self.sub_htps:
             sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm(self.sub_plans):
+            for sub_plan in tqdm(self.sub_htps):
                 sub_results.append((sub_plan.task.ask, (sub_plan.task.result
                                                         if sub_plan.task.status == TaskStatus.DONE
                                                         else sub_plan.execute(reasoner=reasoner, knowledge=knowledge,
