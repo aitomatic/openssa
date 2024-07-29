@@ -65,8 +65,9 @@ class ProgramSpace:
 
         matching_program_name: str = self.lm.get_response(
             prompt=PROGRAM_SEARCH_PROMPT_TEMPLATE.format(problem=problem,
-                                                         resource_overviews={r.unique_name: r.overview for r in resources},  # noqa: E501
-                                                         program_descriptions=json.dumps(self.descriptions)),
+                                                         resource_overviews={r.unique_name: r.overview
+                                                                             for r in resources},
+                                                         program_descriptions=self.descriptions),
             history=knowledge_lm_hist)
 
         if matching_program_name.startswith('NONE'):
