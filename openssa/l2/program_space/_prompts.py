@@ -1,22 +1,28 @@
 PROGRAM_SEARCH_PROMPT_TEMPLATE: str = (
-"""
-Consider that you are trying to solve the following question/problem/task:
+"""Consider that you can access informational resources summarized in the below dictionary,
+in which each key is a resource's unique name and the corresponding value is that resource's overview:
+
+```
+{resource_overviews}
+```
+
+and consider that you are trying to solve the following question/problem/task:
 
 ```
 {problem}
 ```
 
-and that you have access to a collection of executable solution programs
+and that you have access to a collection of solution programs
 summarized by the below name-description pairs:
 
-```json
+```
 {program_descriptions}
 ```
 
-Please return the name of the most appropriate program for solving the stated question/problem/task,
-ONLY IF at least one program is deemed applicable/relevant.
+Please return the name of the most appropriate program for solving the posed question/problem/task,
+ONLY IF at least one program is deemed applicable/suitable.
 
-Otherwise, if no applicable/relevant programs are found in the collection,
+Otherwise, if no applicable/suitable programs are found in the collection,
 please return the word NONE.
 """  # noqa: E122
 )
