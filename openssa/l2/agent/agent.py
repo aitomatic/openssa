@@ -25,6 +25,7 @@ from typing import Any, TYPE_CHECKING
 
 from openssa.l2.program_space import ProgramSpace
 from openssa.l2.programming.hierarchical.planner import HTPlanner
+from openssa.l2.task import Task
 
 if TYPE_CHECKING:
     from openssa.l2.programming.abstract.program import AProgram
@@ -106,4 +107,4 @@ class Agent:
                                                                knowledge=self.knowledge,
                                                                resources=self.resources))
 
-        return program.execute(knowledge=self.knowledge, resources=self.resources, **kwargs)
+        return program.execute(task=Task(ask=problem, resources=self.resources), knowledge=self.knowledge, **kwargs)
