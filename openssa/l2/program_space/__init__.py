@@ -27,10 +27,28 @@ if TYPE_CHECKING:
 class ProgramSpace:
     """Program Space for storing searchable solution Programs."""
 
-    descriptions: dict[str, str] = field(default_factory=dict)
-    programs: dict[str, AProgram] = field(default_factory=dict)
+    descriptions: dict[str, str] = field(default_factory=dict,
+                                         init=True,
+                                         repr=False,
+                                         hash=None,
+                                         compare=True,
+                                         metadata=None,
+                                         kw_only=False)
+    programs: dict[str, AProgram] = field(default_factory=dict,
+                                          init=True,
+                                          repr=False,
+                                          hash=None,
+                                          compare=True,
+                                          metadata=None,
+                                          kw_only=False)
 
-    lm: AnLM = field(default_factory=OpenAILM)
+    lm: AnLM = field(default_factory=OpenAILM.from_defaults,
+                     init=True,
+                     repr=True,
+                     hash=None,
+                     compare=True,
+                     metadata=None,
+                     kw_only=False)
 
     def add_or_update_program(self, name: str, description: str, program: AProgram):
         """Add or update a Program with its unique identifying name & informative description."""
