@@ -1,7 +1,7 @@
 """
-======================================================
-PROGRAM SPACE for storing searchable solution Programs
-======================================================
+=============================================================
+PROGRAM SPACE for storing searchable problem-solving Programs
+=============================================================
 """
 
 
@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 
 @dataclass
 class ProgramSpace:
-    """Program Space for storing searchable solution Programs."""
+    """Program Space for storing searchable problem-solving Programs."""
 
     descriptions: dict[str, str] = field(default_factory=dict,
                                          init=True,

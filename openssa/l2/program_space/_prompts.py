@@ -12,7 +12,7 @@ and consider that you are trying to solve the following question/problem/task:
 {problem}
 ```
 
-and that you have access to a collection of solution programs
+and that you have access to a collection of problem-solving programs
 summarized by the below name-description pairs:
 
 ```
