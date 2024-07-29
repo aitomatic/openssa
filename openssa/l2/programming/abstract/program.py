@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import TypeVar, TYPE_CHECKING
+from typing import Any, TypeVar, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
@@ -33,7 +33,7 @@ class AbstractProgram(ABC):
     task: Task
 
     @abstractmethod
-    def execute(self, knowledge: set[Knowledge] | None = None, **kwargs) -> str:
+    def execute(self, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> str:
         """Execute and return string result.
 
         Execution also optionally takes into account domain-specific Knowledge.
