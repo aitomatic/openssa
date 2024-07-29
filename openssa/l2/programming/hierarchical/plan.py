@@ -111,8 +111,12 @@ class HTP(AbstractProgram):
             sub_htp.fix_missing_resources()
 
     def execute(self, knowledge: set[Knowledge] | None = None,  # pylint: disable=arguments-differ
-                reasoner: AReasoner | None = None,
-                other_results: list[AskAnsPair] | None = None) -> str:
+                reasoner: AReasoner | None = None) -> str:
+        return self._execute_statically(knowledge=knowledge, reasoner=reasoner)
+
+    def _execute_statically(self, knowledge: set[Knowledge] | None = None,  # pylint: disable=arguments-differ
+                            reasoner: AReasoner | None = None,
+                            other_results: list[AskAnsPair] | None = None) -> str:
         """Execute and return string result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account domain-specific Knowledge and/or potentially elevant other results.
@@ -127,9 +131,9 @@ class HTP(AbstractProgram):
             for sub_htp in tqdm(self.sub_htps):
                 sub_results.append((sub_htp.task.ask, (sub_htp.task.result
                                                        if sub_htp.task.status == TaskStatus.DONE
-                                                       else sub_htp.execute(knowledge=knowledge,
-                                                                            reasoner=reasoner,
-                                                                            other_results=sub_results))))
+                                                       else sub_htp._execute_statically(knowledge=knowledge,
+                                                                                        reasoner=reasoner,
+                                                                                        other_results=sub_results))))
 
             inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
                            '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
