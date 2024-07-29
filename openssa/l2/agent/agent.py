@@ -38,7 +38,7 @@ if TYPE_CHECKING:
 class Agent:
     """Problem-Solving Agent."""
 
-    # Program Space for storing searchable solution Programs
+    # Program Space for storing searchable problem-solving Programs
     # (default: empty collection)
     program_space: ProgramSpace = field(default_factory=ProgramSpace,
                                         init=True,
@@ -48,7 +48,7 @@ class Agent:
                                         metadata=None,
                                         kw_only=False)
 
-    # Programmer for constructing solution Programs
+    # Programmer for constructing problem-solving Programs
     # (default: Hierarchical Task Planner)
     programmer: AProgrammer = field(default_factory=HTPlanner,
                                     init=True,
