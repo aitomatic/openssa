@@ -1,12 +1,22 @@
-from openai import OpenAI
-from dotenv import load_dotenv
-import os
 import asyncio
-import signal
-import logging
-import aiohttp
 import io
+import logging
+import os
+from pathlib import Path
+import signal
+import sys
 import urllib.parse
+from argparse import ArgumentParser
+
+import aiohttp
+import anyio
+
+# from openssa import FileResource, LMConfig
+# from openssa.l2.util.lm.openai import LlamaIndexOpenAILM
+from data_and_knowledge import DOC_NAMES_BY_FB_ID, FB_ID_COL_NAME, QS_BY_FB_ID, Answer, FbId
+from dotenv import load_dotenv
+from openai import OpenAI
+from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 # Load environment variables
 load_dotenv()
@@ -15,10 +25,12 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+
+# pylint: disable=too-many-public-methods
 class OpenAIAssistant:
     """
     A class to represent an assistant using OpenAI's API.
-    
+
     This class provides functionalities to interact with OpenAI's API for managing
     vector stores, creating assistants, and processing user inputs.
     """
@@ -45,24 +57,25 @@ class OpenAIAssistant:
         """
         signal.signal(signal.SIGINT, self.signal_handler)
 
-    def signal_handler(self, sig, frame):
+    def signal_handler(self):
         """
         Handle the SIGINT signal for graceful shutdown.
-        
+
         Args:
             sig: Signal number.
             frame: Current stack frame.
+
         """
         logger.info("Deleting assistant and threads before exiting...")
         self.cleanup()
-        exit(0)
+        sys.exit(0)
 
     async def initialize_vector_store(self):
         """
         Initialize vector store by listing available vector stores and creating an assistant.
         """
         vector_stores = self.list_vector_stores()
-        logger.info(f"Available Vector Stores: {vector_stores}")
+        logger.info("Available Vector Stores: %s", vector_stores)
         if vector_stores:
             self.vector_store_id = vector_stores[0].id
             self.create_assistant(self.vector_store_id)
@@ -72,9 +85,10 @@ class OpenAIAssistant:
     def list_vector_stores(self):
         """
         List available vector stores using OpenAI API.
-        
-        Returns:
+
+        Returns
             List of vector stores.
+
         """
         vector_stores = self.openai_client.beta.vector_stores.list()
         return vector_stores.data
@@ -83,26 +97,28 @@ class OpenAIAssistant:
     def read_instructions_from_file(file_path):
         """
         Read instructions from a specified file.
-        
+
         Args:
             file_path: Path to the instructions file.
-        
+
         Returns:
             Content of the instructions file.
+
         """
 
-        with open(file_path, 'r') as file:
+        with open(file_path, encoding="utf-8") as file:
             return file.read()
 
     def create_assistant(self, vector_store_id):
         """
         Create an OpenAI assistant with specified vector store ID.
-        
+
         Args:
             vector_store_id: ID of the vector store.
+
         """
 
-        instructions = self.read_instructions_from_file('instructions.yaml')
+        instructions = self.read_instructions_from_file('./instructions.yaml')
         assistant = self.openai_client.beta.assistants.create(
             name="Assistant",
             model="gpt-4o",
@@ -111,7 +127,7 @@ class OpenAIAssistant:
             tool_resources={"file_search": {"vector_store_ids": [vector_store_id]}}
         )
         self.assistant_id = assistant.id
-        logger.info(f"Created assistant with ID: {self.assistant_id} using Vector Store ID: {vector_store_id}")
+        logger.info("Created assistant with ID: %s using Vector Store ID: %s", self.assistant_id, vector_store_id)
 
     def cleanup(self):
         """
@@ -126,7 +142,7 @@ class OpenAIAssistant:
         """
         for thread_id in self.conversation_threads.values():
             self.openai_client.beta.threads.delete(thread_id=thread_id)
-            logger.info(f"Deleted thread with ID: {thread_id}")
+            logger.info("Deleted thread with ID: %s", thread_id)
 
     def delete_assistant(self):
         """
@@ -134,70 +150,76 @@ class OpenAIAssistant:
         """
         if self.assistant_id:
             self.openai_client.beta.assistants.delete(assistant_id=self.assistant_id)
-            logger.info(f"Deleted assistant with ID: {self.assistant_id}")
+            logger.info("Deleted assistant with ID: %s", self.assistant_id)
 
     async def add_file_to_vectorstore(self, file_path_or_url):
         """
         Add a file to the vector store, determining whether it's a URL or a local file path.
-        
+
         Args:
             file_path_or_url: Path or URL of the file.
-        
+
         Returns:
             ID of the file batch.
+
         """
         try:
             if self.is_url(file_path_or_url):
                 return await self.add_url_file_to_vectorstore(file_path_or_url)
-            else:
-                return await self.add_disk_file_to_vectorstore(file_path_or_url)
+            return await self.add_disk_file_to_vectorstore(file_path_or_url)
         except Exception as e:
-            logger.error(f"Failed to add file to vector store: {e}")
-            raise
+            logger.exception("Failed to add file to vector store: %s", file_path_or_url)
+            raise RuntimeError(f"Failed to add file to vector store: {e}") from e
 
     @staticmethod
     def is_url(path):
         """
         Check if the given path is a URL.
-        
+
         Args:
             path: Path to check.
-        
+
         Returns:
             True if the path is a URL, False otherwise.
+
         """
-        return urllib.parse.urlparse(path).scheme in ('http', 'https')
+        return urllib.parse.urlparse(path).scheme in {'http', 'https'}
 
     async def add_url_file_to_vectorstore(self, file_url):
         """
         Add a file from a URL to the vector store.
-        
+
         Args:
             file_url: URL of the file.
-        
+
         Returns:
             ID of the file batch.
+
         """
-        async with aiohttp.ClientSession() as session:
-            async with session.get(file_url) as response:
-                if response.status == 200:
-                    file_content = await response.read()
-                    file_name = self.extract_filename_from_url(file_url)
-                    file_stream = self.create_file_stream(file_name, file_content)
-                    return await self.upload_file_to_vectorstore(file_stream)
-                else:
-                    raise Exception(f"Failed to download file from URL: {file_url}")
+        async with aiohttp.ClientSession() as session, session.get(file_url) as response:
+            if response.status == 200:
+                file_content = await response.read()
+                file_name = self.extract_filename_from_url(file_url)
+                file_stream = self.create_file_stream(file_name, file_content)
+                return await self.upload_file_to_vectorstore(file_stream)
+            raise aiohttp.ClientResponseError(
+                request_info=response.request_info,
+                history=response.history,
+                status=response.status,
+                message=f"Failed to download file from URL: {file_url}"
+            )
 
     @staticmethod
     def extract_filename_from_url(file_url):
         """
         Extract the filename from a given URL.
-        
+
         Args:
             file_url: URL of the file.
-        
+
         Returns:
             Extracted filename.
+
         """
         parsed_url = urllib.parse.urlparse(file_url)
         return os.path.basename(parsed_url.path).split('?')[0]
@@ -206,13 +228,14 @@ class OpenAIAssistant:
     def create_file_stream(file_name, file_content):
         """
         Create a file stream from the given file content.
-        
+
         Args:
             file_name: Name of the file.
             file_content: Content of the file.
-        
+
         Returns:
             File stream.
+
         """
         file_stream = io.BytesIO(file_content)
         file_stream.name = file_name
@@ -221,32 +244,36 @@ class OpenAIAssistant:
     async def add_disk_file_to_vectorstore(self, file_path):
         """
         Add a local file to the vector store.
-        
+
         Args:
             file_path: Path to the local file.
-        
+
         Returns:
             ID of the file batch.
+
         """
-        if not os.path.isfile(file_path):
-            raise Exception(f"File does not exist: {file_path}")
-        
+        if not Path.is_file(Path(file_path)):
+            # raise Exception("File does not exist: %s", file_path)
+            raise FileNotFoundError(f"File does not exist: {file_path}")
+
         file_name = os.path.basename(file_path)
-        with open(file_path, 'rb') as file:
-            file_content = file.read()
-        
+        # with open(file_path, 'rb', encoding="utf-8") as file:
+        async with await anyio.open_file(file_path, 'rb') as file:
+            file_content = await file.read()
+
         file_stream = self.create_file_stream(file_name, file_content)
         return await self.upload_file_to_vectorstore(file_stream)
 
     async def upload_file_to_vectorstore(self, file_stream):
         """
         Upload a file stream to the vector store.
-        
+
         Args:
             file_stream: File stream to upload.
-        
+
         Returns:
             ID of the file batch.
+
         """
         file_batch = self.openai_client.beta.vector_stores.file_batches.upload_and_poll(
             vector_store_id=self.vector_store_id,
@@ -257,74 +284,78 @@ class OpenAIAssistant:
     async def handle_user_input(self, content, file_paths_or_urls=None):
         """
         Handle user input by creating a conversation thread and processing files.
-        
+
         Args:
             content: User input content.
             file_paths_or_urls: List of file paths or URLs.
-        
+
         Returns:
             Response text from the assistant.
+
         """
         thread_id = self.get_or_create_thread("channel_id")
         content_blocks, file_batch_ids = await self.process_files(file_paths_or_urls)
-        
+
         if not content and file_batch_ids:
             content = "Describe the uploaded files."
-        
+
         if content:
             content_blocks.append({"type": "text", "text": content})
         else:
             return "Please provide a message or file."
-        
+
         try:
             response_text = await self.process_user_message(thread_id, content_blocks)
-            return response_text
-        except Exception as e:
-            logger.error(f"Error in handle_user_input: {e}")
+            # return response_text
+        except ValueError as e:
+            logger.exception("Error in handle_user_input: %s", e)  # noqa: TRY401
             return "An error occurred while processing the message."
+        return response_text
 
     def get_or_create_thread(self, channel_id):
         """
         Get or create a conversation thread for a given channel.
-        
+
         Args:
             channel_id: ID of the channel.
-        
+
         Returns:
             ID of the conversation thread.
+
         """
         if channel_id not in self.conversation_threads:
             thread = self.openai_client.beta.threads.create()
             self.conversation_threads[channel_id] = thread.id
-            logger.info(f"Created new thread with ID: {thread.id}")
+            logger.info("Created new thread with ID: %s", thread.id)
         return self.conversation_threads[channel_id]
 
     async def process_files(self, file_paths_or_urls):
         """
         Process a list of file paths or URLs and add them to the vector store.
-        
+
         Args:
             file_paths_or_urls: List of file paths or URLs.
-        
+
         Returns:
             A tuple containing content blocks and file batch IDs.
+
         """
         content_blocks = []
         file_batch_ids = []
-        
+
         if file_paths_or_urls:
             logger.info("Processing files...")
-            for file_path_or_url in file_paths_or_urls:
-                try:
+            try:
+                for file_path_or_url in file_paths_or_urls:
                     file_batch_id = await self.add_file_to_vectorstore(file_path_or_url)
                     file_batch_ids.append(file_batch_id)
-                except Exception as e:
-                    logger.error(f"Failed to add file to vector store: {e}")
-                    return content_blocks, file_batch_ids
+            except RuntimeError as e:
+                logger.exception("Failed to add file to vector store: %s", e)  # noqa: TRY401
+                return content_blocks, file_batch_ids
 
             if file_batch_ids:
-                logger.info(f"{len(file_batch_ids)} file batches added to vector store.")
-        
+                logger.info("%s file batches added to vector store.", len(file_batch_ids))
+
         return content_blocks, file_batch_ids
 
     async def process_user_message(self, thread_id, content_blocks):
@@ -340,22 +371,23 @@ class OpenAIAssistant:
 
         Returns:
             str: The response text from the assistant, or a message indicating that no response was found.
+
         """
         self.openai_client.beta.threads.messages.create(
             thread_id=thread_id,
             role="user",
             content=content_blocks
         )
-        logger.info(f"Added user message to thread {thread_id}")
+        logger.info("Added user message to thread %s", thread_id)
 
         run = self.openai_client.beta.threads.runs.create_and_poll(
             thread_id=thread_id,
             assistant_id=self.assistant_id
         )
-        logger.info(f"Created run with ID: {run.id} for thread: {thread_id}")
-        logger.info(f"Prompt Tokens: {run.usage.prompt_tokens}")
-        logger.info(f"Completion Tokens: {run.usage.completion_tokens}")
-        logger.info(f"Total Tokens: {run.usage.total_tokens}")
+        logger.info("Created run with ID: %s for thread: %s", run.id, thread_id)
+        logger.info("Prompt Tokens: %s", run.usage.prompt_tokens)
+        logger.info("Completion Tokens: %s", run.usage.completion_tokens)
+        logger.info("Total Tokens: %s", run.usage.total_tokens)
 
         messages = self.openai_client.beta.threads.messages.list(thread_id=thread_id)
         assistant_responses = [msg for msg in messages.data if msg.role == 'assistant']
@@ -368,19 +400,46 @@ class OpenAIAssistant:
                 if content_block.type == 'text'
             )
             return response_text.strip()
-        else:
-            return "No response from the assistant found."
+        return "No response from the assistant found."
 
-if __name__ == "__main__":
+
+# if __name__ == "__main__":
+#     assistant = OpenAIAssistant()
+#     asyncio.run(assistant.start())
+
+#     filepath_or_url = "/Users/shrutiraghavan/shruti/aitomatic/source_code/openssa/examples/FinanceBench/.data/docs/3M_2023Q2_10Q/3M_2023Q2_10Q.pdf"
+#     question = "Does 3M have a reasonably healthy liquidity profile based on its quick ratio for Q2 of FY2023? If the quick ratio is not relevant to measure liquidity, please state that and explain why."
+
+#     question = "What did the author work on growing up?"
+#     filepath_or_url = "https://paulgraham.com/worked.html"
+
+#     response = asyncio.run(assistant.handle_user_input(question, [filepath_or_url]))
+
+#     print(response)
+
+def answer_util(fb_id: FbId) -> Answer:
     assistant = OpenAIAssistant()
     asyncio.run(assistant.start())
-
-    filepath_or_url = "/Users/shrutiraghavan/shruti/aitomatic/source_code/openssa/examples/FinanceBench/.data/docs/3M_2023Q2_10Q/3M_2023Q2_10Q.pdf"
-    question = "Does 3M have a reasonably healthy liquidity profile based on its quick ratio for Q2 of FY2023? If the quick ratio is not relevant to measure liquidity, please state that and explain why."
-
-    # question = "What did the author work on growing up?"
-    # filepath_or_url = "https://paulgraham.com/worked.html"
-
+    filepath_or_url = f"https://github.com/patronus-ai/financebench/blob/main/pdfs/{DOC_NAMES_BY_FB_ID[fb_id]}.pdf"
+    question = QS_BY_FB_ID[fb_id]
     response = asyncio.run(assistant.handle_user_input(question, [filepath_or_url]))
-    
-    print(response)
+
+    return response
+
+
+@enable_batch_qa_and_eval(output_name='OpenAI-VectorStores')
+@log_qa_and_update_output_file(output_name='OpenAI-VectorStores')
+def answer(fb_id: FbId) -> Answer:
+    return (response
+            if (response := answer_util(fb_id))
+            else 'ERROR: doc not found')
+
+
+if __name__ == '__main__':
+    arg_parser = ArgumentParser()
+    arg_parser.add_argument('fb_id')
+    args = arg_parser.parse_args()
+
+    answer(fb_id
+           if (fb_id := args.fb_id).startswith(FB_ID_COL_NAME)
+           else f'{FB_ID_COL_NAME}_{fb_id}')
