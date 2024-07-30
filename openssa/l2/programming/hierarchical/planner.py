@@ -12,7 +12,7 @@ the complexity of which is controlled by 2 key parameters `max_depth` and `max_s
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import Self, TYPE_CHECKING
 
 from openssa.l2.programming.abstract.programmer import AbstractProgrammer
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
@@ -60,6 +60,9 @@ class HTPlanner(AbstractProgrammer):
 
         if resources:
             htp.fix_missing_resources()
+
+        htp.task.ask: str = problem
+        htp.programmer: Self = self
 
         return htp
 
