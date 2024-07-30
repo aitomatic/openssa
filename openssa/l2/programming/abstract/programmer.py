@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import TypeVar, TYPE_CHECKING
+from typing import Any, TypeVar, TYPE_CHECKING
 
 from openssa.l2.util.lm.openai import OpenAILM
 
@@ -38,7 +38,8 @@ class AbstractProgrammer(ABC):
     @abstractmethod
     def construct_program(self, problem: str, *,
                           knowledge: set[Knowledge] | None = None,
-                          resources: set[AResource] | None = None) -> AProgram:
+                          resources: set[AResource] | None = None,
+                          **kwargs: Any) -> AProgram:
         """Construct a Program for solving the posed Problem using given Knowledge & Resources."""
 
 
