@@ -11,7 +11,7 @@ asset-turnover-ratio:
       `average Total Assets, typically between two consecutive fiscal year-ends`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
         (or most similar-meaning reported line item)
@@ -47,7 +47,7 @@ fa-turnover-ratio:
       `average (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E), typically between two consecutive fiscal year-ends`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
         (or most similar-meaning reported line item)
@@ -84,7 +84,7 @@ inv-turnover-ratio:
       `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of
         `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
@@ -124,7 +124,7 @@ cogs-margin:
       `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
     )
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -145,7 +145,7 @@ cogs-margin-3y-avg:
   task: |-
     Calculate 3-year average `Cost of Goods Sold (COGS) Margin` of {COMPANY} as percentage value
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -173,7 +173,7 @@ gross-margin-comp:
     Calculate change and assess degradation/improvement in `Gross (Income or Profit or Earnings) Margin` of {COMPANY}
     from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
 
-  sub-plans:
+  sub-htps:
     - task: |-
         Calculate `Gross (Income or Profit or Earnings) Margin` of {COMPANY} as percentage values according to formula:
 
@@ -186,7 +186,7 @@ gross-margin-comp:
         - previous annual fiscal period immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period
 
-      sub-plans:
+      sub-htps:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
         # retrieve individual numerator & denominator balance values only, without taking division
         # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -213,7 +213,7 @@ op-margin-3y-avg:
   task: >-
     Calculate 3-year average `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY} as percentage value
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -242,7 +242,7 @@ op-margin-comp:
     `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY}
     from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
 
-  sub-plans:
+  sub-htps:
     - task: |-
         Calculate `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY}
         as percentage values according to formula:
@@ -256,7 +256,7 @@ op-margin-comp:
         - previous annual fiscal period immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period
 
-      sub-plans:
+      sub-htps:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
         # retrieve individual numerator & denominator balance values only, without taking division
         # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -289,7 +289,7 @@ da-margin:
       `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
         (or most similar-meaning reported line item)
@@ -320,7 +320,7 @@ ebitda:
       `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`
         (or most similar-meaning reported line item)
@@ -354,7 +354,7 @@ ebitda-margin:
       / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
     )
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: |-
         What are values in dollars of:
@@ -392,7 +392,7 @@ ebitda-margin-3y-avg:
   task: >-
     Calculate 3-year average `(Unadjusted) EBITDA Margin` of {COMPANY} as percentage value
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     - task: |-
         What are values in dollars of:
@@ -427,7 +427,7 @@ net-margin-3y-avg:
   task: >-
     Calculate 3-year average `Net (Income or Profit or Earnings) Margin` of {COMPANY} as percentage value
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -459,7 +459,7 @@ int-cov-ratio:
 
     `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -489,7 +489,7 @@ effective-tax-rate-comp:
     Assess change in `Effective (Income) Tax Rate` of {COMPANY}
     from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
 
-  sub-plans:
+  sub-htps:
     - task: >-
         Calculate `Effective (Income) Tax Rate` of {COMPANY} for {PERIOD} fiscal period as percentage value according to formula:
 
@@ -499,7 +499,7 @@ effective-tax-rate-comp:
         - previous annual fiscal period immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period
 
-      sub-plans:
+      sub-htps:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
         # retrieve individual numerator & denominator balance values only, without taking division
         # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -527,7 +527,7 @@ div-payout-ratio:
       `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
 
@@ -556,7 +556,7 @@ retention-ratio:
       `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
 
@@ -587,7 +587,7 @@ net-work-cap:
 
     and assess whether `(Net) Working Capital` is positive or negative
 
-  sub-plans:
+  sub-htps:
     - task: |-
         What is value in dollars of `(Total) Current Assets` (or most similar-meaning reported line item)
 
@@ -613,7 +613,7 @@ work-cap-ratio:
 
     `Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual numerator & denominator balance values only, without taking division
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -633,7 +633,7 @@ work-cap-ratio:
 quick-ratio:
   task: Assess liquidity health of {COMPANY} through its `Quick Ratio` as at {PERIOD} fiscal period end
 
-  sub-plans:
+  sub-htps:
     - task: |-
         Calculate `Quick Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
 
@@ -644,7 +644,7 @@ quick-ratio:
           / `(Total) Current Liabilities`
         )
 
-      sub-plans:
+      sub-htps:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
         # retrieve individual numerator & denominator balance values only, without taking division
         # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -673,7 +673,7 @@ quick-ratio-comp:
     Calculate change and assess degradation/improvement in `Quick Ratio` of {COMPANY}
     from corresponding one-year-preceding previous annual fiscal period end to current {PERIOD} annual fiscal period end
 
-  sub-plans:
+  sub-htps:
     - task: |-
         Calculate `Quick Ratio` of {COMPANY} as decimal values according to formula:
 
@@ -688,7 +688,7 @@ quick-ratio-comp:
         - previous annual fiscal period end immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end
 
-      sub-plans:
+      sub-htps:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
         # retrieve individual numerator & denominator balance values only, without taking division
         # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -722,7 +722,7 @@ fcf:
       `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
     )
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual balance values only, without taking difference
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -743,7 +743,7 @@ fcf-conv-comp:
     Calculate change and assess degradation/improvement in `Free Cash Flow Conversion Ratio` of {COMPANY}
     from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
 
-  sub-plans:
+  sub-htps:
     - task: |-
         Calculate `Free Cash Flow Conversion Ratio` of {COMPANY} as percentage values according to formula:
 
@@ -757,7 +757,7 @@ fcf-conv-comp:
         - previous annual fiscal period immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period
 
-      sub-plans:
+      sub-htps:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
         # retrieve individual balance values only, without taking difference
         # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -802,7 +802,7 @@ op-cf-ratio:
       / `(Total) Current Liabilities`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`
         (or most similar-meaning reported line item)
@@ -833,7 +833,7 @@ days-payable-outstanding:
          `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
     )
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual starting & ending balance values only, without taking difference or simple arithmetic average
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -884,7 +884,7 @@ cash-conv-cyc:
       `Days Inventory Outstanding, a.k.a. DIO` + `Days Sales Oustanding, a.k.a. DSO` - `Days Payable Outstanding, a.k.a. DPO`
     )
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual starting & ending balance values only, without taking difference or simple arithmetic average
     # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -952,7 +952,7 @@ debt-comp:
     Calculate change and assess increase/decrease in `Total Debt` of {COMPANY}
     from corresponding one-year-preceding previous annual fiscal period end to current {PERIOD} annual fiscal period end
 
-  sub-plans:
+  sub-htps:
     - task: |-
         Calculate `Total Debt` of {COMPANY} in dollar values according to formula:
 
@@ -965,7 +965,7 @@ debt-comp:
         - previous annual fiscal period end immediately preceding {PERIOD}; and
         - current {PERIOD} annual fiscal period end
 
-      sub-plans:
+      sub-htps:
         # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
         # retrieve individual balance values only, without taking sum
         # because RAG LMs may not be good at calculation & mathematical reasoning
@@ -998,7 +998,7 @@ capex-as-pct-of-rev-3y-avg:
     as proportion of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
     for {COMPANY} as percentage value
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
     - task: >-
         What are values in dollars of
@@ -1038,7 +1038,7 @@ roa:
       `average Total Assets, typically between two consecutive fiscal year-ends`
     )
 
-  sub-plans:
+  sub-htps:
     - task: >-
         What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
         (or most similar-meaning reported line item)
@@ -1068,7 +1068,7 @@ cap-intens:
   task: >-
     Assess whether {COMPANY} is capital-intensive according to {PERIOD} fiscal period data
 
-  sub-plans:
+  sub-htps:
     # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
     # retrieve individual starting & ending balance values only, without taking division or simple arithmetic average
     # because RAG LMs may not be good at calculation & mathematical reasoning
