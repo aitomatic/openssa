@@ -200,8 +200,8 @@ with open(file=EXPERT_PROGRAM_SPACE_FILE_PATH,
           opener=None) as f:
     EXPERT_PROGRAM_SPACE: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
-EXPERT_PLAN_COMPANY_KEY: str = 'COMPANY'
-EXPERT_PLAN_PERIOD_KEY: str = 'PERIOD'
+EXPERT_HTP_COMPANY_KEY: str = 'COMPANY'
+EXPERT_HTP_PERIOD_KEY: str = 'PERIOD'
 
 
 RAG_GROUND_TRUTHS_FILE_PATH: Path = Path(__file__).parent / 'rag-ground-truths.yml'
