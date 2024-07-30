@@ -23,6 +23,7 @@ from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
+    from openssa.l2.reasoning.abstract import AReasoner
     from openssa.l2.resource.abstract import AResource
     from openssa.l2.util.lm.abstract import LMChatHist
     from .plan import HTPDict
@@ -73,6 +74,7 @@ class HTPlanner(AbstractProgrammer):
                 if resources:
                     sub_htp.task.resources: set[AResource] = resources  # TODO: optimize to not always use all resources
                 sub_htp.programmer: Self = sub_htp_programmer
+                sub_htp.reasoner: AReasoner = htp.reasoner
 
             return htp
 
