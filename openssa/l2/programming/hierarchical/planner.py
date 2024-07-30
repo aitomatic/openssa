@@ -31,6 +31,9 @@ if TYPE_CHECKING:
 class HTPlanner(AbstractProgrammer):
     """Hierarchical Task Planner."""
 
+    # maximum allowed depth
+    max_depth: int = 2
+
     # maximum number of sub-tasks per decomposition
     max_subtasks_per_decomp: int = 4
 
