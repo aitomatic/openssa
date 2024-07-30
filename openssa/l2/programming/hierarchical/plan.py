@@ -21,17 +21,16 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pprint import pformat
 from types import SimpleNamespace
-from typing import Any, Self, TypedDict, Required, NotRequired, TYPE_CHECKING
+from typing import Self, TypedDict, Required, NotRequired, TYPE_CHECKING
 
 from loguru import logger
 from tqdm import tqdm
 
 from openssa.l2.programming.abstract.program import AbstractProgram
-from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.task import TaskDict
+from openssa.l2.reasoning.ooda import OodaReasoner
+from openssa.l2.task import Task, TaskDict
 from openssa.l2.task.status import TaskStatus
-from openssa.l2.task import Task
 
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 
@@ -41,6 +40,7 @@ if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.util.lm.abstract import LMChatHist
     from openssa.l2.util.misc import AskAnsPair
+    from .planner import HTPlanner
 
 
 type HTPDict = TypedDict('HTPDict', {'task': Required[TaskDict | str],
@@ -64,6 +64,16 @@ class HTP(AbstractProgram):
                                  compare=True,
                                  metadata=None,
                                  kw_only=False)
+
+    # Reasoner for working through individual Tasks to either conclude or make partial progress on them
+    # (default: Observe-Orient-Decide-Act (OODA) Reasoner)
+    reasoner: AReasoner = field(default_factory=OodaReasoner,
+                                init=True,
+                                repr=True,
+                                hash=None,
+                                compare=True,
+                                metadata=None,
+                                kw_only=False)
 
     @property
     def quick_repr(self) -> PLAN:
@@ -89,7 +99,7 @@ class HTP(AbstractProgram):
     @classmethod
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
         """Create HTP from dictionary representation."""
-        return HTP(task=Task.from_dict_or_str(htp_dict['task']),  # pylint: disable=unexpected-keyword-arg
+        return HTP(task=Task.from_dict_or_str(htp_dict['task']),
                    sub_htps=[HTP.from_dict(d) for d in htp_dict.get('sub-htps', [])])
 
     def to_dict(self) -> HTPDict:
@@ -97,43 +107,51 @@ class HTP(AbstractProgram):
         return {'task': self.task.to_json_dict(),
                 'sub-htps': [p.to_dict() for p in self.sub_htps]}
 
-    def concretize_tasks_from_template(self, **kwargs: Any):
-        self.task.ask: str = self.task.ask.format(**kwargs)
-
-        for sub_htp in self.sub_htps:
-            sub_htp.concretize_tasks_from_template(**kwargs)
-
-    def fix_missing_resources(self):
+    def fill_missing_resources(self):
         """Fix missing Resources in HTP."""
         for sub_htp in self.sub_htps:
             if not sub_htp.task.resources:
                 sub_htp.task.resources: set[AResource] = self.task.resources
-            sub_htp.fix_missing_resources()
+            sub_htp.fill_missing_resources()
 
-    def execute(self, knowledge: set[Knowledge] | None = None,  # pylint: disable=arguments-differ
-                reasoner: AReasoner | None = None) -> str:
-        return self._execute_statically(knowledge=knowledge, reasoner=reasoner)
-
-    def _execute_statically(self, knowledge: set[Knowledge] | None = None,  # pylint: disable=arguments-differ
-                            reasoner: AReasoner | None = None,
-                            other_results: list[AskAnsPair] | None = None) -> str:
+    def execute(self, knowledge: set[Knowledge] | None = None, other_results: list[AskAnsPair] | None = None) -> str:
+        # pylint: disable=arguments-differ
         """Execute and return string result, using specified Reasoner to work through involved Task & Sub-Tasks.
 
         Execution also optionally takes into account domain-specific Knowledge and/or potentially elevant other results.
         """
-        if reasoner is None:
-            reasoner: AReasoner = OodaReasoner()
+        self.fill_missing_resources()  # TODO: optimize to not always use all resources
 
-        reasoning_wo_sub_results: str = reasoner.reason(task=self.task, knowledge=knowledge, other_results=other_results)
+        # first, attempt direct solution with Reasoner
+        reasoning_wo_sub_results: str = self.reasoner.reason(task=self.task, knowledge=knowledge, other_results=other_results)  # noqa: E501
 
         if self.sub_htps:
+            sub_htps: list[Self] = self.sub_htps
+
+        # if Reasoner's result is unsatisfactory,
+        # and if there is still allowed recursive depth,
+        # use Programmer to decompose Problem into sub-HTPs
+        elif (self.task.is_attempted and not self.task.is_done) and (self.programmer and self.programmer.max_depth):
+            decomposed_htp: HTP = self.programmer.construct_htp(task=self.task, knowledge=knowledge, reasoner=self.reasoner)
+
+            logger.info('\n'
+                        'TASK-DECOMPOSITION PLANNING\n'
+                        '===========================\n'
+                        f'\n{decomposed_htp.pformat}\n')
+
+            sub_htps: list[Self] = decomposed_htp.sub_htps
+
+        else:
+            sub_htps: list[Self] = []
+
+        # if there are sub-HTPs, recursively execute them and integrate their results
+        if sub_htps:
             sub_results: list[AskAnsPair] = []
-            for sub_htp in tqdm(self.sub_htps):
-                sub_results.append((sub_htp.task.ask, (sub_htp.task.result
-                                                       if sub_htp.task.status == TaskStatus.DONE
-                                                       else sub_htp._execute_statically(knowledge=knowledge,
-                                                                                        reasoner=reasoner,
-                                                                                        other_results=sub_results))))
+            for sub_htp in tqdm(sub_htps):
+                sub_results.append((sub_htp.task.ask,
+                                    (sub_htp.task.result
+                                     if sub_htp.task.is_done
+                                     else sub_htp.execute(knowledge=knowledge, other_results=sub_results))))
 
             inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
                            '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
@@ -151,7 +169,7 @@ class HTP(AbstractProgram):
                             if other_results
                             else ''))
 
-            self.task.result: str = reasoner.lm.get_response(
+            self.task.result: str = self.reasoner.lm.get_response(
                 prompt=HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(ask=self.task.ask, info=inputs),
                 history=knowledge_injection_lm_chat_msgs(knowledge=knowledge) if knowledge else None)
 
@@ -169,6 +187,7 @@ class HTP(AbstractProgram):
                          '\n'
                          f'{inputs}')
 
+        # else, accept Reasoner's direct solution as final result
         else:
             self.task.result: str = reasoning_wo_sub_results
 
