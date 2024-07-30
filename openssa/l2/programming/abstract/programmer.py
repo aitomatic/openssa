@@ -18,6 +18,7 @@ from openssa.l2.util.lm.openai import OpenAILM
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.resource.abstract import AResource
+    from openssa.l2.task import Task
     from openssa.l2.util.lm.abstract import AnLM
     from .program import AProgram
 
@@ -36,10 +37,7 @@ class AbstractProgrammer(ABC):
                      kw_only=False)
 
     @abstractmethod
-    def construct_program(self, problem: str, *,
-                          knowledge: set[Knowledge] | None = None,
-                          resources: set[AResource] | None = None,
-                          **kwargs: Any) -> AProgram:
+    def construct_program(self, task: Task, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> AProgram:
         """Construct a Program for solving the posed Problem using given Knowledge & Resources."""
 
 
