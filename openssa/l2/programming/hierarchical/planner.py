@@ -12,7 +12,7 @@ the complexity of which is controlled by 2 key parameters `max_depth` and `max_s
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Self, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from openssa.l2.programming.abstract.programmer import AbstractProgrammer
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
@@ -31,17 +31,8 @@ if TYPE_CHECKING:
 class HTPlanner(AbstractProgrammer):
     """Hierarchical Task Planner."""
 
-    # generally applicable parameters for controlling allowed complexity
-    max_depth: int = 2
+    # maximum number of sub-tasks per decomposition
     max_subtasks_per_decomp: int = 3
-
-    def _one_level_deep(self) -> Self:
-        """Get 1-level-deep Planner with same other parameters."""
-        return type(self)(lm=self.lm, max_depth=1, max_subtasks_per_decomp=self.max_subtasks_per_decomp)
-
-    def _one_fewer_level_deep(self) -> Self:
-        """Get 1-fewer-level-deep Planner with same other parameters."""
-        return type(self)(lm=self.lm, max_depth=self.max_depth - 1, max_subtasks_per_decomp=self.max_subtasks_per_decomp)  # noqa: E501
 
     def construct_htp(self, problem: str, *,
                       knowledge: set[Knowledge] | None = None,
