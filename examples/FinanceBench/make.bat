@@ -7,14 +7,10 @@ SET TARGET=%1
 
 IF "%TARGET%"=="get-doc" GOTO get-doc
 
-IF "%TARGET%"=="htp-auto-static-oodar-solve" GOTO htp-auto-static-oodar-solve
-IF "%TARGET%"=="htp-auto-dynamic-oodar-solve" GOTO htp-auto-dynamic-oodar-solve
-IF "%TARGET%"=="htp-expert-static-oodar-solve" GOTO htp-expert-static-oodar-solve
-IF "%TARGET%"=="htp-expert-dynamic-oodar-solve" GOTO htp-expert-dynamic-oodar-solve
-IF "%TARGET%"=="htp-auto-static-oodar-w-knowledge-solve" GOTO htp-auto-static-oodar-w-knowledge-solve
-IF "%TARGET%"=="htp-auto-dynamic-oodar-w-knowledge-solve" GOTO htp-auto-dynamic-oodar-w-knowledge-solve
-IF "%TARGET%"=="htp-expert-static-oodar-w-knowledge-solve" GOTO htp-expert-static-oodar-w-knowledge-solve
-IF "%TARGET%"=="htp-expert-dynamic-oodar-w-knowledge-solve" GOTO htp-expert-dynamic-oodar-w-knowledge-solve
+IF "%TARGET%"=="htp-oodar-solve" GOTO htp-oodar-solve
+IF "%TARGET%"=="htp-oodar-solve-w-prog-space" GOTO htp-oodar-solve-w-prog-space
+IF "%TARGET%"=="htp-oodar-solve-w-knowledge" GOTO htp-oodar-solve-w-knowledge
+IF "%TARGET%"=="htp-oodar-solve-w-knowledge-and-prog-space" GOTO htp-oodar-solve-w-knowledge-and-prog-space
 
 IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
 
@@ -43,36 +39,20 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :: BATCH INFERENCING
 :: =================
-:htp-auto-static-oodar-solve
+:htp-oodar-solve
   poetry run python htp_oodar_agent.py %2
   GOTO end
 
-:htp-auto-dynamic-oodar-solve
-  poetry run python htp_oodar_agent.py %2 --dynamic-exec
-  GOTO end
-
-:htp-expert-static-oodar-solve
-  poetry run python htp_oodar_agent.py %2 --expert-plan
-  GOTO end
-
-:htp-expert-dynamic-oodar-solve
-  poetry run python htp_oodar_agent.py %2 --expert-plan --dynamic-exec
-  GOTO end
-
-:htp-auto-static-oodar-w-knowledge-solve
+:htp-oodar-solve-w-knowledge
   poetry run python htp_oodar_agent.py %2 --knowledge
   GOTO end
 
-:htp-auto-dynamic-oodar-w-knowledge-solve
-  poetry run python htp_oodar_agent.py %2 --knowledge --dynamic-exec
+:htp-oodar-solve-w-prog-space
+  poetry run python htp_oodar_agent.py %2 --prog-space
   GOTO end
 
-:htp-expert-static-oodar-w-knowledge-solve
-  poetry run python htp_oodar_agent.py %2 --knowledge --expert-plan
-  GOTO end
-
-:htp-expert-dynamic-oodar-w-knowledge-solve
-  poetry run python htp_oodar_agent.py %2 --knowledge --expert-plan --dynamic-exec
+:htp-oodar-solve-w-knowledge-and-prog-space
+  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
   GOTO end
 
 
