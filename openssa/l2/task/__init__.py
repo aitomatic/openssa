@@ -44,7 +44,7 @@ class Task:
 
     @classmethod
     def from_dict(cls, d: TaskDict, /) -> Self:
-        """Create task from dictionary representation."""
+        """Create Task from dictionary representation."""
         task: Self = cls(**d)
 
         if task.resources:
@@ -65,12 +65,12 @@ class Task:
 
     @classmethod
     def from_str(cls, s: str, /) -> Self:
-        """Create task from string representation."""
+        """Create Task from string representation."""
         return cls(ask=s)
 
     @classmethod
     def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Self:
-        """Create task from dictionary or string representation."""
+        """Create Task from dictionary or string representation."""
         if isinstance(dict_or_str, dict):
             return cls.from_dict(dict_or_str)
 
@@ -78,3 +78,11 @@ class Task:
             return cls.from_str(dict_or_str)
 
         raise TypeError(f'*** {dict_or_str} IS NEITHER A DICTIONARY NOR A STRING ***')
+
+    def is_attempted(self) -> bool:
+        """Check if Task has been attempted."""
+        return self.status != TaskStatus.PENDING
+
+    def is_done(self) -> bool:
+        """Check if Task is done."""
+        return self.status == TaskStatus.DONE
