@@ -23,6 +23,7 @@ from typing import Any, TypeVar, TYPE_CHECKING
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task import Task
+    from .programmer import AProgrammer
 
 
 @dataclass
@@ -31,6 +32,9 @@ class AbstractProgram(ABC):
 
     # target Task to solve
     task: Task
+
+    # Programmer that has constructed this
+    programmer: AProgrammer | None = None
 
     @abstractmethod
     def execute(self, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> str:
