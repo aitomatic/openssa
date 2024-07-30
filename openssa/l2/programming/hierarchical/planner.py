@@ -16,6 +16,7 @@ from typing import Self, TYPE_CHECKING
 
 from openssa.l2.programming.abstract.programmer import AbstractProgrammer
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.l2.reasoning.ooda import OodaReasoner
 from openssa.l2.task import Task
 
 from .plan import HTP
@@ -41,8 +42,12 @@ class HTPlanner(AbstractProgrammer):
 
     def construct_htp(self, problem: str, *,
                       knowledge: set[Knowledge] | None = None,
-                      resources: set[AResource] | None = None) -> HTP:
+                      resources: set[AResource] | None = None,
+                      reasoner: AReasoner | None = None) -> HTP:
         """Construct HTP for solving posed Problem with given Knowledge and Informational Resources."""
+        if not reasoner:
+            reasoner: AReasoner = OodaReasoner()
+
         if self.max_depth > 0:
             prompt: str = (
                 HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
@@ -68,17 +73,18 @@ class HTPlanner(AbstractProgrammer):
             htp.task.ask: str = problem
             htp.task.resources: set[AResource] | None = resources  # TODO: optimize to not always use all resources
             htp.programmer: Self = self
+            htp.reasoner: AReasoner = reasoner
 
             sub_htp_programmer: Self = replace(self, max_depth=self.max_depth - 1)
             for sub_htp in htp.sub_htps:
                 if resources:
                     sub_htp.task.resources: set[AResource] = resources  # TODO: optimize to not always use all resources
                 sub_htp.programmer: Self = sub_htp_programmer
-                sub_htp.reasoner: AReasoner = htp.reasoner
+                sub_htp.reasoner: AReasoner = reasoner
 
             return htp
 
-        return HTP(task=Task(ask=problem, resources=resources))
+        return HTP(task=Task(ask=problem, resources=resources), programmer=self, reasoner=reasoner)
 
     # alias
     construct_program = construct_htp
