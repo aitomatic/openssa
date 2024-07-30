@@ -94,14 +94,9 @@ class Agent:
 
         Then execute the found or constructed Program using an applicable execution engine/mechanism.
         """
-        program: AProgram = (self.program_space.find_program(problem=problem,
-                                                             knowledge=self.knowledge,
-                                                             resources=self.resources)
-                             or
-                             self.programmer.construct_program(problem=problem,
-                                                               knowledge=self.knowledge,
-                                                               resources=self.resources))
+        task: Task = Task(ask=problem, resources=self.resources)
 
-        program.task: Task = Task(ask=problem, resources=self.resources)
+        program: AProgram = (self.program_space.find_program(task=task, knowledge=self.knowledge) or
+                             self.programmer.construct_program(task=task, knowledge=self.knowledge))
 
         return program.execute(knowledge=self.knowledge, **prog_exec_kwargs)
