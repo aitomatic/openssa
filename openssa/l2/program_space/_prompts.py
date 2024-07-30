@@ -24,5 +24,7 @@ ONLY IF at least one program is deemed applicable/suitable.
 
 Otherwise, if no applicable/suitable programs are found in the collection,
 please return the word NONE.
+
+*** STRICTLY return either a precise program name or the word NONE, with no surrounding quotation characters ***
 """  # noqa: E122
 )
