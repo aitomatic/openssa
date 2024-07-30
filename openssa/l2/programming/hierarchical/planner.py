@@ -32,7 +32,7 @@ class HTPlanner(AbstractProgrammer):
     """Hierarchical Task Planner."""
 
     # maximum number of sub-tasks per decomposition
-    max_subtasks_per_decomp: int = 3
+    max_subtasks_per_decomp: int = 4
 
     def construct_htp(self, problem: str, *,
                       knowledge: set[Knowledge] | None = None,
@@ -40,12 +40,13 @@ class HTPlanner(AbstractProgrammer):
         """Construct HTP for solving posed Problem with given Knowledge and Informational Resources."""
         prompt: str = (
             HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=problem,
-                                                      resource_overviews={r.unique_name: r.overview for r in resources},
-                                                      max_depth=self.max_depth,
+                                                      resource_overviews={resource.unique_name: resource.overview
+                                                                          for resource in resources},
+                                                      max_depth=1,
                                                       max_subtasks_per_decomp=self.max_subtasks_per_decomp)
             if resources
             else HTP_PROMPT_TEMPLATE.format(problem=problem,
-                                            max_depth=self.max_depth,
+                                            max_depth=1,
                                             max_subtasks_per_decomp=self.max_subtasks_per_decomp)
         )
 
@@ -63,6 +64,7 @@ class HTPlanner(AbstractProgrammer):
 
         htp.task.ask: str = problem
         htp.programmer: Self = self
+        htp.max_further_depth: int = self.max_depth - 1
 
         return htp
 
