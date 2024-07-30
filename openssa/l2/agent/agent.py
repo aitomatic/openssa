@@ -86,11 +86,6 @@ class Agent:
         """Add new Informational Resource(s)."""
         self.resources.update(new_resources)
 
-    @property
-    def resource_overviews(self) -> dict[str, str]:
-        """Overview available Informational Resources."""
-        return {r.unique_name: r.overview for r in self.resources}
-
     def solve(self, problem: str, **prog_exec_kwargs: Any) -> str:
         """Solve the posed Problem.
 
