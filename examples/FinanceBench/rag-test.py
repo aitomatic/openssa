@@ -73,7 +73,7 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9, llama_index_openai_
 
 arg_parser = ArgumentParser()
 arg_parser.add_argument('doc_name')
-arg_parser.add_argument('--gpt4', action='store_true', default=False)
+arg_parser.add_argument('--gpt4o', action='store_true', default=False)
 args = arg_parser.parse_args()
 
-test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4o' if args.gpt4 else 'gpt-4o-mini')
+test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4o' if args.gpt4o else 'gpt-4o-mini')
