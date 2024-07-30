@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.programming.abstract.program import AProgram
     from openssa.l2.resource.abstract import AResource
+    from openssa.l2.task import Task
     from openssa.l2.util.lm.abstract import AnLM, LMChatHist
 
 
@@ -59,18 +60,16 @@ class ProgramSpace:
         self.descriptions[name]: str = description
         self.programs[name]: AProgram = program
 
-    def find_program(self, problem: str,
-                     knowledge: set[Knowledge] | None = None,
-                     resources: set[AResource] | None = None) -> AProgram | None:
+    def find_program(self, task: Task, knowledge: set[Knowledge] | None = None) -> AProgram | None:
         """Find a suitable Program for the posed Problem, or return None."""
         knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
                                                 if knowledge
                                                 else None)
 
         matching_program_name: str = self.lm.get_response(
-            prompt=PROGRAM_SEARCH_PROMPT_TEMPLATE.format(problem=problem,
+            prompt=PROGRAM_SEARCH_PROMPT_TEMPLATE.format(problem=task.ask,
                                                          resource_overviews={resource.unique_name: resource.overview
-                                                                             for resource in resources},
+                                                                             for resource in task.resources},
                                                          program_descriptions=self.descriptions),
             history=knowledge_lm_hist)
 
