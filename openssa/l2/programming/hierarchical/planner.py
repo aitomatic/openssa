@@ -64,14 +64,14 @@ class HTPlanner(AbstractProgrammer):
 
             htp: HTP = HTP.from_dict(htp_dict)
 
-            if resources:
-                htp.fix_missing_resources()
-
             htp.task.ask: str = problem
+            htp.task.resources: set[AResource] | None = resources  # TODO: optimize to not always use all resources
             htp.programmer: Self = self
 
             sub_htp_programmer: Self = replace(self, max_depth=self.max_depth - 1)
             for sub_htp in htp.sub_htps:
+                if resources:
+                    sub_htp.task.resources: set[AResource] = resources  # TODO: optimize to not always use all resources
                 sub_htp.programmer: Self = sub_htp_programmer
 
             return htp
