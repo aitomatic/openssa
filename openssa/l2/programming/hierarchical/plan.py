@@ -18,7 +18,7 @@ to enable the execution of a subsequent HTP node to benefit from results from ea
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pprint import pformat
 from types import SimpleNamespace
 from typing import Self, TypedDict, Required, NotRequired, TYPE_CHECKING
@@ -113,6 +113,12 @@ class HTP(AbstractProgram):
             if not sub_htp.task.resources:
                 sub_htp.task.resources: set[AResource] = self.task.resources
             sub_htp.fill_missing_resources()
+
+    def adapt(self, **kwargs: str):
+        """Return adapted copy."""
+        return replace(self,
+                       task=replace(self.task, ask=self.task.ask.format(**kwargs)),
+                       sub_htps=[sub_htp.adapt(**kwargs) for sub_htp in self.sub_htps])
 
     def execute(self, knowledge: set[Knowledge] | None = None, other_results: list[AskAnsPair] | None = None) -> str:
         # pylint: disable=arguments-differ
