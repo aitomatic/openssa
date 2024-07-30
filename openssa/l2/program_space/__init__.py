@@ -28,7 +28,7 @@ if TYPE_CHECKING:
 class ProgramSpace:
     """Program Space for storing searchable problem-solving Programs."""
 
-    # informative descriptions of stored Programs, indexed by name
+    # informative descriptions of stored problem-solving Programs, indexed by name
     descriptions: dict[str, str] = field(default_factory=dict,
                                          init=True,
                                          repr=False,
@@ -37,7 +37,7 @@ class ProgramSpace:
                                          metadata=None,
                                          kw_only=False)
 
-    # stored Programs, indexed by name
+    # stored problem-solving Programs, indexed by name
     programs: dict[str, AProgram] = field(default_factory=dict,
                                           init=True,
                                           repr=False,
@@ -46,7 +46,7 @@ class ProgramSpace:
                                           metadata=None,
                                           kw_only=False)
 
-    # language model for searching among stored Programs
+    # language model for searching among stored problem-solving Programs
     lm: AnLM = field(default_factory=OpenAILM.from_defaults,
                      init=True,
                      repr=True,
