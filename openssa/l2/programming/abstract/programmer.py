@@ -10,8 +10,8 @@ ABSTRACT PROGRAMMER INTERFACE
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
-from typing import TypeVar, TYPE_CHECKING
+from dataclasses import dataclass, field, replace
+from typing import Self, TypeVar, TYPE_CHECKING
 
 from openssa.l2.util.lm.openai import OpenAILM
 
@@ -34,6 +34,17 @@ class AbstractProgrammer(ABC):
                      compare=True,
                      metadata=None,
                      kw_only=False)
+
+    # maximum allowed depth
+    max_depth: int = 2
+
+    def _one_level_deep(self) -> Self:
+        """Get a 1-level-deep Programmer with same other parameters."""
+        return replace(self, max_depth=1)
+
+    def _one_fewer_level_deep(self) -> Self:
+        """Get a 1-fewer-level-deep Programmer with same other parameters."""
+        return replace(self, max_depth=self.max_depth - 1)
 
     @abstractmethod
     def construct_program(self, problem: str, *,
