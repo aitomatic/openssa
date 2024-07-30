@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Any, TypeVar, TYPE_CHECKING
+from typing import Any, Self, TypeVar, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
@@ -35,6 +35,10 @@ class AbstractProgram(ABC):
 
     # Programmer that has constructed this
     programmer: AProgrammer | None = None
+
+    @abstractmethod
+    def adapt(self, **kwargs: Any) -> Self:
+        """Return adapted copy."""
 
     @abstractmethod
     def execute(self, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> str:
