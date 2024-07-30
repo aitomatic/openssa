@@ -36,6 +36,9 @@ class AbstractProgram(ABC):
     # Programmer that has constructed this
     programmer: AProgrammer | None = None
 
+    # maximum further allowed iterative depth
+    max_further_depth: int = 0
+
     @abstractmethod
     def execute(self, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> str:
         """Execute and return string result.
