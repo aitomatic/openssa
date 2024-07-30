@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 import json
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.l2.util.lm.openai import OpenAILM
@@ -60,7 +60,7 @@ class ProgramSpace:
         self.descriptions[name]: str = description
         self.programs[name]: AProgram = program
 
-    def find_program(self, task: Task, knowledge: set[Knowledge] | None = None) -> AProgram | None:
+    def find_program(self, task: Task, knowledge: set[Knowledge] | None = None, **adaptations: Any) -> AProgram | None:
         """Find a suitable Program for the posed Problem, or return None."""
         knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
                                                 if knowledge
@@ -76,4 +76,4 @@ class ProgramSpace:
         if matching_program_name.startswith('NONE'):
             return None
 
-        return self.programs[matching_program_name]
+        return self.programs[matching_program_name].adapt(**adaptations)
