@@ -21,7 +21,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field, replace
 from pprint import pformat
 from types import SimpleNamespace
-from typing import Self, TypedDict, Required, NotRequired, TYPE_CHECKING
+from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
 
 from loguru import logger
 from tqdm import tqdm
@@ -44,7 +44,7 @@ if TYPE_CHECKING:
 
 
 type HTPDict = TypedDict('HTPDict', {'task': Required[TaskDict | str],
-                                     'sub-htps': NotRequired[list[Self]]},
+                                     'sub-htps': NotRequired[list[HTPDict]]},
                          total=False)
 
 
@@ -57,13 +57,13 @@ class HTP(AbstractProgram):
     """Hierarchical Task Plan (HTP)."""
 
     # decomposed sub-HTPs for solving target Task
-    sub_htps: list[Self] = field(default_factory=list,
-                                 init=True,
-                                 repr=True,
-                                 hash=None,
-                                 compare=True,
-                                 metadata=None,
-                                 kw_only=False)
+    sub_htps: list[HTP] = field(default_factory=list,
+                                init=True,
+                                repr=True,
+                                hash=None,
+                                compare=True,
+                                metadata=None,
+                                kw_only=False)
 
     # Reasoner for working through individual Tasks to either conclude or make partial progress on them
     # (default: Observe-Orient-Decide-Act (OODA) Reasoner)
