@@ -60,7 +60,8 @@ class ProgramSpace:
         self.descriptions[name]: str = description
         self.programs[name]: AProgram = program
 
-    def find_program(self, task: Task, knowledge: set[Knowledge] | None = None, **adaptations: Any) -> AProgram | None:
+    def find_program(self, task: Task, knowledge: set[Knowledge] | None = None,
+                     adaptations_to_known_programs: dict[str, Any] | None = None) -> AProgram | None:
         """Find a suitable Program for the posed Problem, or return None."""
         knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
                                                 if knowledge
@@ -81,6 +82,6 @@ class ProgramSpace:
         if matching_program_name == 'NONE':
             return None
 
-        adapted_program: AProgram = self.programs[matching_program_name].adapt(**adaptations)
+        adapted_program: AProgram = self.programs[matching_program_name].adapt(**(adaptations_to_known_programs or {}))
         adapted_program.task: Task = task
         return adapted_program

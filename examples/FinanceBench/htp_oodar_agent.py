@@ -55,7 +55,7 @@ def get_or_create_adaptations(fb_id: FbId) -> dict[str, str]:
 @enable_batch_qa_and_eval(output_name='HTP-OODAR')
 @log_qa_and_update_output_file(output_name='HTP-OODAR')
 def solve(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
+    return (agent.solve(problem=QS_BY_FB_ID[fb_id], adaptations_to_known_programs=get_or_create_adaptations(fb_id))
             if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]))
             else 'ERROR: doc not found')
 
@@ -63,7 +63,7 @@ def solve(fb_id: FbId) -> Answer:
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wKnowledge')
 def solve_with_knowledge(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
+    return (agent.solve(problem=QS_BY_FB_ID[fb_id], adaptations_to_known_programs=get_or_create_adaptations(fb_id))
             if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True))
             else 'ERROR: doc not found')
 
@@ -71,7 +71,7 @@ def solve_with_knowledge(fb_id: FbId) -> Answer:
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wProgSpace')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wProgSpace')
 def solve_with_program_space(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
+    return (agent.solve(problem=QS_BY_FB_ID[fb_id], adaptations_to_known_programs=get_or_create_adaptations(fb_id))
             if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_program_space=True))
             else 'ERROR: doc not found')
 
@@ -79,7 +79,7 @@ def solve_with_program_space(fb_id: FbId) -> Answer:
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge-wProgSpace')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wKnowledge-wProgSpace')
 def solve_with_knowledge_and_program_space(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
+    return (agent.solve(problem=QS_BY_FB_ID[fb_id], adaptations_to_known_programs=get_or_create_adaptations(fb_id))
             if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_program_space=True))  # noqa: E501
             else 'ERROR: doc not found')
 
