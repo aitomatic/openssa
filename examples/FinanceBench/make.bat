@@ -10,7 +10,7 @@ IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
 IF "%TARGET%"=="agent-solve-w-knowledge" GOTO agent-solve-w-knowledge
 IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space" GOTO agent-solve-w-knowledge-and-prog-space
 
-IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
+IF "%TARGET%"=="openai-assist" GOTO openai-assist
 
 IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
 IF "%TARGET%"=="rag-test" GOTO rag-test
@@ -42,8 +42,8 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
   GOTO end
 
 
-:ooda-solve
-  poetry run python ooda.py %2
+:openai-assist
+  poetry run python openai_assist.py %2
   GOTO end
 
 
