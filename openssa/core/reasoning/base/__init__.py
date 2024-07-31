@@ -14,18 +14,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from openssa.l2.reasoning.abstract import AbstractReasoner
-from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.task.status import TaskStatus
-from openssa.l2.util.misc import format_other_result
+from openssa.core.reasoning.abstract import AbstractReasoner
+from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.core.task.status import TaskStatus
+from openssa.core.util.misc import format_other_result
 
 from ._prompts import (RESOURCE_QA_CONSO_PROMPT_TEMPLATE, RESOURCE_QA_AND_OTHER_RESULTS_CONSO_PROMPT_TEMPLATE,
                        OTHER_RESULTS_CONSO_PROMPT_TEMPLATE)
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.abstract.plan import AskAnsPair
-    from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task import Task
+    from openssa.core.planning.abstract.plan import AskAnsPair
+    from openssa.core.knowledge.abstract import Knowledge
+    from openssa.core.task import Task
 
 
 @dataclass

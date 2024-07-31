@@ -1,4 +1,4 @@
-from openssa.l2.util.lm.abstract import LMChatHist
+from openssa.core.util.lm.abstract import LMChatHist
 
 from .abstract import Knowledge
 

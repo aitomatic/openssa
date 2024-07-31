@@ -26,20 +26,20 @@ from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
 from loguru import logger
 from tqdm import tqdm
 
-from openssa.l2.programming.abstract.program import AbstractProgram
-from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.reasoning.ooda import OodaReasoner
-from openssa.l2.task import Task, TaskDict
-from openssa.l2.task.status import TaskStatus
+from openssa.core.programming.abstract.program import AbstractProgram
+from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.core.reasoning.ooda import OodaReasoner
+from openssa.core.task import Task, TaskDict
+from openssa.core.task.status import TaskStatus
 
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.l2.reasoning.abstract import AbstractReasoner
-    from openssa.l2.resource.abstract import AbstractResource
-    from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.util.lm.abstract import LMChatHist
-    from openssa.l2.util.misc import AskAnsPair
+    from openssa.core.reasoning.abstract import AbstractReasoner
+    from openssa.core.resource.abstract import AbstractResource
+    from openssa.core.knowledge.abstract import Knowledge
+    from openssa.core.util.lm.abstract import LMChatHist
+    from openssa.core.util.misc import AskAnsPair
     from .planner import HTPlanner
 
 

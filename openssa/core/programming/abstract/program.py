@@ -21,8 +21,8 @@ from dataclasses import dataclass
 from typing import Any, Self as SameType, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task import Task
+    from openssa.core.knowledge.abstract import Knowledge
+    from openssa.core.task import Task
     from .programmer import AbstractProgrammer
 
 

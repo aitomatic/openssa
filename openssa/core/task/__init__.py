@@ -13,15 +13,15 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict, field
 from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 
-from openssa.l2.resource._global import GLOBAL_RESOURCES
+from openssa.core.resource._global import GLOBAL_RESOURCES
 
 from .nature import TaskNature
 from .status import TaskStatus
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.abstract.plan import APlan
-    from openssa.l2.planning.abstract.planner import APlanner
-    from openssa.l2.resource.abstract import AbstractResource
+    from openssa.core.planning.abstract.plan import APlan
+    from openssa.core.planning.abstract.planner import APlanner
+    from openssa.core.resource.abstract import AbstractResource
 
 
 class TaskDict(TypedDict, total=False):

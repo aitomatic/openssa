@@ -13,12 +13,12 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any, TYPE_CHECKING
 
-from openssa.l2.util.lm.openai import OpenAILM
+from openssa.core.util.lm.openai import OpenAILM
 
 if TYPE_CHECKING:
-    from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.task import Task
-    from openssa.l2.util.lm.abstract import AbstractLM
+    from openssa.core.knowledge.abstract import Knowledge
+    from openssa.core.task import Task
+    from openssa.core.util.lm.abstract import AbstractLM
     from .program import AbstractProgram
 
 

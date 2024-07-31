@@ -14,19 +14,19 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING
 
-from openssa.l2.programming.abstract.programmer import AbstractProgrammer
-from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.reasoning.ooda import OodaReasoner
+from openssa.core.programming.abstract.programmer import AbstractProgrammer
+from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.core.reasoning.ooda import OodaReasoner
 
 from .plan import HTP
 from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.reasoning.abstract import AbstractReasoner
-    from openssa.l2.resource.abstract import AbstractResource
-    from openssa.l2.task import Task
-    from openssa.l2.util.lm.abstract import LMChatHist
+    from openssa.core.knowledge.abstract import Knowledge
+    from openssa.core.reasoning.abstract import AbstractReasoner
+    from openssa.core.resource.abstract import AbstractResource
+    from openssa.core.task import Task
+    from openssa.core.util.lm.abstract import LMChatHist
     from .plan import HTPDict
 
 

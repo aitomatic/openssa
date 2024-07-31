@@ -13,7 +13,7 @@ from streamlit_mic_recorder import speech_to_text
 from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
 from openssa.core.ooda_rag.custom import CustomSSM
 from openssa.core.ooda_rag.ooda_ssa import OodaSSA
-from openssa.l2.resource.file import DirOrFileStrPath, FileStrPathSet, FileResource
+from openssa.core.resource.file import DirOrFileStrPath, FileStrPathSet, FileResource
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, MutableMapping

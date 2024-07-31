@@ -17,7 +17,7 @@ from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from s3fs import S3FileSystem
-from openssa.l2.resource.file import FileResource
+from openssa.core.resource.file import FileResource
 from openssa.utils.logs import mlogger
 
 

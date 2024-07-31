@@ -23,15 +23,15 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, TYPE_CHECKING
 
-from openssa.l2.program_space import ProgramSpace
-from openssa.l2.programming.hierarchical.planner import HTPlanner
-from openssa.l2.task import Task
+from openssa.core.program_space import ProgramSpace
+from openssa.core.programming.hierarchical.planner import HTPlanner
+from openssa.core.task import Task
 
 if TYPE_CHECKING:
-    from openssa.l2.programming.abstract.program import AbstractProgram
-    from openssa.l2.programming.abstract.programmer import AbstractProgrammer
-    from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.resource.abstract import AbstractResource
+    from openssa.core.programming.abstract.program import AbstractProgram
+    from openssa.core.programming.abstract.programmer import AbstractProgrammer
+    from openssa.core.knowledge.abstract import Knowledge
+    from openssa.core.resource.abstract import AbstractResource
 
 
 @dataclass

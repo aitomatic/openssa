@@ -37,7 +37,7 @@ from llama_index.core.response_synthesizers.type import ResponseMode
 from llama_index.core.storage.storage_context import StorageContext
 from llama_index.core.vector_stores.types import VectorStoreQueryMode
 
-from openssa.l2.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
+from openssa.core.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
 
 from .abstract import AbstractResource
 from ._global import global_register

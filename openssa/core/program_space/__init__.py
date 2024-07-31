@@ -11,17 +11,17 @@ from dataclasses import dataclass, field
 import json
 from typing import Any, TYPE_CHECKING
 
-from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.l2.util.lm.openai import OpenAILM
+from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.core.util.lm.openai import OpenAILM
 
 from ._prompts import PROGRAM_SEARCH_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.programming.abstract.program import AbstractProgram
-    from openssa.l2.resource.abstract import AbstractResource
-    from openssa.l2.task import Task
-    from openssa.l2.util.lm.abstract import AbstractLM, LMChatHist
+    from openssa.core.knowledge.abstract import Knowledge
+    from openssa.core.programming.abstract.program import AbstractProgram
+    from openssa.core.resource.abstract import AbstractResource
+    from openssa.core.task import Task
+    from openssa.core.util.lm.abstract import AbstractLM, LMChatHist
 
 
 @dataclass
