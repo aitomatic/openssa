@@ -7,14 +7,10 @@ SET TARGET=%1
 
 IF "%TARGET%"=="get-doc" GOTO get-doc
 
-IF "%TARGET%"=="htp-auto-static-oodar-solve" GOTO htp-auto-static-oodar-solve
-IF "%TARGET%"=="htp-auto-dynamic-oodar-solve" GOTO htp-auto-dynamic-oodar-solve
-IF "%TARGET%"=="htp-expert-static-oodar-solve" GOTO htp-expert-static-oodar-solve
-IF "%TARGET%"=="htp-expert-dynamic-oodar-solve" GOTO htp-expert-dynamic-oodar-solve
-IF "%TARGET%"=="htp-auto-static-oodar-w-knowledge-solve" GOTO htp-auto-static-oodar-w-knowledge-solve
-IF "%TARGET%"=="htp-auto-dynamic-oodar-w-knowledge-solve" GOTO htp-auto-dynamic-oodar-w-knowledge-solve
-IF "%TARGET%"=="htp-expert-static-oodar-w-knowledge-solve" GOTO htp-expert-static-oodar-w-knowledge-solve
-IF "%TARGET%"=="htp-expert-dynamic-oodar-w-knowledge-solve" GOTO htp-expert-dynamic-oodar-w-knowledge-solve
+IF "%TARGET%"=="agent-solve" GOTO agent-solve
+IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
+IF "%TARGET%"=="agent-solve-w-knowledge" GOTO agent-solve-w-knowledge
+IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space" GOTO agent-solve-w-knowledge-and-prog-space
 
 IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
 
@@ -24,6 +20,7 @@ IF "%TARGET%"=="rag-finetuned-lm-answer" GOTO rag-finetuned-lm-answer
 IF "%TARGET%"=="rag-finetuned-both-answer" GOTO rag-finetuned-both-answer
 IF "%TARGET%"=="rag-gpt4-lm-answer" GOTO rag-gpt4-lm-answer
 IF "%TARGET%"=="rag-test" GOTO rag-test
+IF "%TARGET%"=="rag-test-gpt4o" GOTO rag-test-gpt4o
 
 IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
 
@@ -43,36 +40,20 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :: BATCH INFERENCING
 :: =================
-:htp-auto-static-oodar-solve
+:agent-solve
   poetry run python htp_oodar_agent.py %2
   GOTO end
 
-:htp-auto-dynamic-oodar-solve
-  poetry run python htp_oodar_agent.py %2 --dynamic-exec
-  GOTO end
-
-:htp-expert-static-oodar-solve
-  poetry run python htp_oodar_agent.py %2 --expert-plan
-  GOTO end
-
-:htp-expert-dynamic-oodar-solve
-  poetry run python htp_oodar_agent.py %2 --expert-plan --dynamic-exec
-  GOTO end
-
-:htp-auto-static-oodar-w-knowledge-solve
+:agent-solve-w-knowledge
   poetry run python htp_oodar_agent.py %2 --knowledge
   GOTO end
 
-:htp-auto-dynamic-oodar-w-knowledge-solve
-  poetry run python htp_oodar_agent.py %2 --knowledge --dynamic-exec
+:agent-solve-w-prog-space
+  poetry run python htp_oodar_agent.py %2 --prog-space
   GOTO end
 
-:htp-expert-static-oodar-w-knowledge-solve
-  poetry run python htp_oodar_agent.py %2 --knowledge --expert-plan
-  GOTO end
-
-:htp-expert-dynamic-oodar-w-knowledge-solve
-  poetry run python htp_oodar_agent.py %2 --knowledge --expert-plan --dynamic-exec
+:agent-solve-w-knowledge-and-prog-space
+  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
   GOTO end
 
 
@@ -103,6 +84,10 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :rag-test
   poetry run python rag-test.py %2
+  GOTO end
+
+:rag-test-gpt4o
+  poetry run python rag-test.py %2 --gpt4o
   GOTO end
 
 

@@ -1,40 +1,20 @@
-get-doc:
-	@poetry run python data.py ${name}
-
-
-htp-auto-static-oodar-solve:
+agent-solve:
 	@poetry run python htp_oodar_agent.py ${id}
 
-htp-auto-dynamic-oodar-solve:
-	@poetry run python htp_oodar_agent.py ${id} --dynamic-exec
-
-htp-expert-static-oodar-solve:
-	@poetry run python htp_oodar_agent.py ${id} --expert-plan
-
-htp-expert-dynamic-oodar-solve:
-	@poetry run python htp_oodar_agent.py ${id} --expert-plan --dynamic-exec
-
-htp-auto-static-oodar-w-knowledge-solve:
+agent-solve-w-knowledge:
 	@poetry run python htp_oodar_agent.py ${id} --knowledge
 
-htp-auto-dynamic-oodar-w-knowledge-solve:
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --dynamic-exec
+agent-solve-w-prog-space:
+	@poetry run python htp_oodar_agent.py ${id} --prog-space
 
-htp-expert-static-oodar-w-knowledge-solve:
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan
+agent-solve-w-knowledge-and-prog-space:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
 
-htp-expert-dynamic-oodar-w-knowledge-solve:
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan --dynamic-exec
-
-htp-oodar-all-combo-solve:
+agent-all-combo-solve:
 	@poetry run python htp_oodar_agent.py ${id}
-	@poetry run python htp_oodar_agent.py ${id} --dynamic-exec
-	@poetry run python htp_oodar_agent.py ${id} --expert-plan
-	# @poetry run python htp_oodar_agent.py ${id} --expert-plan --dynamic-exec
 	@poetry run python htp_oodar_agent.py ${id} --knowledge
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --dynamic-exec
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan
-	# @poetry run python htp_oodar_agent.py ${id} --knowledge --expert-plan --dynamic-exec
+	@poetry run python htp_oodar_agent.py ${id} --prog-space
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
 
 
 ooda-solve:
@@ -58,6 +38,9 @@ rag-gpt4-lm-answer:
 
 rag-test:
 	@poetry run python rag-test.py ${doc}
+
+rag-test-gpt4o:
+	@poetry run python rag-test.py ${doc} --gpt4o
 
 
 ssm-discuss:

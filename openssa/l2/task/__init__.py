@@ -10,11 +10,9 @@ what is asked, what informational resources are available, the nature, the statu
 
 from __future__ import annotations
 
-from abc import ABC
 from dataclasses import dataclass, asdict, field
 from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired
 
-from openssa.l2.planning.abstract.planner import AbstractPlanner
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
 from .nature import TaskNature
@@ -32,11 +30,10 @@ class TaskDict(TypedDict, total=False):
     nature: NotRequired[TaskNature]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
-    dynamic_decomposer: NotRequired[APlanner]
 
 
 @dataclass
-class Task(ABC):
+class Task:
     """Task."""
 
     ask: str
@@ -44,11 +41,10 @@ class Task(ABC):
     nature: TaskNature | None = None
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
-    dynamic_decomposer: APlanner | None = None
 
     @classmethod
     def from_dict(cls, d: TaskDict, /) -> Self:
-        """Create task from dictionary representation."""
+        """Create Task from dictionary representation."""
         task: Self = cls(**d)
 
         if task.resources:
@@ -69,12 +65,12 @@ class Task(ABC):
 
     @classmethod
     def from_str(cls, s: str, /) -> Self:
-        """Create task from string representation."""
+        """Create Task from string representation."""
         return cls(ask=s)
 
     @classmethod
     def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Self:
-        """Create task from dictionary or string representation."""
+        """Create Task from dictionary or string representation."""
         if isinstance(dict_or_str, dict):
             return cls.from_dict(dict_or_str)
 
@@ -83,9 +79,10 @@ class Task(ABC):
 
         raise TypeError(f'*** {dict_or_str} IS NEITHER A DICTIONARY NOR A STRING ***')
 
-    def decompose(self) -> APlan:
-        """Decompose task into modular plan."""
-        assert isinstance(self.dynamic_decomposer, AbstractPlanner), \
-            TypeError('*** Dynamic Decomposer must be Planner instance ***')
+    def is_attempted(self) -> bool:
+        """Check if Task has been attempted."""
+        return self.status != TaskStatus.PENDING
 
-        return self.dynamic_decomposer.plan(problem=self.ask, resources=self.resources)
+    def is_done(self) -> bool:
+        """Check if Task is done."""
+        return self.status == TaskStatus.DONE

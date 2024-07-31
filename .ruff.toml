@@ -62,6 +62,7 @@ ignore = [
   "D410",  # Missing blank line after section
   "D411",  # missing blank line before section
   "D415",  # first line should end with a period, question mark, or exclamation point
+  "DOC501",  # raised exception missing from docstring
   "DTZ011",  # the use of `datetime.date.today()` is not allowed, use `datetime.datetime.now(tz=).date()` instead
   "E261",  # insert at least two spaces before an inline comment
   "E501",  # line too long
@@ -80,8 +81,10 @@ ignore = [
   "INP001",  # file is part of an implicit namespace package; add an `__init__.py`
   "LOG009",  # use of undocumented `logging.WARN` constant
   "N811",  # constant `SSM` imported as non-constant `LlamaIndexSSM`
+  "PD002",  # `inplace=True` should be avoided; it has inconsistent behavior
   "PERF401",  # use a list comprehension to create a transformed list
   "PGH003",  # use specific rule codes when ignoring type issues
+  "PGH004",  # use specific rule codes when using `ruff: noqa`
   "PIE790",  # unnecessary `pass` statement
   "PLC2701",  # private name import from external module
   "PTH100",  # `os.path.abspath()` should be replaced by `Path.resolve()`
@@ -100,6 +103,7 @@ ignore = [
   "PLR2004",  # magic value used in comparison, consider replacing with a constant variable
   "PLR6104",  # use `+=` to perform an augmented assignment directly
   "PLR6301",  # method could be a function, class method, or static method
+  "PLW0603",  # using the global statement to update is discouraged
   "PT009",  # use a regular `assert` instead of unittest-style `assertIsInstance`
   "PT018",  # assertion should be broken down into multiple parts
   "PT027",  # use `pytest.raises` instead of unittest-style `assertRaises`
@@ -119,6 +123,7 @@ ignore = [
   "S101",  # use of `assert` detected
   "S106",  # possible hardcoded password assigned to argument
   "S110",  # `try`-`except`-`pass` detected, consider logging the exception
+  "S113",  # probable use of `httpx` call without timeout
   "S605",  # starting a process with a shell, possible injection detected
   "S607",  # starting a process with a partial executable path
   "SIM102",  # use a single `if` statement instead of nested `if` statements
