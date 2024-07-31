@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from functools import cache
 
-from openssa import FileResource
+from openssa import FileResource, LMConfig
 from openssa.l2.util.lm.openai import default_llama_index_openai_lm
 
 # pylint: disable=wrong-import-order
@@ -10,8 +10,10 @@ from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
 @cache
-def get_or_create_file_resource(doc_name: DocName) -> FileResource:
-    return FileResource(path=Doc(name=doc_name).dir_path, lm=default_llama_index_openai_lm())
+def get_or_create_file_resource(doc_name: DocName,
+                                llama_index_openai_lm_name: str = LMConfig.DEFAULT_SMALL_OPENAI_MODEL) -> FileResource:
+    return FileResource(path=Doc(name=doc_name).dir_path,
+                        lm=default_llama_index_openai_lm(llama_index_openai_lm_name))
 
 
 @enable_batch_qa_and_eval(output_name='RAG-Default')
