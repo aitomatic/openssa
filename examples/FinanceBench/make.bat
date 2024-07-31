@@ -7,10 +7,10 @@ SET TARGET=%1
 
 IF "%TARGET%"=="get-doc" GOTO get-doc
 
-IF "%TARGET%"=="htp-oodar-solve" GOTO htp-oodar-solve
-IF "%TARGET%"=="htp-oodar-solve-w-prog-space" GOTO htp-oodar-solve-w-prog-space
-IF "%TARGET%"=="htp-oodar-solve-w-knowledge" GOTO htp-oodar-solve-w-knowledge
-IF "%TARGET%"=="htp-oodar-solve-w-knowledge-and-prog-space" GOTO htp-oodar-solve-w-knowledge-and-prog-space
+IF "%TARGET%"=="agent-solve" GOTO agent-solve
+IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
+IF "%TARGET%"=="agent-solve-w-knowledge" GOTO agent-solve-w-knowledge
+IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space" GOTO agent-solve-w-knowledge-and-prog-space
 
 IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
 
@@ -40,19 +40,19 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :: BATCH INFERENCING
 :: =================
-:htp-oodar-solve
+:agent-solve
   poetry run python htp_oodar_agent.py %2
   GOTO end
 
-:htp-oodar-solve-w-knowledge
+:agent-solve-w-knowledge
   poetry run python htp_oodar_agent.py %2 --knowledge
   GOTO end
 
-:htp-oodar-solve-w-prog-space
+:agent-solve-w-prog-space
   poetry run python htp_oodar_agent.py %2 --prog-space
   GOTO end
 
-:htp-oodar-solve-w-knowledge-and-prog-space
+:agent-solve-w-knowledge-and-prog-space
   poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
   GOTO end
 

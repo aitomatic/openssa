@@ -1,16 +1,16 @@
-htp-oodar-solve:
+agent-solve:
 	@poetry run python htp_oodar_agent.py ${id}
 
-htp-oodar-solve-w-knowledge:
+agent-solve-w-knowledge:
 	@poetry run python htp_oodar_agent.py ${id} --knowledge
 
-htp-oodar-solve-w-prog-space:
+agent-solve-w-prog-space:
 	@poetry run python htp_oodar_agent.py ${id} --prog-space
 
-htp-oodar-solve-w-knowledge-and-prog-space:
+agent-solve-w-knowledge-and-prog-space:
 	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
 
-htp-oodar-all-combo-solve:
+agent-all-combo-solve:
 	@poetry run python htp_oodar_agent.py ${id}
 	@poetry run python htp_oodar_agent.py ${id} --knowledge
 	@poetry run python htp_oodar_agent.py ${id} --prog-space
