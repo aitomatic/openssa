@@ -1,71 +1,64 @@
 """
-===================================================================================
-PROBLEM-SOLVING AGENT with Planning, Reasoning, Knowledge & Informational Resources
-===================================================================================
+=====================
+PROBLEM-SOLVING AGENT
+=====================
 
 This module contains `OpenSSA`'s main `Agent` class,
-which brings together agentic Planning and Reasoning capabilities,
-domain-specific Knowledge and Informational Resources
-to solve complex problems.
+which brings together agentic problem-solving capabilities
+leveraging domain-specific Knowledge and diverse Resources.
 
-An agent's problem-solving process involves a Plan
-that can be created by either LM-automated generation or expert guidance,
-and the execution by the agent's Reasoner of that Plan,
-either dynamic (i.e., with as-needed further decomposition)
-or static (i.e., literally per the Plan as-is).
+In solving a posed Problem, an Agent first
+either finds from its Program Space a solution Program suitable for the posed Problem,
+or constructs by its Programmer such a Program if there is no existing one.
+The Agent then executes the found or constructed Program,
+using an applicable execution engine/mechanism.
 
-Users should pick the combination of plan creation and plan execution
-that is most appropriate for the availability of expert knowledge
-and structured expert plans in the concerned domain.
+By default, `OpenSSA`'s Programs take the form of Hierarchical Task Plans (HTPs),
+with their execution performed by an Observe-Orient-Decide-Act (OODA) reasoning mechanism.
 """
 
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
-from loguru import logger
-from tqdm import tqdm
-
-from openssa.l2.planning.hierarchical.planner import AutoHTPlanner
-from openssa.l2.reasoning.ooda import OodaReasoner
-from openssa.l2.task.status import TaskStatus
+from openssa.l2.program_space import ProgramSpace
+from openssa.l2.programming.hierarchical.planner import HTPlanner
 from openssa.l2.task import Task
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.abstract.plan import APlan, AskAnsPair
-    from openssa.l2.planning.abstract.planner import APlanner
-    from openssa.l2.reasoning.abstract import AReasoner
+    from openssa.l2.programming.abstract.program import AProgram
+    from openssa.l2.programming.abstract.programmer import AProgrammer
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.resource.abstract import AResource
 
 
 @dataclass
 class Agent:
-    """Problem-Solving Agent with Planning, Reasoning, Knowledge & Informational Resources."""
+    """Problem-Solving Agent."""
 
-    # Planner for decomposing tasks into executable solution Plans
-    # (default: Automated Hierarchical Task Planner)
-    planner: APlanner | None = field(default_factory=AutoHTPlanner,
-                                     init=True,
-                                     repr=True,
-                                     hash=None,
-                                     compare=True,
-                                     metadata=None,
-                                     kw_only=False)
+    # Program Space for storing searchable problem-solving Programs
+    # (default: empty collection)
+    program_space: ProgramSpace = field(default_factory=ProgramSpace,
+                                        init=True,
+                                        repr=True,
+                                        hash=None,
+                                        compare=True,
+                                        metadata=None,
+                                        kw_only=False)
 
-    # Reasoner for working through individual Tasks to either conclude or make partial progress on them
-    # (default: Observe-Orient-Decide-Act (OODA) Reasoner)
-    reasoner: AReasoner = field(default_factory=OodaReasoner,
-                                init=True,
-                                repr=True,
-                                hash=None,
-                                compare=True,
-                                metadata=None,
-                                kw_only=False)
+    # Programmer for constructing problem-solving Programs
+    # (default: Hierarchical Task Planner)
+    programmer: AProgrammer = field(default_factory=HTPlanner,
+                                    init=True,
+                                    repr=True,
+                                    hash=None,
+                                    compare=True,
+                                    metadata=None,
+                                    kw_only=False)
 
-    # Knowledge for use in Planning & Reasoning
+    # Knowledge for use in Program search/construction and execution
     # (stored as a set of strings; default: empty set)
     knowledge: set[Knowledge] = field(default_factory=set,
                                       init=True,
@@ -75,7 +68,7 @@ class Agent:
                                       metadata=None,
                                       kw_only=False)
 
-    # set of Informational Resources for answering information-querying questions
+    # Resources for answering information-querying questions
     # (default: empty set)
     resources: set[AResource] = field(default_factory=set,
                                       init=True,
@@ -93,119 +86,19 @@ class Agent:
         """Add new Informational Resource(s)."""
         self.resources.update(new_resources)
 
-    @property
-    def resource_overviews(self) -> dict[str, str]:
-        """Overview available Informational Resources."""
-        return {r.unique_name: r.overview for r in self.resources}
+    def solve(self, problem: str, **adaptations_to_known_programs: Any) -> str:
+        """Solve the posed Problem.
 
-    def solve(self, problem: str, plan: APlan | None = None, dynamic: bool = True) -> str:
-        """Solve posed Problem.
+        First either find from the Program Space a solution Program suitable for the Problem,
+        or construct by the Programmer such a Program if there is no existing one.
 
-        Solution Plan can optionally be explicitly provided (by knowledgeable expert(s)),
-        or would be automatically generated by default if Planner is given.
-
-        Solution Plan, whether explicitly provided or automatically generated,
-        can be executed Dynamically (i.e., with as-needed further decomposition)
-        or Statically (i.e., literally per the Plan as-is).
+        Then execute the found or constructed Program using an applicable execution engine/mechanism.
         """
-        match (plan, self.planner, dynamic):
+        task: Task = Task(ask=problem, resources=self.resources)
 
-            # NO PLAN
-            case (None, None, _):
-                # if neither Plan nor Planner is given, directly use Reasoner
-                result: str = self.reasoner.reason(task=Task(ask=problem, resources=self.resources),
-                                                   knowledge=self.knowledge,
-                                                   other_results=None)
+        program: AProgram = (self.program_space.find_program(task=task, knowledge=self.knowledge,
+                                                             **adaptations_to_known_programs)
+                             or
+                             self.programmer.construct_program(task=task, knowledge=self.knowledge))
 
-            # AUTOMATED STATIC PLAN
-            case (None, _, False) if self.planner:
-                # if no Plan is given but Planner is, and if solving statically,
-                # then use Planner to generate static Plan,
-                # then execute such static Plan
-                plan: APlan = self.planner.plan(problem=problem, knowledge=self.knowledge, resources=self.resources)
-                logger.info('\n'
-                            'GLOBAL TASK PLANNING\n'
-                            '====================\n'
-                            f'\n{plan.pformat}\n')
-
-                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
-
-            # AUTOMATED DYNAMIC PLAN
-            case (None, _, True) if self.planner:
-                # if no Plan is given but Planner is, and if solving dynamically,
-                # then first directly use Reasoner,
-                # and if that does not work, then use Planner to decompose 1 level more deeply,
-                # and recurse until reaching confident solution or running out of depth
-                result: str = self._solve_dynamically(problem=problem)
-
-            # EXPERT-SPECIFIED STATIC PLAN
-            case (_, None, _) if plan:
-                # if Plan is given but no Planner is, then execute Plan statically
-                logger.info('\n'
-                            'GLOBAL TASK PLANNING\n'
-                            '====================\n'
-                            f'\n{plan.pformat}\n')
-
-                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
-
-            # EXPERT-SPECIFIED STATIC PLAN, with Resource updating
-            case (_, _, False) if (plan and self.planner):
-                # if both Plan and Planner are given, and if solving statically,
-                # then use Planner to update Plan's resources,
-                # then execute such updated static Plan
-                plan: APlan = self.planner.update_plan_resources(plan, problem=problem,
-                                                                 knowledge=self.knowledge, resources=self.resources)
-                logger.info('\n'
-                            'GLOBAL TASK PLANNING\n'
-                            '====================\n'
-                            f'\n{plan.pformat}\n')
-
-                result: str = plan.execute(reasoner=self.reasoner, knowledge=self.knowledge)
-
-            # EXPERT-GUIDED DYNAMIC PLAN
-            case (_, _, True) if (plan and self.planner):
-                # if both Plan and Planner are given, and if solving dynamically,
-                # TODO: dynamic solution
-                result: str = self.solve(problem=problem, plan=plan, dynamic=False)
-
-            case _:
-                raise ValueError('*** Invalid Plan-Planner-Dynamism Combination ***')
-
-        return result
-
-    def _solve_dynamically(self, problem: str, planner: APlanner = None, other_results: list[AskAnsPair] | None = None) -> str:
-        """Solve posed Problem dynamically.
-
-        When first-pass result from Reasoner is unsatisfactory, decompose Problem and recursively solve decomposed Plan.
-        """
-        # attempt direct solution with Reasoner
-        self.reasoner.reason(task := Task(ask=problem, resources=self.resources), knowledge=self.knowledge)
-
-        # if Reasoner's result is unsatisfactory, and if Planner has not run out of allowed depth,
-        # decompose Problem into 1-level Plan, and recursively solve such Plan with remaining allowed Planner depth
-        if (task.status == TaskStatus.NEEDING_DECOMPOSITION) and (planner := planner or self.planner).max_depth:
-            sub_planner: APlanner = planner.one_fewer_level_deep()
-
-            plan_1_level_deep: APlan = planner.one_level_deep().plan(problem=problem,
-                                                                     knowledge=self.knowledge,
-                                                                     resources=self.resources)
-            logger.info('\n'
-                        'TASK-DECOMPOSITION PLANNING\n'
-                        '===========================\n'
-                        f'\n{plan_1_level_deep.pformat}\n')
-
-            sub_results: list[AskAnsPair] = []
-            for sub_plan in tqdm(plan_1_level_deep.sub_plans):
-                sub_task: Task = sub_plan.task
-                sub_task.result: str = self._solve_dynamically(problem=sub_task.ask,
-                                                               planner=sub_planner,
-                                                               other_results=sub_results)
-                sub_task.status: TaskStatus = TaskStatus.DONE
-                sub_results.append((sub_task.ask, sub_task.result))
-
-            task.result: str = plan_1_level_deep.execute(reasoner=self.reasoner,
-                                                         knowledge=self.knowledge,
-                                                         other_results=other_results)
-            task.status: TaskStatus = TaskStatus.DONE
-
-        return task.result
+        return program.execute(knowledge=self.knowledge)
