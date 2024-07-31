@@ -100,12 +100,12 @@ class HTP(AbstractProgram):
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
         """Create HTP from dictionary representation."""
         return HTP(task=Task.from_dict_or_str(htp_dict['task']),
-                   sub_htps=[HTP.from_dict(d) for d in htp_dict.get('sub-htps', [])])
+                   sub_htps=[HTP.from_dict(sub_htp_dict) for sub_htp_dict in htp_dict.get('sub-htps', [])])
 
     def to_dict(self) -> HTPDict:
         """Return dictionary representation."""
         return {'task': self.task.to_json_dict(),
-                'sub-htps': [p.to_dict() for p in self.sub_htps]}
+                'sub-htps': [sub_htp.to_dict() for sub_htp in self.sub_htps]}
 
     def fill_missing_resources(self):
         """Fix missing Resources in HTP."""
