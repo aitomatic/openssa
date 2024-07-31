@@ -2,22 +2,22 @@
 
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
 from collections import defaultdict
+from typing import TYPE_CHECKING
 from uuid import UUID
 
 import streamlit as st
 from streamlit_mic_recorder import speech_to_text
 
-from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
-from openssa.core.ooda_rag.custom import CustomSSM
-from openssa.core.ooda_rag.ooda_ssa import OodaSSA
-from openssa.l2.resource.file import DirOrFileStrPath, FileStrPathSet, FileResource
+from openssa.core.resource.file import DirOrFileStrPath, FileStrPathSet, FileResource
+from openssa.deprecated.ooda_rag.custom import CustomSSM
+from openssa.deprecated.ooda_rag.heuristic import TaskDecompositionHeuristic
+from openssa.deprecated.ooda_rag.ooda_ssa import OodaSSA
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, MutableMapping
-    from openssa.core.ssa.ssa import RagSSA
+    from openssa.deprecated.ssa.ssa import RagSSA
 
 
 # Streamlit Session State alias "SSS" for brevity

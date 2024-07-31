@@ -14,7 +14,7 @@ import requests
 import yaml
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.hierarchical.plan import HTPDict
+    from openssa.core.planning.hierarchical.plan import HTPDict
 
 
 load_dotenv()
@@ -250,7 +250,7 @@ class Doc:
         return response
 
     @cached_property
-    def dir_path(self) -> Path | None:
+    def dir_path(self) -> Path:
         dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / self.name
 
         if not (file_path := dir_path / f'{self.name}.pdf').is_file():
@@ -264,8 +264,8 @@ class Doc:
         return dir_path
 
     @cached_property
-    def file_path(self) -> Path | None:
-        return (self.dir_path / f'{self.name}.pdf') if self.dir_path else None
+    def file_path(self) -> Path:
+        return self.dir_path / f'{self.name}.pdf'
 
 
 def create_or_update_ground_truths() -> dict[FbId, GroundTruth]:

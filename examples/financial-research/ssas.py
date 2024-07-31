@@ -3,7 +3,8 @@ from pathlib import Path
 import streamlit as st
 
 # pylint: disable=wrong-import-order,wrong-import-position
-from openssa import OodaSSA, TaskDecompositionHeuristic  # noqa: E402
+from openssa.deprecated.ooda_rag.heuristic import TaskDecompositionHeuristic
+from openssa.deprecated.ooda_rag.ooda_ssa import OodaSSA
 
 from dataproc import get_or_create_cached_dir_path  # noqa: E402
 from heuristics import (  # noqa: E402
