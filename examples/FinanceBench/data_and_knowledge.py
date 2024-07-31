@@ -14,7 +14,7 @@ import requests
 import yaml
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.hierarchical.plan import HTPDict
+    from openssa.core.planning.hierarchical.plan import HTPDict
 
 
 load_dotenv()

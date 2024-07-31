@@ -123,10 +123,6 @@ llama-index-callbacks = [
 ]
 
 
-[tool.poetry.scripts]
-openssa = "openssa.utils.cli:openssa_cli"
-
-
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = [
