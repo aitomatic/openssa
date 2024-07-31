@@ -11,15 +11,11 @@ from argparse import ArgumentParser
 import aiohttp
 import anyio
 
-# from openssa import FileResource, LMConfig
-# from openssa.l2.util.lm.openai import LlamaIndexOpenAILM
 from data_and_knowledge import DOC_NAMES_BY_FB_ID, FB_ID_COL_NAME, QS_BY_FB_ID, Answer, FbId
 from dotenv import load_dotenv
 from openai import OpenAI
 from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
-# Load environment variables
-load_dotenv()
 
 # Logging configuration
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -403,32 +399,17 @@ class OpenAIAssistant:
         return "No response from the assistant found."
 
 
-# if __name__ == "__main__":
-#     assistant = OpenAIAssistant()
-#     asyncio.run(assistant.start())
-
-#     filepath_or_url = "/Users/shrutiraghavan/shruti/aitomatic/source_code/openssa/examples/FinanceBench/.data/docs/3M_2023Q2_10Q/3M_2023Q2_10Q.pdf"
-#     question = "Does 3M have a reasonably healthy liquidity profile based on its quick ratio for Q2 of FY2023? If the quick ratio is not relevant to measure liquidity, please state that and explain why."
-
-#     question = "What did the author work on growing up?"
-#     filepath_or_url = "https://paulgraham.com/worked.html"
-
-#     response = asyncio.run(assistant.handle_user_input(question, [filepath_or_url]))
-
-#     print(response)
-
 def answer_util(fb_id: FbId) -> Answer:
     assistant = OpenAIAssistant()
     asyncio.run(assistant.start())
     filepath_or_url = f"https://github.com/patronus-ai/financebench/blob/main/pdfs/{DOC_NAMES_BY_FB_ID[fb_id]}.pdf"
     question = QS_BY_FB_ID[fb_id]
     response = asyncio.run(assistant.handle_user_input(question, [filepath_or_url]))
-
     return response
 
 
-@enable_batch_qa_and_eval(output_name='OpenAI-VectorStores')
-@log_qa_and_update_output_file(output_name='OpenAI-VectorStores')
+@enable_batch_qa_and_eval(output_name='OpenAI-Asst')
+@log_qa_and_update_output_file(output_name='OpenAI-Asst')
 def answer(fb_id: FbId) -> Answer:
     return (response
             if (response := answer_util(fb_id))
