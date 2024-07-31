@@ -1,6 +1,5 @@
 """Utilities."""
 
-import time
 import functools
 import inspect
 import io
@@ -9,16 +8,19 @@ import json
 import os
 from pathlib import Path
 import shutil
+import time
 from typing import Any
 from uuid import uuid4
-from loguru import logger
-import googleapiclient.errors
+
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+import googleapiclient.errors
 from googleapiclient.http import MediaIoBaseDownload
+from loguru import logger
 from s3fs import S3FileSystem
+
 from openssa.core.resource.file import FileResource
-from openssa.utils.logs import mlogger
+from openssa.deprecated.utils.logs import mlogger
 
 
 class Utils:

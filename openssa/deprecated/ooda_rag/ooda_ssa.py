@@ -1,15 +1,15 @@
 from pathlib import Path
 
-from openssa.core.ooda_rag.custom import CustomSSM
-from openssa.core.ooda_rag.ooda import Solver, History
-from openssa.core.ooda_rag.heuristic import (
+from openssa.deprecated.ooda_rag.custom import CustomSSM
+from openssa.deprecated.ooda_rag.ooda import Solver, History
+from openssa.deprecated.ooda_rag.heuristic import (
     Heuristic,
     TaskDecompositionHeuristic,
     HeuristicSet,
 )
-from openssa.core.ooda_rag.tools import ReasearchAgentTool, Tool
-from openssa.core.ooda_rag.builtin_agents import GoalAgent, Persona, AskUserAgent
-from openssa.utils.llms import OpenAILLM
+from openssa.deprecated.ooda_rag.tools import ReasearchAgentTool, Tool
+from openssa.deprecated.ooda_rag.builtin_agents import GoalAgent, Persona, AskUserAgent
+from openssa.deprecated.utils.llms import OpenAILLM
 
 
 class OodaSSA:

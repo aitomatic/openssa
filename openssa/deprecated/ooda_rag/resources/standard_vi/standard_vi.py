@@ -1,7 +1,9 @@
 import os.path
+
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext, load_index_from_storage
-from openssa.core.ooda_rag.resources.rag_resource import RagResource
-from openssa.utils.utils import Utils
+
+from openssa.deprecated.ooda_rag.resources.rag_resource import RagResource
+from openssa.deprecated.utils.utils import Utils
 
 
 @Utils.timeit

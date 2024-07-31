@@ -1,9 +1,10 @@
-from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
-from openssa.integrations.openai.ssm import GPT3ChatCompletionSLM
-from openssa.core.ssm.rag_ssm import RAGSSM
-from openssa.core.slm.abstract_slm import AbstractSLM
-from openssa.integrations.lepton_ai.ssm import SLM as LeptonSLM
-from openssa.core.slm.base_slm import PassthroughSLM
+from openssa.deprecated.slm.abstract_slm import AbstractSLM
+from openssa.deprecated.slm.base_slm import PassthroughSLM
+from openssa.deprecated.ssm.rag_ssm import RAGSSM
+
+from openssa.deprecated.integrations.llama_index.backend import Backend as LlamaIndexBackend
+from openssa.deprecated.integrations.lepton_ai.ssm import SLM as LeptonSLM
+from openssa.deprecated.integrations.openai.ssm import GPT3ChatCompletionSLM
 
 
 class SSM(RAGSSM):

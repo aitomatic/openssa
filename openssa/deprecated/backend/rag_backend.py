@@ -1,9 +1,10 @@
+from abc import abstractmethod, ABC
 import os
 from typing import Callable
-from abc import abstractmethod, ABC
-from openssa.core.backend.base_backend import BaseBackend
-from openssa.utils.logs import Logs
-from openssa.utils.utils import Utils
+
+from openssa.deprecated.backend.base_backend import BaseBackend
+from openssa.deprecated.utils.logs import Logs
+from openssa.deprecated.utils.utils import Utils
 
 
 class AbstractRAGBackend(BaseBackend, ABC):

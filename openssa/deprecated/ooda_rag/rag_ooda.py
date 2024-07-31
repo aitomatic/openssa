@@ -1,20 +1,23 @@
 from typing import Union, ClassVar
 from uuid import uuid4
+
 from llama_index.core.retrievers import BaseRetriever  # noqa: TCH002
 from llama_index.core.schema import NodeWithScore  # noqa: TCH002
-from openssa.core.ooda_rag.builtin_agents import (
+
+from openssa.deprecated.ooda_rag.builtin_agents import (
     ContextValidator,
     SynthesizingAgent,
     AnswerValidator,
     GoalAgent,
 )
-from openssa.core.ooda_rag.tools import (
+from openssa.deprecated.ooda_rag.ooda import Solver, Notifier, SimpleNotifier, EventTypes
+from openssa.deprecated.ooda_rag.tools import (
     ResearchQueryEngineTool,
     Tool,
 )
-from openssa.core.ooda_rag.resources.rag_resource import RagResource
-from openssa.core.ooda_rag.ooda import Solver, Notifier, SimpleNotifier, EventTypes
-from openssa.utils.utils import Utils
+from openssa.deprecated.ooda_rag.resources.rag_resource import RagResource
+
+from openssa.deprecated.utils.utils import Utils
 
 
 class RagOODA:

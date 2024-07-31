@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
 
 
 @dataclass

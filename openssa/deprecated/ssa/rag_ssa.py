@@ -1,12 +1,13 @@
 import json
 from json import JSONDecodeError
-from openssa.core.adapter.base_adapter import BaseAdapter
-from openssa.core.slm.abstract_slm import AbstractSLM
-from openssa.core.ssm.base_ssm import BaseSSM
-from openssa.core.backend.rag_backend import AbstractRAGBackend
-from openssa.core.slm.base_slm import PassthroughSLM
-from openssa.core.prompts import Prompts
-from openssa.utils.logs import Logs
+
+from openssa.deprecated.adapter.base_adapter import BaseAdapter
+from openssa.deprecated.backend.rag_backend import AbstractRAGBackend
+from openssa.deprecated.prompts import Prompts
+from openssa.deprecated.slm.abstract_slm import AbstractSLM
+from openssa.deprecated.slm.base_slm import PassthroughSLM
+from openssa.deprecated.ssm.base_ssm import BaseSSM
+from openssa.deprecated.utils.logs import Logs
 
 
 class RAGSSM(BaseSSM):

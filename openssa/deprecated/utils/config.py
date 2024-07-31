@@ -1,7 +1,9 @@
 import os
-import dotenv
-from openssa.utils.logs import mlogger
 from typing import Optional
+
+import dotenv
+
+from openssa.deprecated.utils.logs import mlogger
 
 
 dotenv.load_dotenv(override=True)

@@ -1,5 +1,5 @@
-from openssa.core.ooda.task import Task
-from openssa.core.ooda.ooda_loop import OODALoop
+from openssa.deprecated.ooda.ooda_loop import OODALoop
+from openssa.deprecated.ooda.task import Task
 
 
 class LLM:

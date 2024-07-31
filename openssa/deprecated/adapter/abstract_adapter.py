@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Callable
-from openssa.core.backend.abstract_backend import AbstractBackend
+
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
 
 
 @dataclass

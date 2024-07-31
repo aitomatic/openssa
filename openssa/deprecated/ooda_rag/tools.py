@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
-import traceback
 from json import JSONDecodeError
+import traceback
 
 from httpx import RequestError, TimeoutException, HTTPStatusError
-from openssa.core.ssm.rag_ssm import RAGSSM
-from openssa.core.ssa.ssa import RagSSA
+
+from openssa.deprecated.ssa.ssa import RagSSA
+from openssa.deprecated.ssm.rag_ssm import RAGSSM
 
 
 class Tool(ABC):

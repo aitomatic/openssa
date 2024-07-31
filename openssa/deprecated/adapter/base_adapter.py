@@ -1,8 +1,9 @@
 from typing import Callable
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.core.backend.abstract_backend import AbstractBackend
-from openssa.core.backend.text_backend import TextBackend
-from openssa.core.inferencer.abstract_inferencer import AbstractInferencer
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.backend.text_backend import TextBackend
+from openssa.deprecated.inferencer.abstract_inferencer import AbstractInferencer
 
 
 class BaseAdapter(AbstractAdapter):

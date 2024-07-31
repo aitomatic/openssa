@@ -1,8 +1,8 @@
-from openssa.core.inferencer.abstract_inferencer import AbstractInferencer
-from openssa.core.slm.abstract_slm import AbstractSLM
-from openssa.core.ssm.abstract_ssm import AbstractSSM
-from openssa.core.ssm.abstract_ssm_builder import AbstractSSMBuilder
-from openssa.core.ssm.base_ssm import BaseSSM
+from openssa.deprecated.inferencer.abstract_inferencer import AbstractInferencer
+from openssa.deprecated.slm.abstract_slm import AbstractSLM
+from openssa.deprecated.ssm.abstract_ssm import AbstractSSM
+from openssa.deprecated.ssm.abstract_ssm_builder import AbstractSSMBuilder
+from openssa.deprecated.ssm.base_ssm import BaseSSM
 
 
 class BaseSSMBuilder(AbstractSSMBuilder):

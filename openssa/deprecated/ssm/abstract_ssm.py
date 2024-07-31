@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from openssa.core.slm.abstract_slm import AbstractSLM
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.core.backend.abstract_backend import AbstractBackend
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.slm.abstract_slm import AbstractSLM
 
 
 @dataclass

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from openssa.core.slm.abstract_slm import AbstractSLM
-from openssa.core.ssm.abstract_ssm import AbstractSSM
+
+from openssa.deprecated.slm.abstract_slm import AbstractSLM
+from openssa.deprecated.ssm.abstract_ssm import AbstractSSM
 
 
 class AbstractSSMBuilder(ABC):

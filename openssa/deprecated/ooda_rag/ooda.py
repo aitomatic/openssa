@@ -1,16 +1,17 @@
-import uuid
-from typing import List, Optional
 from loguru import logger
-from openssa.core.ooda_rag.prompts import OODAPrompts
-from openssa.core.ooda_rag.notifier import Notifier, SimpleNotifier, EventTypes
-from openssa.core.ooda_rag.heuristic import (
+from typing import List, Optional
+import uuid
+
+from openssa.deprecated.ooda_rag.prompts import OODAPrompts
+from openssa.deprecated.ooda_rag.notifier import Notifier, SimpleNotifier, EventTypes
+from openssa.deprecated.ooda_rag.heuristic import (
     Heuristic,
     HeuristicSet,
 )
-from openssa.core.ooda_rag.tools import Tool
-from openssa.core.ooda_rag.builtin_agents import CommAgent, Persona
-from openssa.utils.utils import Utils
-from openssa.utils.llms import OpenAILLM, AnLLM
+from openssa.deprecated.ooda_rag.tools import Tool
+from openssa.deprecated.ooda_rag.builtin_agents import CommAgent, Persona
+from openssa.deprecated.utils.utils import Utils
+from openssa.deprecated.utils.llms import OpenAILLM, AnLLM
 
 
 class History:

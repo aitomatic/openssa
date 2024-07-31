@@ -1,4 +1,4 @@
-from openssa.core.inferencer.abstract_inferencer import AbstractInferencer
+from openssa.deprecated.inferencer.abstract_inferencer import AbstractInferencer
 
 
 class BaseInferencer(AbstractInferencer):

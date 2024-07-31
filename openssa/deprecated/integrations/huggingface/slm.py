@@ -3,14 +3,15 @@ This module contains the HuggingFaceBaseSLM class, and its subclasses,
 which are SLMs based on models from HugoingFace. The models may be
 served from HuggingFace's model hub, or a private internal server.
 """
-import os
 import json
-from typing import Optional
+import os
 from requests import request
-from openssa.core.slm.base_slm import BaseSLM
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.utils.config import Config
-from openssa.utils.logs import Logs
+from typing import Optional
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.slm.base_slm import BaseSLM
+from openssa.deprecated.utils.config import Config
+from openssa.deprecated.utils.logs import Logs
 
 
 Config.FALCON7B_API_KEY: Optional[str] = os.environ.get('FALCON7B_API_KEY')

@@ -1,11 +1,14 @@
 """Language Model (LM) interfaces."""
 
 from __future__ import annotations
+
 import json
+
 from loguru import logger
 from openai import OpenAI, AzureOpenAI, AsyncOpenAI, AsyncAzureOpenAI
-from openssa.utils.config import Config
-from openssa.utils.usage_logger import BasicUsageLogger, AbstractUsageLogger
+
+from openssa.deprecated.utils.config import Config
+from openssa.deprecated.utils.usage_logger import BasicUsageLogger, AbstractUsageLogger
 
 
 class AnLLM:
@@ -13,7 +16,7 @@ class AnLLM:
     This class provides a consistent API for the different LLM services.
     Intended usage:
 
-        from openssa.utils.llms import OpenAILLM, AitomaticLLM, AzureLLM
+        from openssa.deprecated.utils.llms import OpenAILLM, AitomaticLLM, AzureLLM
 
         llm1 = OpenAILLM.get_default()
         llm1.call(messages=[{"role": "user", "content": "Say this is a test"}], stream=True)

@@ -1,19 +1,23 @@
 from __future__ import annotations
-from typing import Optional
+
 import os
+from typing import Optional
+
 from llama_index.core import ServiceContext
-from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
-from llama_index.embeddings.openai import OpenAIEmbedding
-from llama_index.llms.azure_openai import AzureOpenAI
 from llama_index.core.llms import OpenAI as LlamaIndexOpenAI
 from llama_index.core.llms.llm import LLM  # noqa: TCH002
 from llama_index.core.llms.openai_utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
-from openssa.utils.config import Config
+from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.llms.azure_openai import AzureOpenAI
+
+from openssa.deprecated.utils.config import Config
 
 # import sys
 # import logging
 # logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+
 
 # Add the extended models to the list of available models in LlamaIndex
 _EXTENDED_CHAT_MODELS = {

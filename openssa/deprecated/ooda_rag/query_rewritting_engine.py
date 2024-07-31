@@ -7,7 +7,8 @@ from llama_index.core.llama_pack import BaseLlamaPack
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.retrievers import QueryFusionRetriever
 from llama_index.core.retrievers.fusion_retriever import FUSION_MODES
-from openssa.utils.rag_service_contexts import ServiceContextManager
+
+from openssa.deprecated.utils.rag_service_contexts import ServiceContextManager
 
 
 class QueryRewritingRetrieverPack(BaseLlamaPack):

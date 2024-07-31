@@ -1,14 +1,17 @@
 from llama_index.core import Document, Response, SimpleDirectoryReader, ServiceContext
 from llama_index.core.evaluation import DatasetGenerator
 from llama_index.core.node_parser import SimpleNodeParser
+
 from loguru import logger
 
-from openssa.core.backend.abstract_backend import AbstractBackend
-from openssa.core.slm.base_slm import PassthroughSLM
-from openssa.core.ssm.rag_ssm import RAGSSM
-from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
-from openssa.core.ooda_rag.query_rewritting_engine import QueryRewritingRetrieverPack
-from openssa.utils.rag_service_contexts import ServiceContextManager
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.ooda_rag.query_rewritting_engine import QueryRewritingRetrieverPack
+from openssa.deprecated.slm.base_slm import PassthroughSLM
+from openssa.deprecated.ssm.rag_ssm import RAGSSM
+from openssa.deprecated.utils.rag_service_contexts import ServiceContextManager
+
+from openssa.deprecated.integrations.llama_index.backend import Backend as LlamaIndexBackend
+
 
 FILE_NAME = "file_name"
 

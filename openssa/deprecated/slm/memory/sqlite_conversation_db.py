@@ -1,5 +1,6 @@
 import sqlite3
-from openssa.core.slm.memory.conversation_db import ConversationDB
+
+from openssa.deprecated.slm.memory.conversation_db import ConversationDB
 
 
 class SQLiteConversationDB(ConversationDB):

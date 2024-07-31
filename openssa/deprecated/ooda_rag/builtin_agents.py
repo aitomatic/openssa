@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import List, Optional
 import json
 from loguru import logger
-from openssa.core.ooda_rag.prompts import BuiltInAgentPrompt
-from openssa.utils.utils import Utils
-from openssa.utils.llms import OpenAILLM, AnLLM
+from typing import List, Optional
+
+from openssa.deprecated.ooda_rag.prompts import BuiltInAgentPrompt
+from openssa.deprecated.utils.utils import Utils
+from openssa.deprecated.utils.llms import OpenAILLM, AnLLM
 
 
 class Persona:

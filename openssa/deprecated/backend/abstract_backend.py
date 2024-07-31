@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from openssa.core.inferencer.abstract_inferencer import AbstractInferencer
+
+from openssa.deprecated.inferencer.abstract_inferencer import AbstractInferencer
 
 
 # pylint: disable=duplicate-code

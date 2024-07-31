@@ -1,11 +1,13 @@
 import os
 from typing import Optional
-from openssa.utils.config import Config
-from openssa.core.ssm.base_ssm import BaseSSM
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.core.backend.abstract_backend import AbstractBackend
-from openssa.integrations.openai.ssm import SLM as OpenAISLM
-from openssa.integrations.api_context import AbstractAPIContext
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.ssm.base_ssm import BaseSSM
+from openssa.deprecated.utils.config import Config
+
+from openssa.deprecated.integrations.openai.ssm import SLM as OpenAISLM
+from openssa.deprecated.integrations.api_context import AbstractAPIContext
 
 
 Config.AZURE_GPT3_API_VERSION: Optional[str] = os.environ.get('AZURE_GPT3_API_VERSION') or "2023-07-01-preview"

@@ -1,10 +1,12 @@
 from __future__ import annotations
-from llama_index.llms.openai import OpenAI
-from llama_index.llms.azure_openai import AzureOpenAI
+
+from llama_index.core import ServiceContext
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
-from llama_index.core import ServiceContext
-from openssa.utils.config import Config
+from llama_index.llms.openai import OpenAI
+from llama_index.llms.azure_openai import AzureOpenAI
+
+from openssa.deprecated.utils.config import Config
 
 
 class ServiceContextManager:

@@ -13,7 +13,8 @@ from llama_index.core.indices.base import BaseIndex
 from llama_index.core.query_engine import BaseQueryEngine
 from llama_index.core import StorageContext
 from llama_index.readers.web import SimpleWebPageReader
-from openssa.core.backend.rag_backend import AbstractRAGBackend
+
+from openssa.deprecated.backend.rag_backend import AbstractRAGBackend
 
 
 @dataclass

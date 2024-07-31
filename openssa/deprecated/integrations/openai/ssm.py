@@ -1,15 +1,17 @@
-import os
 from abc import ABC
+import os
 from typing import Optional
+
 from openai import OpenAI
 
-from openssa.utils.config import Config
-from openssa.core.ssm.base_ssm import BaseSSM
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.core.backend.abstract_backend import AbstractBackend
-from openssa.core.slm.base_slm import BaseSLM
-from openssa.utils.logs import Logs
-from openssa.integrations.api_context import AbstractAPIContext
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.slm.base_slm import BaseSLM
+from openssa.deprecated.ssm.base_ssm import BaseSSM
+from openssa.deprecated.utils.config import Config
+from openssa.deprecated.utils.logs import Logs
+
+from openssa.deprecated.integrations.api_context import AbstractAPIContext
 
 
 Config.OPENAI_API_KEY: Optional[str] = os.environ.get("OPENAI_API_KEY")

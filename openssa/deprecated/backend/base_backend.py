@@ -1,6 +1,6 @@
-from openssa.core.inferencer.abstract_inferencer import AbstractInferencer
-from openssa.core.backend.abstract_backend import AbstractBackend
-from openssa.utils.logs import Logs
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.inferencer.abstract_inferencer import AbstractInferencer
+from openssa.deprecated.utils.logs import Logs
 
 
 class BaseBackend(AbstractBackend):

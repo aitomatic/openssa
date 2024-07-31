@@ -1,13 +1,15 @@
 import os
 from typing import Optional
-from openssa.integrations.openai.ssm import SLM as OpenAISLM
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.utils.config import Config
-from openssa.core.ssm.base_ssm import BaseSSM
-from openssa.core.backend.abstract_backend import AbstractBackend
-from openssa.core.ssm.rag_ssm import RAGSSM as BaseRAGSSM, AbstractRAGBackend
-from openssa.integrations.llama_index.backend import Backend as LlamaIndexBackend
-from openssa.integrations.openai.ssm import APIContext as OpenAIAPIContext
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.ssm.base_ssm import BaseSSM
+from openssa.deprecated.ssm.rag_ssm import RAGSSM as BaseRAGSSM, AbstractRAGBackend
+from openssa.deprecated.utils.config import Config
+
+from openssa.deprecated.integrations.llama_index.backend import Backend as LlamaIndexBackend
+from openssa.deprecated.integrations.openai.ssm import SLM as OpenAISLM
+from openssa.deprecated.integrations.openai.ssm import APIContext as OpenAIAPIContext
 
 
 Config.LEPTONAI_API_KEY: Optional[str] = os.environ.get('LEPTONAI_API_KEY') or None

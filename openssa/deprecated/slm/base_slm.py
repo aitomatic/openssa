@@ -1,10 +1,11 @@
 import json
-from openssa.core.adapter.base_adapter import BaseAdapter
-from openssa.core.slm.abstract_slm import AbstractSLM
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.utils.utils import Utils
-from openssa.utils.logs import Logs
-from openssa.core.prompts import Prompts
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.adapter.base_adapter import BaseAdapter
+from openssa.deprecated.prompts import Prompts
+from openssa.deprecated.slm.abstract_slm import AbstractSLM
+from openssa.deprecated.utils.utils import Utils
+from openssa.deprecated.utils.logs import Logs
 
 
 class BaseSLM(AbstractSLM):

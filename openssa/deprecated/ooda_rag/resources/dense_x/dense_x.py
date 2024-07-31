@@ -1,17 +1,19 @@
 import os
+
 from llama_index.core import SimpleDirectoryReader
-from llama_index.llms.openai import OpenAI
-from openssa.utils.utils import Utils
 from llama_index.core import StorageContext, load_index_from_storage, ServiceContext
 from llama_index.core.retrievers import RecursiveRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.node_parser import SentenceSplitter
-from openssa.core.ooda_rag.resources.dense_x.base import (
+from llama_index.llms.openai import OpenAI
+
+from openssa.deprecated.ooda_rag.resources.dense_x.base import (
     DenseXRetrievalPack,
     load_nodes_dict,
     store_nodes_dict,
 )
-from openssa.core.ooda_rag.resources.rag_resource import RagResource
+from openssa.deprecated.ooda_rag.resources.rag_resource import RagResource
+from openssa.deprecated.utils.utils import Utils
 
 
 @Utils.timeit

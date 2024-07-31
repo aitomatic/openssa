@@ -1,14 +1,15 @@
 import os
 import uuid
-from openssa.core.ssm.abstract_ssm import AbstractSSM
-from openssa.core.slm.abstract_slm import AbstractSLM
-from openssa.core.adapter.abstract_adapter import AbstractAdapter
-from openssa.core.backend.abstract_backend import AbstractBackend
-from openssa.core.slm.base_slm import BaseSLM
-from openssa.core.adapter.base_adapter import BaseAdapter
-from openssa.core.backend.base_backend import BaseBackend
-from openssa.utils.utils import Utils
-from openssa.utils.logs import Logs
+
+from openssa.deprecated.adapter.abstract_adapter import AbstractAdapter
+from openssa.deprecated.adapter.base_adapter import BaseAdapter
+from openssa.deprecated.backend.abstract_backend import AbstractBackend
+from openssa.deprecated.backend.base_backend import BaseBackend
+from openssa.deprecated.slm.abstract_slm import AbstractSLM
+from openssa.deprecated.slm.base_slm import BaseSLM
+from openssa.deprecated.ssm.abstract_ssm import AbstractSSM
+from openssa.deprecated.utils.logs import Logs
+from openssa.deprecated.utils.utils import Utils
 
 
 # pylint: disable=too-many-public-methods

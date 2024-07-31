@@ -1,7 +1,7 @@
-from openssa.core.ooda.task import Task
-from openssa.core.ooda.ooda_loop import OODALoop
-from openssa.core.ooda.heuristic import Heuristic
-from openssa.utils.llms import OpenAILLM
+from openssa.deprecated.ooda.heuristic import Heuristic
+from openssa.deprecated.ooda.ooda_loop import OODALoop
+from openssa.deprecated.ooda.task import Task
+from openssa.deprecated.utils.llms import OpenAILLM
 
 
 class Agent:
