@@ -5,8 +5,6 @@
 :: =======
 SET TARGET=%1
 
-IF "%TARGET%"=="get-doc" GOTO get-doc
-
 IF "%TARGET%"=="agent-solve" GOTO agent-solve
 IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
 IF "%TARGET%"=="agent-solve-w-knowledge" GOTO agent-solve-w-knowledge
@@ -23,13 +21,6 @@ IF "%TARGET%"=="eval-no-refresh" GOTO eval-no-refresh
 IF "%TARGET%"=="eval-test" GOTO eval-test
 
 IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
-
-
-:: DATA PROCESSING
-:: ===============
-:get-doc
-  poetry run python data.py %2
-  GOTO end
 
 
 :: BATCH INFERENCING
