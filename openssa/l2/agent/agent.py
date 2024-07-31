@@ -86,7 +86,7 @@ class Agent:
         """Add new Informational Resource(s)."""
         self.resources.update(new_resources)
 
-    def solve(self, problem: str, **adaptations_to_known_programs: Any) -> str:
+    def solve(self, problem: str, adaptations_to_known_programs: dict[str, Any] | None = None) -> str:
         """Solve the posed Problem.
 
         First either find from the Program Space a solution Program suitable for the Problem,
@@ -97,7 +97,7 @@ class Agent:
         task: Task = Task(ask=problem, resources=self.resources)
 
         program: AProgram = (self.program_space.find_program(task=task, knowledge=self.knowledge,
-                                                             **adaptations_to_known_programs)
+                                                             adaptations_to_known_programs=adaptations_to_known_programs)  # noqa: E501
                              or
                              self.programmer.construct_program(task=task, knowledge=self.knowledge))
 

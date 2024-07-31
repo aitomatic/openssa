@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 from functools import cache
 
 from openssa import Agent, ProgramSpace, HTP, HTPlanner, FileResource, LMConfig
-from openssa.l2.util.lm.openai import LlamaIndexOpenAILM
+from openssa.l2.util.lm.openai import default_llama_index_openai_lm
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
@@ -23,65 +23,51 @@ def get_or_create_expert_program_space() -> ProgramSpace:
 
 @cache
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_program_space: bool = False,
-                        max_depth=2, max_subtasks_per_decomp=4,
-                        llama_index_openai_lm_name: str = 'gpt-4o') -> Agent | None:
+                        max_depth=3, max_subtasks_per_decomp=6,
+                        llama_index_openai_lm_name: str = LMConfig.DEFAULT_OPENAI_MODEL) -> Agent:
     # pylint: disable=too-many-arguments
-    return (Agent(program_space=get_or_create_expert_program_space() if expert_program_space else ProgramSpace(),
-                  programmer=HTPlanner(max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-                  knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
-                  resources={FileResource(path=dir_path,
-                                          lm=LlamaIndexOpenAILM(model=llama_index_openai_lm_name,
-                                                                temperature=LMConfig.DEFAULT_TEMPERATURE,
-                                                                max_tokens=None,
-                                                                additional_kwargs={'seed': LMConfig.DEFAULT_SEED},
-                                                                max_retries=3, timeout=60, reuse_client=True,
-                                                                api_key=None, api_base=None, api_version=None,
-                                                                callback_manager=None, default_headers=None,
-                                                                http_client=None, async_http_client=None,
-                                                                system_prompt=None, messages_to_prompt=None,
-                                                                completion_to_prompt=None,
-                                                                # pydantic_program_mode=...,
-                                                                output_parser=None))})
-            if (dir_path := Doc(name=doc_name).dir_path)
-            else None)
+    return Agent(program_space=get_or_create_expert_program_space() if expert_program_space else ProgramSpace(),
+                 programmer=HTPlanner(max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
+                 knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
+                 resources={FileResource(path=Doc(name=doc_name).dir_path,
+                                         lm=default_llama_index_openai_lm(llama_index_openai_lm_name))})
 
 
 @cache
-def get_or_create_adaptations(fb_id: FbId) -> dict[str, str]:
-    return {EXPERT_HTP_COMPANY_KEY: (doc := Doc(name=DOC_NAMES_BY_FB_ID[fb_id])).company,
-            EXPERT_HTP_PERIOD_KEY: doc.period}
+def get_or_create_adaptations(doc_name: DocName) -> dict[str, str]:
+    return {EXPERT_HTP_COMPANY_KEY: (doc := Doc(name=doc_name)).company, EXPERT_HTP_PERIOD_KEY: doc.period}
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR')
 @log_qa_and_update_output_file(output_name='HTP-OODAR')
 def solve(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
-            if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id]))
-            else 'ERROR: doc not found')
+    return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id]).solve(
+        problem=QS_BY_FB_ID[fb_id],
+        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wKnowledge')
 def solve_with_knowledge(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
-            if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True))
-            else 'ERROR: doc not found')
+    return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True).solve(
+        problem=QS_BY_FB_ID[fb_id],
+        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wProgSpace')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wProgSpace')
 def solve_with_program_space(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
-            if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_program_space=True))
-            else 'ERROR: doc not found')
+    return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_program_space=True).solve(
+        problem=QS_BY_FB_ID[fb_id],
+        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge-wProgSpace')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wKnowledge-wProgSpace')
 def solve_with_knowledge_and_program_space(fb_id: FbId) -> Answer:
-    return (agent.solve(problem=QS_BY_FB_ID[fb_id], **get_or_create_adaptations(fb_id))
-            if (agent := get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_program_space=True))  # noqa: E501
-            else 'ERROR: doc not found')
+    return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_program_space=True).solve(
+        problem=QS_BY_FB_ID[fb_id],
+        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 if __name__ == '__main__':
