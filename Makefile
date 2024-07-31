@@ -100,7 +100,15 @@ release: build
 # DOCUMENTATION
 # =============
 docs: docs-build-clean docs-build-api
-	@poetry run sphinx-autobuild "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
+	@poetry run sphinx-autobuild \
+		--builder html \
+		--jobs auto \
+		--doctree-dir "$(DOCS_BUILD_DIR)/.doctrees" \
+		--conf-dir "$(DOCS_DIR)" \
+		--nitpicky \
+		--color \
+		--open-browser \
+		"$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-build-clean:
 	@rm -f "$(DOCS_DIR)"/*.rst
@@ -108,29 +116,35 @@ docs-build-clean:
 
 docs-build-api:
 	# generate .rst files from module code & docstrings
-	# any pathnames given at the end are paths to be excluded ignored during generation.
+	# path names/patterns at the end are those to exclude/ignore
 	# sphinx-doc.org/en/master/man/sphinx-apidoc.html
 	@poetry run sphinx-apidoc \
 		--force \
 		--follow-links \
+		--no-headings \
 		--maxdepth 9 \
 		--separate \
 		--implicit-namespaces \
 		--module-first \
 		--output-dir "$(DOCS_DIR)" "$(LIB_DIR)" \
-		*/contrib/streamlit_ssa_prob_solver/main.py */contrib/streamlit_ssa_prob_solver/pages
-
-	# get rid of undocumented members
-	# sed -e /:undoc-members:/d -i .orig "$(DOCS_DIR)"/$(LIB_DIR)*.rst
-	# rm "$(DOCS_DIR)"/*.orig
+		*/contrib */core */integrations */utils
 
 docs-build: docs-build-clean docs-build-api
-	@poetry run sphinx-build "$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
+	# sphinx-doc.org/en/master/man/sphinx-build.html
+	@poetry run sphinx-build \
+		--builder html \
+		--jobs auto \
+		--doctree-dir "$(DOCS_BUILD_DIR)/.doctrees" \
+		--conf-dir "$(DOCS_DIR)" \
+		--nitpicky \
+		--color \
+		"$(DOCS_DIR)" "$(DOCS_BUILD_DIR)"
 
 docs-deploy: docs-build
 	@git fetch --all
 
 	@git checkout gh-pages --
+	@git pull
 
 	@git config user.email "TheVinhLuong@gmail.com"
 	@git config user.name "The Vinh LUONG (LƯƠNG Thế Vinh)"
