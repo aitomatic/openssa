@@ -11,16 +11,17 @@ from loguru import logger
 from pandas import DataFrame, notna, read_csv
 from tqdm import tqdm
 
-from openssa.l2.util.lm.config import LMConfig
-from openssa.l2.util.lm.openai import OpenAILM
+from openssa.core.util.lm.config import LMConfig
+from openssa.core.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
                                 FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,
                                 OUTPUT_FILE_PATH, get_or_create_output_df)
+from log import switch_log_file
 
 if TYPE_CHECKING:
-    from openssa.l2.util.lm.abstract import AnLM
+    from openssa.core.util.lm.abstract import AbstractLM
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -65,7 +66,7 @@ load_dotenv()
 
 
 @cache
-def get_lm(model='gpt-4-1106-preview') -> AnLM:
+def get_lm(model='gpt-4o') -> AbstractLM:
     return OpenAILM(model=model, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
 
@@ -75,11 +76,14 @@ def human_eval_recommended(fb_id: FbId) -> bool | None:
 
 def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None,  # pylint: disable=too-many-arguments
                      n_times: int = 9, human: bool = True, debug: bool = False) -> bool:
+    if output_name:
+        switch_log_file(fb_id=fb_id, output_name=output_name)
+
     question: Question = (ground_truth := GROUND_TRUTHS[fb_id])['question']
     rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
 
-    lm: AnLM = get_lm()
+    lm: AbstractLM = get_lm()
 
     for _ in range(n_times):
         score: str = ''

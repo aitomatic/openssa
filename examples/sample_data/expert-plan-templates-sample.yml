@@ -1,0 +1,70 @@
+
+task: >-
+  Assess whether {COMPANY} is capital-intensive according to {PERIOD} fiscal period data
+
+sub-plans:
+  # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+  # retrieve individual starting & ending balance values only, without taking division or simple arithmetic average
+  # because RAG LMs may not be good at calculation & mathematical reasoning
+  - task: |-
+      What are values in dollars of:
+      - `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)`; and
+      - `Total Assets`
+      (or most similar-meaning reported line item to those)
+
+      on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+      (or most similar-meaning statement) of {COMPANY}
+      (and NOT Balance Sheets of its acquired and/or divested companies)
+
+      as at following two annual fiscal period ends:
+      - previous annual fiscal period end immediately preceding {PERIOD}; and
+      - current {PERIOD} annual fiscal period end?
+
+  - task: >-
+      What is value in dollars of
+      `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+      (or most similar-meaning reported line item)
+
+      on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+      (or most similar-meaning statement)
+
+      of {COMPANY} for {PERIOD} fiscal period?
+
+  # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+  - task: |-
+      What are values in dollars of:
+      - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+      - `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+      (or most similar-meaning reported line items to those)
+
+      on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+      or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+      (or most similar-meaning statement)
+
+      of {COMPANY} for {PERIOD} fiscal period?
+
+  - task: |-
+      Assess whether {COMPANY} is capital-intensive according to {PERIOD} fiscal period data
+
+      Capital-intensive businesses tend to have one or several of the following characteristics:
+
+      - high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`,
+        e.g., over 25%;
+
+      - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        e.g., over 2 times;
+
+      - high `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        e.g., over 10%;
+
+        and/or
+
+      - low `Return on (Total) Assets, a.k.a. RoA or RoTA`,
+        e.g., under 10%,
+        according to formula:
+
+        `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
+          `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
+          `average Total Assets, typically between two consecutive fiscal year-ends`
+        )

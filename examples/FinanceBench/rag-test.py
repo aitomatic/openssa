@@ -1,17 +1,13 @@
-from __future__ import annotations
-
 from argparse import ArgumentParser
-from typing import TYPE_CHECKING
 
 from loguru import logger
 
+from openssa import LMConfig
+
+# pylint: disable=wrong-import-order
 from data_and_knowledge import DocName, Doc, RAG_GROUND_TRUTHS
 from eval import get_lm, EVAL_PROMPT_TEMPLATE
 from rag_default import get_or_create_file_resource
-
-if TYPE_CHECKING:
-    from openssa.l2.resource.file import FileResource
-    from openssa.l2.util.lm.abstract import AnLM
 
 
 DEFS: dict[str, str] = RAG_GROUND_TRUTHS['defs']
@@ -26,12 +22,14 @@ QUESTION_PROMPT_TEMPLATE: str = (
 
 EVAL_RUBRIC_TEMPLATE: str = 'the answer contains a quantity equivalent to or approximately equal to {ground_truth}'
 
-EVAL_LM: AnLM = get_lm()
+EVAL_LM = get_lm()
 
 
-def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable=too-many-locals
+def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9,
+             llama_index_openai_lm_name: str = LMConfig.DEFAULT_SMALL_OPENAI_MODEL):
+    # pylint: disable=too-many-locals
     doc: Doc = Doc(name=doc_name)
-    file_resource: FileResource = get_or_create_file_resource(doc_name=doc_name)
+    file_resource = get_or_create_file_resource(doc_name=doc_name, llama_index_openai_lm_name=llama_index_openai_lm_name)  # noqa: E501
 
     for statement_id, line_item_details in RAG_GROUND_TRUTHS['ground-truths'][doc_name].items():
         statement: str = DEFS[statement_id]
@@ -72,6 +70,9 @@ def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9):  # pylint: disable
 
 arg_parser = ArgumentParser()
 arg_parser.add_argument('doc_name')
+arg_parser.add_argument('--gpt4o', action='store_true', default=False)
 args = arg_parser.parse_args()
 
-test_rag(doc_name=args.doc_name)
+test_rag(doc_name=args.doc_name, llama_index_openai_lm_name=(LMConfig.DEFAULT_OPENAI_MODEL
+                                                             if args.gpt4o
+                                                             else LMConfig.DEFAULT_SMALL_OPENAI_MODEL))
