@@ -62,7 +62,6 @@ ignore = [
   "D410",  # Missing blank line after section
   "D411",  # missing blank line before section
   "D415",  # first line should end with a period, question mark, or exclamation point
-  "DOC501",  # raised exception missing from docstring
   "DTZ011",  # the use of `datetime.date.today()` is not allowed, use `datetime.datetime.now(tz=).date()` instead
   "E261",  # insert at least two spaces before an inline comment
   "E501",  # line too long
