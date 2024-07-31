@@ -17,8 +17,8 @@ agent-solve-all-combos:
 	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
 
 
-ooda-solve:
-	@poetry run python ooda.py ${id}
+openai-assist:
+	@poetry run python openai_assist.py ${id}
 
 
 rag-default-answer:
