@@ -11,7 +11,7 @@ what is asked, what informational resources are available, the nature, the statu
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict, field
-from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired
+from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
@@ -43,9 +43,9 @@ class Task:
     result: str | None = None
 
     @classmethod
-    def from_dict(cls, d: TaskDict, /) -> Self:
+    def from_dict(cls, d: TaskDict, /) -> Task:
         """Create Task from dictionary representation."""
-        task: Self = cls(**d)
+        task: Task = cls(**d)
 
         if task.resources:
             task.resources: set[AbstractResource] = {(GLOBAL_RESOURCES[resource] if isinstance(resource, str) else resource)  # noqa: E501
@@ -64,12 +64,12 @@ class Task:
         return d
 
     @classmethod
-    def from_str(cls, s: str, /) -> Self:
+    def from_str(cls, s: str, /) -> Task:
         """Create Task from string representation."""
         return cls(ask=s)
 
     @classmethod
-    def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Self:
+    def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Task:
         """Create Task from dictionary or string representation."""
         if isinstance(dict_or_str, dict):
             return cls.from_dict(dict_or_str)
