@@ -82,6 +82,7 @@ ignore = [
   "LOG009",  # use of undocumented `logging.WARN` constant
   "N811",  # constant `SSM` imported as non-constant `LlamaIndexSSM`
   "PD002",  # `inplace=True` should be avoided; it has inconsistent behavior
+  "PERF203",  # try-except within a loop incurs performance overhead
   "PERF401",  # use a list comprehension to create a transformed list
   "PGH003",  # use specific rule codes when ignoring type issues
   "PGH004",  # use specific rule codes when using `ruff: noqa`
