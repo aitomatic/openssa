@@ -113,7 +113,7 @@ class OpenAIAssistant:
 
         """
 
-        instructions = self.read_instructions_from_file('./instructions.yaml')
+        instructions = self.read_instructions_from_file('./openai-instructions.txt')
         assistant = self.openai_client.beta.assistants.create(
             name="Assistant",
             model="gpt-4o",
