@@ -1,15 +1,16 @@
-"""Global Informational Resources Register."""
+"""Global Resources Register."""
 
+
+from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from .abstract import AResource
-
 if TYPE_CHECKING:
     from collections.abc import Callable
+    from .abstract import AbstractResource
 
 
-GLOBAL_RESOURCES: dict[str, AResource] = {}
+GLOBAL_RESOURCES: dict[str, AbstractResource] = {}
 
 
 def global_register(resource_class):
@@ -19,7 +20,7 @@ def global_register(resource_class):
         orig_init(self, *args, **kwargs)  # pylint: disable=unnecessary-dunder-call
 
         if self.unique_name not in GLOBAL_RESOURCES:
-            GLOBAL_RESOURCES[self.unique_name]: AResource = self
+            GLOBAL_RESOURCES[self.unique_name]: AbstractResource = self
 
     resource_class.__init__: Callable[..., None] = wrapped_init
 

@@ -35,8 +35,8 @@ from openssa.l2.task.status import TaskStatus
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.l2.reasoning.abstract import AReasoner
-    from openssa.l2.resource.abstract import AResource
+    from openssa.l2.reasoning.abstract import AbstractReasoner
+    from openssa.l2.resource.abstract import AbstractResource
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.util.lm.abstract import LMChatHist
     from openssa.l2.util.misc import AskAnsPair
@@ -67,13 +67,13 @@ class HTP(AbstractProgram):
 
     # Reasoner for working through individual Tasks to either conclude or make partial progress on them
     # (default: Observe-Orient-Decide-Act (OODA) Reasoner)
-    reasoner: AReasoner = field(default_factory=OodaReasoner,
-                                init=True,
-                                repr=True,
-                                hash=None,
-                                compare=True,
-                                metadata=None,
-                                kw_only=False)
+    reasoner: AbstractReasoner = field(default_factory=OodaReasoner,
+                                       init=True,
+                                       repr=True,
+                                       hash=None,
+                                       compare=True,
+                                       metadata=None,
+                                       kw_only=False)
 
     @property
     def quick_repr(self) -> PLAN:
@@ -111,7 +111,7 @@ class HTP(AbstractProgram):
         """Fix missing Resources in HTP."""
         for sub_htp in self.sub_htps:
             if not sub_htp.task.resources:
-                sub_htp.task.resources: set[AResource] = self.task.resources
+                sub_htp.task.resources: set[AbstractResource] = self.task.resources
             sub_htp.fill_missing_resources()
 
     def adapt(self, **kwargs: str):

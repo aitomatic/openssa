@@ -11,16 +11,15 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, TypeVar, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from openssa.l2.util.lm.openai import OpenAILM
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.resource.abstract import AResource
     from openssa.l2.task import Task
-    from openssa.l2.util.lm.abstract import AnLM
-    from .program import AProgram
+    from openssa.l2.util.lm.abstract import AbstractLM
+    from .program import AbstractProgram
 
 
 @dataclass
@@ -28,17 +27,14 @@ class AbstractProgrammer(ABC):
     """Abstract Programmer."""
 
     # language model for generating problem-solving Programs
-    lm: AnLM = field(default_factory=OpenAILM.from_defaults,
-                     init=True,
-                     repr=True,
-                     hash=None,
-                     compare=True,
-                     metadata=None,
-                     kw_only=False)
+    lm: AbstractLM = field(default_factory=OpenAILM.from_defaults,
+                           init=True,
+                           repr=True,
+                           hash=None,
+                           compare=True,
+                           metadata=None,
+                           kw_only=False)
 
     @abstractmethod
-    def construct_program(self, task: Task, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> AProgram:
+    def construct_program(self, task: Task, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> AbstractProgram:
         """Construct a Program for solving the posed Problem using given Knowledge & Resources."""
-
-
-AProgrammer: TypeVar = TypeVar('AProgrammer', bound=AbstractProgrammer, covariant=False, contravariant=False)

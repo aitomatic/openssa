@@ -7,7 +7,7 @@ ABSTRACT LANGUAGE MODEL (LM) INTERFACE
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Self, TypeVar
+from typing import Self
 
 from openai.types.chat.chat_completion_message_param import ChatCompletionMessageParam
 # - github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion_system_message_param.py
@@ -46,6 +46,3 @@ class AbstractLM(ABC):
     @abstractmethod
     def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
         """Call LM API and return response content."""
-
-
-AnLM: TypeVar = TypeVar('AnLM', bound=AbstractLM, covariant=False, contravariant=False)

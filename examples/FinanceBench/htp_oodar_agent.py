@@ -43,7 +43,7 @@ def get_or_create_adaptations(doc_name: DocName) -> dict[str, str]:
 def solve(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id]).solve(
         problem=QS_BY_FB_ID[fb_id],
-        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
+        adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge')
@@ -51,7 +51,7 @@ def solve(fb_id: FbId) -> Answer:
 def solve_with_knowledge(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True).solve(
         problem=QS_BY_FB_ID[fb_id],
-        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
+        adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wProgSpace')
@@ -59,7 +59,7 @@ def solve_with_knowledge(fb_id: FbId) -> Answer:
 def solve_with_program_space(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_program_space=True).solve(
         problem=QS_BY_FB_ID[fb_id],
-        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
+        adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge-wProgSpace')
@@ -67,7 +67,7 @@ def solve_with_program_space(fb_id: FbId) -> Answer:
 def solve_with_knowledge_and_program_space(fb_id: FbId) -> Answer:
     return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_program_space=True).solve(
         problem=QS_BY_FB_ID[fb_id],
-        adaptations_to_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
+        adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 if __name__ == '__main__':

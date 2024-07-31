@@ -5,13 +5,13 @@
 `OpenSSA` is an agentic AI framework for solving complex problems in real-world industry domains,
 overcoming the limitations of LLMs and RAG in such settings.
 
-## Level-2 Intelligence with Planning, Reasoning, domain-specific Knowledge and diverse Informational Resources
+## Level-2 Intelligence with Planning, Reasoning, domain-specific Knowledge and diverse Resources
 
 `OpenSSA` agents, built with powerful Hierarchical Task Planning (HTP) and Observe-Orient-Decide-Act Reasoning (OODAR),
 go far beyond the Level-1 pattern-matching intelligence performed by LLMs and RAG and achieve superior outcomes
 in complex multi-faceted, multi-step tasks. See our [comparative study](https://arxiv.org/abs/2404.11792).
 
-`OpenSSA` agents can also be armed with domain-specific Knowledge, connected to diverse Informational Resources
+`OpenSSA` agents can also be armed with domain-specific Knowledge, connected to diverse Resources
 (files, databases, web sources, etc.), and/or be guided by specialized industry experts
 to maximize the accuracy and comprehensiveness in their planning, reasoning and deliberative/iterative problem-solving.
 
