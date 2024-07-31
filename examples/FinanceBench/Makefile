@@ -24,18 +24,6 @@ ooda-solve:
 rag-default-answer:
 	@poetry run python rag_default.py ${id}
 
-rag-finetuned-embed-answer:
-	@poetry run python rag-finetuned-embed-only.py ${id}
-
-rag-finetuned-lm-answer:
-	@poetry run python rag-finetuned-lm-only.py ${id}
-
-rag-finetuned-both-answer:
-	@poetry run python rag-finetuned-embed-and-lm.py ${id}
-
-rag-gpt4-lm-answer:
-	@poetry run python rag-gpt4-lm.py ${id}
-
 rag-test:
 	@poetry run python rag-test.py ${doc}
 

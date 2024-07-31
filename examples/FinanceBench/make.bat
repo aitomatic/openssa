@@ -15,10 +15,6 @@ IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space" GOTO agent-solve-w-knowl
 IF "%TARGET%"=="ooda-solve" GOTO ooda-solve
 
 IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
-IF "%TARGET%"=="rag-finetuned-embed-answer" GOTO rag-finetuned-embed-answer
-IF "%TARGET%"=="rag-finetuned-lm-answer" GOTO rag-finetuned-lm-answer
-IF "%TARGET%"=="rag-finetuned-both-answer" GOTO rag-finetuned-both-answer
-IF "%TARGET%"=="rag-gpt4-lm-answer" GOTO rag-gpt4-lm-answer
 IF "%TARGET%"=="rag-test" GOTO rag-test
 IF "%TARGET%"=="rag-test-gpt4o" GOTO rag-test-gpt4o
 
@@ -64,22 +60,6 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :rag-default-answer
   poetry run python rag_default.py %2
-  GOTO end
-
-:rag-finetuned-embed-answer
-  poetry run python rag-finetuned-embed-only.py %2
-  GOTO end
-
-:rag-finetuned-lm-answer
-  poetry run python rag-finetuned-lm-only.py %2
-  GOTO end
-
-:rag-finetuned-both-answer
-  poetry run python rag-finetuned-embed-and-lm.py %2
-  GOTO end
-
-:rag-gpt4-lm-answer
-  poetry run python rag-gpt4-lm.py %2
   GOTO end
 
 :rag-test
