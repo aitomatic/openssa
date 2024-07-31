@@ -66,14 +66,19 @@ class ProgramSpace:
                                                 if knowledge
                                                 else None)
 
-        matching_program_name: str = self.lm.get_response(
-            prompt=PROGRAM_SEARCH_PROMPT_TEMPLATE.format(problem=task.ask,
-                                                         resource_overviews={resource.unique_name: resource.overview
-                                                                             for resource in task.resources},
-                                                         program_descriptions=self.descriptions),
-            history=knowledge_lm_hist)
+        valid_responses: set[str] = set(self.descriptions)
+        valid_responses.add('NONE')
 
-        if matching_program_name.startswith('NONE'):
+        matching_program_name: str = ''
+        while matching_program_name not in valid_responses:
+            matching_program_name: str = self.lm.get_response(
+                prompt=PROGRAM_SEARCH_PROMPT_TEMPLATE.format(problem=task.ask,
+                                                             resource_overviews={resource.unique_name: resource.overview
+                                                                                 for resource in task.resources},
+                                                             program_descriptions=self.descriptions),
+                history=knowledge_lm_hist)
+
+        if matching_program_name == 'NONE':
             return None
 
         adapted_program: AProgram = self.programs[matching_program_name].adapt(**adaptations)
