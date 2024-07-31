@@ -70,8 +70,8 @@ def default_llama_index_openai_embed_model() -> OpenAIEmbedding:
                            num_workers=cpu_count())
 
 
-def default_llama_index_openai_lm() -> LlamaIndexOpenAILM:
-    return LlamaIndexOpenAILM(model=LMConfig.DEFAULT_SMALL_OPENAI_MODEL,
+def default_llama_index_openai_lm(name: str = LMConfig.DEFAULT_SMALL_OPENAI_MODEL, /) -> LlamaIndexOpenAILM:
+    return LlamaIndexOpenAILM(model=name,
                               temperature=LMConfig.DEFAULT_TEMPERATURE,
                               max_tokens=None,
                               additional_kwargs={'seed': LMConfig.DEFAULT_SEED},
