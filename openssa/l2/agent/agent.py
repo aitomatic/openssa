@@ -28,10 +28,10 @@ from openssa.l2.programming.hierarchical.planner import HTPlanner
 from openssa.l2.task import Task
 
 if TYPE_CHECKING:
-    from openssa.l2.programming.abstract.program import AProgram
-    from openssa.l2.programming.abstract.programmer import AProgrammer
+    from openssa.l2.programming.abstract.program import AbstractProgram
+    from openssa.l2.programming.abstract.programmer import AbstractProgrammer
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.resource.abstract import AResource
+    from openssa.l2.resource.abstract import AbstractResource
 
 
 @dataclass
@@ -50,13 +50,13 @@ class Agent:
 
     # Programmer for constructing problem-solving Programs
     # (default: Hierarchical Task Planner)
-    programmer: AProgrammer = field(default_factory=HTPlanner,
-                                    init=True,
-                                    repr=True,
-                                    hash=None,
-                                    compare=True,
-                                    metadata=None,
-                                    kw_only=False)
+    programmer: AbstractProgrammer = field(default_factory=HTPlanner,
+                                           init=True,
+                                           repr=True,
+                                           hash=None,
+                                           compare=True,
+                                           metadata=None,
+                                           kw_only=False)
 
     # Knowledge for use in Program search/construction and execution
     # (stored as a set of strings; default: empty set)
@@ -70,23 +70,23 @@ class Agent:
 
     # Resources for answering information-querying questions
     # (default: empty set)
-    resources: set[AResource] = field(default_factory=set,
-                                      init=True,
-                                      repr=True,
-                                      hash=None,
-                                      compare=True,
-                                      metadata=None,
-                                      kw_only=False)
+    resources: set[AbstractResource] = field(default_factory=set,
+                                             init=True,
+                                             repr=True,
+                                             hash=None,
+                                             compare=True,
+                                             metadata=None,
+                                             kw_only=False)
 
     def add_knowledge(self, *new_knowledge: Knowledge):
         """Add new Knowledge piece(s) stored in string(s)."""
         self.knowledge.update(new_knowledge)
 
-    def add_resources(self, *new_resources: AResource):
-        """Add new Informational Resource(s)."""
+    def add_resources(self, *new_resources: AbstractResource):
+        """Add new Resource(s)."""
         self.resources.update(new_resources)
 
-    def solve(self, problem: str, adaptations_to_known_programs: dict[str, Any] | None = None) -> str:
+    def solve(self, problem: str, adaptations_from_known_programs: dict[str, Any] | None = None) -> str:
         """Solve the posed Problem.
 
         First either find from the Program Space a solution Program suitable for the Problem,
@@ -96,9 +96,11 @@ class Agent:
         """
         task: Task = Task(ask=problem, resources=self.resources)
 
-        program: AProgram = (self.program_space.find_program(task=task, knowledge=self.knowledge,
-                                                             adaptations_to_known_programs=adaptations_to_known_programs)  # noqa: E501
-                             or
-                             self.programmer.construct_program(task=task, knowledge=self.knowledge))
+        program: AbstractProgram = (
+            self.program_space.find_program(task=task, knowledge=self.knowledge,
+                                            adaptations_from_known_programs=adaptations_from_known_programs)
+            or
+            self.programmer.construct_program(task=task, knowledge=self.knowledge)
+        )
 
         return program.execute(knowledge=self.knowledge)

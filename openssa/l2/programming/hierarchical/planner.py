@@ -12,7 +12,7 @@ the complexity of which is controlled by 2 key parameters `max_depth` and `max_s
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from typing import Self, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from openssa.l2.programming.abstract.programmer import AbstractProgrammer
 from openssa.l2.knowledge._prompts import knowledge_injection_lm_chat_msgs
@@ -23,8 +23,8 @@ from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
-    from openssa.l2.reasoning.abstract import AReasoner
-    from openssa.l2.resource.abstract import AResource
+    from openssa.l2.reasoning.abstract import AbstractReasoner
+    from openssa.l2.resource.abstract import AbstractResource
     from openssa.l2.task import Task
     from openssa.l2.util.lm.abstract import LMChatHist
     from .plan import HTPDict
@@ -40,10 +40,10 @@ class HTPlanner(AbstractProgrammer):
     # maximum number of sub-tasks per decomposition
     max_subtasks_per_decomp: int = 4
 
-    def construct_htp(self, task: Task, knowledge: set[Knowledge] | None = None, reasoner: AReasoner | None = None) -> HTP:  # noqa: E501
-        """Construct HTP for solving posed Problem with given Knowledge and Informational Resources."""
+    def construct_htp(self, task: Task, knowledge: set[Knowledge] | None = None, reasoner: AbstractReasoner | None = None) -> HTP:  # noqa: E501
+        """Construct HTP for solving posed Problem with given Knowledge and Resources."""
         if not reasoner:
-            reasoner: AReasoner = OodaReasoner()
+            reasoner: AbstractReasoner = OodaReasoner()
 
         if self.max_depth > 0:
             prompt: str = (
@@ -68,16 +68,16 @@ class HTPlanner(AbstractProgrammer):
             htp: HTP = HTP.from_dict(htp_dict)
 
             htp.task: Task = task
-            htp.task.resources: set[AResource] | None = task.resources  # TODO: optimize to not always use all resources
-            htp.programmer: Self = self
-            htp.reasoner: AReasoner = reasoner
+            htp.task.resources: set[AbstractResource] | None = task.resources  # TODO: optimize to not always use all resources
+            htp.programmer: HTPlanner = self
+            htp.reasoner: AbstractReasoner = reasoner
 
-            sub_htp_programmer: Self = replace(self, max_depth=self.max_depth - 1)
+            sub_htp_programmer: HTPlanner = replace(self, max_depth=self.max_depth - 1)
             for sub_htp in htp.sub_htps:
                 if task.resources:
-                    sub_htp.task.resources: set[AResource] = task.resources  # TODO: optimize to not always use all resources
-                sub_htp.programmer: Self = sub_htp_programmer
-                sub_htp.reasoner: AReasoner = reasoner
+                    sub_htp.task.resources: set[AbstractResource] = task.resources  # TODO: optimize to not always use all resources
+                sub_htp.programmer: HTPlanner = sub_htp_programmer
+                sub_htp.reasoner: AbstractReasoner = reasoner
 
             return htp
 

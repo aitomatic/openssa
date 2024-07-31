@@ -11,7 +11,7 @@ what is asked, what informational resources are available, the nature, the statu
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict, field
-from typing import TYPE_CHECKING, Self, TypedDict, Required, NotRequired
+from typing import TYPE_CHECKING, TypedDict, Required, NotRequired
 
 from openssa.l2.resource._global import GLOBAL_RESOURCES
 
@@ -21,12 +21,12 @@ from .status import TaskStatus
 if TYPE_CHECKING:
     from openssa.l2.planning.abstract.plan import APlan
     from openssa.l2.planning.abstract.planner import APlanner
-    from openssa.l2.resource.abstract import AResource
+    from openssa.l2.resource.abstract import AbstractResource
 
 
 class TaskDict(TypedDict, total=False):
     ask: Required[str]
-    resources: NotRequired[set[AResource]]
+    resources: NotRequired[set[AbstractResource]]
     nature: NotRequired[TaskNature]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
@@ -37,19 +37,19 @@ class Task:
     """Task."""
 
     ask: str
-    resources: set[AResource] = field(default_factory=set)
+    resources: set[AbstractResource] = field(default_factory=set)
     nature: TaskNature | None = None
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
 
     @classmethod
-    def from_dict(cls, d: TaskDict, /) -> Self:
+    def from_dict(cls, d: TaskDict, /) -> Task:
         """Create Task from dictionary representation."""
-        task: Self = cls(**d)
+        task: Task = cls(**d)
 
         if task.resources:
-            task.resources: set[AResource] = {(GLOBAL_RESOURCES[r] if isinstance(r, str) else r)
-                                              for r in task.resources}
+            task.resources: set[AbstractResource] = {(GLOBAL_RESOURCES[resource] if isinstance(resource, str) else resource)  # noqa: E501
+                                                     for resource in task.resources}
 
         if task.nature:
             task.nature: TaskNature = TaskNature(task.nature)
@@ -60,16 +60,16 @@ class Task:
 
     def to_json_dict(self) -> dict:
         d: TaskDict = asdict(self)
-        d['resources']: list[AResource] = list(d['resources'])
+        d['resources']: list[AbstractResource] = list(d['resources'])
         return d
 
     @classmethod
-    def from_str(cls, s: str, /) -> Self:
+    def from_str(cls, s: str, /) -> Task:
         """Create Task from string representation."""
         return cls(ask=s)
 
     @classmethod
-    def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Self:
+    def from_dict_or_str(cls, dict_or_str: TaskDict | str, /) -> Task:
         """Create Task from dictionary or string representation."""
         if isinstance(dict_or_str, dict):
             return cls.from_dict(dict_or_str)
