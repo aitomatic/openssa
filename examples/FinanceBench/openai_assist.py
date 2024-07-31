@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 import asyncio
 import io
 import logging
@@ -6,14 +7,12 @@ from pathlib import Path
 import signal
 import sys
 import urllib.parse
-from argparse import ArgumentParser
 
 import aiohttp
 import anyio
+from openai import OpenAI
 
 from data_and_knowledge import DOC_NAMES_BY_FB_ID, FB_ID_COL_NAME, QS_BY_FB_ID, Answer, FbId
-from dotenv import load_dotenv
-from openai import OpenAI
 from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
