@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Any, Self, TYPE_CHECKING
+from typing import Any, Self as SameType, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
@@ -37,7 +37,7 @@ class AbstractProgram(ABC):
     programmer: AbstractProgrammer | None = None
 
     @abstractmethod
-    def adapt(self, **kwargs: Any) -> Self:
+    def adapt(self, **kwargs: Any) -> SameType:
         """Return adapted copy."""
 
     @abstractmethod

@@ -7,7 +7,7 @@ ABSTRACT LANGUAGE MODEL (LM) INTERFACE
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Self
+from typing import Self as SameType
 
 from openai.types.chat.chat_completion_message_param import ChatCompletionMessageParam
 # - github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion_system_message_param.py
@@ -36,7 +36,7 @@ class AbstractLM(ABC):
 
     @classmethod
     @abstractmethod
-    def from_defaults(cls) -> Self:
+    def from_defaults(cls) -> SameType:
         """Get LM instance with default parameters."""
 
     @abstractmethod
