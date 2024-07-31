@@ -23,7 +23,7 @@ def get_or_create_expert_program_space() -> ProgramSpace:
 
 @cache
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_program_space: bool = False,
-                        max_depth=2, max_subtasks_per_decomp=4,
+                        max_depth=3, max_subtasks_per_decomp=6,
                         llama_index_openai_lm_name: str = 'gpt-4o') -> Agent | None:
     # pylint: disable=too-many-arguments
     return (Agent(program_space=get_or_create_expert_program_space() if expert_program_space else ProgramSpace(),
