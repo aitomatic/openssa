@@ -76,4 +76,6 @@ class ProgramSpace:
         if matching_program_name.startswith('NONE'):
             return None
 
-        return self.programs[matching_program_name].adapt(**adaptations)
+        adapted_program: AProgram = self.programs[matching_program_name].adapt(**adaptations)
+        adapted_program.task: Task = task
+        return adapted_program
