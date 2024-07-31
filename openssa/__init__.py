@@ -3,9 +3,7 @@
 `OpenSSA`: SMALL SPECIALIST AGENTS FOR PROBLEM-SOLVING
 ======================================================
 
-`OpenSSA` is an agentic AI framework
-incorporating Planning, Reasoning, domain-specific Knowledge, and diverse Informational Resources
-to solve complex problems in real-world industry applications.
+`OpenSSA` is an agentic AI framework for solving complex problems in real-world industry applications.
 """
 
 
@@ -36,16 +34,13 @@ from openssa.utils.utils import Utils
 
 from .l2.agent.agent import Agent
 
-from .l2.planning.abstract.plan import AbstractPlan
-from .l2.planning.abstract.planner import AbstractPlanner
-from .l2.planning.hierarchical.plan import HTP
-from .l2.planning.hierarchical.planner import AutoHTPlanner
+from .l2.program_space import ProgramSpace
+from .l2.programming.hierarchical.plan import HTP
+from .l2.programming.hierarchical.planner import HTPlanner
 
-from .l2.reasoning.abstract import AbstractReasoner
 from .l2.reasoning.base import BaseReasoner
 from .l2.reasoning.ooda import OodaReasoner
 
-from .l2.resource.abstract import AbstractResource
 from .l2.resource.file import FileResource
 
 from .l2.task import Task
