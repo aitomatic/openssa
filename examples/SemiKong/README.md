@@ -1,1 +1,1 @@
-# Semiconductor Industry-Specific Problem-Solving Agents based on Open-Source `SemiKong` LM
+# Semiconductor Industry-Specific Agents based on Open-Source `SemiKong` LM
