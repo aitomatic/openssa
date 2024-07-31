@@ -21,7 +21,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field, replace
 from pprint import pformat
 from types import SimpleNamespace
-from typing import Self, TypedDict, Required, NotRequired, TYPE_CHECKING
+from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
 
 from loguru import logger
 from tqdm import tqdm
@@ -35,8 +35,8 @@ from openssa.l2.task.status import TaskStatus
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.l2.reasoning.abstract import AReasoner
-    from openssa.l2.resource.abstract import AResource
+    from openssa.l2.reasoning.abstract import AbstractReasoner
+    from openssa.l2.resource.abstract import AbstractResource
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.util.lm.abstract import LMChatHist
     from openssa.l2.util.misc import AskAnsPair
@@ -44,7 +44,7 @@ if TYPE_CHECKING:
 
 
 type HTPDict = TypedDict('HTPDict', {'task': Required[TaskDict | str],
-                                     'sub-htps': NotRequired[list[Self]]},
+                                     'sub-htps': NotRequired[list[HTPDict]]},
                          total=False)
 
 
@@ -57,23 +57,23 @@ class HTP(AbstractProgram):
     """Hierarchical Task Plan (HTP)."""
 
     # decomposed sub-HTPs for solving target Task
-    sub_htps: list[Self] = field(default_factory=list,
-                                 init=True,
-                                 repr=True,
-                                 hash=None,
-                                 compare=True,
-                                 metadata=None,
-                                 kw_only=False)
-
-    # Reasoner for working through individual Tasks to either conclude or make partial progress on them
-    # (default: Observe-Orient-Decide-Act (OODA) Reasoner)
-    reasoner: AReasoner = field(default_factory=OodaReasoner,
+    sub_htps: list[HTP] = field(default_factory=list,
                                 init=True,
                                 repr=True,
                                 hash=None,
                                 compare=True,
                                 metadata=None,
                                 kw_only=False)
+
+    # Reasoner for working through individual Tasks to either conclude or make partial progress on them
+    # (default: Observe-Orient-Decide-Act (OODA) Reasoner)
+    reasoner: AbstractReasoner = field(default_factory=OodaReasoner,
+                                       init=True,
+                                       repr=True,
+                                       hash=None,
+                                       compare=True,
+                                       metadata=None,
+                                       kw_only=False)
 
     @property
     def quick_repr(self) -> PLAN:
@@ -111,7 +111,7 @@ class HTP(AbstractProgram):
         """Fix missing Resources in HTP."""
         for sub_htp in self.sub_htps:
             if not sub_htp.task.resources:
-                sub_htp.task.resources: set[AResource] = self.task.resources
+                sub_htp.task.resources: set[AbstractResource] = self.task.resources
             sub_htp.fill_missing_resources()
 
     def adapt(self, **kwargs: str):

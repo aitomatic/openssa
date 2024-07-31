@@ -148,7 +148,7 @@ with pr:
 
             st.session_state.agent_solutions[task_doc_pair]: str = (
                 agent.solve(problem=question,
-                            adaptations_to_known_programs=get_or_create_adaptations(doc_name=st.session_state.doc_name))
+                            adaptations_from_known_programs=get_or_create_adaptations(doc_name=st.session_state.doc_name))
             )
 
     if (solution := st.session_state.agent_solutions[task_doc_pair]):

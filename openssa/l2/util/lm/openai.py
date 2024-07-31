@@ -55,9 +55,13 @@ class OpenAILM(AbstractLM):
         if json_format:
             kwargs['response_format'] = {'type': 'json_object'}
 
-        response_content: str = self.call(messages, **kwargs).choices[0].message.content
+            while True:
+                try:
+                    return json.loads(self.call(messages, **kwargs).choices[0].message.content)
+                except json.decoder.JSONDecodeError:
+                    continue
 
-        return json.loads(response_content) if json_format else response_content
+        return self.call(messages, **kwargs).choices[0].message.content
 
 
 def default_llama_index_openai_embed_model() -> OpenAIEmbedding:

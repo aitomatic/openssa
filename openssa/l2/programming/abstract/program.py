@@ -18,12 +18,12 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Any, Self, TypeVar, TYPE_CHECKING
+from typing import Any, Self as SameType, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openssa.l2.knowledge.abstract import Knowledge
     from openssa.l2.task import Task
-    from .programmer import AProgrammer
+    from .programmer import AbstractProgrammer
 
 
 @dataclass
@@ -34,10 +34,10 @@ class AbstractProgram(ABC):
     task: Task
 
     # Programmer that has constructed this
-    programmer: AProgrammer | None = None
+    programmer: AbstractProgrammer | None = None
 
     @abstractmethod
-    def adapt(self, **kwargs: Any) -> Self:
+    def adapt(self, **kwargs: Any) -> SameType:
         """Return adapted copy."""
 
     @abstractmethod
@@ -46,6 +46,3 @@ class AbstractProgram(ABC):
 
         Execution also optionally takes into account domain-specific Knowledge.
         """
-
-
-AProgram: TypeVar = TypeVar('AProgram', bound=AbstractProgram, covariant=False, contravariant=False)
