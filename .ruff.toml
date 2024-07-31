@@ -62,6 +62,7 @@ ignore = [
   "D410",  # Missing blank line after section
   "D411",  # missing blank line before section
   "D415",  # first line should end with a period, question mark, or exclamation point
+  "DOC501",  # raised exception missing from docstring
   "DTZ011",  # the use of `datetime.date.today()` is not allowed, use `datetime.datetime.now(tz=).date()` instead
   "E261",  # insert at least two spaces before an inline comment
   "E501",  # line too long
@@ -81,6 +82,7 @@ ignore = [
   "LOG009",  # use of undocumented `logging.WARN` constant
   "N811",  # constant `SSM` imported as non-constant `LlamaIndexSSM`
   "PD002",  # `inplace=True` should be avoided; it has inconsistent behavior
+  "PERF203",  # try-except within a loop incurs performance overhead
   "PERF401",  # use a list comprehension to create a transformed list
   "PGH003",  # use specific rule codes when ignoring type issues
   "PGH004",  # use specific rule codes when using `ruff: noqa`

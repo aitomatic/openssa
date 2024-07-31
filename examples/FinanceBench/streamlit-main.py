@@ -1,26 +1,20 @@
-# pylint: disable=bare-except,no-name-in-module,wrong-import-order,wrong-import-position
-
-
-from __future__ import annotations
-
 from collections import defaultdict
+from functools import cache
 
 from loguru import logger
 import streamlit as st
 
-from data_and_knowledge import (DocName, FbId,
-                                DOC_LINKS_BY_NAME, DOC_NAMES_BY_FB_ID, FB_IDS_BY_DOC_NAME, QS_BY_FB_ID,
-                                EXPERT_PLAN_MAP)
-from htp_oodar_agent import get_or_create_agent, expert_plan_from_fb_id
+from data_and_knowledge import DocName, Doc, DOC_NAMES, ExpertPlanId as TaskId, EXPERT_PROGRAM_SPACE
+from htp_oodar_agent import get_or_create_agent, get_or_create_adaptations
 from rag_default import get_or_create_file_resource
 
 
-DOC_NAMES: list[DocName] = sorted({DOC_NAMES_BY_FB_ID[fb_id] for fb_id in EXPERT_PLAN_MAP}
+TASK_IDS: list[TaskId] = list(EXPERT_PROGRAM_SPACE)
+TASK_IDS.insert(0, '')
+
+DOC_NAMES: list[DocName] = sorted(set(DOC_NAMES)
                                   .difference(('BOEING_2022_10K',
                                                'AES_2022_10K', 'MGMRESORTS_2018_10K', 'NETFLIX_2017_10K')))
-REPRESENTATIVE_FB_IDS_BY_DOC_NAME: dict[FbId, list[DocName]] = {doc_name: (set(FB_IDS_BY_DOC_NAME[doc_name])
-                                                                           .intersection(EXPERT_PLAN_MAP))
-                                                                for doc_name in DOC_NAMES}
 
 
 TITLE: str = 'OpenSSA: Analysing SEC Filings with Planning & Reasoning'
@@ -34,11 +28,58 @@ st.set_page_config(page_title=TITLE,
 st.title(body=TITLE, anchor=None, help=None)
 
 
-st.write('__SEC FILING__')
+if 'task_id' not in st.session_state:
+    st.session_state.task_id: str = TASK_IDS[0]
+
+
+if 'typed_question' not in st.session_state:
+    st.session_state.typed_question: str = "What is the company's Total Revenue in its latest fiscal period?"
+
+
+@cache
+def task_statement_template(task_id: TaskId, /) -> str:
+    return EXPERT_PROGRAM_SPACE[task_id]['task']
+
+
+@cache
+def task_statement(task_id: TaskId, doc_name: DocName) -> str:
+    return (task_statement_template(task_id).format(COMPANY=(doc := Doc(name=doc_name)).company, PERIOD=doc.period)
+            if task_id
+            else st.session_state.typed_question)
+
+
+st.write('__QUESTION/TASK__:')
+st.session_state.task_id: str = st.selectbox(label='Task',
+                                             options=TASK_IDS,
+                                             index=TASK_IDS.index(st.session_state.task_id),
+                                             format_func=lambda i: (task_statement_template(i).split('\n')[0]
+                                                                    if i
+                                                                    else '<TYPE QUESTION IN BELOW BOX>'),
+                                             key=None,
+                                             help='Task',
+                                             on_change=None, args=None, kwargs=None,
+                                             placeholder='Task',
+                                             disabled=False,
+                                             label_visibility='collapsed')
+
+
+if not st.session_state.task_id:
+    st.session_state.typed_question: str = st.text_area(label='Question',
+                                                        value=st.session_state.typed_question,
+                                                        height=3,
+                                                        max_chars=None,
+                                                        key=None,
+                                                        help='Type a Question',
+                                                        on_change=None, args=None, kwargs=None,
+                                                        placeholder='Type a Question',
+                                                        disabled=False,
+                                                        label_visibility='collapsed')
+
 
 if 'doc_name' not in st.session_state:
-    st.session_state.doc_name: str = DOC_NAMES[0]
+    st.session_state.doc_name: str = 'AMD_2022_10K'
 
+st.write('based on __SEC FILING__:')
 st.session_state.doc_name: str = st.selectbox(label='SEC Filing',
                                               options=DOC_NAMES,
                                               index=DOC_NAMES.index(st.session_state.doc_name),
@@ -50,30 +91,20 @@ st.session_state.doc_name: str = st.selectbox(label='SEC Filing',
                                               disabled=False,
                                               label_visibility='collapsed')
 
-st.write(DOC_LINKS_BY_NAME[st.session_state.doc_name])
+
+task_doc_pair: tuple[TaskId, DocName] = (st.session_state.task_id or st.session_state.typed_question,
+                                         st.session_state.doc_name)
 
 
-st.write('__PROBLEM__')
-
-problem_id: FbId = st.selectbox(label='Problem',
-                                options=REPRESENTATIVE_FB_IDS_BY_DOC_NAME[st.session_state.doc_name],
-                                index=0,
-                                format_func=lambda i: QS_BY_FB_ID[i],
-                                key=None,
-                                help='Problem',
-                                on_change=None, args=None, kwargs=None,
-                                placeholder='Problem',
-                                disabled=False,
-                                label_visibility='collapsed')
-
-problem: str = QS_BY_FB_ID[problem_id]
+question: str = task_statement(task_id=st.session_state.task_id, doc_name=st.session_state.doc_name)
 
 
-rag, agent = st.columns(spec=2, gap='large')
+rag, pr = st.columns(spec=2, gap='large')
 
 
 if 'rag_answers' not in st.session_state:
-    st.session_state.rag_answers: defaultdict[FbId, str] = defaultdict(str)
+    st.session_state.rag_answers: defaultdict[tuple[TaskId, DocName], str] = defaultdict(str)
+
 
 with rag:
     st.subheader('Retrieval-Augmented Generation (RAG)')
@@ -85,19 +116,22 @@ with rag:
                  disabled=False,
                  use_container_width=False):
         with st.spinner(text='_RETRIEVING INFO..._'):
-            st.session_state.rag_answers[problem_id]: str = (
-                get_or_create_file_resource(doc_name=st.session_state.doc_name).answer(question=problem))
+            st.session_state.rag_answers[task_doc_pair]: str = (
+                get_or_create_file_resource(doc_name=st.session_state.doc_name)
+                .answer(question=question)
+            )
 
-    if (answer := st.session_state.rag_answers[problem_id]):
+    if (answer := st.session_state.rag_answers[task_doc_pair]):
         st.markdown(body=answer.replace('$', r'\$'))
 
 
 if 'agent_solutions' not in st.session_state:
-    st.session_state.agent_solutions: defaultdict[FbId, str] = defaultdict(str)
+    st.session_state.agent_solutions: defaultdict[tuple[TaskId, DocName], str] = defaultdict(str)
 
-with agent:
+
+with pr:
     st.subheader('FINANCIAL ANALYST AGENT')
-    st.subheader('_with Planning & Reasoning_')
+    st.subheader('_with `OpenSSA` Planning & Reasoning_')
 
     if st.button(label='SOLVE',
                  on_click=None, args=None, kwargs=None,
@@ -107,9 +141,15 @@ with agent:
         with st.spinner(text='_SOLVING..._'):
             logger.level('DEBUG')
 
-            st.session_state.agent_solutions[problem_id]: str = (
-                get_or_create_agent(doc_name=st.session_state.doc_name, expert_knowledge=True)
-                .solve(problem=problem, plan=expert_plan_from_fb_id(problem_id), dynamic=False))
+            agent = get_or_create_agent(doc_name=st.session_state.doc_name,
+                                        expert_knowledge=True, expert_program_space=True,
+                                        max_depth=3, max_subtasks_per_decomp=6,
+                                        llama_index_openai_lm_name='gpt-4o-mini')
 
-    if (solution := st.session_state.agent_solutions[problem_id]):
+            st.session_state.agent_solutions[task_doc_pair]: str = (
+                agent.solve(problem=question,
+                            adaptations_from_known_programs=get_or_create_adaptations(doc_name=st.session_state.doc_name))
+            )
+
+    if (solution := st.session_state.agent_solutions[task_doc_pair]):
         st.markdown(body=solution.replace('$', r'\$'))

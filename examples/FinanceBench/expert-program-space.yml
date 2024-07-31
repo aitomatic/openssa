@@ -1,0 +1,1136 @@
+# TURNOVER METRIC EVALUATION
+# ==========================
+
+asset-turnover-ratio:
+  task: |-
+    Calculate `(Total) Asset Turnover Ratio` of {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
+    `(Total) Asset Turnover Ratio` = (
+      `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales` /
+      `average Total Assets, typically between two consecutive fiscal year-ends`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of `Total Assets` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+
+fa-turnover-ratio:
+  task: |-
+    Calculate `Fixed Asset Turnover Ratio` of {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
+    `Fixed Asset Turnover Ratio` = (
+      `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales` /
+      `average (Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E), typically between two consecutive fiscal year-ends`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)`
+        (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+
+inv-turnover-ratio:
+  task: |-
+    Calculate `Inventory Turnover Ratio` of {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
+    `Inventory Turnover Ratio, a.k.a. Inventory Conversion Ratio` = (
+      `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` /
+      `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of
+        `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of `(Total) (Net) Inventory(ies)` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+
+# INCOME & PROFITABILITY METRIC EVALUATION
+# ========================================
+
+cogs-margin:
+  task: |-
+    Calculate `Cost of Goods Sold (COGS) Margin` of {COMPANY} for {PERIOD} fiscal period
+    as percentage value according to formula:
+
+    `Cost of Goods Sold (COGS) Margin` = (
+      `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` /
+      `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+    )
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`; and
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line items to those)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+
+cogs-margin-3y-avg:
+  task: |-
+    Calculate 3-year average `Cost of Goods Sold (COGS) Margin` of {COMPANY} as percentage value
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`; and
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line items to those)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        Calculate 3-year average `Cost of Goods Sold (COGS) Margin`
+        by dividing sum of `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        and return division result as percentage value
+
+
+gross-margin-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in `Gross (Income or Profit or Earnings) Margin` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
+
+  sub-htps:
+    - task: |-
+        Calculate `Gross (Income or Profit or Earnings) Margin` of {COMPANY} as percentage values according to formula:
+
+        `Gross (Income or Profit or Earnings) Margin` = (
+          `Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))` /
+          `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
+        for following two annual fiscal periods:
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `Gross Income, a.k.a. Gross Profit, or Gross Earnings (or Loss(es))`; and
+            - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+            (or most similar-meaning reported line items to those)
+
+            on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+            (or most similar-meaning statement)
+
+            of {COMPANY} for following two annual fiscal periods:
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
+
+    - task: >-
+        Calculate difference between two calculated `Gross (Income or Profit or Earnings) Margin` percentage values
+        and assess whether `Gross (Income or Profit or Earnings) Margin` meaningfully degraded or improved
+
+
+op-margin-3y-avg:
+  task: >-
+    Calculate 3-year average `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY} as percentage value
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        Calculate 3-year average `(Unadjusted) Operating (Income or Profit or Earnings) Margin`
+        by dividing sum of `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`
+        by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        and return division result as percentage value
+
+
+op-margin-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in
+    `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
+
+  sub-htps:
+    - task: |-
+        Calculate `(Unadjusted) Operating (Income or Profit or Earnings) Margin` of {COMPANY}
+        as percentage values according to formula:
+
+        `(Unadjusted) Operating (Income or Profit or Earnings) Margin` = (
+          `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))` /
+          `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
+        for following two annual fiscal periods:
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
+            - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+            (or most similar-meaning statement)
+
+            of {COMPANY} for following two annual fiscal periods:
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
+
+    - task: >-
+        Calculate difference between two calculated `(Unadjusted) Operating (Income or Profit or Earnings) Margin` percentage values
+        and assess whether `(Unadjusted) Operating (Income or Profit or Earnings) Margin` meaningfully degraded or improved
+
+
+da-margin:
+  task: |-
+    Calculate `Depreciation & Amortization (D&A) Margin` of {COMPANY} for {PERIOD} fiscal period
+    as percentage value according to formula:
+
+    `Depreciation & Amortization (D&A) Margin` = (
+      `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))` /
+      `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        What is value in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+
+ebitda:
+  task: >-
+    Calculate `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA`
+    of {COMPANY} for {PERIOD} fiscal period in dollars according to formula:
+
+    `(Unadjusted) Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA` = (
+      `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))` +
+      `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    # retrieving CapEx as extra, as it is asked for sometimes
+    - task: |-
+        What are values in dollars of:
+        - `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`; and
+        - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        (or most similar-meaning reported line items to those)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+
+ebitda-margin:
+  task: |-
+    Calculate `(Unadjusted) EBITDA Margin` of {COMPANY} for {PERIOD} fiscal period as percentage value according to formula:
+
+    `(Unadjusted) EBITDA Margin` = (
+      (`(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))` +
+       `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`)
+      / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+    )
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    - task: |-
+        What are values in dollars of:
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+        - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`
+        (or most similar-meaning reported line items to those)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: >-
+        What is value in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        Calculate `(Unadjusted) EBITDA Margin` of {COMPANY} for {PERIOD} fiscal period
+        as percentage value according to formula:
+
+        `(Unadjusted) EBITDA Margin` = (
+          (`(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))` +
+           `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`)
+          / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
+
+ebitda-margin-3y-avg:
+  task: >-
+    Calculate 3-year average `(Unadjusted) EBITDA Margin` of {COMPANY} as percentage value
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    - task: |-
+        What are values in dollars of:
+        - `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`; and
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        What are values in dollars of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`
+        (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        Calculate 3-year average `(Unadjusted) EBITDA Margin`
+        by adding sum of `(Unadjusted) Operating Income, a.k.a. Operating Profit, or Operating Earnings (or Loss(es))`
+        to sum of `Depreciation & Amortization, a.k.a. D&A (of Fixed Assets or Property, Plant & Equipment (PP&E))`,
+        then dividing that combined sum by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        and return division result as percentage value
+
+
+net-margin-3y-avg:
+  task: >-
+    Calculate 3-year average `Net (Income or Profit or Earnings) Margin` of {COMPANY} as percentage value
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`; and
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        Calculate 3-year average `Net (Income or Profit or Earnings) Margin`
+        by dividing sum of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        and return division result as percentage value
+
+
+# PROFIT-UTILIZATION / CAPITAL-RETURN METRIC EVALUATION
+# =====================================================
+
+int-cov-ratio:
+  task: >-
+    Calculate `Interest Coverage Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula:
+
+    `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `Earnings before Interest & Tax, a.k.a. EBIT`; and
+        - `Interest Expense`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: >-
+        Calculate `Interest Coverage Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula:
+
+        `Interest Coverage Ratio` = `Earnings before Interest & Tax, a.k.a. EBIT` / `Interest Expense`
+
+        (note that if `Earnings before Interest & Tax, a.k.a. EBIT` is negative,
+         it is conventional to say `Interest Coverage Ratio` is zero)
+
+
+effective-tax-rate-comp:
+  task: >-
+    Assess change in `Effective (Income) Tax Rate` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
+
+  sub-htps:
+    - task: >-
+        Calculate `Effective (Income) Tax Rate` of {COMPANY} for {PERIOD} fiscal period as percentage value according to formula:
+
+        `Effective (Income) Tax Rate` = `(Income) Tax Expense` / `Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)`
+
+        for following two annual fiscal periods:
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `(Income) Tax Expense`; and
+            - `Income or Profit or Earnings (or Loss(es)) before (Income) Tax(es)`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+            (or most similar-meaning statement)
+
+            of {COMPANY} for following two annual fiscal periods:
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
+
+
+div-payout-ratio:
+  task: |-
+    Calculate `Dividend Payout Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula:
+
+    `Dividend Payout Ratio` = (
+      `Cash Dividends` /
+      `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+
+retention-ratio:
+  task: |-
+    Calculate `Retention Ratio` of {COMPANY} for {PERIOD} fiscal period as decimal value according to formula:
+
+    `Retention Ratio` = 1 - (
+      `Cash Dividends` /
+      `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `Cash Dividends` (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+
+# LIQUIDITY METRIC EVALUATION
+# ===========================
+
+net-work-cap:
+  task: |-
+    Calculate `(Net) Working Capital` of {COMPANY} as at {PERIOD} fiscal period end, in dollars according to formula:
+
+    `(Net) Working Capital` = `(Total) Current Assets` - `(Total) Current Liabilities`
+
+    and assess whether `(Net) Working Capital` is positive or negative
+
+  sub-htps:
+    - task: |-
+        What is value in dollars of `(Total) Current Assets` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at {PERIOD} fiscal period end?
+
+    - task: |-
+        What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at {PERIOD} fiscal period end?
+
+
+work-cap-ratio:
+  task: |-
+    Calculate `Working Capital Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
+
+    `Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual numerator & denominator balance values only, without taking division
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `(Total) Current Assets`; and
+        - `(Total) Current Liabilities`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at {PERIOD} fiscal period end?
+
+
+quick-ratio:
+  task: Assess liquidity health of {COMPANY} through its `Quick Ratio` as at {PERIOD} fiscal period end
+
+  sub-htps:
+    - task: |-
+        Calculate `Quick Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
+
+        `Quick Ratio` = (
+          (`Cash & Cash Equivalents` +
+           `Short-Term Investments or (Current) Marketable Securities` +
+           `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`)
+          / `(Total) Current Liabilities`
+        )
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `Cash & Cash Equivalents`;
+            - `Short-Term Investments or (Current) Marketable Securities`;
+            - `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`; and
+            - `(Total) Current Liabilities`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+            (or most similar-meaning statement) of {COMPANY}
+            (and NOT Balance Sheets of its acquired and/or divested companies)
+
+            as at {PERIOD} fiscal period end?
+
+    - task: |-
+        Compare calculated `Quick Ratio` decimal value against 1.00 and make assessment:
+        - `Quick Ratio` >= 1.00: liquidity is healthy; or
+        - `Quick Ratio` < 1.00: liquidity is not very healthy
+
+
+quick-ratio-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in `Quick Ratio` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period end to current {PERIOD} annual fiscal period end
+
+  sub-htps:
+    - task: |-
+        Calculate `Quick Ratio` of {COMPANY} as decimal values according to formula:
+
+        `Quick Ratio` = (
+          (`Cash & Cash Equivalents` +
+           `Short-Term Investments or (Current) Marketable Securities` +
+           `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`)
+          / `(Total) Current Liabilities`
+        )
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `Cash & Cash Equivalents`;
+            - `Short-Term Investments or (Current) Marketable Securities`;
+            - `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`; and
+            - `(Total) Current Liabilities`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+            (or most similar-meaning statement) of {COMPANY}
+            (and NOT Balance Sheets of its acquired and/or divested companies)
+
+            as at following two annual fiscal period ends:
+            - previous annual fiscal period end immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period end?
+
+    - task: >-
+        Calculate difference between two calculated `Quick Ratio` decimal values
+        and assess whether `Quick Ratio` meaningfully degraded or improved
+
+
+fcf:
+  task: |-
+    Calculate `Free Cash Flow, a.k.a. FCF` of {COMPANY} for {PERIOD} fiscal period in dollars according to formula:
+
+    `Free Cash Flow, a.k.a. FCF` = (
+      `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
+      `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+    )
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual balance values only, without taking difference
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
+        - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+
+fcf-conv-comp:
+  task: >-
+    Calculate change and assess degradation/improvement in `Free Cash Flow Conversion Ratio` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period to current {PERIOD} annual fiscal period
+
+  sub-htps:
+    - task: |-
+        Calculate `Free Cash Flow Conversion Ratio` of {COMPANY} as percentage values according to formula:
+
+        `Free Cash Flow Conversion Ratio` = (
+          (`(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
+           `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`)
+          / `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        )
+
+        for following two annual fiscal periods:
+        - previous annual fiscal period immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual balance values only, without taking difference
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`; and
+            - `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+            (or most similar-meaning statement)
+
+            of {COMPANY} for following two annual fiscal periods:
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
+
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+        - task: |-
+            What are values in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+            (or most similar-meaning reported line item)
+
+            on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+            or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+            (or most similar-meaning statement)
+
+            of {COMPANY} for following two annual fiscal periods:
+            - previous annual fiscal period immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period?
+
+    - task: >-
+        Calculate difference between two calculated `Free Cash Flow Conversion Ratio` percentage values
+        and assess whether `Free Cash Flow Conversion Ratio` meaningfully degraded or improved
+
+
+op-cf-ratio:
+  task: |-
+    Calculate Operating Cash Flow Ratio of {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
+    `Operating Cash Flow Ratio` = (
+      `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`
+      / `(Total) Current Liabilities`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    - task: >-
+        What is value in dollars of `(Total) Current Liabilities` (or most similar-meaning reported line item)
+
+        on `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at {PERIOD} annual fiscal period end?
+
+
+days-payable-outstanding:
+  task: |-
+    Calculate `Days Payable Outstanding, a.k.a. DPO` for {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
+    `Days Payable Outstanding, a.k.a. DPO` = (
+      365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
+      / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
+         `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
+    )
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking difference or simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `Accounts Payable`; and
+        - `(Total) (Net) Inventory(ies)`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+    # TODO: remove/simplify: back-up task in case above fails
+    - task: |-
+        What are values in dollars of `Accounts Payable` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+    - task: >-
+        What is value in dollars of
+        `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+
+cash-conv-cyc:
+  task: |-
+    Calculate `Cash Conversion Cycle, a.k.a. CCC` of {COMPANY} for {PERIOD} annual fiscal period
+    as decimal value according to formula:
+
+    `Cash Conversion Cycle, a.k.a. CCC` = (
+      `Days Inventory Outstanding, a.k.a. DIO` + `Days Sales Oustanding, a.k.a. DSO` - `Days Payable Outstanding, a.k.a. DPO`
+    )
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking difference or simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `(Total) (Net) Inventory(ies)`;
+        - `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`; and
+        - `Accounts Payable`
+        (or most similar-meaning reported line items to those)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+    - task: >-
+        What are values in dollars of:
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+        - `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        (or most similar-meaning reported line items to those)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    - task: |-
+        Calculate `Days Inventory Outstanding, a.k.a. DIO` for {COMPANY} for {PERIOD} annual fiscal period
+        as decimal value according to formula:
+
+        `Days Inventory Outstanding, a.k.a. DIO` = (
+          365 * `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
+          / `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+        )
+
+    - task: |-
+        Calculate `Days Sales Oustanding, a.k.a. DSO` for {COMPANY} for {PERIOD} annual fiscal period
+        as decimal value according to formula:
+
+        `Days Sales Oustanding, a.k.a. DSO` = (
+          365 * `average (Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables, typically between two consecutive fiscal year-ends`
+          / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        )
+
+    - task: |-
+        Calculate `Days Payable Outstanding, a.k.a. DPO` for {COMPANY} for {PERIOD} annual fiscal period
+        as decimal value according to formula:
+
+        `Days Payable Outstanding, a.k.a. DPO` = (
+          365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
+          / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
+            `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
+        )
+
+
+# LEVERAGE METRIC EVALUATION
+# ==========================
+
+debt-comp:
+  task: >-
+    Calculate change and assess increase/decrease in `Total Debt` of {COMPANY}
+    from corresponding one-year-preceding previous annual fiscal period end to current {PERIOD} annual fiscal period end
+
+  sub-htps:
+    - task: |-
+        Calculate `Total Debt` of {COMPANY} in dollar values according to formula:
+
+        `Total Debt` = (
+          `Long-Term Debt (EXCLUDING any current/short-term portion)` +
+          `Short-Term Debt, or Current Portion of (Long-Term) Debt`
+        )
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual balance values only, without taking sum
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `Long-Term Debt (EXCLUDING any current/short-term portion)`; and
+            - `Short-Term Debt, or Current Portion of (Long-Term) Debt`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+            (or most similar-meaning statement) of {COMPANY}
+            (and NOT Balance Sheets of its acquired and/or divested companies)
+
+            as at following two annual fiscal period ends:
+            - previous annual fiscal period end immediately preceding {PERIOD}; and
+            - current {PERIOD} annual fiscal period end?
+
+    - task: >-
+        Calculate difference between two calculated `Total Debt` dollar values
+        and assess whether `Total Debt` meaningfully degraded or improved
+
+
+# CAPITAL-INTENSIVENESS METRIC EVALUATION
+# =======================================
+
+capex-as-pct-of-rev-3y-avg:
+  task: >-
+    Calculate 3-year average of
+    `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+    as proportion of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+    for {COMPANY} as percentage value
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    - task: >-
+        What are values in dollars of
+        `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
+
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    - task: >-
+        What are values in dollars of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for past 3 fiscal years?
+
+    - task: >-
+        Calculate 3-year average of Capital Expenditure(s) (CapEx) as percentage of Revenue
+        by dividing sum of `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        by sum of `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+        and return division result as percentage value
+
+
+roa:
+  task: |-
+    Calculate `Return on (Total) Assets, a.k.a. RoA or RoTA` of {COMPANY} for {PERIOD} annual fiscal period
+    as percentage value according to formula:
+
+    `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
+      `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
+      `average Total Assets, typically between two consecutive fiscal year-ends`
+    )
+
+  sub-htps:
+    - task: >-
+        What is value in dollars of `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} annual fiscal period?
+
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual balance values only, without taking simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of `Total Assets` (or most similar-meaning reported line item)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+
+cap-intens:
+  task: >-
+    Assess whether {COMPANY} is capital-intensive according to {PERIOD} fiscal period data
+
+  sub-htps:
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+    # retrieve individual starting & ending balance values only, without taking division or simple arithmetic average
+    # because RAG LMs may not be good at calculation & mathematical reasoning
+    - task: |-
+        What are values in dollars of:
+        - `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)`; and
+        - `Total Assets`
+        (or most similar-meaning reported line item to those)
+
+        on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+        (or most similar-meaning statement) of {COMPANY}
+        (and NOT Balance Sheets of its acquired and/or divested companies)
+
+        as at following two annual fiscal period ends:
+        - previous annual fiscal period end immediately preceding {PERIOD}; and
+        - current {PERIOD} annual fiscal period end?
+
+    - task: >-
+        What is value in dollars of
+        `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+        (or most similar-meaning reported line item)
+
+        on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency
+    - task: |-
+        What are values in dollars of:
+        - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+        - `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+        (or most similar-meaning reported line items to those)
+
+        on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+        or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+        (or most similar-meaning statement)
+
+        of {COMPANY} for {PERIOD} fiscal period?
+
+    - task: |-
+        Assess whether {COMPANY} is capital-intensive according to {PERIOD} fiscal period data
+
+        Capital-intensive businesses tend to have one or several of the following characteristics:
+
+        - high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`,
+          e.g., over 25%;
+
+        - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+          e.g., over 2 times;
+
+        - high `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+          relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+          e.g., over 10%;
+
+          and/or
+
+        - low `Return on (Total) Assets, a.k.a. RoA or RoTA`,
+          e.g., under 10%,
+          according to formula:
+
+          `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
+            `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
+            `average Total Assets, typically between two consecutive fiscal year-ends`
+          )

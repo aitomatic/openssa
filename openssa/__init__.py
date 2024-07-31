@@ -3,9 +3,7 @@
 `OpenSSA`: SMALL SPECIALIST AGENTS FOR PROBLEM-SOLVING
 ======================================================
 
-`OpenSSA` is an agentic AI framework
-incorporating Planning, Reasoning, domain-specific Knowledge, and diverse Informational Resources
-to solve complex problems in real-world industry applications.
+`OpenSSA` is an agentic AI framework for solving complex problems in real-world industry applications.
 """
 
 
@@ -13,44 +11,20 @@ from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
 import tomllib
 
-from openssa.core.ooda_rag.heuristic import TaskDecompositionHeuristic
-from openssa.core.ooda_rag.ooda_ssa import OodaSSA
-from openssa.core.prompts import Prompts
-from openssa.core.slm.base_slm import BaseSLM
-from openssa.core.ssa.ssa import BaseSSA
-from openssa.core.ssm.base_ssm import BaseSSM
-from openssa.integrations.azure.ssm import GPT3ChatCompletionSSM as AzureGPT3ChatCompletionSSM
-from openssa.integrations.azure.ssm import GPT3CompletionSSM as AzureGPT3CompletionSSM
-from openssa.integrations.azure.ssm import GPT4ChatCompletionSSM as AzureGPT4ChatCompletionSSM
-from openssa.integrations.huggingface.ssm import Falcon7bSSM
-from openssa.integrations.lepton_ai.ssm import SLM as LeptonSLM
-from openssa.integrations.lepton_ai.ssm import SSM as LeptonSSM
-from openssa.integrations.llama_index.ssm import GPT4SSM as GPT4LlamaIndexSSM
-from openssa.integrations.llama_index.ssm import SSM as LlamaIndexSSM
-from openssa.integrations.llama_index.ssm import LeptonLlamaIndexSSM
-from openssa.integrations.openai.ssm import GPT3ChatCompletionSSM as OpenAIGPT3ChatCompletionSSM
-from openssa.integrations.openai.ssm import GPT3CompletionSSM as OpenAIGPT3CompletionSSM
-from openssa.utils.config import Config
-from openssa.utils.logs import Logs, logger, mlogger
-from openssa.utils.utils import Utils
+from .core.agent.agent import Agent
 
-from .l2.agent.agent import Agent
+from .core.program_space import ProgramSpace
+from .core.programming.hierarchical.plan import HTP
+from .core.programming.hierarchical.planner import HTPlanner
 
-from .l2.planning.abstract.plan import AbstractPlan
-from .l2.planning.abstract.planner import AbstractPlanner
-from .l2.planning.hierarchical.plan import HTP
-from .l2.planning.hierarchical.planner import AutoHTPlanner
+from .core.reasoning.base import BaseReasoner
+from .core.reasoning.ooda import OodaReasoner
 
-from .l2.reasoning.abstract import AbstractReasoner
-from .l2.reasoning.base import BaseReasoner
-from .l2.reasoning.ooda import OodaReasoner
+from .core.resource.file import FileResource
 
-from .l2.resource.abstract import AbstractResource
-from .l2.resource.file import FileResource
+from .core.task import Task
 
-from .l2.task import Task
-
-from .l2.util.lm.config import LMConfig
+from .core.util.lm.config import LMConfig
 
 
 try:
