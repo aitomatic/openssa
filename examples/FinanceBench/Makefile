@@ -10,7 +10,7 @@ agent-solve-w-prog-space:
 agent-solve-w-knowledge-and-prog-space:
 	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
 
-agent-all-combo-solve:
+agent-solve-all-combos:
 	@poetry run python htp_oodar_agent.py ${id}
 	@poetry run python htp_oodar_agent.py ${id} --knowledge
 	@poetry run python htp_oodar_agent.py ${id} --prog-space
