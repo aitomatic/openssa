@@ -31,10 +31,6 @@ rag-test-gpt4o:
 	@poetry run python rag-test.py ${doc} --gpt4o
 
 
-ssm-discuss:
-	@poetry run python ssm.py ${id}
-
-
 eval:
 	@poetry run python eval.py ${output}
 

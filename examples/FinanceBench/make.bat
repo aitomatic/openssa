@@ -18,8 +18,6 @@ IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
 IF "%TARGET%"=="rag-test" GOTO rag-test
 IF "%TARGET%"=="rag-test-gpt4o" GOTO rag-test-gpt4o
 
-IF "%TARGET%"=="ssm-discuss" GOTO ssm-discuss
-
 IF "%TARGET%"=="eval" GOTO eval
 IF "%TARGET%"=="eval-no-refresh" GOTO eval-no-refresh
 IF "%TARGET%"=="eval-test" GOTO eval-test
@@ -68,11 +66,6 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :rag-test-gpt4o
   poetry run python rag-test.py %2 --gpt4o
-  GOTO end
-
-
-:ssm-discuss
-  poetry run python ssm.py %2
   GOTO end
 
 
