@@ -38,11 +38,9 @@ from .l2.program_space import ProgramSpace
 from .l2.programming.hierarchical.plan import HTP
 from .l2.programming.hierarchical.planner import HTPlanner
 
-from .l2.reasoning.abstract import AbstractReasoner
 from .l2.reasoning.base import BaseReasoner
 from .l2.reasoning.ooda import OodaReasoner
 
-from .l2.resource.abstract import AbstractResource
 from .l2.resource.file import FileResource
 
 from .l2.task import Task
