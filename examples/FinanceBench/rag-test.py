@@ -73,4 +73,6 @@ arg_parser.add_argument('doc_name')
 arg_parser.add_argument('--gpt4o', action='store_true', default=False)
 args = arg_parser.parse_args()
 
-test_rag(doc_name=args.doc_name, llama_index_openai_lm_name='gpt-4o' if args.gpt4o else 'gpt-4o-mini')
+test_rag(doc_name=args.doc_name, llama_index_openai_lm_name=(LMConfig.DEFAULT_OPENAI_MODEL
+                                                             if args.gpt4o
+                                                             else LMConfig.DEFAULT_SMALL_OPENAI_MODEL))
