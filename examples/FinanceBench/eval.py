@@ -11,8 +11,8 @@ from loguru import logger
 from pandas import DataFrame, notna, read_csv
 from tqdm import tqdm
 
-from openssa.l2.util.lm.config import LMConfig
-from openssa.l2.util.lm.openai import OpenAILM
+from openssa.core.util.lm.config import LMConfig
+from openssa.core.util.lm.openai import OpenAILM
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
@@ -21,7 +21,7 @@ from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
 from log import switch_log_file
 
 if TYPE_CHECKING:
-    from openssa.l2.util.lm.abstract import AbstractLM
+    from openssa.core.util.lm.abstract import AbstractLM
 
 
 EVAL_PROMPT_TEMPLATE: str = \
