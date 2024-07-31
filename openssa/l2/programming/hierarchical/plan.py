@@ -132,7 +132,7 @@ class HTP(AbstractProgram):
         reasoning_wo_sub_results: str = self.reasoner.reason(task=self.task, knowledge=knowledge, other_results=other_results)  # noqa: E501
 
         if self.sub_htps:
-            sub_htps: list[Self] = self.sub_htps
+            decomposed_htp: HTP = self
 
         # if Reasoner's result is unsatisfactory,
         # and if there is still allowed recursive depth,
@@ -140,20 +140,18 @@ class HTP(AbstractProgram):
         elif (self.task.is_attempted and not self.task.is_done) and (self.programmer and self.programmer.max_depth):
             decomposed_htp: HTP = self.programmer.construct_htp(task=self.task, knowledge=knowledge, reasoner=self.reasoner)
 
-            logger.info('\n'
-                        'TASK-DECOMPOSITION PLANNING\n'
-                        '===========================\n'
-                        f'\n{decomposed_htp.pformat}\n')
-
-            sub_htps: list[Self] = decomposed_htp.sub_htps
-
         else:
-            sub_htps: list[Self] = []
+            decomposed_htp = None
 
         # if there are sub-HTPs, recursively execute them and integrate their results
-        if sub_htps:
+        if decomposed_htp:
+            logger.info('\n'
+                        'EXECUTING HIERACHICAL TASK PLAN (HTP)\n'
+                        '=====================================\n'
+                        f'\n{decomposed_htp.pformat}\n')
+
             sub_results: list[AskAnsPair] = []
-            for sub_htp in tqdm(sub_htps):
+            for sub_htp in tqdm(decomposed_htp.sub_htps):
                 sub_results.append((sub_htp.task.ask, sub_htp.execute(knowledge=knowledge, other_results=sub_results)))
 
             inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
