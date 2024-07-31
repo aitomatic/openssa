@@ -6,9 +6,10 @@
 SET TARGET=%1
 
 IF "%TARGET%"=="agent-solve" GOTO agent-solve
-IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
 IF "%TARGET%"=="agent-solve-w-knowledge" GOTO agent-solve-w-knowledge
+IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
 IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space" GOTO agent-solve-w-knowledge-and-prog-space
+IF "%TARGET%"=="agent-solve-all-combos" GOTO agent-solve-all-combos
 
 IF "%TARGET%"=="openai-assist" GOTO openai-assist
 
@@ -38,6 +39,13 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
   GOTO end
 
 :agent-solve-w-knowledge-and-prog-space
+  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
+  GOTO end
+
+:agent-solve-all-combo
+  poetry run python htp_oodar_agent.py %2
+  poetry run python htp_oodar_agent.py %2 --knowledge
+  poetry run python htp_oodar_agent.py %2 --prog-space
   poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
   GOTO end
 
