@@ -1,1 +1,0 @@
-../../../openssa/l2/resource/abstract.py
