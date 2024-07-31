@@ -10,15 +10,15 @@
 
 - `openssa`: Root package for OpenSSA.
   - `openssa.core`: Core functionalities of the SSMs.
-    - `openssa.core.ssm`: Small Specialist Model (SSM) functionality.
-      - `openssa.core.ssm.openai_ssm`: OpenAI API SSM implementations.
-      - `openssa.core.ssm.huggingface_ssm`: HuggingFace API SSM implementations.
-    - `openssa.core.slm`: Component: Small Language Model (SLM) functionality.
-      - `openssa.core.ssm.openai_slm`: OpenAI API SLM implementations.
-      - `openssa.core.ssm.huggingface_slm`: HuggingFace API SLM implementations.
-    - `openssa.core.adapter`: Component: Interface between the SLM and the domain-knowledge backends.
-    - `openssa.core.backend`: Component: Interfaces to a variety of domain-knowledge backends.
-    - `openssa.core.inferencer`: Component: Inference wrapper for models behind SSM backends.
+    - `openssa.deprecated.ssm`: Small Specialist Model (SSM) functionality.
+      - `openssa.deprecated.ssm.openai_ssm`: OpenAI API SSM implementations.
+      - `openssa.deprecated.ssm.huggingface_ssm`: HuggingFace API SSM implementations.
+    - `openssa.deprecated.slm`: Component: Small Language Model (SLM) functionality.
+      - `openssa.deprecated.ssm.openai_slm`: OpenAI API SLM implementations.
+      - `openssa.deprecated.ssm.huggingface_slm`: HuggingFace API SLM implementations.
+    - `openssa.deprecated.adapter`: Component: Interface between the SLM and the domain-knowledge backends.
+    - `openssa.deprecated.backend`: Component: Interfaces to a variety of domain-knowledge backends.
+    - `openssa.deprecated.inferencer`: Component: Inference wrapper for models behind SSM backends.
   - `openssa.capture`: Tools and APIs for capturing and encoding domain knowledge into various backends.
   - `openssa.composer`: Tools for composing multiple SSMs together.
   - `openssa.industrial`: Industrial-AI specific tools and APIs (trust, reliability, safety, etc.)

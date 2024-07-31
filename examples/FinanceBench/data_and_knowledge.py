@@ -14,7 +14,7 @@ import requests
 import yaml
 
 if TYPE_CHECKING:
-    from openssa.l2.planning.hierarchical.plan import HTPDict
+    from openssa.core.planning.hierarchical.plan import HTPDict
 
 
 load_dotenv()
@@ -190,45 +190,18 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
     EXPERT_KNOWLEDGE: str = f.read()
 
 
-EXPERT_PLAN_MAP_FILE_PATH: Path = Path(__file__).parent / 'expert-plan-map.yml'
-with open(file=EXPERT_PLAN_MAP_FILE_PATH,
+EXPERT_PROGRAM_SPACE_FILE_PATH: Path = Path(__file__).parent / 'expert-program-space.yml'
+with open(file=EXPERT_PROGRAM_SPACE_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
           errors='strict',
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PLAN_MAP: dict[FbId, ExpertPlanId] = yaml.safe_load(stream=f)
+    EXPERT_PROGRAM_SPACE: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
-# sanity check Expert Plans Map
-cats_of_fb_ids_with_expert_plans: set[Category] = {GROUND_TRUTHS[fb_id]['category'] for fb_id in EXPERT_PLAN_MAP}
-assert not cats_of_fb_ids_with_expert_plans & {Category.RETRIEVE,
-                                               Category.COMPARE,
-                                               Category.CALC_CHANGE,
-                                               Category.EXPLAIN_FACTORS}
-
-assert len(EXPERT_PLAN_MAP) == (CAT_DISTRIB[Category.CALC_COMPLEX] - 3  # 00517, 00882, 00605
-                                + CAT_DISTRIB[Category.CALC_AND_JUDGE]
-                                + 2  # 6-OTHER-ADVANCED: capital-intensiveness
-                                )
-
-
-EXPERT_PLAN_TEMPLATES_FILE_PATH: Path = Path(__file__).parent / 'expert-plan-templates.yml'
-with open(file=EXPERT_PLAN_TEMPLATES_FILE_PATH,
-          buffering=-1,
-          encoding='utf-8',
-          errors='strict',
-          newline=None,
-          closefd=True,
-          opener=None) as f:
-    EXPERT_PLAN_TEMPLATES: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
-
-assert (s0 := set(EXPERT_PLAN_MAP.values())) == (s1 := set(EXPERT_PLAN_TEMPLATES)), \
-    ValueError('*** Expert Plan IDs not matching between Expert Plan Map & Expert Plan Templates ***\n'
-               f'Candidate Mismatches: {s0 ^ s1}')
-
-EXPERT_PLAN_COMPANY_KEY: str = 'COMPANY'
-EXPERT_PLAN_PERIOD_KEY: str = 'PERIOD'
+EXPERT_HTP_COMPANY_KEY: str = 'COMPANY'
+EXPERT_HTP_PERIOD_KEY: str = 'PERIOD'
 
 
 RAG_GROUND_TRUTHS_FILE_PATH: Path = Path(__file__).parent / 'rag-ground-truths.yml'
@@ -277,7 +250,7 @@ class Doc:
         return response
 
     @cached_property
-    def dir_path(self) -> Path | None:
+    def dir_path(self) -> Path:
         dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / self.name
 
         if not (file_path := dir_path / f'{self.name}.pdf').is_file():
@@ -291,8 +264,8 @@ class Doc:
         return dir_path
 
     @cached_property
-    def file_path(self) -> Path | None:
-        return (self.dir_path / f'{self.name}.pdf') if self.dir_path else None
+    def file_path(self) -> Path:
+        return self.dir_path / f'{self.name}.pdf'
 
 
 def create_or_update_ground_truths() -> dict[FbId, GroundTruth]:
