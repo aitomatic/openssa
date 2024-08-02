@@ -1,0 +1,325 @@
+2024-06-05 00:03:18.659 | INFO     | openssa.l2.agent.agent:solve:158 - 
+GLOBAL TASK PLANNING
+====================
+
+PLAN(task=Assess whether 3M is capital-intensive according to 2022 fiscal period data,
+     subs=[ PLAN(task=What are values in dollars of:
+                      - `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)`; and
+                      - `Total Assets`
+                      (or most similar-meaning reported line item to those)
+                      
+                      on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial 
+                      Position`
+                      (or most similar-meaning statement) of 3M
+                      (and NOT Balance Sheets of its acquired and/or divested companies)
+                      
+                      as at following two annual fiscal period ends:
+                      - previous annual fiscal period end immediately preceding 2022; and
+                      - current 2022 annual fiscal period end?),
+            PLAN(task=What is value in dollars of `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or 
+                      Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)` (or most similar-meaning 
+                      reported line item)
+                      on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows` 
+                      (or most similar-meaning statement)
+                      of 3M for 2022 fiscal period?),
+            PLAN(task=What are values in dollars of:
+                      - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+                      - `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to 
+                      Shareholders)`
+                      (or most similar-meaning reported line items to those)
+                      
+                      on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+                      or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+                      (or most similar-meaning statement)
+                      
+                      of 3M for 2022 fiscal period?),
+            PLAN(task=Assess whether 3M is capital-intensive according to 2022 fiscal period data
+                      
+                      Capital-intensive businesses tend to have one or several of the following characteristics:
+                      
+                      - high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of 
+                      `Total Assets`,
+                        e.g., over 25%;
+                      
+                      - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) 
+                      Sales`,
+                        e.g., over 2 times;
+                      
+                      - high `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & 
+                      Equipment (PP&E) Expenditure(s)/Purchase(s)`
+                        relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+                        e.g., over 10%;
+                      
+                        and/or
+                      
+                      - low `Return on (Total) Assets, a.k.a. RoA or RoTA`,
+                        e.g., under 10%,
+                        according to formula:
+                      
+                        `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
+                          `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to 
+                      Shareholders)` /
+                          `average Total Assets, typically between two consecutive fiscal year-ends`
+                        ))])
+
+  0%|          | 0/4 [00:00<?, ?it/s]2024-06-05 00:03:45.035 | DEBUG    | openssa.l2.planning.hierarchical.plan:execute:127 - 
+TASK-LEVEL REASONING
+====================
+
+WHAT ARE VALUES IN DOLLARS OF:
+- `(NET) FIXED ASSETS, A.K.A. (NET) PROPERTY, PLANT & EQUIPMENT (PP&E)`; AND
+- `TOTAL ASSETS`
+(OR MOST SIMILAR-MEANING REPORTED LINE ITEM TO THOSE)
+
+ON ONE SAME `(CONSOLIDATED) BALANCE SHEET, A.K.A. STATEMENT OF (CONSOLIDATED) FINANCIAL POSITION`
+(OR MOST SIMILAR-MEANING STATEMENT) OF 3M
+(AND NOT BALANCE SHEETS OF ITS ACQUIRED AND/OR DIVESTED COMPANIES)
+
+AS AT FOLLOWING TWO ANNUAL FISCAL PERIOD ENDS:
+- PREVIOUS ANNUAL FISCAL PERIOD END IMMEDIATELY PRECEDING 2022; AND
+- CURRENT 2022 ANNUAL FISCAL PERIOD END?
+--------------------------
+Based on the information provided from the '3M_2022_10K' resource, we can confidently determine the values in dollars for both Net Fixed Assets (Net PP&E) and Total Assets on the Consolidated Balance Sheet of 3M for the specified fiscal period ends. For the fiscal period end immediately preceding 2022, the Net PP&E was valued at $9,429 million, and Total Assets were valued at $39,258 million. For the current 2022 fiscal period end, the Net PP&E was valued at $9,178 million, and Total Assets were valued at $44,073 million. These figures are concrete and respond directly to the rigorous bases/criteria/definitions set forth in the posed question, providing specific values for the numerical quantities requested.
+
+ 25%|██▌       | 1/4 [00:11<00:34, 11.40s/it]2024-06-05 00:03:55.990 | DEBUG    | openssa.l2.planning.hierarchical.plan:execute:127 - 
+TASK-LEVEL REASONING
+====================
+
+WHAT IS VALUE IN DOLLARS OF `CAPITAL EXPENDITURE(S), A.K.A. CAPEX, OR CAPITAL SPENDING, OR PROPERTY, PLANT & EQUIPMENT (PP&E) EXPENDITURE(S)/PURCHASE(S)` (OR MOST SIMILAR-MEANING REPORTED LINE ITEM)
+ON `(CONSOLIDATED) CASH FLOW(S) STATEMENT(S), A.K.A. (CONSOLIDATED) STATEMENT(S) OF CASH FLOWS` (OR MOST SIMILAR-MEANING STATEMENT)
+OF 3M FOR 2022 FISCAL PERIOD?
+--------------------------
+Based on the information provided from the '3M_2022_10K' resource, the value in dollars of Capital Expenditures (CapEx) for 3M in the 2022 fiscal period is $(1,749) million. This figure is taken directly from the Consolidated Cash Flow Statement of 3M for the 2022 fiscal period as reported in the resource. The negative sign indicates that this is an outflow of cash, which is typical for CapEx as it represents money spent by the company on acquiring or maintaining physical assets such as property, plant, and equipment. This concrete value responds to the rigorous bases/criteria/definitions set forth in the posed question, providing a specific value for the numerical quantity requested.
+
+ 50%|█████     | 2/4 [00:22<00:22, 11.14s/it]2024-06-05 00:04:06.281 | DEBUG    | openssa.l2.planning.hierarchical.plan:execute:127 - 
+TASK-LEVEL REASONING
+====================
+
+WHAT ARE VALUES IN DOLLARS OF:
+- `(TOTAL) (NET) (OPERATING) REVENUE(S), A.K.A. (TOTAL) (NET) SALES`; AND
+- `NET INCOME, A.K.A. NET PROFIT, OR NET EARNINGS (OR LOSS(ES)) (ATTRIBUTABLE TO SHAREHOLDERS)`
+(OR MOST SIMILAR-MEANING REPORTED LINE ITEMS TO THOSE)
+
+ON `(CONSOLIDATED) INCOME STATEMENT, A.K.A. (CONSOLIDATED) PROFIT-AND-LOSS (P&L) STATEMENT,
+OR (CONSOLIDATED) EARNINGS STATEMENT, OR (CONSOLIDATED) OPERATIONS STATEMENT`
+(OR MOST SIMILAR-MEANING STATEMENT)
+
+OF 3M FOR 2022 FISCAL PERIOD?
+--------------------------
+Based on the information provided from the '3M_2022_10K' resource, we can confidently determine the values in dollars for 3M's 2022 fiscal period as follows:
+- Total Net Sales (Total Net Operating Revenue): $34,229 million
+- Net Income (Net Profit or Net Earnings Attributable to Shareholders): $5,777 million
+These figures are taken directly from the Consolidated Income Statement (Profit-and-Loss Statement) of 3M for the 2022 fiscal period as reported in the resource. The values provided are specific and concrete, fulfilling the rigorous bases/criteria/definitions set forth in the posed question by providing exact numerical quantities requested.
+
+ 75%|███████▌  | 3/4 [00:32<00:10, 10.75s/it]2024-06-05 00:04:38.612 | DEBUG    | openssa.l2.planning.hierarchical.plan:execute:127 - 
+TASK-LEVEL REASONING
+====================
+
+ASSESS WHETHER 3M IS CAPITAL-INTENSIVE ACCORDING TO 2022 FISCAL PERIOD DATA
+
+CAPITAL-INTENSIVE BUSINESSES TEND TO HAVE ONE OR SEVERAL OF THE FOLLOWING CHARACTERISTICS:
+
+- HIGH `(NET) FIXED ASSETS, A.K.A. (NET) PROPERTY, PLANT & EQUIPMENT (PP&E)` AS PROPORTION OF `TOTAL ASSETS`,
+  E.G., OVER 25%;
+
+- HIGH `TOTAL ASSETS` RELATIVE TO `(TOTAL) (NET) (OPERATING) REVENUE(S), A.K.A. (TOTAL) (NET) SALES`,
+  E.G., OVER 2 TIMES;
+
+- HIGH `CAPITAL EXPENDITURE(S), A.K.A. CAPEX, OR CAPITAL SPENDING, OR PROPERTY, PLANT & EQUIPMENT (PP&E) EXPENDITURE(S)/PURCHASE(S)`
+  RELATIVE TO `(TOTAL) (NET) (OPERATING) REVENUE(S), A.K.A. (TOTAL) (NET) SALES`,
+  E.G., OVER 10%;
+
+  AND/OR
+
+- LOW `RETURN ON (TOTAL) ASSETS, A.K.A. ROA OR ROTA`,
+  E.G., UNDER 10%,
+  ACCORDING TO FORMULA:
+
+  `RETURN ON (TOTAL) ASSETS, A.K.A. ROA OR ROTA` = (
+    `NET INCOME, A.K.A. NET PROFIT, OR NET EARNINGS (OR LOSS(ES)) (ATTRIBUTABLE TO SHAREHOLDERS)` /
+    `AVERAGE TOTAL ASSETS, TYPICALLY BETWEEN TWO CONSECUTIVE FISCAL YEAR-ENDS`
+  )
+--------------------------
+To assess whether 3M is capital-intensive according to the 2022 fiscal period data, we need to examine the provided financial metrics against the characteristics of capital-intensive businesses. The characteristics include a high proportion of Net Fixed Assets (Net PP&E) to Total Assets, high Total Assets relative to Total Net Sales, high Capital Expenditures relative to Total Net Sales, and a low Return on Assets (RoA).
+
+For the fiscal period end immediately preceding 2022, 3M had Net PP&E valued at $9,429 million and Total Assets valued at $39,258 million. For the 2022 fiscal period end, Net PP&E was $9,178 million, and Total Assets were $44,073 million. The proportion of Net PP&E to Total Assets for 2022 is approximately 20.8% ($9,178 million / $44,073 million), which is slightly below the 25% threshold but still significant.
+
+Total Assets are more than 2 times Total Net Sales, as Total Net Sales for 2022 were $34,229 million, and Total Assets were $44,073 million, resulting in a multiple of approximately 1.29 times. This is below the threshold of 2 times suggested in the characteristics.
+
+Capital Expenditures for 2022 were $(1,749) million, and when compared to Total Net Sales of $34,229 million, the ratio is approximately 5.1%, which is below the 10% threshold.
+
+The Return on Assets (RoA) is calculated by dividing Net Income by the average Total Assets. Net Income for 2022 was $5,777 million. The average Total Assets can be estimated by taking the average of the Total Assets at the end of 2021 ($39,258 million) and 2022 ($44,073 million), which is approximately $41,665.5 million. The RoA for 2022 is therefore approximately 13.9% ($5,777 million / $41,665.5 million), which is above the 10% threshold.
+
+In conclusion, while 3M has a significant proportion of Net PP&E to Total Assets and a high Total Assets relative to Total Net Sales, its Capital Expenditures relative to Total Net Sales and Return on Assets do not meet the thresholds for a capital-intensive business according to the provided criteria. Therefore, based on the rigorous criteria provided, 3M does not fully exhibit the characteristics of a capital-intensive business for the 2022 fiscal period.
+
+100%|██████████| 4/4 [01:04<00:00, 16.24s/it]
+2024-06-05 00:05:04.668 | DEBUG    | openssa.l2.planning.hierarchical.plan:execute:110 - 
+TASK-LEVEL REASONING with Supporting/Other Results
+==================================================
+
+PLAN(task=Assess whether 3M is capital-intensive according to 2022 fiscal period data,
+     subs=[ PLAN(task=What are values in dollars of:
+                      - `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)`; and
+                      - `Total Assets`
+                      (or most similar-meaning reported line item to those)
+                      
+                      on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial 
+                      Position`
+                      (or most similar-meaning statement) of 3M
+                      (and NOT Balance Sheets of its acquired and/or divested companies)
+                      
+                      as at following two annual fiscal period ends:
+                      - previous annual fiscal period end immediately preceding 2022; and
+                      - current 2022 annual fiscal period end?),
+            PLAN(task=What is value in dollars of `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or 
+                      Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)` (or most similar-meaning 
+                      reported line item)
+                      on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows` 
+                      (or most similar-meaning statement)
+                      of 3M for 2022 fiscal period?),
+            PLAN(task=What are values in dollars of:
+                      - `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+                      - `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to 
+                      Shareholders)`
+                      (or most similar-meaning reported line items to those)
+                      
+                      on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+                      or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+                      (or most similar-meaning statement)
+                      
+                      of 3M for 2022 fiscal period?),
+            PLAN(task=Assess whether 3M is capital-intensive according to 2022 fiscal period data
+                      
+                      Capital-intensive businesses tend to have one or several of the following characteristics:
+                      
+                      - high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of 
+                      `Total Assets`,
+                        e.g., over 25%;
+                      
+                      - high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) 
+                      Sales`,
+                        e.g., over 2 times;
+                      
+                      - high `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & 
+                      Equipment (PP&E) Expenditure(s)/Purchase(s)`
+                        relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+                        e.g., over 10%;
+                      
+                        and/or
+                      
+                      - low `Return on (Total) Assets, a.k.a. RoA or RoTA`,
+                        e.g., under 10%,
+                        according to formula:
+                      
+                        `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
+                          `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to 
+                      Shareholders)` /
+                          `average Total Assets, typically between two consecutive fiscal year-ends`
+                        ))])
+
+ASSESS WHETHER 3M IS CAPITAL-INTENSIVE ACCORDING TO 2022 FISCAL PERIOD DATA
+--------------------------
+To assess whether 3M is capital-intensive based on its 2022 fiscal period data, we need to consider several financial metrics and compare them against established benchmarks that characterize capital-intensive businesses. These benchmarks include a high proportion of Net Fixed Assets to Total Assets, high Total Assets relative to Total Net Sales, high Capital Expenditures relative to Total Net Sales, and a low Return on Assets (RoA).
+
+Starting with the proportion of Net Fixed Assets to Total Assets, 3M's Net Property, Plant & Equipment (PP&E) at the end of 2022 was $9,178 million, and its Total Assets were $44,073 million. This results in a proportion of approximately 20.8%, which is slightly below the 25% threshold commonly used to indicate a capital-intensive business. Although it's below the threshold, it's still a significant proportion, suggesting some level of capital intensity.
+
+Next, we look at Total Assets relative to Total Net Sales. For 2022, 3M's Total Net Sales were $34,229 million. With Total Assets at $44,073 million, the ratio is approximately 1.29 times. This is below the 2 times threshold, suggesting that 3M's asset base is not excessively large compared to its sales, which would be expected in a capital-intensive business.
+
+Considering Capital Expenditures, 3M's spending in this area for 2022 was $1,749 million. When compared to the Total Net Sales of $34,229 million, the Capital Expenditures to Total Net Sales ratio is about 5.1%, which is below the 10% benchmark that would indicate a high level of capital intensity.
+
+Lastly, the Return on Assets (RoA) is calculated by dividing Net Income by the average Total Assets between two consecutive fiscal year-ends. 3M's Net Income for 2022 was $5,777 million. The average Total Assets, calculated using the end of 2021 ($39,258 million) and 2022 ($44,073 million) figures, is approximately $41,665.5 million. This results in an RoA of approximately 13.9%, which is above the 10% threshold that would suggest a lower capital intensity.
+
+In summary, while 3M has a significant investment in Net PP&E and a substantial asset base relative to its sales, the company's Capital Expenditures relative to Total Net Sales and its Return on Assets do not align with the typical characteristics of a capital-intensive business according to the criteria provided. Therefore, based on the 2022 fiscal period data, 3M does not fully exhibit the characteristics of a capital-intensive business.
+
+ ^ 
+/|\
+ | 
+
+REASONING WITHOUT SUPPORTING/OTHER RESULTS (preliminary conclusions here can be overriden by more convincing supporting/other data):
+The provided information indicates that 3M has significant investments in property, plant, and equipment, and engages in substantial capital expenditures, which are typical characteristics of a capital-intensive company. However, to confidently assess whether 3M is capital-intensive, specific financial ratios and figures such as the capital expenditure to revenue ratio, the ratio of property, plant, and equipment to total assets, or the amount of depreciation and amortization would be necessary. These figures would allow for a quantitative analysis of the company's capital intensity relative to its operations and industry benchmarks. Since the provided information does not include these specific numerical values or ratios, a confident assessment cannot be made based on rigorous criteria or definitions of capital intensity.
+
+
+SUPPORTING QUESTION/TASK #1:
+What are values in dollars of:
+- `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)`; and
+- `Total Assets`
+(or most similar-meaning reported line item to those)
+
+on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+(or most similar-meaning statement) of 3M
+(and NOT Balance Sheets of its acquired and/or divested companies)
+
+as at following two annual fiscal period ends:
+- previous annual fiscal period end immediately preceding 2022; and
+- current 2022 annual fiscal period end?
+
+SUPPORTING RESULT #1:
+Based on the information provided from the '3M_2022_10K' resource, we can confidently determine the values in dollars for both Net Fixed Assets (Net PP&E) and Total Assets on the Consolidated Balance Sheet of 3M for the specified fiscal period ends. For the fiscal period end immediately preceding 2022, the Net PP&E was valued at $9,429 million, and Total Assets were valued at $39,258 million. For the current 2022 fiscal period end, the Net PP&E was valued at $9,178 million, and Total Assets were valued at $44,073 million. These figures are concrete and respond directly to the rigorous bases/criteria/definitions set forth in the posed question, providing specific values for the numerical quantities requested.
+
+
+SUPPORTING QUESTION/TASK #2:
+What is value in dollars of `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)` (or most similar-meaning reported line item)
+on `(Consolidated) Cash Flow(s) Statement(s), a.k.a. (Consolidated) Statement(s) of Cash Flows` (or most similar-meaning statement)
+of 3M for 2022 fiscal period?
+
+SUPPORTING RESULT #2:
+Based on the information provided from the '3M_2022_10K' resource, the value in dollars of Capital Expenditures (CapEx) for 3M in the 2022 fiscal period is $(1,749) million. This figure is taken directly from the Consolidated Cash Flow Statement of 3M for the 2022 fiscal period as reported in the resource. The negative sign indicates that this is an outflow of cash, which is typical for CapEx as it represents money spent by the company on acquiring or maintaining physical assets such as property, plant, and equipment. This concrete value responds to the rigorous bases/criteria/definitions set forth in the posed question, providing a specific value for the numerical quantity requested.
+
+
+SUPPORTING QUESTION/TASK #3:
+What are values in dollars of:
+- `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`; and
+- `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)`
+(or most similar-meaning reported line items to those)
+
+on `(Consolidated) Income Statement, a.k.a. (Consolidated) Profit-and-Loss (P&L) Statement,
+or (Consolidated) Earnings Statement, or (Consolidated) Operations Statement`
+(or most similar-meaning statement)
+
+of 3M for 2022 fiscal period?
+
+SUPPORTING RESULT #3:
+Based on the information provided from the '3M_2022_10K' resource, we can confidently determine the values in dollars for 3M's 2022 fiscal period as follows:
+- Total Net Sales (Total Net Operating Revenue): $34,229 million
+- Net Income (Net Profit or Net Earnings Attributable to Shareholders): $5,777 million
+These figures are taken directly from the Consolidated Income Statement (Profit-and-Loss Statement) of 3M for the 2022 fiscal period as reported in the resource. The values provided are specific and concrete, fulfilling the rigorous bases/criteria/definitions set forth in the posed question by providing exact numerical quantities requested.
+
+
+SUPPORTING QUESTION/TASK #4:
+Assess whether 3M is capital-intensive according to 2022 fiscal period data
+
+Capital-intensive businesses tend to have one or several of the following characteristics:
+
+- high `(Net) Fixed Assets, a.k.a. (Net) Property, Plant & Equipment (PP&E)` as proportion of `Total Assets`,
+  e.g., over 25%;
+
+- high `Total Assets` relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+  e.g., over 2 times;
+
+- high `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+  relative to `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`,
+  e.g., over 10%;
+
+  and/or
+
+- low `Return on (Total) Assets, a.k.a. RoA or RoTA`,
+  e.g., under 10%,
+  according to formula:
+
+  `Return on (Total) Assets, a.k.a. RoA or RoTA` = (
+    `Net Income, a.k.a. Net Profit, or Net Earnings (or Loss(es)) (Attributable to Shareholders)` /
+    `average Total Assets, typically between two consecutive fiscal year-ends`
+  )
+
+SUPPORTING RESULT #4:
+To assess whether 3M is capital-intensive according to the 2022 fiscal period data, we need to examine the provided financial metrics against the characteristics of capital-intensive businesses. The characteristics include a high proportion of Net Fixed Assets (Net PP&E) to Total Assets, high Total Assets relative to Total Net Sales, high Capital Expenditures relative to Total Net Sales, and a low Return on Assets (RoA).
+
+For the fiscal period end immediately preceding 2022, 3M had Net PP&E valued at $9,429 million and Total Assets valued at $39,258 million. For the 2022 fiscal period end, Net PP&E was $9,178 million, and Total Assets were $44,073 million. The proportion of Net PP&E to Total Assets for 2022 is approximately 20.8% ($9,178 million / $44,073 million), which is slightly below the 25% threshold but still significant.
+
+Total Assets are more than 2 times Total Net Sales, as Total Net Sales for 2022 were $34,229 million, and Total Assets were $44,073 million, resulting in a multiple of approximately 1.29 times. This is below the threshold of 2 times suggested in the characteristics.
+
+Capital Expenditures for 2022 were $(1,749) million, and when compared to Total Net Sales of $34,229 million, the ratio is approximately 5.1%, which is below the 10% threshold.
+
+The Return on Assets (RoA) is calculated by dividing Net Income by the average Total Assets. Net Income for 2022 was $5,777 million. The average Total Assets can be estimated by taking the average of the Total Assets at the end of 2021 ($39,258 million) and 2022 ($44,073 million), which is approximately $41,665.5 million. The RoA for 2022 is therefore approximately 13.9% ($5,777 million / $41,665.5 million), which is above the 10% threshold.
+
+In conclusion, while 3M has a significant proportion of Net PP&E to Total Assets and a high Total Assets relative to Total Net Sales, its Capital Expenditures relative to Total Net Sales and Return on Assets do not meet the thresholds for a capital-intensive business according to the provided criteria. Therefore, based on the rigorous criteria provided, 3M does not fully exhibit the characteristics of a capital-intensive business for the 2022 fiscal period.

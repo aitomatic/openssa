@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.24.4.24"
+version = "0.24.6.8"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -12,7 +12,9 @@ maintainers = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
   "Vinh Luong <vinh@aitomatic.com>",
   "Sang Dinh <sang@aitomatic.com>",
-  "Chanh Le <chanh@aitomatic.com>",
+  "Quynh Le <quynh@aitomatic.com>",
+  "Shruti Raghavan <shruti@aitomatic.com>",
+  "Zooey Nguyen <zooey@aitomatic.com>",
 ]
 
 license = "Apache-2.0"
@@ -49,44 +51,44 @@ ipykernel = ">=6.29"
 notebook = ">=7.2"
 
 [tool.poetry.group.docs.dependencies]
-sphinx = ">=7.3"
+sphinx = ">=7.4"
 sphinx-autobuild = ">=2024.4"
 sphinx-press-theme = ">=0.9"
 myst-parser = ">=3.0"
 
 [tool.poetry.group.lint.dependencies]
-flake8 = ">=7.0"
+flake8 = ">=7.1"
 pylint = ">=3.2"
-ruff = ">=0.4"
+ruff = ">=0.5"
 
 [tool.poetry.group.test.dependencies]
-pytest = ">=8.2"
+pytest = ">=8.3"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 # Llama interface
 llamaapi = ">=0.1"
 # OpenAI interface
-openai = ">=1.30"
+openai = ">=1.37"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
 llama-index-llms-azure-openai = ">=0.1"
 llama-index-readers-web = ">=0.1"
 docx2txt = ">=0.8"  # for reading .docx files
-pypdf = ">=4.2"  # for reading .pdf files
+pypdf = ">=4.3"  # for reading .pdf files
 pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = ">=2024.5"  # base/local file system
-adlfs = ">=2024.4"  # Azure Data Lake
-gcsfs = ">=2024.5"  # Google Cloud Storage
-s3fs = ">=2024.5"  # S3
+fsspec = ">=2024.6"  # base/local file system
+adlfs = ">=2024.7"  # Azure Data Lake
+gcsfs = ">=2024.6"  # Google Cloud Storage
+s3fs = ">=2024.6"  # S3
 # misc / other
 click = ">=8.1"
-google-api-python-client = ">=2.130"
+google-api-python-client = ">=2.139"
 httpx = ">=0.27"
 loguru = ">=0.7"
-pydantic = ">=2.7"
+pydantic = ">=2.8"
 python-dotenv = ">=1.0"
 torch = ">=2.2,<2.3"  # 2.3 fails installing on Mac with M chip
 tqdm = ">=4.66"
@@ -100,7 +102,7 @@ llama-index-callbacks-langfuse = {version = ">=0.1", optional = true}
 llama-index-callbacks-openinference = {version = ">=0.1", optional = true}
 llama-index-callbacks-promptlayer = {version = ">=0.1", optional = true}
 llama-index-callbacks-wandb = {version = ">=0.1", optional = true}
-streamlit = {version = ">=1.35", optional = true}
+streamlit = {version = ">=1.37", optional = true}
 streamlit-extras = {version = ">=0.4", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 pdfkit = "^1.0.0"
@@ -120,10 +122,6 @@ llama-index-callbacks = [
   "llama-index-callbacks-promptlayer",
   "llama-index-callbacks-wandb",
 ]
-
-
-[tool.poetry.scripts]
-openssa = "openssa.utils.cli:openssa_cli"
 
 
 [build-system]
