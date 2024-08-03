@@ -1,0 +1,21 @@
+You are given a question and two strings, String 1 and String 2 as input. Your task is to check whether the two strings are factually consistent with each other in the context of the given question. Consider the question carefully, then compare the two strings for factual consistency. 
+
+If the two strings are consistent with each other, output 1. If they are not consistent with each other, output 0. 
+
+Provide only the boolean value as output in the following json format: 
+
+{'output': 1}
+
+Example:
+
+Question: "What is the capital of France?"
+String 1: "Paris is the capital of France."
+String 2: "France's capital is Paris."
+Output: 1
+
+Question: "What is the capital of France?"
+String 1: "Paris is the capital of France."
+String 2: "France's capital is Berlin."
+Output: 0
+
+---
