@@ -1,17 +1,17 @@
 HTP_JSON_TEMPLATE: str = """
 {{
     "task": "(textual description of question/problem/task to answer/solve)",
-    "sub-plans": [
+    "sub-htps": [
         {{
             "task": "(textual description of 1st sub-question/problem/task to answer/solve)",
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         {{
             "task": "(textual description of 2nd sub-question/problem/task to answer/solve)",
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         ...
@@ -24,7 +24,7 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
     "task": {{
         "ask": "(textual description of question/problem/task to answer/solve)"
     }},
-    "sub-plans": [
+    "sub-htps": [
         {{
             "task": {{
                 "ask": "(textual description of 1st sub-question/problem/task to answer/solve)",
@@ -32,8 +32,8 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
                     (... unique names of most relevant informational resources, if any ...)
                 ]
             }},
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         {{
@@ -43,8 +43,8 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
                     (... unique names of most relevant informational resources, if any ...)
                 ]
             }},
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         ...
@@ -107,6 +107,29 @@ for the corresponding sub-question/problem/task:
 ```
 
 Please return ONLY the UPDATED JSON DICTIONARY and no other text, not even the "```json" wrapping!
+"""  # noqa: E122
+)
+
+
+SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE: str = (
+"""
+Please return a suggested JSON LIST with up to {max_subtasks_per_decomp} items per the following template:
+
+```
+[
+    "(textual description of 1st sub-problem/task to solve)",
+    "(textual description of 2nd sub-problem/task to solve)",
+    ...
+]
+```
+
+as decomposed tasks for solving the following problem:
+
+```
+{problem}
+```
+
+Please return ONLY the JSON LIST and no other text, not even the "```json" wrapping!
 """  # noqa: E122
 )
 

@@ -17,15 +17,15 @@ from typing import TYPE_CHECKING
 from openssa.core.programming.abstract.programmer import AbstractProgrammer
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.reasoning.ooda import OodaReasoner
+from openssa.core.task import Task
 
 from .plan import HTP
-from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE
+from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.core.knowledge.abstract import Knowledge
     from openssa.core.reasoning.abstract import AbstractReasoner
     from openssa.core.resource.abstract import AbstractResource
-    from openssa.core.task import Task
     from openssa.core.util.lm.abstract import LMChatHist
     from .plan import HTPDict
 
@@ -65,12 +65,27 @@ class HTPlanner(AbstractProgrammer):
             while not (isinstance(htp_dict, dict) and htp_dict):
                 htp_dict: HTPDict = self.lm.get_response(prompt, history=knowledge_lm_hist, json_format=True)
 
-            htp: HTP = HTP.from_dict(htp_dict)
+            try:
+                htp: HTP = HTP.from_dict(htp_dict)
 
-            htp.task: Task = task
-            htp.task.resources: set[AbstractResource] | None = task.resources  # TODO: optimize to not always use all resources
-            htp.programmer: HTPlanner = self
-            htp.reasoner: AbstractReasoner = reasoner
+                htp.task: Task = task
+                htp.programmer: HTPlanner = self
+                htp.reasoner: AbstractReasoner = reasoner
+
+            # if constructed JSON is not HTP-format-compliant
+            # then fall back to simpler decomposition mechanism
+            except KeyError:
+                sub_task_descriptions: list[str] = self.lm.get_response(
+                    prompt=SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE.format(problem=task.ask,
+                                                                           max_subtasks_per_decomp=self.max_subtasks_per_decomp),
+                    history=knowledge_lm_hist,
+                    json_format=True)
+
+                htp: HTP = HTP(task=task,
+                               programmer=self,
+                               sub_htps=[HTP(task=Task(ask=sub_task_description))
+                                         for sub_task_description in sub_task_descriptions],
+                               reasoner=reasoner)
 
             sub_htp_programmer: HTPlanner = replace(self, max_depth=self.max_depth - 1)
             for sub_htp in htp.sub_htps:
