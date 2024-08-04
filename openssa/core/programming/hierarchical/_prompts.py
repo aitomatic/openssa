@@ -55,12 +55,12 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
 
 def htp_prompt_template(with_resources: bool) -> str:
     return (
-'Using the following JSON hierarchical task plan data structure:'  # noqa: E122
+'Using the following JSON hierarchical task plan dictionary data structure:'  # noqa: E122
 f'\n{HTP_WITH_RESOURCES_JSON_TEMPLATE if with_resources else HTP_JSON_TEMPLATE}'  # noqa: E122
 """
 please return a suggested hierarchical task plan with
 Max Depth of {max_depth} and Max Subtasks per Decomposition of {max_subtasks_per_decomp}
-for the following problem:
+for the following question/problem/task:
 
 ```
 {problem}
@@ -75,7 +75,7 @@ HTP_PROMPT_TEMPLATE: str = htp_prompt_template(with_resources=False)
 
 
 RESOURCE_OVERVIEW_PROMPT_SECTION: str = \
-"""Consider that you can access informational resources summarized in the below dictionary,
+"""Consider that you can access resources summarized in the below dictionary,
 in which each key is a resource's unique name and the corresponding value is that resource's overview:
 
 ```
@@ -112,21 +112,22 @@ Please return ONLY the UPDATED JSON DICTIONARY and no other text, not even the "
 
 
 SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE: str = (
-"""
-Please return a suggested JSON LIST with up to {max_subtasks_per_decomp} items per the following template:
-
-```
-[
-    "(textual description of 1st sub-problem/task to solve)",
-    "(textual description of 2nd sub-problem/task to solve)",
-    ...
-]
-```
-
-as decomposed tasks for solving the following problem:
+RESOURCE_OVERVIEW_PROMPT_SECTION +  # noqa: E122
+"""and consider that you are trying to solve the following top-level question/problem/task:
 
 ```
 {problem}
+```
+
+please return a suggested task-decomposition JSON list with up to {max_subtasks_per_decomp} items
+per the following template:
+
+```
+[
+    "(textual description of 1st sub-question/problem/task to answer/solve)",
+    "(textual description of 2nd sub-question/problem/task to answer/solve)",
+    ...
+]
 ```
 
 Please return ONLY the JSON LIST and no other text, not even the "```json" wrapping!
