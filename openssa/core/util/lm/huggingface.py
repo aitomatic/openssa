@@ -41,7 +41,7 @@ class HuggingFaceLM(AbstractLM):
         """Call HuggingFace LM API and return response object."""
         return self.client.chat_completion(messages=messages,
                                            model=self.model,
-                                           max_tokens=1500,
+                                           max_tokens=1500,  # TODO: identify optimal default
                                            seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
                                            temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
                                            **kwargs)
