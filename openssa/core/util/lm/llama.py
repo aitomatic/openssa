@@ -9,12 +9,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
+from typing import TYPE_CHECKING
 
 from loguru import logger
 
-from .abstract import LMChatHist
 from .config import LMConfig
 from .openai import OpenAILM
+
+if TYPE_CHECKING:
+    from .abstract import LMChatHist
 
 
 @dataclass
