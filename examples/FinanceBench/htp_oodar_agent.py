@@ -28,7 +28,7 @@ def get_or_create_expert_program_space() -> ProgramSpace:
 @cache
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_program_space: bool = False,
                         max_depth=3, max_subtasks_per_decomp=6,
-                        llama_index_openai_lm_name: str = LMConfig.DEFAULT_OPENAI_MODEL) -> Agent:
+                        llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> Agent:
     # pylint: disable=too-many-arguments
     return Agent(program_space=get_or_create_expert_program_space() if expert_program_space else ProgramSpace(),
                  programmer=HTPlanner(max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
