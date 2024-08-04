@@ -42,8 +42,8 @@ class OpenAILM(AbstractLM):
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
         """Call OpenAI LM API and return response object."""
-        return self.client.chat.completions.create(model=self.model,
-                                                   messages=messages,
+        return self.client.chat.completions.create(messages=messages,
+                                                   model=self.model,
                                                    seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
                                                    temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
                                                    **kwargs)
