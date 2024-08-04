@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 
 
-load_dotenv(override=True)
+load_dotenv(dotenv_path='.env', override=True)
 
 
 class LMConfig:
@@ -33,7 +33,7 @@ class LMConfig:
 
     # HuggingFace LMs
     HF_API_KEY: str | None = os.environ.get('HF_API_KEY')
-    HF_API_URL: str = os.environ.get('HF_API_URL', 'https://api-inference.huggingface.co/models/')
+    HF_API_URL: str = os.environ.get('HF_API_URL', 'https://api-inference.huggingface.co/models')
     HF_DEFAULT_MODEL: str = 'meta-llama/Meta-Llama-3.1-70B-Instruct'
     HF_DEFAULT_SMALL_MODEL: str = 'meta-llama/Meta-Llama-3.1-8B-Instruct'
 
