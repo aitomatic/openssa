@@ -42,7 +42,3 @@ examples/**/*.json
 .openssa/
 test*.ipynb
 tmp/
-
-# OUTPUT LOGS
-# ===========
-./openssa/l2/util/lm/test_hf_lm.py
