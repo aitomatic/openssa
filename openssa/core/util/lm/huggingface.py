@@ -1,7 +1,7 @@
 """
-============================
+=================================
 HUGGINGFACE LANGUAGE MODELS (LMs)
-============================
+=================================
 """
 
 
@@ -9,10 +9,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 import json
-from multiprocessing import cpu_count
 from typing import TYPE_CHECKING
 
-# from openai import OpenAI  # pylint: disable=import-self
 from huggingface_hub.inference._client import InferenceClient
 
 from .abstract import AbstractLM, LMChatHist
@@ -39,21 +37,10 @@ class HuggingFaceLM(AbstractLM):
     @classmethod
     def from_defaults(cls) -> HuggingFaceLM:
         """Get HuggingFace LM instance with default parameters."""
-        # # pylint: disable=unexpected-keyword-arg
-        # return cls(model=LMConfig.DEFAULT_OPENAI_MODEL, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
-        # pylint: disable=unexpected-keyword-arg
-        print("Initialized Default LM through HF!")
-
         return cls(model=LMConfig.DEFAULT_HF_LLAMA_MODEL, api_key=LMConfig.HF_API_KEY, api_base=LMConfig.HF_API_URL)
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
         """Call HuggingFace LM API and return response object."""
-        # return self.client.chat.completions.create(model=self.model,
-        #                                            messages=messages,
-        #                                            seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
-        #                                            temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
-        #                                            **kwargs)
-        print(f"HF LM Call performed!: {messages}")
         return self.client.chat_completion(
             model=self.model,
             messages=messages,
