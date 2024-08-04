@@ -38,6 +38,7 @@ class LlamaLM(OpenAILM):
             while True:
                 try:
                     response: str = self.call(messages, **kwargs).choices[0].message.content
+                    response: str = response.replace('\n', '')  # TODO: fix Llama-generated JSONs more rigorously
                     return json.loads(response)
 
                 except json.decoder.JSONDecodeError:
