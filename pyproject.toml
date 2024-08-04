@@ -67,9 +67,10 @@ pytest = ">=8.3"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 # Llama interface
+huggingface-hub = ">=0.24"
 llamaapi = ">=0.1"
 # OpenAI interface
-openai = ">=1.37"
+openai = ">=1.38"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
@@ -86,6 +87,7 @@ s3fs = ">=2024.6"  # S3
 # misc / other
 click = ">=8.1"
 google-api-python-client = ">=2.139"
+googlesearch-python = ">=1.2"
 httpx = ">=0.27"
 loguru = ">=0.7"
 pydantic = ">=2.8"

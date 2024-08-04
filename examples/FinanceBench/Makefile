@@ -10,11 +10,27 @@ agent-solve-w-prog-space:
 agent-solve-w-knowledge-and-prog-space:
 	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
 
+agent-solve-w-llama3:
+	@poetry run python htp_oodar_agent.py ${id} --llama3
+
+agent-solve-w-knowledge-w-llama3:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --llama3
+
+agent-solve-w-prog-space-w-llama3:
+	@poetry run python htp_oodar_agent.py ${id} --prog-space --llama3
+
+agent-solve-w-knowledge-and-prog-space-w-llama3:
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space --llama3
+
 agent-solve-all-combos:
 	@poetry run python htp_oodar_agent.py ${id}
 	@poetry run python htp_oodar_agent.py ${id} --knowledge
 	@poetry run python htp_oodar_agent.py ${id} --prog-space
 	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
+	@poetry run python htp_oodar_agent.py ${id} --llama3
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --llama3
+	@poetry run python htp_oodar_agent.py ${id} --prog-space --llama3
+	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space --llama3
 
 
 openai-assist:
