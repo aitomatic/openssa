@@ -16,7 +16,7 @@ class SemiKongLM(LlamaLM):
     """SemiKong LM."""
 
     @classmethod
-    def from_defaults(cls) -> None:
+    def from_defaults(cls) -> SemiKongLM:
         """Get default SemiKong LM instance."""
         return cls(model=DEFAULT_MODEL, api_key=DEFAULT_API_KEY, api_base=DEFAULT_API_BASE)
 
