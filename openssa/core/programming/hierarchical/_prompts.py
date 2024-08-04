@@ -1,17 +1,17 @@
 HTP_JSON_TEMPLATE: str = """
 {{
     "task": "(textual description of question/problem/task to answer/solve)",
-    "sub-plans": [
+    "sub-htps": [
         {{
             "task": "(textual description of 1st sub-question/problem/task to answer/solve)",
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         {{
             "task": "(textual description of 2nd sub-question/problem/task to answer/solve)",
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         ...
@@ -24,7 +24,7 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
     "task": {{
         "ask": "(textual description of question/problem/task to answer/solve)"
     }},
-    "sub-plans": [
+    "sub-htps": [
         {{
             "task": {{
                 "ask": "(textual description of 1st sub-question/problem/task to answer/solve)",
@@ -32,8 +32,8 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
                     (... unique names of most relevant informational resources, if any ...)
                 ]
             }},
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         {{
@@ -43,8 +43,8 @@ HTP_WITH_RESOURCES_JSON_TEMPLATE: str = """
                     (... unique names of most relevant informational resources, if any ...)
                 ]
             }},
-            "sub-plans": [
-                (... nested sub-plans ...)
+            "sub-htps": [
+                (... nested sub hierarchical task plans (sub-HTPs) ...)
             ]
         }},
         ...
