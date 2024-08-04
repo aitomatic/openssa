@@ -86,7 +86,7 @@ s3fs = ">=2024.6"  # S3
 # misc / other
 click = ">=8.1"
 google-api-python-client = ">=2.139"
-googlesearch = ">=2.139"
+googlesearch-python = ">=1.2"
 httpx = ">=0.27"
 loguru = ">=0.7"
 pydantic = ">=2.8"
