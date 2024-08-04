@@ -9,12 +9,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
+from typing import TYPE_CHECKING
 
 from loguru import logger
 
-from .abstract import LMChatHist
 from .config import LMConfig
 from .openai import OpenAILM
+
+if TYPE_CHECKING:
+    from .abstract import LMChatHist
 
 
 @dataclass
@@ -38,6 +41,7 @@ class LlamaLM(OpenAILM):
             while True:
                 try:
                     response: str = self.call(messages, **kwargs).choices[0].message.content
+                    response: str = response.replace('\n', '')  # TODO: fix Llama-generated JSONs more rigorously
                     return json.loads(response)
 
                 except json.decoder.JSONDecodeError:
