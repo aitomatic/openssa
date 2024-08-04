@@ -17,6 +17,7 @@ from typing import TYPE_CHECKING
 from openssa.core.programming.abstract.programmer import AbstractProgrammer
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.reasoning.ooda import OodaReasoner
+from openssa.core.task import Task
 
 from .plan import HTP
 from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE, SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE
@@ -25,7 +26,6 @@ if TYPE_CHECKING:
     from openssa.core.knowledge.abstract import Knowledge
     from openssa.core.reasoning.abstract import AbstractReasoner
     from openssa.core.resource.abstract import AbstractResource
-    from openssa.core.task import Task
     from openssa.core.util.lm.abstract import LMChatHist
     from .plan import HTPDict
 
