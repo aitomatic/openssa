@@ -32,11 +32,10 @@ class LMConfig:
     DEFAULT_SMALL_OPENAI_MODEL: str = "gpt-4o-mini"  # platform.openai.com/docs/models/gpt-4o-mini
 
     # HuggingFace LMs
-    # HF_API_KEY: str | None = os.environ.get("HF_API_KEY")
-    HF_API_KEY = "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"
+    HF_API_KEY: str | None = os.environ.get("HF_API_KEY")
     HF_API_URL: str = os.environ.get("HF_API_URL", "https://api-inference.huggingface.co/models/")
-    # DEFAULT_LLAMA_MODEL: str = "llama3-70b"
-    DEFAULT_HF_LLAMA_MODEL: str = "meta-llama/Meta-Llama-3-8B-Instruct"
+    DEFAULT_HF_MODEL: str = "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    DEFAULT_SMALL_HF_MODEL: str = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 
     # LM parameters
     DEFAULT_SEED: int = 7 * 17 * 14717
