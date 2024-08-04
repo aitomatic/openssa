@@ -96,14 +96,6 @@ torch = ">=2.2,<2.3"  # 2.3 fails installing on Mac with M chip
 tqdm = ">=4.66"
 
 # optional dependencies required by extras
-# llama-index-callbacks-argilla = {version = ">=0.1", optional = true}
-llama-index-callbacks-arize-phoenix = {version = ">=0.1", optional = true}
-llama-index-callbacks-deepeval = {version = ">=0.1", optional = true}
-llama-index-callbacks-honeyhive = {version = ">=0.1", optional = true}
-llama-index-callbacks-langfuse = {version = ">=0.1", optional = true}
-llama-index-callbacks-openinference = {version = ">=0.1", optional = true}
-llama-index-callbacks-promptlayer = {version = ">=0.1", optional = true}
-llama-index-callbacks-wandb = {version = ">=0.1", optional = true}
 streamlit = {version = ">=1.37", optional = true}
 streamlit-extras = {version = ">=0.4", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
@@ -113,15 +105,6 @@ contrib = [
   "streamlit",
   "streamlit-extras",
   "streamlit-mic-recorder",
-]
-llama-index-callbacks = [
-  "llama-index-callbacks-arize-phoenix",
-  "llama-index-callbacks-deepeval",
-  "llama-index-callbacks-honeyhive",
-  "llama-index-callbacks-langfuse",
-  "llama-index-callbacks-openinference",
-  "llama-index-callbacks-promptlayer",
-  "llama-index-callbacks-wandb",
 ]
 
 
