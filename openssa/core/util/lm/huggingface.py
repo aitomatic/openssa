@@ -24,20 +24,17 @@ if TYPE_CHECKING:
 class HuggingFaceLM(AbstractLM):
     """HuggingFace LM."""
 
-    # client: OpenAI = field(init=False)
     client: InferenceClient = field(init=False)
 
     def __post_init__(self):
         """Initialize HuggingFace client."""
-        # self.client: OpenAI = OpenAI(api_key=self.api_key, base_url=self.api_base)
-        print("Initialized LM through HF!")
-        print(f"LMConfig.HF_API_KEY = {LMConfig.HF_API_KEY}")
-        self.client: InferenceClient = InferenceClient(model=LMConfig.DEFAULT_HF_LLAMA_MODEL, token=LMConfig.HF_API_KEY)
+        self.client: InferenceClient = InferenceClient(model=self.model, token=self.api_key)
 
     @classmethod
     def from_defaults(cls) -> HuggingFaceLM:
         """Get HuggingFace LM instance with default parameters."""
-        return cls(model=LMConfig.DEFAULT_HF_LLAMA_MODEL, api_key=LMConfig.HF_API_KEY, api_base=LMConfig.HF_API_URL)
+        # pylint: disable=unexpected-keyword-arg
+        return cls(model=LMConfig.HF_DEFAULT_MODEL, api_key=LMConfig.HF_API_KEY, api_base=LMConfig.HF_API_URL)
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
         """Call HuggingFace LM API and return response object."""
