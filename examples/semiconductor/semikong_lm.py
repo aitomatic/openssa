@@ -3,7 +3,7 @@ from __future__ import annotations
 from argparse import ArgumentParser
 from dataclasses import dataclass
 
-from openssa.core.util.lm.openai import OpenAILM
+from openssa.core.util.lm.llama import LlamaLM
 
 
 DEFAULT_MODEL = 'pentagoniac/SEMIKONG-70B'
@@ -12,7 +12,7 @@ DEFAULT_API_BASE = 'http://34.44.90.64:8081/v1'
 
 
 @dataclass
-class SemiKongLM(OpenAILM):
+class SemiKongLM(LlamaLM):
     """SemiKong LM."""
 
     @classmethod
