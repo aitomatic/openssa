@@ -16,6 +16,9 @@ exclude = [
 
 
 [lint]
+exclude = [
+  "*.ipynb",
+]
 select = ["ALL"]
 extend-select = [
 ]
