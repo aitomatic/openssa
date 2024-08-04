@@ -38,12 +38,12 @@ class OpenAILM(AbstractLM):
     def from_defaults(cls) -> OpenAILM:
         """Get OpenAI LM instance with default parameters."""
         # pylint: disable=unexpected-keyword-arg
-        return cls(model=LMConfig.DEFAULT_OPENAI_MODEL, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
+        return cls(model=LMConfig.OPENAI_DEFAULT_MODEL, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
         """Call OpenAI LM API and return response object."""
-        return self.client.chat.completions.create(model=self.model,
-                                                   messages=messages,
+        return self.client.chat.completions.create(messages=messages,
+                                                   model=self.model,
                                                    seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
                                                    temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
                                                    **kwargs)
@@ -75,7 +75,7 @@ def default_llama_index_openai_embed_model() -> OpenAIEmbedding:
                            num_workers=cpu_count())
 
 
-def default_llama_index_openai_lm(name: str = LMConfig.DEFAULT_SMALL_OPENAI_MODEL, /) -> LlamaIndexOpenAILM:
+def default_llama_index_openai_lm(name: str = LMConfig.OPENAI_DEFAULT_SMALL_MODEL, /) -> LlamaIndexOpenAILM:
     return LlamaIndexOpenAILM(model=name,
                               temperature=LMConfig.DEFAULT_TEMPERATURE,
                               max_tokens=None,
