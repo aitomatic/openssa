@@ -16,6 +16,9 @@ exclude = [
 
 
 [lint]
+exclude = [
+  "*.ipynb",
+]
 select = ["ALL"]
 extend-select = [
 ]
@@ -62,6 +65,8 @@ ignore = [
   "D410",  # Missing blank line after section
   "D411",  # missing blank line before section
   "D415",  # first line should end with a period, question mark, or exclamation point
+  "DOC201",  # return is not documented in docstring
+  "DOC202",  # docstring should not have a returns section because the function doesn't return anything
   "DOC501",  # raised exception missing from docstring
   "DTZ011",  # the use of `datetime.date.today()` is not allowed, use `datetime.datetime.now(tz=).date()` instead
   "E261",  # insert at least two spaces before an inline comment
@@ -105,6 +110,7 @@ ignore = [
   "PLR6104",  # use `+=` to perform an augmented assignment directly
   "PLR6301",  # method could be a function, class method, or static method
   "PLW0603",  # using the global statement to update is discouraged
+  "PLW1514",  # `open` in text mode without explicit `encoding` argument
   "PT009",  # use a regular `assert` instead of unittest-style `assertIsInstance`
   "PT018",  # assertion should be broken down into multiple parts
   "PT027",  # use `pytest.raises` instead of unittest-style `assertRaises`
