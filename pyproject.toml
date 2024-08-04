@@ -67,9 +67,10 @@ pytest = ">=8.3"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 # Llama interface
+huggingface-hub = ">=0.24"
 llamaapi = ">=0.1"
 # OpenAI interface
-openai = ">=1.37"
+openai = ">=1.38"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
