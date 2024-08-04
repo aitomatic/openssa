@@ -68,7 +68,6 @@ pytest = ">=8.3"
 python = ">=3.12,<3.14"
 # Llama interface
 huggingface-hub = ">=0.24"
-llamaapi = ">=0.1"
 # OpenAI interface
 openai = ">=1.38"
 # LlamaIndex & related

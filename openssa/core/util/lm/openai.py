@@ -17,11 +17,12 @@ from openai import OpenAI  # pylint: disable=import-self
 from llama_index.embeddings.openai.base import OpenAIEmbedding, OpenAIEmbeddingMode, OpenAIEmbeddingModelType
 from llama_index.llms.openai.base import OpenAI as LlamaIndexOpenAILM
 
-from .abstract import AbstractLM, LMChatHist
+from .abstract import AbstractLM
 from .config import LMConfig
 
 if TYPE_CHECKING:
     from openai.types.chat.chat_completion import ChatCompletion
+    from .abstract import LMChatHist
 
 
 @dataclass
