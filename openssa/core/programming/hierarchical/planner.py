@@ -47,8 +47,10 @@ class HTPlanner(AbstractProgrammer):
 
         if self.max_depth > 0:
             sub_task_descriptions: list[str] = self.lm.get_response(
-                prompt=SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE.format(problem=task.ask,
-                                                                       max_subtasks_per_decomp=self.max_subtasks_per_decomp),  # noqa: E501
+                prompt=SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE.format(
+                    problem=task.ask,
+                    resource_overviews={resource.unique_name: resource.overview for resource in task.resources},
+                    max_subtasks_per_decomp=self.max_subtasks_per_decomp),
                 history=knowledge_injection_lm_chat_msgs(knowledge=knowledge) if knowledge else None,
                 json_format=True)
 
