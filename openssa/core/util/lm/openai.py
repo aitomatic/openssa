@@ -12,6 +12,7 @@ import json
 from multiprocessing import cpu_count
 from typing import TYPE_CHECKING
 
+from loguru import logger
 from openai import OpenAI  # pylint: disable=import-self
 from llama_index.embeddings.openai.base import OpenAIEmbedding, OpenAIEmbeddingMode, OpenAIEmbeddingModelType
 from llama_index.llms.openai.base import OpenAI as LlamaIndexOpenAILM
@@ -57,9 +58,9 @@ class OpenAILM(AbstractLM):
 
             while True:
                 try:
-                    return json.loads(self.call(messages, **kwargs).choices[0].message.content)
+                    return json.loads(response := self.call(messages, **kwargs).choices[0].message.content)
                 except json.decoder.JSONDecodeError:
-                    continue
+                    logger.debug(f'INVALID JSON, TO BE RETRIED:\n{response}')  # pylint: disable=used-before-assignment
 
         return self.call(messages, **kwargs).choices[0].message.content
 
