@@ -11,6 +11,7 @@ from dataclasses import dataclass, field
 import json
 from typing import TYPE_CHECKING
 
+from loguru import logger
 from huggingface_hub.inference._client import InferenceClient
 
 from .abstract import AbstractLM, LMChatHist
@@ -38,21 +39,25 @@ class HuggingFaceLM(AbstractLM):
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
         """Call HuggingFace LM API and return response object."""
-        return self.client.chat_completion(
-            model=self.model,
-            messages=messages,
-            seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
-            temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
-            max_tokens=6000,
-            **kwargs)
+        return self.client.chat_completion(messages=messages,
+                                           model=self.model,
+                                           max_tokens=1500,
+                                           seed=kwargs.pop('seed', LMConfig.DEFAULT_SEED),
+                                           temperature=kwargs.pop('temperature', LMConfig.DEFAULT_TEMPERATURE),
+                                           **kwargs)
 
     def get_response(self, prompt: str, history: LMChatHist | None = None, json_format: bool = False, **kwargs) -> str:
         """Call HuggingFace LM API and return response content."""
         messages: LMChatHist = history or []
         messages.append({'role': 'user', 'content': prompt})
 
-        response_content: str = self.call(messages, **kwargs).choices[0].message.content
-        response_content = response_content.replace("\n", " ")
-        print(f"HF response_content = {response_content}")
+        if json_format:
+            # kwargs['response_format'] = {'type': 'json'}  # TODO: pass in JSON Schema
 
-        return json.loads(response_content) if json_format else response_content
+            while True:
+                try:
+                    return json.loads(response := self.call(messages, **kwargs).choices[0].message.content)
+                except json.decoder.JSONDecodeError:
+                    logger.debug(f'INVALID JSON, TO BE RETRIED:\n{response}')  # pylint: disable=used-before-assignment
+
+        return self.call(messages, **kwargs).choices[0].message.content
