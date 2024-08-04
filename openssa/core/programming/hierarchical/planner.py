@@ -43,7 +43,7 @@ class HTPlanner(AbstractProgrammer):
     def construct_htp(self, task: Task, knowledge: set[Knowledge] | None = None, reasoner: AbstractReasoner | None = None) -> HTP:  # noqa: E501
         """Construct HTP for solving posed Problem with given Knowledge and Resources."""
         if not reasoner:
-            reasoner: AbstractReasoner = OodaReasoner()
+            reasoner: AbstractReasoner = OodaReasoner(lm=self.lm)
 
         if self.max_depth > 0:
             prompt: str = (
