@@ -111,6 +111,29 @@ Please return ONLY the UPDATED JSON DICTIONARY and no other text, not even the "
 )
 
 
+SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE: str = (
+"""
+Please return a suggested JSON LIST with up to {max_subtasks_per_decomp} items per the following template:
+
+```
+[
+    "(textual description of 1st sub-problem/task to solve)",
+    "(textual description of 2nd sub-problem/task to solve)",
+    ...
+]
+```
+
+as decomposed tasks for solving the following problem:
+
+```
+{problem}
+```
+
+Please return ONLY the JSON LIST and no other text, not even the "```json" wrapping!
+"""  # noqa: E122
+)
+
+
 HTP_RESULTS_SYNTH_PROMPT_TEMPLATE: str = (
 """Synthesize an answer/solution for the following question/problem/task:
 
