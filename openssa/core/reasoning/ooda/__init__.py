@@ -84,7 +84,7 @@ class OodaReasoner(AbstractReasoner):
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
 
         def is_valid(orientation: Orientation) -> bool:
-            return orientation.startswith(CONFIDENT_HEADER) or orientation.startswith(UNCONFIDENT_HEADER)
+            return orientation.startswith(prefix=(CONFIDENT_HEADER, UNCONFIDENT_HEADER))
 
         orientation: Orientation = ''
         knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
@@ -97,7 +97,7 @@ class OodaReasoner(AbstractReasoner):
 
     def _decide(self, orientation: Orientation) -> Decision:
         """Decide whether to directly resolve Task."""
-        return orientation.startswith(CONFIDENT_HEADER)
+        return orientation.startswith(prefix=CONFIDENT_HEADER)
 
     def _act(self, task: Task, orientation: Orientation, decision: Decision):
         """Update Task's status and result."""
