@@ -120,7 +120,7 @@ RESOURCE_OVERVIEW_PROMPT_SECTION +  # noqa: E122
 ```
 
 please return a sequence of up to {max_subtasks_per_decomp} sentences/paragraphs,
-EACH PREPENDED by a header "[SUB-QUESTION/PROBLEM/TASK]" (EXACTLY LITERALLY SO! DO NOT SUBSTITUTE!),
+EACH PREPENDED by a header "[SUB-QUESTION/PROBLEM/TASK]" (EXACTLY LITERALLY THAT STRING! DO NOT SUBSTITUTE THAT STRING!),
 describing how such top-level question/problem/task could/should be decomposed into sub-questions/problems/tasks,
 per the following template:
 
