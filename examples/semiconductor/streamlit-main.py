@@ -21,7 +21,7 @@ st.title(body=TITLE, anchor=None, help=None)
 st.write('__PROBLEM/QUESTION__:')
 
 if 'typed_problem' not in st.session_state:
-    st.session_state.typed_problem: str = ''
+    st.session_state.typed_problem: str = 'what industry do you know best?'
 
 st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    value=st.session_state.typed_problem,
