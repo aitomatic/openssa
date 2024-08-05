@@ -1,9 +1,8 @@
 from argparse import ArgumentParser
 from functools import cache
 
-from openssa import Agent, ProgramSpace, HTP, HTPlanner, FileResource, LMConfig
-from openssa.core.util.lm.huggingface import HuggingFaceLM
-from openssa.core.util.lm.openai import OpenAILM, default_llama_index_openai_lm
+from openssa import Agent, ProgramSpace, HTP, HTPlanner, FileResource, LMConfig, HuggingFaceLM, OpenAILM
+from openssa.core.util.lm.openai import default_llama_index_openai_lm
 
 # pylint: disable=wrong-import-order,wrong-import-position
 from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
