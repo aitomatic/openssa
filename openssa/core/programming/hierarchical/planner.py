@@ -30,6 +30,9 @@ if TYPE_CHECKING:
     from .plan import HTPDict
 
 
+SUBTASK_HEADER: str = '[SUB-QUESTION/PROBLEM/TASK]\n'
+
+
 @dataclass
 class HTPlanner(AbstractProgrammer):
     """Hierarchical Task Planner."""
@@ -46,13 +49,24 @@ class HTPlanner(AbstractProgrammer):
             reasoner: AbstractReasoner = OodaReasoner(lm=self.lm)
 
         if self.max_depth > 0:
-            sub_task_descriptions: list[str] = self.lm.get_response(
-                prompt=SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE.format(
-                    problem=task.ask,
-                    resource_overviews={resource.unique_name: resource.overview for resource in task.resources},
-                    max_subtasks_per_decomp=self.max_subtasks_per_decomp),
-                history=knowledge_injection_lm_chat_msgs(knowledge=knowledge) if knowledge else None,
-                json_format=True)
+            prompt: str = SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE.format(
+                problem=task.ask,
+                resource_overviews={resource.unique_name: resource.overview for resource in task.resources},
+                max_subtasks_per_decomp=self.max_subtasks_per_decomp)
+
+            knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
+                                                    if knowledge
+                                                    else None)
+
+            def split_if_valid(sub_task_descriptions_combined: list[str]) -> list[str] | None:
+                return (sub_task_descriptions_combined.split(sep=SUBTASK_HEADER, maxsplit=-1)[1:]
+                        if sub_task_descriptions_combined.startswith(SUBTASK_HEADER)
+                        else None)
+
+            sub_task_descriptions: list[str] = []
+            while not sub_task_descriptions:
+                sub_task_descriptions: list[str] = split_if_valid(
+                    sub_task_descriptions_combined=self.lm.get_response(prompt=prompt, history=knowledge_lm_hist))
 
             sub_htplanner: HTPlanner = replace(self, max_depth=self.max_depth - 1)
 
