@@ -21,7 +21,9 @@ def get_or_create_agent(use_semikong_lm: bool = True, max_depth=2, max_subtasks_
             program_space.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
 
     return Agent(program_space=program_space,
-                 programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp))
+                 programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
+                 knowledge={},
+                 resources={})
 
 
 if __name__ == '__main__':
