@@ -119,18 +119,20 @@ RESOURCE_OVERVIEW_PROMPT_SECTION +  # noqa: E122
 {problem}
 ```
 
-please return a suggested task-decomposition JSON list with up to {max_subtasks_per_decomp} items
+please return a sequence of up to {max_subtasks_per_decomp} sentences/paragraphs,
+EACH PREPENDED by a header "[SUB-QUESTION/PROBLEM/TASK]" (EXACTLY LITERALLY SO! DO NOT SUBSTITUTE!),
+describing how such top-level question/problem/task could/should be decomposed into sub-questions/problems/tasks,
 per the following template:
 
 ```
-[
-    "(textual description of 1st sub-question/problem/task to answer/solve)",
-    "(textual description of 2nd sub-question/problem/task to answer/solve)",
-    ...
-]
+[SUB-QUESTION/PROBLEM/TASK]
+<textual description of 1st sub-question/problem/task to answer/solve>
+[SUB-QUESTION/PROBLEM/TASK]
+<textual description of 1st sub-question/problem/task to answer/solve>
+...
 ```
 
-Please return ONLY the JSON LIST and no other text, not even the "```json" wrapping!
+Please return ONLY the SEQUENCE OF SENTENCES/PARAGRAPHS WITH SUCH HEADERS, and no other text.
 """  # noqa: E122
 )
 
