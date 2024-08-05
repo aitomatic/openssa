@@ -3,7 +3,7 @@ from collections import defaultdict
 from loguru import logger
 import streamlit as st
 
-from htp_oodar_agent import get_or_create_agent
+from agent import get_or_create_agent
 
 
 TITLE: str = 'OpenSSA: Semiconductor Industry-Specific Agent leveraging SemiKong LM'
