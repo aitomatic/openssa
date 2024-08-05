@@ -18,6 +18,7 @@ class SemiKongLM(LlamaLM):
     @classmethod
     def from_defaults(cls) -> SemiKongLM:
         """Get default SemiKong LM instance."""
+        # pylint: disable=unexpected-keyword-arg
         return cls(model=DEFAULT_MODEL, api_key=DEFAULT_API_KEY, api_base=DEFAULT_API_BASE)
 
 
