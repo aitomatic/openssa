@@ -25,6 +25,9 @@ from .core.resource.file import FileResource
 from .core.task import Task
 
 from .core.util.lm.config import LMConfig
+from .core.util.lm.huggingface import HuggingFaceLM
+from .core.util.lm.llama import LlamaLM
+from .core.util.lm.openai import OpenAILM
 
 
 try:

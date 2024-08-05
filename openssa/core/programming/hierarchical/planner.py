@@ -17,17 +17,20 @@ from typing import TYPE_CHECKING
 from openssa.core.programming.abstract.programmer import AbstractProgrammer
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.reasoning.ooda import OodaReasoner
+from openssa.core.task import Task
 
 from .plan import HTP
-from ._prompts import HTP_PROMPT_TEMPLATE, HTP_WITH_RESOURCES_PROMPT_TEMPLATE
+from ._prompts import SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
     from openssa.core.knowledge.abstract import Knowledge
     from openssa.core.reasoning.abstract import AbstractReasoner
     from openssa.core.resource.abstract import AbstractResource
-    from openssa.core.task import Task
     from openssa.core.util.lm.abstract import LMChatHist
     from .plan import HTPDict
+
+
+SUBTASK_HEADER: str = '[SUB-QUESTION/PROBLEM/TASK]\n'
 
 
 @dataclass
@@ -46,40 +49,35 @@ class HTPlanner(AbstractProgrammer):
             reasoner: AbstractReasoner = OodaReasoner(lm=self.lm)
 
         if self.max_depth > 0:
-            prompt: str = (
-                HTP_WITH_RESOURCES_PROMPT_TEMPLATE.format(problem=task.ask,
-                                                          resource_overviews={resource.unique_name: resource.overview
-                                                                              for resource in task.resources},
-                                                          max_depth=1,
-                                                          max_subtasks_per_decomp=self.max_subtasks_per_decomp)
-                if task.resources
-                else HTP_PROMPT_TEMPLATE.format(problem=task.ask,
-                                                max_depth=1,
-                                                max_subtasks_per_decomp=self.max_subtasks_per_decomp)
-            )
+            prompt: str = SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE.format(
+                problem=task.ask,
+                resource_overviews={resource.unique_name: resource.overview for resource in task.resources},
+                max_subtasks_per_decomp=self.max_subtasks_per_decomp)
 
-            htp_dict: HTPDict = {}
             knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
                                                     if knowledge
                                                     else None)
-            while not (isinstance(htp_dict, dict) and htp_dict):
-                htp_dict: HTPDict = self.lm.get_response(prompt, history=knowledge_lm_hist, json_format=True)
 
-            htp: HTP = HTP.from_dict(htp_dict)
+            def split_if_valid(sub_task_descriptions_combined: list[str]) -> list[str] | None:
+                return (sub_task_descriptions_combined.split(sep=SUBTASK_HEADER, maxsplit=-1)[1:]
+                        if sub_task_descriptions_combined.startswith(SUBTASK_HEADER)
+                        else None)
 
-            htp.task: Task = task
-            htp.task.resources: set[AbstractResource] | None = task.resources  # TODO: optimize to not always use all resources
-            htp.programmer: HTPlanner = self
-            htp.reasoner: AbstractReasoner = reasoner
+            sub_task_descriptions: list[str] = []
+            while not sub_task_descriptions:
+                sub_task_descriptions: list[str] = split_if_valid(
+                    sub_task_descriptions_combined=self.lm.get_response(prompt=prompt, history=knowledge_lm_hist))
 
-            sub_htp_programmer: HTPlanner = replace(self, max_depth=self.max_depth - 1)
-            for sub_htp in htp.sub_htps:
-                if task.resources:
-                    sub_htp.task.resources: set[AbstractResource] = task.resources  # TODO: optimize to not always use all resources
-                sub_htp.programmer: HTPlanner = sub_htp_programmer
-                sub_htp.reasoner: AbstractReasoner = reasoner
+            sub_htplanner: HTPlanner = replace(self, max_depth=self.max_depth - 1)
 
-            return htp
+            return HTP(task=task,
+                       programmer=self,
+                       sub_htps=[HTP(task=Task(ask=sub_task_description,
+                                               resources=task.resources),  # TODO: optimize to not always use all
+                                     programmer=sub_htplanner,
+                                     reasoner=reasoner)
+                                 for sub_task_description in sub_task_descriptions],
+                       reasoner=reasoner)
 
         return HTP(task=task, programmer=self, reasoner=reasoner)
 
