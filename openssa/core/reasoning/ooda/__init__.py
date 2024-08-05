@@ -21,10 +21,10 @@ In the `Act` step, the OODA reasoner updates the status of the task, per the pre
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, TypedDict
+from typing import TYPE_CHECKING
 
-from openssa.core.reasoning.abstract import AbstractReasoner
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.core.reasoning.abstract import AbstractReasoner
 from openssa.core.task.status import TaskStatus
 from openssa.core.util.misc import format_other_result
 
@@ -37,12 +37,12 @@ if TYPE_CHECKING:
     from openssa.core.util.misc import AskAnsPair
 
 
-type _Observation = str
+type Observation = str
+type Orientation = str
+type Decision = bool
 
-
-class _OrientResult(TypedDict):
-    confident: bool
-    answer: str
+CONFIDENT_HEADER: str = '[CONFIDENT]\n'
+UNCONFIDENT_HEADER: str = '[UNCONFIDENT]\n'
 
 
 @dataclass
@@ -59,49 +59,51 @@ class OodaReasoner(AbstractReasoner):
         - Orient & Decide whether such results are adequate for confident answer/conclusion/solution
         - Act to update Task's status and result
         """
-        observations: set[_Observation] = self._observe(task=task, other_results=other_results, n_words=n_words)
+        observations: set[Observation] = self._observe(task=task, other_results=other_results, n_words=n_words)
 
         # note: Orient & Decide steps are practically combined to economize LM calls
-        orient_result: _OrientResult = self._orient(task=task, observations=observations, knowledge=knowledge, n_words=n_words)  # noqa: E501
-        decision: bool = self._decide(orient_result=orient_result)
+        orientation: Orientation = self._orient(task=task, observations=observations, knowledge=knowledge, n_words=n_words)  # noqa: E501
+        decision: bool = self._decide(orientation=orientation)
 
-        self._act(task=task, orient_result=orient_result, decision=decision)
+        self._act(task=task, orientation=orientation, decision=decision)
 
         return task.result
 
-    def _observe(self, task: Task, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[_Observation]:  # noqa: E501
+    def _observe(self, task: Task, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[Observation]:  # noqa: E501
         """Observe results from available Informational Resources as well as other results (if given)."""
-        observations: set[_Observation] = {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}  # noqa: E501
+        observations: set[Observation] = {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}  # noqa: E501
 
         if other_results:
             observations |= {format_other_result(other_result) for other_result in other_results}
 
         return observations
 
-    def _orient(self, task: Task, observations: set[_Observation],
-                knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> _OrientResult:
+    def _orient(self, task: Task, observations: set[Observation],
+                knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> Orientation:
         """Orient whether observed results are adequate for directly resolving Task."""
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
 
-        def is_valid(orient_result_dict: _OrientResult) -> bool:
-            return (isinstance(orient_result_dict, dict) and
-                    isinstance(orient_result_dict.get('confident'), bool) and
-                    isinstance(orient_result_dict.get('answer'), str))
+        def is_valid(orientation: Orientation) -> bool:
+            return orientation.startswith(CONFIDENT_HEADER) or orientation.startswith(UNCONFIDENT_HEADER)
 
-        orient_result_dict: _OrientResult = {}
+        orientation: Orientation = ''
         knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
                                                 if knowledge
                                                 else None)
-        while not is_valid(orient_result_dict):
-            orient_result_dict: _OrientResult = self.lm.get_response(prompt, history=knowledge_lm_hist, json_format=True)
+        while not is_valid(orientation):
+            orientation: Orientation = self.lm.get_response(prompt, history=knowledge_lm_hist)
 
-        return orient_result_dict
+        return orientation
 
-    def _decide(self, orient_result: _OrientResult) -> bool:
+    def _decide(self, orientation: Orientation) -> Decision:
         """Decide whether to directly resolve Task."""
-        return orient_result['confident']
+        return orientation.startswith(CONFIDENT_HEADER)
 
-    def _act(self, task: Task, orient_result: _OrientResult, decision: bool) -> None:
+    def _act(self, task: Task, orientation: Orientation, decision: Decision):
         """Update Task's status and result."""
-        task.status: TaskStatus = TaskStatus.DONE if decision else TaskStatus.NEEDING_DECOMPOSITION
-        task.result: str = orient_result['answer']
+        if decision:
+            task.status: TaskStatus = TaskStatus.DONE
+            task.result: str = orientation.split(sep=CONFIDENT_HEADER, maxsplit=1)[1]
+        else:
+            task.status: TaskStatus = TaskStatus.NEEDING_DECOMPOSITION
+            task.result: str = orientation.split(sep=UNCONFIDENT_HEADER, maxsplit=1)[1]
