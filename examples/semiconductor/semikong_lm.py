@@ -8,7 +8,7 @@ from openssa.core.util.lm.llama import LlamaLM
 
 DEFAULT_MODEL = 'pentagoniac/SEMIKONG-70B'
 DEFAULT_API_KEY = '...'
-DEFAULT_API_BASE = 'http://34.44.90.64:8081/v1'
+DEFAULT_API_BASE = 'http://semikong70b.aitomatic.com/v1'
 
 
 @dataclass
