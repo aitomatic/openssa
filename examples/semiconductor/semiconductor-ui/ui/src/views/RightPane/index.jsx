@@ -4,6 +4,9 @@ export const RightPane = () => {
       className="flex flex-col flex-1 gap-8 p-8 border-l"
       style={{ borderColor: "#252525" }}
     >
+      <div className="flex items-center rounded-lg">
+        <img src="/public/images/nanophys.png" />
+      </div>
       <div className="flex flex-col gap-2">
         <div className="text-white">Solution</div>
         <div

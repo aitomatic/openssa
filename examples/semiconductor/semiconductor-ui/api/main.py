@@ -3,6 +3,36 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from collections import defaultdict
 import openai
+from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
+
+
+# pylint: disable=wrong-import-order
+from data_and_knowledge import EXPERT_PROGRAM_SPACE, EXPERT_KNOWLEDGE
+from semikong_lm import SemiKongLM
+
+
+def get_or_create_agent(
+    use_semikong_lm: bool = True, max_depth=2, max_subtasks_per_decomp=4
+) -> Agent:
+    lm = (SemiKongLM if use_semikong_lm else OpenAILM).from_defaults()
+
+    program_space = ProgramSpace(lm=lm)
+    if EXPERT_PROGRAM_SPACE:
+        for program_name, htp_dict in EXPERT_PROGRAM_SPACE.items():
+            htp = HTP.from_dict(htp_dict)
+            program_space.add_or_update_program(
+                name=program_name, description=htp.task.ask, program=htp
+            )
+
+    return Agent(
+        program_space=program_space,
+        programmer=HTPlanner(
+            lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp
+        ),
+        knowledge={EXPERT_KNOWLEDGE} if EXPERT_KNOWLEDGE else None,
+        resources={},
+    )
+
 
 app = FastAPI()
 
@@ -14,17 +44,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
 
 def call_gpt(prompt):
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "You are an expert in parsing text into a specific format. Please help me with this task."},
-            {"role": "user", "content": prompt}
-        ]
+            {
+                "role": "system",
+                "content": "You are an expert in parsing text into a specific format. Please help me with this task.",
+            },
+            {"role": "user", "content": prompt},
+        ],
     )
     return response.choices[0].message.content
+
 
 def parse_recipe_text(text):
     parsed_data = {"recipe_1": "", "recipe_2": "", "agent_advice": ""}
@@ -44,14 +79,17 @@ def parse_recipe_text(text):
     parsed_data = {key: value.strip() for key, value in parsed_data.items()}
     return parsed_data
 
+
 def solve_semiconductor_question(question):
     solutions = defaultdict(str)
 
-    solutions[question] = get_or_create_agent(use_semikong_lm=True).solve(problem=question)
+    solutions[question] = get_or_create_agent(use_semikong_lm=True).solve(
+        problem=question
+    )
 
     solution = solutions[question]
-    solution = solution.replace('$', r'\$')
-    
+    solution = solution.replace("$", r"\$")
+
     prompt = f"""{solution} \n\n Please help me parse the above text into this format:\n
          recipe_1: Show the recipe 1 here\n 
          recipe_2: Show the recipe 2 here\n
@@ -62,18 +100,20 @@ def solve_semiconductor_question(question):
     parsed_solution = parse_recipe_text(solution)
     return parsed_solution
 
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
 
 @app.get("/data")
 async def get_data():
     return {"data": "data"}
 
+
 @app.post("/data")
-async def post_data(request: Request):
-    data = await request.json()
-    question = data.get('question')
+async def post_data(data: dict):
+    question = data.get("question")
     if not question:
         return {"error": "No question provided"}, 400
 
@@ -81,6 +121,5 @@ async def post_data(request: Request):
         parsed_answer = solve_semiconductor_question(question)
         return parsed_answer
     except Exception as e:
-        logger.error(f"Error solving the question: {e}")
+        print(f"Error solving the question: {e}")
         return {"error": str(e)}, 500
-

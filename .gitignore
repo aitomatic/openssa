@@ -42,6 +42,10 @@ examples/**/*.json
 !examples/**/package.json
 !examples/**/package-lock.json
 
+
+# Exception
+!examples/semiconductor/semiconductor-ui/api/poetry.lock
+
 .openssa/
 test*.ipynb
 tmp/
