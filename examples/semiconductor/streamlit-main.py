@@ -18,10 +18,20 @@ st.set_page_config(page_title=TITLE,
 st.title(body=TITLE, anchor=None, help=None)
 
 
+DEFAULT_PROBLEM: str = (
+    'How to etch 2 um silicon dioxide (PR mask) using ICP RIE Plasmalab System 100... Any suggestions for recipe?'
+    '\n'
+    'I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. '
+    'I am using the Oxford ICP-RIE Plasmalab System 100. '
+    'I have tried multiple recipes, but I have encountered issues '
+    'such as low selectivity, polymer redeposition, and extremely low etch rates at times.'
+)
+
+
 st.write('__PROBLEM/QUESTION__:')
 
 if 'typed_problem' not in st.session_state:
-    st.session_state.typed_problem: str = 'what industry do you know best?'
+    st.session_state.typed_problem: str = DEFAULT_PROBLEM
 
 st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    value=st.session_state.typed_problem,
