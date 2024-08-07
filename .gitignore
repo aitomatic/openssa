@@ -39,6 +39,9 @@ docs/_build/
 # DATA & EXAMPLE FILES
 # ====================
 examples/**/*.json
+!examples/**/package.json
+!examples/**/package-lock.json
+
 .openssa/
 test*.ipynb
 tmp/
