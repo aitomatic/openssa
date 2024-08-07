@@ -215,6 +215,85 @@ export const Plan = () => {
     </div>
   );
 };
+
+export const Data1 = () => {
+  const { data } = useData();
+  const { recipe_1 } = data;
+  if (!recipe_1) return <></>;
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="text-white">Recipe 1</div>
+      <div
+        className="flex flex-col rounded-lg"
+        style={{ background: "#1f1f1f" }}
+      >
+        <div className="flex">
+          <div
+            className="flex flex-col gap-3 p-5"
+            style={{ flex: 3, color: "white" }}
+          >
+            <div className="" style={{ color: "#ededed" }}>
+              {recipe_1}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const Data2 = () => {
+  const { data } = useData();
+  const { recipe_2 = "" } = data;
+  if (!recipe_2) return <></>;
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="text-white">Recipe 2</div>
+      <div
+        className="flex flex-col rounded-lg"
+        style={{ background: "#1f1f1f" }}
+      >
+        <div className="flex">
+          <div
+            className="flex flex-col gap-3 p-5"
+            style={{ flex: 3, color: "white" }}
+          >
+            <div className="" style={{ color: "#ededed" }}>
+              {recipe_2}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const AgentAdvice = () => {
+  const { data } = useData();
+  const { agent_advice = "" } = data;
+  if (!agent_advice) return <></>;
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="text-white">Agent Advice </div>
+      <div
+        className="flex flex-col rounded-lg"
+        style={{ background: "#1f1f1f" }}
+      >
+        <div className="flex">
+          <div
+            className="flex flex-col gap-3 p-5"
+            style={{ flex: 3, color: "white" }}
+          >
+            <div className="" style={{ color: "#ededed" }}>
+              {agent_advice}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const LeftPane = () => {
   const [message, setMessage] = useState("");
   const { isLoading, sendMessage } = useData();
@@ -229,6 +308,7 @@ export const LeftPane = () => {
         >
           <div className="p-5">
             <textarea
+              rows={4}
               className="w-full resize-none"
               value={message}
               onChange={(e) => setMessage(e.currentTarget.value)}
@@ -237,7 +317,7 @@ export const LeftPane = () => {
           <div className="flex justify-end p-5">
             <button
               className="px-5 py-2 text-black bg-white rounded-lg"
-              onClick={sendMessage}
+              onClick={() => sendMessage(message)}
               disabled={isLoading}
             >
               Solve
@@ -245,8 +325,11 @@ export const LeftPane = () => {
           </div>
         </div>
       </div>
-      <Specification />
-      <Plan />
+      {/* <Specification />
+      <Plan /> */}
+      {isLoading && <div className="text-white">Requesting data...</div>}
+      <Data1 />
+      <Data2 />
     </div>
   );
 };
