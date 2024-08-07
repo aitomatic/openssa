@@ -1,0 +1,25 @@
+General Considerations for Etching SiO2:
+
+Selectivity: Achieving higher SiO2 etch rate than PR mask.
+Polymer Redeposition: Reducing fluorine content, increasing bias power, adding polymer-reducing gas.
+Etch Rate: Balancing plasma density, ion energy, and reactant gas flow rates.
+Recipe Suggestions:
+
+Fluorine-based etch:
+CF4: 50 sccm, CHF3: 20 sccm, Ar: 10 sccm.
+ICP power: 800 W, Bias power: 100 W.
+Pressure: 10 mTorr, Temperature: 20°C.
+Chlorine-based etch:
+Cl2: 50 sccm, Ar: 20 sccm, O2: 10 sccm.
+ICP power: 1000 W, Bias power: 150 W.
+Pressure: 15 mTorr, Temperature: 20°C.
+Hybrid etch:
+CF4: 30 sccm, Cl2: 20 sccm, Ar: 10 sccm, O2: 10 sccm.
+ICP power: 900 W, Bias power: 120 W.
+Pressure: 12 mTorr, Temperature: 20°C.
+Additional Tips:
+
+Optimize PR mask: Proper baking and development.
+Monitor etch process: Optical emission spectroscopy, mass spectrometry.
+Pre-etch treatment: Brief fluorine-based plasma.
+Post-etch treatment: Brief oxygen plasma.
