@@ -5,6 +5,7 @@ services:
     container_name: apis
     restart: always
     platform: linux/amd64
+    env_file: .env
     build:
       context: ./api
       dockerfile: ./Dockerfile
