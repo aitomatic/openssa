@@ -1,9 +1,17 @@
 plan:
   task: |-
-    Develop a comprehensive plan for etching 2 μm PECVD SiO2 using a PR mask.
+    For etching PECVD SiO2 using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE),
+    recommend 2 good parameter sets and their relative advantages/disadvantages
+  
   sub-htps:
     - task: |-
-        What are the indicators I should focus on and briefly tell me their influence? Tell me concisely.
+        Get typical gases used for such process and their flow rate ranges
+        in SiO2 etching using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE)
+        
+    - task: |-    
+        Get typical ICP Power, RF Power and Pressure value ranges and associated trade-offs
+        in SiO2 etching using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE)
 
     - task: |-
-        What are the range of values should I choose for each indicator? No need so say much. I want the safe range of value.
+        Recommend 2 parameter sets (each including Flow Rate for each Gas, plus ICP Power, RF Power and Pressure)
+        with analysis of their relative pros and cons.

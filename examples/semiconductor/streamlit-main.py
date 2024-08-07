@@ -19,12 +19,13 @@ st.title(body=TITLE, anchor=None, help=None)
 
 
 DEFAULT_PROBLEM: str = (
-    'How to etch 2 um silicon dioxide (PR mask) using ICP RIE Plasmalab System 100... Any suggestions for recipe?'
+    'How to etch 2 um silicon dioxide (PR mask) using ICP RIE Plasmalab System 100? Any suggestions for recipe?'
     '\n'
     'I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. '
+    '\n'
     'I am using the Oxford ICP-RIE Plasmalab System 100. '
-    'I have tried multiple recipes, but I have encountered issues '
-    'such as low selectivity, polymer redeposition, and extremely low etch rates at times.'
+    '\n'
+    'Recommend me 2 recipes and their pros/cons.'
 )
 
 
