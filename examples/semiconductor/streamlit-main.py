@@ -45,50 +45,23 @@ st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    label_visibility='collapsed')
 
 
-generic_agent, semikong_agent = st.columns(spec=2, gap='large')
-
-
-if 'generic_agent_solutions' not in st.session_state:
-    st.session_state.generic_agent_solutions: defaultdict[str, str] = defaultdict(str)
-
-
-with generic_agent:
-    st.subheader('Generic Agent')
-    st.subheader('_using generic LM_')
-
-    if st.button(label='SOLVE',
-                 on_click=None, args=None, kwargs=None,
-                 type='secondary',
-                 disabled=False,
-                 use_container_width=False):
-        with st.spinner(text='_SOLVING..._'):
-            logger.level('DEBUG')
-
-            st.session_state.generic_agent_solutions[st.session_state.typed_problem]: str = \
-                get_or_create_agent(use_semikong_lm=False).solve(problem=st.session_state.typed_problem)
-
-    if (solution := st.session_state.generic_agent_solutions[st.session_state.typed_problem]):
-        st.markdown(body=solution.replace('$', r'\$'))
-
-
 if 'semikong_agent_solutions' not in st.session_state:
     st.session_state.semikong_agent_solutions: defaultdict[str, str] = defaultdict(str)
 
 
-with semikong_agent:
-    st.subheader('SEMICONDUCTOR INDUSTRY AGENT')
-    st.subheader('_using `SemiKong` LM_')
+st.subheader('SEMICONDUCTOR INDUSTRY AGENT')
+st.subheader('_using `SemiKong` LM_')
 
-    if st.button(label='SOLVE',
-                 on_click=None, args=None, kwargs=None,
-                 type='primary',
-                 disabled=False,
-                 use_container_width=False):
-        with st.spinner(text='_SOLVING..._'):
-            logger.level('DEBUG')
+if st.button(label='SOLVE',
+             on_click=None, args=None, kwargs=None,
+             type='primary',
+             disabled=False,
+             use_container_width=False):
+    with st.spinner(text='_SOLVING..._'):
+        logger.level('DEBUG')
 
-            st.session_state.semikong_agent_solutions[st.session_state.typed_problem]: str = \
-                get_or_create_agent(use_semikong_lm=True).solve(problem=st.session_state.typed_problem)
+        st.session_state.semikong_agent_solutions[st.session_state.typed_problem]: str = \
+            get_or_create_agent(use_semikong_lm=True).solve(problem=st.session_state.typed_problem)
 
-    if (solution := st.session_state.semikong_agent_solutions[st.session_state.typed_problem]):
-        st.markdown(body=solution.replace('$', r'\$'))
+if (solution := st.session_state.semikong_agent_solutions[st.session_state.typed_problem]):
+    st.markdown(body=solution.replace('$', r'\$'))
