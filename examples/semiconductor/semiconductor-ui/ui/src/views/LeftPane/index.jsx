@@ -330,6 +330,7 @@ export const LeftPane = () => {
       {isLoading && <div className="text-white">Requesting data...</div>}
       <Data1 />
       <Data2 />
+      <AgentAdvice />
     </div>
   );
 };
