@@ -11,7 +11,7 @@ RUN poetry config virtualenvs.in-project true && \
 
 WORKDIR /api
 
-COPY pyproject.toml poetry.lock /api/
+COPY pyproject.toml /api/
 
 # =======================================
 # Build image
