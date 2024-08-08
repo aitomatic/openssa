@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "api"
+version = "0.1.0"
+description = ""
+authors = ["Hung Vo <vophihungvn@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.14"
+uvicorn = "^0.30.5"
+fastapi = "^0.112.0"
+openai = "^1.40.1"
+openssa = {git = "https://github.com/aitomatic/openssa.git"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
