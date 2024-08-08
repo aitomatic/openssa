@@ -347,7 +347,7 @@ export const LeftPane = () => {
       {/* <Specification />
       <Plan /> */}
       {isLoading && (
-        <div className="px-8 text-white">Getting recepy advice ...</div>
+        <div className="px-8 text-white">Getting recipe advice ...</div>
       )}
       {data.recipe_2 && (
         <div className="flex flex-col p-8 gap-5 border-t border-[#2e2e2e]">
