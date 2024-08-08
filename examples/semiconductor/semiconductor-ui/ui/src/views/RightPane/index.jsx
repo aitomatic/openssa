@@ -173,7 +173,7 @@ export const AgentAdvice = () => {
   return (
     <div className="flex flex-col gap-2  p-8 border-t border-[#2E2E2E]">
       <div className="text-white text-[32px] font-medium">
-        Quality & Safety advise
+      QUALITY & SAFETY ADVICE
       </div>
       <div
         className="flex flex-col rounded-lg"
