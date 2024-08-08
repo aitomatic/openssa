@@ -1,11 +1,11 @@
 import { LeftPane } from "./LeftPane";
 import { RightPane } from "./RightPane";
-import { Header } from "./Header";
+import { TitleHeader } from "./Header";
 
 export const MainView = () => {
   return (
     <div className="flex flex-col w-screen min-h-screen bg-black">
-      <Header />
+      <TitleHeader />
       <div className="flex">
         <LeftPane />
         <RightPane />

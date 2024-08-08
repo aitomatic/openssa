@@ -1,3 +1,6 @@
+import { useData } from "../store";
+import { MarkdownViewer } from "../components/MarkdownViewer";
+
 export const Solution = () => {
   return (
     <div className="flex flex-col gap-2">
@@ -162,18 +165,52 @@ export const EtchImg = () => {
   );
 };
 
+export const AgentAdvice = () => {
+  const { data } = useData();
+  const { agent_advice = "" } = data;
+  if (!agent_advice) return <></>;
+  const strings = agent_advice.split("\n");
+  return (
+    <div className="flex flex-col gap-2  p-8 border-t border-[#2E2E2E]">
+      <div className="text-white text-[32px] font-medium">
+        Quality & Safety advise
+      </div>
+      <div
+        className="flex flex-col rounded-lg"
+        style={{ background: "#1f1f1f" }}
+      >
+        <div className="flex">
+          <div
+            className="flex flex-col gap-3 p-5"
+            style={{ flex: 3, color: "white" }}
+          >
+            <div className="whitespace-pre-wrap" style={{ color: "#ededed" }}>
+              {strings.map((s, index) => (
+                <div key={`Advice-2-${index}`}>
+                  <MarkdownViewer>{s}</MarkdownViewer>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const RightPane = () => {
   return (
     <div
-      className="flex flex-col flex-1 gap-8 p-8 border-l"
+      className="flex flex-col flex-1 border-l"
       style={{ borderColor: "#252525" }}
     >
-      <div className="flex items-center rounded-lg">
-        <img src="/public/images/nanophys.png" />
+      <div className="flex items-center p-8 rounded-lg">
+        <img src="/public/images/nanophys.png" className="h-[575px]" />
       </div>
       {/* <Solution />
       <Solution2 />
       <EtchImg /> */}
+      <AgentAdvice />
     </div>
   );
 };

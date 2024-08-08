@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useData } from "../store";
+import { MarkdownViewer } from "../components/MarkdownViewer";
 
 export const Specification = () => {
   return (
@@ -220,20 +221,28 @@ export const Data1 = () => {
   const { data } = useData();
   const { recipe_1 } = data;
   if (!recipe_1) return <></>;
+  const strings = recipe_1.split("\n");
+
   return (
-    <div className="flex flex-col gap-2">
-      <div className="text-white">Recipe 1</div>
+    <div className="flex flex-col h-full gap-2">
       <div
         className="flex flex-col rounded-lg"
         style={{ background: "#1f1f1f" }}
       >
+        <div className="text-white  p-4 bg-[#292929] rounded-t-lg font-medium">
+          Recipe 1
+        </div>
         <div className="flex">
           <div
             className="flex flex-col gap-3 p-5"
             style={{ flex: 3, color: "white" }}
           >
-            <div className="" style={{ color: "#ededed" }}>
-              {recipe_1}
+            <div className="whitespace-pre-wrap" style={{ color: "#ededed" }}>
+              {strings.map((s, index) => (
+                <div key={`recepi-1-${index}`}>
+                  <MarkdownViewer>{s}</MarkdownViewer>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -246,20 +255,27 @@ export const Data2 = () => {
   const { data } = useData();
   const { recipe_2 = "" } = data;
   if (!recipe_2) return <></>;
+  const strings = recipe_2.split("\n");
   return (
     <div className="flex flex-col gap-2">
-      <div className="text-white">Recipe 2</div>
       <div
         className="flex flex-col rounded-lg"
         style={{ background: "#1f1f1f" }}
       >
+        <div className="text-white p-4 bg-[#292929] rounded-t-lg font-medium">
+          Recipe 2
+        </div>
         <div className="flex">
           <div
             className="flex flex-col gap-3 p-5"
             style={{ flex: 3, color: "white" }}
           >
-            <div className="" style={{ color: "#ededed" }}>
-              {recipe_2}
+            <div className="whitespace-pre-wrap" style={{ color: "#ededed" }}>
+              {strings.map((s, index) => (
+                <div key={`recepi-2-${index}`}>
+                  <MarkdownViewer>{s}</MarkdownViewer>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -268,25 +284,22 @@ export const Data2 = () => {
   );
 };
 
-export const AgentAdvice = () => {
-  const { data } = useData();
-  const { agent_advice = "" } = data;
-  if (!agent_advice) return <></>;
+export const Images = () => {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="text-white">Agent Advice </div>
-      <div
-        className="flex flex-col rounded-lg"
-        style={{ background: "#1f1f1f" }}
-      >
-        <div className="flex">
-          <div
-            className="flex flex-col gap-3 p-5"
-            style={{ flex: 3, color: "white" }}
-          >
-            <div className="" style={{ color: "#ededed" }}>
-              {agent_advice}
-            </div>
+    <div className="">
+      <div className="flex flex-col border border-[#2E2E2E] rounded-lg ">
+        <div className="px-5 py-2.5 text-[#CBCBCB] border-b border-[#2E2E2E]">
+          PlasmaPro 100 Cobra ICP RIE Etch
+        </div>
+        <div className="flex gap-10 p-8">
+          <div className="flex items-end justify-center flex-1">
+            <img src="/images/image-17.png" className="h-[200px]" />
+          </div>
+          <div className="flex items-center justify-center flex-1">
+            <img
+              src="/images/screenshot-20240808-at-1000121.png"
+              className="h-[200px]"
+            />
           </div>
         </div>
       </div>
@@ -296,41 +309,61 @@ export const AgentAdvice = () => {
 
 export const LeftPane = () => {
   const [message, setMessage] = useState("");
-  const { isLoading, sendMessage } = useData();
+  const { isLoading, sendMessage, data } = useData();
 
   return (
-    <div className="flex flex-col flex-1 gap-8 p-8">
-      <div className="flex flex-col gap-2">
-        <div className="text-white">Question</div>
-        <div
-          className="flex flex-col border rounded-lg"
-          style={{ borderColor: "#454545", backgroundColor: "#1a1a1a" }}
-        >
-          <div className="p-5">
-            <textarea
-              rows={4}
-              className="w-full resize-none"
-              value={message}
-              onChange={(e) => setMessage(e.currentTarget.value)}
-            ></textarea>
+    <div className="flex flex-col flex-1 ">
+      <div className="flex flex-col gap-8 p-8">
+        <Images />
+        <div className="flex flex-col gap-2">
+          <div className="text-white text-[32px] font-medium">
+            Requirements & specifications
           </div>
-          <div className="flex justify-end p-5">
-            <button
-              className="px-5 py-2 text-black bg-white rounded-lg"
-              onClick={() => sendMessage(message)}
-              disabled={isLoading}
-            >
-              Solve
-            </button>
+          <div
+            className="flex flex-col border rounded-lg"
+            style={{ borderColor: "#454545", backgroundColor: "#292929" }}
+          >
+            <div className=" bg-[#1A1A1A] text-white">
+              <textarea
+                rows={2}
+                className="w-full resize-none bg-[#1A1A1A] p-5 text-white"
+                placeholder="Enter your message here..."
+                value={message}
+                onChange={(e) => setMessage(e.currentTarget.value)}
+              ></textarea>
+            </div>
+            <div className="flex justify-end p-5">
+              <button
+                className="px-5 py-2 font-medium text-black bg-white rounded-lg"
+                onClick={() => sendMessage(message)}
+                disabled={isLoading}
+              >
+                Get Recipe Advice
+              </button>
+            </div>
           </div>
         </div>
       </div>
       {/* <Specification />
       <Plan /> */}
-      {isLoading && <div className="text-white">Requesting data...</div>}
-      <Data1 />
-      <Data2 />
-      <AgentAdvice />
+      {isLoading && (
+        <div className="px-8 text-white">Getting recepy advice ...</div>
+      )}
+      {data.recipe_2 && (
+        <div className="flex flex-col p-8 gap-5 border-t border-[#2e2e2e]">
+          <div className="text-white text-[32px] font-medium">
+            Quality & Safety advise
+          </div>
+          <div className="flex gap-4 ">
+            <div className="flex flex-1 max-h-full overflow-scroll justify-stretch">
+              <Data1 />
+            </div>
+            <div className="flex flex-1 overflow-scroll">
+              <Data2 />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
