@@ -65,11 +65,11 @@ ruff = ">=0.5"
 pytest = ">=8.3"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
+python = ">=3.12,<3.14"
 # Llama interface
-llamaapi = ">=0.1"
+huggingface-hub = ">=0.24"
 # OpenAI interface
-openai = ">=1.37"
+openai = ">=1.38"
 # LlamaIndex & related
 llama-index = ">=0.10"
 llama-index-embeddings-azure-openai = ">=0.1"
@@ -86,6 +86,7 @@ s3fs = ">=2024.6"  # S3
 # misc / other
 click = ">=8.1"
 google-api-python-client = ">=2.139"
+googlesearch-python = ">=1.2"
 httpx = ">=0.27"
 loguru = ">=0.7"
 pydantic = ">=2.8"
@@ -94,14 +95,6 @@ torch = ">=2.2,<2.3"  # 2.3 fails installing on Mac with M chip
 tqdm = ">=4.66"
 
 # optional dependencies required by extras
-# llama-index-callbacks-argilla = {version = ">=0.1", optional = true}
-llama-index-callbacks-arize-phoenix = {version = ">=0.1", optional = true}
-llama-index-callbacks-deepeval = {version = ">=0.1", optional = true}
-llama-index-callbacks-honeyhive = {version = ">=0.1", optional = true}
-llama-index-callbacks-langfuse = {version = ">=0.1", optional = true}
-llama-index-callbacks-openinference = {version = ">=0.1", optional = true}
-llama-index-callbacks-promptlayer = {version = ">=0.1", optional = true}
-llama-index-callbacks-wandb = {version = ">=0.1", optional = true}
 streamlit = {version = ">=1.37", optional = true}
 streamlit-extras = {version = ">=0.4", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
@@ -111,15 +104,6 @@ contrib = [
   "streamlit",
   "streamlit-extras",
   "streamlit-mic-recorder",
-]
-llama-index-callbacks = [
-  "llama-index-callbacks-arize-phoenix",
-  "llama-index-callbacks-deepeval",
-  "llama-index-callbacks-honeyhive",
-  "llama-index-callbacks-langfuse",
-  "llama-index-callbacks-openinference",
-  "llama-index-callbacks-promptlayer",
-  "llama-index-callbacks-wandb",
 ]
 
 

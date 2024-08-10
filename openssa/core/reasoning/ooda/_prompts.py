@@ -13,16 +13,9 @@ the concrete results MUST RESPOND TO SUCH BASES/CRITERIA/DEFINITIONS for the ans
 If the question/problem/task involves any NUMERICAL QUANTITIES (e.g., MULTIPLES or RATIOS) to be retrieved or calculated,
 the concrete results MUST CONTAIN SPECIFIC VALUES for such quantities for the answer/solution to be considered confident.
 
-If you can answer/solve confidently with concrete results, return a JSON dictionary
-`{{"confident": true,
-   "answer": "<confident answer/solution of up to {n_words:,} words, covering reasoning flows and supporting details>"}}`.
-
-If you cannot answer/solve confidently with concrete results, return a JSON dictionary
-`{{"confident": false,
-   "answer": "<best-effort answer/solution of up to {n_words:,} words, covering potentially useful supporting details>"}}`.
-
-Please return ONLY the JSON DICTIONARY and no other text, not even the "```json" wrapping!
-
+Return your best-effort answer/solution of up to {n_words:,} words, covering reasoning flows and supporting details,
+PREPENDING such answer/solution with the header "[CONFIDENT]" if you can answer/solve confidently with concrete results,
+and with the header "[UNCONFIDENT]" otherwise.
 
 ```
 {observations}

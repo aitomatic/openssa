@@ -11,7 +11,7 @@ from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 @cache
 def get_or_create_file_resource(doc_name: DocName,
-                                llama_index_openai_lm_name: str = LMConfig.DEFAULT_SMALL_OPENAI_MODEL) -> FileResource:
+                                llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_SMALL_MODEL) -> FileResource:
     return FileResource(path=Doc(name=doc_name).dir_path,
                         lm=default_llama_index_openai_lm(llama_index_openai_lm_name))
 
