@@ -109,6 +109,6 @@ if (solution := st.session_state.semikong_agent_solutions[st.session_state.typed
         ]
     )
 
-    solution = parse_recipe_text(solution)
+    # solution = parse_recipe_text(solution)
 
     st.markdown(body=solution)
