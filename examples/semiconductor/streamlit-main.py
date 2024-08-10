@@ -1,14 +1,18 @@
 from collections import defaultdict
-
-from loguru import logger
-import streamlit as st
-
-from agent import get_or_create_agent
-
-import openai
 import os
 
+from loguru import logger
+import openai
+import streamlit as st
+
+from openssa import OpenAILM
+
+# pylint: disable=wrong-import-order
+from agent import get_or_create_agent
+
+
 client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+
 
 def call_gpt(prompt):
     response = client.chat.completions.create(
@@ -19,6 +23,7 @@ def call_gpt(prompt):
         ]
     )
     return response.choices[0].message.content
+
 
 TITLE: str = 'OpenSSA: Semiconductor Industry-Specific Agent leveraging SemiKong LM'
 
@@ -33,13 +38,11 @@ st.title(body=TITLE, anchor=None, help=None)
 
 
 DEFAULT_PROBLEM: str = (
-    'How to etch 2 um silicon dioxide (PR mask) using ICP RIE Plasmalab System 100? Any suggestions for recipe?'
-    '\n'
     'I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. '
     '\n'
     'I am using the Oxford ICP-RIE Plasmalab System 100. '
     '\n'
-    'Recommend me 2 recipes and their pros/cons.'
+    'Recommend me 2 recipes and their pros & cons.'
 )
 
 
@@ -64,7 +67,7 @@ if 'semikong_agent_solutions' not in st.session_state:
     st.session_state.semikong_agent_solutions: defaultdict[str, str] = defaultdict(str)
 
 
-st.subheader('SEMICONDUCTOR INDUSTRY AGENT')
+st.subheader('SEMICONDUCTOR INDUSTRY-SPECIFIC AGENT')
 st.subheader('_using `SemiKong` LM_')
 
 if st.button(label='SOLVE',
@@ -78,7 +81,8 @@ if st.button(label='SOLVE',
         st.session_state.semikong_agent_solutions[st.session_state.typed_problem]: str = \
             get_or_create_agent(use_semikong_lm=True).solve(problem=st.session_state.typed_problem)
 
-def parse_recipe_text(text):
+
+def parse_recipe_text(text: str) -> dict[str, str]:
     # Initialize an empty dictionary to store the parsed data
     parsed_data = {"recipe_1": "", "recipe_2": "", "agent_advice": ""}
 
@@ -106,17 +110,16 @@ def parse_recipe_text(text):
 
     return parsed_data
 
+
 if (solution := st.session_state.semikong_agent_solutions[st.session_state.typed_problem]):
     solution = solution.replace('$', r'\$')
     prompt = f"""{solution} \n\n Please help me parse the above text into this format:\n
-         recipe_1: Show the recipe 1 here\n 
+         recipe_1: Show the recipe 1 here\n
          recipe_2: Show the recipe 2 here\n
          agent_advice: Show the agent's general considerations here\n
          DO NOT forget the key and DO NOT change the key format.
 """
     solution = call_gpt(prompt)
     solution = parse_recipe_text(solution)
-    print(solution)
-    
+
     st.markdown(body=solution)
-    
