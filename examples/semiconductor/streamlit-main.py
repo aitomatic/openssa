@@ -1,28 +1,12 @@
 from collections import defaultdict
-import os
 
 from loguru import logger
-import openai
 import streamlit as st
 
 from openssa import OpenAILM
 
 # pylint: disable=wrong-import-order
 from agent import get_or_create_agent
-
-
-client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
-
-
-def call_gpt(prompt):
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[
-            {"role": "system", "content": "You are an expert in parsing text into a specific format. Please help me with this task."},
-            {"role": "user", "content": prompt}
-        ]
-    )
-    return response.choices[0].message.content
 
 
 TITLE: str = 'OpenSSA: Semiconductor Industry-Specific Agent leveraging SemiKong LM'
@@ -112,14 +96,19 @@ def parse_recipe_text(text: str) -> dict[str, str]:
 
 
 if (solution := st.session_state.semikong_agent_solutions[st.session_state.typed_problem]):
-    solution = solution.replace('$', r'\$')
-    prompt = f"""{solution} \n\n Please help me parse the above text into this format:\n
+    solution = OpenAILM.from_defaults().get_response(
+        prompt=f"""{solution} \n\n Please help me parse the above text into this format:\n
          recipe_1: Show the recipe 1 here\n
          recipe_2: Show the recipe 2 here\n
          agent_advice: Show the agent's general considerations here\n
          DO NOT forget the key and DO NOT change the key format.
-"""
-    solution = call_gpt(prompt)
+""",
+        history=[
+            {"role": "system",
+             "content": "You are an expert in parsing text into a specific format. Please help me with this task."},
+        ]
+    )
+
     solution = parse_recipe_text(solution)
 
     st.markdown(body=solution)
