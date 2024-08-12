@@ -48,7 +48,6 @@ app.add_middleware(
 
 client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
-
 def call_gpt(prompt):
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -61,7 +60,6 @@ def call_gpt(prompt):
         ],
     )
     return response.choices[0].message.content
-
 
 def parse_recipe_text(text):
     parsed_data = {"recipe_1": "", "recipe_2": "", "agent_advice": ""}
@@ -81,13 +79,16 @@ def parse_recipe_text(text):
     parsed_data = {key: value.strip() for key, value in parsed_data.items()}
     return parsed_data
 
-
 def solve_semiconductor_question(question):
+    start = time.time()
     solutions = defaultdict(str)
 
     solutions[question] = get_or_create_agent(use_semikong_lm=True).solve(
         problem=question
     )
+
+    print(f"get_or_create_agent taken: {time.time() - start}")
+    start = time.time()
 
     solution = solutions[question]
     solution = solution.replace("$", r"\$")
@@ -98,8 +99,12 @@ def solve_semiconductor_question(question):
          agent_advice: Show the agent's general considerations here\n
          DO NOT forget the key and DO NOT change the key format.
     """
+
     solution = call_gpt(prompt)
+    print(f"call_gpt taken: {time.time() - start}")
+    start = time.time()
     parsed_solution = parse_recipe_text(solution)
+    print(f"parse_recipe_text taken: {time.time() - start}")
     return parsed_solution
 
 
