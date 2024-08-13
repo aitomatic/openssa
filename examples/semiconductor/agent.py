@@ -6,7 +6,7 @@ from functools import cache
 from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import EXPERT_PROGRAM_SPACE, EXPERT_KNOWLEDGE
+from data_and_knowledge import EXPERT_KNOWLEDGE, EXPERT_PROGRAM_SPACE
 from semikong_lm import SemiKongLM
 
 
