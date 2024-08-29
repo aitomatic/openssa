@@ -99,6 +99,7 @@ class HTP(AbstractProgram):
     @classmethod
     def from_dict(cls, htp_dict: HTPDict, /) -> HTP:
         """Create HTP from dictionary representation."""
+        print(f"$#@ - {htp_dict}")
         return HTP(task=Task.from_dict_or_str(htp_dict['task']),
                    sub_htps=[HTP.from_dict(sub_htp_dict) for sub_htp_dict in htp_dict.get('sub-htps', [])])
 

@@ -1,17 +1,63 @@
 plan:
   task: |-
-    For etching PECVD SiO2 using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE),
-    recommend 2 good parameter sets and their relative advantages/disadvantages
-  
+    List strategies to achieve a smoother amorphous silicon surface at a shallow depth (around 1.5-2.5 microns)
+
   sub-htps:
     - task: |-
-        Get typical gases used for such process and their flow rate ranges
-        in SiO2 etching using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE)
+        List and evaluate the pros and cons of the following methods:
+        - Hydrogen Peroxide (H2O2) based etching
+        - Optimized HF/HNO3 mixture
+        - Tetramethyl Ammonium Hydroxide (TMAH) solution
         
-    - task: |-    
-        Get typical ICP Power, RF Power and Pressure value ranges and associated trade-offs
-        in SiO2 etching using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE)
+    - task: |-
+        For Chemical Mechanical Polishing (CMP) focusing on:
+        - Equipment requirements
+        - Potential for achieving ultra-smooth surfaces
+        - Consideration of process-induced defects
+    
+    - task: |-
+        Explore the application of Plasma-Enhanced Chemical Vapor Deposition (PECVD) for depositing silicon-rich layers to smoothen rough surfaces, including:
+        - Flexibility of process control
+        - Integration with existing process flows
+        - Potential risks of defects and contamination
+    
+    - task: |-
+        List and evaluate the pros and cons of the following methods:
+        - Reactive Ion Etching (RIE) with CF4 or SF6
+        - Dry etching with fluorine-based plasmas (CF4, SF6)
+        - Challenges in controlling etch rates and ensuring smooth surface results
 
     - task: |-
-        Recommend 2 parameter sets (each including Flow Rate for each Gas, plus ICP Power, RF Power and Pressure)
-        with analysis of their relative pros and cons.
+        Consider the following evaluation criteria to recommend the most suitable approach or combination of approaches:
+        - Etch rate control
+        - Surface smoothness
+        - Process complexity
+        - Material compatibility
+        - Cost and throughput
+        - Safety considerations
+
+plan:
+    task: |-
+    Formulate a recipe for Chemical Mechanical Polishing (CMP) process
+
+    sub-htps:
+    - task: |-
+        Perform pre-CMP wafer cleaning and preparation
+
+    - task: |-
+        Select and prepare the appropriate CMP slurry
+        
+    - task: |-
+        Set up and calibrate the CMP tool.
+
+    - task: |-
+        Execute the CMP process
+
+    - task: |-
+        Conduct post-CMP cleaning and inspection
+
+    - task: |-
+        Optimize and monitor the CMP process
+
+    - task: |-
+        Ensure safety and environmental compliance

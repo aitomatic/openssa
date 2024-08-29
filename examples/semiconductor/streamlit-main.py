@@ -22,11 +22,18 @@ st.title(body=TITLE, anchor=None, help=None)
 
 
 DEFAULT_PROBLEM: str = (
-    'I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. '
+    # 'I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. '
+    # '\n'
+    # 'I am using the Oxford ICP-RIE Plasmalab System 100. '
+    # '\n'
+    # 'Recommend me 2 recipes and their pros & cons.'
+    'I am trying to make a smoothen an amorphous silicon surface that is 1.5-2.5 microns in depth.'
     '\n'
-    'I am using the Oxford ICP-RIE Plasmalab System 100. '
+    'I have tried a hot concentrated KOH solution, but it results in a thickness of 8-9 microns.'
     '\n'
-    'Recommend me 2 recipes and their pros & cons.'
+    'Give me a list of potential solutions along with the pros and cons of each approach.'
+
+
 )
 
 
@@ -96,18 +103,18 @@ def parse_recipe_text(text: str) -> dict[str, str]:
 
 
 if (solution := st.session_state.semikong_agent_solutions[st.session_state.typed_problem]):
-    solution = OpenAILM.from_defaults().get_response(
-        prompt=f"""{solution} \n\n Please help me parse the above text into this format:\n
-         recipe_1: Show the recipe 1 here\n
-         recipe_2: Show the recipe 2 here\n
-         agent_advice: Show the agent's general considerations here\n
-         DO NOT forget the key and DO NOT change the key format.
-""",
-        history=[
-            {"role": "system",
-             "content": "You are an expert in parsing text into a specific format. Please help me with this task."},
-        ]
-    )
+    #     solution = OpenAILM.from_defaults().get_response(
+    #         prompt=f"""{solution} \n\n Please help me parse the above text into this format:\n
+    #          recipe_1: Show the recipe 1 here\n
+    #          recipe_2: Show the recipe 2 here\n
+    #          agent_advice: Show the agent's general considerations here\n
+    #          DO NOT forget the key and DO NOT change the key format.
+    # """,
+    #         history=[
+    #             {"role": "system",
+    #              "content": "You are an expert in parsing text into a specific format. Please help me with this task."},
+    #         ]
+    #     )
 
     # solution = parse_recipe_text(solution)
 
