@@ -38,6 +38,16 @@ if TYPE_CHECKING:
 class Agent:
     """Problem-Solving Agent."""
 
+    # Knowledge for use in Program search/construction and execution
+    # (stored as a set of strings; default: empty set)
+    knowledge: set[Knowledge] = field(default_factory=set,
+                                      init=True,
+                                      repr=False,
+                                      hash=None,
+                                      compare=True,
+                                      metadata=None,
+                                      kw_only=False)
+
     # Program Space for storing searchable problem-solving Programs
     # (default: empty collection)
     program_space: ProgramSpace = field(default_factory=ProgramSpace,
@@ -57,16 +67,6 @@ class Agent:
                                            compare=True,
                                            metadata=None,
                                            kw_only=False)
-
-    # Knowledge for use in Program search/construction and execution
-    # (stored as a set of strings; default: empty set)
-    knowledge: set[Knowledge] = field(default_factory=set,
-                                      init=True,
-                                      repr=False,
-                                      hash=None,
-                                      compare=True,
-                                      metadata=None,
-                                      kw_only=False)
 
     # Resources for answering information-querying questions
     # (default: empty set)
