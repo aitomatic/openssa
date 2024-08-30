@@ -32,14 +32,14 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, exper
                         use_llama3: bool = False,
                         llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> Agent:
     # pylint: disable=too-many-arguments
-    return Agent(program_space=(get_or_create_expert_program_space(use_llama3=use_llama3)
+    return Agent(knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
+
+                 program_space=(get_or_create_expert_program_space(use_llama3=use_llama3)
                                 if expert_program_space
                                 else ProgramSpace()),
 
                  programmer=HTPlanner(lm=get_main_lm(use_llama3=use_llama3),
                                       max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-
-                 knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
 
                  resources={FileResource(path=Doc(name=doc_name).dir_path,
                                          lm=default_llama_index_openai_lm(llama_index_openai_lm_name))})
