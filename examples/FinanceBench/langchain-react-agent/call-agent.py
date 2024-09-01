@@ -18,7 +18,7 @@ def create_vectorstore(documents):
     return vectorstore
 
 def create_react_agent(vectorstore):
-    llm = ChatOpenAI(model_name="gpt-4o")  # Use ChatOpenAI for chat-based models like GPT-4
+    llm = ChatOpenAI(model_name="gpt-4o")
     qa_chain = RetrievalQA.from_chain_type(llm, retriever=vectorstore.as_retriever())
     return qa_chain
 
@@ -35,7 +35,7 @@ def load_and_prepare_pdfs(pdf_paths):
     return all_documents
 
 def ask_question(react_agent, query):
-    response = react_agent.invoke({"query": query})  # Use invoke instead of direct call
+    response = react_agent.invoke({"query": query}) 
     return response['result']
 
 def main(queries, pdf_paths):
