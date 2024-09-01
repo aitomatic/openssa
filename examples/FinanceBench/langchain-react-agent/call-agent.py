@@ -38,7 +38,7 @@ def ask_question(react_agent, query):
     response = react_agent.invoke({"query": query}) 
     return response['result']
 
-def main(queries, pdf_paths):
+def prediction(queries, pdf_paths):
     print("Loading and preparing PDFs...")
     documents = load_and_prepare_pdfs(pdf_paths)
 
@@ -74,7 +74,7 @@ def process_questions(data_file, pdf_paths, output_file):
 
     queries = df['question'].tolist()
 
-    question_answer_pairs = main(queries, pdf_paths)
+    question_answer_pairs = prediction(queries, pdf_paths)
     
     drop_columns = ["answer", "OpenAI-Asst", "OpenAI-Asst---CORRECTNESS"]
     
