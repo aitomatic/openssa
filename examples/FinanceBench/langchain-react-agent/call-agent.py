@@ -76,10 +76,6 @@ def process_questions(data_file, pdf_paths, output_file):
 
     question_answer_pairs = prediction(queries, pdf_paths)
     
-    drop_columns = ["answer", "OpenAI-Asst", "OpenAI-Asst---CORRECTNESS"]
-    
-    df.drop(columns=drop_columns, inplace=True)
-    
     df['langchain_answer'] = "" 
     for pair in question_answer_pairs:
         df.loc[pair['index'], 'langchain_answer'] = pair['answer']
