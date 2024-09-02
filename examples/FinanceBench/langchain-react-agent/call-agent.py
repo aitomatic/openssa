@@ -1,5 +1,6 @@
 import concurrent.futures
 from pdfminer.high_level import extract_text
+from pdfminer.pdfparser import PDFSyntaxError
 from langchain_community.vectorstores import FAISS
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_openai.chat_models import ChatOpenAI
@@ -10,7 +11,12 @@ import time
 import pandas as pd
 
 def extract_text_from_pdf(pdf_path):
-    return extract_text(pdf_path)
+    try:
+        print(pdf_path)
+        return extract_text(pdf_path)
+    except PDFSyntaxError:
+        print(f"Error extracting text from {pdf_path}: Not a valid PDF.")
+        return None
 
 def create_vectorstore(documents):
     embeddings = OpenAIEmbeddings()
@@ -18,7 +24,7 @@ def create_vectorstore(documents):
     return vectorstore
 
 def create_react_agent(vectorstore):
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo")
+    llm = ChatOpenAI(model_name="gpt-4o")
     qa_chain = RetrievalQA.from_chain_type(llm, retriever=vectorstore.as_retriever())
     return qa_chain
 
@@ -58,31 +64,10 @@ def process_questions_parallel(questions, pdf_paths):
 
 if __name__ == "__main__":
     # Example usage
-    questions = [
-        "Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
-        "What are the major products and services that AMD sells as of FY22?",
-        "What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset turnover ratio is defined as: FY2018 revenue / (average PP&E between FY2017 and FY2018). Round your answer to two decimal places. Calculate what was asked by utilizing the line items clearly shown in the P&L statement and the balance sheet.",
-        "Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
-        "What are the major products and services that AMD sells as of FY22?",
-        "What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset turnover ratio is defined as: FY2018 revenue / (average PP&E between FY2017 and FY2018). Round your answer to two decimal places. Calculate what was asked by utilizing the line items clearly shown in the P&L statement and the balance sheet.",
-        "Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
-        "What are the major products and services that AMD sells as of FY22?",
-        "What is the FY2018 fixed asset turnover ratio for CVS Health? Fixed asset turnover ratio is defined as: FY2018 revenue / (average PP&E between FY2017 and FY2018). Round your answer to two decimal places. Calculate what was asked by utilizing the line items clearly shown in the P&L statement and the balance sheet.",
-        "Does AMD have a reasonably healthy liquidity profile based on its quick ratio for FY22? If the quick ratio is not relevant to measure liquidity, please state that and explain why."
-    ]
 
-    pdf_paths = [
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf",
-        "./docs/AMD_2022_10K.pdf"
-    ]
+    data = pd.read_csv('data.csv')
+    questions = data['question'].tolist()
+    pdf_paths = [f"./docs/{doc_name}.pdf" for doc_name in data['doc_name']]
 
     all_answers = []
 
