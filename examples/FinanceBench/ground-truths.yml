@@ -769,7 +769,9 @@ financebench_id_01935:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions supplemental indentures related to debt
+    the answer mentions indenture(s)
+
+  evaluator-unreliable: true
 
 
 financebench_id_00799:
