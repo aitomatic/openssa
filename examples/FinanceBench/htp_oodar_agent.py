@@ -123,7 +123,7 @@ if __name__ == '__main__':
     arg_parser.add_argument('--llama3', action='store_true')
     args = arg_parser.parse_args()
 
-    match (args.knowledge, args.prog_space, args.llama3):
+    match (args.knowledge, args.prog_store, args.llama3):
         case (False, False, False):
             solve_func: QAFunc = solve
 
