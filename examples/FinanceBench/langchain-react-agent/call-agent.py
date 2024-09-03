@@ -116,14 +116,17 @@ def process_question_with_pdf(question, pdf_path):
     )
 
     agent = create_react_agent(llm, [vectorstore_tool], prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=[vectorstore_tool], verbose=True)
+    agent_executor = AgentExecutor(agent=agent, tools=[vectorstore_tool], verbose=True, 
+                                   return_intermediate_steps=True)
 
     response = agent_executor.invoke({"input": question})
-    return response['output']
+    return response['output'], response['intermediate_steps']
 
 if __name__ == "__main__":
     question = "What is Adobe's year-over-year change in unadjusted operating income from FY2015 to FY2016 (in units of percents and round to one decimal place)? Give a solution to the question by using the income statement."
     pdf_path = "./docs/ADOBE_2016_10K.pdf"
 
-    answer = process_question_with_pdf(question, pdf_path)
+    answer, intermediate_steps = process_question_with_pdf(question, pdf_path)
     print("Answer:", answer)
+
+    print("Intermediate steps:", intermediate_steps)
