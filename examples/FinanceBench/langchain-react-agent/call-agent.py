@@ -1,6 +1,5 @@
 import concurrent.futures
-from pdfminer.high_level import extract_text
-from pdfminer.pdfparser import PDFSyntaxError
+import fitz
 from langchain_community.vectorstores import FAISS
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_openai.chat_models import ChatOpenAI
@@ -12,10 +11,14 @@ import pandas as pd
 
 def extract_text_from_pdf(pdf_path):
     try:
-        print(pdf_path)
-        return extract_text(pdf_path)
-    except PDFSyntaxError:
-        print(f"Error extracting text from {pdf_path}: Not a valid PDF.")
+        print(f"Processing {pdf_path}")
+        doc = fitz.open(pdf_path)
+        text = ""
+        for page in doc:
+            text += page.get_text()
+        return text
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
         return None
 
 def create_vectorstore(documents):
@@ -30,6 +33,8 @@ def create_react_agent(vectorstore):
 
 def load_and_prepare_pdf(pdf_path):
     text = extract_text_from_pdf(pdf_path)
+    if text is None:
+        return []
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     texts = text_splitter.split_text(text)
     documents = [Document(page_content=t) for t in texts]
@@ -41,6 +46,10 @@ def ask_question(react_agent, query):
 
 def process_single_question(question, pdf_path):
     documents = load_and_prepare_pdf(pdf_path)
+
+
+    if not documents:  # Skip if there are no documents
+        return f"Failed to process {pdf_path}"
 
     vectorstore = create_vectorstore(documents)
 
@@ -58,7 +67,10 @@ def process_questions_parallel(questions, pdf_paths):
         
         for future in concurrent.futures.as_completed(futures):
             index = futures[future]
-            results[index] = future.result()
+            try:
+                results[index] = future.result()
+            except Exception as e:
+                results[index] = f"Error processing question {index}: {e}"
 
     return results
 
