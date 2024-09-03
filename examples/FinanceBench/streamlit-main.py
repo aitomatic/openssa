@@ -4,12 +4,12 @@ from functools import cache
 from loguru import logger
 import streamlit as st
 
-from data_and_knowledge import DocName, Doc, DOC_NAMES, ExpertPlanId as TaskId, EXPERT_PROGRAM_SPACE
+from data_and_knowledge import DocName, Doc, DOC_NAMES, ExpertPlanId as TaskId, EXPERT_PROGRAMS
 from htp_oodar_agent import get_or_create_agent, get_or_create_adaptations
 from rag_default import get_or_create_file_resource
 
 
-TASK_IDS: list[TaskId] = list(EXPERT_PROGRAM_SPACE)
+TASK_IDS: list[TaskId] = list(EXPERT_PROGRAMS)
 TASK_IDS.insert(0, '')
 
 DOC_NAMES: list[DocName] = sorted(set(DOC_NAMES)
@@ -38,7 +38,7 @@ if 'typed_question' not in st.session_state:
 
 @cache
 def task_statement_template(task_id: TaskId, /) -> str:
-    return EXPERT_PROGRAM_SPACE[task_id]['task']
+    return EXPERT_PROGRAMS[task_id]['task']
 
 
 @cache

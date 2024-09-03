@@ -7,7 +7,7 @@ from openssa.core.util.lm.openai import OpenAILM, default_llama_index_openai_lm
 
 # pylint: disable=wrong-import-order,wrong-import-position
 from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
-                                EXPERT_KNOWLEDGE, EXPERT_PROGRAM_SPACE, EXPERT_HTP_COMPANY_KEY, EXPERT_HTP_PERIOD_KEY)
+                                EXPERT_KNOWLEDGE, EXPERT_PROGRAMS, EXPERT_HTP_COMPANY_KEY, EXPERT_HTP_PERIOD_KEY)
 from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
@@ -20,7 +20,7 @@ def get_main_lm(use_llama3: bool = False):
 def get_or_create_expert_program_store(use_llama3: bool = False) -> ProgramStore:
     program_store = ProgramStore(lm=get_main_lm(use_llama3=use_llama3))
 
-    for program_name, htp_dict in EXPERT_PROGRAM_SPACE.items():
+    for program_name, htp_dict in EXPERT_PROGRAMS.items():
         htp = HTP.from_dict(htp_dict)
         program_store.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
 
@@ -119,7 +119,7 @@ if __name__ == '__main__':
     arg_parser = ArgumentParser()
     arg_parser.add_argument('fb_id')
     arg_parser.add_argument('--knowledge', action='store_true')
-    arg_parser.add_argument('--prog-space', action='store_true')
+    arg_parser.add_argument('--prog-store', action='store_true')
     arg_parser.add_argument('--llama3', action='store_true')
     args = arg_parser.parse_args()
 

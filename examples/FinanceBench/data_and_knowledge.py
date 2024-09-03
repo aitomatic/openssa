@@ -198,7 +198,7 @@ with open(file=EXPERT_PROGRAMS_FILE_PATH,
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PROGRAM_SPACE: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
+    EXPERT_PROGRAMS: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
 EXPERT_HTP_COMPANY_KEY: str = 'COMPANY'
 EXPERT_HTP_PERIOD_KEY: str = 'PERIOD'

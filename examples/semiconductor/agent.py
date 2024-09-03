@@ -6,7 +6,7 @@ from functools import cache
 from openssa import DANA, ProgramStore, HTP, HTPlanner, OpenAILM
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import EXPERT_PROGRAM_SPACE
+from data_and_knowledge import EXPERT_PROGRAMS
 from semikong_lm import SemiKongLM
 
 
@@ -15,8 +15,8 @@ def get_or_create_agent(use_semikong_lm: bool = True, max_depth=2, max_subtasks_
     lm = (SemiKongLM if use_semikong_lm else OpenAILM).from_defaults()
 
     program_store = ProgramStore(lm=lm)
-    if EXPERT_PROGRAM_SPACE:
-        for program_name, htp_dict in EXPERT_PROGRAM_SPACE.items():
+    if EXPERT_PROGRAMS:
+        for program_name, htp_dict in EXPERT_PROGRAMS.items():
             htp = HTP.from_dict(htp_dict)
             program_store.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
 

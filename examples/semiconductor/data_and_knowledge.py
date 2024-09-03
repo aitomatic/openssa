@@ -21,4 +21,4 @@ with open(file=EXPERT_PROGRAMS_FILE_PATH,
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PROGRAM_SPACE: dict[str, HTPDict] = yaml.safe_load(stream=f)
+    EXPERT_PROGRAMS: dict[str, HTPDict] = yaml.safe_load(stream=f)
