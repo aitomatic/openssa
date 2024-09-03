@@ -28,7 +28,7 @@ def get_or_create_expert_program_store(use_llama3: bool = False) -> ProgramStore
 
 
 @cache
-def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_program_store: bool = False,
+def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_programs: bool = False,
                         max_depth=3, max_subtasks_per_decomp=6,
                         use_llama3: bool = False,
                         llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> DANA:
@@ -36,7 +36,7 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, exper
     return DANA(knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
 
                 program_store=(get_or_create_expert_program_store(use_llama3=use_llama3)
-                               if expert_program_store
+                               if expert_programs
                                else ProgramStore()),
 
                 programmer=HTPlanner(lm=get_main_lm(use_llama3=use_llama3),
