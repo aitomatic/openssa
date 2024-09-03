@@ -1,102 +1,129 @@
-import concurrent.futures
+# import fitz
+# import pandas as pd
+# import concurrent.futures
+# from langchain_community.vectorstores import FAISS
+# from langchain_openai.embeddings import OpenAIEmbeddings
+# from langchain.docstore.document import Document
+# from langchain.text_splitter import RecursiveCharacterTextSplitter
+# from langchain import hub
+# from langchain.agents import AgentExecutor, create_react_agent
+# from langchain_openai.chat_models import ChatOpenAI
+# from langchain.tools import Tool
+# import logging
+
+# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# def process_question_with_pdf(question, pdf_path):
+#     try:
+#         doc = fitz.open(pdf_path)
+#         text = "".join([page.get_text() for page in doc])
+        
+#         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+#         texts = text_splitter.split_text(text)
+#         documents = [Document(page_content=t) for t in texts]
+
+#         embeddings = OpenAIEmbeddings()
+#         vectorstore = FAISS.from_documents(documents, embeddings)
+
+#         def vectorstore_tool(query: str) -> str:
+#             results = vectorstore.similarity_search(query, k=1)
+#             return results[0].page_content if results else "No relevant documents found."
+
+#         vectorstore_tool = Tool(
+#             name="Vectorstore Retriever",
+#             func=vectorstore_tool,
+#             description="Search documents using a vectorstore."
+#         )
+#         prompt = hub.pull("hwchase17/react")
+#         llm = ChatOpenAI(model_name="gpt-4o")  # Use gpt-4o model
+#         agent = create_react_agent(llm, [vectorstore_tool], prompt)
+        
+#         agent_executor = AgentExecutor(agent=agent, tools=[vectorstore_tool], verbose=True, handle_parsing_errors=True)
+
+#         response = agent_executor.invoke({"input": question})
+#         return response['output']
+
+#     except Exception as e:
+#         logging.error(f"Error processing {pdf_path} for question: {question}: {e}")
+#         return str(e)
+
+# def process_row(row):
+#     try:
+#         question = row['question']
+#         pdf_name = row['doc_name']
+#         pdf_path = f"./docs/{pdf_name}.pdf"
+    
+#         logging.info(f"Processing {pdf_name} for question: {question}")
+#         answer = process_question_with_pdf(question, pdf_path)
+    
+#         return answer
+    
+#     except Exception as e:
+#         logging.error(f"Failed to process row: {e}")
+#         return str(e)
+
+# if __name__ == "__main__":
+#     data = pd.read_csv('data.csv')
+
+#     with concurrent.futures.ProcessPoolExecutor() as executor:
+#         try:
+#             results = list(executor.map(process_row, [row for _, row in data.iterrows()]))
+#         except Exception as e:
+#             logging.error(f"Parallel processing failed: {e}")
+#             raise
+
+#     data['langchain_react'] = results
+
+#     data.to_csv('data_with_answers.csv', index=False)
+#     logging.info("Results saved to data_with_answers.csv")
+
+
+
 import fitz
 from langchain_community.vectorstores import FAISS
 from langchain_openai.embeddings import OpenAIEmbeddings
-from langchain_openai.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQA
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
-import time
-import pandas as pd
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain import hub
+from langchain.agents import AgentExecutor, create_react_agent
+from langchain_openai import OpenAI
+from langchain.tools import Tool
 
-def extract_text_from_pdf(pdf_path):
+def process_question_with_pdf(question, pdf_path):
+    # Extract text from the PDF
     try:
-        print(f"Processing {pdf_path}")
         doc = fitz.open(pdf_path)
-        text = ""
-        for page in doc:
-            text += page.get_text()
-        return text
+        text = "".join([page.get_text() for page in doc])
     except Exception as e:
-        print(f"Error extracting text from {pdf_path}: {e}")
-        return None
+        return f"Error extracting text from {pdf_path}: {e}"
 
-def create_vectorstore(documents):
-    embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_documents(documents, embeddings)
-    return vectorstore
-
-def create_react_agent(vectorstore):
-    llm = ChatOpenAI(model_name="gpt-4o")
-    qa_chain = RetrievalQA.from_chain_type(llm, retriever=vectorstore.as_retriever())
-    return qa_chain
-
-def load_and_prepare_pdf(pdf_path):
-    text = extract_text_from_pdf(pdf_path)
-    if text is None:
-        return []
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     texts = text_splitter.split_text(text)
     documents = [Document(page_content=t) for t in texts]
-    return documents
 
-def ask_question(react_agent, query):
-    response = react_agent.invoke({"query": query}) 
-    return response['result']
+    embeddings = OpenAIEmbeddings()
+    vectorstore = FAISS.from_documents(documents, embeddings)
 
-def process_single_question(question, pdf_path):
-    documents = load_and_prepare_pdf(pdf_path)
+    def vectorstore_tool(query: str) -> str:
+        results = vectorstore.similarity_search(query, k=1)
+        return results[0].page_content if results else "No relevant documents found."
 
+    vectorstore_tool = Tool(
+        name="Vectorstore Retriever",
+        func=vectorstore_tool,
+        description="Search documents using a vectorstore."
+    )
+    prompt = hub.pull("hwchase17/react")
+    llm = OpenAI()
+    agent = create_react_agent(llm, [vectorstore_tool], prompt)
+    agent_executor = AgentExecutor(agent=agent, tools=[vectorstore_tool], verbose=True)
 
-    if not documents:  # Skip if there are no documents
-        return f"Failed to process {pdf_path}"
-
-    vectorstore = create_vectorstore(documents)
-
-    react_agent = create_react_agent(vectorstore)
-
-    answer = ask_question(react_agent, question)
-    
-    return answer
-
-def process_questions_parallel(questions, pdf_paths):
-    results = [None] * len(questions)
-
-    with concurrent.futures.ProcessPoolExecutor() as executor:
-        futures = {executor.submit(process_single_question, question, pdf_path): index for index, (question, pdf_path) in enumerate(zip(questions, pdf_paths))}
-        
-        for future in concurrent.futures.as_completed(futures):
-            index = futures[future]
-            try:
-                results[index] = future.result()
-            except Exception as e:
-                results[index] = f"Error processing question {index}: {e}"
-
-    return results
+    response = agent_executor.invoke({"input": question})
+    return response['output']
 
 if __name__ == "__main__":
-    # Example usage
+    question = "What is Adobe's year-over-year change in unadjusted operating income from FY2015 to FY2016 (in units of percents and round to one decimal place)? Give a solution to the question by using the income statement."
+    pdf_path = "./docs/ADOBE_2016_10K.pdf"
 
-    data = pd.read_csv('data.csv')
-    questions = data['question'].tolist()
-    pdf_paths = [f"./docs/{doc_name}.pdf" for doc_name in data['doc_name']]
-
-    all_answers = []
-
-    # Run the loop 4 times
-    for i in range(4):
-        print(f"Starting iteration {i+1}")
-        start = time.time()
-        answers = process_questions_parallel(questions, pdf_paths)
-        print(f"Iteration {i+1} processing time: {time.time() - start}")
-        all_answers.append(answers)
-
-    # Prepare data for CSV
-    data = {"question": questions}
-    for i in range(4):
-        data[f"answer {i+1}"] = [all_answers[i][j] for j in range(len(questions))]
-
-    df = pd.DataFrame(data)
-    df.to_csv("langchain_output.csv", index=False)
-
-    print("Results saved to langchain_output.csv")
+    answer = process_question_with_pdf(question, pdf_path)
+    print("Answer:", answer)
