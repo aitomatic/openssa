@@ -6,13 +6,13 @@
 SET TARGET=%1
 
 IF "%TARGET%"=="agent-solve" GOTO agent-solve
+IF "%TARGET%"=="agent-solve-w-prog-store" GOTO agent-solve-w-prog-store
 IF "%TARGET%"=="agent-solve-w-knowledge" GOTO agent-solve-w-knowledge
-IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
-IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space" GOTO agent-solve-w-knowledge-and-prog-space
+IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-store" GOTO agent-solve-w-knowledge-and-prog-store
 IF "%TARGET%"=="agent-solve-w-llama3" GOTO agent-solve-w-llama3
-IF "%TARGET%"=="agent-solve-w-prog-space-w-llama3" GOTO agent-solve-w-prog-space-w-llama3
+IF "%TARGET%"=="agent-solve-w-prog-store-w-llama3" GOTO agent-solve-w-prog-store-w-llama3
 IF "%TARGET%"=="agent-solve-w-knowledge-w-llama3" GOTO agent-solve-w-knowledge-w-llama3
-IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space-w-llama3" GOTO agent-solve-w-knowledge-and-prog-space-w-llama3
+IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-store-w-llama3" GOTO agent-solve-w-knowledge-and-prog-store-w-llama3
 IF "%TARGET%"=="agent-solve-all-combos" GOTO agent-solve-all-combos
 
 IF "%TARGET%"=="openai-assist" GOTO openai-assist
@@ -38,12 +38,12 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
   poetry run python htp_oodar_agent.py %2 --knowledge
   GOTO end
 
-:agent-solve-w-prog-space
-  poetry run python htp_oodar_agent.py %2 --prog-space
+:agent-solve-w-prog-store
+  poetry run python htp_oodar_agent.py %2 --prog-store
   GOTO end
 
-:agent-solve-w-knowledge-and-prog-space
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
+:agent-solve-w-knowledge-and-prog-store
+  poetry run python htp_oodar_agent.py %2 --knowledge --prog-store
   GOTO end
 
 :agent-solve-w-llama3
@@ -54,12 +54,12 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
   poetry run python htp_oodar_agent.py %2 --knowledge --llama3
   GOTO end
 
-:agent-solve-w-prog-space-w-llama3
-  poetry run python htp_oodar_agent.py %2 --prog-space --llama3
+:agent-solve-w-prog-store-w-llama3
+  poetry run python htp_oodar_agent.py %2 --prog-store --llama3
   GOTO end
 
-:agent-solve-w-knowledge-and-prog-space-w-llama3
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space --llama3
+:agent-solve-w-knowledge-and-prog-store-w-llama3
+  poetry run python htp_oodar_agent.py %2 --knowledge --prog-store --llama3
   GOTO end
 
 :agent-solve-all-combos

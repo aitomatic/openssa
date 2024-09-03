@@ -138,7 +138,7 @@ class HTP(AbstractProgram):
         # and if there is still allowed recursive depth,
         # use Programmer to decompose Problem into sub-HTPs
         elif (self.task.is_attempted and not self.task.is_done) and (self.programmer and self.programmer.max_depth):
-            decomposed_htp: HTP = self.programmer.construct_htp(task=self.task, knowledge=knowledge, reasoner=self.reasoner)
+            decomposed_htp: HTP = self.programmer.create_htp(task=self.task, knowledge=knowledge, reasoner=self.reasoner)
 
         else:
             decomposed_htp = None

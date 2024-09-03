@@ -1,16 +1,16 @@
 """
-=====================
-PROBLEM-SOLVING AGENT
-=====================
+===========================================================
+DOMAIN-AWARE NEUROSYMBOLIC AGENT (DANA) FOR PROBLEM-SOLVING
+===========================================================
 
-This module contains `OpenSSA`'s main `Agent` class,
+This module contains `OpenSSA`'s `DANA` class,
 which brings together agentic problem-solving capabilities
 leveraging domain-specific Knowledge and diverse Resources.
 
-In solving a posed Problem, an Agent first
-either finds from its Program Space a solution Program suitable for the posed Problem,
-or constructs by its Programmer such a Program if there is no existing one.
-The Agent then executes the found or constructed Program,
+In solving a posed Problem, a `DANA` agent first
+either finds from its Program Store a solution Program suitable for the posed Problem,
+or creates by its Programmer such a Program if there is no existing one.
+The agent then executes the found or created Program,
 using an applicable execution engine/mechanism.
 
 By default, `OpenSSA`'s Programs take the form of Hierarchical Task Plans (HTPs),
@@ -23,7 +23,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, TYPE_CHECKING
 
-from openssa.core.program_space import ProgramSpace
+from openssa.core.program_store import ProgramStore
 from openssa.core.programming.hierarchical.planner import HTPlanner
 from openssa.core.task import Task
 
@@ -35,10 +35,10 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class Agent:
-    """Problem-Solving Agent."""
+class DANA:
+    """Domain-Aware Neurosymbolic Agent (`DANA`) for Problem-Solving."""
 
-    # Knowledge for use in Program search/construction and execution
+    # Knowledge for use in Program search/creation and execution
     # (stored as a set of strings; default: empty set)
     knowledge: set[Knowledge] = field(default_factory=set,
                                       init=True,
@@ -48,9 +48,9 @@ class Agent:
                                       metadata=None,
                                       kw_only=False)
 
-    # Program Space for storing searchable problem-solving Programs
+    # Program Store for storing searchable problem-solving Programs
     # (default: empty collection)
-    program_space: ProgramSpace = field(default_factory=ProgramSpace,
+    program_store: ProgramStore = field(default_factory=ProgramStore,
                                         init=True,
                                         repr=True,
                                         hash=None,
@@ -58,7 +58,7 @@ class Agent:
                                         metadata=None,
                                         kw_only=False)
 
-    # Programmer for constructing problem-solving Programs
+    # Programmer for creating problem-solving Programs
     # (default: Hierarchical Task Planner)
     programmer: AbstractProgrammer = field(default_factory=HTPlanner,
                                            init=True,
@@ -89,18 +89,18 @@ class Agent:
     def solve(self, problem: str, adaptations_from_known_programs: dict[str, Any] | None = None) -> str:
         """Solve the posed Problem.
 
-        First either find from the Program Space a solution Program suitable for the Problem,
-        or construct by the Programmer such a Program if there is no existing one.
+        First either find from the Program Store a solution Program suitable for the Problem,
+        or create by the Programmer such a Program if there is no existing one.
 
-        Then execute the found or constructed Program using an applicable execution engine/mechanism.
+        Then execute the found or created Program using an applicable execution engine/mechanism.
         """
         task: Task = Task(ask=problem, resources=self.resources)
 
         program: AbstractProgram = (
-            self.program_space.find_program(task=task, knowledge=self.knowledge,
+            self.program_store.find_program(task=task, knowledge=self.knowledge,
                                             adaptations_from_known_programs=adaptations_from_known_programs)
             or
-            self.programmer.construct_program(task=task, knowledge=self.knowledge)
+            self.programmer.create_program(task=task, knowledge=self.knowledge)
         )
 
         return program.execute(knowledge=self.knowledge)
