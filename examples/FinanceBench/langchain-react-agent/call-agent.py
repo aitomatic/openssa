@@ -74,7 +74,7 @@
 
 #     data['langchain_react'] = results
 
-#     data.to_csv('data_with_answers.csv', index=False)
+#     data.to_csv('data_with_answers1.csv', index=False)
 #     logging.info("Results saved to data_with_answers.csv")
 
 
@@ -89,9 +89,9 @@ from langchain.agents import AgentExecutor, create_react_agent
 from langchain_openai import OpenAI
 from langchain_openai.chat_models import ChatOpenAI
 from langchain.tools import Tool
+from langchain_community.tools.vectorstore.tool import VectorStoreQATool
 
 def process_question_with_pdf(question, pdf_path):
-    # Extract text from the PDF
     try:
         doc = fitz.open(pdf_path)
         text = "".join([page.get_text() for page in doc])
@@ -105,17 +105,16 @@ def process_question_with_pdf(question, pdf_path):
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_documents(documents, embeddings)
 
-    def vectorstore_tool(query: str) -> str:
-        results = vectorstore.similarity_search(query, k=1)
-        return results[0].page_content if results else "No relevant documents found."
-
-    vectorstore_tool = Tool(
-        name="Vectorstore Retriever",
-        func=vectorstore_tool,
-        description="Search documents using a vectorstore."
-    )
     prompt = hub.pull("hwchase17/react")
     llm = ChatOpenAI(model_name="gpt-4o")
+
+    vectorstore_tool = VectorStoreQATool(
+        name="Financial Analysis",
+        description="Tool to answer questions based on financial data",
+        vectorstore=vectorstore,
+        llm=llm
+    )
+
     agent = create_react_agent(llm, [vectorstore_tool], prompt)
     agent_executor = AgentExecutor(agent=agent, tools=[vectorstore_tool], verbose=True)
 
