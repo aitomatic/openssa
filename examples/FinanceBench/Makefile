@@ -33,6 +33,9 @@ agent-solve-all-combos:
 	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-store --llama3
 
 
+langchain-react-solve:
+	@poetry run python langchain_react.py ${id}
+
 openai-assist:
 	@poetry run python openai_assist.py ${id}
 

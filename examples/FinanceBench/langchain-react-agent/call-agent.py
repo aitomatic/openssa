@@ -17,7 +17,7 @@
 #     try:
 #         doc = fitz.open(pdf_path)
 #         text = "".join([page.get_text() for page in doc])
-        
+
 #         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
 #         texts = text_splitter.split_text(text)
 #         documents = [Document(page_content=t) for t in texts]
@@ -37,7 +37,7 @@
 #         prompt = hub.pull("hwchase17/react")
 #         llm = ChatOpenAI(model_name="gpt-4o")  # Use gpt-4o model
 #         agent = create_react_agent(llm, [vectorstore_tool], prompt)
-        
+
 #         agent_executor = AgentExecutor(agent=agent, tools=[vectorstore_tool], verbose=True, handle_parsing_errors=True)
 
 #         response = agent_executor.invoke({"input": question})
@@ -52,12 +52,12 @@
 #         question = row['question']
 #         pdf_name = row['doc_name']
 #         pdf_path = f"./docs/{pdf_name}.pdf"
-    
+
 #         logging.info(f"Processing {pdf_name} for question: {question}")
 #         answer = process_question_with_pdf(question, pdf_path)
-    
+
 #         return answer
-    
+
 #     except Exception as e:
 #         logging.error(f"Failed to process row: {e}")
 #         return str(e)
