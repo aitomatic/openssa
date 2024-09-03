@@ -17,7 +17,7 @@ DOC_NAMES: list[DocName] = sorted(set(DOC_NAMES)
                                                'AES_2022_10K', 'MGMRESORTS_2018_10K', 'NETFLIX_2017_10K')))
 
 
-TITLE: str = 'OpenSSA: Analysing SEC Filings with Planning & Reasoning'
+TITLE: str = 'OpenSSA: Analyzing SEC Filings with Domain-Aware Neurosymbolic Agent (DANA)'
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
