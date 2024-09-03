@@ -2833,6 +2833,8 @@ financebench_id_01484:
   correctness: >-
     the answer mentions US sales increased and international sales decreased
 
+  evaluator-unreliable: true
+
 
 financebench_id_01488:
   sector: Health Care
