@@ -1,13 +1,13 @@
 from argparse import ArgumentParser
 from functools import cache
 
-from openssa import Agent, ProgramSpace, HTP, HTPlanner, FileResource, LMConfig
+from openssa import DANA, ProgramStore, HTP, HTPlanner, FileResource, LMConfig
 from openssa.core.util.lm.huggingface import HuggingFaceLM
 from openssa.core.util.lm.openai import OpenAILM, default_llama_index_openai_lm
 
 # pylint: disable=wrong-import-order,wrong-import-position
 from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
-                                EXPERT_KNOWLEDGE, EXPERT_PROGRAM_SPACE, EXPERT_HTP_COMPANY_KEY, EXPERT_HTP_PERIOD_KEY)
+                                EXPERT_KNOWLEDGE, EXPERT_PROGRAMS, EXPERT_HTP_COMPANY_KEY, EXPERT_HTP_PERIOD_KEY)
 from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 
@@ -17,33 +17,33 @@ def get_main_lm(use_llama3: bool = False):
 
 
 @cache
-def get_or_create_expert_program_space(use_llama3: bool = False) -> ProgramSpace:
-    program_space = ProgramSpace(lm=get_main_lm(use_llama3=use_llama3))
+def get_or_create_expert_program_store(use_llama3: bool = False) -> ProgramStore:
+    program_store = ProgramStore(lm=get_main_lm(use_llama3=use_llama3))
 
-    for program_name, htp_dict in EXPERT_PROGRAM_SPACE.items():
+    for program_name, htp_dict in EXPERT_PROGRAMS.items():
         htp = HTP.from_dict(htp_dict)
-        program_space.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
+        program_store.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
 
-    return program_space
+    return program_store
 
 
 @cache
-def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_program_space: bool = False,
+def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_programs: bool = False,
                         max_depth=3, max_subtasks_per_decomp=6,
                         use_llama3: bool = False,
-                        llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> Agent:
+                        llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> DANA:
     # pylint: disable=too-many-arguments
-    return Agent(knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
+    return DANA(knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
 
-                 program_space=(get_or_create_expert_program_space(use_llama3=use_llama3)
-                                if expert_program_space
-                                else ProgramSpace()),
+                program_store=(get_or_create_expert_program_store(use_llama3=use_llama3)
+                               if expert_programs
+                               else ProgramStore()),
 
-                 programmer=HTPlanner(lm=get_main_lm(use_llama3=use_llama3),
-                                      max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
+                programmer=HTPlanner(lm=get_main_lm(use_llama3=use_llama3),
+                                     max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
 
-                 resources={FileResource(path=Doc(name=doc_name).dir_path,
-                                         lm=default_llama_index_openai_lm(llama_index_openai_lm_name))})
+                resources={FileResource(path=Doc(name=doc_name).dir_path,
+                                        lm=default_llama_index_openai_lm(llama_index_openai_lm_name))})
 
 
 @cache
@@ -69,16 +69,16 @@ def solve_with_knowledge(fb_id: FbId) -> Answer:
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wProgSpace')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wProgSpace')
-def solve_with_program_space(fb_id: FbId) -> Answer:
-    return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_program_space=True).solve(
+def solve_with_program_store(fb_id: FbId) -> Answer:
+    return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_programs=True).solve(
         problem=QS_BY_FB_ID[fb_id],
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge-wProgSpace')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wKnowledge-wProgSpace')
-def solve_with_knowledge_and_program_space(fb_id: FbId) -> Answer:
-    return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_program_space=True).solve(
+def solve_with_knowledge_and_program_store(fb_id: FbId) -> Answer:
+    return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_programs=True).solve(
         problem=QS_BY_FB_ID[fb_id],
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
@@ -101,16 +101,16 @@ def solve_with_knowledge_with_llama3(fb_id: FbId) -> Answer:
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wProgSpace-wLlama3')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wProgSpace-wLlama3')
-def solve_with_program_space_with_llama3(fb_id: FbId) -> Answer:
-    return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_program_space=True, use_llama3=True).solve(
+def solve_with_program_store_with_llama3(fb_id: FbId) -> Answer:
+    return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_programs=True, use_llama3=True).solve(
         problem=QS_BY_FB_ID[fb_id],
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
 @enable_batch_qa_and_eval(output_name='HTP-OODAR-wKnowledge-wProgSpace-wLlama3')
 @log_qa_and_update_output_file(output_name='HTP-OODAR-wKnowledge-wProgSpace-wLlama3')
-def solve_with_knowledge_and_program_space_with_llama3(fb_id: FbId) -> Answer:
-    return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_program_space=True, use_llama3=True).solve(  # noqa: E501
+def solve_with_knowledge_and_program_store_with_llama3(fb_id: FbId) -> Answer:
+    return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_programs=True, use_llama3=True).solve(  # noqa: E501
         problem=QS_BY_FB_ID[fb_id],
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
@@ -119,11 +119,11 @@ if __name__ == '__main__':
     arg_parser = ArgumentParser()
     arg_parser.add_argument('fb_id')
     arg_parser.add_argument('--knowledge', action='store_true')
-    arg_parser.add_argument('--prog-space', action='store_true')
+    arg_parser.add_argument('--prog-store', action='store_true')
     arg_parser.add_argument('--llama3', action='store_true')
     args = arg_parser.parse_args()
 
-    match (args.knowledge, args.prog_space, args.llama3):
+    match (args.knowledge, args.prog_store, args.llama3):
         case (False, False, False):
             solve_func: QAFunc = solve
 
@@ -131,10 +131,10 @@ if __name__ == '__main__':
             solve_func: QAFunc = solve_with_knowledge
 
         case (False, True, False):
-            solve_func: QAFunc = solve_with_program_space
+            solve_func: QAFunc = solve_with_program_store
 
         case (True, True, False):
-            solve_func: QAFunc = solve_with_knowledge_and_program_space
+            solve_func: QAFunc = solve_with_knowledge_and_program_store
 
         case (False, False, True):
             solve_func: QAFunc = solve_with_llama3
@@ -143,10 +143,10 @@ if __name__ == '__main__':
             solve_func: QAFunc = solve_with_knowledge_with_llama3
 
         case (False, True, True):
-            solve_func: QAFunc = solve_with_program_space_with_llama3
+            solve_func: QAFunc = solve_with_program_store_with_llama3
 
         case (True, True, True):
-            solve_func: QAFunc = solve_with_knowledge_and_program_space_with_llama3
+            solve_func: QAFunc = solve_with_knowledge_and_program_store_with_llama3
 
     solve_func(fb_id
                if (fb_id := args.fb_id).startswith(FB_ID_COL_NAME)
