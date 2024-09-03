@@ -1590,7 +1590,7 @@ financebench_id_00685:
   category: 4-CALC-AND-JUDGE
   correctness: >-
     the answer contains calculated Gross Margin
-    percentage values for 2022 and 2023 that are within 2 percentage points of each other,
+    percentage values for 2022 and 2023 that are within 2 percentage points (or 2%) of each other,
     or, alternatively, calculated decimal values that are within 0.02 of each other
   answer-inadequate: true
 
