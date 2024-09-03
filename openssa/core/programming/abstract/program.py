@@ -33,7 +33,7 @@ class AbstractProgram(ABC):
     # target Task to solve
     task: Task
 
-    # Programmer that has constructed this
+    # Programmer that has created this
     programmer: AbstractProgrammer | None = None
 
     @abstractmethod
