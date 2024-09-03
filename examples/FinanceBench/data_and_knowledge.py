@@ -190,15 +190,15 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
     EXPERT_KNOWLEDGE: str = f.read()
 
 
-EXPERT_PROGRAM_SPACE_FILE_PATH: Path = Path(__file__).parent / 'expert-program-space.yml'
-with open(file=EXPERT_PROGRAM_SPACE_FILE_PATH,
+EXPERT_PROGRAMS_FILE_PATH: Path = Path(__file__).parent / 'expert-programs.yml'
+with open(file=EXPERT_PROGRAMS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
           errors='strict',
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PROGRAM_SPACE: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
+    EXPERT_PROGRAMS: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
 EXPERT_HTP_COMPANY_KEY: str = 'COMPANY'
 EXPERT_HTP_PERIOD_KEY: str = 'PERIOD'
