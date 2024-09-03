@@ -291,7 +291,7 @@ const WaferInfo = ({ title, image, deviations, errors }) => (
       <img
         src={image}
         alt={title}
-        className="w-full mb-4 rounded-lg h-[200px] w-auto"
+        className=" mb-4 rounded-lg h-[200px] w-auto"
       />
     </div>
     <div className="text-white">
