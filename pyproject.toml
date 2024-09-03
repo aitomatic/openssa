@@ -99,11 +99,17 @@ streamlit = {version = ">=1.38", optional = true}
 streamlit-extras = {version = ">=0.4", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
+langchainhub = ">=0.1"
+
 [tool.poetry.extras]
 contrib = [
   "streamlit",
   "streamlit-extras",
   "streamlit-mic-recorder",
+]
+
+langchain = [
+  "langchainhub",
 ]
 
 
