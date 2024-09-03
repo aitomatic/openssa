@@ -48,7 +48,13 @@ def get_or_create_react_agent_executor(doc_name: DocName):
             llm=LLM)
     ]
     return AgentExecutor(agent=create_react_agent(llm=LLM, tools=tools, prompt=REACT_PROMPT_TEMPLATE),
-                         tools=tools)
+                         tools=tools,
+                         return_intermediate_steps=True,
+                         max_iterations=15,
+                         max_execution_time=None,
+                         early_stopping_method='generate',
+                         handle_parsing_errors=True,
+                         trim_intermediate_steps=-1)
 
 
 @enable_batch_qa_and_eval(output_name='LangChain-ReAct')
