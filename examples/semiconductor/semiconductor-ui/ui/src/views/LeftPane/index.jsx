@@ -284,6 +284,62 @@ export const Data2 = () => {
   );
 };
 
+const WaferInfo = ({ title, image, deviations, errors }) => (
+  <div className="flex-1 bg-[#1E1E1E] rounded-lg p-4">
+    <h2 className="mb-4 text-xl font-semibold text-white">{title}</h2>
+    <div className="flex items-center justify-center">
+      <img
+        src={image}
+        alt={title}
+        className=" mb-4 rounded-lg h-[200px] w-auto"
+      />
+    </div>
+    <div className="text-white">
+      <h3 className="mb-2 font-semibold">Deviations:</h3>
+      <ul className="pl-5 mb-2 list-disc">
+        {deviations.map((deviation, index) => (
+          <li key={index} dangerouslySetInnerHTML={{ __html: deviation }} />
+        ))}
+      </ul>
+      <h3 className="mb-2 font-semibold">Errors:</h3>
+      <ul className="pl-5 list-disc">
+        {errors.map((error, index) => (
+          <li key={index} dangerouslySetInnerHTML={{ __html: error }} />
+        ))}
+      </ul>
+    </div>
+  </div>
+);
+
+export const WaferComparison = () => {
+  return (
+    <div className="flex gap-4">
+      <WaferInfo
+        title="Current Wafer"
+        image="/images/current-wafer.png"
+        deviations={[
+          'Sidewall Angle: <span class="text-red-500">Off from the vertical</span>',
+        ]}
+        errors={[
+          'Pattern Shift: <span class="text-red-500">1 nm lateral shift.</span>',
+          'Surface Roughness: <span class="text-red-500">Increased roughness.</span>',
+        ]}
+      />
+      <WaferInfo
+        title="Expected"
+        image="/images/expected-wafer.png"
+        deviations={[
+          'Sidewall Angle: <span class="text-green-500">Off from the vertical.</span>',
+        ]}
+        errors={[
+          'Pattern Shift: <span class="text-green-500">pattern placement is accurate.</span>',
+          'Surface Roughness: <span class="text-green-500">Smooth trench walls</span>',
+        ]}
+      />
+    </div>
+  );
+};
+
 export const Images = () => {
   return (
     <div className="">
@@ -307,63 +363,30 @@ export const Images = () => {
   );
 };
 
+const MachineInfo = () => (
+  <div className="flex flex-col bg-[#1E1E1E] rounded-lg p-4">
+    <div className="p-5 text-[#CBCBCB]">
+      Using<strong> ORBIS CMP System, Logitech LTD</strong> to etch:
+    </div>
+    <div className="flex justify-center">
+      <img src="/images/logitech-machine.png" />
+    </div>
+  </div>
+);
+
 export const LeftPane = () => {
-  const [message, setMessage] = useState("I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. Recommend me 2 recipes.");
+  const [message, setMessage] = useState(
+    "I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. Recommend me 2 recipes."
+  );
   const { isLoading, sendMessage, data } = useData();
 
   return (
-    <div className="flex flex-col flex-1 ">
+    <div className="flex flex-col flex-1 overflow-y-scroll">
       <div className="flex flex-col gap-8 p-8">
-        <Images />
-        <div className="flex flex-col gap-2">
-          <div className="text-white text-[32px] font-medium">
-          REQUIREMENTS & SPECIFICATIONS
-          </div>
-          <div
-            className="flex flex-col border rounded-lg"
-            style={{ borderColor: "#454545", backgroundColor: "#292929" }}
-          >
-            <div className=" bg-[#1A1A1A] text-white">
-              <textarea
-                rows={2}
-                className="w-full resize-none bg-[#1A1A1A] p-5 text-white"
-                placeholder="Enter your message here..."
-                value={message}
-                onChange={(e) => setMessage(e.currentTarget.value)}
-              ></textarea>
-            </div>
-            <div className="flex justify-end p-5">
-              <button
-                className="px-5 py-2 font-medium text-black bg-white rounded-lg"
-                onClick={() => sendMessage(message)}
-                disabled={isLoading}
-              >
-                Get Recipe Advice
-              </button>
-            </div>
-          </div>
-        </div>
+        <WaferComparison />
+        {/* <Images /> */}
+        <MachineInfo />
       </div>
-      {/* <Specification />
-      <Plan /> */}
-      {isLoading && (
-        <div className="px-8 text-white">Getting recipe advice ...</div>
-      )}
-      {data.recipe_2 && (
-        <div className="flex flex-col p-8 gap-5 border-t border-[#2e2e2e]">
-          <div className="text-white text-[32px] font-medium">
-            RECIPES
-          </div>
-          <div className="flex gap-4 ">
-            <div className="flex flex-1 max-h-full overflow-scroll justify-stretch">
-              <Data1 />
-            </div>
-            <div className="flex flex-1 overflow-scroll">
-              <Data2 />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

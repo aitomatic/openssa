@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const BACKEND_URL = "http://localhost:9000";
+export const BACKEND_URL = "http://localhost:9000";
 
 export const SAMPLE_DATA = {
   recipe_1: `Gases & Flow Rates:
@@ -78,4 +78,18 @@ export const useData = create((set) => ({
       console.error(error);
     }
   },
+}));
+
+export const useMessageStore = create((set) => ({
+  messages: [
+    // {
+    //   user: "Zooey",
+    //   content:
+    //     "I am trying to smoothen an amorphous silicon surface that is 1.5-2.5 microns in depth. I have tried a hot concentrated KOH solution, but it results in a thickness of 8-9 microns. Give me a list of potential solutions along with the pros and cons of each approach.",
+    //   avatar: "/images/user-avatar.jpg",
+    //   type: "user",
+    // },
+  ],
+  addMessage: (message) =>
+    set((state) => ({ messages: [...state.messages, message] })),
 }));
