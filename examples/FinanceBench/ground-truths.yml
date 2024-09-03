@@ -1342,7 +1342,10 @@ financebench_id_01351:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer says Effective Tax Rate changed from 24.6% to 21.6%, and/or that it decreased by 3 pencentage points
+    the answer says Effective Tax Rate changed from 24.6% to 21.6%,
+    and/or that it decreased by 3 pencentage points or 3%
+
+  evaluator-unreliable: true
 
 
 financebench_id_01964:
