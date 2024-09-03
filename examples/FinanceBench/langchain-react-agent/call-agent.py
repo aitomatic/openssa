@@ -87,6 +87,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain import hub
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain_openai import OpenAI
+from langchain_openai.chat_models import ChatOpenAI
 from langchain.tools import Tool
 
 def process_question_with_pdf(question, pdf_path):
@@ -114,7 +115,7 @@ def process_question_with_pdf(question, pdf_path):
         description="Search documents using a vectorstore."
     )
     prompt = hub.pull("hwchase17/react")
-    llm = OpenAI()
+    llm = ChatOpenAI(model_name="gpt-4o")
     agent = create_react_agent(llm, [vectorstore_tool], prompt)
     agent_executor = AgentExecutor(agent=agent, tools=[vectorstore_tool], verbose=True)
 
