@@ -22,10 +22,8 @@ def get_or_create_react_agent_executor(doc_name: DocName):
         # document path to encode: Doc(name=doc_name).dir_path
     ]
 
-    agent = create_react_agent(llm=model, tools=tools, prompt=prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools)
-
-    return agent_executor
+    return AgentExecutor(agent=create_react_agent(llm=model, tools=tools, prompt=prompt),
+                         tools=tools)
 
 
 @enable_batch_qa_and_eval(output_name='LangChain-ReAct')
