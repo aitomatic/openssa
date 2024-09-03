@@ -25,8 +25,8 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ProgramSpace:
-    """Program Space for storing searchable problem-solving Programs."""
+class ProgramStore:
+    """Program Store for storing searchable problem-solving Programs."""
 
     # informative descriptions of stored problem-solving Programs, indexed by name
     descriptions: dict[str, str] = field(default_factory=dict,

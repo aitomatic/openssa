@@ -13,8 +13,8 @@ if TYPE_CHECKING:
 load_dotenv()
 
 
-EXPERT_PROGRAM_SPACE_FILE_PATH: Path = Path(__file__).parent / 'expert-program-space.yml'
-with open(file=EXPERT_PROGRAM_SPACE_FILE_PATH,
+EXPERT_PROGRAMS_FILE_PATH: Path = Path(__file__).parent / 'expert-program-store.yml'
+with open(file=EXPERT_PROGRAMS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
           errors='strict',
