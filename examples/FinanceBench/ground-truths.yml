@@ -3492,7 +3492,7 @@ financebench_id_04458:
     (if the answer is a single number, assume that it is that calculated EBITDA Margin metric value)
 
 
-financebench_id_03282:  # TODO: retrieve Total Current Liabilities
+financebench_id_03282:
   sector: Communication Services
 
   company: Netflix
@@ -3518,6 +3518,8 @@ financebench_id_03282:  # TODO: retrieve Total Current Liabilities
     5466.3, 5466.3 million, 5.4663 billion,
     5466, 5466 million, 5.466 billion,
     5500, 5500 million or 5.5 billion
+
+  evaluator-unreliable: true
 
 
 financebench_id_04302:
