@@ -769,7 +769,9 @@ financebench_id_01935:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions supplemental indentures related to debt
+    the answer mentions indenture(s)
+
+  evaluator-unreliable: true
 
 
 financebench_id_00799:
@@ -944,6 +946,8 @@ financebench_id_01928:
     the answer contains a quantity equivalent to or approximately equal to
     2018 million, 2.018 billion,
     2000 million or 2 billion
+
+  evaluator-unreliable: true
 
 
 financebench_id_01930:
@@ -1228,6 +1232,8 @@ financebench_id_00476:
     the answer concludes that there are no debt securities traded,
     or, alternatively, that no such debt securities are explicitly reported
 
+  evaluator-unreliable: true
+
 
 financebench_id_01028:
   sector: Financials
@@ -1338,7 +1344,10 @@ financebench_id_01351:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer says Effective Tax Rate changed from 24.6% to 21.6%, and/or that it decreased by 3 pencentage points
+    the answer says Effective Tax Rate changed from 24.6% to 21.6%,
+    and/or that it decreased by 3 pencentage points or 3%
+
+  evaluator-unreliable: true
 
 
 financebench_id_01964:
@@ -1583,7 +1592,7 @@ financebench_id_00685:
   category: 4-CALC-AND-JUDGE
   correctness: >-
     the answer contains calculated Gross Margin
-    percentage values for 2022 and 2023 that are within 2 percentage points of each other,
+    percentage values for 2022 and 2023 that are within 2 percentage points (or 2%) of each other,
     or, alternatively, calculated decimal values that are within 0.02 of each other
   answer-inadequate: true
 
@@ -2266,7 +2275,7 @@ financebench_id_01346:
   category: 2-CALC-CHANGE
   correctness: >-
     the answer says that Effective Tax Rate changed from approximately 20% to approximately 23%,
-    and/or that it increased by approximately 3 percentage points
+    and/or that it increased by approximately 3 percentage points or 3%
 
   evaluator-unreliable: true
 
@@ -2777,7 +2786,7 @@ financebench_id_00711:
   evaluator-unreliable: true
 
 
-financebench_id_00651:
+financebench_id_00651:  # TODO: retrieve growth rates
   sector: Health Care
 
   company: Johnson & Johnson
@@ -2825,6 +2834,8 @@ financebench_id_01484:
   category: 1-COMPARE
   correctness: >-
     the answer mentions US sales increased and international sales decreased
+
+  evaluator-unreliable: true
 
 
 financebench_id_01488:
@@ -3191,7 +3202,7 @@ financebench_id_03718:
   evaluator-unreliable: true
 
 
-financebench_id_04171:  # TODO: retrieve Accounts Payable
+financebench_id_04171:
   sector: Consumer Discretionary
 
   company: MGM Resorts
@@ -3217,6 +3228,8 @@ financebench_id_04171:  # TODO: retrieve Accounts Payable
     302.6, 302.6 million, 0.3026 billion,
     303, 303 million, 0.303 billion,
     300, 300 million or 0.3 billion
+
+  evaluator-unreliable: true
 
 
 financebench_id_03849:
@@ -3481,7 +3494,7 @@ financebench_id_04458:
     (if the answer is a single number, assume that it is that calculated EBITDA Margin metric value)
 
 
-financebench_id_03282:  # TODO: retrieve Total Current Liabilities
+financebench_id_03282:
   sector: Communication Services
 
   company: Netflix
@@ -3507,6 +3520,8 @@ financebench_id_03282:  # TODO: retrieve Total Current Liabilities
     5466.3, 5466.3 million, 5.4663 billion,
     5466, 5466 million, 5.466 billion,
     5500, 5500 million or 5.5 billion
+
+  evaluator-unreliable: true
 
 
 financebench_id_04302:
@@ -4005,7 +4020,9 @@ financebench_id_01476:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer mentions growth guidance raised from 8% to 9%, and/or growth guidance raised by 1 percentage point
+    the answer mentions growth guidance raised from 8% to 9%, and/or growth guidance raised by 1 percentage point or 1%
+
+  evaluator-unreliable: true
 
 
 financebench_id_00302:
