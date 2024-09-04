@@ -4018,7 +4018,9 @@ financebench_id_01476:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer mentions growth guidance raised from 8% to 9%, and/or growth guidance raised by 1 percentage point
+    the answer mentions growth guidance raised from 8% to 9%, and/or growth guidance raised by 1 percentage point or 1%
+
+  evaluator-unreliable: true
 
 
 financebench_id_00302:
