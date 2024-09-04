@@ -3200,7 +3200,7 @@ financebench_id_03718:
   evaluator-unreliable: true
 
 
-financebench_id_04171:  # TODO: retrieve Accounts Payable
+financebench_id_04171:
   sector: Consumer Discretionary
 
   company: MGM Resorts
@@ -3226,6 +3226,8 @@ financebench_id_04171:  # TODO: retrieve Accounts Payable
     302.6, 302.6 million, 0.3026 billion,
     303, 303 million, 0.303 billion,
     300, 300 million or 0.3 billion
+
+  evaluator-unreliable: true
 
 
 financebench_id_03849:
