@@ -947,6 +947,8 @@ financebench_id_01928:
     2018 million, 2.018 billion,
     2000 million or 2 billion
 
+  evaluator-unreliable: true
+
 
 financebench_id_01930:
   sector: Materials
