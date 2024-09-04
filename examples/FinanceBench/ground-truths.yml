@@ -545,7 +545,7 @@ financebench_id_01319:
   evaluator-unreliable: true
 
 
-financebench_id_00540:  # TODO: retrieve COGS
+financebench_id_00540:
   sector: Utilities
 
   company: AES Corporation
