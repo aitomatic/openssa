@@ -127,11 +127,20 @@ async def post_data(data: dict):
     try:
         # Check for specific keywords in the question and return appropriate responses
         if "silicon surface" in question.lower():
-            return {"answer": "You asked about silicon surface. Here's some information regarding silicon surface processing..."}
+            # return {"answer": "You asked about silicon surface. Here's some information regarding silicon surface processing..."}
+            return {
+                "answer": qa_map["silicon surface"]
+            }
         elif "chemical mechanical polishing" in question.lower():
-            return {"answer": "You asked about chemical mechanical polishing. Here's some information regarding CMP..."}
+            # return {"answer": "You asked about chemical mechanical polishing. Here's some information regarding CMP..."}
+            return {
+                "answer": qa_map["chemical mechanical polishing"]
+            }
         elif "etching process" in question.lower():
-            return {"answer": "You asked about etching processes. Here are the details..."}
+            # return {"answer": "You asked about etching processes. Here are the details..."}
+            return {
+                "answer": qa_map["etching process"]
+            }
         # else:
         #     # Default fallback if no specific keywords are matched
         #     parsed_answer = solve_semiconductor_question(question)
