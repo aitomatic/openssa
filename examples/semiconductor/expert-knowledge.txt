@@ -3,7 +3,7 @@ Smoothing Amorphous Silicon Surfaces: Techniques and Considerations
 
 Wet Chemical Etching
 ------------------------
-1. Hydrogen Peroxide (H2O2) based Etching:
+ -  Hydrogen Peroxide (H2O2) based Etching:
    - Pros:
      - Milder etchant than KOH
      - Safer handling
