@@ -57,16 +57,22 @@ export const ChatPane = () => {
 
       try {
         // Simulating API call for bot response
-        const response = await axios.post(BACKEND_URL + "/data", {
-          question: input,
-        });
+        // const response = await axios.post(BACKEND_URL + "/data", {
+        //   question: input,
+        // });
 
-        const {
-          recipe_1 = "",
-          recipe_2 = "",
-          agent_advice = "",
-        } = response.data;
-        const message = `Below is a comprehensive analysis that combines the information from multiple approaches: \n ${recipe_1}\ ${recipe_2}\n${agent_advice}`;
+        // const {
+        //   recipe_1 = "",
+        //   recipe_2 = "",
+        //   agent_advice = "",
+        // } = response.data;
+        // const message = `Below is a comprehensive analysis that combines the information from multiple approaches: \n ${recipe_1}\ ${recipe_2}\n${agent_advice}`;
+
+        // simulate 20s delay
+        await new Promise((resolve) => setTimeout(resolve, 20_000));
+
+        // Sample response message
+        const message = "This is a test message";
 
         const botMessage = {
           user: "Etch Advisor",
