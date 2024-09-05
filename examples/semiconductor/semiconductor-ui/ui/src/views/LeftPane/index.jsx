@@ -318,22 +318,25 @@ export const WaferComparison = () => {
         title="Current Wafer"
         image="/images/current-wafer.png"
         deviations={[
-          'Sidewall Angle: <span class="text-red-500">Off from the vertical</span>',
+          'Ra: <span class="text-red-500">5 nm</span>',
+          'Rq: <span class="text-red-500">6.5 nm</span>',
         ]}
         errors={[
-          'Pattern Shift: <span class="text-red-500">1 nm lateral shift.</span>',
+          // 'Pattern Shift: <span class="text-red-500">1 nm lateral shift.</span>',
           'Surface Roughness: <span class="text-red-500">Increased roughness.</span>',
+
         ]}
       />
       <WaferInfo
         title="Expected"
         image="/images/expected-wafer.png"
         deviations={[
-          'Sidewall Angle: <span class="text-green-500">Off from the vertical.</span>',
+          'Ra: <span class="text-red-500">0.1 nm</span>',
+          'Rq: <span class="text-red-500">0.13 nm</span>',
         ]}
         errors={[
-          'Pattern Shift: <span class="text-green-500">pattern placement is accurate.</span>',
-          'Surface Roughness: <span class="text-green-500">Smooth trench walls</span>',
+          // 'Pattern Shift: <span class="text-green-500">pattern placement is accurate.</span>',
+          'Surface Roughness: <span class="text-green-500">Smooth wafer</span>',
         ]}
       />
     </div>
