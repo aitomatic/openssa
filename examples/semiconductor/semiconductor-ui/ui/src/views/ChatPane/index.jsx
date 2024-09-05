@@ -57,9 +57,9 @@ export const ChatPane = () => {
 
       try {
         // Simulating API call for bot response
-        // const response = await axios.post(BACKEND_URL + "/data", {
-        //   question: input,
-        // });
+        const response = await axios.post(BACKEND_URL + "/data", {
+          question: input,
+        });
 
         // const {
         //   recipe_1 = "",
@@ -72,7 +72,7 @@ export const ChatPane = () => {
         await new Promise((resolve) => setTimeout(resolve, 20_000));
 
         // Sample response message
-        const message = "This is a test message";
+        const message = response.data.answer ?? "";
 
         const botMessage = {
           user: "Etch Advisor",
