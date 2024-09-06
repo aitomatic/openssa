@@ -116,7 +116,7 @@ Safety and Environmental Considerations\n \
 \n \
 By following this detailed and organized CMP recipe, semiconductor manufacturers can achieve high-quality, defect-free, and ultra-flat wafer surfaces. Continuous monitoring and optimization are essential to maintain process performance and yield.\n \
 "
-qa_map["geometries"] = "To ensure optimal device performance and yield for advanced geometries below 10nm, it may be helpful to implement additional post-CMP (Chemical Mechanical Polishing) cleaning steps. As device dimensions shrink, the complexity of the CMP process increases, leading to higher risks of defects, impurities, and particle contamination that can compromise device integrity.\n \
+qa_map["post-CMP cleaning"] = "To ensure optimal device performance and yield for advanced geometries below 10nm, it may be helpful to implement additional post-CMP (Chemical Mechanical Polishing) cleaning steps. As device dimensions shrink, the complexity of the CMP process increases, leading to higher risks of defects, impurities, and particle contamination that can compromise device integrity.\n \
 \n \
  Primary Considerations for Additional Post-CMP Cleaning:\n \
 \n \
