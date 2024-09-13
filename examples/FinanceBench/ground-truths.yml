@@ -545,7 +545,7 @@ financebench_id_01319:
   evaluator-unreliable: true
 
 
-financebench_id_00540:  # TODO: retrieve COGS
+financebench_id_00540:
   sector: Utilities
 
   company: AES Corporation
@@ -1918,7 +1918,7 @@ financebench_id_01091:
   evaluator-unreliable: true
 
 
-financebench_id_00678:  # tricky: Gross Income is implicit, with missing label
+financebench_id_00678:  # note: Gross Income is implicit, with missing label
   sector: Industrials
 
   company: Boeing
