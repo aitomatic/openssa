@@ -1098,9 +1098,9 @@ financebench_id_01198:
   category: 0-RETRIEVE
   correctness: |-
     the answer mentions at least 2 of the following:
-    - EPYC server processors;
-    - Gaming; and
-    - inclusion of Xilinx
+    - "Data Center" and/or "EPYC";
+    - "Gaming" and/or "semi-custom"; and
+    - "Embedded" and/or "Xilinx"
 
   evaluator-unreliable: true
 
