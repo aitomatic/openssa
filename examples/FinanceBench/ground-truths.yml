@@ -1481,8 +1481,7 @@ financebench_id_00070:
     data? If working capital is not a useful or relevant metric for this company,
     then please state that and explain why.
 
-  answer: Yes. American Water Works had postivie working capital of $ 124Mn by FY
-    2022.
+  answer: No, American Water Works had negative working capital of -$1561M in FY 2022.
   justification: 'Accounts receivable+Income tax receivable+Unbilled revenues+Materials
     and supplies+other-Accounts payable-Accrued liabilities-Accrued taxes
 
@@ -1493,7 +1492,9 @@ financebench_id_00070:
   category: 3-CALC-COMPLEX
   correctness: >-
     the answer contains a calculated (Net) Working Capital metric value in dollars
-  answer-inadequate: true
+    that is NEGATIVE and equivalent to or approximately equal to
+    minus/negative 1561, minus/negative 1561 million, minus/negative 1.561 billion,
+    minus/negative 1600, minus/negative 1600 million or minus/negative 1.6 billion
 
   evaluator-unreliable: true
 
