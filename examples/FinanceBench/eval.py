@@ -191,11 +191,13 @@ def compare_eval(output_name: str, baseline_output_name: str = 'RAG-Default'):
                          ['doc_name', 'category', baseline_output_name, output_name]]
 
 
-def eval_consistency_and_accuracy_wrt_ground_truths(output_name: str, output_file_names: list[str]):
+def eval_accuracy_and_consistency_wrt_ground_truths(output_name: str, output_file_names: list[str]):
+    # pylint: disable=too-many-locals
+
     n_output_files: int = len(output_file_names)
     correctness_col_name: str = f'{output_name}---CORRECTNESS'
 
-    n_yes_scores_by_category: defaultdict = defaultdict(int)
+    n_yes_scores_by_fb_id: defaultdict = defaultdict(int)
     incorrect_answer_fb_ids: dict[FbId, str] = {}
 
     for output_df in (read_csv(LOCAL_CACHE_DIR_PATH / output_file_name, index_col=FB_ID_COL_NAME)
@@ -205,7 +207,7 @@ def eval_consistency_and_accuracy_wrt_ground_truths(output_name: str, output_fil
             ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
 
             if notna(correctness) and correctness:
-                n_yes_scores_by_category[ground_truth['category']] += 1
+                n_yes_scores_by_fb_id[fb_id] += 1
 
             else:
                 incorrect_answer_fb_ids[fb_id]: str = ('expert answer inadequate'
@@ -214,20 +216,27 @@ def eval_consistency_and_accuracy_wrt_ground_truths(output_name: str, output_fil
                                                              if ground_truth.get('evaluator-unreliable')
                                                              else ''))
 
-    logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()) / n_output_files)} / {N_CASES} = {n / N_CASES:.1%}')
+    cumu_avg_accuracy_scores_by_category: defaultdict = defaultdict(int)
+    cumu_consistency_scores_by_category: defaultdict = defaultdict(float)
 
-    pprint(correctness_by_category := {category: (f'{(n := n_yes_scores_by_category[category] / n_output_files)} / {n_for_category} '
-                                                  f'= {n / n_for_category:.1%}')
-                                       for category, n_for_category in CAT_DISTRIB.items()})
+    for fb_id, ground_truth in GROUND_TRUTHS.items():
+        cumu_avg_accuracy_scores_by_category[cat := ground_truth['category']] += (a := n_yes_scores_by_fb_id[fb_id] / n_output_files)
+        cumu_consistency_scores_by_category[cat] += 2 * abs(a - 0.5)
+
+    pprint(f'TOTAL CORRECT: {(n := sum(cumu_avg_accuracy_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
+
+    pprint({category: (f'{(n := cumu_avg_accuracy_scores_by_category[category])} / {n_for_category} '
+                       f'= {n / n_for_category:.1%}')
+            for category, n_for_category in CAT_DISTRIB.items()})
 
     pprint({
-        'EASY': (f'{(e := sum(n_yes_scores_by_category[easy_cat] / n_output_files
+        'EASY': (f'{(e := sum(cumu_avg_accuracy_scores_by_category[easy_cat]
                               for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} / '
                  f'{(se := sum(CAT_DISTRIB[easy_cat]
                                for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} '
                  f'= {e / se:.1%}'),
 
-        'HARD': (f'{(h := sum(n_yes_scores_by_category[hard_cat] / n_output_files
+        'HARD': (f'{(h := sum(cumu_avg_accuracy_scores_by_category[hard_cat]
                               for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
                                                Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} / '
                  f'{(sh := sum(CAT_DISTRIB[hard_cat]
@@ -236,10 +245,30 @@ def eval_consistency_and_accuracy_wrt_ground_truths(output_name: str, output_fil
                  f'= {h / sh:.1%}')
     })
 
-    logger.warning('INCORRECT:')
-    pprint(incorrect_answer_fb_ids)
+    pprint(f'TOTAL CONSISTENT: {(n := sum(cumu_consistency_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
 
-    return correctness_by_category
+    pprint({category: (f'{(n := cumu_consistency_scores_by_category[category])} / {n_for_category} '
+                       f'= {n / n_for_category:.1%}')
+            for category, n_for_category in CAT_DISTRIB.items()})
+
+    pprint({
+        'EASY': (f'{(e := sum(cumu_consistency_scores_by_category[easy_cat]
+                              for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} / '
+                 f'{(se := sum(CAT_DISTRIB[easy_cat]
+                               for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} '
+                 f'= {e / se:.1%}'),
+
+        'HARD': (f'{(h := sum(cumu_consistency_scores_by_category[hard_cat]
+                              for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                               Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} / '
+                 f'{(sh := sum(CAT_DISTRIB[hard_cat]
+                               for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                                Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} '
+                 f'= {h / sh:.1%}')
+    })
+
+    pprint('INCORRECT:')
+    pprint(incorrect_answer_fb_ids)
 
 
 if __name__ == '__main__':
