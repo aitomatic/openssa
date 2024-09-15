@@ -15,6 +15,7 @@ IF "%TARGET%"=="agent-solve-w-knowledge-w-llama3" GOTO agent-solve-w-knowledge-w
 IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-store-w-llama3" GOTO agent-solve-w-knowledge-and-prog-store-w-llama3
 IF "%TARGET%"=="agent-solve-all-combos" GOTO agent-solve-all-combos
 
+IF "%TARGET%"=="langchain-react-solve" GOTO langchain-react-solve
 IF "%TARGET%"=="openai-assist" GOTO openai-assist
 
 IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
@@ -73,6 +74,10 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
   poetry run python htp_oodar_agent.py %2 --knowledge --prog-space --llama3
   GOTO end
 
+
+:langchain-react-solve
+  poetry run python langchain_react.py %2
+  GOTO end
 
 :openai-assist
   poetry run python openai_assist.py %2

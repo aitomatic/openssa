@@ -99,11 +99,19 @@ streamlit = {version = ">=1.38", optional = true}
 streamlit-extras = {version = ">=0.4", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
+langchainhub = ">=0.1"
+faiss-cpu = ">=1.8"
+
 [tool.poetry.extras]
 contrib = [
   "streamlit",
   "streamlit-extras",
   "streamlit-mic-recorder",
+]
+
+langchain = [
+  "langchainhub",
+  "faiss-cpu",
 ]
 
 
@@ -128,6 +136,7 @@ disable = [
   "missing-class-docstring",
   "missing-function-docstring",
   "missing-module-docstring",
+  "no-name-in-module",
   "raw-checker-failed",
   "redefined-outer-name",
   "relative-beyond-top-level",
