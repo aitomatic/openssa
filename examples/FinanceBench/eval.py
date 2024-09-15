@@ -223,7 +223,7 @@ def eval_accuracy_and_consistency_wrt_ground_truths(output_name: str, output_fil
         cumu_avg_accuracy_scores_by_category[cat := ground_truth['category']] += (a := n_yes_scores_by_fb_id[fb_id] / n_output_files)
         cumu_consistency_scores_by_category[cat] += 2 * abs(a - 0.5)
 
-    pprint(f'TOTAL CORRECT: {(n := sum(cumu_avg_accuracy_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
+    print(f'TOTAL CORRECT: {(n := sum(cumu_avg_accuracy_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
 
     pprint({category: (f'{(n := cumu_avg_accuracy_scores_by_category[category])} / {n_for_category} '
                        f'= {n / n_for_category:.1%}')
@@ -245,7 +245,7 @@ def eval_accuracy_and_consistency_wrt_ground_truths(output_name: str, output_fil
                  f'= {h / sh:.1%}')
     })
 
-    pprint(f'TOTAL CONSISTENT: {(n := sum(cumu_consistency_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
+    print(f'\nTOTAL CONSISTENT: {(n := sum(cumu_consistency_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
 
     pprint({category: (f'{(n := cumu_consistency_scores_by_category[category])} / {n_for_category} '
                        f'= {n / n_for_category:.1%}')
@@ -267,7 +267,7 @@ def eval_accuracy_and_consistency_wrt_ground_truths(output_name: str, output_fil
                  f'= {h / sh:.1%}')
     })
 
-    pprint('INCORRECT:')
+    print('\nINCORRECT:')
     pprint(incorrect_answer_fb_ids)
 
 
