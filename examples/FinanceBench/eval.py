@@ -17,7 +17,7 @@ from openssa.core.util.lm.openai import OpenAILM
 # pylint: disable=wrong-import-order
 from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
                                 FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,
-                                OUTPUT_FILE_PATH, get_or_create_output_df)
+                                LOCAL_CACHE_DIR_PATH, OUTPUT_FILE_PATH, get_or_create_output_df)
 from log import switch_log_file
 
 if TYPE_CHECKING:
@@ -189,6 +189,57 @@ def compare_eval(output_name: str, baseline_output_name: str = 'RAG-Default'):
     output_df.loc[:, output_name] = output_df[f'{output_name}---CORRECTNESS']
     return output_df.loc[output_df[output_name] != output_df[baseline_output_name],
                          ['doc_name', 'category', baseline_output_name, output_name]]
+
+
+def eval_consistency_and_accuracy_wrt_ground_truths(output_name: str, output_file_names: list[str]):
+    n_output_files: int = len(output_file_names)
+    correctness_col_name: str = f'{output_name}---CORRECTNESS'
+
+    n_yes_scores_by_category: defaultdict = defaultdict(int)
+    incorrect_answer_fb_ids: dict[FbId, str] = {}
+
+    for output_df in (read_csv(LOCAL_CACHE_DIR_PATH / output_file_name, index_col=FB_ID_COL_NAME)
+                      for output_file_name in output_file_names):
+
+        for fb_id, correctness in output_df[correctness_col_name].items():
+            ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
+
+            if notna(correctness) and correctness:
+                n_yes_scores_by_category[ground_truth['category']] += 1
+
+            else:
+                incorrect_answer_fb_ids[fb_id]: str = ('expert answer inadequate'
+                                                       if ground_truth.get('answer-inadequate')
+                                                       else ('evaluator unreliable'
+                                                             if ground_truth.get('evaluator-unreliable')
+                                                             else ''))
+
+    logger.info(f'TOTAL CORRECT: {(n := sum(n_yes_scores_by_category.values()) / n_output_files)} / {N_CASES} = {n / N_CASES:.1%}')
+
+    pprint(correctness_by_category := {category: (f'{(n := n_yes_scores_by_category[category] / n_output_files)} / {n_for_category} '
+                                                  f'= {n / n_for_category:.1%}')
+                                       for category, n_for_category in CAT_DISTRIB.items()})
+
+    pprint({
+        'EASY': (f'{(e := sum(n_yes_scores_by_category[easy_cat] / n_output_files
+                              for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} / '
+                 f'{(se := sum(CAT_DISTRIB[easy_cat]
+                               for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} '
+                 f'= {e / se:.1%}'),
+
+        'HARD': (f'{(h := sum(n_yes_scores_by_category[hard_cat] / n_output_files
+                              for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                               Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} / '
+                 f'{(sh := sum(CAT_DISTRIB[hard_cat]
+                               for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                                Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} '
+                 f'= {h / sh:.1%}')
+    })
+
+    logger.warning('INCORRECT:')
+    pprint(incorrect_answer_fb_ids)
+
+    return correctness_by_category
 
 
 if __name__ == '__main__':
