@@ -37,14 +37,14 @@ get-poetry-mac-sys:
 install:
 	@poetry lock
 	@poetry install \
-		--extras=contrib --extras=llama-index-callbacks \
+		--extras=contrib \
 		--with=dev --with=docs --with=lint --with=test
 
 install-editable:
-	@python3 -m pip install -e ".[contrib, llama-index-callbacks]" --upgrade
+	@python3 -m pip install -e ".[contrib, langchain]" --upgrade
 
 install-editable-mac-sys:
-	@python3 -m pip install -e ".[contrib, llama-index-callbacks]" --upgrade --user --break-system-packages
+	@python3 -m pip install -e ".[contrib, langchain]" --upgrade --user --break-system-packages
 
 
 # LINTING

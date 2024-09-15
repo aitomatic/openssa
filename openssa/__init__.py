@@ -11,9 +11,9 @@ from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
 import tomllib
 
-from .core.agent.agent import Agent
+from .core.agent.dana import DANA
 
-from .core.program_space import ProgramSpace
+from .core.program_store import ProgramStore
 from .core.programming.hierarchical.plan import HTP
 from .core.programming.hierarchical.planner import HTPlanner
 
@@ -25,6 +25,9 @@ from .core.resource.file import FileResource
 from .core.task import Task
 
 from .core.util.lm.config import LMConfig
+from .core.util.lm.huggingface import HuggingFaceLM
+from .core.util.lm.llama import LlamaLM
+from .core.util.lm.openai import OpenAILM
 
 
 try:
