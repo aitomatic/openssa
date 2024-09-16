@@ -7,7 +7,7 @@ FINANCE_BENCH_DIR_PATH: Path = Path(__path__[0]).parent / 'examples' / 'FinanceB
 sys.path.append(str(FINANCE_BENCH_DIR_PATH))
 
 # pylint: disable=wrong-import-order,wrong-import-position
-from rag_default import get_or_create_file_resource  # noqa: E402
+from rag import get_or_create_file_resource  # noqa: E402
 
 
 def test_file_resource():

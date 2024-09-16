@@ -41,7 +41,7 @@ openai-assist:
 
 
 rag-default-answer:
-	@poetry run python rag_default.py ${id}
+	@poetry run python rag.py ${id}
 
 rag-test:
 	@poetry run python rag-test.py ${doc}
