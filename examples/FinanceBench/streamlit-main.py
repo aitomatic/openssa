@@ -6,7 +6,7 @@ import streamlit as st
 
 from data_and_knowledge import DocName, Doc, DOC_NAMES, ExpertPlanId as TaskId, EXPERT_PROGRAMS
 from htp_oodar_agent import get_or_create_agent, get_or_create_adaptations
-from rag_default import get_or_create_file_resource
+from rag import get_or_create_file_resource
 
 
 TASK_IDS: list[TaskId] = list(EXPERT_PROGRAMS)
