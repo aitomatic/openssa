@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 from functools import cache
 
 from openssa import FileResource, LMConfig
-from openssa.core.util.lm.openai import default_llama_index_openai_lm
+from openssa.core.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID
@@ -13,6 +13,7 @@ from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 def get_or_create_file_resource(doc_name: DocName,
                                 llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_SMALL_MODEL) -> FileResource:
     return FileResource(path=Doc(name=doc_name).dir_path,
+                        embed_model=default_llama_index_openai_embed_model(),
                         lm=default_llama_index_openai_lm(llama_index_openai_lm_name))
 
 
