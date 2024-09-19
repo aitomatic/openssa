@@ -85,7 +85,7 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 
 :rag-default-answer
-  poetry run python rag_default.py %2
+  poetry run python rag.py %2
   GOTO end
 
 :rag-test
