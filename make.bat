@@ -56,7 +56,7 @@ IF "%TARGET%"=="launch-solver" GOTO launch-solver
   GOTO end
 
 :install-editable
-  python3 -m pip install -e ".[contrib]" --upgrade --user
+  python3 -m pip install -e ".[contrib, langchain]" --upgrade --user
   GOTO end
 
 

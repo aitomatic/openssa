@@ -3,7 +3,7 @@
 ABSTRACT PROGRAMMER INTERFACE
 =============================
 
-`AbstractProgrammer` is `OpenSSA`'s abstract base class for using LMs to construct problem-solving Programs.
+`AbstractProgrammer` is `OpenSSA`'s abstract base class for using LMs to create problem-solving Programs.
 """
 
 
@@ -36,5 +36,5 @@ class AbstractProgrammer(ABC):
                            kw_only=False)
 
     @abstractmethod
-    def construct_program(self, task: Task, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> AbstractProgram:
+    def create_program(self, task: Task, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> AbstractProgram:
         """Construct a Program for solving the posed Problem using given Knowledge & Resources."""
