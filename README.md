@@ -1,51 +1,27 @@
 <!-- markdownlint-disable MD013 MD043 -->
 
-# `OpenSSA`: Small Specialist Agents for Industrial AI
+# OpenSSA: Neurosymbolic Agentic AI for Industrial Problem-Solving
 
-`OpenSSA` is an agentic AI framework for solving complex problems in real-world industry domains,
-overcoming the limitations of LLMs and RAG in high-precision settings.
+**Why OpenSSA?**  
+OpenSSA is an open-source Neurosymbolic Agentic AI framework designed to solve complex, high-stakes problems in industries like semiconductors, manufacturing, and finance—where consistency, accuracy, and deterministic outcomes are essential.
 
-At the heart of this framework is a __Domain-Aware Neurosymbolic Agent (DANA)__ architecture,
-which treats domain-specific knowledge as a first-class concern
-and applies captured knowledge representations in neural and symbolic program search and program execution
-to achieve consistency and accuracy in problem-solving.
+At the core of OpenSSA is the **Domain-Aware Neurosymbolic Agent (DANA)** architecture, advancing AI from basic pattern-matching and information retrieval to true problem-solving. It overcomes the limitations of traditional **LLMs** and **RAG models** in high-precision, multi-step problem-solving tasks by combining **Hierarchical Task Plans (HTPs)** to structure complex tasks and the **Observe-Orient-Decide-Act (OODAR)** framework for reliable, real-time decision-making. By integrating domain-specific knowledge with neural and symbolic reasoning, OpenSSA consistently delivers accurate solutions for complex industrial challenges.
 
-## Level-2 Intelligence with Domain-Specific Knowledge and Sophisticated Planning & Reasoning
-
-`OpenSSA` implements a variant of the DANA architecture,
-with problem-solving programs represented in a Hierarchical Task Plan (HTP) form
-and program execution by powerful Observe-Orient-Decide-Act Reasoning (OODAR)
-(see [OODA comparative study](https://arxiv.org/abs/2404.11792)).
-`OpenSSA` DANA agents can also be armed with diverse Resources such as files, databases and web search.
-
-This combination of the knowledge-first DANA architecture with HTP and OODAR implementations
-goes far beyond the Level-1 pattern-matching intelligence performed by LLMs and RAG
-and achieves superior consistency and accuracy in deliberative/iterative multi-step problem-solving.
-
-## Small and Resource-Efficient Agents for Practical Real-World Deployment
-
-Such Level-2 intelligence through domain-specific knowledge and planning and reasoning
-allows `OpenSSA` DANA agents to work well in many industry applications
-using significantly smaller component models, thereby greatly economizing computing resources.
-
-## Open and Extensible Architecture
-
-Committed to promoting and supporting open development in generative AI,
-`OpenSSA` would strive to integrate with a diverse array of LLM backends, especially open-source LLMs.
-For example, `OpenSSA` supports `Llama` LLMs and models derived or fine-tuned from them.
-If you would like certain LLMs to be supported, please suggest through a GitHub issue, or, even better, submit your PRs.
-
-Additionally, `OpenSSA`'s core Knowledge, Planning, Reasoning and Resource interfaces
-are designed with customizability and extensibility as first-class concerns,
-in order to enable developers to effectively solve problems in their specific industries and specialized domains.
+## Key Benefits of OpenSSA
+- **Consistent Results**: Delivers repeatable, high-precision outcomes for complex tasks.
+- **Advanced Problem-Solving**: Combines HTPs and OODAR for multi-step reasoning and real-time decision-making.
+- **Scalable Expertise**: Leverages domain knowledge to scale AI without heavy data requirements.
+- **Resource Efficiency**: Uses smaller, resource-efficient models, minimizing computational costs.
+- **Extensible and Developer-Friendly**: Supports diverse LLM backends and is fully customizable for industry-specific needs.
 
 ## Getting Started
+- Install with __`pip install openssa`__
+(*Supports Python 3.12 or 3.13*)
 
-Install by __`pip install openssa`__ on Python __3.12 or 3.13__.
+- For the latest capabilities:
+__`pip install https://github.com/aitomatic/openssa/archive/main.zip`__.
 
-- For bleeding-edge latest capabilities: __`pip install https://github.com/aitomatic/openssa/archive/main.zip`__.
-
-Explore the `examples/` directory and developer guides and tutorials on our [documentation site](https://aitomatic.github.io/openssa).
+- Explore the `examples/` directory and developer guides and tutorials on our [documentation site](https://aitomatic.github.io/openssa).
 
 ## [API Documentation](https://aitomatic.github.io/openssa/modules)
 
@@ -54,6 +30,6 @@ Explore the `examples/` directory and developer guides and tutorials on our [doc
 We welcome contributions from the community!
 
 - Join the discussion on our [Community Forum](https://github.com/aitomatic/openssa/discussions)
-- Submit pull requests for bug fixes, enhancements, or new features
+- Submit pull requests for bug fixes, enhancements, or new features.
 
-For more information, see our [Contribution Guide](CONTRIBUTING.md).
+For detailed guidelines, refer to our [Contribution Guide](CONTRIBUTING.md).
