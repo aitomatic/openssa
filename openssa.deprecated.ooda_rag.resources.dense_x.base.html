@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>&lt;no title&gt;</title>
+    
+          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="_static/documentation_options.js?v=f043a128"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="_static/theme-vendors.js"></script> -->
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">openssa</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>&lt;no title&gt;</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <dl class="py function" id="module-openssa.deprecated.ooda_rag.resources.dense_x.base">
+<dt class="sig sig-object py" id="openssa.deprecated.ooda_rag.resources.dense_x.base.store_nodes_dict">
+<span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ooda_rag.resources.dense_x.base.</span></span><span class="sig-name descname"><span class="pre">store_nodes_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">TextNode</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_cache_path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#openssa.deprecated.ooda_rag.resources.dense_x.base.store_nodes_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Store nodes dict.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="openssa.deprecated.ooda_rag.resources.dense_x.base.load_nodes_dict">
+<span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ooda_rag.resources.dense_x.base.</span></span><span class="sig-name descname"><span class="pre">load_nodes_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes_cache_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">TextNode</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#openssa.deprecated.ooda_rag.resources.dense_x.base.load_nodes_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Load nodes dict.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.deprecated.ooda_rag.resources.dense_x.base.DenseXRetrievalPack">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ooda_rag.resources.dense_x.base.</span></span><span class="sig-name descname"><span class="pre">DenseXRetrievalPack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">documents:</span> <span class="pre">~typing.List[~llama_index.core.schema.Document],</span> <span class="pre">proposition_llm:</span> <span class="pre">~llama_index.core.llms.llm.LLM</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">query_llm:</span> <span class="pre">~llama_index.core.llms.llm.LLM</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">embed_model:</span> <span class="pre">~llama_index.core.base.embeddings.base.BaseEmbedding</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">text_splitter:</span> <span class="pre">~llama_index.core.node_parser.interface.TextSplitter</span> <span class="pre">=</span> <span class="pre">SentenceSplitter(include_metadata=True,</span> <span class="pre">include_prev_next_rel=True,</span> <span class="pre">callback_manager=&lt;llama_index.core.callbacks.base.CallbackManager</span> <span class="pre">object&gt;,</span> <span class="pre">id_func=&lt;function</span> <span class="pre">default_id_func&gt;,</span> <span class="pre">chunk_size=1024,</span> <span class="pre">chunk_overlap=200,</span> <span class="pre">separator='</span> <span class="pre">',</span> <span class="pre">paragraph_separator='\n\n\n',</span> <span class="pre">secondary_chunking_regex='[^,.;。？！]+[,.;。？！]?'),</span> <span class="pre">similarity_top_k:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.deprecated.ooda_rag.resources.dense_x.base.DenseXRetrievalPack" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseLlamaPack</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ooda_rag.resources.dense_x.base.DenseXRetrievalPack.get_modules">
+<span class="sig-name descname"><span class="pre">get_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#openssa.deprecated.ooda_rag.resources.dense_x.base.DenseXRetrievalPack.get_modules" title="Link to this definition">¶</a></dt>
+<dd><p>Get modules.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ooda_rag.resources.dense_x.base.DenseXRetrievalPack.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#openssa.deprecated.ooda_rag.resources.dense_x.base.DenseXRetrievalPack.run" title="Link to this definition">¶</a></dt>
+<dd><p>Run the pipeline.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.0.2 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

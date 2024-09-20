@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>&lt;no title&gt;</title>
+    
+          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="_static/documentation_options.js?v=f043a128"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="_static/theme-vendors.js"></script> -->
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">openssa</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>&lt;no title&gt;</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <dl class="py class" id="module-openssa.deprecated.ssa.ssa">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.AbstractSSA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ssa.ssa.</span></span><span class="sig-name descname"><span class="pre">AbstractSSA</span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.AbstractSSA" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract class for Small Specialist Agents.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.AbstractSSA.train">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.AbstractSSA.train" title="Link to this definition">¶</a></dt>
+<dd><p>Train a Small Specialist Agent in the backend.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>document_path (str): Path to the document to train the agent.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: Training session ID.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.AbstractSSA.load">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">training_session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openssa.deprecated.ssa.ssa.AbstractSSA" title="openssa.deprecated.ssa.ssa.AbstractSSA"><span class="pre">AbstractSSA</span></a></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.AbstractSSA.load" title="Link to this definition">¶</a></dt>
+<dd><p>Load a trained Small Specialist Agent from the backend.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>training_session_id (str): Training session ID.</p>
+</dd>
+<dt>Returns:</dt><dd><p>AbstractSSA: Trained agent.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.AbstractSSA.chat">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.AbstractSSA.chat" title="Link to this definition">¶</a></dt>
+<dd><p>Chat with a Small Specialist Agent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.BaseSSA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ssa.ssa.</span></span><span class="sig-name descname"><span class="pre">BaseSSA</span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.BaseSSA" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openssa.deprecated.ssa.ssa.AbstractSSA" title="openssa.deprecated.ssa.ssa.AbstractSSA"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractSSA</span></code></a></p>
+<p>Base class for Small Specialist Agents.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.BaseSSA.train">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.BaseSSA.train" title="Link to this definition">¶</a></dt>
+<dd><p>Train a Small Specialist Agent in the backend.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>document_path (str): Path to the document to train the agent.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: Training session ID.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.BaseSSA.load">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">training_session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openssa.deprecated.ssa.ssa.AbstractSSA" title="openssa.deprecated.ssa.ssa.AbstractSSA"><span class="pre">AbstractSSA</span></a></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.BaseSSA.load" title="Link to this definition">¶</a></dt>
+<dd><p>Load a trained Small Specialist Agent from the backend.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>training_session_id (str): Training session ID.</p>
+</dd>
+<dt>Returns:</dt><dd><p>AbstractSSA: Trained agent.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.BaseSSA.chat">
+<span class="sig-name descname"><span class="pre">chat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.BaseSSA.chat" title="Link to this definition">¶</a></dt>
+<dd><p>Chat with a Small Specialist Agent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.RagSSA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ssa.ssa.</span></span><span class="sig-name descname"><span class="pre">RagSSA</span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.RagSSA" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.RagSSA.train">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_source_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.RagSSA.train" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.RagSSA.chat">
+<span class="sig-name descname"><span class="pre">chat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.RagSSA.chat" title="Link to this definition">¶</a></dt>
+<dd><p>Chat with a Small Specialist Agent.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.ssa.ssa.RagSSA.add_knowledge">
+<span class="sig-name descname"><span class="pre">add_knowledge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#openssa.deprecated.ssa.ssa.RagSSA.add_knowledge" title="Link to this definition">¶</a></dt>
+<dd><p>Add knowledge to a Small Specialist Agent.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024, Aitomatic, Inc. &lt;engineering@aitomatic.com&gt;.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.0.2 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>
