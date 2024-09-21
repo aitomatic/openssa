@@ -32,46 +32,46 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 :: BATCH INFERENCING
 :: =================
 :agent-solve
-  poetry run python htp_oodar_agent.py %2
+  poetry run python dana.py %2
   GOTO end
 
 :agent-solve-w-knowledge
-  poetry run python htp_oodar_agent.py %2 --knowledge
+  poetry run python dana.py %2 --knowledge
   GOTO end
 
 :agent-solve-w-prog-store
-  poetry run python htp_oodar_agent.py %2 --prog-store
+  poetry run python dana.py %2 --prog-store
   GOTO end
 
 :agent-solve-w-knowledge-and-prog-store
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-store
+  poetry run python dana.py %2 --knowledge --prog-store
   GOTO end
 
 :agent-solve-w-llama3
-  poetry run python htp_oodar_agent.py %2 --llama3
+  poetry run python dana.py %2 --llama3
   GOTO end
 
 :agent-solve-w-knowledge-w-llama3
-  poetry run python htp_oodar_agent.py %2 --knowledge --llama3
+  poetry run python dana.py %2 --knowledge --llama3
   GOTO end
 
 :agent-solve-w-prog-store-w-llama3
-  poetry run python htp_oodar_agent.py %2 --prog-store --llama3
+  poetry run python dana.py %2 --prog-store --llama3
   GOTO end
 
 :agent-solve-w-knowledge-and-prog-store-w-llama3
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-store --llama3
+  poetry run python dana.py %2 --knowledge --prog-store --llama3
   GOTO end
 
 :agent-solve-all-combos
-  poetry run python htp_oodar_agent.py %2
-  poetry run python htp_oodar_agent.py %2 --knowledge
-  poetry run python htp_oodar_agent.py %2 --prog-space
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
-  poetry run python htp_oodar_agent.py %2 --llama3
-  poetry run python htp_oodar_agent.py %2 --knowledge --llama3
-  poetry run python htp_oodar_agent.py %2 --prog-space --llama3
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space --llama3
+  poetry run python dana.py %2
+  poetry run python dana.py %2 --knowledge
+  poetry run python dana.py %2 --prog-space
+  poetry run python dana.py %2 --knowledge --prog-space
+  poetry run python dana.py %2 --llama3
+  poetry run python dana.py %2 --knowledge --llama3
+  poetry run python dana.py %2 --prog-space --llama3
+  poetry run python dana.py %2 --knowledge --prog-space --llama3
   GOTO end
 
 
