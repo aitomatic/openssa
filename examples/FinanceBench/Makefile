@@ -1,28 +1,28 @@
-agent-solve:
+dana-solve:
 	@poetry run python dana.py ${id}
 
-agent-solve-w-knowledge:
+dana-solve-w-knowledge:
 	@poetry run python dana.py ${id} --knowledge
 
-agent-solve-w-prog-store:
+dana-solve-w-prog-store:
 	@poetry run python dana.py ${id} --prog-store
 
-agent-solve-w-knowledge-and-prog-store:
+dana-solve-w-knowledge-and-prog-store:
 	@poetry run python dana.py ${id} --knowledge --prog-store
 
-agent-solve-w-llama3:
+dana-solve-w-llama3:
 	@poetry run python dana.py ${id} --llama3
 
-agent-solve-w-knowledge-w-llama3:
+dana-solve-w-knowledge-w-llama3:
 	@poetry run python dana.py ${id} --knowledge --llama3
 
-agent-solve-w-prog-store-w-llama3:
+dana-solve-w-prog-store-w-llama3:
 	@poetry run python dana.py ${id} --prog-store --llama3
 
-agent-solve-w-knowledge-and-prog-store-w-llama3:
+dana-solve-w-knowledge-and-prog-store-w-llama3:
 	@poetry run python dana.py ${id} --knowledge --prog-store --llama3
 
-agent-solve-all-combos:
+dana-solve-all-combos:
 	@poetry run python dana.py ${id}
 	@poetry run python dana.py ${id} --knowledge
 	@poetry run python dana.py ${id} --prog-store
