@@ -771,7 +771,7 @@ financebench_id_01935:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions indenture(s)
+    the answer mentions on of the terms "supplemental", "indendure(s)", "substitute" or "substitution"
 
   evaluator-unreliable: true
 
