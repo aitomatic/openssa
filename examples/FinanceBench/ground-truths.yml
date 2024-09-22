@@ -1204,7 +1204,8 @@ financebench_id_00757:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer mentions that one customer accounted for large portion of revenue
+    the answer mentions that one or a small number of customers
+    accounted for large portion of revenue
 
   evaluator-unreliable: true
 
