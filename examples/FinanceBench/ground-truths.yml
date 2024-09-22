@@ -1399,7 +1399,7 @@ financebench_id_01981:
 
   category: 0-RETRIEVE
   correctness: >-
-    the answer affirms that retention was good
+    the answer affirms that retention was good/high
 
   evaluator-unreliable: true
 
