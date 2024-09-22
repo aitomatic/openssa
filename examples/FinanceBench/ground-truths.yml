@@ -2278,8 +2278,10 @@ financebench_id_01346:
 
   category: 2-CALC-CHANGE
   correctness: >-
-    the answer says that Effective Tax Rate changed from approximately 20% to approximately 23%,
-    and/or that it increased by approximately 3 percentage points or 3%
+    the answer says that Effective Tax Rate changed
+    from approximately 20.2% (or 20%) to approximately 22.9% (or 23%),
+    and/or that it increased by approximately 2.6, 2.7 or 3 percentage points
+    (or 2.6%, 2.7%, or 3%)
 
   evaluator-unreliable: true
 
