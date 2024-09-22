@@ -55,6 +55,8 @@ financebench_id_04672:
     8.738, 8.738 billion, 8738 million,
     8.7, 8.7 billion or 8700 million
 
+  evaluator-unreliable: true
+
 
 financebench_id_00499:
   sector: Industrials
