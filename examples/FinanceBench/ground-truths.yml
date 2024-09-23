@@ -3345,7 +3345,8 @@ financebench_id_01911:
 
   category: 3-CALC-COMPLEX
   correctness: >-
-    the answer contains a calculated Interest Coverage Ratio metric value
+    the answer contains a calculated Interest Coverage Ratio metric value,
+    or, alternatively, concludes that Interest Coverage Ratio is zero
   answer-inadequate: true
 
 
