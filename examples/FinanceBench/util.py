@@ -35,6 +35,15 @@ class enable_batch_qa_and_eval:  # noqa: N801
                 eval_all(output_name=self.output_name, refresh=True)
                 return None
 
+            if 'from:' in fb_id.lower():
+                for _fb_id in tqdm(FB_IDS[FB_IDS.index(fb_id[5:]):]):
+                    # run inferencing and preliminarily evaluate
+                    eval_correctness(fb_id=_fb_id, answer=qa_func(_fb_id), output_name=self.output_name, human=False)
+
+                # rigorously evaluate again, including human evaluation for difficult cases
+                eval_all(output_name=self.output_name, refresh=True)
+                return None
+
             # run inferencing and evaluate
             eval_correctness(fb_id=fb_id, answer=(answer := qa_func(fb_id)), output_name=self.output_name, human=True)
             return answer

@@ -118,6 +118,7 @@ def solve_with_knowledge_and_program_store_with_llama3(fb_id: FbId) -> Answer:
 if __name__ == '__main__':
     arg_parser = ArgumentParser()
     arg_parser.add_argument('fb_id')
+    arg_parser.add_argument('--from-id', action='store_true')
     arg_parser.add_argument('--knowledge', action='store_true')
     arg_parser.add_argument('--prog-store', action='store_true')
     arg_parser.add_argument('--llama3', action='store_true')
@@ -148,6 +149,7 @@ if __name__ == '__main__':
         case (True, True, True):
             solve_func: QAFunc = solve_with_knowledge_and_program_store_with_llama3
 
-    solve_func(fb_id
-               if (fb_id := args.fb_id).startswith(FB_ID_COL_NAME)
-               else f'{FB_ID_COL_NAME}_{fb_id}')
+    if not (fb_id := args.fb_id).startswith(FB_ID_COL_NAME):
+        fb_id: FbId = f'{FB_ID_COL_NAME}_{fb_id}'
+
+    solve_func(f'from:{fb_id}' if args.from_id else fb_id)
