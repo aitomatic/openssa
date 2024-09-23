@@ -3770,7 +3770,7 @@ financebench_id_00735:
   category: 0-RETRIEVE
   correctness: >-
     the answer says that there have NOT been material lawsuits / legal battles,
-    or, alternatively, that no such lawsuits / legal battles have been explicitly reported
+    or, alternatively, that lawsuits / legal battles are unlikely to have materially adverse outcomes
 
   evaluator-unreliable: true
 
