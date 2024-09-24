@@ -1,3 +1,11 @@
+### Expert Plan:
+- Using the PAN Formula:
+  - Gather given information
+  - Apply the PAN formula
+- Calculate the required dry tons of biosolids per acre
+- Adjust for moisture content
+- Mention expert considerations
+
 To determine the required dry tons of lime-stabilized biosolids per acre for meeting the nitrogen (N) requirements of the corn crop, we need to follow a multi-step process. We'll use the Plant-Available Nitrogen (PAN) formula provided in the document to calculate the PAN from the biosolids and then apply the agronomic nitrogen rate formula to determine the dry tons per acre.
 
 Here’s a step-by-step breakdown of the process:
