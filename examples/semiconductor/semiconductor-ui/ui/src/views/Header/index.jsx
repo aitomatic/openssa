@@ -157,9 +157,9 @@ export const TitleHeader = () => {
       </div>
       <div className="flex flex-col">
         <div className="text-[24px] text-[#EDEDED] font-semibold">
-          Etching Advisor
+          AgroTech Advisor
         </div>
-        <div className="text-[#DCDCDC] text-[20px]">powered by SemiKong</div>
+        <div className="text-[#DCDCDC] text-[20px]">powered by DANA Agentic AI</div>
       </div>
     </div>
   );

@@ -315,10 +315,10 @@ export const WaferComparison = () => {
   return (
     <div className="flex gap-4">
       <WaferInfo
-        title="Current Wafer"
+        title="Glyphosate-resistant common Ragweed in Nebraska"
         image="/images/current-wafer.png"
         deviations={[
-          'Ra: <span class="text-red-500">5 nm</span>',
+          'How to identify / combat herbicide resistance?',
           'Rq: <span class="text-red-500">6.5 nm</span>',
         ]}
         errors={[
@@ -328,10 +328,10 @@ export const WaferComparison = () => {
         ]}
       />
       <WaferInfo
-        title="Expected"
+        title="Pumpkin seedlings planted out on windrows of composted biosolids"
         image="/images/expected-wafer.png"
         deviations={[
-          'Ra: <span class="text-red-500">0.1 nm</span>',
+          'How many dry tons of biosolids should I apply per acre to meet the nitrogen requirements for the corn crop?',
           'Rq: <span class="text-red-500">0.13 nm</span>',
         ]}
         errors={[
@@ -369,7 +369,7 @@ export const Images = () => {
 const MachineInfo = () => (
   <div className="flex flex-col bg-[#1E1E1E] rounded-lg p-4">
     <div className="p-5 text-[#CBCBCB]">
-      Using<strong> ORBIS CMP System, Logitech LTD</strong> to etch:
+      <strong> Drones in Precision Agriculture</strong>:
     </div>
     <div className="flex justify-center">
       <img src="/images/logitech-machine.png" />
