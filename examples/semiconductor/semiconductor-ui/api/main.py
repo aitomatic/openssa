@@ -129,12 +129,12 @@ async def post_data(data: dict):
         if "ragweed" in question.lower():
             # return {"answer": "You asked about chemical mechanical polishing. Here's some information regarding CMP..."}
             return {
-                "answer": qa_map["ans_1"]
+                "answer": qa_map["ragweed"]
             }
         elif "foxtail" in question.lower():
             # return {"answer": "You asked about silicon surface. Here's some information regarding silicon surface processing..."}
             return {
-                "answer": qa_map["ans_1_1"]
+                "answer": qa_map["foxtail"]
             }
         # elif "chemical mechanical polishing" in question.lower():
         #     # return {"answer": "You asked about chemical mechanical polishing. Here's some information regarding CMP..."}
@@ -144,17 +144,17 @@ async def post_data(data: dict):
         elif "biosolids" in question.lower():
             # return {"answer": "You asked about etching processes. Here are the details..."}
             return {
-                "answer": qa_map["ans_2"]
+                "answer": qa_map["biosolids"]
             }
         elif "hyperspectral" in question.lower():
             # return {"answer": "You asked about etching processes. Here are the details..."}
             return {
-                "answer": qa_map["ans_3"]
+                "answer": qa_map["hyperspectral"]
             }
         elif "cutworm" in question.lower():
             # return {"answer": "You asked about etching processes. Here are the details..."}
             return {
-                "answer": qa_map["ans_4"]
+                "answer": qa_map["cutworm"]
             }
         # else:
         #     # Default fallback if no specific keywords are matched
