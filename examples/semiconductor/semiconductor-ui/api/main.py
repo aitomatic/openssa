@@ -126,25 +126,35 @@ async def post_data(data: dict):
 
     try:
         # Check for specific keywords in the question and return appropriate responses
-        if "chemical mechanical polishing" in question.lower():
+        if "ragweed" in question.lower():
             # return {"answer": "You asked about chemical mechanical polishing. Here's some information regarding CMP..."}
             return {
-                "answer": qa_map["chemical mechanical polishing"]
+                "answer": qa_map["ans_1"]
             }
-        elif "silicon surface" in question.lower():
+        elif "foxtail" in question.lower():
             # return {"answer": "You asked about silicon surface. Here's some information regarding silicon surface processing..."}
             return {
-                "answer": qa_map["silicon surface"]
+                "answer": qa_map["ans_1_1"]
             }
         # elif "chemical mechanical polishing" in question.lower():
         #     # return {"answer": "You asked about chemical mechanical polishing. Here's some information regarding CMP..."}
         #     return {
         #         "answer": qa_map["chemical mechanical polishing"]
         #     }
-        elif "post-CMP cleaning" in question.lower():
+        elif "biosolids" in question.lower():
             # return {"answer": "You asked about etching processes. Here are the details..."}
             return {
-                "answer": qa_map["post-CMP cleaning"]
+                "answer": qa_map["ans_2"]
+            }
+        elif "hyperspectral" in question.lower():
+            # return {"answer": "You asked about etching processes. Here are the details..."}
+            return {
+                "answer": qa_map["ans_3"]
+            }
+        elif "cutworm" in question.lower():
+            # return {"answer": "You asked about etching processes. Here are the details..."}
+            return {
+                "answer": qa_map["ans_4"]
             }
         # else:
         #     # Default fallback if no specific keywords are matched
