@@ -16,11 +16,12 @@ const UserMessage = ({ avatar, user, content, type }) => {
         <div className="mb-1 font-semibold text-white">{user}</div>
         <div className="p-3 text-white bg-[#1F1F1F] rounded-lg">
           <div className="whitespace-pre-wrap" style={{ color: "#ededed" }}>
-            {strings.map((s, index) => (
+            <MarkdownViewer>{content}</MarkdownViewer>
+            {/* {strings.map((s, index) => (
               <div key={`Advice-2-${index}`}>
                 <MarkdownViewer>{s}</MarkdownViewer>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
