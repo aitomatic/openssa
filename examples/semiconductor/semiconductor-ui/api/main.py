@@ -131,10 +131,10 @@ async def post_data(data: dict):
             return {
                 "answer": qa_map["ragweed"]
             }
-        elif "foxtail" in question.lower():
+        elif "algal" in question.lower():
             # return {"answer": "You asked about silicon surface. Here's some information regarding silicon surface processing..."}
             return {
-                "answer": qa_map["foxtail"]
+                "answer": qa_map["algal"]
             }
         # elif "chemical mechanical polishing" in question.lower():
         #     # return {"answer": "You asked about chemical mechanical polishing. Here's some information regarding CMP..."}

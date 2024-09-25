@@ -46,7 +46,7 @@ export const ChatPane = () => {
     e.preventDefault();
     if (input.trim()) {
       const userMessage = {
-        user: "Zooey",
+        user: "Junior Engineer",
         content: input,
         avatar: "/images/user-avatar.png",
         type: "user",
@@ -101,7 +101,7 @@ export const ChatPane = () => {
             type={type}
           />
         ))}
-        {isLoading && <div className="text-white">Bot is typing...</div>}
+        {isLoading && <div className="text-white">Agent is Solving...</div>}
         <div ref={messagesEndRef} />
       </div>
       <form onSubmit={handleSubmit} className="p-4">

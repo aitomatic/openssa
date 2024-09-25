@@ -5,7 +5,7 @@ Reads stored answers and maps them to keyword in question
 keyword_file_map = {}
 
 keyword_file_map['ragweed'] = 'ans_1'
-keyword_file_map['foxtail'] = 'ans_1_1'
+keyword_file_map['algal'] = 'ans_1_1'
 keyword_file_map['biosolids'] = "ans_2"
 keyword_file_map['hyperspectral'] = "ans_3"
 keyword_file_map['cutworm'] = 'ans_4'
