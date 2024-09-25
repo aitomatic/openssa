@@ -5,7 +5,7 @@ from loguru import logger
 import streamlit as st
 
 from data_and_knowledge import DocName, Doc, DOC_NAMES, ExpertPlanId as TaskId, EXPERT_PROGRAMS
-from htp_oodar_agent import get_or_create_agent, get_or_create_adaptations
+from dana import get_or_create_agent, get_or_create_adaptations
 from rag import get_or_create_file_resource
 
 

@@ -68,8 +68,10 @@ def solve(fb_id: FbId) -> Answer:
 if __name__ == '__main__':
     arg_parser = ArgumentParser()
     arg_parser.add_argument('fb_id')
+    arg_parser.add_argument('--from-id', action='store_true')
     args = arg_parser.parse_args()
 
-    solve(fb_id
-          if (fb_id := args.fb_id).startswith(FB_ID_COL_NAME)
-          else f'{FB_ID_COL_NAME}_{fb_id}')
+    if not (fb_id := args.fb_id).startswith(FB_ID_COL_NAME):
+        fb_id: FbId = f'{FB_ID_COL_NAME}_{fb_id}'
+
+    solve(f'from:{fb_id}' if args.from_id else fb_id)
