@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.24.6.8"
+version = "0.24.9.25"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -14,6 +14,7 @@ maintainers = [
   "Sang Dinh <sang@aitomatic.com>",
   "Quynh Le <quynh@aitomatic.com>",
   "Shruti Raghavan <shruti@aitomatic.com>",
+  "William Nguyen <william@aitomatic.com>",
   "Zooey Nguyen <zooey@aitomatic.com>",
 ]
 
