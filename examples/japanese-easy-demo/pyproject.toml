@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 openssa = "^0.24.3.12"
+python-dotenv = "^1.0.1"
 
 
 [build-system]
