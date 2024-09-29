@@ -11,11 +11,42 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Any, Optional
-import mysql.connector  # MySQL Connector for Python
+import yaml
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
 
 from .abstract import AbstractResource
 from ._global import global_register
 from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
+
+
+class MySQLDatabase:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        self.config = self.load_config()
+        self.engine = self.create_engine()
+        self.Session = sessionmaker(bind=self.engine)
+
+    def load_config(self):
+        with open(self.config_path, 'r') as file:
+            return yaml.safe_load(file)['database']['mysql']
+
+    def create_engine(self):
+        username = self.config['username']
+        password = self.config['password']
+        host = self.config['host']
+        port = self.config['port']
+        database = self.config['database']
+        connection_string = f'mysql+pymysql://{username}:{password}@{host}:{port}/{database}'
+        return create_engine(connection_string)
+
+    def get_session(self):
+        return self.Session()
+
+    def get_events(self):
+        session = self.get_session()
+        result = session.execute(text("SELECT * FROM items"))  # TODO: use vanna ai later for the query
+        return result
 
 
 @global_register
@@ -23,39 +54,28 @@ from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
 class DbResource(AbstractResource):
     """Database Informational Resource."""
 
-    # Database connection parameters
-    host: str
-    user: str
-    password: str
-    database: str
-
-    # SQL query to fetch data
+    config_path: str
     query: str
 
     def __post_init__(self):
         """Post-initialize database resource."""
-        self.connection = mysql.connector.connect(
-            host=self.host,
-            user=self.user,
-            password=self.password,
-            database=self.database
-        )
-        self.cursor = self.connection.cursor()
+        self.db = MySQLDatabase(self.config_path)
 
-    @cached_property
+    @property
     def unique_name(self) -> str:
         """Return globally-unique name of Resource."""
-        return f"DBResource_{self.host}_{self.database}"
+        return f"DBResource_{self.db.config['host']}_{self.db.config['database']}"
 
-    @cached_property
+    @property
     def name(self) -> str:
         """Return potentially non-unique, but informationally helpful name of Resource."""
-        return f"Database at {self.host}/{self.database}"
+        return f"Database at {self.db.config['host']}/{self.db.config['database']}"
 
     def fetch_data(self) -> list[tuple[Any]]:
         """Fetch data from the database using the provided query."""
-        self.cursor.execute(self.query)
-        return self.cursor.fetchall()
+        session = self.db.get_session()
+        result = session.execute(text(self.query))
+        return result.fetchall()
 
     def answer(self, question: str, n_words: int = 1000) -> str:
         """Answer question from database-stored Informational Resource."""
@@ -66,4 +86,5 @@ class DbResource(AbstractResource):
 
     def __del__(self):
         """Ensure the database connection is closed when the object is deleted."""
-        self.connection.close()
+        if hasattr(self, 'db'):
+            self.db.Session.close_all()

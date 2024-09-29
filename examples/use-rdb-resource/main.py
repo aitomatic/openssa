@@ -1,6 +1,6 @@
 from pathlib import Path
 from dotenv import load_dotenv
-from openssa import DANA, FileResource
+from openssa import DANA, DbResource
 
 load_dotenv()
 
@@ -10,8 +10,8 @@ LOCAL_CACHE_DOCS_DIR_PATH: Path = Path(__file__).parent / '.data'
 
 def get_or_create_agent() -> DANA:
     return DANA(
-        # ここを変更（リソース）
-        resources={FileResource(path=LOCAL_CACHE_DOCS_DIR_PATH)}
+        # TODO: For Argument Use SQL first and use prompt later
+        resources=[DbResource(config_path="db_config.yaml", query="SELECT * FROM items")]
     )
 
 
@@ -25,15 +25,13 @@ def solve(question) -> str:
 
 if __name__ == '__main__':
     QUESTION = (
-        # ここを変更（プロンプト）
-        'Please tell me three dishes you recommend.'
-        'Please limit the total salt content of the three dishes to less than 21.5g.'
-        'Also, please make sure that the total amount of vegetables in the three dishes is at least 700g.'
+        # TODO:ここを変更（プロンプト）
+        'Please tell me cheapest item from items table.'
         'Please answer in Japanese.'
     )
     answer = solve(QUESTION)
 
-# 出力をわかりやすくしたいかも
+# TODO: 出力情報の追加 (作成して使用されたSQLなど)
     print('--------------------------------')
     print(answer)
     print('--------------------------------')

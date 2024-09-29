@@ -21,6 +21,7 @@ from .core.reasoning.base import BaseReasoner
 from .core.reasoning.ooda import OodaReasoner
 
 from .core.resource.file import FileResource
+from .core.resource.db import DbResource
 
 from .core.task import Task
 

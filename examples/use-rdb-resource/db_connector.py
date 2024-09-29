@@ -27,7 +27,7 @@ class MySQLDatabase:
 
     def get_events(self):
         session = self.get_session()
-        result = session.execute(text("SELECT * FROM users"))
+        result = session.execute(text("SELECT * FROM items")) # TODO: use vanna ai later for the query
         return result
 
 if __name__ == '__main__':
