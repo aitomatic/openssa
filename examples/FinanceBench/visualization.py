@@ -63,7 +63,7 @@ def setup_polar_plot(ax, title):
     for i, category in enumerate(categories):
         angle = angles[i]
         r = radii[i] * 1.15
-        ha = 'left' if -np.pi/2 <= angle < np.pi/2 else 'right'
+        ha = 'left' if -np.pi / 2 <= angle < np.pi / 2 else 'right'
         ax.text(angle, r, category, ha=ha, va='center', fontsize=10, fontweight='bold')
     # Remove radial labels and ticks
     ax.set_yticks([])
