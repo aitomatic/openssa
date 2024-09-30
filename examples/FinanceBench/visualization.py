@@ -40,7 +40,7 @@ def plot_data(ax, data, color, label=None):
 
 
 # Create the figure and two subplots
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 10), subplot_kw=dict(projection='polar'))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 10), subplot_kw={'projection': 'polar'})
 
 
 # Function to set up the polar plot (background, grid, labels)
