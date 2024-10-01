@@ -144,7 +144,7 @@ with pr:
             agent = get_or_create_agent(doc_name=st.session_state.doc_name,
                                         expert_knowledge=True, expert_programs=True,
                                         max_depth=3, max_subtasks_per_decomp=6,
-                                        llama_index_openai_lm_name='gpt-4o-mini')
+                                        llama_index_openai_lm_name='gpt-4-turbo')
 
             st.session_state.agent_solutions[task_doc_pair]: str = (
                 agent.solve(problem=question,
