@@ -85,6 +85,7 @@ adlfs = ">=2024.7"  # Azure Data Lake
 gcsfs = ">=2024.9"  # Google Cloud Storage
 s3fs = ">=2024.9"  # S3
 # misc / other
+certifi = ">2023.7.22"
 google-api-python-client = ">=2.146"
 googlesearch-python = ">=1.2"
 httpx = ">=0.27"
