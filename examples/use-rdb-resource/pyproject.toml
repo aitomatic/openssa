@@ -8,6 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 pymysql = "^1.1.1"
+kaleido = "0.2.1"
+vanna = "^0.7.3"
+chromadb = "^0.5.11"
 
 
 [build-system]
