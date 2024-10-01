@@ -1,44 +1,47 @@
-agent-solve:
-	@poetry run python htp_oodar_agent.py ${id}
+dana-solve:
+	@poetry run python dana.py ${id}
 
-agent-solve-w-knowledge:
-	@poetry run python htp_oodar_agent.py ${id} --knowledge
+dana-solve-w-knowledge:
+	@poetry run python dana.py ${id} --knowledge
 
-agent-solve-w-prog-space:
-	@poetry run python htp_oodar_agent.py ${id} --prog-space
+dana-solve-w-prog-store:
+	@poetry run python dana.py ${id} --prog-store
 
-agent-solve-w-knowledge-and-prog-space:
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
+dana-solve-w-knowledge-and-prog-store:
+	@poetry run python dana.py ${id} --knowledge --prog-store
 
-agent-solve-w-llama3:
-	@poetry run python htp_oodar_agent.py ${id} --llama3
+dana-solve-w-llama3:
+	@poetry run python dana.py ${id} --llama3
 
-agent-solve-w-knowledge-w-llama3:
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --llama3
+dana-solve-w-knowledge-w-llama3:
+	@poetry run python dana.py ${id} --knowledge --llama3
 
-agent-solve-w-prog-space-w-llama3:
-	@poetry run python htp_oodar_agent.py ${id} --prog-space --llama3
+dana-solve-w-prog-store-w-llama3:
+	@poetry run python dana.py ${id} --prog-store --llama3
 
-agent-solve-w-knowledge-and-prog-space-w-llama3:
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space --llama3
+dana-solve-w-knowledge-and-prog-store-w-llama3:
+	@poetry run python dana.py ${id} --knowledge --prog-store --llama3
 
-agent-solve-all-combos:
-	@poetry run python htp_oodar_agent.py ${id}
-	@poetry run python htp_oodar_agent.py ${id} --knowledge
-	@poetry run python htp_oodar_agent.py ${id} --prog-space
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space
-	@poetry run python htp_oodar_agent.py ${id} --llama3
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --llama3
-	@poetry run python htp_oodar_agent.py ${id} --prog-space --llama3
-	@poetry run python htp_oodar_agent.py ${id} --knowledge --prog-space --llama3
+dana-solve-all-combos:
+	@poetry run python dana.py ${id}
+	@poetry run python dana.py ${id} --knowledge
+	@poetry run python dana.py ${id} --prog-store
+	@poetry run python dana.py ${id} --knowledge --prog-store
+	@poetry run python dana.py ${id} --llama3
+	@poetry run python dana.py ${id} --knowledge --llama3
+	@poetry run python dana.py ${id} --prog-store --llama3
+	@poetry run python dana.py ${id} --knowledge --prog-store --llama3
 
+
+langchain-react-solve:
+	@poetry run python langchain_react.py ${id}
 
 openai-assist:
 	@poetry run python openai_assist.py ${id}
 
 
 rag-default-answer:
-	@poetry run python rag_default.py ${id}
+	@poetry run python rag.py ${id}
 
 rag-test:
 	@poetry run python rag-test.py ${doc}

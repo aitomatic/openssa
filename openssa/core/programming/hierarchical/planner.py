@@ -4,7 +4,7 @@ HIERARCHICAL TASK PLANNER
 =========================
 
 `HTPlanner` is `OpenSSA`'s default Programmer using LMs
-to construct problem-solving Programs in the form of Hierarchical Task Plans (HTPs),
+to create problem-solving Programs in the form of Hierarchical Task Plans (HTPs),
 the complexity of which is controlled by 2 key parameters `max_depth` and `max_subtasks_per_decomp`.
 """
 
@@ -43,7 +43,7 @@ class HTPlanner(AbstractProgrammer):
     # maximum number of sub-tasks per decomposition
     max_subtasks_per_decomp: int = 4
 
-    def construct_htp(self, task: Task, knowledge: set[Knowledge] | None = None, reasoner: AbstractReasoner | None = None) -> HTP:  # noqa: E501
+    def create_htp(self, task: Task, knowledge: set[Knowledge] | None = None, reasoner: AbstractReasoner | None = None) -> HTP:  # noqa: E501
         """Construct HTP for solving posed Problem with given Knowledge and Resources."""
         if not reasoner:
             reasoner: AbstractReasoner = OodaReasoner(lm=self.lm)
@@ -82,4 +82,4 @@ class HTPlanner(AbstractProgrammer):
         return HTP(task=task, programmer=self, reasoner=reasoner)
 
     # alias
-    construct_program = construct_htp
+    create_program = create_htp
