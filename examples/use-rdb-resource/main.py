@@ -20,6 +20,7 @@ db_user = config['database']['mysql']['username']
 db_password = config['database']['mysql']['password']
 db_port = config['database']['mysql']['port']
 
+openai_api_key = os.getenv('OPENAI_API_KEY')
 
 class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
     def __init__(self, config=None):
@@ -27,23 +28,21 @@ class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
         OpenAI_Chat.__init__(self, config=config)
 
 
-openai_api_key = os.getenv('OPENAI_API_KEY')
+def generate_sql_from_prompt(question) -> str:
+    vn_openai = MyVanna(config={'model': 'gpt-4o', 'api_key': openai_api_key})
+    vn_openai.connect_to_mysql(host=db_host, dbname=db_database, user=db_user, password=db_password, port=db_port)
+    return vn_openai.generate_sql(question)
 
-vn_openai = MyVanna(config={'model': 'gpt-4o', 'api_key': openai_api_key})
-vn_openai.connect_to_mysql(host=db_host, dbname=db_database, user=db_user, password=db_password, port=db_port)
 
-question = "Please tell me cheapest item from items table."
-query = vn_openai.generate_sql(question)
-
-def get_or_create_agent() -> DANA:
+def get_or_create_agent(query) -> DANA:
     return DANA(
         # TODO: For Argument Use SQL first and use prompt later
         resources=[DbResource(config_path="db_config.yaml", query=query)]
     )
 
 
-def solve(question) -> str:
-    agent = get_or_create_agent()
+def solve(question, query) -> str:
+    agent = get_or_create_agent(query)
     try:
         return agent.solve(problem=question)
     except Exception as err:  # pylint: disable=broad-exception-caught
@@ -53,9 +52,12 @@ def solve(question) -> str:
 if __name__ == '__main__':
     QUESTION = (
         # TODO:ここを変更（プロンプト）
-        'Please tell me cheapest item from items table.'
+        # "Please tell me cheapest item from items table."
+        "What is the best-selling product in the last year from sales_data table?"
     )
-    answer = solve(QUESTION)
+
+    query = generate_sql_from_prompt(QUESTION)
+    answer = solve(QUESTION, query)
 
     # TODO: 出力情報の追加 (vanna aiで作成して使用されたSQLなど)
     print('--------------------------------')

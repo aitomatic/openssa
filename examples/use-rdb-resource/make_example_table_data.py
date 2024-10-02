@@ -4,6 +4,14 @@ from faker import Faker
 import random
 import yaml
 
+# TODO: vannaは一つのファイルにまとめた方が便利かも（main.pyのやつと合わせて）
+from vanna.openai import OpenAI_Chat
+from vanna.chromadb import ChromaDB_VectorStore
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # ベースモデルを定義
 Base = declarative_base()
 
@@ -95,6 +103,26 @@ def generate_sales_data(session, num_records):
     session.commit()
 
 
+class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
+    def __init__(self, config=None):
+        ChromaDB_VectorStore.__init__(self, config=config)
+        OpenAI_Chat.__init__(self, config=config)
+
+
+def train_vanna_for_sales_data():
+    openai_api_key = os.getenv('OPENAI_API_KEY')
+    vn_openai = MyVanna(config={'model': 'gpt-4o', 'api_key': openai_api_key})
+    vn_openai.train(ddl="""
+        CREATE TABLE sales_data (
+            sale_id INT PRIMARY KEY AUTO_INCREMENT,
+            product_id INT,
+            product_name VARCHAR(255),
+            sale_date DATE,
+            region VARCHAR(255)
+        )
+    """)
+
+
 # MySQLDatabaseクラスを使用して、テーブル作成とデータ挿入を実行
 if __name__ == "__main__":
     # 設定ファイルのパス
@@ -114,5 +142,7 @@ if __name__ == "__main__":
 
     # 20000件のデータを生成
     generate_sales_data(session, 20000)
-
     print("20000件のデータがsales_dataテーブルに作成されました。")
+
+    train_vanna_for_sales_data()
+    print("vannaをsales_dataに合わせて訓練しました。")
