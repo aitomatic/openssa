@@ -85,12 +85,70 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <dl class="py class" id="module-openssa.deprecated.ooda_rag.resources.rag_resource">
-<dt class="sig sig-object py" id="openssa.deprecated.ooda_rag.resources.rag_resource.RagResource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ooda_rag.resources.rag_resource.</span></span><span class="sig-name descname"><span class="pre">RagResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseQueryEngine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retriever</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseRetriever</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.deprecated.ooda_rag.resources.rag_resource.RagResource" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-</dd></dl>
-
+  <p id="module-openssa.deprecated.utils.deprecated.aitomatic_llm_config">import os
+from openai import OpenAI
+from dotenv import load_dotenv</p>
+<p>load_dotenv(override=True)</p>
+<dl>
+<dt>class AitomaticLLMConfig:</dt><dd><p>&#64;classmethod
+def get_llama2_70b(cls):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>return OpenAI(</dt><dd><p>api_key=os.environ.get(“LEPTON_API_KEY”, “”),
+base_url=”<a class="reference external" href="https://llama2-70b.lepton.run/api/v1">https://llama2-70b.lepton.run/api/v1</a>”,</p>
+</dd>
+</dl>
+<p>)</p>
+</div></blockquote>
+<p>&#64;classmethod
+def get_intel_neural_chat_7b(cls):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>url_base = os.environ.get(</dt><dd><p>“AITOMATIC_INTEL_NEURAL_CHAT_7B_URL_BASE”, “<a class="reference external" href="http://34.145.174.152:8000/v1">http://34.145.174.152:8000/v1</a>”</p>
+</dd>
+</dl>
+<p>)
+llm = OpenAI(base_url=url_base)
+return llm</p>
+</div></blockquote>
+<p>&#64;classmethod
+def get_aimo_llm(cls):</p>
+<blockquote>
+<div><p>url_base = os.environ.get(“AIMO_STANDARD_URL_BASE”, “”)
+llm = OpenAI(</p>
+<blockquote>
+<div><p>base_url=url_base,</p>
+</div></blockquote>
+<p>)
+return llm</p>
+</div></blockquote>
+<p>&#64;classmethod
+def get_openai(cls):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>return OpenAI(</dt><dd><p>api_key=os.environ.get(“OPENAI_API_KEY”, “”),
+base_url=”<a class="reference external" href="https://api.openai.com/v1">https://api.openai.com/v1</a>”,</p>
+</dd>
+</dl>
+<p>)</p>
+</div></blockquote>
+<p>&#64;classmethod
+def get_aitomatic_llm(cls):</p>
+<blockquote>
+<div><p>return cls.get_openai()</p>
+</div></blockquote>
+<p>&#64;classmethod
+def get_aitomatic_llm_secured(cls):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>return OpenAI(</dt><dd><p>api_key=os.environ.get(“AITOMATIC_API_KEY”, “AITOMATIC”),
+base_url=”<a class="reference external" href="https://aimo-api-mvp.platform.aitomatic.com/api/v1">https://aimo-api-mvp.platform.aitomatic.com/api/v1</a>”,</p>
+</dd>
+</dl>
+<p>)</p>
+</div></blockquote>
+</dd>
+</dl>
 
 
           </div>

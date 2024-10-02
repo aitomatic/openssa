@@ -85,10 +85,26 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <dl class="py class" id="module-openssa.deprecated.ooda_rag.resources.rag_resource">
-<dt class="sig sig-object py" id="openssa.deprecated.ooda_rag.resources.rag_resource.RagResource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.ooda_rag.resources.rag_resource.</span></span><span class="sig-name descname"><span class="pre">RagResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseQueryEngine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retriever</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseRetriever</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.deprecated.ooda_rag.resources.rag_resource.RagResource" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+  <dl class="py class" id="module-openssa.deprecated.utils.usage_logger">
+<dt class="sig sig-object py" id="openssa.deprecated.utils.usage_logger.AbstractUsageLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.utils.usage_logger.</span></span><span class="sig-name descname"><span class="pre">AbstractUsageLogger</span></span><a class="headerlink" href="#openssa.deprecated.utils.usage_logger.AbstractUsageLogger" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.utils.usage_logger.AbstractUsageLogger.log_usage">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.deprecated.utils.usage_logger.AbstractUsageLogger.log_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openssa.deprecated.utils.usage_logger.BasicUsageLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openssa.deprecated.utils.usage_logger.</span></span><span class="sig-name descname"><span class="pre">BasicUsageLogger</span></span><a class="headerlink" href="#openssa.deprecated.utils.usage_logger.BasicUsageLogger" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openssa.deprecated.utils.usage_logger.AbstractUsageLogger" title="openssa.deprecated.utils.usage_logger.AbstractUsageLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractUsageLogger</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openssa.deprecated.utils.usage_logger.BasicUsageLogger.log_usage">
+<span class="sig-name descname"><span class="pre">log_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openssa.deprecated.utils.usage_logger.BasicUsageLogger.log_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 
