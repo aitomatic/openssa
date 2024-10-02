@@ -6,7 +6,7 @@ from functools import cache
 from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
 
 # pylint: disable=wrong-import-order
-from data_and_knowledge import EXPERT_PROGRAM_SPACE, EXPERT_KNOWLEDGE
+from data_and_knowledge import EXPERT_KNOWLEDGE, EXPERT_PROGRAM_SPACE
 from semikong_lm import SemiKongLM
 
 
@@ -20,9 +20,9 @@ def get_or_create_agent(use_semikong_lm: bool = True, max_depth=2, max_subtasks_
             htp = HTP.from_dict(htp_dict)
             program_space.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
 
-    return Agent(program_space=program_space,
+    return Agent(knowledge={EXPERT_KNOWLEDGE} if EXPERT_KNOWLEDGE else None,
+                 program_space=program_space,
                  programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-                 knowledge={EXPERT_KNOWLEDGE} if EXPERT_KNOWLEDGE else None,
                  resources={})
 
 

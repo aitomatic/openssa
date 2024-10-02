@@ -308,7 +308,7 @@ export const Images = () => {
 };
 
 export const LeftPane = () => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. Recommend me 2 recipes.");
   const { isLoading, sendMessage, data } = useData();
 
   return (
@@ -317,7 +317,7 @@ export const LeftPane = () => {
         <Images />
         <div className="flex flex-col gap-2">
           <div className="text-white text-[32px] font-medium">
-            Requirements & specifications
+          REQUIREMENTS & SPECIFICATIONS
           </div>
           <div
             className="flex flex-col border rounded-lg"
@@ -352,7 +352,7 @@ export const LeftPane = () => {
       {data.recipe_2 && (
         <div className="flex flex-col p-8 gap-5 border-t border-[#2e2e2e]">
           <div className="text-white text-[32px] font-medium">
-            Quality & Safety advise
+            RECIPES
           </div>
           <div className="flex gap-4 ">
             <div className="flex flex-1 max-h-full overflow-scroll justify-stretch">
