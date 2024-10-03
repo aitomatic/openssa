@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Any, Optional
-import yaml
+import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
@@ -21,22 +21,20 @@ from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
 
 
 class MySQLDatabase:
-    def __init__(self, config_path):
-        self.config_path = config_path
-        self.config = self.load_config()
+    def __init__(self):
         self.engine = self.create_engine()
         self.Session = sessionmaker(bind=self.engine)
-
-    def load_config(self):
-        with open(self.config_path, 'r') as file:
-            return yaml.safe_load(file)['database']['mysql']
+        self.config = {
+            'host': os.getenv('DB_HOST'),
+            'database': os.getenv('DB_NAME')
+        }
 
     def create_engine(self):
-        username = self.config['username']
-        password = self.config['password']
-        host = self.config['host']
-        port = self.config['port']
-        database = self.config['database']
+        username = os.getenv('DB_USERNAME')
+        password = os.getenv('DB_PASSWORD')
+        host = os.getenv('DB_HOST')
+        port = os.getenv('DB_PORT')
+        database = os.getenv('DB_NAME')
         connection_string = f'mysql+pymysql://{username}:{password}@{host}:{port}/{database}'
         return create_engine(connection_string)
 
@@ -48,13 +46,11 @@ class MySQLDatabase:
 @dataclass
 class DbResource(AbstractResource):
     """Database Informational Resource."""
-
-    config_path: str
     query: str
 
     def __post_init__(self):
         """Post-initialize database resource."""
-        self.db = MySQLDatabase(self.config_path)
+        self.db = MySQLDatabase()
 
     @property
     def unique_name(self) -> str:
