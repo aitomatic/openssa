@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 from myvanna import train_vanna_for_sales_data
 
-# .envファイルの読み込み
 load_dotenv()
 
 Base = declarative_base()
@@ -44,7 +43,6 @@ class MySQLDatabase:
         if inspector.has_table(table_class.__tablename__):
             table_class.__table__.drop(self.engine)
 
-# データ生成
 fake = Faker()
 seed_value = 42
 random.seed(seed_value)
@@ -85,7 +83,6 @@ if __name__ == "__main__":
     session = db.get_session()
 
     generate_sales_data(session, 20000)
-    print("20000件のデータがsales_dataテーブルに作成されました。")
 
     train_vanna_for_sales_data("""
         CREATE TABLE sales_data (
@@ -96,4 +93,3 @@ if __name__ == "__main__":
             region VARCHAR(255)
         )
     """)
-    print("vannaをsales_dataに合わせて訓練しました。")

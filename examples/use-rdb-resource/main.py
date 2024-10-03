@@ -2,7 +2,6 @@ from myvanna import generate_sql_from_prompt, MyVanna
 from openssa import DANA, DbResource
 from dotenv import load_dotenv
 
-# .envファイルの読み込み
 load_dotenv()
 
 def get_or_create_agent(query) -> DANA:
@@ -19,7 +18,7 @@ def solve(question, query) -> str:
 
 if __name__ == '__main__':
     QUESTION = (
-        "What is the best-selling product in the last year from sales_data table?"
+        "Can you list the products in order of sales volume from highest to lowest?"
     )
 
     query = generate_sql_from_prompt(QUESTION)
