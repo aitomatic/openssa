@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from dotenv import load_dotenv
 import yaml
 
-from openssa import DANA, ProgramStore, HTP, HTPlanner, HuggingFaceLM
+from openssa import DANA, ProgramStore, HTP, HTPlanner, FileResource, HuggingFaceLM
 
 # pylint: disable=wrong-import-order
 from semikong_lm import SemiKongLM
@@ -18,6 +18,9 @@ if TYPE_CHECKING:
 
 
 load_dotenv()
+
+
+DATA_DIR_PATH: Path = Path(__file__).parent / 'data'
 
 
 EXPERT_KNOWLEDGE_FILE_PATH: Path = Path(__file__).parent / 'expertise' / 'expert-knowledge.txt'
@@ -55,7 +58,7 @@ def get_or_create_dana(use_semikong_lm: bool = False, max_depth=2, max_subtasks_
     return DANA(knowledge={EXPERT_KNOWLEDGE},
                 program_store=program_store,
                 programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-                resources={})
+                resources={FileResource(path=DATA_DIR_PATH, lm=lm)})
 
 
 if __name__ == '__main__':
