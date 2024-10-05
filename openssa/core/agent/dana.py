@@ -23,7 +23,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, TYPE_CHECKING
 
-from openssa.core.program_store import ProgramStore
+from openssa.core.program_store.program_store import ProgramStore
 from openssa.core.programming.hierarchical.planner import HTPlanner
 from openssa.core.task import Task
 
