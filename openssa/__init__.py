@@ -13,7 +13,7 @@ import tomllib
 
 from .core.agent.dana import DANA
 
-from .core.program_store import ProgramStore
+from .core.program_store.program_store import ProgramStore
 from .core.programming.hierarchical.plan import HTP
 from .core.programming.hierarchical.planner import HTPlanner
 
@@ -22,7 +22,7 @@ from .core.reasoning.simple.simple_reasoner import SimpleReasoner
 
 from .core.resource.file import FileResource
 
-from .core.task import Task
+from .core.task.task import Task
 
 from .core.util.lm.config import LMConfig
 from .core.util.lm.huggingface import HuggingFaceLM
