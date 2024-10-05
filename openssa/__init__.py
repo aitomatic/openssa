@@ -18,7 +18,7 @@ from .core.programming.hierarchical.plan import HTP
 from .core.programming.hierarchical.planner import HTPlanner
 
 from .core.reasoning.ooda import OodaReasoner
-from .core.reasoning.simple import SimpleReasoner
+from .core.reasoning.simple.simple_reasoner import SimpleReasoner
 
 from .core.resource.file import FileResource
 
