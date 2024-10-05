@@ -1,13 +1,13 @@
 from argparse import ArgumentParser
 from functools import cache
 from pathlib import Path
-from typing import TYPE_CHECKING
 
 from dotenv import load_dotenv
 import yaml
 
 from openssa import DANA, ProgramStore, HTP, HTPlanner, FileResource, HuggingFaceLM
 
+# pylint: disable=wrong-import-order
 from semikong_lm import SemiKongLM
 
 
@@ -18,7 +18,9 @@ BASE_DIR: Path = Path(__file__).parent
 
 DATA_DIR_PATH: Path = BASE_DIR / 'data'
 
-EXPERT_KNOWLEDGE_FILE_PATH: Path = BASE_DIR / 'expertise' / 'expert-knowledge.txt'
+EXPERTISE_DIR_PATH: Path = BASE_DIR / 'expertise'
+
+EXPERT_KNOWLEDGE_FILE_PATH: Path = EXPERTISE_DIR_PATH / 'expert-knowledge.txt'
 with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
@@ -28,7 +30,7 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
           opener=None) as f:
     EXPERT_KNOWLEDGE: str = f.read()
 
-EXPERT_PROGRAMS_FILE_PATH: Path = BASE_DIR / 'expertise' / 'expert-programs.yml'
+EXPERT_PROGRAMS_FILE_PATH: Path = EXPERTISE_DIR_PATH / 'expert-programs.yml'
 with open(file=EXPERT_PROGRAMS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
