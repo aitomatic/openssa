@@ -3,7 +3,7 @@
 BASE REASONER
 =============
 
-`BaseReasoner` is `OpenSSA`'s basic reasoning implementation,
+`SimpleReasoner` is `OpenSSA`'s basic reasoning implementation,
 which simply forwards posed problems/questions/tasks to available informational resources,
 and aggregates answers from such resources without much further analysis.
 """
@@ -29,8 +29,8 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class BaseReasoner(AbstractReasoner):
-    """Base Reasoner."""
+class SimpleReasoner(AbstractReasoner):
+    """Simple Reasoner."""
 
     def reason(self, task: Task, *,
                knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:
