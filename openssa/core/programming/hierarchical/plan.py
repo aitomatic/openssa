@@ -29,7 +29,7 @@ from tqdm import tqdm
 from openssa.core.programming.base.program import BaseProgram
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.reasoning.ooda.ooda_reasoner import OodaReasoner
-from openssa.core.task import Task, TaskDict
+from openssa.core.task.task import Task, TaskDict
 from openssa.core.task.status import TaskStatus
 
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE

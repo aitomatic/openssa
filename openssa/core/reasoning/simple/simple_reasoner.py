@@ -24,7 +24,7 @@ from ._prompts import (RESOURCE_QA_CONSO_PROMPT_TEMPLATE, RESOURCE_QA_AND_OTHER_
 
 if TYPE_CHECKING:
     from openssa.core.knowledge.base import Knowledge
-    from openssa.core.task import Task
+    from openssa.core.task.task import Task
     from openssa.core.util.misc import AskAnsPair
 
 

@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING
 from openssa.core.programming.base.programmer import BaseProgrammer
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.reasoning.ooda.ooda_reasoner import OodaReasoner
-from openssa.core.task import Task
+from openssa.core.task.task import Task
 
 from .plan import HTP
 from ._prompts import SIMPLIFIED_DECOMPOSITION_PROMPT_TEMPLATE
