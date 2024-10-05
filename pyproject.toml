@@ -143,6 +143,7 @@ disable = [
   "relative-beyond-top-level",
   "too-few-public-methods",
   "too-many-positional-arguments",
+  "unknown-option-value",
   "unnecessary-pass",
 ]
 
