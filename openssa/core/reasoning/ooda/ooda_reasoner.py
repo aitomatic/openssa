@@ -24,16 +24,16 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.core.reasoning.abstract import AbstractReasoner
+from openssa.core.reasoning.base import BaseReasoner
 from openssa.core.task.status import TaskStatus
 from openssa.core.util.misc import format_other_result
 
 from ._prompts import ORIENT_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.core.knowledge.abstract import Knowledge
-    from openssa.core.task import Task
-    from openssa.core.util.lm.abstract import LMChatHist
+    from openssa.core.knowledge.base import Knowledge
+    from openssa.core.task.task import Task
+    from openssa.core.util.lm.base import LMChatHist
     from openssa.core.util.misc import AskAnsPair
 
 
@@ -46,7 +46,7 @@ UNCONFIDENT_HEADER: str = '[UNCONFIDENT]\n'
 
 
 @dataclass
-class OodaReasoner(AbstractReasoner):
+class OodaReasoner(BaseReasoner):
     """OODA Reasoner."""
 
     def reason(self, task: Task, *,
