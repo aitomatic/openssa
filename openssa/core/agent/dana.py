@@ -28,10 +28,10 @@ from openssa.core.programming.hierarchical.planner import HTPlanner
 from openssa.core.task import Task
 
 if TYPE_CHECKING:
-    from openssa.core.programming.abstract.program import AbstractProgram
-    from openssa.core.programming.abstract.programmer import AbstractProgrammer
-    from openssa.core.knowledge.abstract import Knowledge
-    from openssa.core.resource.abstract import AbstractResource
+    from openssa.core.programming.base.program import BaseProgram
+    from openssa.core.programming.base.programmer import BaseProgrammer
+    from openssa.core.knowledge.base import Knowledge
+    from openssa.core.resource.base import BaseResource
 
 
 @dataclass
@@ -60,29 +60,29 @@ class DANA:
 
     # Programmer for creating problem-solving Programs
     # (default: Hierarchical Task Planner)
-    programmer: AbstractProgrammer = field(default_factory=HTPlanner,
-                                           init=True,
-                                           repr=True,
-                                           hash=None,
-                                           compare=True,
-                                           metadata=None,
-                                           kw_only=False)
+    programmer: BaseProgrammer = field(default_factory=HTPlanner,
+                                       init=True,
+                                       repr=True,
+                                       hash=None,
+                                       compare=True,
+                                       metadata=None,
+                                       kw_only=False)
 
     # Resources for answering information-querying questions
     # (default: empty set)
-    resources: set[AbstractResource] = field(default_factory=set,
-                                             init=True,
-                                             repr=True,
-                                             hash=None,
-                                             compare=True,
-                                             metadata=None,
-                                             kw_only=False)
+    resources: set[BaseResource] = field(default_factory=set,
+                                         init=True,
+                                         repr=True,
+                                         hash=None,
+                                         compare=True,
+                                         metadata=None,
+                                         kw_only=False)
 
     def add_knowledge(self, *new_knowledge: Knowledge):
         """Add new Knowledge piece(s) stored in string(s)."""
         self.knowledge.update(new_knowledge)
 
-    def add_resources(self, *new_resources: AbstractResource):
+    def add_resources(self, *new_resources: BaseResource):
         """Add new Resource(s)."""
         self.resources.update(new_resources)
 
@@ -96,7 +96,7 @@ class DANA:
         """
         task: Task = Task(ask=problem, resources=self.resources)
 
-        program: AbstractProgram = (
+        program: BaseProgram = (
             self.program_store.find_program(task=task, knowledge=self.knowledge,
                                             adaptations_from_known_programs=adaptations_from_known_programs)
             or

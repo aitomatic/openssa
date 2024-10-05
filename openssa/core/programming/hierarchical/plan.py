@@ -26,7 +26,7 @@ from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
 from loguru import logger
 from tqdm import tqdm
 
-from openssa.core.programming.abstract.program import AbstractProgram
+from openssa.core.programming.base.program import BaseProgram
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.reasoning.ooda.ooda_reasoner import OodaReasoner
 from openssa.core.task import Task, TaskDict
@@ -35,10 +35,10 @@ from openssa.core.task.status import TaskStatus
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 
 if TYPE_CHECKING:
-    from openssa.core.reasoning.abstract import AbstractReasoner
-    from openssa.core.resource.abstract import AbstractResource
-    from openssa.core.knowledge.abstract import Knowledge
-    from openssa.core.util.lm.abstract import LMChatHist
+    from openssa.core.reasoning.base import BaseReasoner
+    from openssa.core.resource.base import BaseResource
+    from openssa.core.knowledge.base import Knowledge
+    from openssa.core.util.lm.base import LMChatHist
     from openssa.core.util.misc import AskAnsPair
     from .planner import HTPlanner
 
@@ -53,7 +53,7 @@ class PLAN(SimpleNamespace):
 
 
 @dataclass
-class HTP(AbstractProgram):
+class HTP(BaseProgram):
     """Hierarchical Task Plan (HTP)."""
 
     # decomposed sub-HTPs for solving target Task
@@ -67,13 +67,13 @@ class HTP(AbstractProgram):
 
     # Reasoner for working through individual Tasks to either conclude or make partial progress on them
     # (default: Observe-Orient-Decide-Act (OODA) Reasoner)
-    reasoner: AbstractReasoner = field(default_factory=OodaReasoner,
-                                       init=True,
-                                       repr=True,
-                                       hash=None,
-                                       compare=True,
-                                       metadata=None,
-                                       kw_only=False)
+    reasoner: BaseReasoner = field(default_factory=OodaReasoner,
+                                   init=True,
+                                   repr=True,
+                                   hash=None,
+                                   compare=True,
+                                   metadata=None,
+                                   kw_only=False)
 
     @property
     def quick_repr(self) -> PLAN:
@@ -111,7 +111,7 @@ class HTP(AbstractProgram):
         """Fix missing Resources in HTP."""
         for sub_htp in self.sub_htps:
             if not sub_htp.task.resources:
-                sub_htp.task.resources: set[AbstractResource] = self.task.resources
+                sub_htp.task.resources: set[BaseResource] = self.task.resources
             sub_htp.fill_missing_resources()
 
     def adapt(self, **kwargs: str):

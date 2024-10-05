@@ -14,16 +14,16 @@ from typing import TYPE_CHECKING
 from loguru import logger
 from huggingface_hub.inference._client import InferenceClient
 
-from .abstract import AbstractLM
+from .base import BaseLM
 from .config import LMConfig
 
 if TYPE_CHECKING:
     from openai.types.chat.chat_completion import ChatCompletion
-    from .abstract import LMChatHist
+    from .base import LMChatHist
 
 
 @dataclass
-class HuggingFaceLM(AbstractLM):
+class HuggingFaceLM(BaseLM):
     """HuggingFace LM."""
 
     client: InferenceClient = field(init=False)
