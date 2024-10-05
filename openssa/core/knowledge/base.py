@@ -1,0 +1,4 @@
+"""Knowledge."""
+
+
+type Knowledge = str

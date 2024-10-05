@@ -1,9 +1,9 @@
 """
-==========================
-ABSTRACT PROGRAM INTERFACE
-==========================
+=================
+PROGRAM INTERFACE
+=================
 
-`AbstractProgram` is `OpenSSA`'s abstract base class for problem-solving Programs.
+`BaseProgram` is `OpenSSA`'s abstract base class for problem-solving Programs.
 
 A Program has a target Task,
 which encapsulates a posed Problem to solve and a set of Resources to help solve it.
@@ -21,20 +21,20 @@ from dataclasses import dataclass
 from typing import Any, Self as SameType, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from openssa.core.knowledge.abstract import Knowledge
-    from openssa.core.task import Task
-    from .programmer import AbstractProgrammer
+    from openssa.core.knowledge.base import Knowledge
+    from openssa.core.task.task import Task
+    from .programmer import BaseProgrammer
 
 
 @dataclass
-class AbstractProgram(ABC):
-    """Abstract Program."""
+class BaseProgram(ABC):
+    """Program abstract base class."""
 
     # target Task to solve
     task: Task
 
     # Programmer that has created this
-    programmer: AbstractProgrammer | None = None
+    programmer: BaseProgrammer | None = None
 
     @abstractmethod
     def adapt(self, **kwargs: Any) -> SameType:

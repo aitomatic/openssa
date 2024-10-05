@@ -19,14 +19,12 @@ from .nature import TaskNature
 from .status import TaskStatus
 
 if TYPE_CHECKING:
-    from openssa.core.planning.abstract.plan import APlan
-    from openssa.core.planning.abstract.planner import APlanner
-    from openssa.core.resource.abstract import AbstractResource
+    from openssa.core.resource.base import BaseResource
 
 
 class TaskDict(TypedDict, total=False):
     ask: Required[str]
-    resources: NotRequired[set[AbstractResource]]
+    resources: NotRequired[set[BaseResource]]
     nature: NotRequired[TaskNature]
     status: NotRequired[TaskStatus]
     result: NotRequired[str]
@@ -37,7 +35,7 @@ class Task:
     """Task."""
 
     ask: str
-    resources: set[AbstractResource] = field(default_factory=set)
+    resources: set[BaseResource] = field(default_factory=set)
     nature: TaskNature | None = None
     status: TaskStatus = TaskStatus.PENDING
     result: str | None = None
@@ -48,8 +46,8 @@ class Task:
         task: Task = cls(**d)
 
         if task.resources:
-            task.resources: set[AbstractResource] = {(GLOBAL_RESOURCES[resource] if isinstance(resource, str) else resource)  # noqa: E501
-                                                     for resource in task.resources}
+            task.resources: set[BaseResource] = {(GLOBAL_RESOURCES[resource] if isinstance(resource, str) else resource)  # noqa: E501
+                                                 for resource in task.resources}
 
         if task.nature:
             task.nature: TaskNature = TaskNature(task.nature)
@@ -60,7 +58,7 @@ class Task:
 
     def to_json_dict(self) -> dict:
         d: TaskDict = asdict(self)
-        d['resources']: list[AbstractResource] = list(d['resources'])
+        d['resources']: list[BaseResource] = list(d['resources'])
         return d
 
     @classmethod

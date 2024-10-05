@@ -14,7 +14,7 @@ from .config import LMConfig
 from .openai import OpenAILM
 
 if TYPE_CHECKING:
-    from .abstract import LMChatHist
+    from .base import LMChatHist
 
 
 @dataclass
