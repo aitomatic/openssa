@@ -1,7 +1,7 @@
 """
-======================================
-ABSTRACT LANGUAGE MODEL (LM) INTERFACE
-======================================
+=============================
+LANGUAGE MODEL (LM) INTERFACE
+=============================
 """
 
 
@@ -21,7 +21,7 @@ type LMChatHist = list[ChatCompletionMessageParam]
 
 
 @dataclass
-class AbstractLM(ABC):
+class BaseLM(ABC):
     """Abstract base class for consistent API for different LM services."""
 
     model: str

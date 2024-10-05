@@ -1,9 +1,9 @@
 """
-=========================================
-ABSTRACT INFORMATIONAL RESOURCE INTERFACE
-=========================================
+================================
+INFORMATIONAL RESOURCE INTERFACE
+================================
 
-`AbstractResource` is `OpenSSA`'s abstract base class for informational resources that problem-solving agents access.
+`BaseResource` is `OpenSSA`'s abstract base class for informational resources that problem-solving agents access.
 
 An informational resource is simply something that has a globally-unique name (within the running program),
 has a potentially non-unique but informationally helpful name,
@@ -19,8 +19,8 @@ from functools import cached_property
 from ._prompts import RESOURCE_OVERVIEW_PROMPT_TEMPLATE
 
 
-class AbstractResource(ABC):
-    """Abstract Resource."""
+class BaseResource(ABC):
+    """Resource abstract base class."""
 
     @cached_property
     @abstractmethod

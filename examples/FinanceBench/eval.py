@@ -21,7 +21,7 @@ from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
 from log import switch_log_file
 
 if TYPE_CHECKING:
-    from openssa.core.util.lm.abstract import AbstractLM
+    from openssa.core.util.lm.base import BaseLM
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -66,7 +66,7 @@ load_dotenv()
 
 
 @cache
-def get_lm(model='gpt-4o') -> AbstractLM:
+def get_lm(model='gpt-4o') -> BaseLM:
     return OpenAILM(model=model, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
 
@@ -83,7 +83,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None
     rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
 
-    lm: AbstractLM = get_lm()
+    lm: BaseLM = get_lm()
 
     for _ in range(n_times):
         score: str = ''
