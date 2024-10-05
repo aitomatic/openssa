@@ -28,7 +28,7 @@ from tqdm import tqdm
 
 from openssa.core.programming.abstract.program import AbstractProgram
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
-from openssa.core.reasoning.ooda import OodaReasoner
+from openssa.core.reasoning.ooda.ooda_reasoner import OodaReasoner
 from openssa.core.task import Task, TaskDict
 from openssa.core.task.status import TaskStatus
 
