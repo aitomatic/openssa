@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from argparse import ArgumentParser
 from functools import cache
 from pathlib import Path
@@ -10,11 +8,7 @@ import yaml
 
 from openssa import DANA, ProgramStore, HTP, HTPlanner, FileResource, HuggingFaceLM
 
-# pylint: disable=wrong-import-order
 from semikong_lm import SemiKongLM
-
-if TYPE_CHECKING:
-    from openssa.core.programming.hierarchical.plan import HTPDict
 
 
 load_dotenv()
@@ -42,11 +36,11 @@ with open(file=EXPERT_PROGRAMS_FILE_PATH,
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PROGRAMS: dict[str, HTPDict] = yaml.safe_load(stream=f)
+    EXPERT_PROGRAMS: dict[str, dict] = yaml.safe_load(stream=f)
 
 
 @cache
-def get_or_create_dana(use_semikong_lm: bool = False, max_depth=2, max_subtasks_per_decomp=4) -> DANA:
+def get_or_create_dana(use_semikong_lm: bool = True, max_depth=2, max_subtasks_per_decomp=4) -> DANA:
     lm = (SemiKongLM if use_semikong_lm else HuggingFaceLM).from_defaults()
 
     program_store = ProgramStore(lm=lm)
