@@ -20,10 +20,11 @@ if TYPE_CHECKING:
 load_dotenv()
 
 
-DATA_DIR_PATH: Path = Path(__file__).parent / 'data'
+BASE_DIR: Path = Path(__file__).parent
 
+DATA_DIR_PATH: Path = BASE_DIR / 'data'
 
-EXPERT_KNOWLEDGE_FILE_PATH: Path = Path(__file__).parent / 'expertise' / 'expert-knowledge.txt'
+EXPERT_KNOWLEDGE_FILE_PATH: Path = BASE_DIR / 'expertise' / 'expert-knowledge.txt'
 with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
@@ -33,8 +34,7 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
           opener=None) as f:
     EXPERT_KNOWLEDGE: str = f.read()
 
-
-EXPERT_PROGRAMS_FILE_PATH: Path = Path(__file__).parent / 'expertise' / 'expert-programs.yml'
+EXPERT_PROGRAMS_FILE_PATH: Path = BASE_DIR / 'expertise' / 'expert-programs.yml'
 with open(file=EXPERT_PROGRAMS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
@@ -58,7 +58,7 @@ def get_or_create_dana(use_semikong_lm: bool = False, max_depth=2, max_subtasks_
     return DANA(knowledge={EXPERT_KNOWLEDGE},
                 program_store=program_store,
                 programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-                resources={FileResource(path=DATA_DIR_PATH, lm=lm)})
+                resources={FileResource(path=DATA_DIR_PATH, re_index=True, lm=lm)})
 
 
 if __name__ == '__main__':
