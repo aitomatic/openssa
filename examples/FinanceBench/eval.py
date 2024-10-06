@@ -17,7 +17,7 @@ from openssa.core.util.lm.openai import OpenAILM
 # pylint: disable=wrong-import-order
 from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
                                 FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,
-                                LOCAL_CACHE_DIR_PATH, OUTPUT_FILE_PATH, get_or_create_output_df)
+                                DATA_LOCAL_DIR_PATH, OUTPUT_FILE_PATH, get_or_create_output_df)
 from log import switch_log_file
 
 if TYPE_CHECKING:
@@ -200,7 +200,7 @@ def eval_accuracy_and_consistency_wrt_ground_truths(output_name: str, output_fil
     n_yes_scores_by_fb_id: defaultdict = defaultdict(int)
     incorrect_answer_fb_ids: dict[FbId, str] = {}
 
-    for output_df in (read_csv(LOCAL_CACHE_DIR_PATH / output_file_name, index_col=FB_ID_COL_NAME)
+    for output_df in (read_csv(DATA_LOCAL_DIR_PATH / output_file_name, index_col=FB_ID_COL_NAME)
                       for output_file_name in output_file_names):
 
         for fb_id, correctness in output_df[correctness_col_name].items():
