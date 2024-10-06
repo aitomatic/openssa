@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD043 -->
+<!-- markdownlint-disable MD013 MD043 -->
 
 # OpenSSA-FinanceBench Lite benchmarking
 
