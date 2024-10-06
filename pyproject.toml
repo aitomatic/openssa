@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.24.6.8"
+version = "0.24.9.30"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -12,8 +12,9 @@ maintainers = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
   "Vinh Luong <vinh@aitomatic.com>",
   "Sang Dinh <sang@aitomatic.com>",
-  "Quynh Le <quynh@aitomatic.com>",
   "Shruti Raghavan <shruti@aitomatic.com>",
+  "William Nguyen <william@aitomatic.com>",
+  "Quynh Le <quynh@aitomatic.com>",
   "Zooey Nguyen <zooey@aitomatic.com>",
 ]
 
@@ -51,60 +52,56 @@ ipykernel = ">=6.29"
 notebook = ">=7.2"
 
 [tool.poetry.group.docs.dependencies]
-sphinx = ">=7.4"
-sphinx-autobuild = ">=2024.4"
+sphinx = ">=8.0"
+sphinx-autobuild = ">=2024.10"
 sphinx-press-theme = ">=0.9"
-myst-parser = ">=3.0"
+myst-parser = ">=4.0"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=7.1"
-pylint = ">=3.2"
-ruff = ">=0.5"
+pylint = ">=3.3"
+ruff = ">=0.6"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=8.3"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
+python = ">=3.12,<3.14"
 # Llama interface
-llamaapi = ">=0.1"
+huggingface-hub = ">=0.25"
 # OpenAI interface
-openai = ">=1.37"
+openai = ">=1.51"
 # LlamaIndex & related
-llama-index = ">=0.10"
-llama-index-embeddings-azure-openai = ">=0.1"
-llama-index-llms-azure-openai = ">=0.1"
-llama-index-readers-web = ">=0.1"
+llama-index = ">=0.11"
+llama-index-embeddings-azure-openai = ">=0.2"
+llama-index-llms-azure-openai = ">=0.2"
+llama-index-readers-web = ">=0.2"
 docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=4.3"  # for reading .pdf files
-pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
+pycryptodome = ">=3.21"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = ">=2024.6"  # base/local file system
+fsspec = ">=2024.9"  # base/local file system
 adlfs = ">=2024.7"  # Azure Data Lake
-gcsfs = ">=2024.6"  # Google Cloud Storage
-s3fs = ">=2024.6"  # S3
+gcsfs = ">=2024.9"  # Google Cloud Storage
+s3fs = ">=2024.9"  # S3
 # misc / other
-click = ">=8.1"
-google-api-python-client = ">=2.139"
+certifi = ">2023.8"
+google-api-python-client = ">=2.147"
+googlesearch-python = ">=1.2"
 httpx = ">=0.27"
 loguru = ">=0.7"
-pydantic = ">=2.8"
+pydantic = ">=2.9"
 python-dotenv = ">=1.0"
 torch = ">=2.2,<2.3"  # 2.3 fails installing on Mac with M chip
 tqdm = ">=4.66"
 
 # optional dependencies required by extras
-# llama-index-callbacks-argilla = {version = ">=0.1", optional = true}
-llama-index-callbacks-arize-phoenix = {version = ">=0.1", optional = true}
-llama-index-callbacks-deepeval = {version = ">=0.1", optional = true}
-llama-index-callbacks-honeyhive = {version = ">=0.1", optional = true}
-llama-index-callbacks-langfuse = {version = ">=0.1", optional = true}
-llama-index-callbacks-openinference = {version = ">=0.1", optional = true}
-llama-index-callbacks-promptlayer = {version = ">=0.1", optional = true}
-llama-index-callbacks-wandb = {version = ">=0.1", optional = true}
-streamlit = {version = ">=1.37", optional = true}
+streamlit = {version = ">=1.39", optional = true}
 streamlit-extras = {version = ">=0.4", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
+
+langchainhub = ">=0.1"
+faiss-cpu = ">=1.8"
 
 [tool.poetry.extras]
 contrib = [
@@ -112,14 +109,10 @@ contrib = [
   "streamlit-extras",
   "streamlit-mic-recorder",
 ]
-llama-index-callbacks = [
-  "llama-index-callbacks-arize-phoenix",
-  "llama-index-callbacks-deepeval",
-  "llama-index-callbacks-honeyhive",
-  "llama-index-callbacks-langfuse",
-  "llama-index-callbacks-openinference",
-  "llama-index-callbacks-promptlayer",
-  "llama-index-callbacks-wandb",
+
+langchain = [
+  "langchainhub",
+  "faiss-cpu",
 ]
 
 
@@ -144,10 +137,13 @@ disable = [
   "missing-class-docstring",
   "missing-function-docstring",
   "missing-module-docstring",
+  "no-name-in-module",
   "raw-checker-failed",
   "redefined-outer-name",
   "relative-beyond-top-level",
   "too-few-public-methods",
+  "too-many-positional-arguments",
+  "unknown-option-value",
   "unnecessary-pass",
 ]
 

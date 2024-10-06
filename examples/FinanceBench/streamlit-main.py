@@ -4,12 +4,12 @@ from functools import cache
 from loguru import logger
 import streamlit as st
 
-from data_and_knowledge import DocName, Doc, DOC_NAMES, ExpertPlanId as TaskId, EXPERT_PROGRAM_SPACE
-from htp_oodar_agent import get_or_create_agent, get_or_create_adaptations
-from rag_default import get_or_create_file_resource
+from data_and_knowledge import DocName, Doc, DOC_NAMES, ExpertPlanId as TaskId, EXPERT_PROGRAMS
+from dana import get_or_create_agent, get_or_create_adaptations
+from rag import get_or_create_file_resource
 
 
-TASK_IDS: list[TaskId] = list(EXPERT_PROGRAM_SPACE)
+TASK_IDS: list[TaskId] = list(EXPERT_PROGRAMS)
 TASK_IDS.insert(0, '')
 
 DOC_NAMES: list[DocName] = sorted(set(DOC_NAMES)
@@ -17,7 +17,7 @@ DOC_NAMES: list[DocName] = sorted(set(DOC_NAMES)
                                                'AES_2022_10K', 'MGMRESORTS_2018_10K', 'NETFLIX_2017_10K')))
 
 
-TITLE: str = 'OpenSSA: Analysing SEC Filings with Planning & Reasoning'
+TITLE: str = 'OpenSSA: Analyzing SEC Filings with Domain-Aware Neurosymbolic Agent (DANA)'
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
@@ -38,7 +38,7 @@ if 'typed_question' not in st.session_state:
 
 @cache
 def task_statement_template(task_id: TaskId, /) -> str:
-    return EXPERT_PROGRAM_SPACE[task_id]['task']
+    return EXPERT_PROGRAMS[task_id]['task']
 
 
 @cache
@@ -142,7 +142,7 @@ with pr:
             logger.level('DEBUG')
 
             agent = get_or_create_agent(doc_name=st.session_state.doc_name,
-                                        expert_knowledge=True, expert_program_space=True,
+                                        expert_knowledge=True, expert_programs=True,
                                         max_depth=3, max_subtasks_per_decomp=6,
                                         llama_index_openai_lm_name='gpt-4o-mini')
 

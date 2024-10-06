@@ -17,11 +17,11 @@ from openssa.core.util.lm.openai import OpenAILM
 # pylint: disable=wrong-import-order
 from data_and_knowledge import (FbId, Question, Answer, Category, GroundTruth,
                                 FB_ID_COL_NAME, GROUND_TRUTHS, N_CASES, CAT_DISTRIB,
-                                OUTPUT_FILE_PATH, get_or_create_output_df)
+                                LOCAL_CACHE_DIR_PATH, OUTPUT_FILE_PATH, get_or_create_output_df)
 from log import switch_log_file
 
 if TYPE_CHECKING:
-    from openssa.core.util.lm.abstract import AbstractLM
+    from openssa.core.util.lm.base import BaseLM
 
 
 EVAL_PROMPT_TEMPLATE: str = \
@@ -66,7 +66,7 @@ load_dotenv()
 
 
 @cache
-def get_lm(model='gpt-4o') -> AbstractLM:
+def get_lm(model='gpt-4o') -> BaseLM:
     return OpenAILM(model=model, api_key=LMConfig.OPENAI_API_KEY, api_base=LMConfig.OPENAI_API_URL)
 
 
@@ -83,7 +83,7 @@ def eval_correctness(fb_id: FbId, answer: Answer, output_name: str | None = None
     rubric: str = ground_truth['correctness']
     prompt: str = EVAL_PROMPT_TEMPLATE.format(question=question, answer=answer, rubric=rubric)
 
-    lm: AbstractLM = get_lm()
+    lm: BaseLM = get_lm()
 
     for _ in range(n_times):
         score: str = ''
@@ -189,6 +189,86 @@ def compare_eval(output_name: str, baseline_output_name: str = 'RAG-Default'):
     output_df.loc[:, output_name] = output_df[f'{output_name}---CORRECTNESS']
     return output_df.loc[output_df[output_name] != output_df[baseline_output_name],
                          ['doc_name', 'category', baseline_output_name, output_name]]
+
+
+def eval_accuracy_and_consistency_wrt_ground_truths(output_name: str, output_file_names: list[str]):
+    # pylint: disable=too-many-locals
+
+    n_output_files: int = len(output_file_names)
+    correctness_col_name: str = f'{output_name}---CORRECTNESS'
+
+    n_yes_scores_by_fb_id: defaultdict = defaultdict(int)
+    incorrect_answer_fb_ids: dict[FbId, str] = {}
+
+    for output_df in (read_csv(LOCAL_CACHE_DIR_PATH / output_file_name, index_col=FB_ID_COL_NAME)
+                      for output_file_name in output_file_names):
+
+        for fb_id, correctness in output_df[correctness_col_name].items():
+            ground_truth: GroundTruth = GROUND_TRUTHS[fb_id]
+
+            if notna(correctness) and correctness:
+                n_yes_scores_by_fb_id[fb_id] += 1
+
+            else:
+                incorrect_answer_fb_ids[fb_id]: str = ('expert answer inadequate'
+                                                       if ground_truth.get('answer-inadequate')
+                                                       else ('evaluator unreliable'
+                                                             if ground_truth.get('evaluator-unreliable')
+                                                             else ''))
+
+    cumu_avg_accuracy_scores_by_category: defaultdict = defaultdict(int)
+    cumu_consistency_scores_by_category: defaultdict = defaultdict(float)
+
+    for fb_id, ground_truth in GROUND_TRUTHS.items():
+        cumu_avg_accuracy_scores_by_category[cat := ground_truth['category']] += (a := n_yes_scores_by_fb_id[fb_id] / n_output_files)
+        cumu_consistency_scores_by_category[cat] += 2 * abs(a - 0.5)
+
+    print(f'TOTAL CORRECT: {(n := sum(cumu_avg_accuracy_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
+
+    pprint({category: (f'{(n := cumu_avg_accuracy_scores_by_category[category])} / {n_for_category} '
+                       f'= {n / n_for_category:.1%}')
+            for category, n_for_category in CAT_DISTRIB.items()})
+
+    pprint({
+        'EASY': (f'{(e := sum(cumu_avg_accuracy_scores_by_category[easy_cat]
+                              for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} / '
+                 f'{(se := sum(CAT_DISTRIB[easy_cat]
+                               for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} '
+                 f'= {e / se:.1%}'),
+
+        'HARD': (f'{(h := sum(cumu_avg_accuracy_scores_by_category[hard_cat]
+                              for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                               Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} / '
+                 f'{(sh := sum(CAT_DISTRIB[hard_cat]
+                               for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                                Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} '
+                 f'= {h / sh:.1%}')
+    })
+
+    print(f'\nTOTAL CONSISTENT: {(n := sum(cumu_consistency_scores_by_category.values()))} / {N_CASES} = {n / N_CASES:.1%}')
+
+    pprint({category: (f'{(n := cumu_consistency_scores_by_category[category])} / {n_for_category} '
+                       f'= {n / n_for_category:.1%}')
+            for category, n_for_category in CAT_DISTRIB.items()})
+
+    pprint({
+        'EASY': (f'{(e := sum(cumu_consistency_scores_by_category[easy_cat]
+                              for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} / '
+                 f'{(se := sum(CAT_DISTRIB[easy_cat]
+                               for easy_cat in (Category.RETRIEVE, Category.COMPARE, Category.CALC_CHANGE)))} '
+                 f'= {e / se:.1%}'),
+
+        'HARD': (f'{(h := sum(cumu_consistency_scores_by_category[hard_cat]
+                              for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                               Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} / '
+                 f'{(sh := sum(CAT_DISTRIB[hard_cat]
+                               for hard_cat in (Category.CALC_COMPLEX, Category.CALC_AND_JUDGE,
+                                                Category.EXPLAIN_FACTORS, Category.OTHER_ADVANCED)))} '
+                 f'= {h / sh:.1%}')
+    })
+
+    print('\nINCORRECT:')
+    pprint(incorrect_answer_fb_ids)
 
 
 if __name__ == '__main__':

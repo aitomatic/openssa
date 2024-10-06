@@ -7,7 +7,7 @@ from openssa import LMConfig
 # pylint: disable=wrong-import-order
 from data_and_knowledge import DocName, Doc, RAG_GROUND_TRUTHS
 from eval import get_lm, EVAL_PROMPT_TEMPLATE
-from rag_default import get_or_create_file_resource
+from rag import get_or_create_file_resource
 
 
 DEFS: dict[str, str] = RAG_GROUND_TRUTHS['defs']
@@ -26,7 +26,7 @@ EVAL_LM = get_lm()
 
 
 def test_rag(doc_name: DocName, n_repeats_per_eval: int = 9,
-             llama_index_openai_lm_name: str = LMConfig.DEFAULT_SMALL_OPENAI_MODEL):
+             llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_SMALL_MODEL):
     # pylint: disable=too-many-locals
     doc: Doc = Doc(name=doc_name)
     file_resource = get_or_create_file_resource(doc_name=doc_name, llama_index_openai_lm_name=llama_index_openai_lm_name)  # noqa: E501
@@ -73,6 +73,6 @@ arg_parser.add_argument('doc_name')
 arg_parser.add_argument('--gpt4o', action='store_true', default=False)
 args = arg_parser.parse_args()
 
-test_rag(doc_name=args.doc_name, llama_index_openai_lm_name=(LMConfig.DEFAULT_OPENAI_MODEL
+test_rag(doc_name=args.doc_name, llama_index_openai_lm_name=(LMConfig.OPENAI_DEFAULT_MODEL
                                                              if args.gpt4o
-                                                             else LMConfig.DEFAULT_SMALL_OPENAI_MODEL))
+                                                             else LMConfig.OPENAI_DEFAULT_SMALL_MODEL))
