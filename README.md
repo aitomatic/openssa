@@ -2,35 +2,30 @@
 
 # OpenSSA: Neurosymbolic Agentic AI for Industrial Problem-Solving
 
-**Why OpenSSA?**
 OpenSSA is an open-source neurosymbolic agentic AI framework
 designed to solve complex, high-stakes problems in industries like semiconductor, manufacturing and finance,
 where consistency, accuracy and deterministic outcomes are essential.
 
-At the core of OpenSSA is the **Domain-Aware Neurosymbolic Agent (DANA)** architecture,
-advancing AI from basic pattern-matching and information retrieval to true problem-solving.
-It overcomes the limitations of traditional LLMs and RAG in high-precision, multi-step problem-solving
-by combining **Hierarchical Task Plans (HTPs)** to structure complex programs and the **Observe-Orient-Decide-Act Reasoning (OODAR)** paradigm to execute such programs.
+At the core of OpenSSA is the [__Domain-Aware Neurosymbolic Agent (DANA)__](https://arxiv.org/abs/2410.02823) architecture,
+advancing generative AI from basic pattern matching and information retrieval to industrial-grade problem solving.
 By integrating domain-specific knowledge with neural and symbolic planning and reasoning,
-OpenSSA consistently delivers accurate solutions for complex industrial challenges.
+such as __Hierarchical Task Planning (HTP)__ for structuring programs
+and __Observe-Orient-Decide-Act Reasoning (OODAR)__ for executing such programs,
+OpenSSA DANA agents consistently deliver accurate solutions, often using much smaller models.
 
 ## Key Benefits of OpenSSA
 
-- **Consistent Results**: Delivers repeatable, high-precision outcomes for complex tasks.
-- **Advanced Problem-Solving**: Combines HTPs and OODAR for multi-step planning and reasoning.
-- **Scalable Expertise**: Leverages domain knowledge to scale AI without heavy data requirements.
-- **Resource Efficiency**: Uses smaller, resource-efficient models, minimizing computational costs.
-- **Extensible and Developer-Friendly**: Supports diverse LLM backends and is fully customizable for industry-specific needs.
+- __Consistent and Accurate Results__ for complex industrial problems
+- __Scalable Expertise__ through AI agents incorporating deep domain knowledge from human experts
+- __Economical and Efficient Computation__ thanks to usage of small models
+- __Full Ownership__ of intellectual property when used with open-source models such as Llama
 
 ## Getting Started
 
-- Install with __`pip install openssa`__
-_(supports Python 3.12 and 3.13)_
+- Install with __`pip install openssa`__ _(Python 3.12 and 3.13)_
+  - For bleeding-edge capabilities: __`pip install https://github.com/aitomatic/openssa/archive/main.zip`__
 
-- For the latest capabilities:
-__`pip install https://github.com/aitomatic/openssa/archive/main.zip`__.
-
-- Explore the `examples/` directory and developer guides and tutorials on our [documentation site](https://aitomatic.github.io/openssa).
+- Explore the `examples/` directory and developer guides and tutorials on our [documentation site](https://aitomatic.github.io/openssa)
 
 ## [API Documentation](https://aitomatic.github.io/openssa/modules)
 
@@ -38,7 +33,7 @@ __`pip install https://github.com/aitomatic/openssa/archive/main.zip`__.
 
 We welcome contributions from the community!
 
-- Join the discussion on our [Community Forum](https://github.com/aitomatic/openssa/discussions)
-- Submit pull requests for bug fixes, enhancements, or new features
+- Join discussions on our [Community Forum](https://github.com/aitomatic/openssa/discussions)
+- Submit pull requests for bug fixes, enhancements and new features
 
 For detailed guidelines, refer to our [Contribution Guide](CONTRIBUTING.md).
