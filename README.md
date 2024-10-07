@@ -3,8 +3,8 @@
 # OpenSSA: Neurosymbolic Agentic AI for Industrial Problem-Solving
 
 OpenSSA is an open-source neurosymbolic agentic AI framework
-designed to solve complex, high-stakes problems in industries like semiconductor, manufacturing and finance,
-where consistency, accuracy and deterministic outcomes are essential.
+designed to solve complex, high-stakes problems in industries like semiconductor, energy and finance,
+where consistency, accuracy and deterministic outcomes are paramount.
 
 At the core of OpenSSA is the [__Domain-Aware Neurosymbolic Agent (DANA)__](https://arxiv.org/abs/2410.02823) architecture,
 advancing generative AI from basic pattern matching and information retrieval to industrial-grade problem solving.
