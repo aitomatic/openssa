@@ -1,0 +1,26 @@
+rf-power-fluctuation-monitoring:
+  task: |-
+    Monitor RF Power fluctuation and recommend inspection/maintenance actions if fluctuation is excessive
+
+  sub-htps:
+    - task: >-
+        What are the values of Reflected Power in the recent data?
+
+    - task: |-
+        Analyze whether the lowest and highest Reflected Power values differ by more than 15%.
+        If so, note down the corresponding wafer batch number range between them.
+
+    - task: >-
+        What are the values of Forward Power in the recent data?
+
+    - task: |-
+        Analyze whether the lowest and highest Forward Power values differ by more than 10%.
+        If so, note down the corresponding wafer batch number range between them.
+
+    - task: |-
+        If there are excessive fluctuations in both Reflected Power and Forward Power in the previous analyses,
+        and if the wafer batch number ranges overlap, report a RF Power Fluctuation problem,
+        and recommend the following maintenance actions:
+        - Inspect the electrodes
+        - Adjust gas flow
+        - Adjust power settings
