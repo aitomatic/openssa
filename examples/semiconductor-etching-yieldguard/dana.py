@@ -54,7 +54,7 @@ def get_or_create_dana(use_semikong_lm: bool = True, max_depth=2, max_subtasks_p
     return DANA(knowledge={EXPERT_KNOWLEDGE},
                 program_store=program_store,
                 programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-                resources={FileResource(path=DATA_DIR_PATH, re_index=True, lm=lm)})
+                resources={FileResource(path=DATA_DIR_PATH, re_index=True)})
 
 
 if __name__ == '__main__':

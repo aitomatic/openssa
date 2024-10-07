@@ -7,7 +7,7 @@ import streamlit as st
 from dana import get_or_create_dana
 
 
-TITLE: str = 'Semiconductor Etching YieldGuard with DANA'
+TITLE: str = 'Proactive _YieldGuard_ for Plasma Etchers'
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
@@ -15,11 +15,9 @@ st.set_page_config(page_title=TITLE,
                    initial_sidebar_state='auto',
                    menu_items=None)
 
+st.title(body=TITLE, anchor=None, help=None)
 
 st.image('YieldGuard.png')
-
-
-st.title(body=TITLE, anchor=None, help=None)
 
 
 st.write('__PROBLEM__:')
