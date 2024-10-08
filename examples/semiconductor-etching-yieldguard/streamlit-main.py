@@ -10,7 +10,9 @@ from dana import get_or_create_dana
 
 TITLE: str = 'Proactive _YieldGuard_ for Plasma Etchers'
 
-DATA_FILE_PATH: Path = 'measurements.csv'
+CWD_PATH: Path = Path(__file__).parent
+
+DATA_FILE_PATH: Path = CWD_PATH / 'measurements.csv'
 
 MONITORING_PROBLEMS: dict[str, str] = {
     'RF Power Fluctuation': 'identify any RF power fluctuation issue from the data, and recommend what to do',
