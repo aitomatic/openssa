@@ -3,3 +3,9 @@ WaterBatch: 1, 2, 3, 4, 5, 6
 ReflectedPower_W: 36.6, 35.4, 37.5, 40.1, 42.3, 37.9
 
 ForwardPower_W: 1559.9, 1515.6, 1515.0, 1505.8, 1701.6, 1560.1
+
+ChamberPressure_Torr: 0.891, 0.957, 0.882, 0.966, 0.974, 0.809
+
+GasFlowRate_sccm: 59.7, 58.1, 56.2, 55.1, 59.7, 54.4
+
+ChamberWallTemperature_C: 76.3, 78.3, 76.6, 79.6, 81.7, 81.9
