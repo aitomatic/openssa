@@ -29,7 +29,7 @@ st.set_page_config(page_title=TITLE,
 
 st.title(body=TITLE, anchor=None, help=None)
 
-st.image(CWD_PATH / 'YieldGuard.png')
+st.image(str(CWD_PATH / 'YieldGuard.png'))
 
 
 st.dataframe(data=read_csv(DATA_FILE_PATH),
