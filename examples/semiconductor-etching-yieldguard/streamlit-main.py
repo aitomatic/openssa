@@ -14,6 +14,8 @@ DATA_FILE_PATH: Path = 'measurements.csv'
 
 MONITORING_PROBLEMS: dict[str, str] = {
     'RF Power Fluctuation': 'identify any RF power fluctuation issue from the data, and recommend what to do',
+    'Pressure Instability': 'identify any Pressure Instability issue from the data, and recommend what to do',
+    'Chamber Wall Temperature': 'analyze Chamber Wall Temperature data and identify any cleaning needs',
 }
 
 
@@ -39,20 +41,20 @@ st.dataframe(data=read_csv(DATA_FILE_PATH),
              selection_mode='multi-row')
 
 
-if 'dana_solutions' not in st.session_state:
-    st.session_state.dana_solutions: defaultdict[str, str] = defaultdict(str)
+if 'dana_analyses' not in st.session_state:
+    st.session_state.dana_analyses: defaultdict[str, str] = defaultdict(str)
 
 for monitored_issue, problem in MONITORING_PROBLEMS.items():
-    if st.button(label=f'ANALYZE: {monitored_issue}',
+    if st.button(label=f'_monitor_: {monitored_issue}',
                  on_click=None, args=None, kwargs=None,
                  type='primary',
                  disabled=False,
                  use_container_width=False):
-        with st.spinner(text='_ANALYZING..._'):
+        with st.spinner(text='_analyzing..._'):
             logger.level('DEBUG')
 
-            st.session_state.dana_solutions[monitored_issue]: str = \
+            st.session_state.dana_analyses[monitored_issue]: str = \
                 get_or_create_dana(use_semikong_lm=False).solve(problem=problem)
 
-    if (solution := st.session_state.dana_solutions[monitored_issue]):
+    if (solution := st.session_state.dana_analyses[monitored_issue]):
         st.markdown(body=solution.replace('$', r'\$'))

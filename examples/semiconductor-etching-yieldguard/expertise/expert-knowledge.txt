@@ -16,7 +16,7 @@ Pressure Stability Monitoring
 HEURISTIC: If the chamber pressure deviation exceeds ±3% for more than 30 seconds during steady-state etching,
 coupled with a gas flow variation of more than 5%, it indicates potential chamber wall coating or residue buildup.
 
-ACTION: Recommend a preventative chamber clean and automatically adjusts the gas flow to stabilize pressure,
+ACTION: Recommend a preventative chamber clean and adjust the gas flow to stabilize pressure,
 reducing the likelihood of non-uniform etching.
 
 
@@ -43,7 +43,7 @@ Chamber Matching Network Heuristic
 HEURISTIC: If the chamber matching network requires more than two adjustments per wafer run
 to maintain desired RF power settings, it suggests possible impedance mismatch or degradation in the matching components.
 
-ACTION: DANA can automatically optimize matching network settings and recommend maintenance
+ACTION: Optimize matching network settings and recommend maintenance
 if impedance mismatch trends persist, potentially preventing plasma stability issues.
 
 
@@ -71,7 +71,7 @@ Anomaly Detection with Historical Baseline Comparison
 HEURISTIC: If real-time sensor data (e.g., temperature, pressure, RF power) shows deviations
 outside historical baseline ranges for similar recipes, this could indicate tool degradation or unexpected chamber behavior.
 
-ACTION: Trigger alerts and suggests corrective actions such as parameter adjustment or additional inspections,
+ACTION: Trigger alerts and suggest corrective actions such as parameter adjustment or additional inspections,
 preventing potential faults.
 
 
@@ -89,5 +89,5 @@ Multi-Parameter Fault Isolation for Complex Equipment
 HEURISTIC: If multiple parameters (e.g., RF power, pressure, temperature) show simultaneous deviations
 outside standard operating windows, use historical fault isolation data to pinpoint the most likely root cause.
 
-ACTION: Provides a ranked list of potential root causes with confidence levels,
+ACTION: Provide a ranked list of potential root causes with confidence levels,
 enabling faster and more accurate fault isolation.
