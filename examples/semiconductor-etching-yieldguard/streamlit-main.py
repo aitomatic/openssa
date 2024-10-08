@@ -27,7 +27,7 @@ st.set_page_config(page_title=TITLE,
 
 st.title(body=TITLE, anchor=None, help=None)
 
-st.image('YieldGuard.png')
+# st.image('YieldGuard.png')
 
 
 st.dataframe(data=read_csv(DATA_FILE_PATH),
