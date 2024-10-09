@@ -16,10 +16,10 @@ Go straight to [OpenSSA Streamlit app](https://openssa.streamlit.app/) and start
 
 ## Getting Started as a Developer
 
-See some example user programs in the [examples/notebooks](./examples/notebooks) directory. For example, to see the sample use case on ALD semiconductor knowledge, do:
+See some example user programs in the [examples](./examples) directory. For example, to see the sample use case on semiconductor knowledge, do:
 
 ```bash
-% cd examples/notebooks
+% cd examples/semiconductor
 ```
 
 ### Common `make` targets for OpenSSA developers
