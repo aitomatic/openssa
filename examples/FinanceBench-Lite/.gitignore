@@ -1,0 +1,15 @@
+# data files
+.data/
+
+# environment variables
+.env
+
+# iPython/Jupyter notebooks
+*.ipynb
+
+# log files
+.log/
+*.log
+
+# Streamlit secrets
+.streamlit/secrets.toml
