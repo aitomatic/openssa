@@ -3,7 +3,7 @@
 BASE REASONER
 =============
 
-`BaseReasoner` is `OpenSSA`'s basic reasoning implementation,
+`SimpleReasoner` is `OpenSSA`'s basic reasoning implementation,
 which simply forwards posed problems/questions/tasks to available informational resources,
 and aggregates answers from such resources without much further analysis.
 """
@@ -14,7 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from openssa.core.reasoning.abstract import AbstractReasoner
+from openssa.core.reasoning.base import BaseReasoner
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.task.status import TaskStatus
 from openssa.core.util.misc import format_other_result
@@ -23,14 +23,14 @@ from ._prompts import (RESOURCE_QA_CONSO_PROMPT_TEMPLATE, RESOURCE_QA_AND_OTHER_
                        OTHER_RESULTS_CONSO_PROMPT_TEMPLATE)
 
 if TYPE_CHECKING:
-    from openssa.core.planning.abstract.plan import AskAnsPair
-    from openssa.core.knowledge.abstract import Knowledge
-    from openssa.core.task import Task
+    from openssa.core.knowledge.base import Knowledge
+    from openssa.core.task.task import Task
+    from openssa.core.util.misc import AskAnsPair
 
 
 @dataclass
-class BaseReasoner(AbstractReasoner):
-    """Base Reasoner."""
+class SimpleReasoner(BaseReasoner):
+    """Simple Reasoner."""
 
     def reason(self, task: Task, *,
                knowledge: set[Knowledge], other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> str:

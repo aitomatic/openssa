@@ -10,27 +10,27 @@ dana-solve-w-prog-store:
 dana-solve-w-knowledge-and-prog-store:
 	@poetry run python dana.py ${id} --knowledge --prog-store
 
-dana-solve-w-llama3:
-	@poetry run python dana.py ${id} --llama3
+dana-solve-w-llama:
+	@poetry run python dana.py ${id} --llama
 
-dana-solve-w-knowledge-w-llama3:
-	@poetry run python dana.py ${id} --knowledge --llama3
+dana-solve-w-knowledge-w-llama:
+	@poetry run python dana.py ${id} --knowledge --llama
 
-dana-solve-w-prog-store-w-llama3:
-	@poetry run python dana.py ${id} --prog-store --llama3
+dana-solve-w-prog-store-w-llama:
+	@poetry run python dana.py ${id} --prog-store --llama
 
-dana-solve-w-knowledge-and-prog-store-w-llama3:
-	@poetry run python dana.py ${id} --knowledge --prog-store --llama3
+dana-solve-w-knowledge-and-prog-store-w-llama:
+	@poetry run python dana.py ${id} --knowledge --prog-store --llama
 
 dana-solve-all-combos:
 	@poetry run python dana.py ${id}
 	@poetry run python dana.py ${id} --knowledge
 	@poetry run python dana.py ${id} --prog-store
 	@poetry run python dana.py ${id} --knowledge --prog-store
-	@poetry run python dana.py ${id} --llama3
-	@poetry run python dana.py ${id} --knowledge --llama3
-	@poetry run python dana.py ${id} --prog-store --llama3
-	@poetry run python dana.py ${id} --knowledge --prog-store --llama3
+	@poetry run python dana.py ${id} --llama
+	@poetry run python dana.py ${id} --knowledge --llama
+	@poetry run python dana.py ${id} --prog-store --llama
+	@poetry run python dana.py ${id} --knowledge --prog-store --llama
 
 
 langchain-react-solve:

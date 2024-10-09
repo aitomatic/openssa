@@ -7,10 +7,10 @@
 
 from __future__ import annotations
 
-from .abstract import AbstractResource
+from .base import BaseResource
 from ._global import global_register
 
 
 @global_register
-class RssResource(AbstractResource):
+class RssResource(BaseResource):
     """RSS Informational Resource."""
