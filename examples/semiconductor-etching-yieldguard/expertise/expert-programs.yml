@@ -63,7 +63,7 @@ chamber-temperature-monitoring:
 
     - task: |-
         Analyze whether there are 3 consecutive Chamber Temperature values
-        showing increases of at least 2 Celcius degrees per each time step.
+        showing increases of at least 2 Celcius degrees from first to second and from second to third
 
     - task: |-
         If there is/are significant Chamber Temperature increase(s) identified in the previous analysis,
