@@ -9,10 +9,10 @@ IF "%TARGET%"=="dana-solve" GOTO dana-solve
 IF "%TARGET%"=="dana-solve-w-prog-store" GOTO dana-solve-w-prog-store
 IF "%TARGET%"=="dana-solve-w-knowledge" GOTO dana-solve-w-knowledge
 IF "%TARGET%"=="dana-solve-w-knowledge-and-prog-store" GOTO dana-solve-w-knowledge-and-prog-store
-IF "%TARGET%"=="dana-solve-w-llama3" GOTO dana-solve-w-llama3
-IF "%TARGET%"=="dana-solve-w-prog-store-w-llama3" GOTO dana-solve-w-prog-store-w-llama3
-IF "%TARGET%"=="dana-solve-w-knowledge-w-llama3" GOTO dana-solve-w-knowledge-w-llama3
-IF "%TARGET%"=="dana-solve-w-knowledge-and-prog-store-w-llama3" GOTO dana-solve-w-knowledge-and-prog-store-w-llama3
+IF "%TARGET%"=="dana-solve-w-llama" GOTO dana-solve-w-llama
+IF "%TARGET%"=="dana-solve-w-prog-store-w-llama" GOTO dana-solve-w-prog-store-w-llama
+IF "%TARGET%"=="dana-solve-w-knowledge-w-llama" GOTO dana-solve-w-knowledge-w-llama
+IF "%TARGET%"=="dana-solve-w-knowledge-and-prog-store-w-llama" GOTO dana-solve-w-knowledge-and-prog-store-w-llama
 IF "%TARGET%"=="dana-solve-all-combos" GOTO dana-solve-all-combos
 
 IF "%TARGET%"=="langchain-react-solve" GOTO langchain-react-solve
@@ -47,20 +47,20 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
   poetry run python dana.py %2 --knowledge --prog-store
   GOTO end
 
-:dana-solve-w-llama3
-  poetry run python dana.py %2 --llama3
+:dana-solve-w-llama
+  poetry run python dana.py %2 --llama
   GOTO end
 
-:dana-solve-w-knowledge-w-llama3
-  poetry run python dana.py %2 --knowledge --llama3
+:dana-solve-w-knowledge-w-llama
+  poetry run python dana.py %2 --knowledge --llama
   GOTO end
 
-:dana-solve-w-prog-store-w-llama3
-  poetry run python dana.py %2 --prog-store --llama3
+:dana-solve-w-prog-store-w-llama
+  poetry run python dana.py %2 --prog-store --llama
   GOTO end
 
-:dana-solve-w-knowledge-and-prog-store-w-llama3
-  poetry run python dana.py %2 --knowledge --prog-store --llama3
+:dana-solve-w-knowledge-and-prog-store-w-llama
+  poetry run python dana.py %2 --knowledge --prog-store --llama
   GOTO end
 
 :dana-solve-all-combos
@@ -68,10 +68,10 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
   poetry run python dana.py %2 --knowledge
   poetry run python dana.py %2 --prog-space
   poetry run python dana.py %2 --knowledge --prog-space
-  poetry run python dana.py %2 --llama3
-  poetry run python dana.py %2 --knowledge --llama3
-  poetry run python dana.py %2 --prog-space --llama3
-  poetry run python dana.py %2 --knowledge --prog-space --llama3
+  poetry run python dana.py %2 --llama
+  poetry run python dana.py %2 --knowledge --llama
+  poetry run python dana.py %2 --prog-space --llama
+  poetry run python dana.py %2 --knowledge --prog-space --llama
   GOTO end
 
 
