@@ -14,11 +14,11 @@ from llama_index.llms.openai import OpenAI
 from llama_index.readers.web import SimpleWebPageReader
 
 from ._global import global_register
-from .abstract import AbstractResource
+from .base import BaseResource
 
 
 @global_register
-class WebPageResource(AbstractResource):
+class WebPageResource(BaseResource):
     """Webpage Informational Resource."""
     def __init__(self, url: str):
         self.url: str = url
@@ -74,7 +74,7 @@ class WebPageResource(AbstractResource):
 
 
 @global_register
-class WebSearchResource(AbstractResource):
+class WebSearchResource(BaseResource):
     """Webpage Informational Resource."""
     def __init__(self, search_query: str):
         self.search_query: str = search_query

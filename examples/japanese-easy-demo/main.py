@@ -4,12 +4,12 @@ from openssa import DANA, FileResource
 
 load_dotenv()
 
-LOCAL_CACHE_DOCS_DIR_PATH: Path = Path(__file__).parent / '.data'
+DOCS_DATA_LOCAL_DIR_PATH: Path = Path(__file__).parent / '.data'
 
 
 def get_or_create_agent() -> DANA:
     return DANA(
-        resources={FileResource(path=LOCAL_CACHE_DOCS_DIR_PATH)}
+        resources={FileResource(path=DOCS_DATA_LOCAL_DIR_PATH)}
     )
 
 

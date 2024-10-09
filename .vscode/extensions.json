@@ -5,6 +5,8 @@
 
     "charliermarsh.ruff",  // Ruff
 
+    "davidanson.vscode-markdownlint",  // MarkdownLint
+
     "soulcode.vscode-unwanted-recommendations"  // Unwanted Recommendations
   ],
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openssa"
-version = "0.24.9.30"
+version = "0.24.10.8"
 
 authors = [
   "Aitomatic, Inc. <engineering@aitomatic.com>",
@@ -53,13 +53,13 @@ notebook = ">=7.2"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = ">=8.0"
-sphinx-autobuild = ">=2024.9"
+sphinx-autobuild = ">=2024.10"
 sphinx-press-theme = ">=0.9"
 myst-parser = ">=4.0"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=7.1"
-pylint = ">=3.2"
+pylint = ">=3.3"
 ruff = ">=0.6"
 
 [tool.poetry.group.test.dependencies]
@@ -70,7 +70,7 @@ python = ">=3.12,<3.14"
 # Llama interface
 huggingface-hub = ">=0.25"
 # OpenAI interface
-openai = ">=1.46"
+openai = ">=1.51"
 # LlamaIndex & related
 llama-index = ">=0.11"
 llama-index-embeddings-azure-openai = ">=0.2"
@@ -78,15 +78,15 @@ llama-index-llms-azure-openai = ">=0.2"
 llama-index-readers-web = ">=0.2"
 docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=4.3"  # for reading .pdf files
-pycryptodome = ">=3.20"  # for reading .pdf files: PyCryptodome is required for AES algorithm
+pycryptodome = ">=3.21"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
 fsspec = ">=2024.9"  # base/local file system
 adlfs = ">=2024.7"  # Azure Data Lake
 gcsfs = ">=2024.9"  # Google Cloud Storage
 s3fs = ">=2024.9"  # S3
 # misc / other
-certifi = ">2023.7.22"
-google-api-python-client = ">=2.146"
+certifi = ">2023.8"
+google-api-python-client = ">=2.147"
 googlesearch-python = ">=1.2"
 httpx = ">=0.27"
 loguru = ">=0.7"
@@ -96,7 +96,7 @@ torch = ">=2.2,<2.3"  # 2.3 fails installing on Mac with M chip
 tqdm = ">=4.66"
 
 # optional dependencies required by extras
-streamlit = {version = ">=1.38", optional = true}
+streamlit = {version = ">=1.39", optional = true}
 streamlit-extras = {version = ">=0.4", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
@@ -143,6 +143,7 @@ disable = [
   "relative-beyond-top-level",
   "too-few-public-methods",
   "too-many-positional-arguments",
+  "unknown-option-value",
   "unnecessary-pass",
 ]
 
