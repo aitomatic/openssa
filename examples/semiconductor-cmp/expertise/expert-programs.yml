@@ -1,0 +1,109 @@
+plan:
+  task: |-
+    List strategies to achieve a smoother amorphous silicon surface at a shallow depth (around 1.5-2.5 microns)
+
+  sub-htps:
+    - task: |-
+        List and evaluate the pros and cons of the following methods:
+        - Hydrogen Peroxide (H2O2) based etching
+        - Optimized HF/HNO3 mixture
+        - Tetramethyl Ammonium Hydroxide (TMAH) solution
+        
+    - task: |-
+        For Chemical Mechanical Polishing (CMP) focusing on:
+        - Equipment requirements
+        - Potential for achieving ultra-smooth surfaces
+        - Consideration of process-induced defects
+    
+    - task: |-
+        Explore the application of Plasma-Enhanced Chemical Vapor Deposition (PECVD) for depositing silicon-rich layers to smoothen rough surfaces, including:
+        - Flexibility of process control
+        - Integration with existing process flows
+        - Potential risks of defects and contamination
+    
+    - task: |-
+        List and evaluate the pros and cons of the following methods:
+        - Reactive Ion Etching (RIE) with CF4 or SF6
+        - Dry etching with fluorine-based plasmas (CF4, SF6)
+        - Challenges in controlling etch rates and ensuring smooth surface results
+
+    - task: |-
+        Consider the following evaluation criteria to recommend the most suitable approach or combination of approaches:
+        - Etch rate control
+        - Surface smoothness
+        - Process complexity
+        - Material compatibility
+        - Cost and throughput
+        - Safety considerations
+
+plan:
+  task: |-
+    Formulate a recipe for Chemical Mechanical Polishing (CMP) process
+    
+  sub-htps:
+    - task: |-
+        Perform pre-CMP wafer cleaning and preparation
+
+    - task: |-
+        Select and prepare the appropriate CMP slurry
+        
+    - task: |-
+        Set up and calibrate the CMP tool.
+
+    - task: |-
+        Execute the CMP process
+
+    - task: |-
+        Conduct post-CMP cleaning and inspection
+
+    - task: |-
+        Optimize and monitor the CMP process
+
+    - task: |-
+        Ensure safety and environmental compliance
+
+plan:
+  task: |-
+    Develop and implement an enhanced post-CMP (Chemical Mechanical Polishing) cleaning process for advanced geometries below 10nm to ensure optimal device performance and yield.
+
+  sub-htps:
+    - task: |-
+        Address residual defect and contaminant removal:
+        - Implement enhanced cleaning steps to remove micro-scratches, particles, and chemical residues left by CMP, focusing on sub-10nm scales.
+
+    - task: |-
+        Reduce particle contamination:
+        - Develop advanced cleaning protocols to minimize particle density and reduce the risk of particle-induced defects.
+
+    - task: |-
+        Improve surface passivation and interface quality:
+        - Incorporate additional cleaning steps to enhance interfacial layer quality, crucial for maintaining device integrity and performance in advanced semiconductor devices.
+
+    - task: |-
+        Prevent metal and dielectric defects:
+        - Employ supplementary cleaning techniques to remove impurities and ensure pristine surfaces for material deposition, critical for nanoscale dimensions.
+
+    - task: |-
+        Reduce metal line roughness:
+        - Utilize specialized chemistries or plasma-based treatments post-CMP to smoothen metal lines and improve device reliability in advanced nodes.
+
+    - task: |-
+        Implement recommended additional post-CMP cleaning steps:
+        - Wet Chemical Cleaning: Use HF, H2SO4, and HCl to remove metal residues and organic particles, followed by DI water rinse and nitrogen drying.
+        - Plasma-Based Cleaning: Use plasma ashing or remote plasma cleaning with O2, Ar, or a combination to remove stubborn contaminants.
+        - Vapor Phase Cleaning: Apply vapor-phase techniques using O3, vapor-phase HF, or fluorine-based gas chemistries to selectively remove impurities.
+        - Dry and Supercritical Fluid Cleaning: Employ cryogenic aerosol cleaning, carbon dioxide snow cleaning, or supercritical fluids to clean particles without additional water or chemicals.
+        - Physical Cleaning: Use gentle mechanical methods like brushing or scrubbing to remove large particles while avoiding new defects.
+        - Surface Passivation: Apply PECVD or ALD to deposit thin dielectric layers like silicon oxide or nitride for surface passivation.
+        - In-Situ Monitoring and Control: Integrate real-time monitoring tools (e.g., spectroscopic ellipsometry, scatterometry, XPS) to optimize cleaning parameters.
+
+    - task: |-
+        Consider implementation factors:
+        - Ensure chemical compatibility of cleaning agents and processes with device materials.
+        - Optimize cleaning steps to target specific contaminants while preserving sensitive device structures.
+        - Integrate additional cleaning steps into existing process flows and toolsets to minimize disruptions.
+        - Continuously monitor and fine-tune cleaning parameters (chemical concentrations, temperature, time) for optimal results.
+
+    - task: |-
+        Monitor outcomes:
+        - Evaluate the effectiveness of the enhanced cleaning process in reducing defect densities, improving device performance, and enhancing overall yield for advanced geometries below 10nm.
