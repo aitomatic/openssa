@@ -1,0 +1,124 @@
+Convention on the International Regulations for Preventing Collisions at Sea, 1972 (COLREGs)
+=================================================
+
+
+Adoption: 20 October 1972; Entry into force: 15 July 1977
+--------------------------------------------------------------------
+
+
+The 1972 Convention was designed to update and replace the Collision Regulations of 1960 which were adopted at the same time as the 1960 SOLAS Convention.
+
+One of the most important innovations in the 1972 COLREGs was the recognition given to traffic separation schemes - Rule 10 gives guidance in determining safe speed, the risk of collision and the conduct of vessels operating in or near traffic separation schemes.
+ 
+The first such traffic separation scheme was established in the Dover Strait in 1967. It was operated on a voluntary basis at first but in 1971 the IMO Assembly adopted a resolution stating that that observance of all traffic separation schemes be made mandatory - and the COLREGs make this obligation clear.
+ 
+Technical provisions
+The COLREGs include 41 rules divided into six sections: Part A - General; Part B - Steering and Sailing; Part C - Lights and Shapes; Part D - Sound and Light signals;  Part E - Exemptions; and Part F - Verification of compliance with the provisions of the Convention. There are also four Annexes containing technical requirements concerning lights and shapes and their positioning; sound signalling appliances; additional signals for fishing vessels when operating in close proximity, and international distress signals.
+ 
+Part A - General (Rules 1-3)
+Rule 1 states that the rules apply to all vessels upon the high seas and all waters connected to the high seas and navigable by seagoing vessels.
+ 
+Rule 2 covers the responsibility of the master, owner and crew to comply with the rules.
+ 
+Rule 3 includes definitions.
+ 
+Part B- Steering and Sailing (Rules 4-19)
+Section 1 - Conduct of vessels in any condition of visibility (Rules 4-10)
+ 
+Rule 4 says the section applies in any condition of visibility.
+ 
+Rule 5 requires that "every vessel shall at all times maintain a proper look-out by sight and hearing as well as by all available means appropriate in the prevailing circumstances and conditions so as to make a full appraisal of the situation and of the risk of collision.
+ 
+Rule 6 deals with safe speed. It requires that: "Every vessel shall at all times proceed at a safe speed...". The Rule describes the factors which should be taken into account in determining safe speed. Several of these refer specifically to vessels equipped with radar.The importance of using "all available means" is further stressed in
+Rule 7 covering risk of collision, which warns that "assumptions shall not be made on the basis of scanty information, especially scanty radar information"
+ 
+Rule 8 covers action to be taken to avoid collision.
+ 
+In Rule 9 a vessel proceeding along the course of a narrow channel or fairway is obliged to keep "as near to the outer limit of the channel or fairway which lies on her starboard side as is safe and practicable." The same Rule obliges a vessel of less than 20 metres in length or a sailing vessel not to impede the passage of a vessel "which can safely navigate only within a narrow channel or fairway."
+ 
+The Rule also forbids ships to cross a narrow channel or fairway "if such crossing impedes the passage of a vessel which can safely navigate only within such channel or fairway." The meaning "not to impede" was classified by an amendment to Rule 8 in 1987. A new paragraph (f) was added, stressing that a vessel which was required not to impede the passage of another vessel should take early action to allow sufficient sea room for the safe passage of the other vessel. Such vessel was obliged to fulfil this obligation also when taking avoiding action in accordance with the steering and sailing rules when risk of collision exists.
+ 
+Rule 10 of the Collision Regulations deals with the behaviour of vessels in or near traffic separation schemes adopted by the Organization. By regulation 8 of Chapter V (Safety of Navigation) of SOLAS, IMO is recognized as being the only organization competent to deal with international measures concerning the routeing of ships.
+The effectiveness of traffic separation schemes can be judged from a study made by the International Association of Institutes of Navigation (IAIN) in 1981. This showed that between 1956 and 1960 there were 60 collisions in the Strait of Dover; twenty years later, following the introduction of traffic separation schemes, this total was cut to only 16.
+ 
+In other areas where such schemes did not exist the number of collisions rose sharply. New traffic separation schemes are introduced regularly and existing ones are amended when necessary to respond to changed traffic conditions. To enable this to be done as quickly as possible the MSC has been authorized to adopt and amend traffic separation schemes on behalf of the Organization.
+ 
+Rule 10 states that ships crossing traffic lanes are required to do so "as nearly as practicable at right angles to the general direction of traffic flow." This reduces confusion to other ships as to the crossing vessel's intentions and course and at the same time enables that vessel to cross the lane as quickly as possible.
+ 
+Fishing vessels "shall not impede the passage of any vessel following a traffic lane" but are not banned from fishing. This is in line with Rule 9 which states that "a vessel engaged in fishing shall not impede the passage of any other vessel navigating within a narrow channel or fairway."In 1981 the regulations were amended. Two new paragraphs were added to Rule 10 to exempt vessels which are restricted in their ability to manoeuvre "when engaged in an operation for the safety of navigation in a traffic separation scheme" or when engaged in cable laying.
+ 
+In 1987 the regulations were again amended. It was stressed that Rule 10 applies to traffic separation schemes adopted by the Organization (IMO) and does not relieve any vessel of her obligation under any other rule. It was also to clarify that if a vessel is obliged to cross traffic lanes it should do so as nearly as practicable at right angles to the general direction of the traffic flow. In 1989 Regulation 10 was further amended to clarify the vessels which may use the "inshore traffic zone."
+ 
+Section II - Conduct of vessels in sight of one another (Rules 11-18)
+Rule 11 says the section applies to vessels in sight of one another.
+ 
+Rule 12 states action to be taken when two sailing vessels are approaching one another.
+ 
+Rule 13covers overtaking - the overtaking vessel should keep out of the way of the vessel being overtaken.
+
+Rule 14 deals with head-on situations. Crossing situations are covered by Rule 15 and action to be taken by the give-way vessel is laid down in Rule 16.
+ 
+Rule 17 deals with the action of the stand-on vessel, including the provision that the stand-on vessel may "take action to avoid collision by her manoeuvre alone as soon as it becomes apparent to her that the vessel required to keep out of the way is not taking appropriate action.
+ 
+Rule 18 deals with responsibilities between vessels and includes requirements for vessels which shall keep out of the way of others.
+ 
+Section III - conduct of vessels in restricted visibility (Rule 19)
+Rule 19 states every vessel should proceed at a safe speed adapted to prevailing circumstances and restricted visibility. A vessel detecting by radar another vessel should determine if there is risk of collision and if so take avoiding action. A vessel hearing fog signal of another vessel should reduce speed to a minimum.
+ 
+Part C Lights and Shapes (Rules 20-31)
+Rule 20 states rules concerning lights apply from sunset to sunrise.Rule 21 gives definitions.
+ 
+Rule 22 covers visibility of lights - indicating that lights should be visible at minimum ranges (in nautical miles) determined according to the type of vessel.
+ 
+Rule 23 covers lights to be carried by power-driven vessels underway.
+ 
+Rule 24 covers lights for vessels towing and pushing.
+ 
+Rule 25 covers light requirements for sailing vessels underway and vessels under oars.
+ 
+Rule 26 covers light requirements for fishing vessels.
+ 
+Rule 27 covers light requirements for vessels not under command or restricted in their ability to manoeuvre.
+ 
+Rule 28 covers light requirements for vessels constrained by their draught.
+ 
+Rule 29 covers light requirements for pilot vessels.
+ 
+Rule 30 covers light requirements for vessels anchored and aground.Rule 31 covers light requirements for seaplanes
+ 
+Part D - Sound and Light Signals (Rules 32-37)
+Rule 32 gives definitions of whistle, short blast, and prolonged blast.
+ 
+Rule 33 says vessels 12 metres or more in length should carry a whistle and a bell and vessels 100 metres or more in length should carry in addition a gong.
+ 
+Rule 34 covers manoeuvring and warning signals, using whistle or lights.
+ 
+Rule 35 covers sound signals to be used in restricted visibility.
+ 
+Rule 36 covers signals to be used to attract attention.
+ 
+Rule 37 covers distress signals.
+ 
+Part E - Exemptions (Rule 38)
+Rule 38 says ships which comply with the 1960 Collision Regulations and were built or already under construction when the 1972 Collision Regulations entered into force may be exempted from some requirements for light and sound signals for specified periods.
+
+Part F - Verification of compliance with the provisions of the Convention
+The Rules, adopted in 2013,  bring in the requirements for compulsory audit of Parties to the Convention.  
+
+Rule 39 provides definitions.
+
+Rule 40  says that Contracting Parties shall use the provisions of the Code for Implementation in the execution of their obligations and responsibilities contained in the present Convention.
+
+Rule 41 on Verification of compliance says that every Contracting Party is subject to periodic audits by IMO. 
+ 
+
+Annexes
+The COLREGs include four annexes:
+ 
+Annex I - Positioning and technical details of lights and shapes
+ 
+Annex II - Additional signals for fishing vessels fishing in close proximity
+ 
+Annex III - Technical details of sounds signal appliances
+ 
+Annex IV - Distress signals, which lists the signals indicating distress and need of assistance.

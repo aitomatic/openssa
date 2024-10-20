@@ -1,0 +1,13 @@
+plan:
+  task: |-
+    Recommend the user what to do based on the identified situation interpretted from the user input.
+  
+  sub-htps:
+    - task: |-
+        Check if situation provided by the user comees from either SOG or STW. The source (SOG or STW), not what user says. determines what the situation is. If the source is specified, meaning the situation is identified, move head with the identified situation. If the source is not specified, move ahead to the next step with 2 possible situations.
+        
+    - task: |-    
+        Find the appropriate rules from COLREGs for the possible situations.
+
+    - task: |-
+        Give an answer based on the rules from COLREGs.
