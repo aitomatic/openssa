@@ -10,10 +10,7 @@ plan:
         Determine whether the situation is correct or not based on the input source. If the input source is STW, the situation provided by the user is correct. If the input source is SOG, the situation provided by the user may be incorrect. If the input source is not specified, the situation provided by the user may be incorrect.
 
     - task: |-
-        Determine the possible situations based on whether the situation provided by the user is correct or not. If the situation provided by the user is correct, the only possible situation is exactly the situation provided by the user. If the situation provided by the user is incorrect, the possible situations are both Head-on and the situation provided by the user.
+        Determine the possible situations based on whether the situation provided by the user is correct or not. If the situation provided by the user is correct, the only possible situation is exactly the situation provided by the user. If the situation provided by the user is incorrect, the possible situations are both Head-on situation and the situation provided by the user. Maximum of 2 possible situations are allowed.
 
     - task: |-
-        Find the most appropriate rule for each possible situation. For example: if the situation is Crossing, then apply the rule 15; if the situation is Head-on, then apply the rule 14.
-
-    - task: |-
-        Recommend the user what to do from the found rules.
+        Find the most appropriate rule for each possible situation. For example: if a possible situation is Crossing, then apply the rule 15; if a possible situation is Head-on, then apply the rule 14. Maximum of 2 possible situations are allowed.
