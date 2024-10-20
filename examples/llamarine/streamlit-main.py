@@ -22,7 +22,7 @@ st.title(body=TITLE, anchor=None, help=None)
 
 
 DEFAULT_PROBLEM: str = (
-    'A vessel on the port side coming to a crossing situation. What to do?'
+    'A vessel on my port side coming to a crossing situation. What to do?'
 )
 
 
@@ -63,11 +63,15 @@ if st.button(label='SOLVE',
 
 if (solution := st.session_state.agent_solutions[st.session_state.typed_problem]):
     solution = OpenAILM.from_defaults().get_response(
-        prompt=f"""{solution} \n\n Please write down step by step instructions for the above problem. \n""",
+        prompt=f"""{solution} \n\n
+        Please rewrite the answer into the following format:
+        \n\n1. Situation: [situation name]
+        \n\n2. Rule: [rule number] [rule description]
+        \n\n3. Action: [write down the action to take]
+        """,
         history=[
             {"role": "system",
              "content": "You are an expert in parsing text into a specific format. Please help me with this task."},
         ]
     )
-
     st.markdown(body=solution)
