@@ -22,7 +22,7 @@ st.title(body=TITLE, anchor=None, help=None)
 
 
 DEFAULT_PROBLEM: str = (
-    'A ship on the port side coming to a crossing situation. What to do?'
+    'A vessel on the port side coming to a crossing situation. What to do?'
 )
 
 
@@ -61,49 +61,13 @@ if st.button(label='SOLVE',
             get_or_create_agent().solve(problem=st.session_state.typed_problem)
 
 
-def parse_recipe_text(text: str) -> dict[str, str]:
-    # Initialize an empty dictionary to store the parsed data
-    parsed_data = {"recipe_1": "", "recipe_2": "", "agent_advice": ""}
-
-    # Split the text by lines
-    lines = text.split("\n")
-
-    # Initialize a variable to keep track of the current section
-    current_section = None
-
-    # Loop through each line
-    for line in lines:
-        # Check if the line indicates the start of a new section
-        if "recipe_1:" in line:
-            current_section = "recipe_1"
-        elif "recipe_2:" in line:
-            current_section = "recipe_2"
-        elif "agent_advice:" in line:
-            current_section = "agent_advice"
-        elif current_section:
-            # If we are in a section, append the line to the corresponding key in the dictionary
-            parsed_data[current_section] += line + "\n"
-
-    # Remove any trailing newlines from the values
-    parsed_data = {key: value.strip() for key, value in parsed_data.items()}
-
-    return parsed_data
-
-
 if (solution := st.session_state.agent_solutions[st.session_state.typed_problem]):
     solution = OpenAILM.from_defaults().get_response(
-        prompt=f"""{solution} \n\n Please help me parse the above text into this format:\n
-         recipe_1: Show the recipe 1 here\n
-         recipe_2: Show the recipe 2 here\n
-         agent_advice: Show the agent's general considerations here\n
-         DO NOT forget the key and DO NOT change the key format.
-""",
+        prompt=f"""{solution} \n\n Please write down step by step instructions for the above problem. \n""",
         history=[
             {"role": "system",
              "content": "You are an expert in parsing text into a specific format. Please help me with this task."},
         ]
     )
-
-    # solution = parse_recipe_text(solution)
 
     st.markdown(body=solution)
