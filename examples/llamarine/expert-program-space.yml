@@ -1,6 +1,6 @@
 plan:
   task: |-
-    Recommend the user ask about A vessel on my port side coming to a crossing situation in my radar
+    Recommend the user ask about a vessel on boat side coming to a crossing situation in radar without specifying SOG or STW are being used.
   
   sub-htps:
     - task: |-
@@ -15,6 +15,8 @@ plan:
     - task: |-
         Please visually check the windows, not entirely relying on the radar. It's possible that this is a head on situation.
     - task: |-
-        If you sure this is a crossing situation, apply Rule 15 of the COLREGs. Show detail.
+        If you sure this is a crossing situation, first tell me the rule 15 of the COLREGs, then let me know the how to apply it in this situation.
     - task: |-
-        If you sure this is a head on situation, apply Rule 14 of the COLREGs. Show detail.
+        If you sure this is a head on situation, first tell me the rule 14 of the COLREGs, then let me know the how to apply it in this situation.
+    - task: |-
+        Compose to the final answer contains all above outputs.
