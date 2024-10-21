@@ -1,16 +1,22 @@
 plan:
   task: |-
-    Recommend the user what to do based on the identified situation interpretted from the user input.
+    Recommend the user ask about A vessel on my port side coming to a crossing situation in my radar
   
   sub-htps:
     - task: |-
-        Identify the input source from the user input: SOG (Speed Over Ground) and STW (Speed Through Water). If the input source is not specified, then accept both possible input sources (SOG vs STW).
-        
-    - task: |-     
-        Determine whether the situation is correct or not based on the input source. If the input source is STW, the situation provided by the user is correct. If the input source is SOG, the situation provided by the user may be incorrect. If the input source is not specified, the situation provided by the user may be incorrect.
+        Reject to answer due to lack of information or ambiguity in the user input. Request to know if SOG or STW is being used.
 
+plan:
+  task: |-
+    Recommend the user what to do based on the identified situation on radar. Only apply this if specifying SOG is being used.
+  
+  sub-htps:
     - task: |-
-        Determine the possible situations based on whether the situation provided by the user is correct or not. If the situation provided by the user is correct, the only possible situation is exactly the situation provided by the user. If the situation provided by the user is incorrect, the possible situations are both Head-on situation and the situation provided by the user. Maximum of 2 possible situations are allowed.
+        Please visually check the windows, not entirely relying on the radar. It's possible that this is a head on situation.
+    - task: |-
+        If you sure this is a crossing situation, apply Rule 15 of the COLREGs. Show detail.
+    - task: |-
+        If you sure this is a head on situation, apply Rule 14 of the COLREGs. Show detail.
+    - task: |-
+        SHow the answer in 2 recipes of the above 2 situations.
 
-    - task: |-
-        Find the most appropriate rule for each possible situation. For example: if a possible situation is Crossing, then apply the rule 15; if a possible situation is Head-on, then apply the rule 14. Maximum of 2 possible situations are allowed.
