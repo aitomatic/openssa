@@ -3,3 +3,4 @@ as crossing situation.
 STW based on water might avoid this ambiguty.
 
 Be careful with the risk misleading on radar such as display head on situation on the water as crossing situation.
+COLREGS was designed to all vessel, even without radar.
