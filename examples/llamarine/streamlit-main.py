@@ -29,7 +29,7 @@ DEFAULT_PROBLEM: str = (
 st.write('__PROBLEM/QUESTION__:')
 
 if 'typed_problem' not in st.session_state:
-    st.session_state.typed_problem: str = DEFAULT_PROBLEM
+    st.session_state.typed_problem: str = DEFAULT_PROBLEM + "Show the answer in detail."
 
 st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    value=st.session_state.typed_problem,

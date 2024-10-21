@@ -9,6 +9,7 @@ plan:
 plan:
   task: |-
     Recommend the user what to do based on the identified situation on radar. Only apply this if specifying SOG is being used.
+    Show the answer in 2 recipes of the above 2 situations in detail.
   
   sub-htps:
     - task: |-
@@ -17,6 +18,3 @@ plan:
         If you sure this is a crossing situation, apply Rule 15 of the COLREGs. Show detail.
     - task: |-
         If you sure this is a head on situation, apply Rule 14 of the COLREGs. Show detail.
-    - task: |-
-        SHow the answer in 2 recipes of the above 2 situations.
-
