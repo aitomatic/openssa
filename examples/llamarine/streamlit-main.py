@@ -1,16 +1,12 @@
 from collections import defaultdict
 
-from loguru import logger
 import streamlit as st
-
-from openssa import OpenAILM
+from loguru import logger
 
 # pylint: disable=wrong-import-order
 from agent import get_or_create_agent
 
-
 TITLE: str = 'OpenSSA: Maritime-Specific Agent'
-
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
@@ -20,11 +16,9 @@ st.set_page_config(page_title=TITLE,
 
 st.title(body=TITLE, anchor=None, help=None)
 
-
 DEFAULT_PROBLEM: str = (
     'A vessel on my port side coming to a crossing situation in my radar. SOG is being used. What to do?'
 )
-
 
 st.write('__PROBLEM/QUESTION__:')
 
@@ -42,10 +36,8 @@ st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    disabled=False,
                                                    label_visibility='collapsed')
 
-
 if 'agent_solutions' not in st.session_state:
     st.session_state.agent_solutions: defaultdict[str, str] = defaultdict(str)
-
 
 st.subheader('MARITIME-SPECIFIC AGENT')
 
@@ -59,7 +51,6 @@ if st.button(label='SOLVE',
 
         st.session_state.agent_solutions[st.session_state.typed_problem]: str = \
             get_or_create_agent().solve(problem=st.session_state.typed_problem)
-
 
 if (solution := st.session_state.agent_solutions[st.session_state.typed_problem]):
     st.markdown(body=solution)
