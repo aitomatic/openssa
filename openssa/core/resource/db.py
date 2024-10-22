@@ -9,15 +9,14 @@ which enables querying information from relational databases.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Any, Optional
+from dataclasses import dataclass
+from typing import Any
 import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 from .abstract import AbstractResource
 from ._global import global_register
-from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
 
 
 class MySQLDatabase:
