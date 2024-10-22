@@ -17,13 +17,13 @@ st.set_page_config(page_title=TITLE,
 st.title(body=TITLE, anchor=None, help=None)
 
 DEFAULT_PROBLEM: str = (
-    'A vessel on my port side coming to a crossing situation in my radar. SOG is being used. What to do?'
+    'A vessel on my port side coming to a crossing situation on my radar. SOG is being used. What should I do?'
 )
 
 st.write('__PROBLEM/QUESTION__:')
 
 if 'typed_problem' not in st.session_state:
-    st.session_state.typed_problem: str = DEFAULT_PROBLEM + "Show the answer in detail."
+    st.session_state.typed_problem: str = DEFAULT_PROBLEM
 
 st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    value=st.session_state.typed_problem,
