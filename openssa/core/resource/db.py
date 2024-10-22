@@ -14,6 +14,7 @@ from typing import Any
 import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
+from llama_index.core import SummaryIndex, Document
 
 from .abstract import AbstractResource
 from ._global import global_register
@@ -70,11 +71,15 @@ class DbResource(AbstractResource):
     def answer(self, question: str, n_words: int = 1000) -> str:
         """Answer question from database-stored Informational Resource."""
         data = self.fetch_data()
-        # Here you can implement a more sophisticated way to generate answers from the data
-        # For simplicity, we will just return the fetched data as a string
-        return str(data)
-
-    def __del__(self):
-        """Ensure the database connection is closed when the object is deleted."""
-        if hasattr(self, 'db'):
-            self.db.Session.close_all()
+        print(data)
+        # データベースから取得したデータをドキュメントに変換
+        documents = [Document(text=str(row[0]), metadata={'id': row[1]}) for row in data]
+        # print(documents)
+        index = SummaryIndex.from_documents(documents)
+        # print(index)
+        # set Logging to DEBUG for more detailed outputs
+        query_engine = index.as_query_engine()
+        # print(query_engine)
+        response = query_engine.query(question)
+        # print(response)
+        return response

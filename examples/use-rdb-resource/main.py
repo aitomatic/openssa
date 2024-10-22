@@ -24,6 +24,7 @@ if __name__ == '__main__':
     )
 
     query = generate_sql_from_prompt(QUESTION)
+    print(query)
     answer = solve(QUESTION, query)
 
     print('--------------------------------')

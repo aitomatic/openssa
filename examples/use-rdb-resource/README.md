@@ -22,3 +22,5 @@
   - `poetry run python make_example_table_data.py`
     - if this command doesn't work, then run `poetry env use 3.12`
       - change python version to resolve dependensies version
+  - `poetry run python main.py`
+    - run main file to answer question by DANA using DbResource, and see the result in the terminal.
