@@ -154,11 +154,24 @@ class HTP(AbstractProgram):
             for sub_htp in tqdm(decomposed_htp.sub_htps):
                 sub_results.append((sub_htp.task.ask, sub_htp.execute(knowledge=knowledge, other_results=sub_results)))
 
-            inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
-                           '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
-                           f'{reasoning_wo_sub_results}\n'
-                           '\n\n' +
-                           '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+            # inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
+            #                '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
+            #                f'{reasoning_wo_sub_results}\n'
+            #                '\n\n' +
+            #                '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+            #                             '\n'
+            #                             f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+            #                            for i, (ask, result) in enumerate(sub_results)) +
+            #                (('\n\n' +
+            #                  '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+            #                               '\n'
+            #                               f'OTHER RESULT #{i + 1}:\n{result}\n')
+            #                              for i, (ask, result) in enumerate(other_results)))
+            #                 if other_results
+            #                 else ''))
+            
+            inputs: str = ("If supporting information request for clarification or more information, just request more information without doing any other thing. " 
+                           + '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
                                         '\n'
                                         f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
                                        for i, (ask, result) in enumerate(sub_results)) +
