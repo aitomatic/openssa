@@ -1,16 +1,13 @@
 from collections import defaultdict
 
-from loguru import logger
 import streamlit as st
-
-from openssa import OpenAILM
+from loguru import logger
 
 # pylint: disable=wrong-import-order
 from agent import get_or_create_agent
-
+from openssa import OpenAILM
 
 TITLE: str = 'OpenSSA: Semiconductor Industry-Specific Agent leveraging SemiKong LM'
-
 
 st.set_page_config(page_title=TITLE,
                    page_icon=None,
@@ -20,7 +17,6 @@ st.set_page_config(page_title=TITLE,
 
 st.title(body=TITLE, anchor=None, help=None)
 
-
 DEFAULT_PROBLEM: str = (
     'I am trying to etch 2 μm of PECVD SiO2 using a ~4 μm PR mask to create a pattern of 20 * 60 μm. '
     '\n'
@@ -28,7 +24,6 @@ DEFAULT_PROBLEM: str = (
     '\n'
     'Recommend me 2 recipes and their pros & cons.'
 )
-
 
 st.write('__PROBLEM/QUESTION__:')
 
@@ -46,10 +41,8 @@ st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    disabled=False,
                                                    label_visibility='collapsed')
 
-
 if 'semikong_agent_solutions' not in st.session_state:
     st.session_state.semikong_agent_solutions: defaultdict[str, str] = defaultdict(str)
-
 
 st.subheader('SEMICONDUCTOR INDUSTRY-SPECIFIC AGENT')
 st.subheader('_using `SemiKong` LM_')
