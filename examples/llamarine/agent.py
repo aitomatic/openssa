@@ -3,26 +3,24 @@ from __future__ import annotations
 from argparse import ArgumentParser
 from functools import cache
 
-from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
-
-# pylint: disable=wrong-import-order
-from data_and_knowledge import EXPERT_PROGRAM_SPACE, EXPERT_KNOWLEDGE
+from data_and_knowledge import EXPERT_PROGRAMS, EXPERT_KNOWLEDGE
+from openssa import DANA, ProgramStore, HTP, HTPlanner, OpenAILM
 
 
 @cache
-def get_or_create_agent(max_depth=2, max_subtasks_per_decomp=4) -> Agent:
+def get_or_create_agent(max_depth=2, max_subtasks_per_decomp=4) -> DANA:
     lm = OpenAILM.from_defaults()
 
-    program_space = ProgramSpace(lm=lm)
-    if EXPERT_PROGRAM_SPACE:
-        for program_name, htp_dict in EXPERT_PROGRAM_SPACE.items():
+    program_store = ProgramStore(lm=lm)
+    if EXPERT_PROGRAMS:
+        for program_name, htp_dict in EXPERT_PROGRAMS.items():
             htp = HTP.from_dict(htp_dict)
-            program_space.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
+            program_store.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
 
-    return Agent(program_space=program_space,
-                 programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
-                 knowledge={EXPERT_KNOWLEDGE} if EXPERT_KNOWLEDGE else None,
-                 resources={})
+    return DANA(program_store=program_store,
+                programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
+                knowledge={EXPERT_KNOWLEDGE} if EXPERT_KNOWLEDGE else None,
+                resources={})
 
 
 if __name__ == '__main__':
