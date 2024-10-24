@@ -127,7 +127,7 @@ async def post_data(data: dict):
     try:
         parsed_answer = solve_semiconductor_question(question)
         return parsed_answer
-    except:
+    except Exception:
         # logger.error(f"Error solving the question: {e}")
         # return {"error": str(e)}, 500
         time.sleep(10)
