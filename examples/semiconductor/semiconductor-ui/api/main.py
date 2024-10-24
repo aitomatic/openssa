@@ -1,4 +1,5 @@
 import os
+import time
 from collections import defaultdict
 
 import openai
@@ -33,8 +34,6 @@ def get_or_create_agent(
         resources={},
     )
 
-
-import time
 
 app = FastAPI()
 
