@@ -1,3 +1,4 @@
+import logging
 import os
 import time
 from collections import defaultdict
@@ -10,6 +11,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from data_and_knowledge import EXPERT_PROGRAM_SPACE, EXPERT_KNOWLEDGE
 from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
 from semikong_lm import SemiKongLM
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 
 def get_or_create_agent(
@@ -130,11 +134,13 @@ async def post_data(data: dict):
         parsed_answer = solve_semiconductor_question(question)
         return parsed_answer
     except ValueError as e:
-        return {"error": f"Value error: {str(e)}"}, 400
+        logger.error(f"Value error: {str(e)}")
+        return {"error": "A value error has occurred."}, 400
     except RuntimeError as e:
-        return {"error": f"Runtime error: {str(e)}"}, 500
-    except Exception:
-        # logger.error(f"Error solving the question: {e}")
+        logger.error(f"Runtime error: {str(e)}")
+        return {"error": "A runtime error has occurred."}, 500
+    except Exception as e:
+        logger.error(f"Error solving the question: {e}")
         # return {"error": str(e)}, 500
         time.sleep(10)
         return """
