@@ -50,7 +50,7 @@ if st.button(label='SOLVE',
         logger.level('DEBUG')
 
         st.session_state.agent_solutions[st.session_state.typed_problem]: str = \
-            get_or_create_agent().solve(problem=st.session_state.typed_problem)
+            get_or_create_agent().solve(problem=st.session_state.typed_problem, allow_reject=True)
 
 if (solution := st.session_state.agent_solutions[st.session_state.typed_problem]):
     st.markdown(body=solution)
