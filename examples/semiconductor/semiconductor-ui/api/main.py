@@ -139,8 +139,8 @@ async def post_data(data: dict):
         parsed_answer = solve_semiconductor_question(question)
         return parsed_answer
     except ValueError as e:
-        logger.error("Value error: %s", str(e))
+        logger.exception("Value error: %s", str(e))
         return DEFAULT_ANSWER
     except RuntimeError as e:
-        logger.error("Runtime error: %s", str(e))
+        logger.exception("Runtime error: %s", str(e))
         return DEFAULT_ANSWER
