@@ -129,6 +129,10 @@ async def post_data(data: dict):
     try:
         parsed_answer = solve_semiconductor_question(question)
         return parsed_answer
+    except ValueError as e:
+        return {"error": f"Value error: {str(e)}"}, 400
+    except RuntimeError as e:
+        return {"error": f"Runtime error: {str(e)}"}, 500
     except Exception:
         # logger.error(f"Error solving the question: {e}")
         # return {"error": str(e)}, 500
