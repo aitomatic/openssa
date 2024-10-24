@@ -15,7 +15,6 @@ There is also a horizontal results-sharing mechanism
 to enable the execution of a subsequent HTP node to benefit from results from earlier nodes at the same depth level.
 """
 
-
 from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
@@ -24,13 +23,12 @@ from types import SimpleNamespace
 from typing import TypedDict, Required, NotRequired, TYPE_CHECKING
 
 from loguru import logger
-from tqdm import tqdm
-
-from openssa.core.programming.base.program import BaseProgram
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
+from openssa.core.programming.base.program import BaseProgram
 from openssa.core.reasoning.ooda.ooda_reasoner import OodaReasoner
-from openssa.core.task.task import Task, TaskDict
 from openssa.core.task.status import TaskStatus
+from openssa.core.task.task import Task, TaskDict
+from tqdm import tqdm
 
 from ._prompts import HTP_RESULTS_SYNTH_PROMPT_TEMPLATE
 
@@ -38,10 +36,7 @@ if TYPE_CHECKING:
     from openssa.core.reasoning.base import BaseReasoner
     from openssa.core.resource.base import BaseResource
     from openssa.core.knowledge.base import Knowledge
-    from openssa.core.util.lm.base import LMChatHist
     from openssa.core.util.misc import AskAnsPair
-    from .planner import HTPlanner
-
 
 type HTPDict = TypedDict('HTPDict', {'task': Required[TaskDict | str],
                                      'sub-htps': NotRequired[list[HTPDict]]},
@@ -129,7 +124,8 @@ class HTP(BaseProgram):
         self.fill_missing_resources()  # TODO: optimize to not always use all resources
 
         # first, attempt direct solution with Reasoner
-        reasoning_wo_sub_results: str = self.reasoner.reason(task=self.task, knowledge=knowledge, other_results=other_results)  # noqa: E501
+        reasoning_wo_sub_results: str = self.reasoner.reason(task=self.task, knowledge=knowledge,
+                                                             other_results=other_results)  # noqa: E501
 
         if self.sub_htps:
             decomposed_htp: HTP = self
@@ -138,7 +134,8 @@ class HTP(BaseProgram):
         # and if there is still allowed recursive depth,
         # use Programmer to decompose Problem into sub-HTPs
         elif (self.task.is_attempted and not self.task.is_done) and (self.programmer and self.programmer.max_depth):
-            decomposed_htp: HTP = self.programmer.create_htp(task=self.task, knowledge=knowledge, reasoner=self.reasoner)
+            decomposed_htp: HTP = self.programmer.create_htp(task=self.task, knowledge=knowledge,
+                                                             reasoner=self.reasoner)
 
         else:
             decomposed_htp = None
@@ -169,19 +166,21 @@ class HTP(BaseProgram):
             #                              for i, (ask, result) in enumerate(other_results)))
             #                 if other_results
             #                 else ''))
-            
-            inputs: str = ("If supporting information request for clarification or more information, just request more information without doing any other thing. " 
-                           + '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                        '\n'
-                                        f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                       for i, (ask, result) in enumerate(sub_results)) +
-                           (('\n\n' +
-                             '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                          '\n'
-                                          f'OTHER RESULT #{i + 1}:\n{result}\n')
-                                         for i, (ask, result) in enumerate(other_results)))
-                            if other_results
-                            else ''))
+
+            inputs: str = (
+                        "If supporting information request for clarification or more information, "
+                        "just request more information without doing any other thing. "
+                        + '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                       '\n'
+                                       f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                      for i, (ask, result) in enumerate(sub_results)) +
+                        (('\n\n' +
+                          '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                       '\n'
+                                       f'OTHER RESULT #{i + 1}:\n{result}\n')
+                                      for i, (ask, result) in enumerate(other_results)))
+                         if other_results
+                         else ''))
 
             self.task.result: str = self.reasoner.lm.get_response(
                 prompt=HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(ask=self.task.ask, info=inputs),
