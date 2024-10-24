@@ -96,7 +96,7 @@ def solve_semiconductor_question(question):
     solution = solution.replace("$", r"\$")
 
     prompt = f"""{solution} \n\n Please help me parse the above text into this format:\n
-         recipe_1: Show the recipe 1 here\n 
+         recipe_1: Show the recipe 1 here\n
          recipe_2: Show the recipe 2 here\n
          agent_advice: Show the agent's general considerations here\n
          DO NOT forget the key and DO NOT change the key format.
