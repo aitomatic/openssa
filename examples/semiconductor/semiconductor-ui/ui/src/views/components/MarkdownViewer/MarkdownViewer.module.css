@@ -16,12 +16,14 @@
 
 .content ul {
     @apply pl-6;
-    list-style: disc;   
+
+    list-style: disc;
 }
 
 .content ol {
     @apply pl-6;
-    list-style: decimal;   
+
+    list-style: decimal;
 }
 
 .content-small {
