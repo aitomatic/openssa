@@ -115,7 +115,7 @@ class HTP(BaseProgram):
                        task=replace(self.task, ask=self.task.ask.format(**kwargs)),
                        sub_htps=[sub_htp.adapt(**kwargs) for sub_htp in self.sub_htps])
 
-    def execute(self, knowledge: set[Knowledge] | None = None, other_results: list[AskAnsPair] | None = None, 
+    def execute(self, knowledge: set[Knowledge] | None = None, other_results: list[AskAnsPair] | None = None,
                 allow_reject: bool = False) -> str:
         # pylint: disable=arguments-differ
         """Execute and return string result, using specified Reasoner to work through involved Task & Sub-Tasks.
@@ -155,35 +155,35 @@ class HTP(BaseProgram):
             # If the Reasoner allows for rejecting to answer due to lack of information
             if allow_reject:
                 inputs: str = (
-                            "If supporting information request for clarification or more information, "
-                            "just request more information without doing any other thing. "
-                            + '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                        '\n'
-                                        f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                        for i, (ask, result) in enumerate(sub_results)) +
-                            (('\n\n' +
-                            '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                        '\n'
-                                        f'OTHER RESULT #{i + 1}:\n{result}\n')
-                                        for i, (ask, result) in enumerate(other_results)))
-                            if other_results
-                            else ''))
+                        "If supporting information request for clarification or more information, "
+                        "just request more information without doing any other thing. "
+                        + '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                       '\n'
+                                       f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                      for i, (ask, result) in enumerate(sub_results)) +
+                        (('\n\n' +
+                          '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                       '\n'
+                                       f'OTHER RESULT #{i + 1}:\n{result}\n')
+                                      for i, (ask, result) in enumerate(other_results)))
+                         if other_results
+                         else ''))
             else:
                 inputs: str = ('REASONING WITHOUT SUPPORTING/OTHER RESULTS '
-                           '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
-                           f'{reasoning_wo_sub_results}\n'
-                           '\n\n' +
-                           '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                        '\n'
-                                        f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
-                                       for i, (ask, result) in enumerate(sub_results)) +
-                           (('\n\n' +
-                             '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
-                                          '\n'
-                                          f'OTHER RESULT #{i + 1}:\n{result}\n')
-                                         for i, (ask, result) in enumerate(other_results)))
-                            if other_results
-                            else ''))
+                               '(preliminary conclusions here can be overriden by more convincing supporting/other data):\n'
+                               f'{reasoning_wo_sub_results}\n'
+                               '\n\n' +
+                               '\n\n'.join((f'SUPPORTING QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                            '\n'
+                                            f'SUPPORTING RESULT #{i + 1}:\n{result}\n')
+                                           for i, (ask, result) in enumerate(sub_results)) +
+                               (('\n\n' +
+                                 '\n\n'.join((f'OTHER QUESTION/TASK #{i + 1}:\n{ask}\n'
+                                              '\n'
+                                              f'OTHER RESULT #{i + 1}:\n{result}\n')
+                                             for i, (ask, result) in enumerate(other_results)))
+                                if other_results
+                                else ''))
 
             self.task.result: str = self.reasoner.lm.get_response(
                 prompt=HTP_RESULTS_SYNTH_PROMPT_TEMPLATE.format(ask=self.task.ask, info=inputs),
