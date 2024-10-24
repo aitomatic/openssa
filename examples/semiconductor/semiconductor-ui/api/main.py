@@ -134,13 +134,13 @@ async def post_data(data: dict):
         parsed_answer = solve_semiconductor_question(question)
         return parsed_answer
     except ValueError as e:
-        logger.error(f"Value error: {str(e)}")
+        logger.error("Value error: %s", str(e))
         return {"error": "A value error has occurred."}, 400
     except RuntimeError as e:
-        logger.error(f"Runtime error: {str(e)}")
+        logger.error("Runtime error: %s", str(e))
         return {"error": "A runtime error has occurred."}, 500
     except Exception as e:
-        logger.error(f"Error solving the question: {e}")
+        logger.error("Error solving the question: %s", str(e))
         # return {"error": str(e)}, 500
         time.sleep(10)
         return """
