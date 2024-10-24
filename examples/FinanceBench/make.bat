@@ -5,15 +5,17 @@
 :: =======
 SET TARGET=%1
 
-IF "%TARGET%"=="agent-solve" GOTO agent-solve
-IF "%TARGET%"=="agent-solve-w-prog-space" GOTO agent-solve-w-prog-space
-IF "%TARGET%"=="agent-solve-w-knowledge" GOTO agent-solve-w-knowledge
-IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space" GOTO agent-solve-w-knowledge-and-prog-space
-IF "%TARGET%"=="agent-solve-w-llama3" GOTO agent-solve-w-llama3
-IF "%TARGET%"=="agent-solve-w-prog-space-w-llama3" GOTO agent-solve-w-prog-space-w-llama3
-IF "%TARGET%"=="agent-solve-w-knowledge-w-llama3" GOTO agent-solve-w-knowledge-w-llama3
-IF "%TARGET%"=="agent-solve-w-knowledge-and-prog-space-w-llama3" GOTO agent-solve-w-knowledge-and-prog-space-w-llama3
+IF "%TARGET%"=="dana-solve" GOTO dana-solve
+IF "%TARGET%"=="dana-solve-w-prog-store" GOTO dana-solve-w-prog-store
+IF "%TARGET%"=="dana-solve-w-knowledge" GOTO dana-solve-w-knowledge
+IF "%TARGET%"=="dana-solve-w-knowledge-and-prog-store" GOTO dana-solve-w-knowledge-and-prog-store
+IF "%TARGET%"=="dana-solve-w-llama" GOTO dana-solve-w-llama
+IF "%TARGET%"=="dana-solve-w-prog-store-w-llama" GOTO dana-solve-w-prog-store-w-llama
+IF "%TARGET%"=="dana-solve-w-knowledge-w-llama" GOTO dana-solve-w-knowledge-w-llama
+IF "%TARGET%"=="dana-solve-w-knowledge-and-prog-store-w-llama" GOTO dana-solve-w-knowledge-and-prog-store-w-llama
+IF "%TARGET%"=="dana-solve-all-combos" GOTO dana-solve-all-combos
 
+IF "%TARGET%"=="langchain-react-solve" GOTO langchain-react-solve
 IF "%TARGET%"=="openai-assist" GOTO openai-assist
 
 IF "%TARGET%"=="rag-default-answer" GOTO rag-default-answer
@@ -29,38 +31,53 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 :: BATCH INFERENCING
 :: =================
-:agent-solve
-  poetry run python htp_oodar_agent.py %2
+:dana-solve
+  poetry run python dana.py %2
   GOTO end
 
-:agent-solve-w-knowledge
-  poetry run python htp_oodar_agent.py %2 --knowledge
+:dana-solve-w-knowledge
+  poetry run python dana.py %2 --knowledge
   GOTO end
 
-:agent-solve-w-prog-space
-  poetry run python htp_oodar_agent.py %2 --prog-space
+:dana-solve-w-prog-store
+  poetry run python dana.py %2 --prog-store
   GOTO end
 
-:agent-solve-w-knowledge-and-prog-space
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space
+:dana-solve-w-knowledge-and-prog-store
+  poetry run python dana.py %2 --knowledge --prog-store
   GOTO end
 
-:agent-solve-w-llama3
-  poetry run python htp_oodar_agent.py %2 --llama3
+:dana-solve-w-llama
+  poetry run python dana.py %2 --llama
   GOTO end
 
-:agent-solve-w-knowledge-w-llama3
-  poetry run python htp_oodar_agent.py %2 --knowledge --llama3
+:dana-solve-w-knowledge-w-llama
+  poetry run python dana.py %2 --knowledge --llama
   GOTO end
 
-:agent-solve-w-prog-space-w-llama3
-  poetry run python htp_oodar_agent.py %2 --prog-space --llama3
+:dana-solve-w-prog-store-w-llama
+  poetry run python dana.py %2 --prog-store --llama
   GOTO end
 
-:agent-solve-w-knowledge-and-prog-space-w-llama3
-  poetry run python htp_oodar_agent.py %2 --knowledge --prog-space --llama3
+:dana-solve-w-knowledge-and-prog-store-w-llama
+  poetry run python dana.py %2 --knowledge --prog-store --llama
   GOTO end
 
+:dana-solve-all-combos
+  poetry run python dana.py %2
+  poetry run python dana.py %2 --knowledge
+  poetry run python dana.py %2 --prog-space
+  poetry run python dana.py %2 --knowledge --prog-space
+  poetry run python dana.py %2 --llama
+  poetry run python dana.py %2 --knowledge --llama
+  poetry run python dana.py %2 --prog-space --llama
+  poetry run python dana.py %2 --knowledge --prog-space --llama
+  GOTO end
+
+
+:langchain-react-solve
+  poetry run python langchain_react.py %2
+  GOTO end
 
 :openai-assist
   poetry run python openai_assist.py %2
@@ -68,7 +85,7 @@ IF "%TARGET%"=="streamlit-run" GOTO streamlit-run
 
 
 :rag-default-answer
-  poetry run python rag_default.py %2
+  poetry run python rag.py %2
   GOTO end
 
 :rag-test

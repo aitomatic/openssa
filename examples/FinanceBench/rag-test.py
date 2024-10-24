@@ -7,7 +7,7 @@ from openssa import LMConfig
 # pylint: disable=wrong-import-order
 from data_and_knowledge import DocName, Doc, RAG_GROUND_TRUTHS
 from eval import get_lm, EVAL_PROMPT_TEMPLATE
-from rag_default import get_or_create_file_resource
+from rag import get_or_create_file_resource
 
 
 DEFS: dict[str, str] = RAG_GROUND_TRUTHS['defs']

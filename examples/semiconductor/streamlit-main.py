@@ -56,7 +56,7 @@ if st.button(label='SOLVE',
         logger.level('DEBUG')
 
         st.session_state.semikong_agent_solutions[st.session_state.typed_problem]: str = \
-            get_or_create_agent(use_semikong_lm=True).solve(problem=st.session_state.typed_problem)
+            get_or_create_agent(use_semikong_lm=False).solve(problem=st.session_state.typed_problem)
 
 
 def parse_recipe_text(text: str) -> dict[str, str]:

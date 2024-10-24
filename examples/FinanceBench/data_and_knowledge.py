@@ -160,9 +160,9 @@ FB_IDS_BY_DOC_NAME: dict[DocName, list[FbId]] = META_DF.groupby('doc_name').appl
 QS_BY_FB_ID: dict[FbId, Question] = META_DF.question.to_dict()
 
 
-LOCAL_CACHE_DIR_PATH: Path = Path(__file__).parent / '.data'
-LOCAL_CACHE_DOCS_DIR_PATH: Path = LOCAL_CACHE_DIR_PATH / 'docs'
-OUTPUT_FILE_PATH: Path = LOCAL_CACHE_DIR_PATH / 'output.csv'
+DATA_LOCAL_DIR_PATH: Path = Path(__file__).parent / '.data'
+DOCS_DATA_LOCAL_DIR_PATH: Path = DATA_LOCAL_DIR_PATH / 'docs'
+OUTPUT_FILE_PATH: Path = DATA_LOCAL_DIR_PATH / 'output.csv'
 
 
 GROUND_TRUTHS_FILE_PATH = Path(__file__).parent / 'ground-truths.yml'
@@ -179,7 +179,9 @@ N_CASES: int = len(GROUND_TRUTHS)
 CAT_DISTRIB: Counter[Category] = Counter(ground_truth['category'] for ground_truth in GROUND_TRUTHS.values())
 
 
-EXPERT_KNOWLEDGE_FILE_PATH: Path = Path(__file__).parent / 'expert-knowledge.txt'
+EXPERTISE_DIR_PATH: Path = Path(__file__).parent / 'expertise'
+
+EXPERT_KNOWLEDGE_FILE_PATH: Path = EXPERTISE_DIR_PATH / 'expert-knowledge.txt'
 with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
@@ -189,16 +191,15 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
           opener=None) as f:
     EXPERT_KNOWLEDGE: str = f.read()
 
-
-EXPERT_PROGRAM_SPACE_FILE_PATH: Path = Path(__file__).parent / 'expert-program-space.yml'
-with open(file=EXPERT_PROGRAM_SPACE_FILE_PATH,
+EXPERT_PROGRAMS_FILE_PATH: Path = EXPERTISE_DIR_PATH / 'expert-programs.yml'
+with open(file=EXPERT_PROGRAMS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
           errors='strict',
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PROGRAM_SPACE: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
+    EXPERT_PROGRAMS: dict[ExpertPlanId, HTPDict] = yaml.safe_load(stream=f)
 
 EXPERT_HTP_COMPANY_KEY: str = 'COMPANY'
 EXPERT_HTP_PERIOD_KEY: str = 'PERIOD'
@@ -251,7 +252,7 @@ class Doc:
 
     @cached_property
     def dir_path(self) -> Path:
-        dir_path: Path = LOCAL_CACHE_DOCS_DIR_PATH / self.name
+        dir_path: Path = DOCS_DATA_LOCAL_DIR_PATH / self.name
 
         if not (file_path := dir_path / f'{self.name}.pdf').is_file():
             dir_path.mkdir(parents=True, exist_ok=True)

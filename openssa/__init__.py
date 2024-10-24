@@ -11,18 +11,18 @@ from importlib.metadata import version, PackageNotFoundError
 from pathlib import Path
 import tomllib
 
-from .core.agent.agent import Agent
+from .core.agent.dana import DANA
 
-from .core.program_space import ProgramSpace
+from .core.program_store.program_store import ProgramStore
 from .core.programming.hierarchical.plan import HTP
 from .core.programming.hierarchical.planner import HTPlanner
 
-from .core.reasoning.base import BaseReasoner
-from .core.reasoning.ooda import OodaReasoner
+from .core.reasoning.ooda.ooda_reasoner import OodaReasoner
+from .core.reasoning.simple.simple_reasoner import SimpleReasoner
 
 from .core.resource.file import FileResource
 
-from .core.task import Task
+from .core.task.task import Task
 
 from .core.util.lm.config import LMConfig
 from .core.util.lm.huggingface import HuggingFaceLM

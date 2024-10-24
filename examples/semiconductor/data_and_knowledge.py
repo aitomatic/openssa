@@ -24,7 +24,7 @@ with open(file=EXPERT_KNOWLEDGE_FILE_PATH,
     EXPERT_KNOWLEDGE: str = f.read()
 
 
-EXPERT_PROGRAM_SPACE_FILE_PATH: Path = Path(__file__).parent / 'expert-program-space.yml'
+EXPERT_PROGRAM_SPACE_FILE_PATH: Path = Path(__file__).parent / 'expert-program-store.yml'
 with open(file=EXPERT_PROGRAM_SPACE_FILE_PATH,
           buffering=-1,
           encoding='utf-8',
@@ -32,4 +32,4 @@ with open(file=EXPERT_PROGRAM_SPACE_FILE_PATH,
           newline=None,
           closefd=True,
           opener=None) as f:
-    EXPERT_PROGRAM_SPACE: dict[str, HTPDict] = yaml.safe_load(stream=f)
+    EXPERT_PROGRAMS: dict[str, HTPDict] = yaml.safe_load(stream=f)
