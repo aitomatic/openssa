@@ -1,18 +1,18 @@
 import os
+from collections import defaultdict
+
+import openai
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from collections import defaultdict
-import openai
-from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
-
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import EXPERT_PROGRAM_SPACE, EXPERT_KNOWLEDGE
+from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
 from semikong_lm import SemiKongLM
 
 
 def get_or_create_agent(
-    use_semikong_lm: bool = True, max_depth=2, max_subtasks_per_decomp=4
+        use_semikong_lm: bool = True, max_depth=2, max_subtasks_per_decomp=4
 ) -> Agent:
     lm = (SemiKongLM if use_semikong_lm else OpenAILM).from_defaults()
 
@@ -48,6 +48,7 @@ app.add_middleware(
 
 client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
+
 def call_gpt(prompt):
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -60,6 +61,7 @@ def call_gpt(prompt):
         ],
     )
     return response.choices[0].message.content
+
 
 def parse_recipe_text(text):
     parsed_data = {"recipe_1": "", "recipe_2": "", "agent_advice": ""}
@@ -78,6 +80,7 @@ def parse_recipe_text(text):
 
     parsed_data = {key: value.strip() for key, value in parsed_data.items()}
     return parsed_data
+
 
 def solve_semiconductor_question(question):
     start = time.time()
