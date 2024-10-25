@@ -3,15 +3,13 @@ from __future__ import annotations
 from argparse import ArgumentParser
 from functools import cache
 
-# pylint: disable=wrong-import-order
 from data_and_knowledge import EXPERT_PROGRAMS, EXPERT_KNOWLEDGE
 from openssa import DANA, ProgramStore, HTP, HTPlanner, OpenAILM
-from semikong_lm import SemiKongLM
 
 
 @cache
-def get_or_create_agent(use_semikong_lm: bool = True, max_depth=2, max_subtasks_per_decomp=4) -> DANA:
-    lm = (SemiKongLM if use_semikong_lm else OpenAILM).from_defaults()
+def get_or_create_agent(max_depth=2, max_subtasks_per_decomp=4) -> DANA:
+    lm = OpenAILM.from_defaults()
 
     program_store = ProgramStore(lm=lm)
     if EXPERT_PROGRAMS:

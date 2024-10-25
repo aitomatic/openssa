@@ -41,7 +41,7 @@ class BaseProgram(ABC):
         """Return adapted copy."""
 
     @abstractmethod
-    def execute(self, knowledge: set[Knowledge] | None = None, **kwargs: Any) -> str:
+    def execute(self, knowledge: set[Knowledge] | None = None, allow_reject: bool = False, **kwargs: Any) -> str:
         """Execute and return string result.
 
         Execution also optionally takes into account domain-specific Knowledge.

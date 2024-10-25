@@ -86,7 +86,8 @@ class DANA:
         """Add new Resource(s)."""
         self.resources.update(new_resources)
 
-    def solve(self, problem: str, adaptations_from_known_programs: dict[str, Any] | None = None) -> str:
+    def solve(self, problem: str, adaptations_from_known_programs: dict[str, Any] | None = None,
+              allow_reject: bool = False) -> str:
         """Solve the posed Problem.
 
         First either find from the Program Store a solution Program suitable for the Problem,
@@ -103,4 +104,4 @@ class DANA:
             self.programmer.create_program(task=task, knowledge=self.knowledge)
         )
 
-        return program.execute(knowledge=self.knowledge)
+        return program.execute(knowledge=self.knowledge, allow_reject=allow_reject)
