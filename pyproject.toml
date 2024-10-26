@@ -64,6 +64,7 @@ ruff = ">=0.6"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=8.3"
+alembic = "^1.13.3"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
@@ -103,7 +104,6 @@ streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 langchainhub = ">=0.1"
 faiss-cpu = ">=1.8"
 pymysql = "^1.1.1"
-alembic = "^1.13.3"
 
 [tool.poetry.extras]
 contrib = [
