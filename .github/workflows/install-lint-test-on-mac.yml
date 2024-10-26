@@ -43,6 +43,16 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install Docker
+        run: |
+          brew install --cask docker
+          open /Applications/Docker.app
+          # Wait for Docker to start
+          while ! docker system info; do
+            echo "Waiting for Docker to start..."
+            sleep 5
+          done
+
       - name: Install Poetry
         run: make get-poetry
 
