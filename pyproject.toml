@@ -103,6 +103,7 @@ streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 langchainhub = ">=0.1"
 faiss-cpu = ">=1.8"
 pymysql = "^1.1.1"
+alembic = "^1.13.3"
 
 [tool.poetry.extras]
 contrib = [
