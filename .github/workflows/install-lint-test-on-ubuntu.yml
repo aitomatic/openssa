@@ -68,7 +68,7 @@ jobs:
         run: |
           python -m alembic upgrade head
         env:
-          DATABASE_URL: mysql+pymysql://root:@127.0.0.1/test
+          DATABASE_URL: mysql+pymysql://root@127.0.0.1/test
 
       - name: Lint Code
         run: make lint
