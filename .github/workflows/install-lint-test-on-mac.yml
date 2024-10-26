@@ -43,15 +43,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Docker
-        run: |
-          brew install --cask docker
-          open /Applications/Docker.app
-          # Wait for Docker to start
-          while ! docker system info; do
-            echo "Waiting for Docker to start..."
-            sleep 5
-          done
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
       - name: Install Poetry
         run: make get-poetry
@@ -77,4 +70,3 @@ jobs:
           MYSQL_USER: root
           MYSQL_PASSWORD: password
           MYSQL_DATABASE: test
-          DB_PORT: 3306
