@@ -1,5 +1,6 @@
 import os
 import random
+import secrets
 
 from dotenv import load_dotenv
 from faker import Faker
@@ -67,8 +68,8 @@ regions = ["North America", "Europe", "Asia", "South America", "Africa"]
 def generate_sales_data(session, num_records):
     sales_data_list = []
     for _ in range(num_records):
-        product = random.choice(products)
-        region = random.choice(regions)
+        product = secrets.choice(products)
+        region = secrets.choice(regions)
         sale_date = fake.date_between(start_date='-1y', end_date='today')
         sales_data = SalesData(
             product_id=product["id"],
