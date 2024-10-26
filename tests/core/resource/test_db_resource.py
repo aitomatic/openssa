@@ -3,7 +3,8 @@ from openssa.core.resource.db import DbResource
 
 load_dotenv()
 
-#TODO: Fix hallucination
+
+# TODO: Fix hallucination
 # Given Data: [(1, 'Laptop', 100000), (2, 'Smartphone', 60000), (3, 'Headphones', 8000), (4, 'Keyboard', 3000), (5, 'Mouse', 2000), (6, 'Monitor', 25000), (7, 'Tablet', 50000), (8, 'Smartwatch', 20000), (9, 'Camera', 45000), (10, 'Speaker', 15000)]
 # Answer: The item that is the most expensive from the given data is the Camera.
 # The Answer Should be: Laptop(100000).
@@ -21,5 +22,6 @@ def test_db_resource():
     _ = rdb1.answer(test_question)
     # assert isinstance(answer, str)
     print(_)
+
 
 test_db_resource()
