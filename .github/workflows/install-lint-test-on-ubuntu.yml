@@ -55,6 +55,9 @@ jobs:
             sleep 5
           done
 
+      - name: Install MySQL Driver
+        run: pip install pymysql
+
       - name: Install Alembic
         run: pip install alembic
 
