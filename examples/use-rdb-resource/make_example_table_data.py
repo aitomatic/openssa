@@ -1,14 +1,17 @@
+import os
+import random
+
+from dotenv import load_dotenv
+from faker import Faker
 from sqlalchemy import Column, Integer, String, Date, inspect, create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from faker import Faker
-import random
-from dotenv import load_dotenv
-import os
+
 from myvanna import train_vanna_for_sales_data
 
 load_dotenv()
 
 Base = declarative_base()
+
 
 class SalesData(Base):
     __tablename__ = 'sales_data'
@@ -17,6 +20,7 @@ class SalesData(Base):
     product_name = Column(String(255))
     sale_date = Column(Date)
     region = Column(String(255))
+
 
 class MySQLDatabase:
     def __init__(self):
@@ -43,6 +47,7 @@ class MySQLDatabase:
         if inspector.has_table(table_class.__tablename__):
             table_class.__table__.drop(self.engine)
 
+
 fake = Faker()
 seed_value = 42
 random.seed(seed_value)
@@ -57,6 +62,7 @@ products = [
 ]
 
 regions = ["North America", "Europe", "Asia", "South America", "Africa"]
+
 
 def generate_sales_data(session, num_records):
     sales_data_list = []
@@ -73,6 +79,7 @@ def generate_sales_data(session, num_records):
         sales_data_list.append(sales_data)
     session.bulk_save_objects(sales_data_list)
     session.commit()
+
 
 if __name__ == "__main__":
     db = MySQLDatabase()
