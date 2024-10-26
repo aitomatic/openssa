@@ -49,6 +49,13 @@ jobs:
       - name: Install Package & Dependencies
         run: make install
 
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping -h 127.0.0.1 --silent; do
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
+
       - name: Lint Code
         run: make lint
 
