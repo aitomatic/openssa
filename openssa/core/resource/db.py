@@ -33,7 +33,7 @@ class MySQLDatabase:
         username = os.getenv('DB_USERNAME')
         password = os.getenv('DB_PASSWORD')
         host = os.getenv('DB_HOST')
-        port = os.getenv('DB_PORT')
+        port = os.getenv('DB_PORT', 3306)
         database = os.getenv('DB_NAME')
         connection_string = f'mysql+pymysql://{username}:{password}@{host}:{port}/{database}'
         return create_engine(connection_string)
