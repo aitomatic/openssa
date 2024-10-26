@@ -19,6 +19,21 @@ jobs:
           - 3.12
           # - 3.13
 
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_USER: root
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4  # github.com/actions/checkout
@@ -42,3 +57,6 @@ jobs:
         env:
           LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MYSQL_USER: root
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: test
