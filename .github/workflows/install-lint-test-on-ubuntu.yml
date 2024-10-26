@@ -24,7 +24,6 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-          MYSQL_USER: root
           MYSQL_DATABASE: test
         ports:
           - 3306:3306
@@ -65,4 +64,3 @@ jobs:
           LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           DB_NAME: test
-          DB_USERNAME: root
