@@ -1,9 +1,10 @@
 from dotenv import load_dotenv
+
+from myvanna import generate_sql_from_prompt
+
 # from openssa import DANA, DbResource
 from openssa.core.agent.dana import DANA  # , FileResource
 from openssa.core.resource.db import DbResource
-
-from myvanna import generate_sql_from_prompt
 
 load_dotenv()
 
