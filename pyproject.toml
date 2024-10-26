@@ -64,7 +64,6 @@ ruff = ">=0.6"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=8.3"
-alembic = "^1.13.3"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"

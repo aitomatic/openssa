@@ -55,6 +55,9 @@ jobs:
             sleep 5
           done
 
+      - name: Install Alembic
+        run: pip install alembic
+
       - name: Run Migrations
         run: |
           python -m alembic upgrade head
