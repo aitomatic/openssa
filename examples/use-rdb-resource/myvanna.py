@@ -1,7 +1,8 @@
-from dotenv import load_dotenv
 import os
-from vanna.openai import OpenAI_Chat
+
+from dotenv import load_dotenv
 from vanna.chromadb import ChromaDB_VectorStore
+from vanna.openai import OpenAI_Chat
 
 load_dotenv()
 
@@ -11,6 +12,7 @@ db_host = os.getenv('DB_HOST')
 db_port = int(os.getenv('DB_PORT'))
 db_database = os.getenv('DB_NAME')
 openai_api_key = os.getenv('OPENAI_API_KEY')
+
 
 class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
     def __init__(self, config=None):
