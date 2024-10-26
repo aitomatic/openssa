@@ -55,6 +55,12 @@ jobs:
             sleep 5
           done
 
+      - name: Run Migrations
+        run: |
+          python -m alembic upgrade head
+        env:
+          DATABASE_URL: mysql://root@127.0.0.1/test
+
       - name: Lint Code
         run: make lint
 
