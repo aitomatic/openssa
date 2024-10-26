@@ -18,7 +18,9 @@ def solve(question, query) -> str:
     agent = get_or_create_agent(query)
     try:
         return agent.solve(problem=question)
-    except Exception as err:
+    except ValueError as err:
+        return f'ERROR: {err}'
+    except RuntimeError as err:
         return f'ERROR: {err}'
 
 
