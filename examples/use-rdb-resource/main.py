@@ -1,15 +1,18 @@
-from myvanna import generate_sql_from_prompt
-# from openssa import DANA, DbResource
-from openssa.core.agent.dana import DANA #, FileResource
-from openssa.core.resource.db import DbResource
 from dotenv import load_dotenv
+# from openssa import DANA, DbResource
+from openssa.core.agent.dana import DANA  # , FileResource
+from openssa.core.resource.db import DbResource
+
+from myvanna import generate_sql_from_prompt
 
 load_dotenv()
+
 
 def get_or_create_agent(query) -> DANA:
     return DANA(
         resources=[DbResource(query=query)]
     )
+
 
 def solve(question, query) -> str:
     agent = get_or_create_agent(query)
@@ -17,6 +20,7 @@ def solve(question, query) -> str:
         return agent.solve(problem=question)
     except Exception as err:
         return f'ERROR: {err}'
+
 
 if __name__ == '__main__':
     QUESTION = (
