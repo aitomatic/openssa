@@ -9,6 +9,7 @@ which enables querying information from relational databases.
 
 from __future__ import annotations
 
+from .base import BaseResource
 from dataclasses import dataclass
 from typing import Any
 import os
@@ -16,7 +17,6 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from llama_index.core import SummaryIndex, Document
 
-from .abstract import AbstractResource
 from ._global import global_register
 
 
@@ -44,7 +44,7 @@ class MySQLDatabase:
 
 @global_register
 @dataclass
-class DbResource(AbstractResource):
+class DbResource(BaseResource):
     """Database Informational Resource."""
     query: str
 
