@@ -24,7 +24,6 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-          MYSQL_USER: root
           MYSQL_PASSWORD: password
           MYSQL_DATABASE: test
         ports:
