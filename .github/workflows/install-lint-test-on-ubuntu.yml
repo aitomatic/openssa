@@ -64,6 +64,5 @@ jobs:
         env:
           LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          MYSQL_USER: root
           MYSQL_PASSWORD: password
           MYSQL_DATABASE: test
