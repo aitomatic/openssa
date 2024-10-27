@@ -55,14 +55,12 @@ jobs:
             sleep 5
           done
 
-      - name: Install MySQL Driver
-        run: pip install pymysql
-
       - name: Install Alembic
         run: pip install alembic
 
-      - name: Initialize Alembic
-        run: alembic init alembic
+      - name: Set up Alembic Configuration
+        run: |
+          cp .github/workflows/alembic.ini .
 
       - name: Run Migrations
         run: |
