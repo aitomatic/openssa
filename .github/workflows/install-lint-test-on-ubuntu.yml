@@ -58,10 +58,6 @@ jobs:
       - name: Install Alembic
         run: pip install alembic
 
-      - name: Set up Alembic Configuration
-        run: |
-          cp .github/workflows/alembic.ini .
-
       - name: Run Migrations
         run: |
           python -m alembic upgrade head
