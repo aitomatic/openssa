@@ -2,7 +2,9 @@
 
 # Maritime-Specific Agent
 
-This app serves as a proof of concept (PoC) for a maritime-specific AI agent leveraging [Domain-Aware Neurosymbolic Agent (DANA)](https://arxiv.org/abs/2410.02823) architecture to address and solve collision avoidance problems in marine navigation.
+This app serves as a proof of concept (PoC) for a maritime-specific AI agent
+leveraging [Domain-Aware Neurosymbolic Agent (DANA)](https://arxiv.org/abs/2410.02823) architecture to address and solve
+collision avoidance problems in marine navigation.
 
 ## Usage
 
@@ -26,10 +28,12 @@ docker build -t dana-llamarine .
 
 ### Running the Docker Container
 
-1. Running the container:
+#### Running the container
 
 ```shell
 docker run --name llamarine-test --rm -p 8501:8501 -e .env dana-llamarine
 ```
 
-2. Access the app at [http://localhost:8501](http://localhost:8501).
+#### Access the app
+
+[http://localhost:8501](http://localhost:8501)
