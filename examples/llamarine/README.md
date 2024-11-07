@@ -2,7 +2,7 @@
 
 # Maritime-Specific Agent
 
-This app serves as a proof of concept (PoC) for a maritime-specific AI agent designed to address and solve collision avoidance problems in marine navigation.
+This app serves as a proof of concept (PoC) for a maritime-specific AI agent leveraging [Domain-Aware Neurosymbolic Agent (DANA)](https://arxiv.org/abs/2410.02823) architecture to address and solve collision avoidance problems in marine navigation.
 
 ## Usage
 
