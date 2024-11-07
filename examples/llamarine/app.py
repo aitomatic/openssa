@@ -25,16 +25,17 @@ st.write('__PROBLEM/QUESTION__:')
 if 'typed_problem' not in st.session_state:
     st.session_state.typed_problem: str = DEFAULT_PROBLEM
 
-st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
-                                                   value=st.session_state.typed_problem,
-                                                   height=3,
-                                                   max_chars=None,
-                                                   key=None,
-                                                   help='Problem/Question',
-                                                   on_change=None, args=None, kwargs=None,
-                                                   placeholder='Problem/Question',
-                                                   disabled=False,
-                                                   label_visibility='collapsed')
+st.session_state.typed_problem: str = st.text_area(
+    label='Problem/Question',
+    value=st.session_state.typed_problem,
+    max_chars=None,
+    key=None,
+    help='Problem/Question',
+    on_change=None, args=None, kwargs=None,
+    placeholder='Problem/Question',
+    disabled=False,
+    label_visibility='collapsed'
+)
 
 if 'agent_solutions' not in st.session_state:
     st.session_state.agent_solutions: defaultdict[str, str] = defaultdict(str)
