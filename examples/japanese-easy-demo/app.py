@@ -55,3 +55,8 @@ class QuestionRequest(BaseModel):
 async def solve_question(request: QuestionRequest):
     answer = solve(request.question, use_knowledge=request.use_knowledge, use_program_store=request.use_program_store)
     return {"answer": answer}
+
+# ヘルスチェック用のエンドポイント
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
