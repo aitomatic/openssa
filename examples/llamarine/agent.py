@@ -7,11 +7,12 @@ from openssa import Agent, ProgramSpace, HTP, HTPlanner, OpenAILM
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import EXPERT_PROGRAM_SPACE, EXPERT_KNOWLEDGE
+from llamarine_lm import LlamarineLM
 
 
 @cache
-def get_or_create_agent(max_depth=2, max_subtasks_per_decomp=4) -> Agent:
-    lm = OpenAILM.from_defaults()
+def get_or_create_agent(use_Llamarine_lm: bool = True, max_depth=2, max_subtasks_per_decomp=4) -> Agent:
+    lm = (LlamarineLM if use_Llamarine_lm else OpenAILM).from_defaults()
 
     program_space = ProgramSpace(lm=lm)
     if EXPERT_PROGRAM_SPACE:
