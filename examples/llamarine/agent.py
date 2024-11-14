@@ -7,12 +7,12 @@ from data_and_knowledge import EXPERT_PROGRAMS, EXPERT_KNOWLEDGE
 from llamarine_lm import LlamarineLM
 from openssa import DANA, ProgramStore, HTP, HTPlanner, OpenAILM
 
-DOMAIN_LM = LlamarineLM
+DomainLM = LlamarineLM
 
 
 @cache
 def get_or_create_agent(use_domain_lm: bool = True, max_depth=2, max_subtasks_per_decomp=4) -> DANA:
-    domain_lm = (DOMAIN_LM if use_domain_lm else OpenAILM).from_defaults()
+    domain_lm = (DomainLM if use_domain_lm else OpenAILM).from_defaults()
 
     program_store = ProgramStore(lm=domain_lm)
     if EXPERT_PROGRAMS:
