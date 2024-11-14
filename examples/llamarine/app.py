@@ -8,6 +8,8 @@ from agent import get_or_create_agent
 # pylint: disable=wrong-import-order
 from openssa import OpenAILM
 
+USE_DOMAIN_LM = os.environ.get('USE_DOMAIN_LM', 'False').lower() == 'true'
+
 TITLE: str = 'OpenSSA: Maritime-Specific Agent'
 
 DEFAULT_PROBLEM: str = (
@@ -90,4 +92,4 @@ def main(use_domain_lm: bool = False):
 
 
 if __name__ == '__main__':
-    main(use_domain_lm=True)
+    main(use_domain_lm=USE_DOMAIN_LM)
