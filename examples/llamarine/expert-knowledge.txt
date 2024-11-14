@@ -1,9 +1,17 @@
-SOG based on the Earth as the reference, might lead to misleading on radar such as display head on situation on the water 
+DCPA is distance of closest point of approach.
+TCPA is time at closest point of approach.
+DCPA & TCPA are not in COLREGS, but they are useful for OOW decision-making.
+
+SOG based on the Earth as the reference, might lead to misleading on radar such as display head on situation on the water
 as crossing situation.
-STW based on water might avoid this ambiguty.
+STW based on water might avoid this ambiguity.
 
 Be careful with the risk misleading on radar such as display head on situation on the water as crossing situation.
 COLREGS was designed to all vessel, even without radar.
+
+Not all head-on situations require a starboard turn.
+Not all right-crossing situations require a starboard turn.
+Some left-crossing situations require taking actions, while most do not.
 
 # **Comprehensive and Technical Rule of Thumb for OOW Decision-Making with Focus on COLREGs**
 
@@ -22,7 +30,7 @@ COLREGS was designed to all vessel, even without radar.
 
 ---
 
-## **2. Mastering COLREGs Application**  
+## **2. Mastering COLREGs Application with DCPA and/or TCPA consideration**
 1. **“When in doubt, give way—always.”**  
    - If you cannot assess risk or priority clearly, **assume the give-way role** to stay safe.
 
@@ -31,9 +39,12 @@ COLREGS was designed to all vessel, even without radar.
 
 3. **"Stand-on means stay alert.”**  
    - Even as the stand-on vessel, **be ready to act** if the give-way vessel fails to maneuver. Monitor closely (Rule 17).
+   - If the give-way vessel is not taking an evasive action, make a starboard turn or slow down.
 
 4. **"Always turn to starboard unless there’s a reason not to.”**  
-   - Meeting head-on? **Starboard turn is default** (Rule 14). Avoid left-turning unless absolutely necessary.
+   - Meeting head-on? **Starboard turn is default** (Rule 14). Avoid left-turning unless absolutely necessary. In a head-on situation, especially when both the DCPA and the TCPA are shorter than the {90 degree turning distance}, we must not only make a starboard turn but also do it quickly and drastically. In a head-on situation, the only reason not to turn to starboard is when both the DCPA and the TCPA are longer than the {90 degree turning distance}, then we should keep course and speed.
+   - Meeting right-crossing? **Starboard turn if the other vessel is on starboard** (Rule 15). In a right-crossing situation which is also a stern-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than the {rear safety distance}, then we should keep course and speed. In a right-crossing situation which is also a bow-crossing situation, especially when the DCPA is shorter than {right-crossing safety distance} and the TCPA is shorter than {right-crossing safety time}, we must make a starboard turn quickly and drastically. In a right-crossing situation which is also a bow-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than {right-crossing safety distance} (even when it is shorter than the {rear safety distance}) and the TCPA is longer than {right-crossing safety time}, then we should keep course and speed.
+   - Meeting left-crossing? **Stand-on in default**.
 
 5. **"You’re overtaking? You must stay clear."**  
    - If approaching a vessel from more than 22.5° abaft the beam (Rule 13), **you are overtaking**—stay clear until the maneuver is complete.
