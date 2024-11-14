@@ -13,6 +13,8 @@ Not all head-on situations require a starboard turn.
 Not all right-crossing situations require a starboard turn.
 Some left-crossing situations require taking actions, while most do not.
 
+In an overtaking situation, it is important to first identify whether the target ship or the own ship is overtaking.
+
 # **Comprehensive and Technical Rule of Thumb for OOW Decision-Making with Focus on COLREGs**
 
 ---
@@ -42,12 +44,13 @@ Some left-crossing situations require taking actions, while most do not.
    - If the give-way vessel is not taking an evasive action, make a starboard turn or slow down.
 
 4. **"Always turn to starboard unless there’s a reason not to.”**  
-   - Meeting head-on? **Starboard turn is default** (Rule 14). Avoid left-turning unless absolutely necessary. In a head-on situation, especially when both the DCPA and the TCPA are shorter than the {90 degree turning distance}, we must not only make a starboard turn but also do it quickly and drastically. In a head-on situation, the only reason not to turn to starboard is when both the DCPA and the TCPA are longer than the {90 degree turning distance}, then we should keep course and speed.
-   - Meeting right-crossing? **Starboard turn if the other vessel is on starboard** (Rule 15). In a right-crossing situation which is also a stern-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than the {rear safety distance}, then we should keep course and speed. In a right-crossing situation which is also a bow-crossing situation, especially when the DCPA is shorter than {right-crossing safety distance} and the TCPA is shorter than {right-crossing safety time}, we must make a starboard turn quickly and drastically. In a right-crossing situation which is also a bow-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than {right-crossing safety distance} (even when it is shorter than the {rear safety distance}) and the TCPA is longer than {right-crossing safety time}, then we should keep course and speed.
-   - Meeting left-crossing? **Stand-on in default**.
+   - Meeting a head-on? **Starboard turn is default** (Rule 14). Avoid left-turning unless absolutely necessary. In a head-on situation, especially when both the DCPA and the TCPA are shorter than the {90 degree turning distance}, we must not only make a starboard turn but also do it quickly and drastically. In a head-on situation, the only reason not to turn to starboard is when both the DCPA and the TCPA are longer than the {90 degree turning distance}, then we should keep course and speed.
+   - Meeting a right-crossing? **Starboard turn if the other vessel is on starboard** (Rule 15). In a right-crossing situation which is also a stern-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than the {rear safety distance}, then we should keep course and speed. In a right-crossing situation which is also a bow-crossing situation, especially when the DCPA is shorter than {right-crossing safety distance} and the TCPA is shorter than {right-crossing safety time}, we must make a starboard turn quickly and drastically. In a right-crossing situation which is also a bow-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than {right-crossing safety distance} (even when it is shorter than the {rear safety distance}) and the TCPA is longer than {right-crossing safety time}, then we should keep course and speed.
+   - Meeting a left-crossing? **Stand-on in default**.
 
-5. **"You’re overtaking? You must stay clear."**  
-   - If approaching a vessel from more than 22.5° abaft the beam (Rule 13), **you are overtaking**—stay clear until the maneuver is complete.
+5. **"Meeting an overtaking? You must stay clear."**
+   - If the target ship is overtaking, **Stand-on in default**, unless the following conditions: the DCPA of the own ship and the target ship is shorter than the {safe distance to be overtaken}, and the TCPA of the own ship and the target ship is shoter than the {safe time to be overtaken}, then you must turn in the direction of separation.
+   - If the own ship is overtaking, **Stand-on in default** for the following conditions: The DCPA of the own ship and the target ship is longer than the {safe distance to overtake}, and the TCPA of the own ship and the target ship is longer than the {safe time to overtake}.
 
 ---
 
