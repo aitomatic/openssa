@@ -79,7 +79,7 @@ def main(use_domain_lm: bool = False):
     if (solution := st.session_state.agent_solutions[st.session_state.typed_problem]):
         if use_domain_lm:
             solution = OpenAILM.from_defaults().get_response(
-                prompt=f"""Please respond the following text:
+                prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
                     {solution}
                 """,
                 history=[
