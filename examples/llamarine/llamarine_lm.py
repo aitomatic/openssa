@@ -20,7 +20,6 @@ class LlamarineLM(LlamaLM):
         """Get default Llamarine instance."""
         # pylint: disable=unexpected-keyword-arg
         print("model: ", DEFAULT_MODEL)
-        print("api_key: ", DEFAULT_API_KEY)
         print("api_base: ", DEFAULT_API_BASE)
         return cls(model=DEFAULT_MODEL, api_key=DEFAULT_API_KEY, api_base=DEFAULT_API_BASE)
 
