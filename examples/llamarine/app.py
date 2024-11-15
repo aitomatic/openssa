@@ -90,19 +90,19 @@ def main(use_domain_lm: bool = False):
                 with open(file=OUTPUT_FILE_PATH, mode='w', encoding='utf-8') as f:
                     f.write(json.dumps(st.session_state.agent_solutions))
 
-    solution = st.session_state.agent_solutions[st.session_state.typed_problem]
-    if use_domain_lm:
-        solution = OpenAILM.from_defaults().get_response(
-            prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
-                {solution}
-            """,
-            history=[
-                {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
-                {"role": "user", "content": LLAMARINE_USER_PROMPT},
-            ]
-        )
+        solution = st.session_state.agent_solutions[st.session_state.typed_problem]
+        if use_domain_lm:
+            solution = OpenAILM.from_defaults().get_response(
+                prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
+                    {solution}
+                """,
+                history=[
+                    {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
+                    {"role": "user", "content": LLAMARINE_USER_PROMPT},
+                ]
+            )
 
-    st.markdown(body=solution)
+        st.markdown(body=solution)
 
 
 if __name__ == '__main__':
