@@ -2,8 +2,7 @@ DCPA is distance of closest point of approach.
 TCPA is time at closest point of approach.
 DCPA & TCPA are not in COLREGS, but they are useful for OOW decision-making.
 
-SOG based on the Earth as the reference, might lead to misleading on radar such as display head on situation on the water
-as crossing situation.
+SOG based on the Earth as the reference, might lead to misleading on radar such as display head on situation on the water as crossing situation.
 STW based on water might avoid this ambiguity.
 
 Be careful with the risk misleading on radar such as display head on situation on the water as crossing situation.
@@ -49,7 +48,7 @@ In an overtaking situation, it is important to first identify whether the target
    - Meeting a left-crossing? **Stand-on is default**.
 
 5. **"Meeting an overtaking? You must stay clear."**
-   - If the target ship is overtaking, **Stand-on is default**, unless the following conditions: the DCPA of the own ship and the target ship is shorter than the {safe distance to be overtaken}, and the TCPA of the own ship and the target ship is shoter than the {safe time to be overtaken}, then you must turn in the direction of separation.
+   - If the target ship is overtaking, **Stand-on is default**, unless the following conditions: the DCPA of the own ship and the target ship is shorter than the {safe distance to be overtaken}, and the TCPA of the own ship and the target ship is shorter than the {safe time to be overtaken}, then you must turn in the direction of separation.
    - If the own ship is overtaking, **Stand-on is default** for the following conditions: The DCPA of the own ship and the target ship is longer than the {safe distance to overtake}, and the TCPA of the own ship and the target ship is longer than the {safe time to overtake}.
 
 ---
