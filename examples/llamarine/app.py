@@ -1,3 +1,4 @@
+import json
 import os
 from collections import defaultdict
 
@@ -33,6 +34,11 @@ DEFAULT_MODEL = 'llamarine-navigation'
 DEFAULT_API_KEY = os.environ.get('LEPTON_API_TOKEN')
 DEFAULT_API_BASE = os.environ.get('DEFAULT_API_BASE')
 
+OUTPUT_DIR = os.environ.get('OUTPUT_DIR', 'output')
+OUTPUT_FILE_PATH = f"{OUTPUT_DIR}/agent_solutions.json"
+
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 
 def main(use_domain_lm: bool = False):
     st.set_page_config(page_title=TITLE,
@@ -60,7 +66,11 @@ def main(use_domain_lm: bool = False):
     )
 
     if 'agent_solutions' not in st.session_state:
-        st.session_state.agent_solutions: defaultdict[str, str] = defaultdict(str)
+        if os.path.exists(OUTPUT_FILE_PATH):
+            with open(file=OUTPUT_FILE_PATH, mode='r') as f:
+                st.session_state.agent_solutions: defaultdict[str, str] = defaultdict(str, json.loads(f.read()))
+        else:
+            st.session_state.agent_solutions: defaultdict[str, str] = defaultdict(str)
 
     st.subheader('MARITIME-SPECIFIC AGENT')
 
@@ -76,6 +86,9 @@ def main(use_domain_lm: bool = False):
                 st.session_state.agent_solutions[st.session_state.typed_problem]: str = \
                     get_or_create_agent(use_domain_lm).solve(
                         problem=st.session_state.typed_problem, allow_reject=True)
+                # write st.session_state.agent_solutions to JSON file
+                with open(file=OUTPUT_FILE_PATH, mode='w') as f:
+                    f.write(json.dumps(st.session_state.agent_solutions))
 
     solution = st.session_state.agent_solutions[st.session_state.typed_problem]
     if use_domain_lm:
