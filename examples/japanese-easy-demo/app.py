@@ -3,14 +3,13 @@ from functools import cache
 from dotenv import load_dotenv
 from openssa import DANA, FileResource, ProgramStore, HTPlanner
 from openssa.core.util.lm.openai import OpenAILM
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 load_dotenv()
 
 DOCS_DATA_LOCAL_DIR_PATH: Path = Path(__file__).parent / '.data'
 app = FastAPI()
-
 
 @cache
 def get_main_lm():
@@ -52,11 +51,11 @@ class QuestionRequest(BaseModel):
 
 
 @app.post("/solve")
-async def solve_question(request: QuestionRequest):
-    answer = solve(request.question, use_knowledge=request.use_knowledge, use_program_store=request.use_program_store)
+async def solve_question(body: QuestionRequest):
+    answer = solve(body.question, use_knowledge=body.use_knowledge, use_program_store=body.use_program_store)
     return {"answer": answer}
 
-# ヘルスチェック用のエンドポイント
 @app.get("/health")
 async def health_check():
-    return {"status": "ok"}
+    response = {"status": "ok"}
+    return response

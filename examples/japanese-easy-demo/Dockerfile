@@ -10,13 +10,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # ホストのrequirementsファイルとアプリケーションコードをコンテナにコピー
-COPY requirements_container.txt /app/
+# COPY requirements_container.txt /app/  # もしかして不要？
 COPY app.py /app/
 COPY .env /app/
 COPY .data /app/.data
 
 # Pythonの依存関係をインストール
-RUN pip install --no-cache-dir -r requirements_container.txt
+# RUN pip install --no-cache-dir -r requirements_container.txt　# もしかして不要？
 RUN pip install --no-cache-dir uvicorn[standard]
 RUN pip install --no-cache-dir openssa
 RUN pip install --no-cache-dir fastapi
