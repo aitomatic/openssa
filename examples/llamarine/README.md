@@ -31,7 +31,7 @@ docker build -t dana-llamarine .
 #### Running the container
 
 ```shell
-docker run --rm -p 8501:8501 --env-file .env --name llamarine-test dana-llamarine
+docker run --rm -p 8501:8501 --env-file .env -v $(pwd)/output:/app/output --name llamarine-test dana-llamarine
 ```
 
 #### Access the app
