@@ -16,4 +16,3 @@ def test_webpage_resource():
     _ = webpage1.answer(test_question)
     _ = webpage1.get_summary()
     # assert isinstance(answer, str)
-    # assert isinstance(summary, str)

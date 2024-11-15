@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "openssa-sample"
+name = "use-rdb-resource"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
@@ -7,8 +7,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
-openssa = "^0.24.3.12"
-python-dotenv = "^1.0.1"
+pymysql = "^1.1.1"
+kaleido = "0.2.1"
+vanna = "^0.7.3"
+chromadb = "^0.5.11"
+faker = "^30.1.0"
+sqlalchemy = "^2.0.35"
+openai = "^1.51.2"
+openssa = "^0.24.10.10"
+plotly = "^5.24.1"
 
 
 [build-system]

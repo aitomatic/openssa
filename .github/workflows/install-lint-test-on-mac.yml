@@ -15,9 +15,24 @@ jobs:
 
     strategy:
       matrix:
-        python-version:  # github.com/actions/python-versions/releases
+        python-version: # github.com/actions/python-versions/releases
           - 3.12
           # - 3.13
+
+    services:
+      mysql:
+        image: mysql:9.1.0
+        env:
+          MYSQL_USER: root
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
       - name: Checkout Repo
@@ -28,11 +43,21 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: Install Poetry
         run: make get-poetry
 
       - name: Install Package & Dependencies
         run: make install
+
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping -h 127.0.0.1 --silent; do
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
 
       - name: Lint Code
         run: make lint
@@ -42,3 +67,6 @@ jobs:
         env:
           LEPTON_API_KEY: ${{ secrets.LEPTON_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MYSQL_USER: root
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: test
