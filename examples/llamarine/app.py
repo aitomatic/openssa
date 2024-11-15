@@ -72,23 +72,24 @@ def main(use_domain_lm: bool = False):
         with st.spinner(text='_SOLVING..._'):
             logger.level('DEBUG')
 
-            st.session_state.agent_solutions[st.session_state.typed_problem]: str = \
-                get_or_create_agent(use_domain_lm).solve(
-                    problem=st.session_state.typed_problem, allow_reject=True)
+            if not st.session_state.agent_solutions[st.session_state.typed_problem]:
+                st.session_state.agent_solutions[st.session_state.typed_problem]: str = \
+                    get_or_create_agent(use_domain_lm).solve(
+                        problem=st.session_state.typed_problem, allow_reject=True)
 
-    if (solution := st.session_state.agent_solutions[st.session_state.typed_problem]):
-        if use_domain_lm:
-            solution = OpenAILM.from_defaults().get_response(
-                prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
-                    {solution}
-                """,
-                history=[
-                    {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
-                    {"role": "user", "content": LLAMARINE_USER_PROMPT},
-                ]
-            )
+    solution = st.session_state.agent_solutions[st.session_state.typed_problem]
+    if use_domain_lm:
+        solution = OpenAILM.from_defaults().get_response(
+            prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
+                {solution}
+            """,
+            history=[
+                {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
+                {"role": "user", "content": LLAMARINE_USER_PROMPT},
+            ]
+        )
 
-        st.markdown(body=solution)
+    st.markdown(body=solution)
 
 
 if __name__ == '__main__':
