@@ -56,6 +56,7 @@ def main(use_domain_lm: bool = False):
         label='Problem/Question',
         value=st.session_state.typed_problem,
         max_chars=None,
+        height=22 * 6,
         key=None,
         help='Problem/Question',
         on_change=None, args=None, kwargs=None,
