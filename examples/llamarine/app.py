@@ -92,15 +92,16 @@ def main(use_domain_lm: bool = False):
                     f.write(json.dumps(st.session_state.agent_solutions))
 
         solution = st.session_state.agent_solutions[st.session_state.typed_problem]
-        solution = OpenAILM.from_defaults().get_response(
-            prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
-                {solution}
-            """,
-            history=[
-                {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
-                {"role": "user", "content": LLAMARINE_USER_PROMPT},
-            ]
-        )
+        if use_domain_lm:
+            solution = OpenAILM.from_defaults().get_response(
+                prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
+                    {solution}
+                """,
+                history=[
+                    {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
+                    {"role": "user", "content": LLAMARINE_USER_PROMPT},
+                ]
+            )
 
         st.markdown(body=solution)
 
