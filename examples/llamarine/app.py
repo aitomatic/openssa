@@ -83,7 +83,7 @@ def main(use_domain_lm: bool = False):
         with st.spinner(text='_SOLVING..._'):
             logger.level('DEBUG')
 
-            if not st.session_state.agent_solutions[st.session_state.typed_problem]:
+            if not st.session_state.agent_solutions[st.session_state.typed_problem] or OVERWRITE:
                 st.session_state.agent_solutions[st.session_state.typed_problem]: str = \
                     get_or_create_agent(use_domain_lm).solve(
                         problem=st.session_state.typed_problem, allow_reject=True)
