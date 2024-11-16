@@ -10,6 +10,7 @@ from agent import get_or_create_agent
 from openssa import OpenAILM
 
 USE_DOMAIN_LM = os.environ.get('USE_DOMAIN_LM', 'False').lower() == 'true'
+OVERWRITE = os.environ.get('OVERWRITE', 'False').lower() == 'true'
 
 TITLE: str = 'OpenSSA: Maritime-Specific Agent'
 
@@ -66,7 +67,7 @@ def main(use_domain_lm: bool = False):
     )
 
     if 'agent_solutions' not in st.session_state:
-        if os.path.exists(OUTPUT_FILE_PATH):
+        if os.path.exists(OUTPUT_FILE_PATH) and not OVERWRITE:
             with open(file=OUTPUT_FILE_PATH, encoding='utf-8') as f:
                 st.session_state.agent_solutions: defaultdict[str, str] = defaultdict(str, json.loads(f.read()))
         else:
