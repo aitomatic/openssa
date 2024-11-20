@@ -22,8 +22,9 @@ from .config import LMConfig
 
 
 if TYPE_CHECKING:
-    from llama_index.core.chat_engine.types import AgentChatResponse
-    from llama_index.core.tools.types import BaseTool
+    from llama_index.core.base.llms.types import ChatResponse
+    from .base import LMChatHist
+
 
 
 @dataclass
@@ -42,17 +43,13 @@ class OllamaLM(BaseLM):
         super().__init__()
         self.llm = Ollama(model=model, request_timeout=request_timeout, **kwargs)
 
-    @property
-    def metadata(self) -> LLMMetadata:
-        """
-        Return metadata about the LLM.
+    @classmethod
+    def from_defaults(cls) -> OllamaLM:
+        """Get HuggingFace LM instance with default parameters."""
+        # pylint: disable=unexpected-keyword-arg
+        return cls(model=LMConfig.OLLMA_DEFAULT_MODEL)
 
-        Returns:
-            LLMMetadata: Metadata about the LLM (e.g., model name, supported features).
-        """
-        return self.llm.metadata
-
-    def call(self, messages: LMChatHist, **kwargs) -> ChatCompletion:
+    def call(self, messages: LMChatHist, **kwargs) -> ChatResponse:
         """
         Generate a completion for a given prompt.
 
@@ -66,18 +63,6 @@ class OllamaLM(BaseLM):
         response = self.llm.complete(messages, **kwargs)
         return response
 
-    def get_tool_calls_from_response(self, response: ChatResponse, error_on_no_tool_call: bool = True) -> List[ToolSelection]:
-        """
-        Extract and process tool calls from a response.
-
-        Args:
-            response (ChatResponse): The chat response to process.
-            error_on_no_tool_call (bool): Whether to raise an error if no tool call is found.
-
-        Returns:
-            List[ToolSelection]: The list of tools selected from the response.
-        """
-        return self.llm.get_tool_calls_from_response(response, error_on_no_tool_call=error_on_no_tool_call)
 
     def get_response(self, prompt: str, history: List[dict] = None, json_format: bool = False, **kwargs) -> str:
         """
