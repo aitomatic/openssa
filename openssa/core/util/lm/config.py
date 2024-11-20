@@ -37,6 +37,10 @@ class LMConfig:
     OPENAI_DEFAULT_MODEL: str = 'gpt-4o'  # platform.openai.com/docs/models/gpt-4o
     OPENAI_DEFAULT_SMALL_MODEL: str = 'gpt-4o-mini'  # platform.openai.com/docs/models/gpt-4o-mini
 
+
+    # OLLAMA
+    OLLMA_DEFAULT_MODEL : str  = "llama3.1:70b"
+
     # LM parameters
     DEFAULT_SEED: int = 7 * 17 * 14717
     DEFAULT_TEMPERATURE: float = 0.0
