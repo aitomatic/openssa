@@ -5,6 +5,8 @@ from llama_index.llms.openai.base import DEFAULT_OPENAI_MODEL
 
 from openssa import FileResource, LMConfig
 from openssa.core.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
+from openssa.core.util.lm.ollama import default_llama_index_ollama_embed_model, default_llama_index_ollama_lm
+
 
 # pylint: disable=wrong-import-order
 from data_and_knowledge import DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID
@@ -13,18 +15,24 @@ from util import enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 @cache
 def get_or_create_file_resource(doc_name: DocName,
-                                llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_SMALL_MODEL) -> FileResource:
+                                llama_index_lm_name: str = LMConfig.OLLAMA_DEFAULT_MODEL) -> FileResource:
+#    return FileResource(path=Doc(name=doc_name).dir_path,
+#                        embed_model=default_llama_index_openai_embed_model(),
+#                        lm=default_llama_index_openai_lm(llama_index_openai_lm_name))
     return FileResource(path=Doc(name=doc_name).dir_path,
-                        embed_model=default_llama_index_openai_embed_model(),
-                        lm=default_llama_index_openai_lm(llama_index_openai_lm_name))
+                        embed_model=default_llama_index_ollama_embed_model(),
+                        lm=default_llama_index_ollama_lm(llama_index_lm_name))
 
 
-@enable_batch_qa_and_eval(output_name=f'RAG-{DEFAULT_OPENAI_MODEL}-LM')
-@log_qa_and_update_output_file(output_name=f'RAG-{DEFAULT_OPENAI_MODEL}-LM')
+@enable_batch_qa_and_eval(output_name=f'RAG-{LMConfig.OLLAMA_DEFAULT_MODEL}-LM')
+@log_qa_and_update_output_file(output_name=f'RAG-{LMConfig.OLLAMA_DEFAULT_MODEL}-LM')
 def answer_with_default_lm(fb_id: FbId) -> Answer:
+#    return get_or_create_file_resource(
+#        doc_name=DOC_NAMES_BY_FB_ID[fb_id],
+#        llama_index_openai_lm_name=DEFAULT_OPENAI_MODEL).answer(question=QS_BY_FB_ID[fb_id])
     return get_or_create_file_resource(
         doc_name=DOC_NAMES_BY_FB_ID[fb_id],
-        llama_index_openai_lm_name=DEFAULT_OPENAI_MODEL).answer(question=QS_BY_FB_ID[fb_id])
+        llama_index_lm_name=LMConfig.OLLAMA_DEFAULT_MODEL).answer(question=QS_BY_FB_ID[fb_id])
 
 
 @enable_batch_qa_and_eval(output_name=f'RAG-{LMConfig.OPENAI_DEFAULT_SMALL_MODEL}-LM')

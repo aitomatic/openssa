@@ -38,6 +38,7 @@ from llama_index.core.storage.storage_context import StorageContext
 from llama_index.core.vector_stores.types import VectorStoreQueryMode
 
 from openssa.core.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
+from openssa.core.util.lm.ollama import default_llama_index_ollama_embed_model, default_llama_index_ollama_lm
 
 from .base import BaseResource
 from ._global import global_register
@@ -82,19 +83,20 @@ class FileResource(BaseResource):
     path: Path | DirOrFileStrPath
 
     # embedding model for indexing and retrieving information
-    embed_model: LlamaIndexEmbedModel = field(default_factory=default_llama_index_openai_embed_model,
+    embed_model: LlamaIndexEmbedModel = field(default_factory=default_llama_index_ollama_embed_model,
                                               init=True,
                                               repr=False,
                                               hash=None,
                                               compare=True,
                                               metadata=None,
                                               kw_only=True)
+    
 
     # whether to re-index information upon initialization
     re_index: InitVar[bool] = False
 
     # language model for generating answers
-    lm: LlamaIndexLM = field(default_factory=default_llama_index_openai_lm,
+    lm: LlamaIndexLM = field(default_factory=default_llama_index_ollama_lm,
                              init=True,
                              repr=False,
                              hash=None,
@@ -104,6 +106,7 @@ class FileResource(BaseResource):
 
     def __post_init__(self, re_index: bool):
         """Post-initialize file-stored Informational Resource."""
+        print(f"Embedding model selected: {self.embed_model.model_name}")
         if isinstance(self.path, Path):
             self.path: Path = self.path.resolve(strict=True)
             self.str_path: DirOrFileStrPath = str(self.path)
@@ -206,6 +209,7 @@ class FileResource(BaseResource):
 
         if self.is_dir and (self.fs.isdir(path=self.index_dir_str_path) and
                             self.fs.ls(path=self.index_dir_str_path, detail=False)) and (not self.to_re_index):
+            print(f"Loading with model {self.embed_model_name}")
             index: VectorStoreIndex = load_index_from_storage(
                 storage_context=StorageContext.from_defaults(
                     # docs.llamaindex.ai/en/latest/api_reference/storage.html#llama_index.core.storage.storage_context.StorageContext.from_defaults
@@ -223,12 +227,15 @@ class FileResource(BaseResource):
                 # docs.llamaindex.ai/en/latest/api_reference/indices.html#llama_index.core.indices.base.BaseIndex
                 nodes=None,
                 objects=None,
+                embed_model=self.embed_model,
                 callback_manager=None,
                 transformations=None,
                 show_progress=True)
 
         else:
             fs: AFileSystem | None = self.fs if self.is_dir else None
+
+            print(f"Embedding with model {self.embed_model_name}")
 
             index: VectorStoreIndex = VectorStoreIndex.from_documents(
                 # BaseIndex.from_documents(...) args:
@@ -271,6 +278,9 @@ class FileResource(BaseResource):
                 # docs.llamaindex.ai/en/latest/api_reference/storage.html#llama_index.core.storage.storage_context.StorageContext.persist
                 persist_dir=self.index_dir_str_path,
                 fs=fs)
+
+
+        print(f"Using llm {self.lm}")
 
         return index.as_query_engine(
             # docs.llamaindex.ai/en/latest/understanding/querying/querying.html

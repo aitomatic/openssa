@@ -1,1 +1,3 @@
 OpenSSA[contrib] @ https://GitHub.com/Aitomatic/OpenSSA/archive/examples/FinanceBench.zip
+llama-index-embeddings-ollama
+llama-index-llms-ollama

@@ -13,8 +13,10 @@ from typing import TYPE_CHECKING
 
 from loguru import logger
 
-from llama_index.llms.ollama import Ollama, ChatResponse
-from llama_index.llms.base import FunctionCallingLLM, LLMMetadata
+from llama_index.llms.ollama import Ollama
+
+from llama_index.embeddings.ollama import OllamaEmbedding
+
 from typing import List
 
 from .base import BaseLM
@@ -31,7 +33,9 @@ if TYPE_CHECKING:
 class OllamaLM(BaseLM):
     """Wrapper for OLLAMA using llama-index API."""
 
-    def __init__(self, model: str, request_timeout: float = 60.0, **kwargs):
+    llm: Ollama = field(init=False)
+        
+    def __post_init__(self):
         """
         Initialize the OLLAMA wrapper.
 
@@ -40,14 +44,14 @@ class OllamaLM(BaseLM):
             request_timeout (float): Request timeout for API calls, in seconds.
             **kwargs: Additional arguments passed to the OLLAMA client.
         """
-        super().__init__()
-        self.llm = Ollama(model=model, request_timeout=request_timeout, **kwargs)
+        self.llm = Ollama(model=self.model, request_timeout=60)
 
     @classmethod
     def from_defaults(cls) -> OllamaLM:
         """Get HuggingFace LM instance with default parameters."""
         # pylint: disable=unexpected-keyword-arg
-        return cls(model=LMConfig.OLLMA_DEFAULT_MODEL)
+        return cls(model=LMConfig.OLLAMA_DEFAULT_MODEL, api_key="", api_base="")
+
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatResponse:
         """
@@ -91,3 +95,14 @@ class OllamaLM(BaseLM):
             response = self.llm.call(messages, **kwargs)
             return response
 
+def default_llama_index_ollama_embed_model() -> OllamaEmbedding:
+    # https://docs.llamaindex.ai/en/stable/examples/embeddings/ollama_embedding/
+    print("Returning OllamaEmbedding with mxbai-embed-large")
+    return OllamaEmbedding(model_name="mxbai-embed-large",
+                           base_url="http://localhost:11434",
+                           ollama_additional_kwargs={"mirostat": 0})
+
+
+
+def default_llama_index_ollama_lm(name: str = LMConfig.OLLAMA_DEFAULT_MODEL, /) -> Ollama:
+    return OllamaLM.from_defaults().llm

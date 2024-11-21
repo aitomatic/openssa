@@ -39,7 +39,7 @@ class LMConfig:
 
 
     # OLLAMA
-    OLLMA_DEFAULT_MODEL : str  = "llama3.1:70b"
+    OLLAMA_DEFAULT_MODEL : str  = "llama3.1:70b"
 
     # LM parameters
     DEFAULT_SEED: int = 7 * 17 * 14717
