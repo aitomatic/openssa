@@ -66,7 +66,7 @@ st.session_state.task_id: str = st.selectbox(label='Task',
 if not st.session_state.task_id:
     st.session_state.typed_question: str = st.text_area(label='Question',
                                                         value=st.session_state.typed_question,
-                                                        height=3,
+                                                        height=68,
                                                         max_chars=None,
                                                         key=None,
                                                         help='Type a Question',
