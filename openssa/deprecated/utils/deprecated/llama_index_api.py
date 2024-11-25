@@ -5,7 +5,7 @@ from typing import Optional
 
 from llama_index.core import ServiceContext
 from llama_index.core.llms import OpenAI as LlamaIndexOpenAI
-from llama_index.core.llms.llm import LLM  # noqa: TCH002
+from llama_index.core.llms.llm import LLM  # noqa: TC002
 from llama_index.core.llms.openai_utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
 from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
 from llama_index.embeddings.openai import OpenAIEmbedding
