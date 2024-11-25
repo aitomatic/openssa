@@ -3,6 +3,7 @@ from functools import cache
 from dotenv import load_dotenv
 from openssa import DANA, FileResource, ProgramStore, HTPlanner
 from openssa.core.util.lm.openai import OpenAILM
+from openssa.core.util.lm.config import LMConfig
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -13,7 +14,11 @@ app = FastAPI()
 
 @cache
 def get_main_lm():
-    return OpenAILM.from_defaults()
+    return OpenAILM(
+        model=LMConfig.OPENAI_DEFAULT_SMALL_MODEL,
+        api_key=LMConfig.OPENAI_API_KEY,
+        api_base=LMConfig.OPENAI_API_URL,
+    )
 
 
 @cache
@@ -31,7 +36,7 @@ def get_or_create_agent(use_knowledge: bool = False, use_program_store: bool = F
     return DANA(
         knowledge=knowledge,
         program_store=program_store,
-        programmer=HTPlanner(lm=get_main_lm(), max_depth=3, max_subtasks_per_decomp=6),
+        programmer=HTPlanner(lm=get_main_lm(), max_depth=1, max_subtasks_per_decomp=2),
         resources={FileResource(path=DOCS_DATA_LOCAL_DIR_PATH)}
     )
 
