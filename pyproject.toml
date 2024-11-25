@@ -52,7 +52,7 @@ ipykernel = ">=6.29"
 notebook = ">=7.2"
 
 [tool.poetry.group.docs.dependencies]
-sphinx = ">=8.0"
+sphinx = ">=8.1"
 sphinx-autobuild = ">=2024.10"
 sphinx-press-theme = ">=0.9"
 myst-parser = ">=4.0"
@@ -60,7 +60,7 @@ myst-parser = ">=4.0"
 [tool.poetry.group.lint.dependencies]
 flake8 = ">=7.1"
 pylint = ">=3.3"
-ruff = ">=0.6"
+ruff = ">=0.8"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=8.3"
@@ -68,40 +68,39 @@ pytest = ">=8.3"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
 # Llama interface
-huggingface-hub = ">=0.25"
+huggingface-hub = ">=0.26"
 # OpenAI interface
-openai = ">=1.51"
+openai = ">=1.55"
 # LlamaIndex & related
-llama-index = ">=0.11"
-llama-index-embeddings-azure-openai = ">=0.2"
-llama-index-llms-azure-openai = ">=0.2"
-llama-index-readers-web = ">=0.2"
+llama-index = ">=0.12"
+llama-index-embeddings-azure-openai = ">=0.3"
+llama-index-llms-azure-openai = ">=0.3"
+llama-index-readers-web = ">=0.3"
 docx2txt = ">=0.8"  # for reading .docx files
-pypdf = ">=4.3"  # for reading .pdf files
+pypdf = ">=5.1"  # for reading .pdf files
 pycryptodome = ">=3.21"  # for reading .pdf files: PyCryptodome is required for AES algorithm
 # file systems
-fsspec = ">=2024.9"  # base/local file system
+fsspec = ">=2024.10"  # base/local file system
 adlfs = ">=2024.7"  # Azure Data Lake
-gcsfs = ">=2024.9"  # Google Cloud Storage
-s3fs = ">=2024.9"  # S3
+gcsfs = ">=2024.10"  # Google Cloud Storage
+s3fs = ">=2024.10"  # S3
 # misc / other
 certifi = ">2023.8"
-google-api-python-client = ">=2.147"
+google-api-python-client = ">=2.154"
 googlesearch-python = ">=1.2"
 httpx = ">=0.27"
 loguru = ">=0.7"
-pydantic = ">=2.9"
+pydantic = ">=2.10"
 python-dotenv = ">=1.0"
-torch = ">=2.2,<2.3"  # 2.3 fails installing on Mac with M chip
-tqdm = ">=4.66"
+tqdm = ">=4.67"
 
 # optional dependencies required by extras
-streamlit = {version = ">=1.39", optional = true}
-streamlit-extras = {version = ">=0.4", optional = true}
+streamlit = {version = ">=1.40", optional = true}
+streamlit-extras = {version = ">=0.5", optional = true}
 streamlit-mic-recorder = {version = ">=0.0.8", optional = true}
 
 langchainhub = ">=0.1"
-faiss-cpu = ">=1.8"
+faiss-cpu = ">=1.9"
 
 [tool.poetry.extras]
 contrib = [
