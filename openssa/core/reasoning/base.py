@@ -18,6 +18,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from openssa.core.util.lm.openai import OpenAILM
+from openssa.core.util.lm.ollama import OllamaLM
 
 if TYPE_CHECKING:
     from openssa.core.knowledge.base import Knowledge
@@ -31,7 +32,7 @@ class BaseReasoner(ABC):
     """Reasoner abstract base class."""
 
     # language model for reasoning
-    lm: BaseLM = field(default_factory=OpenAILM.from_defaults,
+    lm: BaseLM = field(default_factory=OllamaLM.from_defaults,
                        init=True,
                        repr=True,
                        hash=None,

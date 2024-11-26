@@ -3,6 +3,7 @@ from functools import cache
 
 from openssa import DANA, ProgramStore, HTP, HTPlanner, FileResource, LMConfig
 from openssa.core.util.lm.huggingface import HuggingFaceLM
+from openssa.core.util.lm.ollama import OllamaLM, default_llama_index_ollama_lm
 from openssa.core.util.lm.openai import OpenAILM, default_llama_index_openai_lm
 
 # pylint: disable=wrong-import-order,wrong-import-position
@@ -13,7 +14,7 @@ from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 
 @cache
 def get_main_lm(use_llama: bool = False):
-    return (HuggingFaceLM if use_llama else OpenAILM).from_defaults()
+    return (OllamaLM if use_llama else OpenAILM).from_defaults()
 
 
 @cache
@@ -31,7 +32,7 @@ def get_or_create_expert_program_store(use_llama: bool = False) -> ProgramStore:
 def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, expert_programs: bool = False,
                         max_depth=3, max_subtasks_per_decomp=6,
                         use_llama: bool = False,
-                        llama_index_openai_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> DANA:
+                        llama_index_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> DANA:
     # pylint: disable=too-many-arguments
     return DANA(knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
 
@@ -43,7 +44,7 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, exper
                                      max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
 
                 resources={FileResource(path=Doc(name=doc_name).dir_path,
-                                        lm=default_llama_index_openai_lm(llama_index_openai_lm_name))})
+                                        lm=default_llama_index_ollama_lm(llama_index_lm_name))})
 
 
 @cache

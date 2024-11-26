@@ -65,7 +65,7 @@ class OllamaLM(BaseLM):
             str: The generated text completion.
         """
         response = self.llm.complete(messages, **kwargs)
-        return response
+        return response.text
 
 
     def get_response(self, prompt: str, history: List[dict] = None, json_format: bool = False, **kwargs) -> str:
@@ -84,16 +84,21 @@ class OllamaLM(BaseLM):
         messages = history or []
         messages.append({"role": "user", "content": prompt})
 
+        print(f"Messages to Ollama:{messages}")
+        message_str = json.dumps(messages)
+
         if json_format:
             while True:
                 try:
-                    response = self.llm.call(messages, **kwargs)
-                    return json.loads(response)  # Ensure response is valid JSON
+                    response = self.llm.complete(message_str, **kwargs)
+                    print(f"Response from Ollama:{response}")
+                    return json.loads(response.text)  # Ensure response is valid JSON
                 except json.JSONDecodeError:
                     logger.debug(f"INVALID JSON, TO BE RETRIED:\n{response}")
         else:
-            response = self.llm.call(messages, **kwargs)
-            return response
+            response = self.llm.complete(message_str, **kwargs)
+            print(f"Response from Ollama:{response}")
+            return response.text
 
 def default_llama_index_ollama_embed_model() -> OllamaEmbedding:
     # https://docs.llamaindex.ai/en/stable/examples/embeddings/ollama_embedding/

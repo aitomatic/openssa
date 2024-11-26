@@ -13,6 +13,7 @@ from typing import Any, TYPE_CHECKING
 
 from openssa.core.knowledge._prompts import knowledge_injection_lm_chat_msgs
 from openssa.core.util.lm.openai import OpenAILM
+from openssa.core.util.lm.ollama import OllamaLM
 
 from ._prompts import PROGRAM_SEARCH_PROMPT_TEMPLATE
 
@@ -47,7 +48,7 @@ class ProgramStore:
                                              kw_only=False)
 
     # language model for searching among stored problem-solving Programs
-    lm: BaseLM = field(default_factory=OpenAILM.from_defaults,
+    lm: BaseLM = field(default_factory=OllamaLM.from_defaults,
                        init=True,
                        repr=True,
                        hash=None,
@@ -72,7 +73,7 @@ class ProgramStore:
 
         matching_program_name: str = ''
         while matching_program_name not in valid_responses:
-            matching_program_name: str = self.lm.get_response(
+            matching_program_name = self.lm.get_response(
                 prompt=PROGRAM_SEARCH_PROMPT_TEMPLATE.format(problem=task.ask,
                                                              resource_overviews={resource.unique_name: resource.overview
                                                                                  for resource in task.resources},

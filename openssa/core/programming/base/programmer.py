@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from typing import Any, TYPE_CHECKING
 
 from openssa.core.util.lm.openai import OpenAILM
+from openssa.core.util.lm.ollama import OllamaLM
 
 if TYPE_CHECKING:
     from openssa.core.knowledge.base import Knowledge
@@ -27,7 +28,7 @@ class BaseProgrammer(ABC):
     """Programmer abstract base class."""
 
     # language model for generating problem-solving Programs
-    lm: BaseLM = field(default_factory=OpenAILM.from_defaults,
+    lm: BaseLM = field(default_factory=OllamaLM.from_defaults,
                        init=True,
                        repr=True,
                        hash=None,
