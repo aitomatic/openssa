@@ -12,6 +12,8 @@ Not all head-on situations require a starboard turn.
 Not all right-crossing situations require a starboard turn.
 Some left-crossing situations require taking actions, while most do not.
 
+In a right-crossing situation, it is important to first identify whether it is also a stern-crossing or a bow-crossing situation.
+
 In an overtaking situation, it is important to first identify whether the target ship or the own ship is overtaking.
 
 # **Comprehensive and Technical Rule of Thumb for OOW Decision-Making with Focus on COLREGs**
@@ -31,7 +33,7 @@ In an overtaking situation, it is important to first identify whether the target
 
 ---
 
-## **2. Mastering COLREGs Application with DCPA and/or TCPA consideration**
+## **2. Mastering COLREGs Application combined with DCPA and/or TCPA consideration**
 1. **“When in doubt, give way—always.”**  
    - If you cannot assess risk or priority clearly, **assume the give-way role** to stay safe.
 
