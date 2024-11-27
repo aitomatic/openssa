@@ -1,0 +1,12 @@
+plan:
+  task: |-
+    For etching PECVD SiO2 using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE),
+    recommend 2 good parameter sets and their relative advantages/disadvantages. 
+    Also give me recommendation about quality and safety of the process.
+    Keep the answer concise.
+  
+  sub-htps:
+    - task: |-
+        Get typical gases used for such process and their flow rate ranges, ICP Power, RF Power and Pressure value 
+        ranges and associated trade-offs in SiO2 etching using Inductively Coupled Plasma (ICP) Reactive Ion 
+        Etching (RIE). Keep the answer as concise as possible.
