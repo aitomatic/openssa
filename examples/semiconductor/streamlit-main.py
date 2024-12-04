@@ -32,7 +32,7 @@ if 'typed_problem' not in st.session_state:
 
 st.session_state.typed_problem: str = st.text_area(label='Problem/Question',
                                                    value=st.session_state.typed_problem,
-                                                   height=3,
+                                                   height=68,
                                                    max_chars=None,
                                                    key=None,
                                                    help='Problem/Question',
