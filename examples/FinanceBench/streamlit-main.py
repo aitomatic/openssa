@@ -110,6 +110,8 @@ with rag:
     st.subheader('Retrieval-Augmented Generation (RAG)')
     st.subheader('_with standard settings_')
 
+    print(f"task_doc_pair={task_doc_pair}")
+
     if st.button(label='Answer',
                  on_click=None, args=None, kwargs=None,
                  type='secondary',

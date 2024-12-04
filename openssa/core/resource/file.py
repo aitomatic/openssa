@@ -315,6 +315,8 @@ class FileResource(BaseResource):
         """Answer question by RAG from file-stored Informational Resource."""
         prompt: str = RESOURCE_QA_PROMPT_TEMPLATE.format(n_words=n_words, question=question)
 
+        print(f"answer prompt={prompt}")
+
         for _ in range(9):
             answer: str = self.query_engine.query(prompt).response
 

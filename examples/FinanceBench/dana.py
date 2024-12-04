@@ -125,6 +125,8 @@ if __name__ == '__main__':
     arg_parser.add_argument('--llama', action='store_true')
     args = arg_parser.parse_args()
 
+    print(f"from-id={args.from_id} knowledge={args.knowledge} prog_store={args.prog_store} llama={args.llama} fb_id_col_name={FB_ID_COL_NAME} ")
+
     match (args.knowledge, args.prog_store, args.llama):
         case (False, False, False):
             solve_func: QAFunc = solve

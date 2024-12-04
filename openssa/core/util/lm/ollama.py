@@ -64,6 +64,7 @@ class OllamaLM(BaseLM):
         Returns:
             str: The generated text completion.
         """
+        print(f"Messages to Ollama:{messages}")
         response = self.llm.complete(messages, **kwargs)
         return response.text
 
@@ -102,8 +103,10 @@ class OllamaLM(BaseLM):
 
 def default_llama_index_ollama_embed_model() -> OllamaEmbedding:
     # https://docs.llamaindex.ai/en/stable/examples/embeddings/ollama_embedding/
-    print("Returning OllamaEmbedding with mxbai-embed-large")
-    return OllamaEmbedding(model_name="mxbai-embed-large",
+    #model_name = "nomic-embed-text" 
+    model_name="mxbai-embed-large"
+    print(f"Returning OllamaEmbedding with {model_name}")
+    return OllamaEmbedding(model_name = model_name, 
                            base_url="http://localhost:11434",
                            ollama_additional_kwargs={"mirostat": 0})
 
