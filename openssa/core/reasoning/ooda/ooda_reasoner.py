@@ -59,6 +59,7 @@ class OodaReasoner(BaseReasoner):
         - Orient & Decide whether such results are adequate for confident answer/conclusion/solution
         - Act to update Task's status and result
         """
+        print("I am reasoning.")
         observations: set[Observation] = self._observe(task=task, other_results=other_results, n_words=n_words)
 
         # note: Orient & Decide steps are practically combined to economize LM calls
@@ -71,6 +72,7 @@ class OodaReasoner(BaseReasoner):
 
     def _observe(self, task: Task, other_results: list[AskAnsPair] | None = None, n_words: int = 1000) -> set[Observation]:  # noqa: E501
         """Observe results from available Informational Resources as well as other results (if given)."""
+        print("I am observing")
         observations: set[Observation] = {r.present_full_answer(question=task.ask, n_words=n_words) for r in task.resources}  # noqa: E501
 
         if other_results:
@@ -81,6 +83,7 @@ class OodaReasoner(BaseReasoner):
     def _orient(self, task: Task, observations: set[Observation],
                 knowledge: set[Knowledge] | None = None, n_words: int = 1000) -> Orientation:
         """Orient whether observed results are adequate for directly resolving Task."""
+        print("I am orienting")
         prompt: str = ORIENT_PROMPT_TEMPLATE.format(question=task.ask, n_words=n_words, observations='\n\n'.join(observations))  # noqa: E501
 
         def is_valid(orientation: Orientation) -> bool:
@@ -97,6 +100,7 @@ class OodaReasoner(BaseReasoner):
 
     def _decide(self, orientation: Orientation) -> Decision:
         """Decide whether to directly resolve Task."""
+        print(f"I am deciding. RC= {orientation.startswith(CONFIDENT_HEADER)}")
         return orientation.startswith(CONFIDENT_HEADER)
 
     def _act(self, task: Task, orientation: Orientation, decision: Decision):
@@ -107,3 +111,4 @@ class OodaReasoner(BaseReasoner):
         else:
             task.status: TaskStatus = TaskStatus.NEEDING_DECOMPOSITION
             task.result: str = orientation.split(sep=UNCONFIDENT_HEADER, maxsplit=1)[1]
+        print(f"I am acting. task.status={task.status}, task.result={task.result}")

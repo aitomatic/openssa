@@ -45,6 +45,7 @@ class OllamaLM(BaseLM):
             **kwargs: Additional arguments passed to the OLLAMA client.
         """
         self.llm = Ollama(model=self.model, request_timeout=60)
+        self.llm.temperature = LMConfig.OLLAMA_DEFAULT_TEMPERATURE
 
     @classmethod
     def from_defaults(cls) -> OllamaLM:
@@ -85,8 +86,9 @@ class OllamaLM(BaseLM):
         messages = history or []
         messages.append({"role": "user", "content": prompt})
 
-        print(f"Messages to Ollama:{messages}")
         message_str = json.dumps(messages)
+        print("Messages to Ollama:")
+        print(message_str.encode().decode("unicode_escape"))
 
         if json_format:
             while True:

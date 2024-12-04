@@ -280,7 +280,7 @@ class FileResource(BaseResource):
                 fs=fs)
 
 
-        print(f"Using llm {self.lm}")
+        print(f"Using llm: {self.lm}")
 
         return index.as_query_engine(
             # docs.llamaindex.ai/en/latest/understanding/querying/querying.html

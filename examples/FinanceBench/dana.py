@@ -19,6 +19,7 @@ def get_main_lm(use_llama: bool = False):
 
 @cache
 def get_or_create_expert_program_store(use_llama: bool = False) -> ProgramStore:
+    print("get_or_create_expert_program_store")
     program_store = ProgramStore(lm=get_main_lm(use_llama=use_llama))
 
     for program_name, htp_dict in EXPERT_PROGRAMS.items():
@@ -34,6 +35,7 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, exper
                         use_llama: bool = False,
                         llama_index_lm_name: str = LMConfig.OPENAI_DEFAULT_MODEL) -> DANA:
     # pylint: disable=too-many-arguments
+    print("get_or_create_agent")
     return DANA(knowledge={EXPERT_KNOWLEDGE} if expert_knowledge else None,
 
                 program_store=(get_or_create_expert_program_store(use_llama=use_llama)
@@ -49,6 +51,7 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, exper
 
 @cache
 def get_or_create_adaptations(doc_name: DocName) -> dict[str, str]:
+    print("get_or_create_adaptations")
     return {EXPERT_HTP_COMPANY_KEY: (doc := Doc(name=doc_name)).company, EXPERT_HTP_PERIOD_KEY: doc.period}
 
 

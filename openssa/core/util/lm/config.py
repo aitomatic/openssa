@@ -40,6 +40,7 @@ class LMConfig:
 
     # OLLAMA
     OLLAMA_DEFAULT_MODEL : str  = "llama3.1:70b"
+    OLLAMA_DEFAULT_TEMPERATURE: float = 0.1
 
     # LM parameters
     DEFAULT_SEED: int = 7 * 17 * 14717

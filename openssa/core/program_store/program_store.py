@@ -64,6 +64,9 @@ class ProgramStore:
     def find_program(self, task: Task, knowledge: set[Knowledge] | None = None,
                      adaptations_from_known_programs: dict[str, Any] | None = None) -> BaseProgram | None:
         """Find a suitable Program for the posed Problem, or return None."""
+
+        print(f"Find_program: task={task} description={self.descriptions}")
+
         knowledge_lm_hist: LMChatHist | None = (knowledge_injection_lm_chat_msgs(knowledge=knowledge)
                                                 if knowledge
                                                 else None)
@@ -79,6 +82,8 @@ class ProgramStore:
                                                                                  for resource in task.resources},
                                                              program_descriptions=self.descriptions),
                 history=knowledge_lm_hist)
+
+        print(f"matching_program_name={matching_program_name}")
 
         if matching_program_name == 'NONE':
             return None
