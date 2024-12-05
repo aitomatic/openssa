@@ -28,30 +28,30 @@ if TYPE_CHECKING:
     from .base import LMChatHist
 
 
-
 @dataclass
 class OllamaLM(BaseLM):
     """Wrapper for OLLAMA using llama-index API."""
 
     llm: Ollama = field(init=False)
-        
+
     def __post_init__(self):
         """
         Initialize the OLLAMA wrapper.
 
         Args:
+
             model (str): The model name (e.g., "llama2").
             request_timeout (float): Request timeout for API calls, in seconds.
             **kwargs: Additional arguments passed to the OLLAMA client.
         """
-        self.llm = Ollama(model=self.model, request_timeout=60)
+
+        self.llm = Ollama(model=self.model, base_url=self.api_base, request_timeout=60)
 
     @classmethod
     def from_defaults(cls) -> OllamaLM:
         """Get HuggingFace LM instance with default parameters."""
         # pylint: disable=unexpected-keyword-arg
-        return cls(model=LMConfig.OLLAMA_DEFAULT_MODEL, api_key="", api_base="")
-
+        return cls(model=LMConfig.OLLAMA_DEFAULT_MODEL, api_key="", api_base=LMConfig.OLLAMA_API_URL)
 
     def call(self, messages: LMChatHist, **kwargs) -> ChatResponse:
         """
@@ -59,15 +59,16 @@ class OllamaLM(BaseLM):
 
         Args:
             prompt (str): The input prompt.
+            messages (str): The input prompt.
             **kwargs: Additional arguments for the LLM completion.
 
         Returns:
             str: The generated text completion.
         """
+
         print(f"Messages to Ollama:{messages}")
         response = self.llm.complete(messages, **kwargs)
         return response.text
-
 
     def get_response(self, prompt: str, history: List[dict] = None, json_format: bool = False, **kwargs) -> str:
         """
@@ -82,6 +83,7 @@ class OllamaLM(BaseLM):
         Returns:
             str: The LLM's response or the parsed JSON content.
         """
+
         messages = history or []
         messages.append({"role": "user", "content": prompt})
 
@@ -103,13 +105,18 @@ class OllamaLM(BaseLM):
 
 def default_llama_index_ollama_embed_model() -> OllamaEmbedding:
     # https://docs.llamaindex.ai/en/stable/examples/embeddings/ollama_embedding/
-    #model_name = "nomic-embed-text" 
-    model_name="mxbai-embed-large"
-    print(f"Returning OllamaEmbedding with {model_name}")
-    return OllamaEmbedding(model_name = model_name, 
-                           base_url="http://localhost:11434",
+    # model_name = "nomic-embed-text"
+    # model_name = "mxbai-embed-large"
+    # print(f"Returning OllamaEmbedding with {model_name}")
+    # return OllamaEmbedding(model_name=model_name, 
+    #                        base_url="http://localhost:11434",
+    #                        ollama_additional_kwargs={"mirostat": 0})
+    
+    model_name = LMConfig.OLLAMA_DEFAULT_EMBEDDING_MODEL
+    # print(f"Returning OllamaEmbedding with {model_name}")
+    return OllamaEmbedding(model_name=model_name, 
+                           base_url=LMConfig.OLLAMA_API_URL,
                            ollama_additional_kwargs={"mirostat": 0})
-
 
 
 def default_llama_index_ollama_lm(name: str = LMConfig.OLLAMA_DEFAULT_MODEL, /) -> Ollama:

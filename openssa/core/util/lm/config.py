@@ -37,9 +37,10 @@ class LMConfig:
     OPENAI_DEFAULT_MODEL: str = 'gpt-4o'  # platform.openai.com/docs/models/gpt-4o
     OPENAI_DEFAULT_SMALL_MODEL: str = 'gpt-4o-mini'  # platform.openai.com/docs/models/gpt-4o-mini
 
-
-    # OLLAMA
-    OLLAMA_DEFAULT_MODEL : str  = "llama3.1:70b"
+    # OLLAMA LMs
+    OLLAMA_DEFAULT_MODEL: str = os.environ.get('OLLAMA_MODEL', 'llama3.1:70b')
+    OLLAMA_API_URL: str = os.environ.get('OLLAMA_API_URL', 'http://localhost:11434')
+    OLLAMA_DEFAULT_EMBEDDING_MODEL: str = os.environ.get('OLLAMA_EMBEDDING_MODEL', 'mxbai-embed-large')
 
     # LM parameters
     DEFAULT_SEED: int = 7 * 17 * 14717
