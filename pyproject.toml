@@ -75,6 +75,8 @@ openai = ">=1.51"
 llama-index = ">=0.11"
 llama-index-embeddings-azure-openai = ">=0.2"
 llama-index-llms-azure-openai = ">=0.2"
+llama-index-llms-ollama = ">=0.4"
+llama-index-embeddings-ollama = ">=0.4"
 llama-index-readers-web = ">=0.2"
 docx2txt = ">=0.8"  # for reading .docx files
 pypdf = ">=4.3"  # for reading .pdf files
