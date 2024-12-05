@@ -45,7 +45,7 @@ class OllamaLM(BaseLM):
             **kwargs: Additional arguments passed to the OLLAMA client.
         """
 
-        self.llm = Ollama(model=self.model, base_url=self.api_base, request_timeout=60)
+        self.llm = Ollama(model=self.model, base_url=self.api_base, request_timeout=LMConfig.OLLAMA_DEFAULT_TIMEOUT)
 
     @classmethod
     def from_defaults(cls) -> OllamaLM:
@@ -111,7 +111,7 @@ def default_llama_index_ollama_embed_model() -> OllamaEmbedding:
     # return OllamaEmbedding(model_name=model_name, 
     #                        base_url="http://localhost:11434",
     #                        ollama_additional_kwargs={"mirostat": 0})
-    
+
     model_name = LMConfig.OLLAMA_DEFAULT_EMBEDDING_MODEL
     # print(f"Returning OllamaEmbedding with {model_name}")
     return OllamaEmbedding(model_name=model_name, 
