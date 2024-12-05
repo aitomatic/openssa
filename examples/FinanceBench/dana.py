@@ -16,6 +16,12 @@ from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
 def get_main_lm(use_llama: bool = False):
     return (OllamaLM if use_llama else OpenAILM).from_defaults()
 
+@cache
+def get_default_lm(llama_index_lm_name, use_llama: bool = False):
+    if use_llama:
+        return default_llama_index_ollama_lm(llama_index_lm_name)
+    return default_llama_index_openai_lm(llama_index_lm_name)
+
 
 @cache
 def get_or_create_expert_program_store(use_llama: bool = False) -> ProgramStore:
@@ -46,7 +52,7 @@ def get_or_create_agent(doc_name: DocName, expert_knowledge: bool = False, exper
                                      max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
 
                 resources={FileResource(path=Doc(name=doc_name).dir_path,
-                                        lm=default_llama_index_ollama_lm(llama_index_lm_name))})
+                                        lm=get_default_lm(llama_index_lm_name, use_llama=use_llama))})
 
 
 @cache
