@@ -97,6 +97,8 @@ class DANA:
         """
         task: Task = Task(ask=problem, resources=self.resources)
 
+        print(f"Solving the problem. task={task}")
+
         program: BaseProgram = (
             self.program_store.find_program(task=task, knowledge=self.knowledge,
                                             adaptations_from_known_programs=adaptations_from_known_programs)
