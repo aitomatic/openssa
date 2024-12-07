@@ -40,6 +40,24 @@ OUTPUT_FILE_PATH = f"{OUTPUT_DIR}/agent_solutions.json"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
+def get_solution(problem: str, use_domain_lm: bool = False) -> str:
+    agent = get_or_create_agent(use_domain_lm)
+    return agent.solve(problem=problem, allow_reject=True)
+
+
+def get_domain_response(response: str) -> str:
+    response = OpenAILM.from_defaults().get_response(
+        prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
+            {response}
+        """,
+        history=[
+            {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
+            {"role": "user", "content": LLAMARINE_USER_PROMPT},
+        ]
+    )
+    return response
+
+
 def main(use_domain_lm: bool = False):
     st.set_page_config(page_title=TITLE,
                        page_icon=None,
@@ -85,24 +103,14 @@ def main(use_domain_lm: bool = False):
 
             if not st.session_state.agent_solutions[st.session_state.typed_problem] or OVERWRITE:
                 st.session_state.agent_solutions[st.session_state.typed_problem]: str = \
-                    get_or_create_agent(use_domain_lm).solve(
-                        problem=st.session_state.typed_problem, allow_reject=True)
+                    get_solution(problem=st.session_state.typed_problem, use_domain_lm=use_domain_lm)
                 # write st.session_state.agent_solutions to JSON file
                 with open(file=OUTPUT_FILE_PATH, mode='w', encoding='utf-8') as f:
                     f.write(json.dumps(st.session_state.agent_solutions))
 
         solution = st.session_state.agent_solutions[st.session_state.typed_problem]
         if use_domain_lm:
-            solution = OpenAILM.from_defaults().get_response(
-                prompt=f"""Please respond the following text, with making sure there is a conclusion which is the main action item at the end of the response.
-                    {solution}
-                """,
-                history=[
-                    {"role": "system", "content": LLAMARINE_SYSTEM_PROMPT},
-                    {"role": "user", "content": LLAMARINE_USER_PROMPT},
-                ]
-            )
-
+            solution = get_domain_response(response=solution)
         st.markdown(body=solution)
 
 

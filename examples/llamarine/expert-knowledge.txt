@@ -33,7 +33,7 @@ In an overtaking situation, it is important to first identify whether the target
 
 ---
 
-## **2. Mastering COLREGs Application combined with DCPA and/or TCPA consideration**
+## **2. Mastering COLREGs Application combined with DCPA and TCPA considerations**
 1. **“When in doubt, give way—always.”**  
    - If you cannot assess risk or priority clearly, **assume the give-way role** to stay safe.
 
@@ -50,8 +50,8 @@ In an overtaking situation, it is important to first identify whether the target
    - Meeting a left-crossing? **Stand-on is default**.
 
 5. **"Meeting an overtaking? You must stay clear."**
-   - If the target ship is overtaking, **Stand-on is default**, unless the following conditions: the DCPA of the own ship and the target ship is shorter than the {safe distance to be overtaken}, and the TCPA of the own ship and the target ship is shorter than the {safe time to be overtaken}, then you must turn in the direction of separation.
-   - If the own ship is overtaking, **Stand-on is default** for the following conditions: The DCPA of the own ship and the target ship is longer than the {safe distance to overtake}, and the TCPA of the own ship and the target ship is longer than the {safe time to overtake}.
+   - If the target ship is overtaking, **Stand-on is default**, unless there is a reason not to. The only reason you must turn in the direction of separation in the situation that the target ship is overtaking is that the both following DCPA & TCPA conditions must meet: the DCPA of the own ship and the target ship is shorter than the {safe distance to be overtaken}, and the TCPA of the own ship and the target ship is shorter than the {safe time to be overtaken}.
+   - If the own ship is overtaking, **Stand-on is default** for both the following DCPA & TCPA conditions: The DCPA of the own ship and the target ship is longer than the {safe distance to overtake}, and the TCPA of the own ship and the target ship is longer than the {safe time to overtake}.
 
 ---
 

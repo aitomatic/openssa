@@ -101,6 +101,7 @@ ignore = [
   "PTH118",  # `os.path.join()` should be replaced by `Path` with `/` operator
   "PTH119",  # `os.path.basename()` should be replaced by `Path.name`
   "PTH123",  # `open()` should be replaced by `Path.open()`
+  "PTH208",  # use `pathlib.Path.iterdir()` instead
   "PLC0415",  # `import` should be at the top-level of a file
   "PLR0904",  # too many public methods
   "PLR0917",  # too many positional arguments
