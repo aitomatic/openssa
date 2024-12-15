@@ -1,0 +1,174 @@
+DCPA is distance of closest point of approach.
+TCPA is time at closest point of approach.
+DCPA & TCPA are not in COLREGS, but they are useful for OOW decision-making.
+
+SOG based on the Earth as the reference, might lead to misleading on radar such as display head on situation on the water as crossing situation.
+STW based on water might avoid this ambiguity.
+
+Be careful with the risk misleading on radar such as display head on situation on the water as crossing situation.
+COLREGS was designed to all vessel, even without radar.
+
+Not all head-on situations require a starboard turn.
+Not all right-crossing situations require a starboard turn.
+Some left-crossing situations require taking actions, while most do not.
+
+In a right-crossing situation, it is important to first identify whether it is also a stern-crossing or a bow-crossing situation.
+
+In an overtaking situation, it is important to first identify whether the target ship or the own ship is overtaking.
+
+# **Comprehensive and Technical Rule of Thumb for OOW Decision-Making with Focus on COLREGs**
+
+---
+
+## **1. General Watchkeeping Rules**  
+1. **“If you’re not looking, you’re not navigating.”**  
+   - Constantly scan the horizon and monitor instruments; **complacency kills safety**.  
+   - Set a **visual sweep cycle every 5-10 minutes**, especially in busy waters.
+
+2. **"Trust your eyes, confirm with instruments."**  
+   - Visual observations are primary—radar and AIS are support tools. **Don’t rely on AIS alone for collision avoidance.**
+
+3. **“If unsure, act early and decisively.”**  
+   - Uncertainty should trigger **immediate action**—reduce speed or change course to avoid developing a risky situation.
+
+---
+
+## **2. Mastering COLREGs Application combined with DCPA and TCPA considerations**
+1. **“When in doubt, give way—always.”**  
+   - If you cannot assess risk or priority clearly, **assume the give-way role** to stay safe.
+
+2. **“Clear and early course alterations save lives.”**  
+   - Make **large, unambiguous changes** in course or speed—others must know your intentions clearly.
+
+3. **"Stand-on means stay alert.”**  
+   - Even as the stand-on vessel, **be ready to act** if the give-way vessel fails to maneuver. Monitor closely (Rule 17).
+   - If the give-way vessel is not taking an evasive action, make a starboard turn or slow down.
+
+4. **"Always turn to starboard unless there’s a reason not to.”**  
+   - Meeting a head-on? **Starboard turn is default** (Rule 14). Avoid left-turning unless absolutely necessary. In a head-on situation, especially when both the DCPA and the TCPA are shorter than the {90 degree turning distance}, we must not only make a starboard turn but also do it quickly and drastically. In a head-on situation, the only reason not to turn to starboard is when both the DCPA and the TCPA are longer than the {90 degree turning distance}, then we should keep course and speed.
+   - Meeting a right-crossing? **Starboard turn is default** (Rule 15). In a right-crossing situation which is also a stern-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than the {rear safety distance}, then we should keep course and speed. In a right-crossing situation which is also a bow-crossing situation, especially when the DCPA is shorter than {right-crossing safety distance} and the TCPA is shorter than {right-crossing safety time}, we must make a starboard turn quickly and drastically. In a right-crossing situation which is also a bow-crossing situation, the only reason not to turn to starboard is when the DCPA is longer than {right-crossing safety distance} (even when it is shorter than the {rear safety distance}) and the TCPA is longer than {right-crossing safety time}, then we should keep course and speed.
+   - Meeting a left-crossing? **Stand-on is default**.
+
+5. **"Meeting an overtaking? You must stay clear."**
+   - If the target ship is overtaking, **Stand-on is default**, unless there is a reason not to. The only reason you must turn in the direction of separation in the situation that the target ship is overtaking is that the both following DCPA & TCPA conditions must meet: the DCPA of the own ship and the target ship is shorter than the {safe distance to be overtaken}, and the TCPA of the own ship and the target ship is shorter than the {safe time to be overtaken}.
+   - If the own ship is overtaking, **Stand-on is default** for both the following DCPA & TCPA conditions: The DCPA of the own ship and the target ship is longer than the {safe distance to overtake}, and the TCPA of the own ship and the target ship is longer than the {safe time to overtake}.
+
+---
+
+## **3. Risk Assessment and Avoiding Collisions**  
+1. **"A safe CPA is one you can live with."**  
+   - Set a **minimum CPA threshold (usually 1 NM)** and act if any vessel breaches it.
+
+2. **“If the TCPA is below 12 minutes, it’s time to act.”**  
+   - If the Time to Closest Point of Approach (TCPA) is under 12-15 minutes, **adjust course or speed early** to prevent a close-quarters situation.
+
+3. **"Two vessels moving = double the risk."**  
+   - When both vessels are maneuvering, **reassess continuously**—don’t assume the risk is eliminated until clear separation is achieved.
+
+---
+
+## **4. Use of Radar, AIS, and Navigation Systems**  
+1. **“AIS is for information, not decisions.”**  
+   - Use AIS to gather data, but **base collision-avoidance actions on radar and visual observations**. AIS can be delayed or inaccurate.
+
+2. **"Range rings are your best friend."**  
+   - Use **radar range rings** to maintain situational awareness of nearby traffic—understand the vessel positions at a glance.
+
+3. **"Every contact deserves a second look."**  
+   - Reassess each target periodically; conditions and **intentions of vessels can change suddenly**.
+
+---
+
+## **5. Speed and Maneuvering Principles**  
+1. **“Safe speed = one you can stop in time.”**  
+   - Always maintain a speed that allows **full control and stopping** within the visible distance ahead (Rule 6).
+
+2. **“If it’s tight, slow down.”**  
+   - When encountering traffic, restricted waters, or poor weather, **reducing speed buys decision time.**
+
+3. **"The earlier the maneuver, the smoother it is."**  
+   - Execute maneuvers well in advance—**last-minute actions increase risks.**
+
+---
+
+## **6. Restricted Visibility Procedures**  
+1. **"If you can’t see, assume they can’t either."**  
+   - Treat poor visibility as high risk—**assume other vessels won’t see you** in time (Rule 19).
+
+2. **"Sound signals are mandatory, not optional."**  
+   - Use fog signals (one prolonged blast every 2 minutes) without hesitation. **Sound travels further than lights in fog.**
+
+3. **“Double the lookout in fog.”**  
+   - Assign **additional personnel** as lookout during restricted visibility for better situational awareness.
+
+---
+
+## **7. Communication and Coordination**  
+1. **"Short, clear, correct."**  
+   - Use VHF for essential communication only—**stick to proper COLREGs protocols** and avoid negotiating maneuvers outside the rules.
+
+2. **"If you don’t understand, use 5 blasts."**  
+   - Five short blasts signal **danger or confusion**—don’t hesitate to use it if unsure about another vessel’s intentions (Rule 34).
+
+3. **"Confirm instructions back."**  
+   - Always ensure your orders are **repeated back correctly** by the helmsman or lookout—this avoids miscommunication.
+
+---
+
+## **8. Contingency and Emergency Planning**  
+1. **"Plan your escape route before you need it."**  
+   - Always **have a secondary maneuver or course** ready in case the primary plan fails.
+
+2. **"In an emergency, slow is smooth, smooth is fast."**  
+   - In critical moments, **act calmly but decisively**—panic leads to errors.
+
+3. **"Machinery ready, all the time."**  
+   - Keep engines on standby when maneuvering in tight waters or restricted visibility—**you might need to stop instantly.**
+
+---
+
+## **9. Personal Efficiency and Fatigue Management**  
+1. **"Tired brains make bad decisions."**  
+   - Ensure **adequate rest** before a watch. Fatigue is a top contributor to poor decision-making.
+
+2. **"Stay hydrated, stay sharp."**  
+   - Dehydration affects concentration—**drink water regularly** during your watch.
+
+3. **"Eliminate distractions."**  
+   - Avoid non-essential tasks or conversations—**a moment’s distraction can lead to an accident.**
+
+---
+
+## **10. Handover and Logkeeping**  
+1. **"No surprises on handover."**  
+   - Give the relieving officer **complete and clear information** about nearby vessels, ongoing maneuvers, and known risks.
+
+2. **"If it’s not logged, it didn’t happen."**  
+   - Log all **important events, course changes, and decisions** accurately for accountability.
+
+3. **“Summarize the essentials.”**  
+   - When logging, focus on **key details**—position, traffic, weather, and any incidents or actions taken.
+
+---
+
+## **11. Environmental and Navigational Awareness**  
+1. **“Tides and currents can work for or against you.”**  
+   - Factor in **local tide and current conditions** when planning and maneuvering—ignoring them leads to drift errors.
+
+2. **“Assume the weather can worsen.”**  
+   - Plan with the expectation that weather can change suddenly—**be ready to alter course or slow down.**
+
+3. **“Compliance extends to the environment.”**  
+   - Adhere to pollution regulations—**avoid discharges and emissions violations** at all costs.
+
+---
+
+## **12. Decision-Making Under Pressure**  
+1. **"Calm mind, better choices."**  
+   - Take a moment to think—**rushed decisions lead to mistakes.**
+
+2. **"Stick to the rules; they’re there for a reason."**  
+   - Don’t take shortcuts—COLREGs rules **always apply, even under pressure.**
+
+3. **"Every decision is reversible until it isn’t."**  
+   - Be ready to adjust course or speed if the situation changes unexpectedly—**adapt quickly but safely.**

@@ -1,8 +1,8 @@
 from typing import Union, ClassVar
 from uuid import uuid4
 
-from llama_index.core.retrievers import BaseRetriever  # noqa: TCH002
-from llama_index.core.schema import NodeWithScore  # noqa: TCH002
+from llama_index.core.retrievers import BaseRetriever  # noqa: TC002
+from llama_index.core.schema import NodeWithScore  # noqa: TC002
 
 from openssa.deprecated.ooda_rag.builtin_agents import (
     ContextValidator,
