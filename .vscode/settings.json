@@ -92,6 +92,7 @@
 
   // PYLINT
   // ======
+  // marketplace.visualstudio.com/items?itemName=ms-python.pylint
 
   // Arguments passed to Pylint for linting Python files.
   // Each argument should be provided as a separate string in the array.
