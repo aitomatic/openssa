@@ -19,7 +19,12 @@
   // ======
 
   "[python]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+    // "editor.codeActionsOnSave": {
+    //   "source.fixAll": "explicit",
+    //   "source.organizeImports": "explicit"
+    // }
   },
 
   "python.analysis.diagnosticSeverityOverrides": {
@@ -31,6 +36,7 @@
 
   // FLAKE8
   // ======
+  // marketplace.visualstudio.com/items?itemName=ms-python.flake8
 
   // Arguments passed to Flake8 for linting Python files.
   // Each argument should be provided as a separate string in the array.
@@ -54,14 +60,14 @@
     "info": "Information",
     "refactor": "Hint",
     "warning": "Warning"
-  },	
+  },
 
   // Path or command to be used by the extension to lint Python files with Flake8.
   // Accepts an array of a single or multiple strings.
   // If passing a command, each argument should be provided as a separate string in the array.
   // If set to ["flake8"], it will use the version of Flake8 available in the PATH environment variable.
   // Note: Using this option may slowdown linting.
-  // "flake8.path": [], 
+  // "flake8.path": [],
 
   // Path to a Python executable or a command that will be used to launch the Flake8 server and any subprocess.
   // Accepts an array of a single or multiple strings.
@@ -82,9 +88,6 @@
   // Accepted values are onError, onWarning, always and off.
   "flake8.showNotification": "onWarning",
 
-  // Enable linting Python files with Flake8 as you type.
-  "flake8.lintOnChange": true,
-
   // Configure glob patterns as supported by the fnmatch Python library (https://docs.python.org/3/library/fnmatch.html)
   // to exclude files or folders from being linted with Flake8.
   "flake8.ignorePatterns": [
@@ -94,6 +97,7 @@
 
   // PYLINT
   // ======
+  // marketplace.visualstudio.com/items?itemName=ms-python.pylint
 
   // Arguments passed to Pylint for linting Python files.
   // Each argument should be provided as a separate string in the array.
@@ -161,43 +165,22 @@
 
   // RUFF
   // ====
+  // marketplace.visualstudio.com/items?itemName=charliermarsh.ruff
+  // docs.astral.sh/ruff/editors/settings
 
-  // Additional command-line arguments to pass to ruff check, e.g., "args": ["--config=/path/to/pyproject.toml"].
-  // Supports a subset of Ruff's command-line arguments, ignoring those that are required to operate the LSP,
-  // like --force-exclude and --verbose.
-  "ruff.lint.args": [
-  ],
+  "ruff.nativeServer": "on",
 
-  // Path to a custom ruff executable, e.g., ["/path/to/ruff"].
-  "ruff.path": [],
+  "ruff.configuration": ".ruff.toml",
 
-  // Path to a Python interpreter to use to run the linter server.
-  "ruff.interpreter": [],
+  "ruff.lineLength": 120,
+  "ruff.organizeImports": false
 
-  // Strategy for loading the ruff executable.
-  // fromEnvironment picks up Ruff from the environment, falling back to the bundled version if needed.
-  // useBundled uses the version bundled with the extension.
-  "ruff.importStrategy": "fromEnvironment",
+  // Python-based Ruff server only
+  // -----------------------------
+  // "ruff.importStrategy": "fromEnvironment",
+  // "ruff.interpreter": [],
+  // "ruff.path": [],
 
-  // Run Ruff on every keystroke (onType) or on save (onSave).
-  "ruff.lint.run": "onSave",
-
-  // Whether to enable the Ruff extension.
-  // Modifying this setting requires restarting VS Code to take effect.
-  "ruff.enable": true,
-
-  // Whether to register Ruff as capable of handling source.organizeImports actions.
-  "ruff.organizeImports": true,
-
-  // Whether to register Ruff as capable of handling source.fixAll actions.
-  "ruff.fixAll": false,
-
-  // Whether to display Quick Fix actions to autofix violations.
-  "ruff.codeAction.fixViolation.enable": true,
-
-  // Whether to display Quick Fix actions to disable rules via noqa suppression comments.
-  "ruff.codeAction.disableRuleComment.enable": true,
-
-  // Setting to control when a notification is shown: off, onError, onWarning, always.
-  "ruff.showNotification": "onWarning"
+  // "ruff.lint.args": [],
+  // "ruff.format.args": [],
 }
