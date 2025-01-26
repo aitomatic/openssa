@@ -40,6 +40,7 @@ ignore = [
   "B008",  # do not perform function call in argument defaults;
            # instead, perform the call within the function, or read the default from a module-level singleton variable
   "B027",  # ... is an empty method in an abstract base class, but has no abstract decorator
+  "B903",  # Class could be dataclass or namedtuple
   "B905",  # `zip()` without an explicit `strict=` parameter
   "BLE001",  # do not catch blind exception
   "COM812",  # trailing comma missing
