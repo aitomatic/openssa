@@ -128,7 +128,7 @@ per the following template:
 [SUB-QUESTION/PROBLEM/TASK]
 <textual description of 1st sub-question/problem/task to answer/solve>
 [SUB-QUESTION/PROBLEM/TASK]
-<textual description of 1st sub-question/problem/task to answer/solve>
+<textual description of 2nd sub-question/problem/task to answer/solve>
 ...
 ```
 
