@@ -152,4 +152,5 @@ ignore = [
   "UP007",  # use `X | Y` for type annotations
   "UP035",  # `typing.[X]` is deprecated, use `[x]` instead
   "UP039",  # unnecessary parentheses after class definition
+  "UP045",  # Use `X | None` for type annotations
 ]
