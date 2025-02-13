@@ -4288,6 +4288,8 @@ financebench_id_00603:
   correctness: >-
     the answer mentions new stores
 
+  evaluator-unreliable: true
+
 
 financebench_id_00605:
   sector: Consumer Discretionary
@@ -4315,6 +4317,8 @@ financebench_id_00605:
   correctness: >-
     the answer contains a calculated percentage value that is in the range from 30% to 40%
     (if the answer is a single number, assume that it is that calculated percentage value)
+
+  evaluator-unreliable: true
 
 
 financebench_id_00606:  # tricky: highly implicit wordings
