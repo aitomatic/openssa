@@ -3,6 +3,8 @@ plan_without_speed_reference:
     Recommend the user ask about a vessel on boat side coming to a crossing situation (and only crossing situation) in radar without specifying SOG or STW are being used.
   sub-htps:
     - task: |-
+        If use the user says STW and SOG are the same, then no need to ask about the speed reference, just proceed it as STW.
+    - task: |-
         Reject to answer due to lack of information or ambiguity in the user input. Request to know if SOG or STW is being used.
 
 
