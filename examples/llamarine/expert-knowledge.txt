@@ -33,7 +33,7 @@ In an overtaking situation, it is important to first identify whether the target
 
 ---
 
-## **2. Mastering COLREGs Application combined with DCPA and TCPA considerations**
+## **2. Mastering COLREGs Application combined with DCPA, TCPA, BCR considerations**
 1. **“When in doubt, give way—always.”**  
    - If you cannot assess risk or priority clearly, **assume the give-way role** to stay safe.
 
@@ -52,6 +52,24 @@ In an overtaking situation, it is important to first identify whether the target
 5. **"Meeting an overtaking? You must stay clear."**
    - If the target ship is overtaking, **Stand-on is default**, unless there is a reason not to. The only reason you must turn in the direction of separation in the situation that the target ship is overtaking is that the both following DCPA & TCPA conditions must meet: the DCPA of the own ship and the target ship is shorter than the {safe distance to be overtaken}, and the TCPA of the own ship and the target ship is shorter than the {safe time to be overtaken}.
    - If the own ship is overtaking, **Stand-on is default** for both the following DCPA & TCPA conditions: The DCPA of the own ship and the target ship is longer than the {safe distance to overtake}, and the TCPA of the own ship and the target ship is longer than the {safe time to overtake}.
+
+6. **Head-on situation**
+   - TCPA > 30 min: safe.
+   - TCPA < 30 min: need normal turn
+   - TCPA＜ 15 min: need emergency turn
+   - Normal turn: ROT of 5 to 10 degrees
+   - Emergency turn: Switch to manual steering for changes over 10 degrees
+
+7. **Crossing, Give-away situation**
+   - BCR<=10: Alter course toward the stern of target ship
+   - BCR<=5 and the distance between target ship and own ship <= 20 NM: Turn to starboard with 5<=ROT<=10
+   - BCR<=5 and the distance between target ship and own ship <= 15 NM:Turn to starboard at approximately ROT=10
+   - BCR<=5 and the distance between target ship and own ship <= 10 NM: Switch to hand steering and execute an emergency turn to starboard
+   - BCR<0 negative: Monitor whether the target ship will maintain its course
+
+8. **Crossing, Stand-on situation**
+    - the distance between target ship and own ship <= 20 NM: Monitor the target ship
+    - the distance between target ship and own ship <= 10 NM: communicate using VHF or sound the ship's whistle
 
 ---
 
