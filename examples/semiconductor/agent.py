@@ -3,10 +3,9 @@ from __future__ import annotations
 from argparse import ArgumentParser
 from functools import cache
 
-from openssa import DANA, ProgramStore, HTP, HTPlanner, OpenAILM
-
 # pylint: disable=wrong-import-order
-from data_and_knowledge import EXPERT_PROGRAMS
+from data_and_knowledge import EXPERT_PROGRAMS, EXPERT_KNOWLEDGE
+from openssa import DANA, ProgramStore, HTP, HTPlanner, OpenAILM
 from semikong_lm import SemiKongLM
 
 
@@ -20,9 +19,9 @@ def get_or_create_agent(use_semikong_lm: bool = True, max_depth=2, max_subtasks_
             htp = HTP.from_dict(htp_dict)
             program_store.add_or_update_program(name=program_name, description=htp.task.ask, program=htp)
 
-    return DANA(knowledge={},
-                program_store=program_store,
+    return DANA(program_store=program_store,
                 programmer=HTPlanner(lm=lm, max_depth=max_depth, max_subtasks_per_decomp=max_subtasks_per_decomp),
+                knowledge={EXPERT_KNOWLEDGE} if EXPERT_KNOWLEDGE else None,
                 resources={})
 
 

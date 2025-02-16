@@ -1,0 +1,2 @@
+streamlit>=1.40.0
+git+https://github.com/aitomatic/openssa.git@0.24.10.26

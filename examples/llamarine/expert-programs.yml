@@ -1,0 +1,28 @@
+plan_without_speed_reference:
+  task: |-
+    Recommend the user ask about a vessel on boat side coming to a crossing situation (and only crossing situation) in radar without specifying SOG or STW are being used.
+  sub-htps:
+    - task: |-
+        Reject to answer due to lack of information or ambiguity in the user input. Request to know if SOG or STW is being used.
+
+
+plan_with_speed_reference_sog:
+  task: |-
+    Recommend the user what to do based on the identified situation on radar. Only apply this if specifying SOG is being used.
+  sub-htps:
+    - task: |-
+        Please visually check the windows, not entirely relying on the radar. It's possible that this is a head on situation.
+    - task: |-
+        If you're sure this is a crossing situation, first tell me all the related rules in COLREGs, then let me know the how to apply them in the crossing situation, with considering DCPA and/or TCPA.
+    - task: |-
+        If you're sure this is a head on situation, first tell me all the related rules in COLREGs, then let me know the how to apply them in the head on situation, with considering DCPA and TCPA.
+    - task: |-
+        Compose to the final answer contains all above outputs and show recommended actions for both crossing and head on situations.
+
+
+plan_with_speed_reference_stw:
+  task: |-
+    Recommend the user what to do based on the identified situation on radar. Only apply this if specifying STW is being used.
+  sub-htps:
+    - task: |-
+        First identify the situation from the input, then look at DCPA & TCPA if those are mentioned from the input, then let me know the how to make collision avoidance decisions.

@@ -40,6 +40,7 @@ ignore = [
   "B008",  # do not perform function call in argument defaults;
            # instead, perform the call within the function, or read the default from a module-level singleton variable
   "B027",  # ... is an empty method in an abstract base class, but has no abstract decorator
+  "B903",  # class could be dataclass or namedtuple
   "B905",  # `zip()` without an explicit `strict=` parameter
   "BLE001",  # do not catch blind exception
   "COM812",  # trailing comma missing
@@ -93,6 +94,7 @@ ignore = [
   "PGH004",  # use specific rule codes when using `ruff: noqa`
   "PIE790",  # unnecessary `pass` statement
   "PLC2701",  # private name import from external module
+  "PT028",  # test function parameter has default argument
   "PTH100",  # `os.path.abspath()` should be replaced by `Path.resolve()`
   "PTH103",  # `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
   "PTH109",  # `os.getcwd()` should be replaced by `Path.cwd()`
@@ -101,6 +103,7 @@ ignore = [
   "PTH118",  # `os.path.join()` should be replaced by `Path` with `/` operator
   "PTH119",  # `os.path.basename()` should be replaced by `Path.name`
   "PTH123",  # `open()` should be replaced by `Path.open()`
+  "PTH208",  # use `pathlib.Path.iterdir()` instead
   "PLC0415",  # `import` should be at the top-level of a file
   "PLR0904",  # too many public methods
   "PLR0917",  # too many positional arguments
@@ -126,6 +129,7 @@ ignore = [
   "RUF017",  # Avoid quadratic list summation"
   "RUF018",  # avoid assignment expressions in `assert` statements
   "RUF022",  # __all__` is not sorted
+  "RUF051",  # Use `pop` instead of `key in dict` followed by `del dict[key]`
   "RUF100",  # unused `noqa` directive
   "S101",  # use of `assert` detected
   "S106",  # possible hardcoded password assigned to argument
@@ -150,4 +154,5 @@ ignore = [
   "UP007",  # use `X | Y` for type annotations
   "UP035",  # `typing.[X]` is deprecated, use `[x]` instead
   "UP039",  # unnecessary parentheses after class definition
+  "UP045",  # use `X | None` for type annotations
 ]
