@@ -27,4 +27,4 @@ plan_with_speed_reference_stw:
     Recommend the user what to do based on the identified situation on radar. Only apply this if specifying STW is being used.
   sub-htps:
     - task: |-
-        First identify the situation from the input, then look at DCPA & TCPA if those are mentioned from the input, then let me know the how to make collision avoidance decisions.
+        First identify the situation from the input, then look at DCPA & TCPA & BCR if those are mentioned from the input, then let me know the how to make collision avoidance decisions.
