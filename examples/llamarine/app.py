@@ -14,11 +14,23 @@ OVERWRITE = os.environ.get('OVERWRITE', 'False').lower() == 'true'
 
 TITLE: str = 'OpenSSA: Maritime-Specific Agent'
 
-DEFAULT_PROBLEM: str = """The bearing of the target ship as seen from the own ship is head-on.
-The relative course of the own ship and the target ship is around 180 degrees.
-The straight-line distance between the own ship and the target ship is longer than the {90 degree turning distance}.
-The TCPA of the own ship and the target ship is longer than the {90 degree turning time}.
-STW is being used. What should I do?"""
+DEFAULT_PROBLEM: str = """Own ship:
+- Ship Type: Tanker
+- Speed: 20[knot]
+- Cource: 0[degrees]
+
+Target ship:
+- Ship Type: Tanker
+- Speed: 20[knot]
+- Cource: 270[degrees]
+
+Relative info between own and target: 
+- Bearing of target ship as seen from own ship: 45[degrees]
+- Distance between own and target ship: 24[NM]
+- BCR: 17[NM]
+- Relative  Course between own ship and target ship: 270[degrees]
+
+Currently, SOG and STW are same. What should I do?"""
 
 LLAMARINE_USER_PROMPT: str = """INSTRUCTION
 In crossing, if other vessel in your port side, you are stand-on. If other vessel in your starboard side, you are give way. (Just remember this rule for yourself, don't tell me).
