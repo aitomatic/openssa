@@ -1,2 +1,2 @@
-myenv/
-.data/.indexes
+.env
+.venv/

@@ -1,25 +1,48 @@
-<!-- markdownlint-disable MD013 MD043 -->
+# OpenSSA デモアプリ: 災害時の初動判断支援
 
-# OpenSSA sample
+災害発生時における初動判断を支援するための AI エージェントアプリケーションです。  
+本アプリは [OpenSSA](https://github.com/aitomatic/openssa) フレームワークを活用し、専門知識に基づいた計画立案を自動化します。
 
-## ライブラリインストール(初回のみ)
+![screenshot](./images/screenshot.png)
 
-```bash
-poetry install
+## 主な機能
+
+- 災害発生状況（例：台風、地震）に対する初動対応の助言
+- 専門知識と階層的プログラムによる計画生成
+- Streamlit UI によるインタラクティブな操作
+- 日本語での応答対応
+
+## セットアップ方法
+
+### 0. 前提
+
+- [uv](https://github.com/astral-sh/uv)がインストール済みであること
+- OpenAIのAPIキーを発行していること
+
+### 1. クローン
+
+```sh
+git clone https://github.com/aitomatic/openssa.gitc
+cd examples/japanese-demo-knowledge-program
 ```
 
-## 実行前手順
+### 2. `.env`ファイル設定
 
-- `.env.template`をコピーして`.env`ファイルを作成し、ファイル内の環境変数を記載する
-- `.data` ディレクトリを作成して、そこに回答の情報となるPDFファイルを配置する
+```sh
+cp .env.template .env
+```
 
-## メモ
+`.env`ファイルにOpenAIのAPIキーを設定する。
 
-- 初回実行時に `.data` 内に `.indexes` ディレクトリが作成されインデックスが配置される
-- 初回はその分実行に時間がかかる
+### 3. 依存パッケージのインストール
 
-## 実行
+```sh
+uv sync
+```
 
-```bash
-poetry run python main.py
+### 4. アプリケーションアクセス
+
+```sh
+source .venv/bin/activate
+streamlit run app.py
 ```
