@@ -22,7 +22,7 @@
 ### 1. クローン
 
 ```sh
-git clone https://github.com/aitomatic/openssa.gitc
+git clone https://github.com/aitomatic/openssa.git
 cd examples/japanese-demo-knowledge-program
 ```
 
