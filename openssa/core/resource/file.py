@@ -235,8 +235,8 @@ class FileResource(BaseResource):
                 # docs.llamaindex.ai/en/latest/api_reference/indices.html#llama_index.core.indices.base.BaseIndex.from_documents
                 documents=SimpleDirectoryReader(
                     # docs.llamaindex.ai/en/latest/examples/data_connectors/simple_directory_reader.html#full-configuration
-                    input_dir=self.native_str_path if self.on_remote else self.str_path,
-                    input_files=None,
+                    input_dir=None if self.is_single_file else (self.native_str_path if self.on_remote else self.str_path),
+                    input_files=[self.native_str_path if self.on_remote else self.str_path] if self.is_single_file else None,
                     exclude=[
                         '.DS_Store',  # MacOS
                         '*.json',  # potential nested index files
