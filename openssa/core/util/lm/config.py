@@ -6,11 +6,15 @@ LANGUAGE MODEL (LM) CONFIGURATIONS
 
 
 import os
-
+from pathlib import Path
 from dotenv import load_dotenv
 
+# Find .env relative to this file
+config_dir = Path(__file__).parent
+project_root = config_dir.parent.parent.parent  # Goes up to openssa root
+env_path = project_root / '.env'
 
-load_dotenv(dotenv_path='.env', override=True)
+load_dotenv(dotenv_path=env_path, override=True)
 
 
 class LMConfig:
