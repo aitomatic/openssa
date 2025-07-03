@@ -10,8 +10,6 @@ on:
   pull_request:
     branches:
       - "*"
-    paths-ignore:
-      - '**/*.md'
 
 jobs:
   install-lint-test-on-ubuntu:
