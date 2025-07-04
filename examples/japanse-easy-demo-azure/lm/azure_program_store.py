@@ -49,8 +49,8 @@ class ProgramStore:
 
     def add_or_update_program(self, name: str, description: str, program: BaseProgram):
         """Add or update a Program with its unique identifying name & informative description."""
-        self.descriptions[name]: str = description # type: ignore
-        self.programs[name]: BaseProgram = program # type: ignore
+        self.descriptions[name]: str = description  # type: ignore
+        self.programs[name]: BaseProgram = program  # type: ignore
 
     def find_program(self, task: Task, knowledge: set[Knowledge] | None = None,
                      adaptations_from_known_programs: dict[str, Any] | None = None) -> BaseProgram | None:
