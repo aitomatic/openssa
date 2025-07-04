@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - "*"
+    paths-ignore:
+      - '**/*.md'
 
   pull_request:
     branches:
       - "*"
+
 
 jobs:
   install-lint-test-on-mac:
