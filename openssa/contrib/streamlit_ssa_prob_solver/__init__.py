@@ -236,7 +236,7 @@ class SSAProbSolver:
 
         self.problem: str = st.text_area(label='Problem to Solve',
                                          value=self.problem,
-                                         height=3,
+                                         height=68,
                                          max_chars=None,
                                          key=None,
                                          help='State the Problem to Solve',

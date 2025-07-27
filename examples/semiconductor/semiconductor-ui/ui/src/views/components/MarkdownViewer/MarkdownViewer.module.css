@@ -1,0 +1,37 @@
+.content table {
+    @apply table border-collapse;
+}
+
+.content th {
+    @apply border border-gray-200 px-3 py-2.5 text-left bg-gray-100;
+}
+
+.content td {
+    @apply border border-gray-200 px-3 py-2.5 text-left;
+}
+
+/* .content-small p {
+    @apply py-1;
+} */
+
+.content ul {
+    @apply pl-6;
+
+    list-style: disc;
+}
+
+.content ol {
+    @apply pl-6;
+
+    list-style: decimal;
+}
+
+.content-small {
+    font-size: 14px;
+}
+
+.content pre {
+    @apply py-1 text-sm;
+    
+    white-space: pre-wrap !important;
+}

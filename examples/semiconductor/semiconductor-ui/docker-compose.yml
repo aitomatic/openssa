@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  apis:
+    container_name: apis
+    restart: always
+    platform: linux/amd64
+    env_file: .env
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    command: sh start.sh
+
+    ports:
+      - 9000:8080
+
+  ui:
+    container_name: semiconductor-ui
+    restart: always
+    build:
+      context: ./ui
+      target: development
+      dockerfile: ./Dockerfile
+    environment:
+      - VITE_API_HOST=http://localhost:9000
+    volumes:
+      - ./ui/src:/app/src
+      - ./ui/public:/app/public
+      - "./ui/tailwind.config.js:/app/tailwind.config.js"
+    ports:
+      - 4000:5173

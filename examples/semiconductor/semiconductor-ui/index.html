@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semiconductor UI</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/zustand@4.1.4/umd/vanilla.development.js"></script>
+    <script src="https://unpkg.com/use-zustand@0.0.1/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/pagedone@1.1.2/src/css/pagedone.css"
+    />
+  </head>
+  <body
+    class="flex flex-col w-screen min-h-screen bg-black"
+    style="background: black"
+  >
+    <div
+      class="flex px-2.5 py-6 justify-center gap-6 border-b border-gray-200 bg-white"
+      style="background: black; color: white"
+    >
+      <div
+        class="flex flex-col gap-3 items-center after:content-[''] step-item"
+      >
+        <div
+          class="flex w-4 h-4 rounded-full"
+          style="background-color: #00ca51"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path
+              d="M13.3346 4L6.0013 11.3333L2.66797 8"
+              stroke="black"
+              stroke-width="1.33333"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div>Specifications</div>
+          <div>Loremm ipsum dolor sit amet consectetur</div>
+        </div>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div
+          class="flex w-4 h-4 rounded-full"
+          style="background-color: #00ca51"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path
+              d="M13.3346 4L6.0013 11.3333L2.66797 8"
+              stroke="black"
+              stroke-width="1.33333"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div>Paramters</div>
+          <div>Loremm ipsum dolor sit amet consectetur</div>
+        </div>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <div
+          class="flex w-4 h-4 rounded-full"
+          style="background-color: #00ca51"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path
+              d="M13.3346 4L6.0013 11.3333L2.66797 8"
+              stroke="black"
+              stroke-width="1.33333"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div>Steps</div>
+          <div>Loremm ipsum dolor sit amet consectetur</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="flex flex-col flex-1 gap-8 p-8">
+        <div class="flex flex-col gap-2">
+          <div class="text-white">Question</div>
+          <div
+            class="flex flex-col border rounded-lg"
+            style="border-color: #454545; background-color: #1a1a1a"
+          >
+            <div class="p-5">
+              <textarea class="w-full resize-none"></textarea>
+            </div>
+            <div class="flex justify-end p-5">
+              <button
+                class="px-5 py-2 text-white rounded-lg"
+                style="background-color: white; color: black"
+              >
+                Solve
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="text-white">Specifications</div>
+          <div class="flex flex-col rounded-lg" style="background: #1f1f1f">
+            <div class="flex">
+              <div
+                class="flex flex-col gap-3 p-5"
+                style="flex: 3; color: white"
+              >
+                <div class="" style="color: #ededed">
+                  This recipe is designed to achieve a higher SiO etch rate
+                  while maintaining good selectivity over the PR mask and
+                  minimizing polymer redeposition.
+                </div>
+                <ul class="pl-4 list-disc">
+                  <li>
+                    Gases:
+
+                    <ul class="pl-4 list-disc">
+                      <li>CF4: 50 sccm</li>
+                      <li>CHF3: 20 sccm</li>
+                      <li>Ar: 10 sccm</li>
+                    </ul>
+                  </li>
+                  <li>ICP Power: 800 W</li>
+                  <li>Bias Power: 100 W</li>
+                  <li>Temperature: 20°C</li>
+                </ul>
+              </div>
+              <div
+                class="flex flex-col justify-center gap-3 p-5"
+                style="flex: 2; background-color: #2e2e2e"
+              >
+                <img src="/public/images/image-14.png" />
+              </div>
+            </div>
+            <div class="flex justify-end p-5">
+              <button
+                class="px-5 py-2 text-white rounded-lg"
+                style="background-color: white; color: black"
+              >
+                Suggest Params
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="text-white">Plans</div>
+          <div
+            class="flex flex-col border rounded-lg"
+            style="border-color: #454545; background-color: #1a1a1a"
+          >
+            <div class="flex items-center gap-2 p-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_14399_59232)">
+                  <path
+                    d="M4.9987 8.00016L6.9987 10.0002L10.9987 6.00016M14.6654 8.00016C14.6654 11.6821 11.6806 14.6668 7.9987 14.6668C4.3168 14.6668 1.33203 11.6821 1.33203 8.00016C1.33203 4.31826 4.3168 1.3335 7.9987 1.3335C11.6806 1.3335 14.6654 4.31826 14.6654 8.00016Z"
+                    stroke="#58C760"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_14399_59232">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div>
+                <span class="text-white font-500">Main task:</span
+                ><span style="color: #a1a1a1; padding-left: 2px"
+                  >sit amet consectetur</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-2 p-5 px-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_14399_59232)">
+                  <path
+                    d="M4.9987 8.00016L6.9987 10.0002L10.9987 6.00016M14.6654 8.00016C14.6654 11.6821 11.6806 14.6668 7.9987 14.6668C4.3168 14.6668 1.33203 11.6821 1.33203 8.00016C1.33203 4.31826 4.3168 1.3335 7.9987 1.3335C11.6806 1.3335 14.6654 4.31826 14.6654 8.00016Z"
+                    stroke="#58C760"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_14399_59232">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div>
+                <span class="text-white font-500">Subtask 1:</span
+                ><span style="color: #a1a1a1; padding-left: 2px"
+                  >sit amet consectetur</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-2 p-5 px-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_14399_59232)">
+                  <path
+                    d="M4.9987 8.00016L6.9987 10.0002L10.9987 6.00016M14.6654 8.00016C14.6654 11.6821 11.6806 14.6668 7.9987 14.6668C4.3168 14.6668 1.33203 11.6821 1.33203 8.00016C1.33203 4.31826 4.3168 1.3335 7.9987 1.3335C11.6806 1.3335 14.6654 4.31826 14.6654 8.00016Z"
+                    stroke="#58C760"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_14399_59232">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div>
+                <span class="text-white font-500">Subtask 2:</span
+                ><span style="color: #a1a1a1; padding-left: 2px"
+                  >sit amet consectetur</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-2 p-5 px-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_14399_59232)">
+                  <path
+                    d="M4.9987 8.00016L6.9987 10.0002L10.9987 6.00016M14.6654 8.00016C14.6654 11.6821 11.6806 14.6668 7.9987 14.6668C4.3168 14.6668 1.33203 11.6821 1.33203 8.00016C1.33203 4.31826 4.3168 1.3335 7.9987 1.3335C11.6806 1.3335 14.6654 4.31826 14.6654 8.00016Z"
+                    stroke="#58C760"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_14399_59232">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div>
+                <span class="text-white font-500">Subtask 3:</span
+                ><span style="color: #a1a1a1; padding-left: 2px"
+                  >sit amet consectetur</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-2 p-5 px-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_14399_59232)">
+                  <path
+                    d="M4.9987 8.00016L6.9987 10.0002L10.9987 6.00016M14.6654 8.00016C14.6654 11.6821 11.6806 14.6668 7.9987 14.6668C4.3168 14.6668 1.33203 11.6821 1.33203 8.00016C1.33203 4.31826 4.3168 1.3335 7.9987 1.3335C11.6806 1.3335 14.6654 4.31826 14.6654 8.00016Z"
+                    stroke="#58C760"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_14399_59232">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div>
+                <span class="text-white font-500">Subtask 4:</span
+                ><span style="color: #a1a1a1; padding-left: 2px"
+                  >sit amet consectetur</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col flex-1 gap-8 p-8 border-l"
+        style="border-color: #252525"
+      >
+        <div class="flex flex-col gap-2">
+          <div class="text-white">Solution</div>
+          <div
+            class="flex flex-col rounded-lg"
+            style="background: #1f1f1f; border: 1px solid #272626"
+          >
+            <div
+              class="flex items-center justify-between p-5 rounded-t-lg"
+              style="background: #292929"
+            >
+              <div class="font-medium text-white">
+                First suggested parameter
+              </div>
+              <div
+                class="px-4 py-2 text-xs rounded-full"
+                style="background-color: #00320b; color: #00ca51"
+              >
+                Recommended
+              </div>
+            </div>
+            <div class="flex text-white" style="background-color: #0f0f0f">
+              <div class="font-medium px-6 py-2.5 font-medium" style="flex: 2">
+                Parameter
+              </div>
+              <div class="font-medium px-6 py-2.5 font-medium" style="flex: 3">
+                Value
+              </div>
+            </div>
+            <div class="flex text-white">
+              <div class="px-6 py-2.5" style="flex: 2">Ar (Argon)</div>
+              <div class="px-6 py-2.5" style="flex: 3">1213 sccm</div>
+            </div>
+            <div class="flex text-white" style="background-color: #0f0f0f">
+              <div class="px-6 py-2.5" style="flex: 2">Power</div>
+              <div class="px-6 py-2.5" style="flex: 3">123231 W</div>
+            </div>
+            <div class="flex text-white">
+              <div class="px-6 py-2.5" style="flex: 2">
+                DCS (Dichlorosilane)
+              </div>
+              <div class="px-6 py-2.5" style="flex: 3">1213 sccm</div>
+            </div>
+            <div class="flex text-white" style="background-color: #0f0f0f">
+              <div class="px-6 py-2.5" style="flex: 2">Temperature</div>
+              <div class="px-6 py-2.5" style="flex: 3">123231 W</div>
+            </div>
+            <div class="flex text-white">
+              <div class="px-6 py-2.5" style="flex: 2">Pressure</div>
+              <div class="px-6 py-2.5" style="flex: 3">1213 sccm</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div
+            class="flex flex-col rounded-lg"
+            style="background: #1f1f1f; border: 1px solid #272626; opacity: 0.6"
+          >
+            <div
+              class="flex items-center justify-between p-5 rounded-t-lg"
+              style="background: #292929"
+            >
+              <div class="font-medium text-white">
+                Second suggested parameter
+              </div>
+              <div
+                class="px-4 py-2 text-xs rounded-full"
+                style="background-color: #00320b; color: #00ca51"
+              >
+                Recommended
+              </div>
+            </div>
+            <div class="flex text-white" style="background-color: #0f0f0f">
+              <div class="font-medium px-6 py-2.5 font-medium" style="flex: 2">
+                Parameter
+              </div>
+              <div class="font-medium px-6 py-2.5 font-medium" style="flex: 3">
+                Value
+              </div>
+            </div>
+            <div class="flex text-white">
+              <div class="px-6 py-2.5" style="flex: 2">Ar (Argon)</div>
+              <div class="px-6 py-2.5" style="flex: 3">1213 sccm</div>
+            </div>
+            <div class="flex text-white" style="background-color: #0f0f0f">
+              <div class="px-6 py-2.5" style="flex: 2">Power</div>
+              <div class="px-6 py-2.5" style="flex: 3">123231 W</div>
+            </div>
+            <div class="flex text-white">
+              <div class="px-6 py-2.5" style="flex: 2">
+                DCS (Dichlorosilane)
+              </div>
+              <div class="px-6 py-2.5" style="flex: 3">1213 sccm</div>
+            </div>
+            <div class="flex text-white" style="background-color: #0f0f0f">
+              <div class="px-6 py-2.5" style="flex: 2">Temperature</div>
+              <div class="px-6 py-2.5" style="flex: 3">123231 W</div>
+            </div>
+            <div class="flex text-white">
+              <div class="px-6 py-2.5" style="flex: 2">Pressure</div>
+              <div class="px-6 py-2.5" style="flex: 3">1213 sccm</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="text-white">Steps to Optimize the Etching Process</div>
+          <div>
+            <img class="w-full" src="/public/images/image-16.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="root"></div> -->
+
+    <!-- <script type="text/babel" src="./js/main.js"></script> -->
+    <link href="/css/style.css" rel="stylesheet" />
+  </body>
+</html>

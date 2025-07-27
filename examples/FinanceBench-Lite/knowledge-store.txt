@@ -1,0 +1,45 @@
+Liquidity Metric Formulas
+-------------------------
+
+`(Net) Working Capital` = `(Total) Current Assets` - `(Total) Current Liabilities`
+
+`Working Capital Ratio` = `(Total) Current Assets` / `(Total) Current Liabilities`
+
+`Quick Ratio` = (
+  (`Cash & Cash Equivalents` +
+   `Short-Term Investments or (Current) Marketable Securities` +
+   `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`)
+  / `(Total) Current Liabilities`
+)
+
+`Operating Cash Flow Ratio` = (
+  `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows`
+  / `(Total) Current Liabilities`
+)
+
+`Free Cash Flow, a.k.a. FCF` = (
+  `(Net) Cash Flows from Operations, a.k.a. (Net) Operating Cash Flows` -
+  `Capital Expenditure(s), a.k.a. CapEx, or Capital Spending, or Property, Plant & Equipment (PP&E) Expenditure(s)/Purchase(s)`
+)
+
+`Free Cash Flow Conversion Ratio` = `Free Cash Flow, a.k.a. FCF` / `Earnings before Interest, Tax, Depreciation & Amortization, a.k.a. EBITDA`
+
+`Days Inventory Outstanding, a.k.a. DIO` = (
+  365 * `average (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`
+  / `(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue`
+)
+
+`Days Payable Outstanding, a.k.a. DPO` = (
+  365 * `average Accounts Payable, typically between two consecutive fiscal year-ends`
+  / (`(Total) Cost of Goods Sold, a.k.a. (Total) COGS, or (Total) Cost of Sales, or (Total) Cost of Revenue` +
+     `change in (Total) (Net) Inventory(ies), typically between two consecutive fiscal year-ends`)
+)
+
+`Days Sales Oustanding, a.k.a. DSO` = (
+  365 * `average (Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables, typically between two consecutive fiscal year-ends`
+  / `(Total) (Net) (Operating) Revenue(s), a.k.a. (Total) (Net) Sales`
+)
+
+`Cash Conversion Cycle, a.k.a. CCC` = (
+  `Days Inventory Outstanding, a.k.a. DIO` + `Days Sales Oustanding, a.k.a. DSO` - `Days Payable Outstanding, a.k.a. DPO`
+)

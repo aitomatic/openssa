@@ -1,0 +1,62 @@
+Etching Silicon Dioxide (SiO2): typical recipe(s)
+=================================================
+
+If using Inductively Coupled Plasma (ICP) Reactive Ion Etching (RIE)
+--------------------------------------------------------------------
+
+
+GASES & FLOW RATES:
+
+Common gas is CHF3, often mixed with small amount of Ar and/or O2:
+- CHF3 provides fluorine for etching while also polymerising to provide sidewall protection, improving anisotropy
+- Ar helps maintain stable plasma
+- O2 enhances volatility of etch products
+
+Typical starting point:
+- 20-50 sccm of CHF3
+- 5-10 sccm of Ar
+- 2-5 sccm of O2
+
+
+ICP POWER:
+
+Higher ICP power (e.g., 500-1000W) increases plasma density and etch rate
+BUT may also lead to more physical damage and less anisotropic profiles
+
+
+RF POWER:
+
+Lower RF power (e.g., 10-50W) provides more anisotropic profiles
+
+
+PRESSURE:
+
+Lower pressure (e.g., 5-20 mTorr) helps improve anisotropy
+
+
+ETCH TIME:
+
+You need to adjust etch time depending on desired depth and etch rate.
+
+Remember that etch rate can vary across wafer and over time, so it's best to overestimate time and measure depth periodically.
+
+
+END-POINT DETECTION:
+
+Many RIE systems have optical emission spectroscopy (OES) or interferometry for end-point detection.
+These can stop etching process when desired depth is reached.
+
+
+OPTIMIZATION CONSIDERATIONS:
+
+- Etch rate
+- Selectivity to mask and underlying layers
+- Etch profile (anisotropy)
+- Uniformity
+- Physical or chemical damage
+
+
+SAFETY PROCEDURES:
+
+- Always follow safety procedures when working with plasma etching systems and handling gases
+- Confirm with facility and equipment manager that your planned recipe is compatible and won't cause any damage or contamination

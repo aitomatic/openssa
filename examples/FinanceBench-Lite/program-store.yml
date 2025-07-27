@@ -1,0 +1,36 @@
+quick-ratio:
+  task: Assess liquidity health of {COMPANY} through its `Quick Ratio` as at {PERIOD} fiscal period end
+
+  sub-htps:
+    - task: |-
+        Calculate `Quick Ratio` of {COMPANY} as at {PERIOD} fiscal period end as decimal value according to formula:
+
+        `Quick Ratio` = (
+          (`Cash & Cash Equivalents` +
+           `Short-Term Investments or (Current) Marketable Securities` +
+           `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`)
+          / `(Total) Current Liabilities`
+        )
+
+      sub-htps:
+        # 1 single Retrieval task for multiple quantities on same statement, for both efficiency & mutual consistency;
+        # retrieve individual numerator & denominator balance values only, without taking division
+        # because RAG LMs may not be good at calculation & mathematical reasoning
+        - task: |-
+            What are values in dollars of:
+            - `Cash & Cash Equivalents`;
+            - `Short-Term Investments or (Current) Marketable Securities`;
+            - `(Net) Accounts Receivable, a.k.a. (Net) (Trade) Receivables`; and
+            - `(Total) Current Liabilities`
+            (or most similar-meaning reported line items to those)
+
+            on one same `(Consolidated) Balance Sheet, a.k.a. Statement of (Consolidated) Financial Position`
+            (or most similar-meaning statement) of {COMPANY}
+            (and NOT Balance Sheets of its acquired and/or divested companies)
+
+            as at {PERIOD} fiscal period end?
+
+    - task: |-
+        Compare calculated `Quick Ratio` decimal value against 1.00 and make assessment:
+        - `Quick Ratio` >= 1.00: liquidity is healthy; or
+        - `Quick Ratio` < 1.00: liquidity is not very healthy

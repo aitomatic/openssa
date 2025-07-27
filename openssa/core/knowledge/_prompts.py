@@ -1,6 +1,6 @@
-from openssa.core.util.lm.abstract import LMChatHist
+from openssa.core.util.lm.base import LMChatHist
 
-from .abstract import Knowledge
+from .base import Knowledge
 
 
 KNOWLEDGE_INJECTION_PROMPT_TEMPLATE: str = \

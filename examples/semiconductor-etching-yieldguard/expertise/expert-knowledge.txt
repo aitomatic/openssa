@@ -1,0 +1,93 @@
+SEMICONDUCTOR ETCHING EQUIPMENT MONITORING, MAINTENANCE & OPTIMIZATION
+======================================================================
+
+
+RF Power Fluctuation Rule
+-------------------------
+HEURISTIC: If the reflected power in the TEL Tactras RLSA Etcher increases by more than 5% for three consecutive wafers,
+and the forward power adjustment exceeds 10%, this suggests possible electrode erosion or plasma instability.
+
+ACTION: Alert the maintenance engineer to inspect the electrodes and adjust gas flow or power settings,
+potentially avoiding costly equipment downtime.
+
+
+Pressure Stability Monitoring
+-----------------------------
+HEURISTIC: If the chamber pressure deviation exceeds ±3% for more than 30 seconds during steady-state etching,
+coupled with a gas flow variation of more than 5%, it indicates potential chamber wall coating or residue buildup.
+
+ACTION: Recommend a preventative chamber clean and adjust the gas flow to stabilize pressure,
+reducing the likelihood of non-uniform etching.
+
+
+Temperature-Dependent Chamber Cleaning Optimization
+---------------------------------------------------
+HEURISTIC: If the chamber wall temperature shows a steady increase of 2°C over three lots,
+despite maintaining the same power settings, it indicates polymer build-up on the chamber walls.
+
+ACTION: Suggest adjusting the chamber clean cycle frequency and alerts engineers to check the wall lining.
+Automated cleaning recommendations can significantly reduce variation and increase yield.
+
+
+Etch Rate Uniformity Rule
+-------------------------
+HEURISTIC: If the etch rate between the wafer center and edge varies by more than 7% for three consecutive lots,
+this could indicate gas flow distribution issues or hardware alignment issues within the TEL Tactras system.
+
+ACTION: Alert the process engineer to investigate gas flow uniformity
+and suggests optimizing flow parameters or performing a hardware realignment.
+
+
+Chamber Matching Network Heuristic
+----------------------------------
+HEURISTIC: If the chamber matching network requires more than two adjustments per wafer run
+to maintain desired RF power settings, it suggests possible impedance mismatch or degradation in the matching components.
+
+ACTION: Optimize matching network settings and recommend maintenance
+if impedance mismatch trends persist, potentially preventing plasma stability issues.
+
+
+Microloading Effect Detection
+-----------------------------
+HEURISTIC: If the etch rate is higher in areas with smaller feature densities compared to high-density areas
+(indicative of the microloading effect), and the difference exceeds a set threshold,
+this can lead to non-uniform etching and yield loss.
+
+ACTION: Alert engineers to optimize gas flow and power settings based on specific wafer feature density,
+enhancing etch uniformity across wafers.
+
+
+Real-Time Recipe Adjustment Based on Yield Data
+-----------------------------------------------
+HEURISTIC: If yield data shows a consistent defect pattern (e.g., at the wafer edge or specific die locations)
+for more than 5% of wafers, correlate this with historical process parameters and makes real-time recipe adjustments.
+
+ACTION: Automated recipe optimization based on yield trends can reduce defect occurrence,
+improving overall productivity and wafer quality.
+
+
+Anomaly Detection with Historical Baseline Comparison
+-----------------------------------------------------
+HEURISTIC: If real-time sensor data (e.g., temperature, pressure, RF power) shows deviations
+outside historical baseline ranges for similar recipes, this could indicate tool degradation or unexpected chamber behavior.
+
+ACTION: Trigger alerts and suggest corrective actions such as parameter adjustment or additional inspections,
+preventing potential faults.
+
+
+Particle Generation Control for Bevel Etching
+---------------------------------------------
+HEURISTIC: If particle count in the bevel area increases beyond acceptable limits during bevel etching
+in the Tactras UDEMAE system, this suggests non-uniform edge plasma distribution or excessive material removal.
+
+ACTION: Recommend reducing RF power or modifying gas flow in the bevel area,
+significantly reducing the risk of yield-impacting particle contamination.
+
+
+Multi-Parameter Fault Isolation for Complex Equipment
+-----------------------------------------------------
+HEURISTIC: If multiple parameters (e.g., RF power, pressure, temperature) show simultaneous deviations
+outside standard operating windows, use historical fault isolation data to pinpoint the most likely root cause.
+
+ACTION: Provide a ranked list of potential root causes with confidence levels,
+enabling faster and more accurate fault isolation.

@@ -1,0 +1,72 @@
+rf-power-fluctuation-monitoring:
+  task: |-
+    Monitor RF Power fluctuation and recommend inspection/maintenance actions if fluctuation is excessive
+
+  sub-htps:
+    - task: >-
+        What are the values of Reflected Power in the recent data?
+
+    - task: |-
+        Analyze whether the lowest and highest Reflected Power values differ by more than 15%.
+        If so, note down the corresponding wafer batch number range between them.
+
+    - task: >-
+        What are the values of Forward Power in the recent data?
+
+    - task: |-
+        Analyze whether the lowest and highest Forward Power values differ by more than 10%.
+        If so, note down the corresponding wafer batch number range between them.
+
+    - task: |-
+        If there are excessive fluctuations in both Reflected Power and Forward Power in the previous analyses,
+        and if the wafer batch number ranges overlap, report a RF Power Fluctuation problem,
+        and recommend the following maintenance actions:
+        - Inspect the electrodes
+        - Adjust gas flow
+        - Adjust power settings
+
+
+pressure-instability-monitoring:
+  task: |-
+    Monitor Chamber Pressure fluctuation and recommend inspection/maintenance actions if fluctuation is excessive
+
+  sub-htps:
+    - task: >-
+        What are the values of Chamber Pressure in the recent data?
+
+    - task: |-
+        Analyze whether there are consecutive Chamber Pressure values differing by at least 3%.
+        If so, note down the corresponding wafer batch numbers.
+
+    - task: >-
+        What are the values of Gas Flow Rate in the recent data?
+
+    - task: |-
+        Analyze whether there are consecutive Gas Flow Rate values differing by at least 5%.
+        If so, note down the corresponding wafer batch numbers.
+
+    - task: |-
+        If there are excessive fluctuations in both Chamber Pressure and Gas Flow Rate in the previous analyses,
+        and if the wafer batch numbers contain some same batch(es), report a Pressure Instability problem,
+        and recommend the following maintenance actions:
+        - Preventative chamber cleaning
+        - Adjustment of the gas flow to stabilize pressure
+
+
+chamber-temperature-monitoring:
+  task: |-
+    Monitor Chamber Temperature increases and recommend inspection/maintenance actions if heating is excessive
+
+  sub-htps:
+    - task: >-
+        What are the values of Chamber Temperature in the recent data?
+
+    - task: |-
+        Analyze whether there are 3 consecutive Chamber Temperature values
+        showing increases of at least 2 Celcius degrees from first to second and from second to third
+
+    - task: |-
+        If there is/are significant Chamber Temperature increase(s) identified in the previous analysis,
+        recommend the following maintenance actions:
+        - Adjustment of chamber clean frequency
+        - Alerting engineers to check wall lining for polymer build-up

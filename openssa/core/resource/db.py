@@ -7,10 +7,10 @@
 
 from __future__ import annotations
 
-from .abstract import AbstractResource
+from .base import BaseResource
 from ._global import global_register
 
 
 @global_register
-class DbResource(AbstractResource):
+class DbResource(BaseResource):
     """Database Informational Resource."""

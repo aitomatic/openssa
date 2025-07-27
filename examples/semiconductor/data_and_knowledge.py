@@ -13,7 +13,18 @@ if TYPE_CHECKING:
 load_dotenv()
 
 
-EXPERT_PROGRAMS_FILE_PATH: Path = Path(__file__).parent / 'expert-program-store.yml'
+EXPERT_KNOWLEDGE_PATH: Path = Path(__file__).parent / 'expert-knowledge.txt'
+with open(file=EXPERT_KNOWLEDGE_PATH,
+          buffering=-1,
+          encoding='utf-8',
+          errors='strict',
+          newline=None,
+          closefd=True,
+          opener=None) as f:
+    EXPERT_KNOWLEDGE: str = f.read()
+
+
+EXPERT_PROGRAMS_FILE_PATH: Path = Path(__file__).parent / 'expert-programs.yml'
 with open(file=EXPERT_PROGRAMS_FILE_PATH,
           buffering=-1,
           encoding='utf-8',

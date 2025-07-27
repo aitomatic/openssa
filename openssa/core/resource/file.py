@@ -39,7 +39,7 @@ from llama_index.core.vector_stores.types import VectorStoreQueryMode
 
 from openssa.core.util.lm.openai import default_llama_index_openai_embed_model, default_llama_index_openai_lm
 
-from .abstract import AbstractResource
+from .base import BaseResource
 from ._global import global_register
 from ._prompts import RESOURCE_QA_PROMPT_TEMPLATE
 
@@ -75,7 +75,7 @@ type FileStrPathSet = frozenset[DirOrFileStrPath]
 
 @global_register
 @dataclass
-class FileResource(AbstractResource):
+class FileResource(BaseResource):
     """File-stored Informational Resource."""
 
     # directory or file path to file-stored Informational Resource
