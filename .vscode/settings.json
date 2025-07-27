@@ -199,5 +199,10 @@
   "ruff.codeAction.disableRuleComment.enable": true,
 
   // Setting to control when a notification is shown: off, onError, onWarning, always.
-  "ruff.showNotification": "onWarning"
+  "ruff.showNotification": "onWarning",
+  "cursorpyright.analysis.diagnosticSeverityOverrides": {
+    "reportInvalidTypeForm": "none",
+    "reportMissingImports": "none",
+    "reportMissingModuleSource": "none"
+  }
 }
