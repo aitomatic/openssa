@@ -8,7 +8,7 @@ from openssa.core.util.lm.openai import OpenAILM, default_llama_index_openai_lm
 # pylint: disable=wrong-import-order,wrong-import-position
 from data_and_knowledge import (DocName, FbId, Answer, Doc, FB_ID_COL_NAME, DOC_NAMES_BY_FB_ID, QS_BY_FB_ID,
                                 EXPERT_KNOWLEDGE, EXPERT_PROGRAMS, EXPERT_HTP_COMPANY_KEY, EXPERT_HTP_PERIOD_KEY)
-from util import QAFunc, enable_batch_qa_and_eval, log_qa_and_update_output_file
+from util import QAFunc, log_qa_and_update_output_file
 
 
 @cache
@@ -51,7 +51,6 @@ def get_or_create_adaptations(doc_name: DocName) -> dict[str, str]:
     return {EXPERT_HTP_COMPANY_KEY: (doc := Doc(name=doc_name)).company, EXPERT_HTP_PERIOD_KEY: doc.period}
 
 
-@enable_batch_qa_and_eval(output_name='DANA')
 @log_qa_and_update_output_file(output_name='DANA')
 def solve(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id]).solve(
@@ -59,7 +58,6 @@ def solve(fb_id: FbId) -> Answer:
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
-@enable_batch_qa_and_eval(output_name='DANA-wKnowledge')
 @log_qa_and_update_output_file(output_name='DANA-wKnowledge')
 def solve_with_knowledge(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True).solve(
@@ -67,7 +65,6 @@ def solve_with_knowledge(fb_id: FbId) -> Answer:
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
-@enable_batch_qa_and_eval(output_name='DANA-wProgStore')
 @log_qa_and_update_output_file(output_name='DANA-wProgStore')
 def solve_with_program_store(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_programs=True).solve(
@@ -75,7 +72,6 @@ def solve_with_program_store(fb_id: FbId) -> Answer:
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
-@enable_batch_qa_and_eval(output_name='DANA-wKnowledge-wProgStore')
 @log_qa_and_update_output_file(output_name='DANA-wKnowledge-wProgStore')
 def solve_with_knowledge_and_program_store(fb_id: FbId) -> Answer:
     return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_programs=True).solve(
@@ -83,7 +79,6 @@ def solve_with_knowledge_and_program_store(fb_id: FbId) -> Answer:
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
-@enable_batch_qa_and_eval(output_name='DANA-wLlama3')
 @log_qa_and_update_output_file(output_name='DANA-wLlama3')
 def solve_with_llama3(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], use_llama3=True).solve(
@@ -91,7 +86,6 @@ def solve_with_llama3(fb_id: FbId) -> Answer:
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
-@enable_batch_qa_and_eval(output_name='DANA-wKnowledge-wLlama3')
 @log_qa_and_update_output_file(output_name='DANA-wKnowledge-wLlama3')
 def solve_with_knowledge_with_llama3(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, use_llama3=True).solve(
@@ -99,7 +93,6 @@ def solve_with_knowledge_with_llama3(fb_id: FbId) -> Answer:
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
-@enable_batch_qa_and_eval(output_name='DANA-wProgStore-wLlama3')
 @log_qa_and_update_output_file(output_name='DANA-wProgStore-wLlama3')
 def solve_with_program_store_with_llama3(fb_id: FbId) -> Answer:
     return get_or_create_agent(doc_name=DOC_NAMES_BY_FB_ID[fb_id], expert_programs=True, use_llama3=True).solve(
@@ -107,7 +100,6 @@ def solve_with_program_store_with_llama3(fb_id: FbId) -> Answer:
         adaptations_from_known_programs=get_or_create_adaptations(doc_name=DOC_NAMES_BY_FB_ID[fb_id]))
 
 
-@enable_batch_qa_and_eval(output_name='DANA-wKnowledge-wProgStore-wLlama3')
 @log_qa_and_update_output_file(output_name='DANA-wKnowledge-wProgStore-wLlama3')
 def solve_with_knowledge_and_program_store_with_llama3(fb_id: FbId) -> Answer:
     return get_or_create_agent(DOC_NAMES_BY_FB_ID[fb_id], expert_knowledge=True, expert_programs=True, use_llama3=True).solve(  # noqa: E501
